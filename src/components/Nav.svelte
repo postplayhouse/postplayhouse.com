@@ -1,5 +1,28 @@
 <script>
   export let segment;
+
+  function nodeIsActive(node, segment) {
+    const path = node.href.split("/").pop();
+    return path === "" ? segment === undefined : path === segment;
+  }
+
+  function manageNodeActiveClass(node, segment) {
+    if (nodeIsActive(node, segment)) {
+      node.classList.add("active");
+    } else {
+      node.classList.remove("active");
+    }
+  }
+
+  function active(node, segment) {
+    manageNodeActiveClass(node, segment);
+
+    return {
+      update(segment) {
+        manageNodeActiveClass(node, segment);
+      },
+    };
+  }
 </script>
 
 <style>
@@ -26,12 +49,12 @@
     float: left;
   }
 
-  .selected {
+  .main-nav :global(.active) {
     position: relative;
     display: inline-block;
   }
 
-  .selected::after {
+  .main-nav :global(.active::after) {
     position: absolute;
     content: "";
     width: calc(100% - 1em);
@@ -48,24 +71,19 @@
   }
 </style>
 
-<nav>
+<nav class="main-nav">
   <ul>
     <li>
-      <a class={segment === undefined ? 'selected' : ''} href=".">home</a>
+      <a use:active={segment} href=".">home</a>
     </li>
     <li>
-      <a class={segment === 'about' ? 'selected' : ''} href="about">about</a>
+      <a use:active={segment} href="about">about</a>
     </li>
 
     <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 		     the blog data when we hover over the link or tap it on a touchscreen -->
     <li>
-      <a
-        rel="prefetch"
-        class={segment === 'blog' ? 'selected' : ''}
-        href="blog">
-        blog
-      </a>
+      <a rel="prefetch" use:active={segment} href="blog">blog</a>
     </li>
   </ul>
 </nav>
