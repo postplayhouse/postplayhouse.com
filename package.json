@@ -17,6 +17,8 @@
     "sirv": "^0.4.0"
   },
   "devDependencies": {
+    "frontmatter": "0.0.3",
+    "markdown-it": "^9.0.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
     "prettier-plugin-svelte": "^0.7.0",
