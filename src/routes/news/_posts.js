@@ -3,43 +3,54 @@ import * as path from "path";
 import frontmatter from "frontmatter";
 import MarkdownIt from "markdown-it";
 
-const dirname = "src/routes/news/_posts";
-const parentDir = path.join(dirname, "..");
+const postsDirname = "src/routes/news/_posts";
+const thisDirname = path.join(postsDirname, "..");
 
 const STARTS_WITH_NUM = /^[0-9]/;
 const md = new MarkdownIt({ html: true, typographer: true });
 
-const posts = (() => {
-  const mdFileNames = fs.readdirSync(dirname, "utf-8");
-  const svelteFileNames = fs
-    .readdirSync(parentDir, "utf-8")
-    .filter(fileName => STARTS_WITH_NUM.test(fileName));
-  const files = mdFileNames
-    .concat(svelteFileNames)
-    .sort()
-    .filter(fileName => !fileName.startsWith("."))
-    .map(fileName => {
-      const [basename, ext] = fileName.split(".");
-      if (ext === "md" || ext === "html") {
-        const contents = fs.readFileSync(`${dirname}/${fileName}`, "utf8");
+const getDetails = (directory, ...extensions) => (acc, fileName) => {
+  const [basename, ext] = fileName.split(".");
+  if (extensions.indexOf(ext) === -1) {
+    return acc;
+  }
+  const contents = fs.readFileSync(`${directory}/${fileName}`, "utf8");
+  return [...acc, { basename, ext, contents, date: basename.slice(0, 10) }];
+};
 
-        const fm = frontmatter(contents);
-        return {
-          ...fm.data,
-          slug: basename,
-          html: ext === "md" ? md.render(fm.content) : fm.content,
-        };
-      } else {
-        const contents = fs.readFileSync(`${parentDir}/${fileName}`, "utf-8");
-        const [_full, _1, _2, title] = contents.match(
-          /^\s*export (const|let) title = ("|')(.*?)("|')/m,
-        );
-        return { slug: basename, title: title ? title : basename };
-      }
-    });
+const postsDirFiles = fs.readdirSync(postsDirname, "utf-8");
+const thisDirFiles = fs.readdirSync(thisDirname, "utf-8");
 
-  console.log({ dir: mdFileNames, files });
-  return files;
-})();
+const mdFiles = postsDirFiles
+  .reduce(getDetails(postsDirname, "md", "html"), [])
+  .map(details => {
+    const fm = frontmatter(details.contents);
+    return {
+      ...details,
+      ...fm.data,
+      slug: details.basename,
+      html: details.ext === "md" ? md.render(fm.content) : fm.content,
+    };
+  });
+
+const svelteFiles = thisDirFiles
+  .reduce(getDetails(thisDirname, "svelte"), [])
+  .filter(details => STARTS_WITH_NUM.test(details.basename))
+  .map(details => {
+    const [_full, _1, _2, title] = details.contents.match(
+      /^\s*export (const|let) title = ("|')(.*?)("|')/m,
+    );
+    // We only need the slug and title, because the actual svelte component
+    // will take over the content when it i routed.
+    return {
+      ...details,
+      slug: details.basename,
+      title: title ? title : details.basename,
+    };
+  });
+
+const posts = svelteFiles
+  .concat(mdFiles)
+  .sort((a, b) => (a.slug > b.slug ? 1 : -1));
 
 export default posts;
