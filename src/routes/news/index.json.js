@@ -1,12 +1,7 @@
 import posts from "./_posts.js";
 
 const contents = JSON.stringify(
-  posts.map(post => {
-    return {
-      title: post.title,
-      slug: post.slug,
-    };
-  }),
+  posts.reverse().map(({ title, slug, date }) => ({ title, slug, date })),
 );
 
 export function get(req, res) {

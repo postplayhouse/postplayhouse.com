@@ -17,6 +17,10 @@
     margin: 0 0 1em 0;
     line-height: 1.5;
   }
+
+  span {
+    font-feature-settings: "tnum";
+  }
 </style>
 
 <svelte:head>
@@ -32,7 +36,10 @@
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
     <li>
-      <a rel="prefetch" href="news/{post.slug}">{post.title}</a>
+      <a rel="prefetch" href="news/{post.slug}">
+        <span>{post.date}</span>
+        {post.title}
+      </a>
     </li>
   {/each}
 </ul>
