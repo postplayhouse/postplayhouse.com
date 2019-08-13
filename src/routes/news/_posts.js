@@ -3,7 +3,7 @@ import * as path from "path";
 import frontmatter from "frontmatter";
 import MarkdownIt from "markdown-it";
 
-const dirname = "src/routes/blog/_posts";
+const dirname = "src/routes/news/_posts";
 const parentDir = path.join(dirname, "..");
 
 const STARTS_WITH_NUM = /^[0-9]/;

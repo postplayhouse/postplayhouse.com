@@ -6,7 +6,7 @@
   $: matchesOldRoutes = false;
   $: tryLocation = "";
   const dev = process.env.NODE_ENV === "development";
-  const MATCHES_OLD_ROUTES = /^(\/?blog\/\d{4})(\/)(\d{2})(\/)(\d{2})(\/)(.*)/g;
+  const MATCHES_OLD_ROUTES = /^(\/?news\/\d{4})(\/)(\d{2})(\/)(\d{2})(\/)(.*)/g;
 
   onMount(() => {
     matchesOldRoutes = MATCHES_OLD_ROUTES.test(window.location.pathname);
@@ -20,7 +20,6 @@
       _6,
       _7,
     ) {
-      console.log(...arguments);
       return `${_1}-${_3}-${_5}-${_7}`;
     });
   });
