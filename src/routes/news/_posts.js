@@ -20,10 +20,15 @@ const posts = (() => {
     .filter(fileName => !fileName.startsWith("."))
     .map(fileName => {
       const [basename, ext] = fileName.split(".");
-      if (ext === "md") {
+      if (ext === "md" || ext === "html") {
         const contents = fs.readFileSync(`${dirname}/${fileName}`, "utf8");
+
         const fm = frontmatter(contents);
-        return { ...fm.data, slug: fileName, html: md.render(fm.content) };
+        return {
+          ...fm.data,
+          slug: basename,
+          html: ext === "md" ? md.render(fm.content) : fm.content,
+        };
       } else {
         const contents = fs.readFileSync(`${parentDir}/${fileName}`, "utf-8");
         const [_full, _1, _2, title] = contents.match(
