@@ -1,0 +1,978 @@
+# - first_name:
+#   last_name:
+#   location: ""
+#   groups:
+#     -
+#   positions:
+#     - The Little Mermaid ---
+#     - Footloose ---
+#     - Chitty Chitty Bang Bang ---
+#     - Urinetown ---
+#     - 42nd Street ---
+#   bio_approved: false
+#   bio: >
+#     
+#   image_year: 2018
+#   # image_file: .jpg
+#
+#
+# Use the template above for quick entry
+# If you specify an 'image_path', the year and file are ignored and
+# the full path to the image (prepended by the baseurl) is used.
+# Start the 'image_path' with a '/'
+
+
+#
+#
+#
+#
+#        CAST CREW MUSICIANS CREATIVE ADDITIONAL STAFF
+#
+#
+#
+#
+
+
+- last_name: Agsten
+  first_name: Eric
+  location: "Downingtown, PA"
+  groups:
+    - creative
+  positions:
+    - Season Sound Design
+  bio_approved: true
+  bio: >
+    Eric Agsten is very excited to be returning for his second season at The Post Playhouse! He served as Sound Designer for the 2017 season immediately following his graduation from Indiana University of Pennsylvania, where he discovered his passion for theatrical sound work while pursuing a B.S. in Communications Media. Between seasons at The Post, Eric spent time as an A2 at The Merry Go Round Playhouse, designing sound for his alma mater’s production of _Lizzie Borden_, designing sound for Germantown Academy’s production of _Spring Awakening_, and working as a freelance technician in his hometown area of Downingtown PA. Eric wants to thank his family and mentors for their support and guidance.
+  image_year: 2018
+  image_file: eric-agsten.jpg
+
+
+- last_name: Barrett
+  first_name: Dewayne
+  location: "New York City via Atlanta, GA"
+  groups:
+    - creative
+  positions:
+    - Post Playhouse Artistic Director
+    - Director --- The Little Mermaid, Chitty Chitty Bang Bang, 42nd Street
+    - Season Choreographer
+  bio_approved: true
+  bio: |
+    Dewayne is very excited to be returning to the Post Playhouse for his 3rd season. as Artistic Director, Director, and Choreographer. Originally from Atlanta, Georgia, he moved to New York City and began his career/training in the Big Apple. He has performed leading roles around the country such as Rum Tum Tugger in _Cats_, Bobby Child in _Crazy For You_, Riff in _West Side Story_, Bobby in _A Chorus Line_ to name a few. He has directed and choreographed for national tours, regional theatres, dinner theaters, community theatres, cruise ships, movies, high schools, music videos, parades and dance companies. He now resides in Florida. This coming fall, Dewayne will be heading to Beijing, China to teach, direct/choreograph at The Central Academy of Drama. He recently premiered _EDM Antigone the Rock Opera_ with Don Fox in Wenatchee, Washington. Don and Dewayne are planning several US tours of _EDM Antigone_. He is currently in the works with Phillip Michael Thomas from _Miami Vice_ with a new musical with eyes set for Broadway.
+  image_year: 2016
+  image_file: dewayne-barrett.jpg
+
+
+- last_name: Bennett-Parker
+  first_name: Max
+  location: "Santa Cruz, CA"
+  groups:
+    - creative
+    - musicians
+  positions:
+    - Music Director --- Footloose, Urinetown, 42nd Street
+    - Second Keyboard --- The Little Mermaid, Chitty Chitty Bang Bang
+  bio_approved: true
+  bio: >
+    Max is excited to be returning to the Post for his second season! He has music directed for a variety of west coast companies, shows including _Assassins_, _Smoke_, _Tommy_, _Altar Boyz_, _Into the Woods_, _The Wiz_ and many more. He is the arranger/orchestrator for the new musical, Escaping Queens, with readings and productions in New York and on the west coast. Onstage, he's been seen in _Anything Goes_, _Urinetown_, _Bash_ and the Tom Lehrer-curated _Shakespeare Deconstructed_. He's composed original music for the plays _Touch_, _Quality of Life_, and _The Nether_, as well as the children's musicals _Baba Yaga_, and _Hui Liang and the Magic Brush_.
+  image_year: 2017
+  image_file: max-parker.jpg
+
+
+- last_name: Blundell
+  first_name: Shelby
+  location: "Chadron, NE"
+  groups:
+    - cast
+  positions:
+    - Footloose --- Ensemble
+  bio_approved: true
+  bio: >
+    A senior at Chadron High School, Shelby loves acting. She has lived her life in Chadron and has come to The Post Playhouse to enjoy several different plays as well as act in three previous to this year. 
+  image_year: 2018
+  image_file: shelby-blundell.jpg
+
+
+- last_name: Blundell
+  first_name: Spencer
+  location: "Chadron, NE"
+  groups:
+    - cast
+  positions:
+    - Chitty Chitty Bang Bang --- Stephen
+    - Footloose --- Ensemble
+  bio_approved: true
+  bio: >
+    Spencer has been involved in local vocal ensemble groups such as Cardinal Singers, competing all over the region. He has competed in numerous speech events, has played parts in one act shows at the high school, and played in local high school musicals, such as *Guys and Dolls* and *John Lennon and Me* as well.
+  image_year: 2018
+  image_file: spencer-blundell.jpg
+
+
+- last_name: Boynton
+  first_name: Pheobe H.
+  location: "Ithaca, NY / Los Angeles, CA"
+  groups:
+    - creative
+  positions:
+    - Season Costume Designer
+  bio_approved: true
+  bio: >
+    Pheobe Boynton is thrilled to be returning to The Post Playhouse for her fifth season! She is a freelance costume designer and technician originally from Ithaca, NY and currently based out of Los Angeles, California. She has a bachelors in art history from Cornell University, and an MFA in theater design and technology from the University of Missouri-Kansas City. She has done work for a wide variety of clients and companies including the Los Angeles Opera, Norwegian Cruise Line Holdings, Kanye West, Kansas City Repertory Theater, The Unicorn Theater, Legendary Digital, Relativity Media, Investigation Discovery and Theatrical Arts International.
+  image_year: 2017
+  image_file: pheobe-boynton.jpg
+
+
+- last_name: Brintnall
+  first_name: Cody
+  location: "Crawford, NE"
+  groups:
+    - staff
+  positions:
+    - Box Office Staff
+  bio_approved: true
+  bio: >
+    Cody is very excited for his first season at the Post Playhouse. Cody just finished his junior year at Crawford High School and has performed multiple times in the school plays. He lives on his family's sheep ranch with their four dogs. He's looking forward to meeting everyone and hopes for a good year.
+  image_year: 2018
+  image_file: cody-brintnall.jpg
+
+
+- last_name: Brown
+  first_name: Jaelyn
+  location: "Chadron, NE"
+  groups:
+    - cast
+  positions:
+    - Chitty Chitty Bang Bang --- Susan
+  bio_approved: true
+  bio: >
+    Jaelyn Brown is the 10 year-old daughter of Tiffany Brown-Waldron and Jay Waldron and the late Rob Brown. She will be a 5th grader at Chadron Middle School this fall. Jaelyn began dancing for The Dance Boutique in Chadron when she was 3 years-old and recently began attending competitions. She has been a performer from an early age and enjoys the stage, singing, dancing and acting for her family and friends. She has participated in several school and church programs and had a lead role and solo in last year’s Christmas program. Jaelyn is excited to be a part of the Post Playhouse productions she has loved attending and is very thankful for this opportunity!
+  image_year: 2018
+  image_file: jaelyn-brown.jpg
+
+
+- last_name: Cavin
+  first_name: Scott
+  location: "Chadron, NE via Lemoore, CA"
+  groups:
+    - creative
+    - staff
+  positions:
+    - Season Technical Director
+  bio_approved: true
+  bio: >
+    Scott is returning to the Post Playhouse after being a bum last summer. Scott is also an Associate Professor of Theatre at Chadron State College. His responsibilities include Designer (Scenic, Lighting, Sound, Projection), Technical Director and Production Manager for the Theatre Program. Recent designs credits (Set and/or Light) include: _Money Shot_, _Rosencrantz & Guilderstein are Dead_, _Big River_, _Extremities_, _The Underpants_, _Little Shop of Horrors_, _Bus Stop_, _Almost Maine_, _Godspell_, _Peter and the Starcatcher_, and _Lost in Yonkers_. Always looking for new challenges Scott also Directs at Chadron State College. Some of his recent directing Credits include:  _Extremities_, _Money Shot_, _The Vampire Cowboy Trilogy_, _The Play About the Baby_, _Too Much Light Makes the Baby Go Blind_, _The Shape of Things_, and _Stop Kiss_. You can see more of Scott’s work at [www.scottcavin.com](http://www.scottcavin.com)
+  image_year: 2015
+  image_file: scott-cavin.jpg
+
+
+- last_name: Conley
+  first_name: Beth
+  location: "Rochester, NY"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Sister Allana
+    - Footloose --- Lulu / Ensemble
+    - Chitty Chitty Bang Bang --- Ensemble
+    - Urinetown --- Little Sally
+    - 42nd Street --- Anytime Annie
+  bio_approved: true
+  bio: >
+    Beth Conley grew up in Rochester, NY and has a BFA in Acting/Musical Theatre from Wright State University (Dayton, OH). She currently lives in NYC! Off-Broadway: _I’ll Say She Is: The Lost Marx Brothers Musical_ - Beauty U/S, Ensemble. NYC: _The Imaginary: A New Musical_ - Julia, Ensemble. Selected Regional: _The Rocky Horror Show_ - Janet (The Zoot Theatre Company). _Damn Yankees_ - Gloria (Tibbits Summer Theatre). _The Fox on the Fairway_ - Louise (Tibbits Summer Theatre). For more info, visit [bethconley.com](http://bethconley.com)!
+  image_year: 2018
+  image_file: beth-conley.jpg
+
+
+- last_name: Dabbs
+  first_name: Linda
+  location: "Crawford and Omaha, NE"
+  groups:
+    - staff
+  positions:
+    - Technical Staff
+    - Paint Charge
+  bio_approved: true
+  bio: >
+    Linda is a recent transplant from Omaha to the Crawford area. She has been painting theater sets for 14 years. After being in the art field as an Art Director for various ad agencies, an outdoor billboard company, along with Art Director at Omaha's Henry Doorly Zoo.
+    Some of the theatres she has painted for are Kountze Memorial at Mahoney State Park, Lofté Community Theatre, Manley, NE, Lincoln Community Theatre, Opera Omaha and Lincoln University Opera.
+    Now semi retired to paint and produce pottery for her own enjoyment. She lives on a ranch north of Crawford with her faithful, but noisy dog, "Beau." On good days she can be found wandering the hills with either camera in hand or watercolor brushes.
+    Linda wishes to thank Kevin Colbert from the Lofté Theatre for a chance to enter the theatre world and paint his sets, but is looking forward to calling the Post Playhouse her new "Home!"
+  image_year: 2018
+  image_file: linda-dabs.jpg
+
+
+- last_name: de Lacy
+  first_name: Chelsea
+  location: "New York City via New Hampshire"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Sister Arista / Gull
+    - Footloose --- Rusty
+    - Chitty Chitty Bang Bang --- Ensemble
+    - Urinetown --- Hope
+    - 42nd Street --- Lorraine
+  bio_approved: true
+  bio: >
+    Chelsea is thrilled to be returning to Post Playhouse for their 2018 summer season!  Chelsea is a New York based actor and a graduate of The Boston Conservatory where she received her BFA in musical theater.  She was seen last summer playing Irene in _Crazy For You_ and Ali in _Mamma Mia!_ at Post Playhouse.  Past favorites include Mary Magdalene in _Jesus Christ Superstar_ at The Boston Conservatory, Claudia in _Adam Lives_ at Goodspeed’s Festival of New Musicals, Benvolio in _Romeo and Juliet_ with Off the Grid Theater Company and _The Full Monty_ with The Barnstormers Theatre.  Thank you to Dewayne and Tom for this incredible opportunity and to my family for their constant love and support.  For more, visit [www.chelseadelacy.com](http://www.chelseadelacy.com)!
+  image_year: 2018
+  image_file: chelsea-delacy.jpg
+
+
+- last_name: DeLuce
+  first_name: Catherine
+  location: "Hershey, Pa (Originally) & New York, NY (Currently)"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Sister Aquata
+    - Footloose --- Eleanor Dunbar / Urleen / Ensemble
+    - Chitty Chitty Bang Bang --- Truly Scrumptious
+    - Urinetown --- Soupy Sue / Cop
+    - 42nd Street --- Dorothy
+  bio_approved: true
+  bio: >
+    Catherine is thrilled to be making her Post Playhouse debut! Off-Broadway: _Peace, Love & Cupcakes_ (Ms. Shotlan/Brooke). National Tour: _A Christmas Carol_ (Belle), _Pinkalicious_ (Mrs. Pinkerton). Regional: _The Marvelous Wonderettes_ (Cindy Lou), _Seussical_ (Mayzie), _Rocky Horror_ (Magenta), _Mary Poppins_ (Mrs. Banks), _Guys and Dolls_ (Agatha/Hot Box), _The Mousetrap_ (Mollie Ralston), _The Full Monty_ (Susan) & the world premiere of _Panic! The Musical_ at 54 Below & Joe's Pub. Love and thanks to Mom, Dad, Elizabeth, Peter, friends and teachers! [www.catherinedeluce.net](http://www.catherinedeluce.net)
+  image_year: 2018
+  image_file: catherine-deluce.jpg
+
+
+- last_name: Denton
+  first_name: Don
+  groups:
+    - staff
+  positions:
+    - "Assistant Marketing Manager"
+  bio_approved: true
+  bio: >
+    Don Denton has been performing with Post Playhouse off and on since 2008. Since that time, he has been working with Tom to rethink all their marketing efforts. For the past few years, all the mailings and the website have been designed by Don. He is very proud to continue to help the Playhouse reach for new heights even from afar.
+  image_year: 2015
+  image_file: don-denton.jpg
+
+
+- last_name: Dickinson
+  first_name: Lily
+  location: "New York City, NY via Atlanta"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Ursula
+    - Footloose --- Vi Moore
+    - Chitty Chitty Bang Bang --- Ensemble  
+    - Urinetown --- Pennywise 
+    - 42nd Street --- Maggie Jones
+  bio_approved: true
+  bio: >
+    Lily is thrilled to be joining Post for the summer! Previous Credits include: _Mamma Mia!_ National Tour, _Cabaret_ (Serenbe Playhouse), _Jekyll & Hyde_ (Engeman Playhouse) and the Broadway Bound World Premier of _Bull Durham: A New Musical_, (The Alliance Theatre, Atlanta). Lily recently released her first EP album, _Debut_, featuring her original music. You can find her on iTunes/Spotify. Special thanks to CTG, teachers & mentors, and Broadway Dreams. Thank you to Dewayne and Tom for this opportunity! All my love and gratitude to my incredible family, especially my mom who taught me that true value is not measured in applause. You are my biggest inspiration. Enjoy the show! [www.lilydickinson.net](http://www.lilydickinson.net) 
+  image_year: 2018
+  image_file: lily-dickinson.jpg
+
+
+- last_name: Dixon
+  first_name: Chuckie
+  location: "New York City, NY"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Scuttle
+    - Footloose --- Wes Warnicker
+    - Chitty Chitty Bang Bang --- Baron Bomburst, Lord Scrumptious
+    - Urinetown --- Old Man Strong, Hot Blades
+    - 42nd Street --- Pat Denning
+  bio_approved: true
+  bio: >
+    Chuckie is a proud ECU alum and lives in NYC. Some favorite credits: Clifford...tour (Clifford), _Spamalot_ (French Taunter), _Peter Pan_ (Slightly Soiled), _Cats_ (Mungojerrie), _A Christmas Story_ (Scut Farkus), and _Fiddler On the Roof_ (Mendel). Thanks and love to the Post team, my incredible mom, and the miraculous Mal!
+  image_year: 2017
+  image_file: chuckie-dixon.jpg
+
+
+- last_name: Dornemann
+  first_name: Matt
+  location: "Boston, MA"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Flounder
+    - Footloose --- Lyle / Cowboy Bob
+    - Chitty Chitty Bang Bang --- Childcatcher / Ensemble
+    - Urinetown --- Mr. McQueen
+    - 42nd Street --- Ensemble
+  bio_approved: true
+  bio: >
+    Matt is thrilled to be returning to Post Playhouse after being a part of last year's amazing 50th season! A Massachusetts native, Matt now resides in the "greatest city in the world", NYC. Other previous regional credits include: _Forever Plaid_ (Thunder Bay Theatre), _All Shook Up_ (Yorktown Stage), _Mary Poppins_, _Memphis_ (Weathervane Theatre), _Chicago_, _Shrek_ (Arundel Barn Playhouse). TV/Film: _Six Degrees of Murder_ (ID). He would like to thank the Post team for having him back this summer, Dewayne for so many amazing oppertunities, and his parents for their continous love and support.
+  image_year: 2017
+  image_file: matt-dornemann.jpg
+
+
+- last_name: Durr
+  first_name: Danny
+  location: "New York, NY"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Windward / Leeward / Sea Creature
+    - Footloose --- Chuck
+    - Chitty Chitty Bang Bang --- Boris
+    - Urinetown --- Bobby Strong
+    - 42nd Street --- Ensemble
+  bio_approved: true
+  bio: >
+    Danny is excited to make his debut on the Post Playhouse stage. Danny lives in New York City where he is a performer, instructor, and choreographer. Danny has worked at Mac-Haydn Theatre, Broadway Palm Dinner Theatre, Cumberland Theatre, Broward Stage Door Theatre, etc. Favorite roles include: Pippin (_Pippin_), Emcee (_Cabaret_), Gregory Gardner (_A Chorus Line_), Big Deal (_West Side Story_), Macavity (_Cats_), Angel (_RENT_), Jamie (_The Last Five Years_). Danny recently choreographed Victor/Victoria at Broward Stage Door in Coral Springs, Florida and will be traveling back to choreograph _La Cage Aux Folles_ in August. [www.dannydurr.com](http://www.dannydurr.com)
+  image_year: 2018
+  image_file: danny-durr.jpg
+
+
+- last_name: Fitzsimons
+  first_name: Tim
+  location: "Torrance, CA"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Sebastian
+    - Footloose --- Coach Dunbar/Ensemble
+    - Chitty Chitty Bang Bang --- Caractacus Potts
+    - Urinetown --- Senator Fipp/Ensemble
+    - 42nd Street --- Bert/Mac/Stage Manager
+  bio_approved: true
+  bio: >
+    Tim is excited to be returning to the Post Playhouse for the 2018 season, after performing as Shrek and Frederick Frankenstein here last summer! Born in Torrance, CA, he received his BFA in Musical Theatre from Cal State Fullerton, and now makes his home in New York City. Post 2017: Shrek, _Shrek: the Musical_; Frederick, _Young Frankenstein_; Harry Bright, _Mamma Mia!_, Amos, _Chicago_; Mingo, _Crazy for You_. NYC: Adolfo Pirelli, _Sweeney Todd_ (Piper Theatre Productions), _Song of Solomon_ (World Premiere). Nat’l Tour: Pop, _Miss Nelson is Missing_ (Two Beans Productions). LA: Hawker, _The Who’s TOMMY_ (Moonlight Amphitheatre); Joseph, _Joseph...Dreamcoat_ (Saddleback CLO). Special thanks: To the cast, crew, and creative team; MT F13RCE; to my seester, Mama Fitz, and Padre. [www.timfitzsimons.com](http://www.timfitzsimons.com)
+  image_year: 2017
+  image_file: tim-fitzsimons.jpg
+
+
+- last_name: Fox
+  first_name: Don
+  location: "Wenatchee, WA"
+  groups:
+    - creative
+  positions:
+    - Season Scenic Designer
+  bio_approved: true
+  bio: >
+    Don is happy to be returning for his 5th season at the Post Playhouse.  A native of Colorado Springs, CO, he is based in Wenatchee, WA.  Recent and favorite credits include lighting design for the Atlantis Resort, Paradise Island, (_Great American Variety Show_), The Borgata Casino, Atlantic City, NJ (_The Burlesque Show_), Florida State University, Tallahassee, FL (_All Shook Up, Legally Blonde_), The Moscow Ballet North American Tours 2014, 2015 (_The Great Russian Nutcracker_), Numerica Performing Arts Center of Wenatchee, WA (_Young Frankenstein_, _August Osage County_), and he recently created and produced the world premiere of _EDM Antigone_ which is available as an educational production to tour nationally in 2017-2018 ([www.edmAntigone.com](http://www.edmantigone.com/)). His extensive portfolio can be viewed at [www.DonFoxDesigns.com](http://www.donfoxdesigns.com/).
+  image_year: 2015
+  image_file: don-fox.jpg
+
+
+- last_name: Frahm
+  first_name: Justus
+  location: "Crawford, NE"
+  groups:
+    - cast
+  positions:
+    - Chitty Chitty Bang Bang --- Richard
+  bio_approved: true
+  bio: >
+    Justus Frahm is an 11-year-old from Crawford, NE. He is the youngest of 6 siblings. Justus loves to read, sing and make people laugh. This is his first time performing with the Post Playhouse. 
+  image_year: 2018
+  image_file: justus-frahm.jpg
+
+
+- last_name: Gaswick
+  first_name: Tim
+  groups:
+    - staff
+  positions:
+    - Accountant
+  bio_approved: true
+  bio: >
+    Tim is the franchise owner of the Chadron H&R Block office, and has been the accountant for the playhouse since 2007.  He and his wife Kari have four children, Kaylee, Aaron, Braxton, and Seth. Tim not only serves as the accountant, but also as the treasurer on the playhouse board. He enjoys working with the great talent and staff every summer, and looks forward to many years with the playhouse.
+  image_year: 2015
+  image_file: tim-gaswick.jpg
+
+
+- last_name: Greene
+  first_name: Connor
+  location: "Tucson, AZ"
+  groups:
+    - staff
+  positions:
+    - Master Electrician
+  bio_approved: true
+  bio: >
+    Connor is excited to be joining the Post Playhouse Technical Team for his first year. Connor is working towards a BFA in Lighting Technology from the University of Arizona where he has worked for both Josh and Ken as Assistant Master Electrician on _RENT_ and _Epic Proportions_ respectively. More recent credits include Master Electrician on Arizona Repertory Theatre's _The Pajama Game_ and _Tigers Be Still_ and the Williamstown Theatre Festival's Professional Training Program productions of _Curse of the Starving Class_ and _5x10: A Night of Short Plays_. He would like to thank his families of both blood and water for their endless support and understanding. 
+  image_year: 2018
+  image_file: connor-greene.jpg
+
+
+- last_name: Harlow
+  first_name: Korey
+  location: "Fredericksburg, Virginia"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Prince Eric
+    - Footloose --- Travis / Ensemble
+    - Chitty Chitty Bang Bang --- Ensemble
+    - Urinetown --- Tiny Tom / Dr. Billeaux
+    - 42nd Street --- Andy
+  bio_approved: true
+  bio: >
+    Korey (with a "K") is very excited to return to Post Playhouse this summer for another fantastic season! He was seen here last year as Sky in _Mamma Mia!_ A Virginia native, he studied music, theatre, and dance at Wright State University and Bowling Green State University before moving to New York. Regional credits Include: _Aladdin Jr._ (Aladdin), _The 25th Annual Putnam County Spelling Bee_ (Leaf Coneybear), and _Mary Poppins_ (Understudy Bert). Instagram: kb_harlow
+  image_year: 2017
+  image_file: korey-harlow.jpg
+
+
+- last_name: Haselhorst
+  first_name: Leo
+  location: "Randolph, NE"
+  groups:
+    - staff
+  positions:
+    - Technical Staff
+  bio_approved: true
+  bio: >
+    Leo Haselhorst is excited to be returning to the Post again this summer. A native of Randolph Nebraska, Leo is currently pursuing a BA in graphic design and theatre at Chadron State College. Leo has a variety of experience through carpentry and technical work at CSC, the Post Playhouse, and the Numerica Performing Arts Center. He would like to thank everyone at the Post for the opportunity to pursue his interests in theatre.
+  image_year: 2017
+  image_file: leo-haselhorst.jpg
+
+
+- last_name: Hemmo
+  first_name: Josh
+  location: "Tucson, AZ"
+  groups:
+    - creative
+  positions:
+    - Season Lighting Designer
+  bio_approved: true
+  bio: >
+    Josh Hemmo is thrilled to be returning to the Post Playhouse! He is from Tucson, AZ and has had the pleasure of designing all over the country. Post Playhouse credits include _Crazy For You_ and _Chicago_. Other select credits include _Show Risqué_ at the Hard Rock Hotel and Casino Biloxi, _Cleopatra: A New Pop Experience_ at the Theater for the New City in New York City, full season designer for the new Scoundrel and Scamp Theater, and lighting director of the west coast tour of the Moscow Ballet's _The Great Russian Nutcracker_. <http://jhemmolighting.com>
+  image_year: 2018
+  image_file: josh-hemmo.jpg
+
+
+- last_name: Hunter
+  first_name: Taren R.
+  location: "Hemmingford, NE"
+  groups:
+    - cast
+  positions:
+    - Chitty Chitty Bang Bang --- Toby
+  bio_approved: true
+  bio: >
+    Taren R. Hunter hails from Hemingford, Nebraska and is a student at Hemingford Junior High School.  This will be his first year performing at the Post Playhouse at Fort Robinson and is excited to be a member of the *Chitty Chitty Bang Bang* cast!  Past rolls include Rolf Rizzo in *Night at the Wax Museum*; Adam McCafee in *On The Worst Day of Christmas*; Michael Hobbs in *Elf JR. The Musical*; and was tech crew for the one-act play At the Bottom of Lake Missoula.
+  image_year: 2018
+  image_file: taren-hunter.jpg
+
+
+- last_name: Isom
+  first_name: Alix
+  location: "Los Angeles, CA"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Atina / Gull / Ensemble
+    - Footloose --- Ariel Moore
+    - Chitty Chitty Bang Bang --- Ensemble
+    - Urinetown --- Billy
+    - 42nd Street --- Phyllis
+  bio_approved: true
+  bio: >
+    Alix is an actress, singer, dancer, musician based in Los Angeles, CA. She is honored to be returning to the Post Playhouse for a second season. Her most recent musical theater credits include: _Chicago_ (Roxie), _Shrek The Musical_ (Gingy), the world premiere of _EDM Antigone_ (Antigone), _The Fantasticks_ (Luisa), _Bat Boy: The Musical_ (Shelley), _The Rocky Horror Show_ (Janet). Alix is so excited to be a part of this Post Playhouse season and would like to thank Dewayne Barrett, Don Fox and everyone at The Post Playhouse for bringing her along...again!
+  image_year: 2018
+  image_file: alix-isom.jpg
+
+
+- last_name: Lemmon
+  first_name: Gunner Joseph
+  location: "Crawford, NE"
+  groups:
+    - cast
+  positions:
+    - Chitty Chitty Bang Bang --- Michael
+  bio_approved: true
+  bio: >
+    Gunner Joseph Lemmon is 10 years old and is from Crawford, Nebraska. He attends Crawford Elementary and will be entering the 5th grade this fall. Gunner loves singing, playing the piano and playing video games. He has 3 older sisters, 4 dogs, a rabbit and a fish. Gunner began singing and playing the piano at the age of 5. Typically Gunner's summers are filled with baseball, swimming and jumping on the trampoline. He is very excited for his new adventure of lights and sound out here at the Post Playhouse.
+  image_year: 2018
+  image_file: gunner-lemmon.jpg
+
+
+- last_name: Lewis
+  first_name: Taylor Lynn
+  location: "Fort Worth, TX"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Ariel
+    - Footloose --- Wendy Jo
+    - Chitty Chitty Bang Bang --- Ensemble
+    - Urinetown --- Little Becky Two Shoes / Miss Millenium
+    - 42nd Street --- Peggy Sawyer
+  bio_approved: true
+  bio: >
+    Taylor Lynn Lewis is thrilled to be returning to Post Playhouse after appearing as Sophie in _Mamma Mia!_ last year. Favorite roles include Medium Alison (_Fun Home_), Ariel (_The Tempest_) and Mona (_Chicago_). She would like to thank Dewayne and Tom for bringing her back to Crawford for another amazing summer, and her family for their unending love and support. [www.taylorlynnlewis.com](http://www.taylorlynnlewis.com)
+  image_year: 2017
+  image_file: taylor-lewis.jpg
+
+
+- last_name: Metzger
+  first_name: Madeline
+  location: "New York, NY via Arlington, TX"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Flotsam & Jetsam / Gull / Sea Creature
+    - Footloose --- Ethel McCormack / Irene
+    - Chitty Chitty Bang Bang --- Baronness Bomburst / Miss Phillips
+    - Urinetown --- Robby The Stockfish
+    - 42nd Street --- Millie / Diane
+  bio_approved: true
+  bio: >
+    Madeline is overjoyed to be joining Post Playhouse this season! Favorite roles include: Rose, _From Here to Eternity_ (Ogunquit Playhouse) Dina/Schulie, _Schoolhouse Rock Live!_ (Park Playhouse) Roxie Hart, _Chicago_ (SummerStock Austin), Miss Nelson/Viola Swamp, _Miss Nelson is Missing!_ (Two Beans Productions). Much love and thanks to her family, friends, and the cast and creatives! Matthew 10:31 [www.madelinemetzger.com](www.madelinemetzger.com)
+  image_year: 2018
+  image_file: madeline-metzger.jpg
+
+
+- last_name: Michael
+  first_name: Jeremie
+  location: "Tallahassee, FL"
+  groups:
+    - creative
+    - musicians
+  positions:
+    - Music Director --- The Little Mermaid, Chitty Chitty Bang Bang
+    - Second Keyboard --- Urinetown, Footloose, 42nd Street
+  bio_approved: true
+  bio: >
+    Jeremie Michael is currently a pianist for the School of Theatre at Florida State University and holds a Master of Music in theory/composition from FSU, where he recently conducted and music directed _The Addams Family_ and _Beauty and the Beast_. Mr. Michael, among other distinctions, was musical director with the Off-Broadway production of _The Fantasticks_.  While residing in New York, he was a pit musician with Broadway musicals, including Beauty and the Beast and Chicago. As a soloist, he has been featured with major ensembles across the country, including the San Francisco Symphony and the Houston Symphony. He studied piano performance at the San Francisco Conservatory and The Juilliard School, and presently lives in Tallahassee, Florida, with his wife Elizabeth and daughter Mackenzie. More information at <http://www.jeremiemichael.com>.
+  image_year: 2018
+  image_file: jeremie-michael.jpg
+
+
+- last_name: Moritz
+  first_name: Garth
+  location: "Boulder, CO"
+  groups:
+    - staff
+    - crew
+  positions:
+    - Season Asst. Stage Manager
+  bio_approved: true
+  bio: >
+    Garth Moritz is excited for his first season with the Post Playhouse.  An Arkansas native, he's been working in Chicago for the last five years.  His favorite theater credits include _How to Succeed..._ and _Singing in the Rain_ with the Marriott Theater in Lincolnshire, _Legally Blonde_ and _The Little Mermaid_, with the Round Barn Theatre at Amish Acres in Nappanee, Ind., and _Sweeney Todd_ with Porchlight Music Theatre in Chicago.  He now lives in Boulder, Col.
+  image_year: 2018
+  image_file: garth-moritz.jpg
+
+
+- last_name: Ossowski
+  first_name: Tom
+  location: "Tallahasse, FL via Beatrice, NE"
+  groups:
+    - creative
+    - staff
+  positions:
+    - Post Playhouse Producing Artistic Director
+    - Director --- Urinetown
+  bio_approved: true
+  bio: >
+    Tom Ossowski is an Associate Professor for the BFA Music Theatre Program at FSU and the Producing Artistic Director for the Post Playhouse at Fort Robinson State Park in Nebraska.  At the Post Playhouse, Tom has directed _Legally Blonde_, _Monty Python’s Spamalot_, _A Man of No Importance_, _All Shook Up_, _Guys and Dolls_, _9 to 5_, _My Way_, _The Drowsy Chaperone_, _Grease_, _The Wizard of Oz_, _Nunsense!_, _Always...Patsy Cline_, _Hello, Dolly!_, and _Oklahoma!_. FSU directing credits include _Beauty & the Beast_, _All Shook Up_, _Legally Blonde_, _Cabaret_, _The Drowsy Chaperone_, _How To Succeed in Business Without Really Trying_, _On The Town_, _Hair_, _The Rocky Horror Show_, and _Sweeney Todd: The Demon Barber of Fleet Street_. Music directing credits include _Guys and Dolls_, _A Chorus Line_, _Ragtime_, _Spring Awakening_, _Jesus Christ Superstar_, _The 25th Annual Putnam County Spelling Bee_, _RENT_, _Into The Woods_, and _Urinetown_. Tom directed and music directed _Into The Woods_ and _The Family_ for The Central Academy of Drama in Beijing.  He is a member of the Stage Directors and Choreographers Society.
+
+  image_year: 2015
+  image_file: tom-ossowski.jpg
+
+
+- last_name: Owen
+  first_name: Anna
+  location: "Burwell, NE"
+  groups:
+    - staff
+  positions:
+     - Costume Shop Manager
+  bio_approved: true
+  bio: >
+    Anna is very excited to be coming back to the Post Playhouse. This is her third summer here and she couldn’t be happier. Anna graduated from Chadron State College with her BA in Theater May 2016 and is currently working in Tampa, FL at Norwegian Creative Studios. Anna took the summer off to come back to the Post Playhouse and be closer to her family. She would like to thank everyone at The Post Playhouse for this wonderful opportunity and for the chance to return to this amazing community.
+  image_year: 2018
+  image_file: anna-owen.jpg
+
+
+- last_name: Owens
+  first_name: Hunter
+  location: "Crawford, NE"
+  groups:
+    - cast
+  positions:
+    - Chitty Chitty Bang Bang --- Jeremy Potts
+  bio_approved: true
+  bio: >
+    Hunter Owens is a 10 year old from Crawford, NE.  This is his second year at the Post Playhouse, and he couldn’t be more excited for the opportunity to return.  He will be in 5th grade this fall at Crawford Elementary School.  His hobbies include, reading, playing piano, riding horses and spending time with family.
+  image_year: 2018
+  image_file: hunter-owens.jpg
+
+
+- last_name: Paley
+  first_name: Kevin
+  location: "Portland, CT via New York, NY"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- Grimsby / Sea Creature / Ensemble
+    - Footloose --- Willard Hewitt
+    - Chitty Chitty Bang Bang --- Toymaker / Ensemble
+    - Urinetown --- Officer Lockstock
+    - 42nd Street --- Billy Lawlor
+  bio_approved: true
+  bio: >
+    Kevin is delighted to work with Post on their 51st season. Past credits include: Off Broadway: _Lili Marlene_ (Heinrich, Willi U/S). National Tour: _Equally Divine_. Regional: _You’re a Good Man, Charlie Brown_ (Charlie Brown), _Guenevere_ (Arthur), and _The Tempest_ (Ferdinand/Gonzalo). Kevin is the founder and Producing Artistic Director of the Jasmine Ensemble Theatre Company, a group dedicated to bringing quality immersive theatre to the Tri-State area. Proud alum of the University of Southern California and British America Drama Academy. In his spare time, Kevin enjoys spending time with dogs, food, family, and the great outdoors.  Special thanks to the Post team for this opportunity and to my mother, who, upon proofreading this, laid on some thick guilt for never including her in my bios. [www.kpaley.com](www.kpaley.com)
+  image_year: 2018
+  image_file: kevin-paley.jpg
+
+
+- last_name: Phillips
+  first_name: Ken
+  location: "Tucson, AZ"
+  groups:
+    - crew
+    - creative
+  positions:
+    - Production Stage Manager
+    - Lighting Designer --- The Little Mermaid
+  bio_approved: true
+  bio: >
+    Ken is extremely happy to be coming back for his fifth consecutive year at the Post Playhouse as the Production Stage Manager! Ken holds a BFA in Stage Management and as of this May just graduated with an MFA in Lighting Design from the University of Arizona. In the past, he has worked as a freelance Stage Manager in LA, working on various productions ranging from _Bronies: The Musical!_ to the _Big Hero 6 Laser Light Show_ at Disney's historic El Capitan Theatre in Hollywood. In Lighting Design, he has worked on a variety of different productions both academically and professionally, with the bulk of them being in Musical Theatre and Opera. He is also an avid stage combat enthusiast, where he has helped bring some of the Post's past production's stage fighting to life. He would like to thank Dewayne and Tom for having him back another year, and to give his love to his girlfriend Alexandra for all her support. To see more of his work, look at [www.KGPhillips.com](http://www.KGPhillips.com)
+  image_year: 2018
+  image_file: ken-phillips.jpg
+
+
+- last_name: Poarch
+  first_name: Jennifer
+  location: "Lenoir, NC"
+  groups:
+    - creative
+  positions:
+    - Co-director --- The Little Mermaid
+    - Director --- Footloose
+  bio_approved: true
+  bio: >
+    Jennifer Poarch is thrilled to return to Post Playhouse to direct for the 2018 season.  A graduate of Lees-McRae College, Jennifer earned both a Musical Theater and Dance degree then pursued her career in the Performing Arts.  Regional directing credits include:  _Secrets Every Smart Traveler Should Know_, _Once Upon A Mattress_, _Beauty And The Beast_, _I Love You Now Change_, _9 to 5_,_Thoroughly Modern Millie_, _Cinderella_, and the world premier of _Screen Test_.  Jennifer gives thanks to her family, friends and God for all their love and support.
+  image_year: 2015
+  image_file: jennifer-poarch.jpg
+
+
+- last_name: Rice
+  first_name: Jane A.
+  location: "Chadron, NE"
+  groups:
+    - cast
+  positions:
+    - Footloose --- Betty Buckley/Ensemble
+    - Chitty Chitty Bang Bang --- Ensemble
+    - Urinetown --- Josephine Strong
+  bio_approved: true
+  bio: |
+    Jane is excited and pleased to be returning to the Post Playhouse for a second season. Last season she returned to the Playhouse for its 50th anniversary after a 35 year hiatus.  She appeared in the ensemble for _Young Frankenstein_ and a few performances as Lotti Child in _Crazy for You_ (filling in for Marge Rotherham).  Throughout high school and college (Chadron State College) Jane participated in many plays and a few musicals.  She later  acted in and directed a few communiy theater productions in Valentine and Scottsbluff, NE.  She is now a retired elementaty teacher substituting for Chadron Public Schools.  She would like to thank Tom Ossowski and Dewayne Barrett for inviting her back for another season.
+  image_year: 2017
+  image_file: jane-rice.jpg
+
+
+- last_name: Robinson
+  first_name: Jonah
+  location: "Los Angeles, CA"
+  groups:
+    - cast
+  positions:
+     - The Little Mermaid --- Chef / Ensemble
+     - Footloose --- Ren McCormack
+     - Chitty Chitty Bang Bang --- Goran
+     - Urinetown --- Barrel
+     - 42nd Street --- Doctor / Ensemble
+  bio_approved: true
+  bio: |
+    Jonah is thrilled to be making his Post Playhouse debut in the 2018 season! He is a proud graduate of the University of Miami where he received a BFA in musical theatre. Find him this summer exploring every inch Fort Robinson! Some places you may have seen him are the Marin Shakespeare Company (_The Three Musketeers_), Zoetic Stage Miami (_Fun Home_, _Sunday in the Park with George_), The Jerry Herman Ring Theatre (_The Drowsy Chaperone_, _Guys & Dolls_, _Children of Eden_) or the Utah Shakespeare Festival (_The Greenshow_, _Mary Poppins_, _South Pacific_). Thank you Tom and Dewayne for this opportunity! SDJE and NPR- Love you guys so much! See more at: [JonahRRobinson.com](http://jonahrrobinson.com)
+  image_year: 2018
+  image_file: jonah-robinson.jpg
+
+
+- last_name: Salters
+  first_name: Ben
+  location: "New York, New York/ Biloxi, Mississippi"
+  groups:
+    - cast
+  positions:
+    - The Little Mermaid --- King Triton
+    - Footloose --- Reverend Shaw
+    - Chitty Chitty Bang Bang --- Grandpa Potts/Ensemble
+    - Urinetown --- President Cladwell
+    - 42nd Street --- Julian Marsh
+  bio_approved: true
+  bio: >
+    Ben is super excited for his first season at Post Playhouse! Originally from Mississippi, he relocated to New York to pursue a Master’s degree at NYU in Music Theatre performance and vocal pedagogy/voice science and health. Past favorite credits include: Madame Dilly (_On the Town_),  Pirate King (_Pirates of Penzance_), Antipholous of Ephesus (_Boys From Syracuse_), Henry Higgins (_My Fair Lady_), and Phil Davis (_White Christmas_). Huge shoutout to his mentors, friends and family for their continuous support and guidance in allowing him to continue to pursue his dreams. 
+  image_year: 2018
+  image_file: ben-salters.jpg
+
+
+- last_name: Schut
+  first_name: Tanner
+  location: "Corvallis, OR"
+  groups:
+    - musicians
+  positions:
+    - Season Percussionist
+  bio_approved: true
+  bio: >
+    Tanner Schut is excited to be  back at Post Playhouse for its 51st season. Originally from Corvallis, Oregon, he is currently studying journalism at the University of Idaho. Tanner would like to extent his thanks to Dewayne and Tom for the opportunity, and his family for their constant love and support.
+  image_year: 2018
+  image_file: tanner-schut.jpg
+
+
+- last_name: Seiler
+  first_name: Wally
+  location: "Alliance, NE"
+  groups:
+    - cast
+  positions:
+    - Footloose --- Principal / Ensemble
+    - Chitty Chitty Bang Bang --- Ensemble
+    - 42nd Street --- Abner
+  bio_approved: true
+  bio: >
+    Wally is returning to the Post Playhouse, Inc., for a seventh season and can't think of a better way to spend a summer.  Previously, he has appeared on the Playhouse stage as Andrew Carnes (_Oklahoma!_). Pawnee Bill (_Annie Get Your Gun_), Baron Elberfeld (_The Sound of Music_), Arvide Abernathy (_Guys and Dolls_), Russell Tinsworthy (_Nine to Five_), Ensemble (_Hollywood: a Cabaret_), Baldy (_A Man of No Importance_), the King (_Cinderella_), Mayor Rufus Poindexter and Senator Wingwoah (_The Best Little Whorehouse in Texas_), Sir Not Appearing and Monk (_Spamalot_) and Bookseller and Ensemble (_Beauty and the Beast_), Ziggy and Mr. Hilltop (_Young Frankenstein_), Everett Baker (_Crazy for You_) and Father Alexandrios (_Mamma Mia!_).  Wally is grateful to be a part of the magic that is created on the stage of the Post Playhouse, Inc.
+  image_year: 2015
+  image_file: wally-seiler.jpg
+
+
+- last_name: Smith
+  first_name: Joshua
+  location: "Chadron, NE"
+  groups:
+    - cast
+  positions:
+    - Chitty Chitty Bang Bang --- Jeremy Potts
+  bio_approved: true
+  bio: >
+    Joshua Smith was born in Colorado Springs, CO.  He lived there for 5 years, before moving to Chadron, NE in 2013, and is a current resident of Chadron, NE. He is 10 years old, homeschooled and will be in 6th grade. Joshua has done theatrical work in:  Missoula Children's Theater *Jungle Book* – Wolfie. Stars of Tomorrow Talent Show – Gregorian chant "Kyrie" (3rd Place). Missoula Children's Theater *Peter and Wendy* – Michael. *Annie Jr.* Chadron High School Presentation – Sandy the dog/chorus. Missoula Children's Theater *Gulliver's Travels in Space* – as a Yahoo. Stars of Tomorrow Talent Show – Taps on the trumpet (3rd Place). Ongoing productions on YouTube Videos. Thank you to Dewayne and Tom for this awesome opportunity, to my parents for their love and support, and all my family and friends.
+  image_year: 2018
+  image_file: joshua-smith.jpg
+
+
+- last_name: Smith
+  first_name: Sara Rose
+  location: "Chadron, NE"
+  groups:
+    - cast
+  positions:
+    - Chitty Chitty Bang Bang --- Jemima Potts
+  bio_approved: true
+  bio: >
+    Sara Rose Smith was born in Colorado Springs, CO.  She lived there for 7 years, before moving to Chadron, NE in 2013, and is a current resident of Chadron, NE. She is 12 years old, homeschooled and will be in 8th grade. Sara Rose has done theatrical work in:  Missoula Children’s Theater *Jungle Book* – as a Wolf. Stars of Tomorrow Talent Show – Gymnastics routine (1st Place). Missoula Children’s Theater *Peter and Wendy* – Shadow (Received an acting award). Annie Jr. Chadron High School Presentation – *Duffy the Orphan*.  Missoula Children’s *Theater Gulliver’s Travels in Space* – as a Robot. Stars of Tomorrow Talent Show – Gymnastics routine (3rd Place). Ongoing Self directing YouTube Videos. Thank you to Dewayne and Tom for this awesome opportunity, to my parents for their love and support, and all my family and friends.
+  image_year: 2018
+  image_file: sara-smith.jpg
+
+
+- last_name: Stephens
+  first_name: Ann
+  location: "Crawford, NE"
+  groups:
+    - staff
+  positions:
+    - Box Office Manager
+  bio_approved: true
+  bio: >
+    Crawford native, Ann Stephens, is happy to be returning to the Post Playhouse for the 2018 season.  At the Playhouse, she can often be found cleaning, popping corn, watering plants, or making reservations. Ann enjoys the opportunity to visit with returning customers as well as greeting those new to the Playhouse experience. In addition to her work here, Ann enjoys baking and spending time with grandkids and the rest of her family. Her husband, Dale, is an avid golfer and can be found nearly every day of the spring, summer and autumn on the Legend Buttes Golf course in Crawford.
+  image_year: 2017
+  image_file: ann-stephens.jpg
+
+
+- last_name: Victory
+  first_name: Kendall
+  location: "Crawford, NE"
+  groups:
+    - cast
+  positions:
+    - Chitty Chitty Bang Bang --- Greta
+  bio_approved: true
+  bio: >
+    Kendall is returning to the Post Playhouse for her second season and is over the moon excited!! She appeared on the stage at Post Playhouse as Young Fiona in *Shrek the Musical* last year and can’t wait to grace the stage this year as Greta in *Chitty Chitty Bang Bang*. Kendall is 10 years old and lives in Crawford with her parents and her older sister who has also been on the post stage. She plays piano, sings and loves to be anywhere her sister is! Kendall would like to thank Tom and Dewayne for inviting her back to be a part of the Post family!! 
+  image_year: 2018
+  image_file: kendall-victory.jpg
+
+
+- last_name: Vogel
+  first_name: Keslyn
+  location: "Crawford, NE"
+  groups:
+    - cast
+  positions:
+    - Chitty Chitty Bang Bang --- Jamima Potts
+  bio_approved: true
+  bio: >
+    Keslyn is ecstatic to be back at Post Playhouse for her 4th season. Keslyn's previous roles at Post include Little Fiona in *Shrek The Musical*, being a mouse and carriage driver in *Rogers and Hammerstein's Cinderella*, and also performed as Marta von Trapp in *The Sound of Music*. Keslyn will be entering the 5th grade at Crawford Elementary in the fall of 2018. Keslyn has many different interests and hobbies. Some hobbies include dancing, singing, and wanting to learn to play the violin.  I want to thank Dewayne and Tom for  allowing me this amazing opportunity to perform at the best Playhouse in Nebraska!  Also, thanks to mom and dad for all the support and being the best parents.
+  image_year: 2018
+  image_file: keslyn-vogel.jpg
+
+
+- last_name: Vogel
+  first_name: Kylah Jo
+  location: "Crawford, NE"
+  groups:
+    - cast
+  positions:
+    - Chitty Chitty Bang Bang --- Marta
+  bio_approved: true
+  bio: >
+    Kylah Jo is very thrilled to be returning to the Post for her 4th season! Previous Roles include: Brigitta von Trapp in *The Sound of Music*, Chip in *Beauty and the Beast*, a mouse and carriage driver in *Cinderella*, and an understudy in *Shrek the Musical*. Kylah has many different hobbies and interests including basketball, volleyball, running, playing the piano and ukulele, and hanging out with friends and family. She would like to thank Dewayne and Tom for the amazing opportunity to be part of the best little playhouse in Nebraska. Also kudos to mom and dad for all the support they have given me throughout the years.
+  image_year: 2018
+  image_file: kylah-vogel.jpg
+
+
+- first_name: "R&H Theatricals"
+  last_name: 
+  location: ""
+  groups:
+    - additional
+  positions:
+  bio_approved: true
+  bio: >
+    Rodgers & Hammerstein is the organization founded in 1944 by the legendary team of Richard Rodgers and Oscar Hammerstein II to protect and license their theatrical works. R&H own the rights to the world's most popular stage and film musicals, including _Oklahoma!_, _Carousel_, _South Pacific_, _The King And I_, _Rodgers & Hammerstein’s Cinderella_ and _The Sound Of Music_. With offices in New York City and London, the theatrical licensing division, R&H Theatricals, represents the stage performance rights to over 150 musicals by more than 200 writers. Collectively these include works by Rodgers & Hammerstein, Rodgers & Hart (_Babes In Arms_, _Pal Joey_), Kern & Hammerstein (_Show Boat_), Kurt Weill (_The Threepenny Opera_, _One Touch Of Venus_), Adam Guettel (_Floyd Collins_, _The Light In The Piazza_), as well as the incomparable, Irving Berlin (_Annie Get Your Gun_, _White Christmas_). R&H Theatricals is home to works from Broadway (_Sophisticated Ladies_, Michael John LaChiusa’s _The Wild Party_, Lin-Manuel Miranda’s _In The Heights_, _[title Of Show]_ and _First Date_), Off-Broadway (_Carrie The Musical_, _Ordinary Days_, _Altar Boyz_, _Giant_, _21 Chump Street_), perennials such as _Once Upon A Mattress_, _Big River_ and _Footloose_, a Theater for Young Audiences (TYA) collection which includes _Garfield The Musical With Cattitude_ and _Mad Libs Live!_, and the longest-running revues in the history of Broadway - _Smokey Joe’s Cafe_ - and Off-Broadway - _I Love You, You’re Perfect, Now Change_. Rodgers & Hammerstein is an Imagem company: [www.rnh.com](http://www.rnh.com).
+
+
+#
+#
+#
+#
+#        BOARD
+#
+#
+#
+#
+
+
+- last_name: Seiler
+  first_name: Wally
+  location: "Alliance, NE"
+  groups:
+    - board
+  positions:
+    - President of the Board
+  image_year: 2015
+  image_file: wally-seiler.jpg
+
+
+- last_name: Gramberg
+  first_name: Karleen
+  location: "Chadron, NE"
+  groups:
+    - board
+  positions:
+    - Vice President of the Board
+  image_year: 2015
+  image_file: karleen-gramberg.jpg
+
+
+- last_name: Buchheit
+  first_name: Jo
+  location: "Hemingford, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2015
+  image_file: jo-buchheit.jpg
+
+
+- last_name: Espinoza
+  first_name: Jess
+  location: "Crawford, Nebraska"
+  groups:
+    - board
+  positions:
+  bio: >
+    Crawford Clipper/Harrison Sun LLC
+  image_year: 2017
+  image_file: jess-espinoza.jpg
+
+
+- last_name: Fodnes
+  first_name: Lyle
+  location: "Hemingford, NE"
+  groups:
+    - board
+  positions:
+  bio: >
+    Hemingford Ledger
+  image_year: 2015
+  image_file: lyle-fodnes.jpg
+
+
+- last_name: Gaswick
+  first_name: Tim
+  location: "Chadron, NE"
+  groups:
+    - board
+  positions:
+  bio: >
+    H & R Block
+  image_year: 2015
+  image_file: tim-gaswick.jpg
+
+
+- last_name: Hindman
+  first_name: Tony
+  location: "Hay Springs, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2018
+  image_file: tony-hindman.jpg
+
+
+- last_name: King
+  first_name: Kathie
+  location: "Gordon, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2015
+  image_file: kathie-king.jpg
+
+
+- last_name: Lecher
+  first_name: Danielle
+  location: "Chadron, Nebraska"
+  groups:
+    - board
+  positions:
+  image_year: 2017
+  image_file: danielle-lecher.jpg
+
+
+- last_name: Mohr
+  first_name: Jeanine
+  location: "Chadron, Nebraska"
+  groups:
+    - board
+  positions:
+  image_year: 2016
+  image_file: jeanine-mohr.jpg
+
+- last_name: Rhine
+  first_name: Randy
+  location: "Chadron, NE"
+  groups:
+    - board
+  positions:
+  bio: >
+    Chadron State College
+  image_year: 2015
+  image_file: randy-rhine.jpg
+
+
+- last_name: Rotherham
+  first_name: Marge
+  location: "Crawford, NE"
+  groups:
+    - board
+  positions:
+  bio: >
+    Post Playhouse Alum
+  image_year: 2015
+  image_file: marge-rotherham.jpg
+
+- last_name: Visser
+  first_name: Janelle
+  location: "Hemingford, NE"
+  groups:
+    - board
+  positions:
+  # bio: >
+  #   My name is Janelle Hansen and I’m a Health Educator with Panhandle Public Health District in Hemingford. Additionally, I am a Licensing Agent for a family trucking business I’ve managed for over 22 years. I thoroughly enjoy any time I can get with my three grown children, Hans lives in Washington DC and works in the Senate, Blake is a Senior at Chadron State College, and Emily is a Freshman at Chadron State College. I am a member of the Hemingford Methodist Church and on the Supervisory Committee at the Hemingford Community Federal Credit Union. I love the outdoors through gardening, flowers, and traveling. I am co-owner of a not-for-profit fitness center, The Body Shop, where I enjoy keeping active by taking classes and walking.
+  image_year: 2018
+  image_file: janelle-visser.jpg

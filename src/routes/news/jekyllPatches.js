@@ -1,41 +1,50 @@
-import { get } from "lodash";
+import { get } from "lodash"
+import data from "../../data"
 
 const jekyllConfig = {
   site: {
     baseurl: "",
+    url: "https://postplayhouse.com", // for prod...
     css_version: 999,
     box_office_phone: "1-888-665-1976",
+    data,
   },
-};
+}
 
 // turns '{{ token }}' into 'value'
-function simpleReplacer(token) {
-  return [
-    RegExp(`\\{\\{\\s*${token}\\s*\\}\\}`, "g"),
-    get(jekyllConfig, token),
-  ];
-}
+const simpleReplacer = [
+  /\{\{\s*([a-z._]*?)\s*\}\}/g,
+  (_full, _1) => get(jekyllConfig, _1),
+]
 
 // turns '{{ "/css/stuff.css" | prepend: token }}' into 'value/css/stuff.css'
-function prependedStringReplacer(token) {
-  const replacement = get(jekyllConfig, token);
-  return [
-    RegExp(`\\{\\{\\s*"(.*?)"\\s+\\|\\s+prepend:\\s+${token}\\s*\\}\\}`, "g"),
-    (_full, _1) => {
-      return `${replacement}${_1}`;
-    },
-  ];
-}
+const prependedStringReplacer = [
+  /\{\{\s*"(.*?)"\s+\|\s+prepend:\s+([a-z._]*?)\s*\}\}/g,
+  (_full, _1, _2) => {
+    return `${get(jekyllConfig, _2)}${_1}`
+  },
+]
 
-function removeComments() {
-  return [/\{%-?\s*comment\s*-?%\}[\s\S]*?\{%-?\s*endcomment\s*-?%\}/g, ""];
-}
+const removeComments = [
+  /\{%-?\s*comment\s*-?%\}[\s\S]*?\{%-?\s*endcomment\s*-?%\}/g,
+  "",
+]
+
+const dataReplace = [
+  /\{\{\s*(site\.data.*?)(\s*\|\s*markdownify)?\s*\}\}/g,
+  (_full, _1, _2) => {
+    return get(jekyllConfig, _1)
+  },
+]
 
 export function replaceJekyllTokens(details) {
   details.contents = details.contents
-    .replace(...simpleReplacer("site.baseurl"))
-    .replace(...prependedStringReplacer("site.baseurl"))
-    .replace(...simpleReplacer("site.css_version"))
-    .replace(...removeComments());
-  return details;
+    .replace(...simpleReplacer)
+    .replace(...prependedStringReplacer)
+    .replace(...removeComments)
+    .replace(...dataReplace)
+
+    // This one is just for testing
+    .replace(/\/(images|css)\//g, "https://postplayhouse.com/$1/")
+  return details
 }

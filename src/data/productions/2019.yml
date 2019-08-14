@@ -1,0 +1,183 @@
+- title: Mary Poppins
+  short_title:
+  pre_title: Disney and Cameron Mackintosh's
+  rating: G
+  image: mary-poppins.jpg
+  opening: 2019-05-31
+  writers: |
+    ORIGINAL MUSIC & LYRICS BY  
+    Richard M. Sherman  
+    Robert B. Sherman  
+    
+    BOOK BY  
+    Julian Fellowes  
+    
+    NEW SONGS AND ADDITIONAL MUSIC & LYRICS BY  
+    Anthony Drewe  
+    George Stiles  
+    
+    CO-CREATED BY  
+    Cameron Mackintosh
+  description: |
+    Based on the books by P.L. Travers and the classic Walt Disney film, Disney and Cameron Mackintosh's Mary Poppins delighted Broadway audiences for over 2,500 performances and received nominations for nine Olivier and seven Tony Awards, including Best Musical.
+
+    The jack-of-all trades, Bert, introduces us to England in 1910 and the troubled Banks family. Young Jane and Michael have sent many a nanny packing before Mary Poppins arrives on their doorstep. Using a combination of magic and common sense, she must teach the family members how to value each other again. Mary Poppins takes the children on many magical and memorable adventures, but Jane and Michael aren't the only ones upon whom she has a profound effect. Even grown-ups can learn a lesson or two from the nanny who advises that "Anything can happen if you let it."
+  roles_sorting:
+    - Mary Poppins
+    - Bert
+    - George Banks
+    - Winifred Banks
+    # - Admiral Boom, Ensemble
+    # - Bank Chairman, Ensemble
+    # - Bird Woman, Ensemble
+    # - Mrs. Brill, Ensemble
+    # - Mrs. Correy, Ensemble
+    # - Ms. Andrew, Ensemble
+    # - Ms. Lark, Ensemble
+    # - Neleus, Ensemble
+    # - Policeman, Ensemble
+    # - Poseidon, Ensemble
+    # - Robertson Ay, Ensemble
+  sponsor:
+    image: hr-block.jpg
+
+
+
+- title: Little Shop of Horrors
+  short_title: Little Shop
+  rating: H
+  rating_explanation: It's a funny and exciting show. Young children might get frightened once or twice, and there is a little bit of foul language in the show. If you are familiar with the movie, you'll know the content of the show.
+  image: little-shop.jpg
+  opening: 2019-07-05
+  writers: |
+    BOOK & LYRICS BY  
+    Howard Ashman
+
+    MUSIC BY  
+    Alan Menken
+
+  description: |
+    The meek floral assistant Seymour Krelborn stumbles across a new breed of plant he names "Audrey II" - after his coworker crush. This foul-mouthed, R&B-singing carnivore promises unending fame and fortune to the down and out Krelborn as long as he keeps feeding it... BLOOD.
+    
+    A hilariously delicious Broadway and Hollywood sci-fi smash musical, _Little Shop Of Horrors_ has _devoured_ the hearts of theatre goers for over 30 years!
+
+  roles_sorting:
+    - Seymour
+    - Audrey
+    - Ronnette
+    - Crystal
+    - Chiffon
+    - Mr. Mushnik
+    - Orin, Customers
+    - Audrey II Voice, Wino 1
+    - Audrey II Puppeteer, Wino 2
+  sponsor:
+    text: "Tim Hindman &amp; Family"
+
+
+
+- title: The Music Man
+  short_title: Music Man
+  rating: G
+  image: music-man.jpg
+  opening: 2019-06-14
+  writers: |
+    BOOK, MUSIC & LYRICS BY  
+    Meredith Willson
+
+  description: |
+    By turns wicked, funny, warm, romantic and touching, _The Music Man_ is family entertainment at its best. Meredith Willson's six-time, Tony Award-winning musical comedy has been entertaining audiences since 1957 and is a family-friendly story to be shared with every generation.
+
+    _The Music Man_ follows fast-talking traveling salesman, Harold Hill, as he cons the people of River City, Iowa, into buying instruments and uniforms for a boys' band that he vows to organize – this, despite the fact that he doesn't know a trombone from a treble clef. Will his plans to skip town with the cash be foiled by the town librarian and music teacher, Marian Paroo, or will he be able to stay one step ahead of her, too?
+
+  roles_sorting:
+    - Harold Hill
+    - Marian Paroo
+    - Marcellus Washburn
+    - Mayor Shinn
+    - Eulalie Shinn
+    - Mrs. Paroo
+    - Charlie Cowell, Olin Britt
+    - Ewart Dunlop
+    - Jacey Squires
+    - Oliver Hix
+    - Zaneeta Shinn
+    - Tommy Djilas
+    - Ethel Toffelmier
+    - Mrs. Squires
+    - Alma Hix
+    - Maud Dunlop
+    - Constable Locke
+  sponsor:
+    image: security-first-bank.png
+
+
+
+- title: Sister Act
+  rating: H
+  rating_explanation: Although funny and heartwarming, this one probably isn't well-suited for young audiences. It conatins some language and adult situations.
+  image: sister-act.jpg
+  opening: 2019-06-07
+  writers: |
+    MUSIC BY  
+    Alan Menken
+    
+    LYRICS BY  
+    Glenn Slater
+    
+    BOOK BY  
+    Cheri Steinkellner  
+    Bill Steinkellner
+    
+    ADDITIONAL BOOK MATERIAL BY  
+    Douglas Carter Beane
+
+  description: |
+    _Sister Act_ is the feel-good musical comedy smash based on the hit 1992 film that has audiences jumping to their feet!
+
+    When disco diva, Deloris Van Cartier, witnesses a murder, she is put in protective custody in the one place the cops are sure she won't be a found: a convent! Disguised as a nun, she finds herself at odds with both the rigid lifestyle and uptight Mother Superior. Using her unique disco moves and singing talent to inspire the choir, Deloris breathes new life into the church and community. But how long can she keep up the act and steer clear of the gang that is out to get her?
+  roles_sorting:
+    - Deloris Van Cartier
+    - Mother Superior
+    - Mary Robert
+    - Mary Patrick
+    - Mary Lazarus
+    - Monsignor O'Hara
+    - Curtis Jackson
+    - Lt. Eddie
+    - TJ
+    - Joey
+    - Pablo
+    - Mary Martin-of-Tours
+    - Mary Theresa
+    - Ernie
+  sponsor:
+    image: stuart-trust.png
+
+
+- title: A Year With Frog and Toad
+  short_title: Frog & Toad
+  rating: G
+  image: frog-and-toad.jpg
+  opening: 2019-06-28
+  writers: |
+    BOOK AND LYRICS BY  
+    Willie Reale
+    
+    MUSIC BY  
+    Robert Reale
+
+  description: |
+    Based on Arnold Lobel's well-loved books, this whimsical show follows two great friends – the cheerful, popular Frog and the rather grumpy Toad – through four fun-filled seasons.
+
+    Waking from hibernation in the Spring, Frog and Toad plant gardens, swim, rake leaves, go sledding and learn life lessons along the way. The two best friends celebrate and rejoice in the differences that make them unique and special. Part vaudeville, part make believe... all charm, A Year with Frog and Toad tells the story of a friendship that endures throughout the seasons.
+
+    The jazzy, upbeat score of A Year with Frog and Toad bubbles with melody and wit, making it an inventive, exuberant and enchanting musical for the whole family.
+  roles_sorting:
+    - Frog
+    - Toad
+    - Bird, Snail, Ensemble
+    - Bird, Ensemble
+    - Squirrel, Ensemble
+  sponsor:
+    image: big-bats.png
