@@ -1,27 +1,27 @@
 <script>
-  export let segment;
+  export let segment
 
   function nodeIsActive(node, segment) {
-    const path = node.href.split("/").pop();
-    return path === "" ? segment === undefined : path === segment;
+    const path = node.href.split("/").pop()
+    return path === "" ? segment === undefined : path === segment
   }
 
   function manageNodeActiveClass(node, segment) {
     if (nodeIsActive(node, segment)) {
-      node.classList.add("active");
+      node.classList.add("active")
     } else {
-      node.classList.remove("active");
+      node.classList.remove("active")
     }
   }
 
   function active(node, segment) {
-    manageNodeActiveClass(node, segment);
+    manageNodeActiveClass(node, segment)
 
     return {
       update(segment) {
-        manageNodeActiveClass(node, segment);
+        manageNodeActiveClass(node, segment)
       },
-    };
+    }
   }
 </script>
 

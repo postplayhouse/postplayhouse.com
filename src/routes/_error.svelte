@@ -1,15 +1,15 @@
 <script>
-  import { onMount } from "svelte";
-  export let status;
-  export let error;
+  import { onMount } from "svelte"
+  export let status
+  export let error
 
-  $: matchesOldRoutes = false;
-  $: tryLocation = "";
-  const dev = process.env.NODE_ENV === "development";
-  const MATCHES_OLD_ROUTES = /^(\/?news\/\d{4})(\/)(\d{2})(\/)(\d{2})(\/)(.*)/g;
+  $: matchesOldRoutes = false
+  $: tryLocation = ""
+  const dev = process.env.NODE_ENV === "development"
+  const MATCHES_OLD_ROUTES = /^(\/?news\/\d{4})(\/)(\d{2})(\/)(\d{2})(\/)(.*)/g
 
   onMount(() => {
-    matchesOldRoutes = MATCHES_OLD_ROUTES.test(window.location.pathname);
+    matchesOldRoutes = MATCHES_OLD_ROUTES.test(window.location.pathname)
     tryLocation = window.location.pathname.replace(MATCHES_OLD_ROUTES, function(
       _full,
       _1,
@@ -20,9 +20,9 @@
       _6,
       _7,
     ) {
-      return `${_1}-${_3}-${_5}-${_7}`;
-    });
-  });
+      return `${_1}-${_3}-${_5}-${_7}`
+    })
+  })
 </script>
 
 <style>

@@ -2,5 +2,6 @@
   "endOfLine": "lf",
   "trailingComma": "all",
   "arrowParens": "always",
-  "semi": false
+  "semi": false,
+  "plugins": ["./node_modules/svelte"]
 }
