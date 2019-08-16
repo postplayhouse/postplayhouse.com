@@ -4,6 +4,7 @@
     "allowJs": true,
     "noEmit": true,
     "checkJs": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["dom", "esnext"]
   },
