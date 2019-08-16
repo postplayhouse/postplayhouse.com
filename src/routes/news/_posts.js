@@ -3,8 +3,6 @@ import * as path from "path"
 import frontmatter from "frontmatter"
 import MarkdownIt from "markdown-it"
 
-const test = ""
-
 import { replaceJekyllTokens } from "./jekyllPatches"
 
 const postsDirname = "src/routes/news/_posts"
@@ -35,6 +33,7 @@ const mdFiles = postsDirFiles
       ...fm.data,
       slug: details.basename,
       html: details.ext === "md" ? md.render(fm.content) : fm.content,
+      // html: fm.content,
     }
   })
 
