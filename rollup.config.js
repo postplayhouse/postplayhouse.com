@@ -5,6 +5,7 @@ import svelte from "rollup-plugin-svelte"
 import babel from "rollup-plugin-babel"
 import { terser } from "rollup-plugin-terser"
 import json from "rollup-plugin-json"
+import image from "svelte-image"
 import config from "sapper/config/rollup.js"
 import pkg from "./package.json"
 
@@ -19,6 +20,27 @@ const onwarn = (warning, onwarn) =>
 const dedupe = (importee) =>
   importee === "svelte" || importee.startsWith("svelte/")
 
+const imageConfig = image({optimizeAll: true, // optimize all images discovered in img tags
+  inlineBelow: 10000, // inline all images in img tags below 10kb
+  compressionLevel: 5, // png quality level
+  quality: 50, // jpeg/webp quality level
+  tagName: "Image", // default component name
+  sizes: [400, 800, 1200], // array of sizes for srcset in pixels
+  breakpoints: [375, 768, 1024], // array of screen size breakpoints at which sizes above will be applied
+  outputDir: "g/",
+  placeholder: "trace", // or "blur",
+  webpOptions: { // WebP options [sharp docs](https://sharp.pixelplumbing.com/en/stable/api-output/#webp)
+    quality: 75,
+    lossless: false,
+    force: true
+  },
+  webp: true,
+  trace: { // Potrace options for SVG placeholder
+    background: "#fff",
+    color: "#002fa7",
+    threshold: 120
+  }})
+
 export default {
   client: {
     input: config.client.input(),
@@ -32,6 +54,9 @@ export default {
         dev,
         hydratable: true,
         emitCss: true,
+        preprocess: {
+          ...imageConfig,
+        },
       }),
       resolve({
         browser: true,
@@ -84,6 +109,9 @@ export default {
       svelte({
         generate: "ssr",
         dev,
+        preprocess: {
+          ...imageConfig,
+        },
       }),
       resolve({
         dedupe,
