@@ -3,9 +3,10 @@
   "description": "test",
   "version": "0.0.1",
   "scripts": {
-    "dev": "sapper dev",
-    "build": "sapper build --legacy",
-    "export": "sapper export --legacy",
+    "clean": "rm -rf ./static/g",
+    "dev": "npm run clean && sapper dev",
+    "build": "npm run clean && sapper build --legacy",
+    "export": "npm run clean && sapper export --legacy",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",

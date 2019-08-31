@@ -20,7 +20,8 @@ const onwarn = (warning, onwarn) =>
 const dedupe = (importee) =>
   importee === "svelte" || importee.startsWith("svelte/")
 
-const imageConfig = image({optimizeAll: true, // optimize all images discovered in img tags
+const imageConfig = image({
+  optimizeAll: true, // optimize all images discovered in img tags
   inlineBelow: 10000, // inline all images in img tags below 10kb
   compressionLevel: 5, // png quality level
   quality: 50, // jpeg/webp quality level
@@ -29,17 +30,20 @@ const imageConfig = image({optimizeAll: true, // optimize all images discovered 
   breakpoints: [375, 768, 1024], // array of screen size breakpoints at which sizes above will be applied
   outputDir: "g/",
   placeholder: "trace", // or "blur",
-  webpOptions: { // WebP options [sharp docs](https://sharp.pixelplumbing.com/en/stable/api-output/#webp)
+  webpOptions: {
+    // WebP options [sharp docs](https://sharp.pixelplumbing.com/en/stable/api-output/#webp)
     quality: 75,
     lossless: false,
-    force: true
+    force: true,
   },
   webp: true,
-  trace: { // Potrace options for SVG placeholder
+  trace: {
+    // Potrace options for SVG placeholder
     background: "#fff",
     color: "#002fa7",
-    threshold: 120
-  }})
+    threshold: 120,
+  },
+})
 
 export default {
   client: {
