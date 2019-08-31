@@ -1,5 +1,5 @@
 import { get } from "lodash"
-import data from "../../data"
+import data from "./getData"
 
 const prod = process.env.NODE_ENV === "production"
 
@@ -8,7 +8,7 @@ const castingComplete = false
 
 // All of this "site" data should eventually be moved to a better place for
 // Sapper. For now, for backward compatibility, it is all just here.
-const legacyData = {
+export const legacyData = {
   site: {
     baseurl: "",
     url: prod ? "https://postplayhouse.com" : "",
@@ -62,9 +62,9 @@ export function replaceJekyllTokens(details) {
     .replace(...removeComments)
     .replace(...dataReplace)
 
-    // This one is just for testing. It references all the images in their
-    // original location on the web instead of their local location. It should
-    // be removed once images can be referenced locally.
-    .replace(/\/(images|css)\//g, "https://postplayhouse.com/$1/")
+  // This one is just for testing. It references all the images in their
+  // original location on the web instead of their local location. It should
+  // be removed once images can be referenced locally.
+  // .replace(/\/(images|css)\//g, "https://postplayhouse.com/$1/")
   return details
 }
