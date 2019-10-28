@@ -1,6 +1,6 @@
 {
-  "name": "test",
-  "description": "test",
+  "name": "postplayhouse.com",
+  "description": "postplayhouse.com",
   "version": "0.0.1",
   "scripts": {
     "clean": "rm -rf ./static/g && yarn transpile --clean",
