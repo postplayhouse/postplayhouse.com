@@ -15,8 +15,14 @@ mdFiles.forEach((details) => {
     return // don't rebuild if only cleaning
   }
   const exported = { title: details.title }
-  const script = `<script>${Object.keys(exported).map(
+  const exportStatements = Object.keys(exported).map(
     (k) => `\n  export let ${k} = "${exported[k].replace('"', '\\"')}"`,
-  )}\n</script>\n\n`
-  fs.writeFileSync(filename, `${script}${details.html}`, "utf8")
+  )
+  let additionalScriptContent = ''
+  const body = details.html.replace(/^[\s\r\n]*<script>([\s\S]*?)<\/script>/, (_full, match) => {
+    additionalScriptContent = match
+    return ''
+  })
+  const script = `<script>${exportStatements}\n${additionalScriptContent}\n</script>\n\n`
+  fs.writeFileSync(filename, `${script}${body}`, "utf8")
 })
