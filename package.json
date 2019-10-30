@@ -19,7 +19,7 @@
     "lodash": "^4.17.15",
     "polka": "next",
     "sirv": "^0.4.0",
-    "svelte-image": "0.0.12"
+    "svelte-image": "matyunya/svelte-image#v0.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

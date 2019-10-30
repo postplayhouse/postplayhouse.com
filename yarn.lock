@@ -3924,10 +3924,9 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-svelte-image@0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/svelte-image/-/svelte-image-0.0.12.tgz#695dbec4064f4201f220018e0488d0035bfd4a12"
-  integrity sha512-pzk9wEgXqIYh5J89RCAYp4bu8CN5Vz7qKh845MCllYrLXD5KgViVTj/2uXnxMwte1VWbku5K1LgVYr/tutvndQ==
+svelte-image@matyunya/svelte-image#v0.1.0:
+  version "0.1.0"
+  resolved "https://codeload.github.com/matyunya/svelte-image/tar.gz/15c9b9d5b8243b545bf67c75d55b7c1094d98a84"
   dependencies:
     potrace "^2.1.2"
     sharp "^0.22.1"
