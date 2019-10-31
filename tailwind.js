@@ -225,6 +225,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        "proxima-nova",
         "-apple-system",
         "BlinkMacSystemFont",
         '"Segoe UI"',
@@ -247,6 +248,7 @@ module.exports = {
         '"Courier New"',
         "monospace",
       ],
+      uber: ["azo-sans-uber", "Arial Black"],
     },
     fontSize: {
       xs: "0.75rem",
@@ -331,6 +333,11 @@ module.exports = {
     },
     minWidth: {
       "0": "0",
+      xs: "4rem",
+      sm: "8rem",
+      md: "12rem",
+      lg: "16rem",
+      xl: "20rem",
       full: "100%",
     },
     objectPosition: {
