@@ -1,52 +1,29 @@
-<style>
-  h1,
-  figure,
-  p {
-    text-align: center;
-    margin: 0 auto;
-  }
+<script>
+  import Mailer from "../components/Mailer.svelte"
+  import Modal from "../components/Modal.svelte"
 
-  h1 {
-    font-size: 2.8em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin: 0 0 0.5em 0;
-  }
+  $: showMailingList = false
 
-  figure {
-    margin: 0 0 1em 0;
+  function toggleMailingList() {
+    showMailingList = !showMailingList
   }
-
-  img {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 0 1em 0;
-  }
-
-  p {
-    margin: 1em auto;
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      font-size: 4em;
-    }
-  }
-</style>
+</script>
 
 <svelte:head>
-  <title>Sapper project template</title>
+  <title>Post Playhouse</title>
 </svelte:head>
 
-<h1 class="font-uber">Great success!</h1>
+<h1 class="font-uber text-4xl">Great success!</h1>
 
-<figure>
-  <img alt="Borat" src="great-success.png" />
-  <figcaption>HIGH FIVE!</figcaption>
-</figure>
+<section
+  class="bg-green-200 p-3 cursor-pointer hover:bg-green-300"
+  on:click={toggleMailingList}>
+  <header class="text-xl">Join our mailing list</header>
+  <p>Stay informed about what’s happening at Post Playhouse</p>
+</section>
 
-<p>
-  <strong>
-    Try editing this file (src/routes/index.svelte) to test live reloading.
-  </strong>
-</p>
+{#if showMailingList}
+  <Modal on:close={toggleMailingList}>
+    <Mailer />
+  </Modal>
+{/if}
