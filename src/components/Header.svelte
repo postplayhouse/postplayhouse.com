@@ -20,7 +20,7 @@
   </div>
 
   <div class="flex-initial text-center mt-8 ml-2 min-w-md">
-    <a href={site.tickets_link} class="btn">Get Tickets Online</a>
+    <a href={site.tickets_link} class="btn-p">Get Tickets Online</a>
 
     <a
       class="text-green-700 underline sm:block sm:mt-4"

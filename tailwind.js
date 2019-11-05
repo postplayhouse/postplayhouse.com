@@ -60,10 +60,10 @@ module.exports = {
         900: "#744210",
       },
       green: {
-        100: "#f0fff4",
-        200: "#c6f6d5",
-        300: "#9ae6b4",
-        400: "#68d391",
+        100: "#e8f5e9",
+        200: "#c8e6c9",
+        300: "#a5d6a7",
+        400: "#81c784",
         500: "#48bb78",
         600: "#38a169",
         700: "#2f855a",
@@ -146,6 +146,7 @@ module.exports = {
       "48": "12rem",
       "56": "14rem",
       "64": "16rem",
+      "128": "32rem",
     },
     backgroundColor: (theme) => theme("colors"),
     backgroundPosition: {
@@ -281,6 +282,11 @@ module.exports = {
     }),
     inset: {
       "0": "0",
+      "1": "0.25rem",
+      "2": "0.5rem",
+      "3": "0.75rem",
+      "4": "1rem",
+      "5": "1.25rem",
       auto: "auto",
     },
     letterSpacing: {
@@ -328,6 +334,7 @@ module.exports = {
     },
     minHeight: {
       "0": "0",
+      "64": "16rem",
       full: "100%",
       screen: "100vh",
     },

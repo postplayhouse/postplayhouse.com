@@ -4,10 +4,15 @@
 
 .btn {
   @apply bg-green-700 text-white font-bold tracking-wide
-      py-2 px-4 rounded-sm border-solid border-green-900 
+      rounded-sm border-solid border-green-900 
       border-0 border-b-2;
 }
 
-.btn:hover {
+.btn-p {
+  @apply btn py-2 px-4;
+}
+
+.btn:hover,
+.btn-p:hover {
   @apply bg-green-500 border-green-700;
 }
