@@ -41,12 +41,12 @@
     border: 1px solid #999;
     -webkit-appearance: none;
   }
-  #mc_embed_signup input[type="checkbox"] {
+  /* #mc_embed_signup input[type="checkbox"] {
     -webkit-appearance: checkbox;
   }
   #mc_embed_signup input[type="radio"] {
     -webkit-appearance: radio;
-  }
+  } */
   #mc_embed_signup input:focus {
     border-color: #333;
   }
@@ -73,13 +73,13 @@
   #mc_embed_signup .button:hover {
     background-color: #777;
   }
-  #mc_embed_signup .small-meta {
+  /* #mc_embed_signup .small-meta {
     font-size: 11px;
   }
   #mc_embed_signup .nowrap {
     white-space: nowrap;
   }
-
+ */
   #mc_embed_signup .mc-field-group {
     clear: left;
     position: relative;
@@ -87,7 +87,7 @@
     padding-bottom: 3%;
     min-height: 50px;
   }
-  #mc_embed_signup .size1of2 {
+  /* #mc_embed_signup .size1of2 {
     clear: none;
     float: left;
     display: inline-block;
@@ -96,7 +96,7 @@
   }
   * html #mc_embed_signup .size1of2 {
     margin-right: 2%; /* Fix for IE6 double margins. */
-  }
+  /*} */
   #mc_embed_signup .mc-field-group label {
     display: block;
     margin-bottom: 3px;
@@ -107,7 +107,7 @@
     padding: 8px 0;
     text-indent: 2%;
   }
-  #mc_embed_signup .mc-field-group select {
+  /* #mc_embed_signup .mc-field-group select {
     display: inline-block;
     width: 99%;
     padding: 5px 0;
@@ -138,7 +138,7 @@
   #mc_embed_signup .datefield label,
   #mc_embed_signup .phonefield-us label {
     display: none;
-  }
+  } */
 
   #mc_embed_signup .indicates-required {
     text-align: right;
@@ -158,7 +158,7 @@
     clear: both;
   }
 
-  #mc_embed_signup .mc-field-group.input-group ul {
+  /* #mc_embed_signup .mc-field-group.input-group ul {
     margin: 0;
     padding: 5px 0;
     list-style: none;
@@ -176,7 +176,7 @@
     width: auto;
     border: none;
   }
-
+ */
   #mc_embed_signup div#mce-responses {
     float: left;
     top: -1.4em;
@@ -202,7 +202,7 @@
     color: #529214;
     display: none;
   }
-  #mc_embed_signup label.error {
+  /* #mc_embed_signup label.error {
     display: block;
     float: none;
     width: auto;
@@ -210,14 +210,14 @@
     text-align: left;
     padding: 0.5em 0;
   }
-
+ */
   #mc-embedded-subscribe {
     clear: both;
     width: auto;
     display: block;
     margin: 1em 0 1em 5%;
   }
-  #mc_embed_signup #num-subscribers {
+  /* #mc_embed_signup #num-subscribers {
     font-size: 1.1em;
   }
   #mc_embed_signup #num-subscribers span {
@@ -225,7 +225,7 @@
     border: 1px solid #ccc;
     margin-right: 0.5em;
     font-weight: bold;
-  }
+  } */
 </style>
 
 <svelte:head>
