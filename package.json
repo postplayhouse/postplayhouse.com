@@ -22,7 +22,7 @@
     "lodash": "^4.17.15",
     "polka": "next",
     "sirv": "^0.4.0",
-    "svelte-image": "matyunya/svelte-image#v0.1.0"
+    "svelte-image": "happycollision/svelte-image#7eb415a6"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
