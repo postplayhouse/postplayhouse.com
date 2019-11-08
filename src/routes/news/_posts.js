@@ -1,17 +1,12 @@
 import * as fs from "fs"
 import * as path from "path"
 import frontmatter from "frontmatter"
-import MarkdownIt from "markdown-it"
-
-import { replaceJekyllTokens } from "../../data"
 
 const postsDirname = "src/routes/news/_posts"
 const thisDirname = path.join(postsDirname, "..")
 
 const STARTS_WITH_NUM = /^[0-9]/
-const md = new MarkdownIt({ html: true, typographer: true })
 
-const postsDirFiles = fs.readdirSync(postsDirname, "utf-8")
 const thisDirFiles = fs.readdirSync(thisDirname, "utf-8")
 
 /**
@@ -30,19 +25,16 @@ const getDetails = (directory, ...extensions) => (acc, fileName) => {
   return [...acc, { basename, ext, contents, date: basename.slice(0, 10) }]
 }
 
-/**
- * @type {Array<Details & {slug: string, html: string, title: string, [x: string]: string}>}
- */
-export const mdFiles = postsDirFiles
-  .reduce(getDetails(postsDirname, "md", "html"), [])
-  .map(replaceJekyllTokens)
+const mdsvexFiles = thisDirFiles
+  .reduce(getDetails(thisDirname, "md", "html"), [])
   .map((details) => {
     const fm = frontmatter(details.contents)
+    const title = fm.data.title ? fm.data.title : details.basename
     return {
       ...details,
       ...fm.data,
+      title,
       slug: details.basename,
-      html: details.ext === "md" ? md.render(fm.content) : fm.content,
     }
   })
 
@@ -64,10 +56,7 @@ const svelteFiles = thisDirFiles
   })
 
 const posts = svelteFiles
-// .concat will add mdFiles, but filtered against the slugs of the svelte files.
-// If the transpile step happens, then all of the mdFiles will likely be
-// filtered out, since they will now exist as svelteFiles.
-  .concat(mdFiles.filter(mdFile => svelteFiles.map(s => s.slug).indexOf(mdFile.slug) === -1))
+  .concat(mdsvexFiles)
   .sort((a, b) => (a.slug > b.slug ? 1 : -1))
 
 export default posts
