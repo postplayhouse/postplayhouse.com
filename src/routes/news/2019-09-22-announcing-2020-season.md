@@ -9,7 +9,7 @@ single_featured: true
 import site from "../../data/site"
 ```
 
-<div class="bg-green-200 p-4">
+<div class="bg-green-100 p-4 text-center">
 
 **Update:** Individual tickets are now on sale, as well as Season
 Subscriptions!
