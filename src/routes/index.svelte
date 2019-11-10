@@ -17,7 +17,9 @@
 
 <h1 class="font-uber text-4xl">Great success!</h1>
 
-<Feature excerpt={true} />
+<div class="my-8">
+  <Feature excerpt={true} />
+</div>
 
 <section
   class="bg-green-200 p-3 cursor-pointer hover:bg-green-300"

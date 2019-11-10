@@ -9,12 +9,19 @@ single_featured: true
 import site from "../../data/site"
 ```
 
-<div class="call-out">
-  Update: Individual tickets are now on sale, as well as Season Subscriptions!
+<div class="bg-green-200 p-4">
+
+**Update:** Individual tickets are now on sale, as well as Season
+Subscriptions!
+
 </div>
 
-<img src="/images/2020/full-season.jpg" alt="">
+![2020 Season Production logos](/images/2020/full-season.jpg)
 
-<p style="text-align: center"><br/>Tickets are on sale now!</p>
+<p class="text-center m-4">Tickets are on sale now!</p>
 
-<a href={site.tickets_link} class="btn-p">Get Your Tickets Now</a>
+<div class="flex justify-center">
+  <a href={site.tickets_link} class="btn-p">
+    Get Your Tickets Now
+  </a>
+</div>
