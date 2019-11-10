@@ -1,20 +1,9 @@
-<script context="module">
-  export function preload({ params, query }) {
-    return this.fetch(`data.json`)
-      .then((r) => r.json())
-      .then((data) => {
-        return { data }
-      })
-  }
-</script>
-
 <script>
   import Nav from "../components/Nav.svelte"
   import Header from "../components/Header.svelte"
   import Footer from "../components/Footer.svelte"
 
   export let segment
-  export let data
 </script>
 
 <style>
@@ -28,7 +17,7 @@
   }
 </style>
 
-<Header {data} />
+<Header />
 <Nav {segment} />
 
 <main>

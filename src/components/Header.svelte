@@ -1,6 +1,5 @@
 <script>
-  export let data
-  const { site } = data
+  import site from "../data/site"
 </script>
 
 <header

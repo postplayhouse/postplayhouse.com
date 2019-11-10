@@ -6,13 +6,8 @@ excerpt: Join the Post Playhouse in celebrating our 50 year Anniversary July 21s
 image: /images/50th-logo.png?v=1
 ---
 
-```js module
-import { preload as p } from "../data/preload"
-export const preload = p
-```
-
 ```js exec
-export let site
+import site from "../../data/site"
 ```
 
 <link rel="stylesheet" href="/css/anniversary-weekend-events.css">
