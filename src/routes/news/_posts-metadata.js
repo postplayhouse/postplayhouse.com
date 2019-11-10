@@ -1,9 +1,7 @@
 import * as fs from "fs"
-import * as path from "path"
 import frontmatter from "frontmatter"
 
-const postsDirname = "src/routes/news/_posts"
-const thisDirname = path.join(postsDirname, "..")
+const thisDirname = "src/routes/news/"
 
 const STARTS_WITH_NUM = /^[0-9]/
 
@@ -26,15 +24,14 @@ const getDetails = (directory, ...extensions) => (acc, fileName) => {
 }
 
 const mdsvexFiles = thisDirFiles
-  .reduce(getDetails(thisDirname, "md", "html"), [])
+  .reduce(getDetails(thisDirname, "md"), [])
   .map((details) => {
     const fm = frontmatter(details.contents)
-    const title = fm.data.title ? fm.data.title : details.basename
     return {
       ...details,
       ...fm.data,
-      title,
       slug: details.basename,
+      title: fm.data.title ? fm.data.title : details.basename,
     }
   })
 
@@ -45,13 +42,12 @@ const svelteFiles = thisDirFiles
     const match = details.contents.match(
       /^\s*(export )?(const|let) title = ("|')(.*?)("|')/m,
     )
-    const title = match ? match[4] : details.basename
     // We only need the slug and title, because the actual svelte component
     // will take over the content when it is routed.
     return {
       ...details,
       slug: details.basename,
-      title,
+      title: match ? match[4] : details.basename,
     }
   })
 

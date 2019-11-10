@@ -1,4 +1,4 @@
-export function preload({ _params, _query }) {
+export function preload(_routeInfo) {
   return this.fetch(`data.json`)
     .then((r) => r.json())
     .then((data) => {
