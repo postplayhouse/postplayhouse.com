@@ -2,6 +2,8 @@
   import Mailer from "../components/Mailer.svelte"
   import Modal from "../components/Modal.svelte"
 
+  import Feature from "./news/2019-09-22-announcing-2020-season.md"
+
   $: showMailingList = false
 
   function toggleMailingList() {
@@ -14,6 +16,8 @@
 </svelte:head>
 
 <h1 class="font-uber text-4xl">Great success!</h1>
+
+<Feature excerpt={true} />
 
 <section
   class="bg-green-200 p-3 cursor-pointer hover:bg-green-300"
