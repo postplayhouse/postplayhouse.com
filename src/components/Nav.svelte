@@ -33,7 +33,6 @@
   }
 
   ul {
-    margin: 0;
     padding: 0;
   }
 
@@ -72,12 +71,15 @@
 </style>
 
 <nav class="main-nav">
-  <ul>
+  <ul class="m-auto max-w-3xl">
     <li>
       <a use:active={segment} href=".">home</a>
     </li>
     <li>
       <a use:active={segment} href="about">about</a>
+    </li>
+    <li>
+      <a use:active={segment} href="calendar">calendar</a>
     </li>
   </ul>
 </nav>
