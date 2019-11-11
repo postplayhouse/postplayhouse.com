@@ -6,12 +6,6 @@ title: Gifts
 import site from "../data/site"
 ```
 
-```css style
-img {
-  max-width: 600px;
-}
-```
-
 Now when you buy a gift via our [Online Box Office]({site.tickets_link}), you can print off any of our certificates/subscription cards below and give them to the recipient! Use the information in your confirmation email to fill out the gift card. Be sure to write in your Record Locator number.
 
 Subscribers: even if it's not a gift, print off a subscription card for a convenient place to write down all the information about your shows after you reserve them.

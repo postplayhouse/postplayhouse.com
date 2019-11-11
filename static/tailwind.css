@@ -41,6 +41,10 @@
   @apply text-green-700 text-4xl;
 }
 
+.h3 {
+  @apply text-2xl;
+}
+
 .via-markdown a {
   @apply link-green;
 }
@@ -49,6 +53,14 @@
   @apply h2 mt-3 mb-1;
 }
 
+.via-markdown h3 {
+  @apply h3 mt-2;
+}
+
 .via-markdown p {
   @apply mb-4;
+}
+
+.via-markdown img {
+  @apply block my-4 mx-auto;
 }
