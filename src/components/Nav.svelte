@@ -73,19 +73,22 @@
 <nav class="main-nav">
   <ul class="m-auto max-w-3xl">
     <li>
-      <a use:active={segment} href=".">home</a>
+      <a use:active={segment} href=".">Home</a>
     </li>
     <li>
-      <a use:active={segment} href="about">about</a>
+      <a use:active={segment} href="about">About</a>
     </li>
     <li>
-      <a use:active={segment} href="calendar">calendar</a>
+      <a use:active={segment} href="calendar">Calendar</a>
     </li>
     <li>
-      <a use:active={segment} href="gifts">gifts</a>
+      <a use:active={segment} href="gifts">Gifts</a>
     </li>
     <li>
-      <a use:active={segment} href="contact">contact</a>
+      <a use:active={segment} href="contact">Contact</a>
+    </li>
+    <li>
+      <a use:active={segment} href="industry-professionals">Work at Post</a>
     </li>
   </ul>
 </nav>

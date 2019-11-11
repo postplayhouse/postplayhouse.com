@@ -1,0 +1,514 @@
+# - first_name:
+#   last_name:
+#   location: ""
+#   groups:
+#     -
+#   roles:
+#     Cats: YOUR_ROLE_HERE
+#     Damn Yankees: YOUR_ROLE_HERE
+#     Church Basement Ladies: YOUR_ROLE_HERE
+#     Annie: YOUR_ROLE_HERE
+#     Catch Me If You Can: YOUR_ROLE_HERE
+#   bio_approved: false
+#   bio: >
+#
+#   image_year: 2019
+#   # image_file: .jpg
+#
+#
+
+# Use the template above for quick entry
+# If you specify an 'image_path', the year and file are ignored and
+# the full path to the image (prepended by the baseurl) is used.
+# Start the 'image_path' with a '/'
+
+#
+#
+#
+#
+#        CAST CREW MUSICIANS CREATIVE ADDITIONAL STAFF
+#
+#
+#
+#
+
+- first_name: Dewayne
+  last_name: Barrett
+  location: "New York City via Atlanta, GA"
+  groups:
+    - creative
+    - staff
+  positions:
+    - Post Playhouse Artistic Director
+    # - Director/Choreographer --- Mary Poppins, Frog & Toad
+    # - Choreographer --- The Music Man, Little Shop
+  staff_positions:
+    - Post Playhouse Artistic Director
+  # production_positions:
+  #   Cats:
+  #     - Director
+  #     - Choreographer
+  #   Church Basement Ladies:
+  #     - Choreographer
+  #   Catch Me If You Can:
+  #     - Choreographer
+  #   Annie:
+  #     - Director
+  #     - Choreographer
+  bio_approved: true
+  bio: |
+    Dewayne is very excited to be returning to the Post Playhouse for his 5th season as Artistic Director, Director, and Choreographer. Originally from Atlanta, Georgia, he moved to New York City and began his career/training in the Big Apple. He has performed leading roles around the country such as Rum Tum Tugger in _Cats_, Bobby Child in _Crazy For You_, Riff in _West Side Story_, Bobby in _A Chorus Line_ to name a few. He has directed and choreographed for national tours, regional theatres, dinner theaters, community theatres, cruise ships, movies, high schools, music videos, parades and dance companies. He now resides in Florida. This coming fall, Dewayne will be heading to Beijing, China to teach, direct/choreograph at The Central Academy of Drama. He recently premiered _EDM Antigone the Rock Opera_ with Don Fox in Wenatchee, Washington. Don and Dewayne are planning several US tours of _EDM Antigone_. Dewayne would love to thank Tom Ossowski and Don Fox for all the doors they have opened for him and all the wonderful designers and crew that return every year.
+  image_year: 2016
+
+# - first_name: Pheobe H.
+#   last_name: Boynton
+#   location: "Colorado Springs, CO via Ithaca, NY"
+#   groups:
+#     - creative
+#   positions:
+#     - Costume Designer --- Mary Poppins, Sister Act, Little Shop
+#   production_positions:
+#     Cats:
+#       - Costume Designer
+#     Damn Yankees:
+#       - Costume Designer
+#     Catch Me If You Can:
+#       - Costume Designer
+#   bio_approved: true
+#   bio: >
+#     Pheobe H. Boynton is thrilled to be returning to The Post Playhouse for her sixth season! She is a freelance costume designer originally from Ithaca, NY and currently based out of the Theatreworks costume shop in Colorado Springs, CO. She has a bachelors in art history from Cornell University, and an MFA in theater design and technology from the University of Missouri-Kansas City. She has done work for a wide variety of clients and companies including the Los Angeles Opera, Norwegian Cruise Line Holdings, Kanye West, Kansas City Repertory Theater, The Arvada Center, Theatreworks, Chadron State College, The Unicorn Theater, The Hangar Theatre, Legendary Pictures, YouTube Studios, Relativity Media, Investigation Discovery and Theatrical Arts International. [www.pheobebird.com](http://www.pheobebird.com)
+#   image_year: 2017
+#   image_file: pheobe-boynton.jpg
+
+- first_name: Scott
+  last_name: Cavin
+  location: "Chadron, NE via Lemoore, CA"
+  groups:
+    - creative
+    - staff
+  positions:
+    - Season Technical Director
+  # production_positions:
+  #   Cats:
+  #     - Technical Director
+  #   Church Basement Ladies:
+  #     - Technical Director
+  #   Damn Yankees:
+  #     - Technical Director
+  #   Catch Me If You Can:
+  #     - Technical Director
+  #   Annie:
+  #     - Technical Director
+  bio_approved: true
+  bio: >
+    Scott is excited to be returning to the Post Playhouse for his second season. Scott is also an Associate Professor of Theatre at Chadron State College. His responsibilities include Designer (Scenic, Lighting, Sound, Projection), Technical Director and Production Manager for the Theatre Program. Recent designs credits (Set and/or Light) include: _Money Shot_, _Rosencrantz & Guilderstein are Dead_, _Big River_, _Extremities_, _The Underpants_, _Little Shop of Horrors_, _Bus Stop_, _Almost Maine_, _Godspell_, _Peter and the Starcatcher_, and _Lost in Yonkers_. Always looking for new challenges Scott also Directs at Chadron State College. Some of his recent directing Credits include:  _Extremities_, _Money Shot_, _The Vampire Cowboy Trilogy_, _The Play About the Baby_, _Too Much Light Makes the Baby Go Blind_, _The Shape of Things_, and _Stop Kiss_. You can see more of Scott’s work at [www.scottcavin.com](http://www.scottcavin.com)
+  image_year: 2015
+
+# - first_name: Linda
+#   last_name: Dabbs
+#   location: "Crawford and Omaha, NE"
+#   groups:
+#     - staff
+#   positions:
+#     - Season Paint Charge
+#   production_positions:
+#     Cats:
+#       - Paint Charge
+#     Church Basement Ladies:
+#       - Paint Charge
+#     Damn Yankees:
+#       - Paint Charge
+#     Catch Me If You Can:
+#       - Paint Charge
+#     Annie:
+#       - Paint Charge
+#   bio_approved: true
+#   bio: >
+#     Linda is a recent transplant from Omaha to the Crawford area. She has been painting theater sets for 14 years. After being in the art field as an Art Director for various ad agencies, an outdoor billboard company, along with Art Director at Omaha's Henry Doorly Zoo. Some of the theatres she has painted for are Kountze Memorial at Mahoney State Park, Lofté Community Theatre, Manley, NE, Lincoln Community Theatre, Opera Omaha and Lincoln University Opera. Now semi retired to paint and produce pottery for her own enjoyment. She lives on a ranch north of Crawford with her faithful, but noisy dog, Beau. On good days she can be found wandering the hills with either camera in hand or watercolor brushes. Linda wishes to thank Dewayne and Tom for bringing her into the Post Playhouse family.
+#   image_year: 2018
+#   image_file: linda-dabs.jpg
+
+- first_name: Don
+  last_name: Denton
+  groups:
+    - staff
+  staff_positions:
+    - Marketing Designer
+  bio_approved: true
+  bio: >
+    Don Denton has been performing with Post Playhouse off and on since 2008. Since that time, he has also been working with Tom to shape all of the Playhouse's marketing efforts. For the past several years, he has designed all of Post's printed materials along with the website and logo. Don has very fond memories of all the years he has been at the playhouse, and regrets that he cannot be there this year. But a very lovely actress whom he met at Post in 2008 will have brought his first child into the world just a little while before opening night, so he'll be home with Paige and the new baby instead.
+  image_year: 2019
+
+# - first_name: Melissa
+#   last_name: Emery
+#   location: "Tallahassee, FL via Boca Raton, FL"
+#   groups:
+#     - creative
+#     - crew
+#   positions:
+#     - Season Sound Designer & Mix Engineer
+#   production_positions:
+#     Cats:
+#       - Sound Designer
+#       - Sound Mix Engineer
+#     Church Basement Ladies:
+#       - Sound Designer
+#       - Sound Mix Engineer
+#     Damn Yankees:
+#       - Sound Designer
+#       - Sound Mix Engineer
+#     Catch Me If You Can:
+#       - Sound Designer
+#       - Sound Mix Engineer
+#     Annie:
+#       - Sound Designer
+#       - Sound Mix Engineer
+#   bio_approved: true
+#   bio: >
+#     Melissa is a current student at Florida State University double-majoring in Theater and Electrical Engineering and has completed her minor in Physics. She has been involved in the sound-designing process for numerous main-stage productions at the University’s School of Theater, including _Guys and Dolls_ in October 2017, _The Addams Family_ in February 2018, and _Hairspray_ in February of 2019. She also recently designed the sound for A New Brain in The Lab Theater at Florida State in November of 2018.  She wants to thank Tom Ossowski for inviting her to be a part of this season at the Post Playhouse and is so grateful for the opportunity. She also sends thanks to Zachary Cramer at Florida State for being so patient with her while she learns and for always believing in her.
+#  image_year: 2019
+
+- first_name: Don
+  last_name: Fox
+  location: "Wenatchee, WA"
+  groups:
+    - creative
+  positions:
+    - Season Scenic Designer
+    # - Lighting Designer --- Mary Poppins, Sister Act, The Music Man, Frog & Toad
+  # production_positions:
+  #   Cats:
+  #     - Scenic Designer
+  #     - Lighting Designer
+  #   Damn Yankees:
+  #     - Scenic Designer
+  #     - Lighting Designer
+  #   Church Basement Ladies:
+  #     - Scenic Designer
+  #     - Lighting Designer
+  #   Catch Me If You Can:
+  #     - Scenic Designer
+  #   Annie:
+  #     - Scenic Designer
+  #     - Lighting Designer
+  bio_approved: true
+  bio: >
+    Don is thrilled to be returning for his 6th season designing for the Post Playhouse.  Don is a native of Colorado Springs, CO, where he recently served as Production Manager for the launch of the brand new Ent Center for the Arts at the University of Colorado, Colorado Springs.  Recent and favorite credits include lighting designs for the Atlantis Resort, Paradise Island, (_Great American Variety Show_), The Borgata Casino, Atlantic City, NJ (_The Burlesque Show_), Florida State University, Tallahassee, FL (_All Shook Up, Legally Blonde, Addams Family_), THEATREWORKS AT UCCS (_A Christmas Carol_), The Moscow Ballet's North American Tours 2014, 2015, 2017, 2018 (_The Great Russian Nutcracker_), and the Numerica Performing Arts Center of Wenatchee, WA (_Young Frankenstein, August Osage County_). Don recently created and produced the world premiere of EDM Antigone which is available as an educational production to tour nationally ([www.edmAntigone.com](http://www.edmAntigone.com)).  His extensive portfolio can be viewed at [www.DonFoxDesigns.com](http://www.DonFoxDesigns.com).
+  image_year: 2019
+
+# - first_name: Javier
+#   last_name: Fox
+#   location: "Colorado Springs, CO"
+#   groups:
+#     - creative
+#   positions:
+#     - Season Props Master
+#   production_positions:
+#     Cats:
+#       - Props Master
+#     Damn Yankees:
+#       - Props Master
+#     Church Basement Ladies:
+#       - Props Master
+#     Catch Me If You Can:
+#       - Props Master
+#     Annie:
+#       - Props Master
+#   bio_approved: true
+#   bio: >
+#     Javier Fox is pleased to officially join the Post Playhouse company this summer as Props Master.  Javier has previously served as props master for Numerica Performing Arts Center's productions of _Bat Boy the Musical_, _Cabaret_, _Chicago_, and _La Cage aux Folles_.  Javier is currently pursuing his Elementary Education certification at the University of Colorado, Colorado Springs.
+#   image_year: 2019
+
+- first_name: Tim
+  last_name: Gaswick
+  groups:
+    - staff
+  staff_positions:
+    - Accountant
+  bio_approved: true
+  bio: >
+    Tim is the franchise owner of the Chadron H&R Block office, and has been the accountant for the playhouse since 2007.  He and his wife Kari have four children, Kaylee, Aaron, Braxton, and Seth. Tim not only serves as the accountant, but also as the treasurer on the playhouse board. He enjoys working with the great talent and staff every summer, and looks forward to many years with the playhouse.
+  image_year: 2015
+
+# - first_name: Tom
+#   last_name: Hudson
+#   location: "Minnesota"
+#   groups:
+#     - creative
+#   positions:
+#     - Costume Designer --- The Music Man, Frog & Toad
+#   production_positions:
+#     Church Basement Ladies:
+#       - Costume Designer
+#     Annie:
+#       - Costume Designer
+#   bio_approved: true
+#   bio: |
+#     This is Tom Hudson's first season with Post Playhouse, and he couldn't be more thrilled to be part of this amazing company, and to meet the wonderful, supportive patrons and citizens of in northwestern Nebraska!
+
+#     Raised on the beaches of Galveston, Tom Hudson is a native Texan who has never quite been able to stay in one place! Mr. Hudson became interested in design early on when, as a young boy, he was taken to an exhibit of costume s worn in the BBC production of The Six Wives of Henry the Eighth, and discovered that the jewelry was made from sprockets, nuts, and bolts. Thus began a career of seeing things not as they are, but of what they might become. Notably, while only 15 years of age, Mr. Hudson, accidentally, became the youngest recipient of the USITT Design America Commendation when, his high school theater teacher misunderstood the requirements for entry (it only being open to working professionals), and sent in three costume designs executed by Tom for the play The Torchbearers, where he was displayed alongside such venerable artists such as Theoni V. Aldredge and Ming Cho Lee
+
+#     Mr. Hudson received his BFA from East Texas State University, and his MA from Carnegie Mellon University, and is a museum curator with his discipline being historic textiles and conservation. Over the past 30 years Tom has designed costumes on more than 250 productions for such institutions as, New York City Opera, Seattle Opera, and Club Med, with Monteverdi's Il Rittorno d'Ullisse in Patria and Rossini's La Cenerentola being two favorites.
+
+#     In recent years, Mr. Hudson has made forays into the Central and South American theatrical markets with works for the Republic of Panama, and Carnival in Sao Paulo, Brazil.
+
+#     Tom Hudson, is also a proud veteran of the United States Navy, achieving the rank of Petty Officer Second Class, and served during the first Gulf War. It was during his European deployment that he was able to develop and refine his design skills by working with Ta Fantastika in Prague, Republic of Czech and Teatro Massimo Bellini in Catania, Sicily, and where he discovered his passion for masks, large scale puppetry, and youth theater.
+
+#     Tom is also a writer and producer for his own companies, Spellbound Theatricals, and Inner Circle, with scripts that range from adult-oriented farces such as: Attack of the Martian Space Babes and, A Very Naughty Lady, to classics, The Odyssey and Anne of Green Gables, as well as faith based offerings; The Story of Esther, and Respectfully Yours, Daniel. He is also working on writing his first textbook for young costume designers as a compendium of tips and tricks for setting up and operating a small costume shop.
+
+#     Tom currently calls southwestern Minnesota home, and lives in a 110 year old converted hunting cabin, on the shores of a spring fed lake, with an over-fed Beagle, a neurotic Toy Aussie Shepherd, and a cat who will never know he isn't the King of Siam.
+#   image_year: 2019
+
+# - first_name: Garth
+#   last_name: Moritz
+#   location: "Boulder, CO"
+#   groups:
+#     - staff
+#     - crew
+#   positions:
+#     - Season Rehearsal Stage Manager
+#     - Backstage Manager --- Mary Poppins, Sister Act, The Music Man, Little Shop
+#   production_positions:
+#     Cats:
+#       - Rehearsal Stage Manager
+#       - Backstage Manager
+#     Damn Yankees:
+#       - Rehearsal Stage Manager
+#       - Backstage Manager
+#     Church Basement Ladies:
+#       - Rehearsal Stage Manager
+#       - Backstage Manager
+#     Catch Me If You Can:
+#       - Rehearsal Stage Manager
+#       - Backstage Manager
+#     Annie:
+#       - Rehearsal Stage Manager
+#   bio_approved: true
+#   bio: >
+#     Garth Moritz is happy to be returning for his second season with the Post Playhouse. An Arkansas native, he spent five years living and working in the Chicago theatre scene and now lives in Boulder, Colorado.
+#   image_year: 2019
+
+- first_name: Tom
+  last_name: Ossowski
+  location: "Tallahasse, FL via Beatrice, NE"
+  groups:
+    - creative
+    - staff
+  staff_positions:
+    - Producing Artistic Director
+  # production_positions:
+  #   Church Basement Ladies:
+  #     - Director
+  bio_approved: true
+  bio: >
+    Tom Ossowski is an Associate Professor for the BFA Music Theatre Program at FSU and the Producing Artistic Director for the Post Playhouse at Fort Robinson State Park in Nebraska.  At the Post Playhouse, Tom has directed _Legally Blonde_, _Monty Python’s Spamalot_, _A Man of No Importance_, _All Shook Up_, _Guys and Dolls_, _9 to 5_, _My Way_, _The Drowsy Chaperone_, _Grease_, _The Wizard of Oz_, _Nunsense!_, _Always...Patsy Cline_, _Hello, Dolly!_, and _Oklahoma!_. FSU directing credits include _Beauty & the Beast_, _All Shook Up_, _Legally Blonde_, _Cabaret_, _The Drowsy Chaperone_, _How To Succeed in Business Without Really Trying_, _On The Town_, _Hair_, _The Rocky Horror Show_, and _Sweeney Todd: The Demon Barber of Fleet Street_. Music directing credits include _Guys and Dolls_, _A Chorus Line_, _Ragtime_, _Spring Awakening_, _Jesus Christ Superstar_, _The 25th Annual Putnam County Spelling Bee_, _RENT_, _Into The Woods_, and _Urinetown_. Tom directed and music directed _Into The Woods_ and _The Family_ for The Central Academy of Drama in Beijing.  He is a member of the Stage Directors and Choreographers Society.
+  image_year: 2015
+
+- first_name: Ken
+  last_name: Phillips
+  location: "Tucson, AZ"
+  groups:
+    - crew
+    - creative
+  positions:
+    - Season Production Stage Manager
+    # - Lighting Designer --- Little Shop
+  # production_positions:
+  #   Cats:
+  #     - Production Stage Manager
+  #     - Calling Stage Manager
+  #   Damn Yankees:
+  #     - Production Stage Manager
+  #     - Calling Stage Manager
+  #   Church Basement Ladies:
+  #     - Production Stage Manager
+  #     - Calling Stage Manager
+  #   Catch Me If You Can:
+  #     - Production Stage Manager
+  #     - Lighting Designer
+  #   Annie:
+  #     - Production Stage Manager
+  #     - Calling Stage Manager
+  bio_approved: true
+  bio: >
+    Ken is extremely happy to be coming back for his sixth consecutive year at the Post Playhouse as the Production Stage Manager! Ken holds a BFA in Stage Management and graduated last year with an MFA in Lighting Design from the University of Arizona. In the past, he has worked as a freelance Stage Manager in LA, working on various productions ranging from _Bronies: The Musical!_ to the _Big Hero 6 Laser Light Show_ at Disney's historic El Capitan Theatre in Hollywood. In Lighting Design, he has worked on a variety of different productions both academically and professionally, with the bulk of them being in Musical Theatre and Opera. He is also an avid stage combat enthusiast, where he has helped bring some of the Post's past production's stage fighting to life. He would like to thank Dewayne and Tom for having him back another year, and to give his love to his wife Alexandra for all her support. To see more of his work, look at [www.KGPhillips.com](http://www.KGPhillips.com)
+  image_year: 2018
+
+- first_name: Ann
+  last_name: Stephens
+  location: "Crawford, NE"
+  groups:
+    - staff
+  staff_positions:
+    - Box Office Manager
+  bio_approved: true
+  bio: >
+    Crawford native, Ann Stephens, is happy to be returning to the Post Playhouse for the 2019 season.  At the Playhouse, she can often be found cleaning, popping corn, watering plants, or making reservations. Ann enjoys the opportunity to visit with returning customers as well as greeting those new to the Playhouse experience. In addition to her work here, Ann enjoys baking and spending time with grandkids and the rest of her family. Her husband, Dale, is an avid golfer and can be found nearly every day of the spring, summer and autumn on the Legend Buttes Golf course in Crawford.
+  image_year: 2017
+
+#
+#
+#
+#
+#        ADDITIONAL BIOS
+#
+#
+#
+#
+
+# - first_name: Music Theatre
+#   last_name: International
+#   groups:
+#     - additional
+#   positions:
+#     - Mary Poppins --- Publisher
+#     - Sister Act --- Publisher
+#     - The Music Man --- Publisher
+#     - Little Shop --- Publisher
+#     - Frog & Toad --- Publisher
+#   bio_approved: true
+#   bio: |
+#     Music Theatre International (MTI) is one of the world's leading theatrical licensing agencies, granting theatres from around the world the rights to perform the greatest selection of musicals from Broadway and beyond. Founded in 1952 by composer Frank Loesser, and orchestrator Don Walker, MTI is a driving force in advancing musical theatre as a vibrant and engaging art form.
+
+#     MTI works directly with the composers, lyricists and book writers of these musicals to provide official scripts, musical materials and dynamic theatrical resources to over 70,000 professional, community and school theatres in the US and in over 60 countries worldwide.
+
+#     MTI is particularly dedicated to educational theatre, and has created special collections to meet the needs of various types of performers and audiences. MTI’s Broadway Junior™ shows are 30- and 60-minute musicals for performance by elementary and middle school-aged performers, while MTI’s School Editions are musicals annotated for performance by high school students.
+
+#
+#
+#
+#
+#        BOARD
+#
+#
+#
+#
+
+- first_name: Wally
+  last_name: Seiler
+  location: "Alliance, NE"
+  groups:
+    - board
+  positions:
+    - President of the Board
+  image_year: 2015
+  image_file: wally-seiler.jpg
+
+- first_name: Karleen
+  last_name: Gramberg
+  location: "Chadron, NE"
+  groups:
+    - board
+  positions:
+    - Vice President of the Board
+  image_year: 2015
+  image_file: karleen-gramberg.jpg
+
+- first_name: Jo
+  last_name: Buchheit
+  location: "Hemingford, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2015
+  image_file: jo-buchheit.jpg
+
+- first_name: Jess
+  last_name: Espinoza
+  location: "Crawford, Nebraska"
+  groups:
+    - board
+  positions:
+  bio: >
+    Crawford Clipper/Harrison Sun LLC
+  image_year: 2017
+  image_file: jess-espinoza.jpg
+
+- first_name: Tim
+  last_name: Gaswick
+  location: "Chadron, NE"
+  groups:
+    - board
+  positions:
+  bio: >
+    H & R Block
+  image_year: 2015
+  image_file: tim-gaswick.jpg
+
+- first_name: Tony
+  last_name: Hindman
+  location: "Hay Springs, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2018
+  image_file: tony-hindman.jpg
+
+- first_name: Kathie
+  last_name: King
+  location: "Gordon, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2015
+  image_file: kathie-king.jpg
+
+- first_name: Danielle
+  last_name: Lecher
+  location: "Chadron, Nebraska"
+  groups:
+    - board
+  positions:
+  image_year: 2017
+  image_file: danielle-lecher.jpg
+
+- first_name: Jeanine
+  last_name: Mohr
+  location: "Chadron, Nebraska"
+  groups:
+    - board
+  positions:
+  image_year: 2016
+  image_file: jeanine-mohr.jpg
+
+- first_name: Randy
+  last_name: Rhine
+  location: "Chadron, NE"
+  groups:
+    - board
+  positions:
+  bio: >
+    Chadron State College
+  image_year: 2015
+  image_file: randy-rhine.jpg
+
+- first_name: Marge
+  last_name: Rotherham
+  location: "Crawford, NE"
+  groups:
+    - board
+  positions:
+  bio: >
+    Post Playhouse Alum
+  image_year: 2015
+  image_file: marge-rotherham.jpg
+
+- first_name: Janelle
+  last_name: Visser
+  location: "Hemingford, NE"
+  groups:
+    - board
+  positions:
+  # bio: >
+  #   My name is Janelle Hansen and I’m a Health Educator with Panhandle Public Health District in Hemingford. Additionally, I am a Licensing Agent for a family trucking business I’ve managed for over 22 years. I thoroughly enjoy any time I can get with my three grown children, Hans lives in Washington DC and works in the Senate, Blake is a Senior at Chadron State College, and Emily is a Freshman at Chadron State College. I am a member of the Hemingford Methodist Church and on the Supervisory Committee at the Hemingford Community Federal Credit Union. I love the outdoors through gardening, flowers, and traveling. I am co-owner of a not-for-profit fitness center, The Body Shop, where I enjoy keeping active by taking classes and walking.
+  image_year: 2019
+  image_file: janelle-visser.jpg
+
+- first_name: Katherine S.
+  last_name: Worley
+  location: ""
+  groups:
+    - board
+  positions:
+  image_year: 2019
+  image_file: kathy-worley.jpg

@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+ol,
+ul {
+  padding-left: 2em;
+  list-style: decimal;
+}
+
+ul {
+  list-style-type: disc;
+}
+
 .btn {
   @apply bg-green-700 text-white font-bold tracking-wide
       rounded-sm border-solid border-green-900 
