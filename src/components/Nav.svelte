@@ -1,8 +1,13 @@
 <script>
   export let segment
+  import site from "../data/site"
 
   function nodeIsActive(node, segment) {
-    const path = node.href.split("/").pop()
+    const path = new URL(node.href).pathname
+      .slice(1)
+      .split("/")
+      .shift()
+
     return path === "" ? segment === undefined : path === segment
   }
 
@@ -73,7 +78,9 @@
 <nav class="main-nav">
   <ul class="m-auto max-w-3xl">
     <li>
-      <a use:active={segment} href=".">Home</a>
+      <a use:active={segment} href="productions/{site.season}">
+        Our Productions
+      </a>
     </li>
     <li>
       <a use:active={segment} href="about">About</a>
