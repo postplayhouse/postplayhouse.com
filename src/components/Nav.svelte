@@ -27,7 +27,7 @@
 
 <style>
   nav {
-    border-bottom: 1px solid rgba(255, 62, 0, 0.1);
+    border-bottom: 1px solid rgba(62, 155, 50, 0.1);
     font-weight: 300;
     padding: 0 1em;
   }
@@ -59,7 +59,7 @@
     content: "";
     width: calc(100% - 1em);
     height: 2px;
-    background-color: rgb(255, 62, 0);
+    background-color: rgb(62, 155, 50);
     display: block;
     bottom: -1px;
   }
@@ -78,12 +78,6 @@
     </li>
     <li>
       <a use:active={segment} href="about">about</a>
-    </li>
-
-    <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-    <li>
-      <a rel="prefetch" use:active={segment} href="news">news</a>
     </li>
   </ul>
 </nav>
