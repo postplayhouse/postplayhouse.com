@@ -81,5 +81,8 @@
     <li>
       <a use:active={segment} href="calendar">calendar</a>
     </li>
+    <li>
+      <a use:active={segment} href="gifts">gifts</a>
+    </li>
   </ul>
 </nav>

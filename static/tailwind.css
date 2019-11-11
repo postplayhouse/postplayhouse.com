@@ -40,3 +40,15 @@
 .h2 {
   @apply text-green-700 text-4xl;
 }
+
+.via-markdown a {
+  @apply link-green;
+}
+
+.via-markdown h2 {
+  @apply h2 mt-3 mb-1;
+}
+
+.via-markdown p {
+  @apply mb-4;
+}
