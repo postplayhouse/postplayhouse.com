@@ -84,5 +84,8 @@
     <li>
       <a use:active={segment} href="gifts">gifts</a>
     </li>
+    <li>
+      <a use:active={segment} href="contact">contact</a>
+    </li>
   </ul>
 </nav>
