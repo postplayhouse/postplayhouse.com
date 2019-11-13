@@ -7,4 +7,6 @@
   export let source
 </script>
 
-{@html marked(source)}
+<div class="via-markdown">
+  {@html marked(source)}
+</div>

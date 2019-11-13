@@ -43,4 +43,3 @@ regenerate: true
 {#each productions as production}
   <Production {production} season={2020} />
 {/each}
-SOME PROD STUFF HERE
