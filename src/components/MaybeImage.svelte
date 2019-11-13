@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte"
   export let src = []
 
   const { src: _, alt, ...rest } = $$props
@@ -22,8 +23,17 @@
   $: winningImage = null
   let winningIndex = Infinity
 
-  src.map((path, i) => checkImage(path, () => report(i)))
+  // For SSR, we can render the assumed first image
+  let mounted = false
+  onMount(() => {
+    mounted = true
+    src.map((path, i) => checkImage(path, () => report(i)))
+  })
 </script>
+
+{#if !mounted}
+  <img src={src[0]} {alt} {...rest} />
+{/if}
 
 {#if winningImage}
   <img src={winningImage} {alt} {...rest} />
