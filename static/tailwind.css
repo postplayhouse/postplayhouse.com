@@ -59,22 +59,25 @@ ul {
   @apply text-2xl;
 }
 
-.via-markdown a {
+/* We have to not only target markdown transpiled, but also things that have not
+been given an explicit class */
+
+.via-markdown a:not([class]) {
   @apply link-green;
 }
 
-.via-markdown h2 {
+.via-markdown h2:not([class]) {
   @apply h2 mt-3 mb-1;
 }
 
-.via-markdown h3 {
+.via-markdown h3:not([class]) {
   @apply h3 mt-2;
 }
 
-.via-markdown p {
+.via-markdown p:not([class]) {
   @apply mb-4;
 }
 
-.via-markdown img {
+.via-markdown img:not([class]) {
   @apply block my-4 mx-auto;
 }

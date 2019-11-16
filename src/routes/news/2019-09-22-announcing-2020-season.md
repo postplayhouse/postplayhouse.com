@@ -10,10 +10,8 @@ import site from "../../data/site"
 ```
 
 <div class="bg-green-100 p-4 text-center">
-
-**Update:** Individual tickets are now on sale, as well as Season
-Subscriptions!
-
+  <strong>Update:</strong>
+  Individual tickets are now on sale, as well as Season Subscriptions!
 </div>
 
 ![2020 Season Production logos](/images/2020/full-season.jpg)

@@ -52,7 +52,3 @@
 
 <h3 class="h3 mt-4">Local Actor Auditions TBA</h3>
 in Late April or Early May {site.season}
-<img
-  class="mt-5"
-  alt="outside front entrance of Post Playhouse"
-  src="/images/playhouse-pic-large.jpg" />
