@@ -3,6 +3,8 @@
 </script>
 
 <article class="via-markdown">
-  <h1 class="h1">{title}</h1>
+  {#if title}
+    <h1 class="h1">{title}</h1>
+  {/if}
   <slot />
 </article>

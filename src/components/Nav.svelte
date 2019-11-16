@@ -86,6 +86,9 @@
       <a use:active={segment} href="about">About</a>
     </li>
     <li>
+      <a use:active={segment} href="donate">Donate</a>
+    </li>
+    <li>
       <a use:active={segment} href="calendar">Calendar</a>
     </li>
     <li>
