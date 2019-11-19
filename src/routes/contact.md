@@ -8,7 +8,7 @@ import site from "../data/site"
 
 ### Box Office
 
-{ site.box_office_phone }  
+{ site.boxOfficePhone }  
 [tickets@postplayhouse.com](mailto:tickets@postplayhouse.com)
 
 ### Audition Submissions

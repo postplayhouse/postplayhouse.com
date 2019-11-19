@@ -19,7 +19,7 @@
   </div>
 
   <div class="flex-initial text-center mt-8 ml-2 min-w-md">
-    <a href={site.tickets_link} class="btn-p">Get Tickets Online</a>
+    <a href={site.ticketsLink} class="btn-p">Get Tickets Online</a>
 
     <a
       class="text-green-700 underline sm:block sm:mt-4"
@@ -28,8 +28,8 @@
     </a>
     <a
       class="mt-2 text-lg block"
-      href="tel:+{site.box_office_phone.replace(/-/g, '')}">
-      {site.box_office_phone}
+      href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">
+      {site.boxOfficePhone}
     </a>
   </div>
 

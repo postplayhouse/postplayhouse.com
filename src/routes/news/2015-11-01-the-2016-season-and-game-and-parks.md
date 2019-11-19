@@ -16,7 +16,7 @@ Wow! Do we _ever_ have a season planned for 2016, the 49th year of our existence
 <h2 class="production-title-standalone">Legally Blonde</h2>
 <h2 class="production-title-standalone">Monty Python’s Spamalot</h2>
 
-Season Subscriptions are now available for your holiday gift-giving needs. They may be purchased for a 4-show or a 5-show package and may be [obtained online](https://postplayhousetickets.universitytickets.com/user_pages/event_listings.asp) or over the phone. If you prefer to order your subscriptions by telephone, you may do so by calling our winter box office at { site.box_office_phone }.
+Season Subscriptions are now available for your holiday gift-giving needs. They may be purchased for a 4-show or a 5-show package and may be [obtained online](https://postplayhousetickets.universitytickets.com/user_pages/event_listings.asp) or over the phone. If you prefer to order your subscriptions by telephone, you may do so by calling our winter box office at { site.boxOfficePhone }.
 
 ### Day one ticket sales changes
 

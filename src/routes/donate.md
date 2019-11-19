@@ -41,7 +41,7 @@ If you like our mission or are a fan of our productions, consider donating today
   <button class="btn btn-p" on:click={toggleDonateForm}>Donate Online Now</button>
 </div>
 
-Please contact the box office at { site.box_office_phone } or email us at [tom@postplayhouse.com](mailto:tom@postplayhouse.com) with any questions about donating.
+Please contact the box office at { site.boxOfficePhone } or email us at [tom@postplayhouse.com](mailto:tom@postplayhouse.com) with any questions about donating.
 
 You can also send donations via mail:
 

@@ -19,7 +19,7 @@ import site from "../../data/site"
 <p class="text-center m-4">Tickets are on sale now!</p>
 
 <div class="flex justify-center">
-  <a href={site.tickets_link} class="btn-p">
+  <a href={site.ticketsLink} class="btn-p">
     Get Your Tickets Now
   </a>
 </div>
