@@ -98,6 +98,9 @@
       <a use:active={segment} href="donate">Donate</a>
     </li>
     <li>
+      <a use:active={segment} href="plan-your-visit">Plan Your Visit</a>
+    </li>
+    <li>
       <a use:active={segment} href="contact">Contact</a>
     </li>
     <li>
