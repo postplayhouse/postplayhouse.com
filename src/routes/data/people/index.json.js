@@ -1,5 +1,5 @@
-import site from "../../data/site"
-import data from "../../data/_yaml"
+import site from "../../../data/site"
+import data from "../../../data/_yaml"
 
 export function get(req, res, _next) {
   res.writeHead(200, {

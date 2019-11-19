@@ -1,6 +1,6 @@
 <script context="module">
   export async function preload({ params, query }) {
-    const res = await this.fetch(`productions/2019.json`)
+    const res = await this.fetch(`data/productions/2019.json`)
     const data = await res.json()
 
     if (res.status === 200) {
