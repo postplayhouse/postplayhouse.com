@@ -100,5 +100,8 @@
     <li>
       <a use:active={segment} href="industry-professionals">Work at Post</a>
     </li>
+    <li>
+      <a use:active={segment} href="who/{site.season}">Who's Who</a>
+    </li>
   </ul>
 </nav>
