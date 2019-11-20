@@ -435,6 +435,15 @@
   image_year: 2015
   image_file: tim-gaswick.jpg
 
+- first_name: Alex
+  last_name: Helmbrecht
+  # location: "Hay Springs, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2020
+
+
 - first_name: Tony
   last_name: Hindman
   location: "Hay Springs, NE"
@@ -452,15 +461,6 @@
   positions:
   image_year: 2015
   image_file: kathie-king.jpg
-
-- first_name: Danielle
-  last_name: Lecher
-  location: "Chadron, Nebraska"
-  groups:
-    - board
-  positions:
-  image_year: 2017
-  image_file: danielle-lecher.jpg
 
 - first_name: Jeanine
   last_name: Mohr
