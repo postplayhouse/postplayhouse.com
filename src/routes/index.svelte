@@ -36,7 +36,7 @@
 
 <div class="md:flex flex-row-reverse items-stretch">
   <section class=" mb-2">
-    <a href="/donations">
+    <a href="/donate">
       <img
         alt="actors making a heart with thier hands"
         src="/images/perennials/donations.jpg" />
