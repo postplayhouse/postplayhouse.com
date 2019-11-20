@@ -29,7 +29,7 @@
   Auditions will be by appointment only, so please
   <strong>INCLUDE ALL OF THE FOLLOWING</strong>
   in an email to
-  <a href="mailto:auditions@postplayhouse.com">auditions@postplayhouse.com</a>
+  <a class="link-green" href="mailto:auditions@postplayhouse.com">auditions@postplayhouse.com</a>
   :
 </p>
 
