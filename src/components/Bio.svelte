@@ -8,14 +8,14 @@
 <div class="clearfix mb-8">
   {#if person.image}
     <img
-      class="block max-w-md my-4 md:mr-4 md:float-left md:w-1/2"
+      class="block max-w-md mb-4 md:mr-4 md:float-left md:w-1/2"
       src={person.image}
       alt="portrait of {person.name}" />
   {/if}
 
-  <div class="text-4xl">{person.name}</div>
+  <div class="text-4xl leading-none">{person.name}</div>
 
-  <ul>
+  <ul class="list-none font-thin mb-2">
     {#if person.positions.length}
       <!-- Always use person.positions by itself if it exists -->
       {#each person.positions as position}
