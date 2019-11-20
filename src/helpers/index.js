@@ -1,9 +1,38 @@
 export function personIsInGroup(person, groupName) {
-  return !!person.groups.includes(groupName)
+  return !!(
+    Array.isArray(person.groups) &&
+    person.groups.map((x) => x.toLowerCase(x)).includes(groupName.toLowerCase())
+  )
 }
 
 export function personIsOnlyInGroup(person, groupName) {
   return personIsInGroup(person, groupName) && person.groups.length === 1
+}
+
+/**
+ * Puts people in thier corresponding groups. Any ungrouped people come out in the rest
+ * @param {Array<object>} people
+ * @param  {...string} groupNames
+ *
+ * @example
+ * const {board, additional, rest} = groupPeople(people, 'board', 'additional')
+ * // All the people who didn't fit into the above categories are in the rest category
+ *
+ */
+export function groupPeople(people, ...groupNames) {
+  const grouped = {}
+  const used = []
+  groupNames.forEach((groupName) => {
+    grouped[groupName] = []
+    people.forEach((person) => {
+      if (personIsInGroup(person, groupName)) {
+        grouped[groupName].push(person)
+        used.push(person)
+      }
+    })
+  })
+  grouped["rest"] = people.filter((person) => !used.includes(person))
+  return grouped
 }
 
 /**

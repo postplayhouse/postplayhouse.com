@@ -13,7 +13,7 @@
 
 <script>
   import Bio from "../../components/Bio.svelte"
-  import { sortPeople, personIsOnlyInGroup } from "../../helpers"
+  import { sortPeople, personIsOnlyInGroup, groupPeople } from "../../helpers"
   export let site
   export let slug
   export let people
@@ -24,23 +24,19 @@
   people = sortPeople(people).filter((person) => {
     return shouldFilterActors ? !personIsOnlyInGroup(person, "cast") : true
   })
+  const groupedPeople = groupPeople(people, "Board", "Additional")
+  const generalGroupName = shouldFilterActors
+    ? "Crew and Staff"
+    : "Cast, Musicians, Crew, and Staff"
 </script>
 
-{#each people as person}
-  <Bio {person} />
+{#each ['rest', 'Board', 'Additional'] as groupName}
+{#if groupedPeople[groupName].length}
+  <h2 class="h2 sticky top-0 bg-white">
+    {groupName === 'rest' ? generalGroupName : groupName}
+  </h2>
+  {#each groupedPeople[groupName] as person}
+    <Bio {person} />
+  {/each}
+  {/if}
 {/each}
-<!-- {%- assign board = site.data.people[page.bio_year] -%}
-
-{%- assign people = '' | split: '' -%}
-{%- assign people_grouped = site.data.people[page.bio_year] | group_by: 'sort_group' -%}
-
-{%- for group in people_grouped -%}
-  {%- assign sorted_group = group.items | sort_natural: 'last_name' -%}
-  {%- assign people = people | concat: sorted_group -%}
-{%- endfor -%}
-
-<div class="bios-page">
-  {%- include cast.html people=people -%}
-  {%- include staff.html people=people -%}
-  {%- include board.html people=board -%}
-</div> -->

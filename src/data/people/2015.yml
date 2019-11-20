@@ -668,7 +668,7 @@
 
 - last_name: Frandson
   first_name: Connie
-  groups: >
+  groups:
     - staff
   positions:
     - Winter Box Office
@@ -681,7 +681,7 @@
 
 - last_name: Johns
   first_name: Shellie
-  groups: >
+  groups:
     - staff
   positions:
     - Winter Box Office
@@ -695,7 +695,7 @@
 - last_name: Serres
   first_name: Darlene
   location: "Crawford, NE"
-  groups: >
+  groups:
     - staff
   positions:
     - Season Stitcher
@@ -708,7 +708,7 @@
 
 - last_name: Denton
   first_name: Don
-  groups: >
+  groups:
     - staff
   positions:
     - "Assistant Marketing Manager"
@@ -721,7 +721,7 @@
 
 - last_name: Gaswick
   first_name: Tim
-  groups: >
+  groups:
     - staff
   positions:
     - Accountant
@@ -744,7 +744,7 @@
 - last_name: Seiler
   first_name: Wally
   location: "Alliance, NE"
-  groups: >
+  groups:
     - board
   positions:
     - President of the Board
@@ -757,7 +757,7 @@
 - last_name: Kennedy
   first_name: Deb
   location: "Crawford, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -770,7 +770,7 @@
 - last_name: Gaswick
   first_name: Tim
   location: "Chadron, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -783,7 +783,7 @@
 - last_name: Buchheit
   first_name: Jo
   location: "Hemingford, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -795,7 +795,7 @@
 - last_name: Hindman
   first_name: Amy
   location: "Hay Springs, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -807,7 +807,7 @@
 - last_name: Rhine
   first_name: Randy
   location: "Chadron, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -820,7 +820,7 @@
 - last_name: Willey
   first_name: Lacy
   location: "Harrison, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -833,7 +833,7 @@
 - last_name: King
   first_name: Kathie
   location: "Gordon, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -845,7 +845,7 @@
 - last_name: Maginnis
   first_name: Berdine
   location: "Crawford, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -857,7 +857,7 @@
 - last_name: Merrigan
   first_name: Joni
   location: "Alliance, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -869,7 +869,7 @@
 - last_name: Morava
   first_name: Mike
   location: "Crawford, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -882,7 +882,7 @@
 - last_name: Hoff
   first_name: Gordon
   location: "Alliance, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -896,7 +896,7 @@
 - last_name: Hanks
   first_name: Bev
   location: "Hemingford, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -908,7 +908,7 @@
 - last_name: Fodnes
   first_name: Lyle
   location: "Hemingford, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -921,7 +921,7 @@
 - last_name: Gramberg
   first_name: Karleen
   location: "Chadron, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -933,7 +933,7 @@
 - last_name: Clark
   first_name: Diane
   location: "Crawford, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -946,7 +946,7 @@
 - last_name: Rotherham
   first_name: Marge
   location: "Crawford, NE"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -959,7 +959,7 @@
 - last_name: Feldges
   first_name: Ellen
   location: "Alliance, Nebraska"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
@@ -971,7 +971,7 @@
 - last_name: Varvel
   first_name: Raime
   location: "Hay Springs, Nebraska"
-  groups: >
+  groups:
     - board
   positions:
   bio_approved: true
