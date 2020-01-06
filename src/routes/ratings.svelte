@@ -59,7 +59,14 @@
 
   <ul>
     {#each productions as production}
-      <li>{production.title} &mdash; {production.rating}</li>
+      <li>
+        {production.title} &mdash; {production.rating}
+        {#if production.rating_explanation}
+          <div class="p-2 my-2 bg-grey-200 text-grey-600 max-w-2xl">
+            {production.rating_explanation}
+          </div>
+        {/if}
+      </li>
     {/each}
   </ul>
 
