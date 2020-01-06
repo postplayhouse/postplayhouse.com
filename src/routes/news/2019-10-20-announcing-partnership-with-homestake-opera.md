@@ -26,7 +26,7 @@ We have been in discussions with the fine folks who run the Homestake Opera Hous
 
 <img src="/images/2020/church-basement-ladies.png" alt="" style="max-width: calc(50% - 8px); float: left; margin-right: 16px; margin-bottom: 16px">
 
-<img src="/images/2020/damn-yankees.jpg" alt="" style="max-width: calc(50% - 8px); float: right; margin-bottom: 16px">
+<img src="/images/2020/damn-yankees.png" alt="" style="max-width: calc(50% - 8px); float: right; margin-bottom: 16px">
 
 You can purchase tickets for these performances just like you'd purchase tickets for our regular season: online through our website or by calling our box office. In addition, if you purchase a Season Subscription (either the four or five show variety), you'll be free to choose a performance in Lead as one of your picks if you so desire.
 
