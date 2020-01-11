@@ -60,7 +60,7 @@
         <p>Sponsored By</p>
         {#if production.sponsor.image}
           <img
-            class="w-64 max-w-full block"
+            class="w-48 max-w-full block"
             alt="sponsor logo"
             src="/images/sponsors/{production.sponsor.image}" />
         {:else if production.sponsor.text}
