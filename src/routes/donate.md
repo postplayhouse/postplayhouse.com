@@ -7,6 +7,8 @@ import site from "../data/site"
 import Modal from "../components/Modal.svelte"
 import Mission from "../components/Mission.md"
 
+const sponsorAmount = site.season - 1967
+
 $: showDonateForm = false
 
 function toggleDonateForm() {
@@ -23,7 +25,7 @@ function toggleDonateForm() {
 </Modal>
 {/if}
 
-<p class="text-center p-2 mb-4">Post Playhouse is a 501(c)(3) non-profit organization.</p>
+<p class="text-center p-2 mb-4">As a 501(c)3 nonprofit, your contribution to Post Playhouse is fully tax-deductible.</p>
 
 <div class="text-center my-4">
   <button class="btn btn-p" on:click={toggleDonateForm}>Donate Online Now</button>
@@ -55,48 +57,29 @@ Please make all checks payable to Post Playhouse and include your name, mailing 
 
 # Contributor Levels
 
-### Sponsor --- \$50
+### Sponsor: \${sponsorAmount} -- \$99
 
-- Your name listed in lobby display of contributors
-- Be the first to hear next year's season announcement
-- Receive our annual report
+Invitations to exclusive donor events
 
-### Friend --- \$250
+### Sustainer: \$100 - \$499
 
-- Your name listed in lobby display of contributors
-- 2 complimentary tickets for opening night for the show of your choice
-- Be the first to hear next year's season announcement
-- Receive our annual report
+All Sponsor benefits plus name recognition in the theatre lobby and in our annual report
 
-### Benefactor --- \$500
+### Signature Supporter: \$500 -- \$999
 
-- Your name listed in lobby display of contributors
-- 4 complimentary tickets for opening night for the show of your choice
-- Join our backstage celebration following opening night for the show of your choice
-- Be the first to hear next year's season announcement
-- Receive our annual report
+All Sustainer benefits plus 2 complimentary tickets and invitations to an opening night performance and celebration of 1 show of your choice
 
-### Director --- \$1,000
+### Artistic Director’s Society: \$1,000 -- \$4,999
 
-- Your name listed in lobby display of contributors
-- 6 complimentary tickets for opening night for the show of your choice
-- Join our backstage celebration following opening night for the show of your choice
-- Be the first to hear next year's season announcement
-- Receive our annual report
+All Signature Supporter benefits plus 2 more tickets and invitations to an opening night celebration
 
-### Show Sponsor --- \$5,000
+### Show Sponsor: \$5,000 -- \$9,999
 
-- Company logo and sponsorship listing in:
-  - Post Playhouse season brochures: 10,000 print copies
-  - Crawford Clipper listing: 11,000 print copies
-  - Listing at entrance of post playhouse and at Fort Robinson Lodge (seen by 20,000 guests)
-- Sponsorship announcement prior to each performance of your show ("this show is being sponsored by...")
-- 10 complimentary tickets for opening night of your sponsored show
-- Complimentary pre-show buffet for opening night for your 10 guests at the Fort Robinson Restaurant in the Lodge
+All Artistic Director’s Society benefits plus 6 additional complimentary tickets (10 total) to the opening night performance and celebration of your sponsored show. Complimentary pre-show buffet for opening night for your 10 guests at the Fort Robinson Restaurant in the Lodge. Your name will receive recognition in the preshow announcement for each performance. Other perks include a behind the scenes tour, name recognition on our website, highway signs, and many other printed materials.
 
-## Prefer Capital Donations?
+## Prefer to donate something else?
 
-Sponsor one of our Interns (\$3,000). Sponsor new furniture in our actor housing. Sponsor additional housing for our company. Donate needed box office and lobby technology. The sky is the limit!
+Contact us and we would be happy to let you know what our current needs are!
 
 <div class="text-center my-4">
   <button class="btn btn-p" on:click={toggleDonateForm}>Donate Online Now</button>
