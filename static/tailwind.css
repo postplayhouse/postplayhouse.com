@@ -27,6 +27,13 @@ ul {
   @apply bg-green-500 border-green-700;
 }
 
+.btn:disabled,
+.btn:disabled:hover {
+  @apply bg-green-700 border-green-900;
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .link-green {
   @apply underline text-green-600;
 }
