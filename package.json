@@ -7,7 +7,7 @@
     "sapper:dev": "yarn clean && sapper dev --ext '.svelte .md'",
     "dev": "run-p --race sapper:dev watch:tailwind",
     "build": "yarn clean && yarn build:tailwind && sapper build --legacy --ext '.svelte .md'",
-    "export": "yarn clean && yarn build:tailwind && sapper export --legacy --ext '.svelte .md' --entry 'index bio-submission'",
+    "export": "yarn clean && yarn build:tailwind && sapper export --legacy --ext '.svelte .md' --entry entries",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
