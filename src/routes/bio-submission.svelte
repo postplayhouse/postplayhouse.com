@@ -23,6 +23,7 @@
   let location = ""
   let bio = ""
   let email = ""
+  let useOldHeadshot = false
 
   let productions = [
     "Entire Season",
@@ -75,7 +76,7 @@
 
   $: person = {
     name: name || "Bill Murray",
-    image: image || PLACEHOLDER_IMAGE,
+    image: useOldHeadshot ? "" : image || PLACEHOLDER_IMAGE,
     location: location || "Chicago, IL",
     roles,
     staffPositions,
@@ -111,7 +112,7 @@
     { name: "location", invalid: !location },
     { name: "emptyBio", invalid: !bio },
     { name: "email", invalid: !email },
-    { name: "image", invalid: !imageFile },
+    { name: "image", invalid: !(imageFile || useOldHeadshot) },
     {
       name: "unclosedTitle",
       warn: (bio.match(/_/g) || []).length % 2 > 0,
@@ -127,7 +128,7 @@
     email:
       "Despite the fact that the stage manager has your email address, I need it attached to this form. Please add it.",
     image:
-      "This image of Bill Murray will not do for you. Use the green button near the top of the form to pick an image.",
+      "Use the green button near the top of the form to pick an image, or indicate you'd like to use one from a previous season.",
   }
 
   const warningMessages = {
@@ -451,7 +452,11 @@ ${yamlBody({ fillRoles: true })}
         }
       })
 
-    return Promise.all([doBioUpload(), doHeadshotUpload()])
+    const jobs = [doBioUpload(), !useOldHeadshot && doHeadshotUpload()].filter(
+      Boolean,
+    )
+
+    return Promise.all(jobs)
       .then(() => {
         dispatch(events.sendHeadshotBioSuccess)
       })
@@ -536,9 +541,10 @@ ${yamlBody({ fillRoles: true })}
       class="m-auto max-w-lg p-2 lg:w-1/2 flex-none"
       on:submit|preventDefault={noop}>
 
-      <div class="text-2xl block">
-        <div>Headshot</div>
-        <label class="btn btn-p inline-block cursor-pointer">
+      <div>
+        <div class="text-2xl block">Headshot</div>
+        <label
+          class="btn btn-p inline-block cursor-pointer {useOldHeadshot ? 'opacity-50' : ''}">
           {#if !imageFile}Choose a file{:else}Change file{/if}
           <input
             class="hidden"
@@ -547,13 +553,17 @@ ${yamlBody({ fillRoles: true })}
             accept="image/*"
             type="file" />
         </label>
-        {#if image}
+        {#if image && !useOldHeadshot}
           <img
             style="max-width: 100px; max-height: 100px;"
             class="inline-block"
             src={image}
             alt={imageFile.name} />
         {/if}
+        <label class="block mt-2">
+          <input type="checkbox" bind:checked={useOldHeadshot} />
+          Please use my headshot from last year instead
+        </label>
       </div>
 
       <label class="text-2xl mt-8 block">
