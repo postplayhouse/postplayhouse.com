@@ -3,6 +3,7 @@
   import site from "../data/site"
   import Bio from "../components/Bio.svelte"
   import Modal from "../components/Modal.svelte"
+  import Markdown from "../components/Markdown.svelte"
 
   onMount(() => {
     if (!window.fetch) dispatch(events.foundNoFetch)
@@ -10,19 +11,21 @@
 
   const MAX_WORDS = 125
   const PLACEHOLDER_IMAGE = "https://www.fillmurray.com/400/500"
+  const EXAMPLE_BIO = `Don Denton is so happy to be returning to Post Playhouse after several years away. Though this time around, you won't see him on the stage. Instead, he will be directing this season's production of *Annie*. Some of Don's favorite memories were at Post Playhouse: Doing shows like *Hank Williams: Lost Highway*, and *Guys and Dolls*, working with Paige Salter. He and Paige are looking forward to making some new memories with their son, Marvin, who now gets to see the place Mommy and Daddy met. Visit [dondentonactor.com](https://dondentonactor.com) for more about Don.`
 
   let lastYearBios = `/who/${site.season - 1}`
 
   let passphrase = ""
   let firstName = ""
   let lastName = ""
-  let image = PLACEHOLDER_IMAGE
+  let image = ""
   let imageFile = null
   let location = ""
   let bio = ""
   let email = ""
 
   let productions = [
+    "Entire Season",
     "Cats",
     "Church Basement Ladies",
     "Annie",
@@ -34,7 +37,7 @@
   let productionPositions = []
   let positions = []
 
-  function updateRole(productionName, position) {
+  function updateRole(productionName, position, localRoles) {
     const updatedRole = {
       productionName,
       positions: position
@@ -43,38 +46,44 @@
         .filter(Boolean),
     }
 
-    const existing = roles.findIndex((r) => r.productionName === productionName)
+    const existing = localRoles.findIndex(
+      (r) => r.productionName === productionName,
+    )
 
     if (existing > -1) {
-      roles = roles
+      localRoles = localRoles
         // replace the old production only
         .map((r, i) => (i === existing ? updatedRole : r))
         // Remove the production if they clear the field
         .filter((r) => r.positions.length)
     } else {
-      roles = [...roles, updatedRole].sort(
+      localRoles = [...localRoles, updatedRole].sort(
         (a, b) =>
           productions.findIndex((show) => show === a.productionName) -
           productions.findIndex((show) => show === b.productionName),
       )
     }
 
-    console.log(roles)
+    return localRoles
+  }
+
+  function mutateRoles(productionName, position) {
+    roles = updateRole(productionName, position, roles)
   }
 
   $: name = firstName ? `${firstName} ${lastName}` : ""
 
   $: person = {
-    name,
-    image,
-    location,
+    name: name || "Bill Murray",
+    image: image || PLACEHOLDER_IMAGE,
+    location: location || "Chicago, IL",
     roles,
     staffPositions,
     productionPositions,
     positions,
     bio:
       bio ||
-      `${name} is thrilled (everyone says thrilled) to be making their Post Playhouse debut! Previous credits include _A Show_ and _Another Show: The Musical!_.`,
+      `Bill is thrilled (everyone says thrilled) to be making his Post Playhouse debut! Previous credits include _Ghostbusters_, _Groundhog Day_, and many more.`,
   }
   let toPersonFn = (x) => x
 
@@ -116,7 +125,7 @@
     wordCount: `Your bio is too long. Keep it at or under ${MAX_WORDS} words.`,
     emptyBio: "You must supply some kind of bio.",
     email:
-      "The Stage Manager already has your email address, true. But I need it separately because Ken is always very busy working on other issues. It is just to contact you about your bio.",
+      "Despite the fact that the stage manager has your email address, I need it attached to this form. Please add it.",
     image:
       "This image of Bill Murray will not do for you. Use the green button near the top of the form to pick an image.",
   }
@@ -276,7 +285,11 @@
     reader.readAsDataURL(pickedFile)
   }
 
-  const sanitizedPassphrase = (str) => str.replace(/[^A-z ]/g, "").trim()
+  const sanitizedPassphrase = (str) =>
+    str
+      .replace(/[^A-z ]/g, "")
+      .toLowerCase()
+      .trim()
 
   function confirmPassphrase() {
     return window
@@ -325,10 +338,17 @@
 
   const onSubmit = () => dispatch(events.postBio)
 
-  let yamlBody
-
-  $: {
-    const yamlRoles = roles
+  $: yamlBody = ({ fillRoles } = {}) => {
+    let localRoles = JSON.parse(JSON.stringify(roles))
+    if (fillRoles) {
+      productions.forEach((prod) => {
+        const role = localRoles.find((r) => r.productionName === prod)
+        if (!role) {
+          localRoles = updateRole(prod, " ", localRoles)
+        }
+      })
+    }
+    const yamlRoles = localRoles
       .map(
         (r) =>
           `    ${r.productionName}:\n${r.positions
@@ -337,7 +357,7 @@
       )
       .join("\n")
 
-    yamlBody = [
+    return [
       `- first_name: ${firstName}`,
       `  last_name: ${lastName}`,
       `  location: "${location}"`,
@@ -347,7 +367,7 @@
     ].join("\n")
   }
 
-  $: emailBody = `Please fill out the form below, don't send a bio that is an attachment. Additionally, attach a headshot (jpeg is preferred, but PDF is ok) to this email (or add a link where I can download it).  Thanks!
+  $: emailBody = `Please fill/double check the form below, including copy/pasting your bio directly into this email (no attachments for bios, please). Additionally, attach a headshot to this email. Thanks!
 
 I'll email you when I have added your information to the website, so you can check that I got it right.
 
@@ -355,7 +375,7 @@ I'll email you when I have added your information to the website, so you can che
 ~Don Denton
 ----------------------------------------
 
-${yamlBody}
+${yamlBody({ fillRoles: true })}
 `
 
   $: emailLink = `mailto:don@postplayhouse.com?subject=${encodeURIComponent(
@@ -405,7 +425,7 @@ ${yamlBody}
 
     const doBioUpload = async () =>
       uploadText(
-        `${yamlBody}\n\n\n\n\n${email}`,
+        `${yamlBody()}\n\n\n${email}`,
         basename,
         (await getCreds(1))[0],
       ).then((resp) => {
@@ -440,6 +460,9 @@ ${yamlBody}
 
   const submitCreds = () => dispatch(events.requestAuth)
   const noop = () => {}
+
+  let showExample = false
+  const toggleExample = () => (showExample = !showExample)
 </script>
 
 <svelte:head>
@@ -455,13 +478,19 @@ ${yamlBody}
   </div>
 {/if}
 
+<p>
+  Have a look at
+  <a class="link-green" href={lastYearBios}>last year's bios</a>
+  if you'd like some context.
+</p>
+
 {#if showCredsForm}
   <form on:submit|preventDefault={submitCreds}>
     <label class="text-2xl block">
       Passphrase
       <div class="text-sm">
-        You will have received this in the email telling you about this bio
-        submission form.
+        This was given to you in the same communication that linked you to this
+        page. If not, please contact the stage manager for the passphrase.
       </div>
       <input
         class="border border-grey-500 block"
@@ -484,53 +513,54 @@ ${yamlBody}
 {/if}
 
 {#if showMain}
-  <p>
-    This form will show you how your bio will be rendered on the website. Have a
-    look at
-    <a class="link-green" href={lastYearBios}>last year's bios</a>
-    if you'd like some context. We do reserve the right to edit your bio
-    slightly if needs be. Usually this is due to length restrictions when
-    printing.
-  </p>
-  <p class="mt-4">
-    When you are done, check the preview and then submit your bio. It will be
-    reviewed and added to the website in time.
-  </p>
-  <p class="mt-4">
-    I built this very quickly, so please
-    <strong>
-      don't trust it as a place to
-      <em>compose</em>
-      your bio.
-    </strong>
-    Write it first, then copy and paste in here.
-  </p>
-  <p>
-    If you have trouble with this form please compose an email with all the
-    information we ask you for in this form and send it to
-    <a class="link-green" href={emailLink}>don@postplayhouse.com</a>
-  </p>
+  <div class="mt-4 max-w-lg">
+    <p>
+      Please
+      <strong>
+        don't trust this form as a place to
+        <em>compose</em>
+        your bio.
+      </strong>
+      Write it first, then copy and paste in here. Never trust an internet
+      connection with draft writing!
+    </p>
+    <p class="mt-4">
+      If you have trouble with this form please compose an email with all the
+      information we ask you for in this form and send it to
+      <a class="link-green" href={emailLink}>don@postplayhouse.com</a>
+    </p>
+  </div>
 
   <div class="lg:flex mt-8">
     <form
       class="m-auto max-w-lg p-2 lg:w-1/2 flex-none"
       on:submit|preventDefault={noop}>
 
-      <label class="text-2xl block">
-        Headshot
-        <input
-          class="btn btn-p max-w-sm block"
-          on:change={handleFilePick}
-          name="headshot"
-          accept="image/*"
-          type="file" />
-      </label>
+      <div class="text-2xl block">
+        <div>Headshot</div>
+        <label class="btn btn-p inline-block cursor-pointer">
+          {#if !imageFile}Choose a file{:else}Change file{/if}
+          <input
+            class="hidden"
+            on:change={handleFilePick}
+            name="headshot"
+            accept="image/*"
+            type="file" />
+        </label>
+        {#if image}
+          <img
+            style="max-width: 100px; max-height: 100px;"
+            class="inline-block"
+            src={image}
+            alt={imageFile.name} />
+        {/if}
+      </div>
 
       <label class="text-2xl mt-8 block">
         Email address
         <div class="text-sm">
           (This is only so Don can contact you about your bio. It is not shared
-          to our site.)
+          to our site or in our program.)
         </div>
         <input
           class="border border-grey-500 block"
@@ -560,7 +590,10 @@ ${yamlBody}
 
       <label class="text-2xl mt-8 block">
         Location
-        <div class="text-sm">(city and state, eg: "Crawford, NE")</div>
+        <div class="text-sm">
+          (where you'd like people to know you are from. City and state, eg:
+          "Crawford, NE")
+        </div>
         <input
           class="border border-grey-500 block"
           bind:value={location}
@@ -571,18 +604,42 @@ ${yamlBody}
       <div>
         <span class="text-2xl mt-24 block">Production Roles/Positions</span>
         <div class="text-sm">
-          Please indicate what role you are playing or what your position is for
-          each production. If you work in the box office, you may write "Box
-          Office" next to any production. You may leave blank any productions
-          that you are not involved with.
+          Please indicate what role you are playing or what your positions are
+          for each production. Leave any blank that do not apply. Use commas to
+          separate multiple positions/roles.
         </div>
-        {#each productions as production}
-          <label class="text-xl mt-4 block">
+        {#each productions as production, i}
+          <label class="text-xl mt-4 block {i === 0 ? 'mb-8' : ''}">
             {production}
             <input
               class="border border-grey-500 block"
               type="text"
-              on:input={(e) => updateRole(production, e.target.value)} />
+              on:input={(e) => mutateRoles(production, e.target.value)} />
+            {#if i === 0}
+              <div class="text-sm mt-1">
+                <code class="text-xs bg-grey-300 rounded py-px px-1">
+                  Box Office Staff
+                </code>
+                ,
+                <code class="text-xs bg-grey-300 rounded py-px px-1">
+                  Season Sound Engineer
+                </code>
+                , etc. Actors will likely leave this blank.
+              </div>
+            {/if}
+            {#if i === 1}
+              <div class="text-sm mt-1">
+                <code class="text-xs bg-grey-300 rounded py-px px-1">
+                  Skimbleshanks, Ensemble
+                </code>
+                ,
+                <code class="text-xs bg-grey-300 rounded py-px px-1">
+                  Assistant Stage Manager
+                </code>
+                , etc.
+              </div>
+            {/if}
+
           </label>
         {/each}
       </div>
@@ -591,55 +648,45 @@ ${yamlBody}
       <ul>
         <li>
           You can create links with
-          <code class="whitespace-no-wrap bg-grey-300 rounded p-1 text-sm">
+          <code class="whitespace-no-wrap text-xs bg-grey-300 rounded p-1">
             [your text](http://yoursite.com)
           </code>
         </li>
         <li>
           Please surround the names of shows that you mention with
-          <code class="whitespace-no-wrap bg-grey-300 rounded p-1 text-sm">
-            _underscores_
-          </code>
+          <code class="text-xs bg-grey-300 rounded p-1">_underscores_</code>
           or
-          <code class="whitespace-no-wrap bg-grey-300 rounded p-1 text-sm">
-            *asterisks*
-          </code>
+          <code class="text-xs bg-grey-300 rounded p-1">*asterisks*</code>
           . Properly notated show titles will only count as two words, maximum.
-        </li>
-        <li>
-          See the preview of your bio
-          <span class="md:hidden">below</span>
-          <span class="hidden md:inline">to the right</span>
-          to check that you have done it correctly.
         </li>
       </ul>
       <div>
-        Example from 2015
-        <div class="font-mono text-sm bg-grey-200 p-2">
-          Don is happy to be returning to Post Playhouse for another amazing
-          summer! Favorite professional credits include Joseph in *Joseph and
-          the Amazing Technicolor Dreamcoat* (Circa &rsquo;21 Dinner Playhouse,
-          Rock Island, IL), Sky Masterson in *Guys &amp; Dolls* (Post
-          Playhouse), Sir Bliant in *Camelot* (Drury Lane Theatre, Chicago),
-          Bernard in *Boeing Boeing* (Wayside Theatre, Middletown, VA) and Jean
-          Valjean in *Les Mis&eacute;rables* (Circa &rsquo;21). Thanks to Tom
-          and all the staff at Post. Thanks to mom, dad, Dan, Amber, and little
-          Oliver. Thanks to Kim, WP, Peter, and Carol. Thanks to God. For more,
-          visit [dondentonactor.com](http://dondentonactor.com).
-        </div>
+        <button class="btn btn-p my-2" on:click={toggleExample}>
+          Show Example
+        </button>
+        {#if showExample}
+          <Modal on:close={toggleExample}>
+            <div class="max-w-md m-auto">
+              <div class="text-2xl">This text...</div>
+              <div class="font-mono text-sm bg-grey-200 p-2">{EXAMPLE_BIO}</div>
+              <div class="text-2xl mt-8">...becomes this bio</div>
+              <Markdown source={EXAMPLE_BIO} />
+            </div>
+          </Modal>
+        {/if}
 
-      </div>
-      <div class={bioWordCountClass}>
-        Word Count: {bioWordCount} out of a max of {MAX_WORDS}
       </div>
       <textarea
         id="bio"
         name="bio"
         bind:value={bio}
-        class="border border-grey-500 w-full font-mono min-h-64" />
+        class="border border-grey-500 w-full font-mono min-h-96" />
+      <div class={`text-right ${bioWordCountClass}`}>
+        Word Count: {bioWordCount} out of a max of {MAX_WORDS}
+      </div>
 
       <button
-        class="btn btn-p mt-8"
+        class="btn btn-p mt-8 hidden lg:inline-block"
         disabled={invalidForm | submitting}
         on:click={onSubmit}>
         {#if submitting}Submitting{:else}Submit Bio{/if}
