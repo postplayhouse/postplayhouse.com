@@ -280,7 +280,6 @@
     reader.onload = function(evt) {
       image = evt.target.result
       imageFile = pickedFile
-      window.imageFile = pickedFile
     }
 
     reader.readAsDataURL(pickedFile)
@@ -339,8 +338,9 @@
 
   const onSubmit = () => dispatch(events.postBio)
 
-  $: yamlBody = ({ fillRoles } = {}) => {
+  $: yamlBody = ({ fillRoles, includeGroups } = {}) => {
     let localRoles = JSON.parse(JSON.stringify(roles))
+
     if (fillRoles) {
       productions.forEach((prod) => {
         const role = localRoles.find((r) => r.productionName === prod)
@@ -349,6 +349,7 @@
         }
       })
     }
+
     const yamlRoles = localRoles
       .map(
         (r) =>
@@ -358,14 +359,22 @@
       )
       .join("\n")
 
+    const allGroups = ["cast", "creative", "crew", "staff", "musicians"]
+      .map((x) => `    - ${x}`)
+      .join("\n")
+
     return [
       `- first_name: ${firstName}`,
       `  last_name: ${lastName}`,
+      `  image_year: ${site.season}`,
       `  location: "${location}"`,
+      includeGroups && `  group:\n${allGroups}`,
       `  roles:\n${yamlRoles}`,
       `  bio: >\n    ${bio}`,
       "\n",
-    ].join("\n")
+    ]
+      .filter(Boolean)
+      .join("\n")
   }
 
   $: emailBody = `Please fill/double check the form below, including copy/pasting your bio directly into this email (no attachments for bios, please). Additionally, attach a headshot to this email. Thanks!
@@ -426,7 +435,7 @@ ${yamlBody({ fillRoles: true })}
 
     const doBioUpload = async () =>
       uploadText(
-        `${yamlBody()}\n\n\n${email}`,
+        `${yamlBody({ includeGroups: true })}\n\n\n${email}`,
         basename,
         (await getCreds(1))[0],
       ).then((resp) => {
