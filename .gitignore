@@ -6,3 +6,6 @@ yarn-error.log
 /__sapper__/
 /static/g/
 /static/index.css
+
+# local, temp files only
+/working files/
