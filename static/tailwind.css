@@ -66,6 +66,10 @@ ul {
   @apply text-2xl;
 }
 
+.h4 {
+  @apply text-xl;
+}
+
 /* We have to not only target markdown transpiled, but also things that have not
 been given an explicit class */
 
@@ -81,8 +85,12 @@ been given an explicit class */
   @apply h3 mt-2;
 }
 
+.via-markdown h4:not([class]) {
+  @apply h4 mt-3 mb-2;
+}
+
 .via-markdown p:not([class]) {
-  @apply mb-4;
+  @apply my-1;
 }
 
 .via-markdown img:not([class]) {
