@@ -130,13 +130,14 @@
 
 - first_name: Don
   last_name: Denton
-  groups:
-    - staff
+  location: "Bettendorf, IA"
   staff_positions:
     - Marketing Designer
-  bio_approved: true
+  production_positions:
+    Annie:
+      - Director
   bio: >
-    Don Denton has been performing with Post Playhouse off and on since 2008. Since that time, he has also been working with Tom to shape all of the Playhouse's marketing efforts. For the past several years, he has designed all of Post's printed materials along with the website and logo. Don has very fond memories of all the years he has been at the playhouse, and regrets that he cannot be there this year. But a very lovely actress whom he met at Post in 2008 will have brought his first child into the world just a little while before opening night, so he'll be home with Paige and the new baby instead.
+    Don Denton is so happy to be returning to Post Playhouse after several years away. Though this time around, you won't see him on the stage. Instead, he will be directing this season's production of *Annie*. Some of Don's favorite memories were at Post Playhouse: Doing shows like *Hank Williams: Lost Highway*, and *Guys and Dolls*, working with Paige Salter. He and Paige are looking forward to making some new memories with their son, Marvin, who now gets to see the place Mommy and Daddy met.
   image_year: 2019
 
 # - first_name: Melissa
