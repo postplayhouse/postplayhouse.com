@@ -259,35 +259,6 @@
 #     Tom currently calls southwestern Minnesota home, and lives in a 110 year old converted hunting cabin, on the shores of a spring fed lake, with an over-fed Beagle, a neurotic Toy Aussie Shepherd, and a cat who will never know he isn't the King of Siam.
 #   image_year: 2019
 
-# - first_name: Garth
-#   last_name: Moritz
-#   location: "Boulder, CO"
-#   groups:
-#     - staff
-#     - crew
-#   positions:
-#     - Season Rehearsal Stage Manager
-#     - Backstage Manager --- Mary Poppins, Sister Act, The Music Man, Little Shop
-#   production_positions:
-#     Cats:
-#       - Rehearsal Stage Manager
-#       - Backstage Manager
-#     Damn Yankees:
-#       - Rehearsal Stage Manager
-#       - Backstage Manager
-#     Church Basement Ladies:
-#       - Rehearsal Stage Manager
-#       - Backstage Manager
-#     Catch Me If You Can:
-#       - Rehearsal Stage Manager
-#       - Backstage Manager
-#     Annie:
-#       - Rehearsal Stage Manager
-#   bio_approved: true
-#   bio: >
-#     Garth Moritz is happy to be returning for his second season with the Post Playhouse. An Arkansas native, he spent five years living and working in the Chicago theatre scene and now lives in Boulder, Colorado.
-#   image_year: 2019
-
 - first_name: Tom
   last_name: Ossowski
   location: "Tallahasse, FL via Beatrice, NE"
@@ -306,32 +277,18 @@
 
 - first_name: Ken
   last_name: Phillips
-  location: "Tucson, AZ"
+  location: "Bloomington, IN"
   groups:
-    - crew
+    - staff
     - creative
-  positions:
-    - Season Production Stage Manager
-    # - Lighting Designer --- Little Shop
-  # production_positions:
-  #   Cats:
-  #     - Production Stage Manager
-  #     - Calling Stage Manager
-  #   Damn Yankees:
-  #     - Production Stage Manager
-  #     - Calling Stage Manager
-  #   Church Basement Ladies:
-  #     - Production Stage Manager
-  #     - Calling Stage Manager
-  #   Catch Me If You Can:
-  #     - Production Stage Manager
-  #     - Lighting Designer
-  #   Annie:
-  #     - Production Stage Manager
-  #     - Calling Stage Manager
-  bio_approved: true
+  staff_positions:
+    - Season Production Manager
+    - Season Lighting Designer
+  production_positions:
+    Cats:
+      - Projection Designer
   bio: >
-    Ken is extremely happy to be coming back for his sixth consecutive year at the Post Playhouse as the Production Stage Manager! Ken holds a BFA in Stage Management and graduated last year with an MFA in Lighting Design from the University of Arizona. In the past, he has worked as a freelance Stage Manager in LA, working on various productions ranging from _Bronies: The Musical!_ to the _Big Hero 6 Laser Light Show_ at Disney's historic El Capitan Theatre in Hollywood. In Lighting Design, he has worked on a variety of different productions both academically and professionally, with the bulk of them being in Musical Theatre and Opera. He is also an avid stage combat enthusiast, where he has helped bring some of the Post's past production's stage fighting to life. He would like to thank Dewayne and Tom for having him back another year, and to give his love to his wife Alexandra for all her support. To see more of his work, look at [www.KGPhillips.com](http://www.KGPhillips.com)
+    Ken is extremely happy to be coming back for his seventh consecutive year at the Post Playhouse; this year as the Production Manager and Season Lighting Designer. He holds an MFA in Lighting Design and currently works at the Jacobs School of Music at Indiana University where he is the resident Lighting Designer/Supervisor for their Opera & Ballet department’s 1,460 seat theatre. He primarily works in Musical Theatre & Opera. Over the years, he has worked across the country on a variety of different productions. To view his work, please feel free to visit his website at [KGPhillips.com](https://KGPhillips.com). He would like to thank Tom and Dewayne for always welcoming him back, for his parents support, and the love of his wonderful wife, Alexandra.
   image_year: 2018
 
 - first_name: Ann
@@ -442,7 +399,6 @@
     - board
   positions:
   image_year: 2020
-
 
 - first_name: Tony
   last_name: Hindman
