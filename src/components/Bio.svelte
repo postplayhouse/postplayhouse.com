@@ -1,10 +1,30 @@
 <script>
+  import uniq from "lodash/uniq"
+  import flatten from "lodash/flatten"
   import Markdown from "./Markdown.svelte"
   import { toPerson } from "../models/Person"
-  export let person
-  export let toPersonFn
 
-  $: localPerson = (toPersonFn || toPerson)(person)
+  export let person
+  export let toPersonFn = toPerson
+
+  $: localPerson = toPersonFn(person)
+
+  let productionPositions = []
+
+  // Pivot prductionName and positions for localPerson.productionPositions
+  $: {
+    localPerson.productionPositions.forEach((po) =>
+      productionPositions.push(po.positions),
+    )
+    productionPositions = uniq(flatten(productionPositions)).map(
+      (position) => ({
+        position,
+        productionNames: localPerson.productionPositions
+          .filter((po) => po.positions.includes(position))
+          .map((po) => po.productionName),
+      }),
+    )
+  }
 </script>
 
 <div class="clearfix mb-8">
@@ -36,9 +56,9 @@
         </li>
       {/each}
 
-      {#each localPerson.productionPositions as positionObj}
+      {#each productionPositions as positionObj}
         <li>
-          {positionObj.productionName} &mdash; {positionObj.positions.join(', ')}
+          {positionObj.position} &mdash; {positionObj.productionNames.join(', ')}
         </li>
       {/each}
 
