@@ -4,6 +4,7 @@
 
   import Sticky from "./news/2019-10-20-announcing-partnership-with-homestake-opera.md"
   import Feature from "./news/2019-09-22-announcing-2020-season.md"
+  import AnnualRaffle from "./news/2020-02-22-annual-raffle.svelte"
 
   $: showMailingList = false
 
@@ -21,6 +22,10 @@
 <svelte:head>
   <title>Post Playhouse</title>
 </svelte:head>
+
+<div class="mb-24 bg-green-100 p-4">
+  <AnnualRaffle />
+</div>
 
 <a
   class="sticky-info bg-green-200 p-4 hover:bg-green-300 block"
