@@ -8,19 +8,14 @@
 
 <style>
   main {
-    position: relative;
     max-width: 56em;
-    background-color: white;
-    padding: 2em;
-    margin: 0 auto;
-    box-sizing: border-box;
   }
 </style>
 
 <Header />
 <Nav {segment} />
 
-<main>
+<main class="relative m-auto py-8 px-2 sm:px-8">
   <slot />
 </main>
 
