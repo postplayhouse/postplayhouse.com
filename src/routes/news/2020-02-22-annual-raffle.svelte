@@ -141,3 +141,19 @@
   Raffle tickets are $100 each. Get yours from a Post Playhouse Board Member
   today!
 </p>
+
+<h5 class="text-xl mt-4">Board Member Contact Information</h5>
+<p>
+  You can purchase from any Board Member you know personally, but here is the
+  contact information for those that are available at the moment:
+</p>
+
+<ul>
+  <li>
+    Wally Seiler
+    <br />
+    <a href="mailto:wseiler@charter.net">wseiler@charter.net</a>
+    <br />
+    308-760-4693
+  </li>
+</ul>
