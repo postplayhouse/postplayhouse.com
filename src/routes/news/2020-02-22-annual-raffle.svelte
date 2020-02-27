@@ -156,4 +156,16 @@
     <br />
     308-760-4693
   </li>
+  <li>
+    Alex Helmbrecht
+    <br />
+    <a href="mailto:ahelmbrecht@csc.edu">ahelmbrecht@csc.edu</a>
+    <br />
+    308-432-6212
+  </li>
+  <li>
+    Jessica Espinoza via Crawford Clipper-Harrison Sun
+    <br />
+    308-665-2310
+  </li>
 </ul>
