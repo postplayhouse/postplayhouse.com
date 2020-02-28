@@ -354,7 +354,7 @@
       .map(
         (r) =>
           `    ${r.productionName}:\n${r.positions
-            .map((p) => `      - ${p}`)
+            .map((p) => `      - ${p.trim()}`)
             .join("\n")}`,
       )
       .join("\n")
@@ -364,13 +364,13 @@
       .join("\n")
 
     return [
-      `- first_name: ${firstName}`,
-      `  last_name: ${lastName}`,
+      `- first_name: ${firstName.trim()}`,
+      `  last_name: ${lastName.trim()}`,
       `  image_year: ${site.season}`,
-      `  location: "${location}"`,
+      `  location: "${location.trim()}"`,
       includeGroups && `  group:\n${allGroups}`,
       `  roles:\n${yamlRoles}`,
-      `  bio: >\n    ${bio}`,
+      `  bio: >\n    ${bio.trim()}`,
       "\n",
     ]
       .filter(Boolean)
