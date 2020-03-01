@@ -370,7 +370,7 @@
       `  location: "${location.trim()}"`,
       includeGroups && `  group:\n${allGroups}`,
       `  roles:\n${yamlRoles}`,
-      `  bio: >\n    ${bio.trim()}`,
+      `  bio: |\n    ${bio.trim()}`,
       "\n",
     ]
       .filter(Boolean)
