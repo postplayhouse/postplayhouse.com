@@ -90,6 +90,9 @@ const preprocess = [
         color: "#002fa7",
         threshold: 120,
       },
+      processFolders: ["images/people"],
+      processFoldersRecursively: true,
+      processFoldersSizes: true,
     }),
   ),
 ]

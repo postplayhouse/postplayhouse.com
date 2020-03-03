@@ -2,6 +2,7 @@
   import uniq from "lodash/uniq"
   import flatten from "lodash/flatten"
   import Markdown from "./Markdown.svelte"
+  import MaybeImage from "./MaybeImage.svelte"
   import { toPerson } from "../models/Person"
 
   export let person
@@ -25,13 +26,15 @@
       }),
     )
   }
+
+  const optimizedVersion = (str) => "/g" + str.split(".").join("-400.")
 </script>
 
 <div class="clearfix mb-8">
   {#if localPerson.image}
-    <img
+    <MaybeImage
       class="block max-w-md mb-4 md:mr-4 md:float-left md:w-1/2"
-      src={localPerson.image}
+      src={[optimizedVersion(localPerson.image), localPerson.image]}
       alt="portrait of {localPerson.name}" />
   {/if}
 

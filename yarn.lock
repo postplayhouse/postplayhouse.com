@@ -4803,9 +4803,9 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-svelte-image@happycollision/svelte-image#7eb415a6:
+svelte-image@happycollision/svelte-image#32e69e63:
   version "0.1.5-pre"
-  resolved "https://codeload.github.com/happycollision/svelte-image/tar.gz/7eb415a6d7830530fe8b4a887b09133ce1a3bbd4"
+  resolved "https://codeload.github.com/happycollision/svelte-image/tar.gz/32e69e63e04c9c4e69b8bf3e1c4d23d813590fcf"
   dependencies:
     potrace "^2.1.2"
     sharp "^0.22.1"
