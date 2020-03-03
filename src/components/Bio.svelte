@@ -33,7 +33,7 @@
 <div class="clearfix mb-8">
   {#if localPerson.image}
     <MaybeImage
-      class="block max-w-md mb-4 md:mr-4 md:float-left md:w-1/2"
+      class="block w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2"
       src={[optimizedVersion(localPerson.image), localPerson.image]}
       alt="portrait of {localPerson.name}" />
   {/if}
