@@ -38,47 +38,22 @@
   groups:
     - creative
     - staff
-  positions:
-    - Post Playhouse Artistic Director
-    # - Director/Choreographer --- Mary Poppins, Frog & Toad
-    # - Choreographer --- The Music Man, Little Shop
   staff_positions:
     - Post Playhouse Artistic Director
-  # production_positions:
-  #   Cats:
-  #     - Director
-  #     - Choreographer
-  #   Church Basement Ladies:
-  #     - Choreographer
-  #   Catch Me If You Can:
-  #     - Choreographer
-  #   Annie:
-  #     - Director
-  #     - Choreographer
+  production_positions:
+    Cats:
+      - Director
+      - Choreographer
+    Catch Me If You Can:
+      - Choreographer
+    Annie:
+      - Choreographer
+    Damn Yankees:
+      - Choreographer
   bio_approved: true
   bio: |
     Dewayne is very excited to be returning to the Post Playhouse for his 5th season as Artistic Director, Director, and Choreographer. Originally from Atlanta, Georgia, he moved to New York City and began his career/training in the Big Apple. He has performed leading roles around the country such as Rum Tum Tugger in _Cats_, Bobby Child in _Crazy For You_, Riff in _West Side Story_, Bobby in _A Chorus Line_ to name a few. He has directed and choreographed for national tours, regional theatres, dinner theaters, community theatres, cruise ships, movies, high schools, music videos, parades and dance companies. He now resides in Florida. This coming fall, Dewayne will be heading to Beijing, China to teach, direct/choreograph at The Central Academy of Drama. He recently premiered _EDM Antigone the Rock Opera_ with Don Fox in Wenatchee, Washington. Don and Dewayne are planning several US tours of _EDM Antigone_. Dewayne would love to thank Tom Ossowski and Don Fox for all the doors they have opened for him and all the wonderful designers and crew that return every year.
   image_year: 2016
-
-# - first_name: Pheobe H.
-#   last_name: Boynton
-#   location: "Colorado Springs, CO via Ithaca, NY"
-#   groups:
-#     - creative
-#   positions:
-#     - Costume Designer --- Mary Poppins, Sister Act, Little Shop
-#   production_positions:
-#     Cats:
-#       - Costume Designer
-#     Damn Yankees:
-#       - Costume Designer
-#     Catch Me If You Can:
-#       - Costume Designer
-#   bio_approved: true
-#   bio: >
-#     Pheobe H. Boynton is thrilled to be returning to The Post Playhouse for her sixth season! She is a freelance costume designer originally from Ithaca, NY and currently based out of the Theatreworks costume shop in Colorado Springs, CO. She has a bachelors in art history from Cornell University, and an MFA in theater design and technology from the University of Missouri-Kansas City. She has done work for a wide variety of clients and companies including the Los Angeles Opera, Norwegian Cruise Line Holdings, Kanye West, Kansas City Repertory Theater, The Arvada Center, Theatreworks, Chadron State College, The Unicorn Theater, The Hangar Theatre, Legendary Pictures, YouTube Studios, Relativity Media, Investigation Discovery and Theatrical Arts International. [www.pheobebird.com](http://www.pheobebird.com)
-#   image_year: 2017
-#   image_file: pheobe-boynton.jpg
 
 - first_name: Scott
   last_name: Cavin
@@ -231,35 +206,6 @@
     Tim is the franchise owner of the Chadron H&R Block office, and has been the accountant for the playhouse since 2007.  He and his wife Kari have four children, Kaylee, Aaron, Braxton, and Seth. Tim not only serves as the accountant, but also as the treasurer on the playhouse board. He enjoys working with the great talent and staff every summer, and looks forward to many years with the playhouse.
   image_year: 2015
 
-# - first_name: Tom
-#   last_name: Hudson
-#   location: "Minnesota"
-#   groups:
-#     - creative
-#   positions:
-#     - Costume Designer --- The Music Man, Frog & Toad
-#   production_positions:
-#     Church Basement Ladies:
-#       - Costume Designer
-#     Annie:
-#       - Costume Designer
-#   bio_approved: true
-#   bio: |
-#     This is Tom Hudson's first season with Post Playhouse, and he couldn't be more thrilled to be part of this amazing company, and to meet the wonderful, supportive patrons and citizens of in northwestern Nebraska!
-
-#     Raised on the beaches of Galveston, Tom Hudson is a native Texan who has never quite been able to stay in one place! Mr. Hudson became interested in design early on when, as a young boy, he was taken to an exhibit of costume s worn in the BBC production of The Six Wives of Henry the Eighth, and discovered that the jewelry was made from sprockets, nuts, and bolts. Thus began a career of seeing things not as they are, but of what they might become. Notably, while only 15 years of age, Mr. Hudson, accidentally, became the youngest recipient of the USITT Design America Commendation when, his high school theater teacher misunderstood the requirements for entry (it only being open to working professionals), and sent in three costume designs executed by Tom for the play The Torchbearers, where he was displayed alongside such venerable artists such as Theoni V. Aldredge and Ming Cho Lee
-
-#     Mr. Hudson received his BFA from East Texas State University, and his MA from Carnegie Mellon University, and is a museum curator with his discipline being historic textiles and conservation. Over the past 30 years Tom has designed costumes on more than 250 productions for such institutions as, New York City Opera, Seattle Opera, and Club Med, with Monteverdi's Il Rittorno d'Ullisse in Patria and Rossini's La Cenerentola being two favorites.
-
-#     In recent years, Mr. Hudson has made forays into the Central and South American theatrical markets with works for the Republic of Panama, and Carnival in Sao Paulo, Brazil.
-
-#     Tom Hudson, is also a proud veteran of the United States Navy, achieving the rank of Petty Officer Second Class, and served during the first Gulf War. It was during his European deployment that he was able to develop and refine his design skills by working with Ta Fantastika in Prague, Republic of Czech and Teatro Massimo Bellini in Catania, Sicily, and where he discovered his passion for masks, large scale puppetry, and youth theater.
-
-#     Tom is also a writer and producer for his own companies, Spellbound Theatricals, and Inner Circle, with scripts that range from adult-oriented farces such as: Attack of the Martian Space Babes and, A Very Naughty Lady, to classics, The Odyssey and Anne of Green Gables, as well as faith based offerings; The Story of Esther, and Respectfully Yours, Daniel. He is also working on writing his first textbook for young costume designers as a compendium of tips and tricks for setting up and operating a small costume shop.
-
-#     Tom currently calls southwestern Minnesota home, and lives in a 110 year old converted hunting cabin, on the shores of a spring fed lake, with an over-fed Beagle, a neurotic Toy Aussie Shepherd, and a cat who will never know he isn't the King of Siam.
-#   image_year: 2019
-
 - first_name: Tom
   last_name: Ossowski
   location: "Tallahasse, FL via Beatrice, NE"
@@ -268,9 +214,9 @@
     - staff
   staff_positions:
     - Producing Artistic Director
-  # production_positions:
-  #   Church Basement Ladies:
-  #     - Director
+  production_positions:
+    Damn Yankees:
+      - Director
   bio_approved: true
   bio: >
     Tom Ossowski is an Associate Professor for the BFA Music Theatre Program at FSU and the Producing Artistic Director for the Post Playhouse at Fort Robinson State Park in Nebraska.  At the Post Playhouse, Tom has directed _Legally Blonde_, _Monty Python’s Spamalot_, _A Man of No Importance_, _All Shook Up_, _Guys and Dolls_, _9 to 5_, _My Way_, _The Drowsy Chaperone_, _Grease_, _The Wizard of Oz_, _Nunsense!_, _Always...Patsy Cline_, _Hello, Dolly!_, _Oklahoma!_, and _The Music Man_. FSU directing credits include _Beauty & the Beast_, _All Shook Up_, _Legally Blonde_, _Cabaret_, _The Drowsy Chaperone_, _How To Succeed in Business Without Really Trying_, _On The Town_, _Hair_, _The Rocky Horror Show_, and _Sweeney Todd: The Demon Barber of Fleet Street_. Music directing credits include _Guys and Dolls_, _A Chorus Line_, _Ragtime_, _Spring Awakening_, _Jesus Christ Superstar_, _The 25th Annual Putnam County Spelling Bee_, _RENT_, _Into The Woods_, _Urinetown_, and _In the Heights_. Tom directed and music directed _Into The Woods_ and _The Family_ for The Central Academy of Drama in Beijing.  He is a member of the Stage Directors and Choreographers Society.
@@ -519,6 +465,107 @@
       - Conductor/Pianist
   bio: |
     Robert Cruz is excited to be joining the team at Post Playhouse for the 2020 season. A versatile musician whose musical passions span everything from Gregorian chant to musical theatre, Robert Cruz currently works as a freelance musician based in Shreveport, Louisiana. Past music directing highlights include *Songs for a New World*, *Into the Woods*, *Shrek*, *1776*, and *Nunsense*. He has also assisted with productions of *Les Misérables*, *Patience*, and *Little Women*. He is grateful beyond words to his wife and kids for all their support, even long distance.
+
+- first_name: Corey
+  last_name: Fern
+  image_year: 2019
+  location: "Shakopee, MN"
+  group:
+    - cast
+  roles:
+    Cats:
+      - Rum Tum Tugger
+    Annie:
+      - Bert Healy/Wacky
+      - Ensemble
+    Damn Yankees:
+      - Mr. Applegate
+    Catch Me If You Can:
+      - Frank Jr.
+  bio: |
+    Corey is delighted to be returning for his second consecutive season with the Post Playhouse. He is based in Minneapolis, MN and is one proud Minnesotan. He is a graduate from the University of Wisconsin River Falls with BA’s in Theatre Arts and Creative Writing. He was recently seen on the Post stage as Bert in _Mary Poppins_ and Harold Hill in _The Music Man_. Other favorite credits include the Prince in _Cinderella_ and Seymour in _The Little Shop of Horrors_. Post has become a very special place to Corey and he is so glad he gets to play on this stage once again. Cheers to a wonderful summer!
+
+- first_name: Sam Devlin
+  last_name: Forgie
+  image_year: 2020
+  location: "New York, NY"
+  group:
+    - cast
+  roles:
+    Cats:
+      - Old Deuteronomy
+      - Gus the Theater Cat/Growltiger
+    Annie:
+      - Oliver Warbucks
+    Damn Yankees:
+      - Van Buren
+    Catch Me If You Can:
+      - Carl Hanratty
+  bio: |
+    Hello Nebraska!!! Sam just couldn’t stay away from the wonderful friends he made in Crawford and so he’s back for round two! Returning patrons of Post Playhouse may remember him from last year in *Mary Poppins* (George Banks), *Little Shop of Horrors* (Mushnik), *Sister Act* (Monsignor), and *Music Man* (Charlie/Olin). He wants to give a big shoutout to all the wonderful friends and family of Post Playhouse who make his time here ever more enjoyable. He would also like to extend a special ”thank you” to his family who traveled so far to see him perform. Enjoy the show!
+
+- first_name: David
+  last_name: Craven
+  image_year: 2020
+  location: "Atlanta, GA"
+  group:
+    - creative
+  production_positions:
+    Church Basement Ladies:
+      - Director/Choreographer
+  bio: |
+    David is excited to direct/choreograph Church Basement Ladies for the 4th time! David has a BS in Architecture Design from Georgia Tech and a MFA in Directing Theatre from Minnesota State University, Mankato. David owns and runs Atlanta’s largest caroling company Like the Dickens (www.LiketheDickens.com). David's favorite shows directed include:  _Guys and Dolls_, _Ragtime_, _Forever Plaid_, _Anything Goes_, _Oleanna_, _Reckless_, _The Rink_, and _Into the Woods_. Onstage favorite roles include: Fred/Petruchio in _Kiss Me Kate_, Jesus in _Godspell_, El Gallo in _The Fantasticks_, Cat in the Hat in _Seussical_, Sam in _Mamma Mia_, Jerry in _The Full Monty_, Sister Mary Amnesia in _Nunsense Amen!_, Dracula in _The Kiss of Dracula_, and Captain/Hennessey in _Dames at Sea_.  David is a proud member of Actor’s Equity Association.
+
+- first_name: Pheobe H.
+  last_name: Boynton
+  image_year: 2017
+  image_file: pheobe-boynton.jpg
+  location: "Colorado Springs, CO"
+  group:
+    - creative
+  staff_positions:
+    - Season Costume Designer
+  production_positions:
+    Cats:
+      - Scenic Designer
+  bio: |
+    Pheobe H. Boynton is thrilled to be returning to The Post Playhouse for her seventh season! She is a freelance costume designer originally from Ithaca, NY and currently based out of the Theatreworks costume shop in Colorado Springs, CO. She has a bachelors in art history from Cornell University, and an MFA in theater design and technology from the University of Missouri-Kansas City, and is currently an adjunct professor at Chadron State College. She has done work for a wide variety of clients in theater, film, television and new media, including the Los Angeles Opera, Norwegian Cruise Lines, Kansas City Repertory Theater, The Arvada Center, Theatreworks, Chadron State College, The Unicorn Theater, The Hangar Theatre, Legendary Pictures, YouTube Studios, Relativity Media, and Investigation Discovery. www.pheobebird.com
+
+- first_name: Sophia Elizabeth
+  last_name: Clarke
+  image_year: 2020
+  location: "Houston, TX"
+  group:
+    - cast
+  roles:
+    Cats:
+      - Bombalurina
+    Annie:
+      - Cecil/Boylan Sister/Ensemble
+    Damn Yankees:
+      - Lola
+    Catch Me If You Can:
+      - Cheryl Ann/Cindy/Ensemble
+  bio: |
+    Sophia is thrilled to be making her Post Playhouse debut! Sophia is a recent Musical Theatre graduate from Sam Houston State University, where some her favorite credits include playing Heather Chandler (*Heathers*), Ymma (*Silence*), and #13 (*The Wolves*). Professionally, Sophia made her debut in Houston performing as Euterpe (*Xanadu!*), other favorite credits include Evil Mother (*Panto: Hansel and Gretel*), and Sally Brown (*You’re a Good Man Charlie Brown*). Originally from Glasgow, Scotland, Sophia is a proud Dual Citizen. Sophia would like to thank her family, friends and God for all their constant guidance and support! [(http://SophiaElizabethClarke.com)](http://sophiaelizabethclarke.com)
+
+- first_name: Cody
+  last_name: Bloodsworth
+  image_year: 2020
+  location: "Moscow, ID"
+  group:
+    - musicians
+  production_positions:
+    Cats:
+      - Bass
+    Annie:
+      - Bass
+    Damn Yankees:
+      - Bass
+    Catch Me If You Can:
+      - Bass
+  bio: |
+    Cody is very grateful to Tom and Mike for giving him the opportunity to make his Post Playhouse debut!   Cody is currently an undergraduate at the Lionel Hampton School of Music in Moscow, Idaho majoring in Instrumental Music Education along with minors in Choral Teaching and Jazz Studies.  When he’s not playing for theater productions he can be seen performing in UI’s many ensembles and volunteering at nearby high school music programs. His credits as a theater bassist include: *The Drowsy Chaperone*, *Annie*, *Bye Bye Birdie*, *Chicago*, and *Sweeney Todd*.
 
 #
 #
