@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ls | awk -F "_" '/txt/{gsub("-+"," "); gsub("^ ",""); print $1}' | sort
