@@ -597,6 +597,26 @@
   bio: |
     Courtney Smith has just finished up her senior year of college at Chadron and is super excited to begin working at the PostPlayhouse! Although she has gotten the chance to be both onstage and behind the scenes, she enjoys the being part of the magic that goes on behind the scenes of a production the most. Courtney hopes to continue to work in theatre and to be a stage manager some day.
 
+- first_name: Patrick
+  last_name: Lord-Remmert
+  image_year: 2020
+  location: "New York City"
+  group:
+    - cast
+  roles:
+    Cats:
+      - Munkustrap
+    Annie:
+      - Howe
+      - Ensemble
+    Damn Yankees:
+      - Joe Hardy
+    Catch Me If You Can:
+      - Rodger Strong
+      - Pilot
+  bio: |
+    Patrick Lord-Remmert is delighted to be joining the Post Playhouse this season for the first time! Originally from small-town Illinois, he received his Bachelor of Music from Butler University in Indianapolis, followed by graduate work at the Musik und Kunst Privat Universität der Stadt Wien in Vienna, Austria. After a year away from the stage while doing studio and recording work, Patrick has just recently relocated to NYC, where he just finished a brief run of Weber’s *Der Freischütz* with Heartbeat Opera.
+
 #
 #
 #
