@@ -90,7 +90,8 @@ const unlink = promisify(fs.unlink)
 /**
  * @param directory {string}
  */
-function rimrafContents(directory) {
+function rimrafContents(directory, options = {}) {
+  !options.noConsole && console.log(`cleaning out directory ${directory}`)
   try {
     const all = fs.readdirSync(directory)
     const folders = all.filter((x) =>
@@ -101,7 +102,7 @@ function rimrafContents(directory) {
       unlink(path.join(directory, filename)),
     )
     const emptyFolders = folders.map((folder) =>
-      rimrafContents(path.join(directory, folder)),
+      rimrafContents(path.join(directory, folder), { noConsole: true }),
     )
     return Promise.all(flatten([unlinkFiles, emptyFolders]))
   } catch (err) {
@@ -117,6 +118,7 @@ const copyFile = promisify(fs.copyFile)
  * @param newFolder {string}
  */
 function recursiveCopyFiles(oldFolder, newFolder) {
+  console.log(`copying everything from ${oldFolder} to ${newFolder}`)
   fs.mkdirSync(newFolder, { recursive: true })
 
   const all = fs.readdirSync(oldFolder)
@@ -147,6 +149,5 @@ function recursiveCopyFiles(oldFolder, newFolder) {
     // we want to overwrite the destination
     await rimrafContents(sendTo)
   }
-  console.log("from", fs.readdirSync(from))
   recursiveCopyFiles(from, sendTo)
 })()
