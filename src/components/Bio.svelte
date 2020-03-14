@@ -33,7 +33,7 @@
 <div class="clearfix mb-8">
   {#if localPerson.image}
     <MaybeImage
-      class="block w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2"
+      class="block w-full max-w-md mb-4 md:pr-4 md:float-left md:w-1/2"
       src={[optimizedVersion(localPerson.image), localPerson.image]}
       alt="portrait of {localPerson.name}" />
   {/if}
@@ -44,32 +44,30 @@
     <div class="text-xl text-green-700">{localPerson.location}</div>
   {/if}
 
-  <ul class="list-none font-thin mb-2">
+  <ul class="list-none font-thin mb-2 pl-0 md:float-left md:w-1/2">
     {#if localPerson.positions.length}
       <!-- Always use localPerson.positions by itself if it exists -->
       {#each localPerson.positions as position}
-        <li>
+        <li class="pl-4 -text-indent-4">
           {@html position.replace('---', '&mdash;')}
         </li>
       {/each}
     {:else}
       {#each localPerson.staffPositions as position}
-        <li>
+        <li class="pl-4 -text-indent-4">
           {@html position.replace('---', '&mdash;')}
         </li>
       {/each}
 
       {#each productionPositions as positionObj}
-        <li>
+        <li class="pl-4 -text-indent-4">
           {positionObj.position} &mdash; {positionObj.productionNames.join(', ')}
         </li>
       {/each}
 
       {#each localPerson.roles as positionObj}
-        <li>
-          {positionObj.productionName}
-          {#if positionObj.productionName !== 'Season'}&mdash;{/if}
-          {positionObj.positions.join(', ')}
+        <li class="pl-4 -text-indent-4">
+          {positionObj.productionName} &mdash; {positionObj.positions.join(', ')}
         </li>
       {/each}
     {/if}
