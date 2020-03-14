@@ -44,7 +44,8 @@
     <div class="text-lg text-green-700">{localPerson.location}</div>
   {/if}
 
-  <ul class="list-none font-thin mb-2 pl-0 sm:float-left sm:w-1/2">
+  <ul
+    class="list-none font-thin mb-2 pl-0 {localPerson.image ? 'sm:float-left sm:w-1/2' : ''}">
     {#if localPerson.positions.length}
       <!-- Always use localPerson.positions by itself if it exists -->
       {#each localPerson.positions as position}
