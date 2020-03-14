@@ -637,23 +637,63 @@
 #
 #
 
-# - first_name: Music Theatre
-#   last_name: International
-#   groups:
-#     - additional
-#   positions:
-#     - Mary Poppins --- Publisher
-#     - Sister Act --- Publisher
-#     - The Music Man --- Publisher
-#     - Little Shop --- Publisher
-#     - Frog & Toad --- Publisher
-#   bio_approved: true
-#   bio: |
-#     Music Theatre International (MTI) is one of the world's leading theatrical licensing agencies, granting theatres from around the world the rights to perform the greatest selection of musicals from Broadway and beyond. Founded in 1952 by composer Frank Loesser, and orchestrator Don Walker, MTI is a driving force in advancing musical theatre as a vibrant and engaging art form.
+- first_name: ""
+  last_name: Music Theatre International
+  groups:
+    - additional
+  production_positions:
+    Annie:
+      - Publisher
+    Damn Yankees:
+      - Publisher
+    Catch Me If You Can:
+      - Publisher
+  bio: |
+    Music Theatre International (MTI) is one of the world's leading theatrical licensing agencies, granting theatres from around the world the rights to perform the greatest selection of musicals from Broadway and beyond. Founded in 1952 by composer Frank Loesser, and orchestrator Don Walker, MTI is a driving force in advancing musical theatre as a vibrant and engaging art form.
 
-#     MTI works directly with the composers, lyricists and book writers of these musicals to provide official scripts, musical materials and dynamic theatrical resources to over 70,000 professional, community and school theatres in the US and in over 60 countries worldwide.
+    MTI works directly with the composers, lyricists and book writers of these musicals to provide official scripts, musical materials and dynamic theatrical resources to over 70,000 professional, community and school theatres in the US and in over 60 countries worldwide.
 
-#     MTI is particularly dedicated to educational theatre, and has created special collections to meet the needs of various types of performers and audiences. MTI’s Broadway Junior™ shows are 30- and 60-minute musicals for performance by elementary and middle school-aged performers, while MTI’s School Editions are musicals annotated for performance by high school students.
+    MTI is particularly dedicated to educational theatre, and has created special collections to meet the needs of various types of performers and audiences. MTI’s Broadway Junior™ shows are 30- and 60-minute musicals for performance by elementary and middle school-aged performers, while MTI’s School Editions are musicals annotated for performance by high school students.
+
+- first_name: Thomas
+  last_name: Meehan
+  groups:
+    - additional
+  production_positions:
+    Annie:
+      - Book
+  bio: |
+    Thomas Meehan (Book) received the Tony Award for co-writing the book for _The Producers_ in 2001 and in 2003 for co-writing the book for _Hairspray_. He received his first Tony Award in 1977 for writing the book of _Annie_, which was his first Broadway show, and has written the books for the musicals _Rocky_, _Elf the Musical_, _Cry-Baby_, _Young Frankenstein_, _Chaplin_, _Bombay Dreams_, _I Remember Mama_, _Ain’t Broadway Grand_, and _Annie Warbucks_. In addition, he was a long-time contributor of humor to The New Yorker, an Emmy-Award winning writer of television comedy, and a collaborator on a number of screenplays, including Mel Brooks's _Spaceballs_ and _To Be Or Not To Be_. Mr. Meehan was also a member of the Council of the Dramatists Guild. He and his wife, Carolyn, divided their time between a home in Nantucket and an apartment in Greenwich Village, near which, on Hudson Street, she owned and presided over the long-running and near-legendary children's store Peanut Butter & Jane. 
+
+- first_name: Charles
+  last_name: Strouse
+  groups:
+    - additional
+  production_positions:
+    Annie:
+      - Music
+  bio: |
+    A long-standing member of the Songwriters Hall of Fame, and in January 2002, an inductee into The Theater Hall of Fame, Charles Strouse's first Broadway musical, _Bye Bye Birdie_ (1960), won him a Tony® Award and the London Critics Best Foreign Musical Award. In 1970, _Applause_, starring Lauren Bacall, achieved the same honors and his smash hit, _Annie_ (1977), also won a Tony® for Best Score as well as two Grammy Awards®. Some of his other musicals include _All American_, _Golden Boy_ (starring Sammy Davis Jr.), _It's A Bird, It's A Plane, It's Superman_, _I And Albert_, directed in London by John Schlesinger, and _Dance A Little Closer_, written with Alan Jay Lerner. _Charlie & Algernon_ won a 1981 Tony® nomination for Best Score, as did _Rags_ in 1987 and _Nick And Nora_ in 1992. He wrote both the music and lyrics for off-Broadway's _Mayor_, and teamed again with Martin Charnin to create _Annie Warbucks_, the sequel to _Annie_. His film scores include _Bonnie & Clyde_, _The Night They Raided Minsky's_, and _All Dogs Go To Heaven_. "Those Were The Days", the theme song for TV's _All In The Family_ is a Strouse song, with lyrics by his most frequent collaborator, Lee Adams. "Born Too Late", a 1958 pop song written with Fred Tobias, was a top-10 BILLBOARD chart hit and is still heard on many oldies stations. The quadruple platinum album title song by Jay-Z, "Hard Knock Life (Ghetto Anthem)", won the 1999 Grammy for the best Rap album, charted for more than a year and won the BILLBOARD 1998 R&B Album of the Year Award. Strouse's far-ranging talents include chamber and orchestral works, a piano concerto, a two-piano sonata, and operas. His latest choral work, "The Child In Us All", premiered in Spring, 2000. _Nightingale_, an opera based on the Hans Christian Andersen story for which he wrote music, book and lyrics, was recorded by Sarah Brightman. Strouse was commissioned in 2001 to write _Concerto America_ for the pianist Jeffrey Biegel. The work premiered in June 2002 with the Boston Pops at Symphony Hall. Charles Strouse created the ASCAP Musical Theatre Workshop in New York, where he encouraged the talents of countless young composers, writers and performers. In 1999, Strouse received the ASCAP Foundation Richard Rodgers Award for Career Lifetime Achievement in Musical Theatre. In December, 1995, a tv reinterpretation of the classic _Bye Bye Birdie_ (starring Jason Alexander and pop-star Vanessa Williams) aired on ABC-TV. The 1995/96 Emmy for Outstanding Individual Achievement in Music and Lyrics was given to the new song written for and performed by Vanessa Williams: "Let's Settle Down". Another TV interpretation in 1999, _Annie_, aired on ABC's Wonderful World of Disney, swept the ratings by winning over 40 million viewers, won the 1999 Peabody Award and 2 Emmy Awards. The show starred Kathy Bates, Audra McDonald, Alan Cumming, Kristin Chenoweth, Victor Garber, Andrea McArdle and Alicia Morton as Annie and ranked #1 as movie of the year. A revised _Golden Boy_ was produced by the Long Wharf Theatre in New Haven (November, 2000); and The ENCORES! Series presented the show in March, 2002. Future projects: _Golden Boy_ will be performed at the Greenwich Theatre in England in June, 2003. _The Night They Raided Minsky's_, which Charles Strouse originally scored for film, has been turned into a full-length musical. The Broadway-bound version has a book by the late Michael Okrent and Evan Hunter, lyrics by Susan Birkenhead. The Manhattan Theatre Club has scheduled the show for its 2003-04 season. An adaptation of the Paddy Chayevsky film _Marty_, had a successful regional theatre run at Huntington Theatre in Boston in September, 2002. The show reunites Strouse with Lee Adams as lyricist; the book is by Rupert Holmes. John C Reilly starred in the Huntington production and will later again star when the show comes to Broadway next season.
+
+- first_name: Martin
+  last_name: Charnin
+  groups:
+    - additional
+  production_positions:
+    Annie:
+      - Lyrics
+  bio: |
+    Martin Charnin created the role of Big Deal in the original Broadway company of _West Side Story_ in 1957, the only acting job he ever had. He began writing during _West Side Story_ and his first collaborator was Mary Rodgers.
+
+    He was subsequently the director, lyricist, composer, librettist, producer or a combination of the aforementioned, for over 140 theatrical productions, including _Annie_, _Annie Warbucks_, the Rock Opera version of _Joan of Arc_, _Mata Hari_, _Loose Lips_, _Star-Crossed_, _Sid Caesar and Company_, _Carnal Knowledge_, _In Persons_ starring Eli Wallach and Anne Jackson, _The Flowering Peach_, _Winchell_, the revised _Can Can_ by Cole Porter (for which he wrote a new libretto), _Cafe Crown_, _Mike_, _Laughing Matters_, _The No Frills Revue_, _The First_, _On the Swing Shift_, _A Little Family Business_, _Upstairs at O'Neals_, _The National Lampoon Show_, _Lena Horne on Broadway_, _I Remember Mama_, _Hot Spot_, _Zenda_, _Put It In Writing_, _Fallout_, _Kaleidoscope_, _Ballad For A Firing Squad_, _La Strada_, _Nash at Nine_, _Music Music_, _Two by Two_, _And in London_, _Bar Mitzvah Boy_, _Bless the Bride_, _The 9 1/2 Quid Revue_, and internationally and regionally, 17 productions of _Annie_.
+
+    In the 60's and 70's he turned to television and created 7 specials that garnered over 15 Emmy Awards, and the Peabody Award for Broadcasting.
+
+    His collaborators included Peter Allen, Harold Arlen, Vernon Duke, Keith Levenson, Michael Danziker, Peter Sipos, Mary Rodgers, Marvin Hamlisch, Richard Rodgers, and Charles Strouse.
+
+    He wrote for and directed among others, Fred Astaire, Jack Lemmon, Anne Bancroft, Lena Horne, Danny Kaye, Angela Lansbury, Johnny Mathis, Bill Murray,Jon Stewart, Bebe Neuwirth, Bernadette Peters, Sarah Jessica Parker, Gilda Radner, Molly Ringwald, Chita Rivera, Lou Reed, Susan Sarandon, Tim Robbins, Joan Rivers, Chuck D., Phoebe Snow, Shirley MacLaine, Marlo Thomas, Julianne Moore, Martha Plimpton, and Barbra Streisand.
+
+    Charnin was the artistic director of Seattle's Showtunes for 7 years, before moving back to New York for the 4th incarnation of _Annie_ on Broadway. He also created a one woman theatrical entertainment for his wife, Broadway and television star Shelly Burch.
 
 #
 #
