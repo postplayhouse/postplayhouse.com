@@ -1,3 +1,5 @@
+const plugin = require("tailwindcss/plugin")
+
 module.exports = {
   prefix: "",
   important: false,
@@ -501,5 +503,20 @@ module.exports = {
     zIndex: ["responsive"],
   },
   corePlugins: {},
-  plugins: [],
+  plugins: [
+    plugin(function({ addUtilities, theme, e }) {
+      const spacing = theme("spacing")
+
+      const indents = Object.entries(spacing).map(([name, distance]) => ({
+        [`.${e(`text-indent-${name}`)}`]: {
+          textIndent: distance,
+        },
+        [`.${e(`-text-indent-${name}`)}`]: {
+          textIndent: `-${distance}`,
+        },
+      }))
+
+      addUtilities(indents)
+    }),
+  ],
 }

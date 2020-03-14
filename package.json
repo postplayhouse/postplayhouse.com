@@ -5,18 +5,19 @@
   "scripts": {
     "clean": "rm -rf ./static/g",
     "sapper:dev": "sapper dev --ext '.svelte .md'",
-    "dev": "run-p --race sapper:dev watch:tailwind",
+    "dev": "run-p --race sapper:dev tailwind:watch",
     "copyFolder": "./scripts/copy_folder",
     "useCache": "yarn copyFolder --merge /opt/build/cache/hc_my_cache/static/g --to static/g",
     "fillCache": "yarn copyFolder --save static/g --to /opt/build/cache/hc_my_cache/static/g",
-    "build": "yarn clean && yarn build:tailwind && sapper build --legacy --ext '.svelte .md'",
-    "export": "yarn build:tailwind && sapper export --legacy --ext '.svelte .md' --entry entries",
+    "build": "yarn clean && yarn tailwind:prod && sapper build --legacy --ext '.svelte .md'",
+    "export": "yarn tailwind:prod && sapper export --legacy --ext '.svelte .md' --entry entries",
     "netlify": "yarn useCache && yarn export && yarn fillCache",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "watch:tailwind": "postcss static/tailwind.css -o static/index.css -w",
-    "build:tailwind": "NODE_ENV=production postcss static/tailwind.css -o static/index.css",
+    "tailwind": "postcss static/tailwind.css -o static/index.css",
+    "tailwind:watch": "yarn tailwind -w",
+    "tailwind:prod": "NODE_ENV=production yarn tailwind",
     "test": "run-p --race dev cy:run"
   },
   "dependencies": {
@@ -64,7 +65,7 @@
     "sapper": "^0.27.0",
     "svelte": "^3.0.0",
     "svelte-image": "happycollision/svelte-image#beb2e192",
-    "tailwindcss": "^1.1.3",
+    "tailwindcss": "^1.2.0",
     "ts-node": "^8.3.0",
     "typescript": "^3.6.2",
     "xxhash": "^0.3.0"
