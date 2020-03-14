@@ -31,12 +31,12 @@
 </script>
 
 {#each ['rest', 'Board', 'Additional'] as groupName}
-{#if groupedPeople[groupName].length}
-  <h2 class="h2 sticky top-0 bg-white">
-    {groupName === 'rest' ? generalGroupName : groupName}
-  </h2>
-  {#each groupedPeople[groupName] as person}
-    <Bio {person} />
-  {/each}
+  {#if groupedPeople[groupName].length}
+    <h2 class="h2 sm:sticky top-0 bg-white mb-4">
+      {groupName === 'rest' ? generalGroupName : groupName}
+    </h2>
+    {#each groupedPeople[groupName] as person}
+      <Bio {person} />
+    {/each}
   {/if}
 {/each}

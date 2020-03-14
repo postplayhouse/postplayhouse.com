@@ -38,13 +38,13 @@
       alt="portrait of {localPerson.name}" />
   {/if}
 
-  <div class="text-4xl leading-none">{localPerson.name}</div>
+  <div class="text-2xl leading-none">{localPerson.name}</div>
 
   {#if localPerson.location}
-    <div class="text-xl text-green-700">{localPerson.location}</div>
+    <div class="text-lg text-green-700">{localPerson.location}</div>
   {/if}
 
-  <ul class="list-none font-thin mb-2 pl-0 md:float-left md:w-1/2">
+  <ul class="list-none font-thin mb-2 pl-0 sm:float-left sm:w-1/2">
     {#if localPerson.positions.length}
       <!-- Always use localPerson.positions by itself if it exists -->
       {#each localPerson.positions as position}
