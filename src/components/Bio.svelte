@@ -27,7 +27,7 @@
     )
   }
 
-  const optimizedVersion = (str) => "/g" + str.split(".").join("-400.")
+  const optimizedVersion = (str) => "/g" + str.split(".").join("-800.")
 </script>
 
 <div class="clearfix mb-8">
