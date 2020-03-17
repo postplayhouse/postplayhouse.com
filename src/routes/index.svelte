@@ -4,7 +4,7 @@
 
   import Sticky from "./news/2019-10-20-announcing-partnership-with-homestake-opera.md"
   import Feature from "./news/2019-09-22-announcing-2020-season.md"
-  import AnnualRaffle from "./news/2020-02-22-annual-raffle.svelte"
+  import AnnualRaffle from "./news/2020-03-16-annual-raffle-cancelled.md"
 
   $: showMailingList = false
 
