@@ -1,0 +1,417 @@
+#
+#
+#
+#
+#        CAST CREW MUSICIANS CREATIVE ADDITIONAL STAFF
+#
+#
+#
+#
+
+- first_name: Dewayne
+  last_name: Barrett
+  location: "New York City via Atlanta, GA"
+  groups:
+    - creative
+    - staff
+  staff_positions:
+    - Post Playhouse Artistic Director
+  # production_positions:
+  #   Cats:
+  #     - Director
+  #     - Choreographer
+  #   Catch Me If You Can:
+  #     - Director
+  #     - Choreographer
+  #   Annie:
+  #     - Choreographer
+  #   Damn Yankees:
+  #     - Choreographer
+  bio_approved: true
+  bio: |
+    Dewayne is very excited to be returning to the Post Playhouse for his 5th season as Artistic Director, Director, and Choreographer. Originally from Atlanta, Georgia, he moved to New York City and began his career/training in the Big Apple. He has performed leading roles around the country such as Rum Tum Tugger in _Cats_, Bobby Child in _Crazy For You_, Riff in _West Side Story_, Bobby in _A Chorus Line_ to name a few. He has directed and choreographed for national tours, regional theatres, dinner theaters, community theatres, cruise ships, movies, high schools, music videos, parades and dance companies. He now resides in Florida. This coming fall, Dewayne will be heading to Beijing, China to teach, direct/choreograph at The Central Academy of Drama. He recently premiered _EDM Antigone the Rock Opera_ with Don Fox in Wenatchee, Washington. Don and Dewayne are planning several US tours of _EDM Antigone_. Dewayne would love to thank Tom Ossowski and Don Fox for all the doors they have opened for him and all the wonderful designers and crew that return every year.
+  image_year: 2016
+
+- first_name: Scott
+  last_name: Cavin
+  location: "Chadron, NE via Lemoore, CA"
+  groups:
+    - creative
+    - staff
+  positions:
+    - Season Technical Director
+  # production_positions:
+  #   Cats:
+  #     - Technical Director
+  #   Church Basement Ladies:
+  #     - Technical Director
+  #   Damn Yankees:
+  #     - Technical Director
+  #   Catch Me If You Can:
+  #     - Technical Director
+  #   Annie:
+  #     - Technical Director
+  bio_approved: true
+  bio: >
+    Scott is excited to be returning to the Post Playhouse for his second season. Scott is also an Associate Professor of Theatre at Chadron State College. His responsibilities include Designer (Scenic, Lighting, Sound, Projection), Technical Director and Production Manager for the Theatre Program. Recent designs credits (Set and/or Light) include: _Money Shot_, _Rosencrantz & Guilderstein are Dead_, _Big River_, _Extremities_, _The Underpants_, _Little Shop of Horrors_, _Bus Stop_, _Almost Maine_, _Godspell_, _Peter and the Starcatcher_, and _Lost in Yonkers_. Always looking for new challenges Scott also Directs at Chadron State College. Some of his recent directing Credits include:  _Extremities_, _Money Shot_, _The Vampire Cowboy Trilogy_, _The Play About the Baby_, _Too Much Light Makes the Baby Go Blind_, _The Shape of Things_, and _Stop Kiss_. You can see more of Scott’s work at [www.scottcavin.com](http://www.scottcavin.com)
+  image_year: 2015
+
+- first_name: Linda
+  last_name: Dabbs
+  image_year: 2018
+  location: "Crawford and Omaha, NE"
+  groups:
+    - staff
+  positions:
+    - Paint Charge
+    - Props
+  bio: >
+    Linda is a recent transplant from Omaha to the Crawford area. She has been painting theater sets for 14 years. After being in the art field as an Art Director for various ad agencies, an outdoor billboard company, along with Art Director at Omaha's Henry Doorly Zoo. Some of the theatres she has painted for are Kountze Memorial at Mahoney State Park, Lofté Community Theatre, Manley, NE, Lincoln Community Theatre, Opera Omaha and Lincoln University Opera. Now semi retired to paint and produce pottery for her own enjoyment. She lives on a ranch north of Crawford with her faithful, but noisy dog, Beau. On good days she can be found wandering the hills with either camera in hand or watercolor brushes. Linda wishes to thank Dewayne and Tom for bringing her into the Post Playhouse family.
+
+- first_name: Don
+  last_name: Denton
+  location: "Bettendorf, IA"
+  staff_positions:
+    - Marketing Designer
+  # production_positions:
+  #   Annie:
+  #     - Director
+  bio: >
+    Don Denton is so happy to be returning to Post Playhouse after several years away. Though this time around, you won't see him on the stage. Instead, he will be directing this season's production of *Annie*. Some of Don's favorite memories were at Post Playhouse: Doing shows like *Hank Williams: Lost Highway*, and *Guys and Dolls*, working with Paige Salter. He and Paige are looking forward to making some new memories with their son, Marvin, who now gets to see the place Mommy and Daddy met.
+  image_year: 2019
+
+- first_name: Don
+  last_name: Fox
+  location: "Wenatchee, WA"
+  groups:
+    - creative
+  positions:
+    - Season Scenic Designer
+  # production_positions:
+  #   Cats:
+  #     - Scenic Designer
+  #     - Lighting Designer
+  #   Damn Yankees:
+  #     - Scenic Designer
+  #     - Lighting Designer
+  #   Church Basement Ladies:
+  #     - Scenic Designer
+  #     - Lighting Designer
+  #   Catch Me If You Can:
+  #     - Scenic Designer
+  #   Annie:
+  #     - Scenic Designer
+  #     - Lighting Designer
+  bio_approved: true
+  bio: >
+    Don is thrilled to be returning for his 6th season designing for the Post Playhouse.  Don is a native of Colorado Springs, CO, where he recently served as Production Manager for the launch of the brand new Ent Center for the Arts at the University of Colorado, Colorado Springs.  Recent and favorite credits include lighting designs for the Atlantis Resort, Paradise Island, (_Great American Variety Show_), The Borgata Casino, Atlantic City, NJ (_The Burlesque Show_), Florida State University, Tallahassee, FL (_All Shook Up, Legally Blonde, Addams Family_), THEATREWORKS AT UCCS (_A Christmas Carol_), The Moscow Ballet's North American Tours 2014, 2015, 2017, 2018 (_The Great Russian Nutcracker_), and the Numerica Performing Arts Center of Wenatchee, WA (_Young Frankenstein, August Osage County_). Don recently created and produced the world premiere of EDM Antigone which is available as an educational production to tour nationally ([www.edmAntigone.com](http://www.edmAntigone.com)).  His extensive portfolio can be viewed at [www.DonFoxDesigns.com](http://www.DonFoxDesigns.com).
+  image_year: 2019
+
+- first_name: Tim
+  last_name: Gaswick
+  groups:
+    - staff
+  staff_positions:
+    - Accountant
+  bio_approved: true
+  bio: >
+    Tim is the franchise owner of the Chadron H&R Block office, and has been the accountant for the playhouse since 2007.  He and his wife Kari have four children, Kaylee, Aaron, Braxton, and Seth. Tim not only serves as the accountant, but also as the treasurer on the playhouse board. He enjoys working with the great talent and staff every summer, and looks forward to many years with the playhouse.
+  image_year: 2015
+
+- first_name: Tom
+  last_name: Ossowski
+  location: "Tallahasse, FL via Beatrice, NE"
+  groups:
+    - creative
+    - staff
+  staff_positions:
+    - Producing Artistic Director
+  # production_positions:
+  #   Damn Yankees:
+  #     - Director
+  bio_approved: true
+  bio: >
+    Tom Ossowski is an Associate Professor for the BFA Music Theatre Program at FSU and the Producing Artistic Director for the Post Playhouse at Fort Robinson State Park in Nebraska.  At the Post Playhouse, Tom has directed _Legally Blonde_, _Monty Python’s Spamalot_, _A Man of No Importance_, _All Shook Up_, _Guys and Dolls_, _9 to 5_, _My Way_, _The Drowsy Chaperone_, _Grease_, _The Wizard of Oz_, _Nunsense!_, _Always...Patsy Cline_, _Hello, Dolly!_, _Oklahoma!_, and _The Music Man_. FSU directing credits include _Beauty & the Beast_, _All Shook Up_, _Legally Blonde_, _Cabaret_, _The Drowsy Chaperone_, _How To Succeed in Business Without Really Trying_, _On The Town_, _Hair_, _The Rocky Horror Show_, and _Sweeney Todd: The Demon Barber of Fleet Street_. Music directing credits include _Guys and Dolls_, _A Chorus Line_, _Ragtime_, _Spring Awakening_, _Jesus Christ Superstar_, _The 25th Annual Putnam County Spelling Bee_, _RENT_, _Into The Woods_, _Urinetown_, and _In the Heights_. Tom directed and music directed _Into The Woods_ and _The Family_ for The Central Academy of Drama in Beijing.  He is a member of the Stage Directors and Choreographers Society.
+  image_year: 2015
+
+- first_name: Ken
+  last_name: Phillips
+  location: "Bloomington, IN"
+  groups:
+    - staff
+    - creative
+  staff_positions:
+    - Season Production Manager
+    - Season Lighting Designer
+  # production_positions:
+  #   Cats:
+  #     - Projection Designer
+  bio: >
+    Ken is extremely happy to be coming back for his seventh consecutive year at the Post Playhouse; this year as the Production Manager and Season Lighting Designer. He holds an MFA in Lighting Design and currently works at the Jacobs School of Music at Indiana University where he is the resident Lighting Designer/Supervisor for their Opera & Ballet department’s 1,460 seat theatre. He primarily works in Musical Theatre & Opera. Over the years, he has worked across the country on a variety of different productions. To view his work, please feel free to visit his website at [KGPhillips.com](https://KGPhillips.com). He would like to thank Tom and Dewayne for always welcoming him back, for his parents support, and the love of his wonderful wife, Alexandra.
+  image_year: 2018
+
+- first_name: Ann
+  last_name: Stephens
+  image_year: 2020
+  location: "Crawford, NE"
+  groups:
+    - staff
+  staff_positions:
+    - Box Office Manager
+  bio_approved: true
+  bio: >
+    Ann Stephens has worked as part of the Post Playhouse for many summers, first as a volunteer usher, a volunteer in the concession stand, and for the past several years, she has managed the Box Office. Before retirement, Ann had a long and rewarding career as a classroom teacher and as a public education administrator, working in Texas, Arizona, Idaho and Nebraska before joining Post Playhouse staff. In off-season months, Ann enjoys being with her grandchildren, reading, baking, and volunteering throughout her home community of Crawford. Whether you are ready to make additional reservations for more of our superb productions or ready to enjoy some treats at intermission, you’re likely to see Ann... and she’s USUALLY smiling.
+
+- first_name: Pheobe H.
+  last_name: Boynton
+  image_year: 2017
+  image_file: pheobe-boynton.jpg
+  location: "Colorado Springs, CO"
+  groups:
+    - creative
+  staff_positions:
+    - Season Costume Designer
+  # production_positions:
+  #   Cats:
+  #     - Scenic Designer
+  bio: |
+    Pheobe H. Boynton is thrilled to be returning to The Post Playhouse for her seventh season! She is a freelance costume designer originally from Ithaca, NY and currently based out of the Theatreworks costume shop in Colorado Springs, CO. She has a bachelors in art history from Cornell University, and an MFA in theater design and technology from the University of Missouri-Kansas City, and is currently an adjunct professor at Chadron State College. She has done work for a wide variety of clients in theater, film, television and new media, including the Los Angeles Opera, Norwegian Cruise Lines, Kansas City Repertory Theater, The Arvada Center, Theatreworks, Chadron State College, The Unicorn Theater, The Hangar Theatre, Legendary Pictures, YouTube Studios, Relativity Media, and Investigation Discovery. www.pheobebird.com
+
+#
+#
+#
+#
+#        ADDITIONAL BIOS
+#
+#
+#
+#
+
+# - first_name: ""
+#   last_name: Music Theatre International
+#   groups:
+#     - additional
+#   production_positions:
+#     Annie:
+#       - Publisher
+#     Damn Yankees:
+#       - Publisher
+#     Catch Me If You Can:
+#       - Publisher
+#   bio: |
+#     Music Theatre International (MTI) is one of the world's leading theatrical licensing agencies, granting theatres from around the world the rights to perform the greatest selection of musicals from Broadway and beyond. Founded in 1952 by composer Frank Loesser, and orchestrator Don Walker, MTI is a driving force in advancing musical theatre as a vibrant and engaging art form.
+
+#     MTI works directly with the composers, lyricists and book writers of these musicals to provide official scripts, musical materials and dynamic theatrical resources to over 70,000 professional, community and school theatres in the US and in over 60 countries worldwide.
+
+#     MTI is particularly dedicated to educational theatre, and has created special collections to meet the needs of various types of performers and audiences. MTI’s Broadway Junior™ shows are 30- and 60-minute musicals for performance by elementary and middle school-aged performers, while MTI’s School Editions are musicals annotated for performance by high school students.
+
+# - first_name: Thomas
+#   last_name: Meehan
+#   groups:
+#     - additional
+#   production_positions:
+#     Annie:
+#       - Book
+#   bio: |
+#     Thomas Meehan (Book) received the Tony Award for co-writing the book for _The Producers_ in 2001 and in 2003 for co-writing the book for _Hairspray_. He received his first Tony Award in 1977 for writing the book of _Annie_, which was his first Broadway show, and has written the books for the musicals _Rocky_, _Elf the Musical_, _Cry-Baby_, _Young Frankenstein_, _Chaplin_, _Bombay Dreams_, _I Remember Mama_, _Ain’t Broadway Grand_, and _Annie Warbucks_. In addition, he was a long-time contributor of humor to The New Yorker, an Emmy-Award winning writer of television comedy, and a collaborator on a number of screenplays, including Mel Brooks's _Spaceballs_ and _To Be Or Not To Be_. Mr. Meehan was also a member of the Council of the Dramatists Guild. He and his wife, Carolyn, divided their time between a home in Nantucket and an apartment in Greenwich Village, near which, on Hudson Street, she owned and presided over the long-running and near-legendary children's store Peanut Butter & Jane.
+
+# - first_name: Charles
+#   last_name: Strouse
+#   groups:
+#     - additional
+#   production_positions:
+#     Annie:
+#       - Music
+#   bio: |
+#     A long-standing member of the Songwriters Hall of Fame, and in January 2002, an inductee into The Theater Hall of Fame, Charles Strouse's first Broadway musical, _Bye Bye Birdie_ (1960), won him a Tony® Award and the London Critics Best Foreign Musical Award. In 1970, _Applause_, starring Lauren Bacall, achieved the same honors and his smash hit, _Annie_ (1977), also won a Tony® for Best Score as well as two Grammy Awards®. Some of his other musicals include _All American_, _Golden Boy_ (starring Sammy Davis Jr.), _It's A Bird, It's A Plane, It's Superman_, _I And Albert_, directed in London by John Schlesinger, and _Dance A Little Closer_, written with Alan Jay Lerner. _Charlie & Algernon_ won a 1981 Tony® nomination for Best Score, as did _Rags_ in 1987 and _Nick And Nora_ in 1992. He wrote both the music and lyrics for off-Broadway's _Mayor_, and teamed again with Martin Charnin to create _Annie Warbucks_, the sequel to _Annie_. His film scores include _Bonnie & Clyde_, _The Night They Raided Minsky's_, and _All Dogs Go To Heaven_. "Those Were The Days", the theme song for TV's _All In The Family_ is a Strouse song, with lyrics by his most frequent collaborator, Lee Adams. "Born Too Late", a 1958 pop song written with Fred Tobias, was a top-10 BILLBOARD chart hit and is still heard on many oldies stations. The quadruple platinum album title song by Jay-Z, "Hard Knock Life (Ghetto Anthem)", won the 1999 Grammy for the best Rap album, charted for more than a year and won the BILLBOARD 1998 R&B Album of the Year Award. Strouse's far-ranging talents include chamber and orchestral works, a piano concerto, a two-piano sonata, and operas. His latest choral work, "The Child In Us All", premiered in Spring, 2000. _Nightingale_, an opera based on the Hans Christian Andersen story for which he wrote music, book and lyrics, was recorded by Sarah Brightman. Strouse was commissioned in 2001 to write _Concerto America_ for the pianist Jeffrey Biegel. The work premiered in June 2002 with the Boston Pops at Symphony Hall. Charles Strouse created the ASCAP Musical Theatre Workshop in New York, where he encouraged the talents of countless young composers, writers and performers. In 1999, Strouse received the ASCAP Foundation Richard Rodgers Award for Career Lifetime Achievement in Musical Theatre. In December, 1995, a tv reinterpretation of the classic _Bye Bye Birdie_ (starring Jason Alexander and pop-star Vanessa Williams) aired on ABC-TV. The 1995/96 Emmy for Outstanding Individual Achievement in Music and Lyrics was given to the new song written for and performed by Vanessa Williams: "Let's Settle Down". Another TV interpretation in 1999, _Annie_, aired on ABC's Wonderful World of Disney, swept the ratings by winning over 40 million viewers, won the 1999 Peabody Award and 2 Emmy Awards. The show starred Kathy Bates, Audra McDonald, Alan Cumming, Kristin Chenoweth, Victor Garber, Andrea McArdle and Alicia Morton as Annie and ranked #1 as movie of the year. A revised _Golden Boy_ was produced by the Long Wharf Theatre in New Haven (November, 2000); and The ENCORES! Series presented the show in March, 2002. Future projects: _Golden Boy_ will be performed at the Greenwich Theatre in England in June, 2003. _The Night They Raided Minsky's_, which Charles Strouse originally scored for film, has been turned into a full-length musical. The Broadway-bound version has a book by the late Michael Okrent and Evan Hunter, lyrics by Susan Birkenhead. The Manhattan Theatre Club has scheduled the show for its 2003-04 season. An adaptation of the Paddy Chayevsky film _Marty_, had a successful regional theatre run at Huntington Theatre in Boston in September, 2002. The show reunites Strouse with Lee Adams as lyricist; the book is by Rupert Holmes. John C Reilly starred in the Huntington production and will later again star when the show comes to Broadway next season.
+
+# - first_name: Martin
+#   last_name: Charnin
+#   groups:
+#     - additional
+#   production_positions:
+#     Annie:
+#       - Lyrics
+#   bio: |
+#     Martin Charnin created the role of Big Deal in the original Broadway company of _West Side Story_ in 1957, the only acting job he ever had. He began writing during _West Side Story_ and his first collaborator was Mary Rodgers.
+
+#     He was subsequently the director, lyricist, composer, librettist, producer or a combination of the aforementioned, for over 140 theatrical productions, including _Annie_, _Annie Warbucks_, the Rock Opera version of _Joan of Arc_, _Mata Hari_, _Loose Lips_, _Star-Crossed_, _Sid Caesar and Company_, _Carnal Knowledge_, _In Persons_ starring Eli Wallach and Anne Jackson, _The Flowering Peach_, _Winchell_, the revised _Can Can_ by Cole Porter (for which he wrote a new libretto), _Cafe Crown_, _Mike_, _Laughing Matters_, _The No Frills Revue_, _The First_, _On the Swing Shift_, _A Little Family Business_, _Upstairs at O'Neals_, _The National Lampoon Show_, _Lena Horne on Broadway_, _I Remember Mama_, _Hot Spot_, _Zenda_, _Put It In Writing_, _Fallout_, _Kaleidoscope_, _Ballad For A Firing Squad_, _La Strada_, _Nash at Nine_, _Music Music_, _Two by Two_, _And in London_, _Bar Mitzvah Boy_, _Bless the Bride_, _The 9 1/2 Quid Revue_, and internationally and regionally, 17 productions of _Annie_.
+
+#     In the 60's and 70's he turned to television and created 7 specials that garnered over 15 Emmy Awards, and the Peabody Award for Broadcasting.
+
+#     His collaborators included Peter Allen, Harold Arlen, Vernon Duke, Keith Levenson, Michael Danziker, Peter Sipos, Mary Rodgers, Marvin Hamlisch, Richard Rodgers, and Charles Strouse.
+
+#     He wrote for and directed among others, Fred Astaire, Jack Lemmon, Anne Bancroft, Lena Horne, Danny Kaye, Angela Lansbury, Johnny Mathis, Bill Murray,Jon Stewart, Bebe Neuwirth, Bernadette Peters, Sarah Jessica Parker, Gilda Radner, Molly Ringwald, Chita Rivera, Lou Reed, Susan Sarandon, Tim Robbins, Joan Rivers, Chuck D., Phoebe Snow, Shirley MacLaine, Marlo Thomas, Julianne Moore, Martha Plimpton, and Barbra Streisand.
+
+#     Charnin was the artistic director of Seattle's Showtunes for 7 years, before moving back to New York for the 4th incarnation of _Annie_ on Broadway. He also created a one woman theatrical entertainment for his wife, Broadway and television star Shelly Burch.
+
+# - first_name: Andrew Lloyd
+#   last_name: Webber
+#   groups:
+#     - additional
+#   production_positions:
+#     Cats:
+#       - Music
+#   bio: |
+#     Andrew Lloyd Webber is the composer of some of the world’s best-known musicals including _Cats_, _Evita_, _Joseph And The Amazing Technicolor Dreamcoat_, _Jesus Christ Superstar_, _The Phantom Of The Opera_ (which celebrates its 32nd anniversary on Broadway this year) and _Sunset Boulevard_.
+
+#     When _Sunset Boulevard_ joined _School Of Rock – The Musical_, _Cats_ and _The Phantom Of The Opera_ on Broadway in February 2017 he became the only person to equal the record set in 1953 by Rodgers and Hammerstein with four shows running concurrently.
+
+#     As well as _The Phantom Of The Opera_ and _Cats_ his productions include the groundbreaking Bombay Dreams, which introduced the double Oscar-winning Bollywood composer AR Rahman to the Western stage.
+
+#     As a composer and producer, Lloyd Webber is one of an elite group of artists to have achieved EGOT status by receiving an Emmy, four Grammys including Best Contemporary Classical Composition for "Requiem", his setting of the Latin Requiem mass, an Oscar and eight Tony Awards including the 2018 Special Tony for Lifetime Achievement in the Theatre. He has won seven Oliviers and a Golden Globe and his honors include the Praemium Imperiale, the Richard Rodgers Award for Excellence in Musical Theatre, a BASCA Fellowship, and the Kennedy Center Honor.
+
+#     He owns seven London theatres including the Theatre Royal, Drury Lane and the London Palladium. He is the only theatre owner to re-invest every cent of profits into his buildings.
+
+#     He is passionate about the importance of music in education and the Andrew Lloyd Webber Foundation has become one of Britain’s leading charities supporting the arts and music. In 2016 the Foundation funded a major new national initiative which endowed the American Theatre Wing with a $1.3 million, three-year grant to support theatre education opportunities for young people and public schools across the U.S.
+
+#     He was knighted by Her Majesty The Queen in 1992 and created a life peer in 1997.
+
+#     To mark his 70th birthday, his bestselling autobiography _Unmasked_, was published by HarperCollins in March 2018.
+
+# - first_name: T.S.
+#   last_name: Eliot
+#   groups:
+#     - additional
+#   production_positions:
+#     Cats:
+#       - Music
+#   bio: |
+#     Thomas Stearns (T. S.) Eliot (1888—1965) was born in St. Louis, Missouri, on September 26, 1888. He was educated at Harvard, at the Sorbonne in Paris and at Merton College, Oxford. He settled in England in 1915 and taught briefly at two schools before joining Lloyds Bank in the City of London in their foreign and colonial department. His first volume of poems, _Prufrock And Other Observations_, was published in 1917. _The Waste Land_, his most famous work, came out in 1922. In 1925 he left the bank to become a director of the publishing house of Faber. There have been several collected editions of his poetry and volumes of his literary and social criticism. Eliot also wrote a number of verse plays, the best-known of which, _Murder In The Cathedral_, was commissioned for the Canterbury Festival of 1935. Four Quartets, now generally regarded as his masterpiece, was first published in 1943. _Old Possum’s Book Of Practical Cats_ appeared in October 1939. (Eliot had a great affection for cats and "Possum" was his alias among friends.) Forty-two years later, this work would be combined with the music of Andrew Lloyd Webber to become _Cats_.
+
+#     Eliot became a British citizen in 1927. He received many honors and distinctions, among them the Nobel Prize for Literature. He was posthumously awarded two 1983 Tony Awards for the book and lyrics of _Cats_. He was also an Officer de la Legion d'Honneur. He died in London in January, 1965, and there is a memorial to him in Poet's Corner, Westminster Abbey.
+#
+#
+#
+#
+#        BOARD
+#
+#
+#
+#
+
+- first_name: Wally
+  last_name: Seiler
+  location: "Alliance, NE"
+  groups:
+    - board
+  positions:
+    - President of the Board
+  image_year: 2015
+  image_file: wally-seiler.jpg
+
+- first_name: Karleen
+  last_name: Gramberg
+  location: "Chadron, NE"
+  groups:
+    - board
+  positions:
+    - Vice President of the Board
+  image_year: 2015
+  image_file: karleen-gramberg.jpg
+
+- first_name: Jo
+  last_name: Buchheit
+  location: "Hemingford, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2015
+  image_file: jo-buchheit.jpg
+
+- first_name: Jess
+  last_name: Espinoza
+  location: "Crawford, Nebraska"
+  groups:
+    - board
+  positions:
+  bio: >
+    Crawford Clipper/Harrison Sun LLC
+  image_year: 2017
+  image_file: jess-espinoza.jpg
+
+- first_name: Tim
+  last_name: Gaswick
+  location: "Chadron, NE"
+  groups:
+    - board
+  positions:
+  bio: >
+    H & R Block
+  image_year: 2015
+  image_file: tim-gaswick.jpg
+
+- first_name: Alex
+  last_name: Helmbrecht
+  # location: "Hay Springs, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2020
+
+- first_name: Tony
+  last_name: Hindman
+  location: "Hay Springs, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2018
+  image_file: tony-hindman.jpg
+
+- first_name: Kathie
+  last_name: King
+  location: "Gordon, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2015
+  image_file: kathie-king.jpg
+
+- first_name: Jeanine
+  last_name: Mohr
+  location: "Chadron, Nebraska"
+  groups:
+    - board
+  positions:
+  image_year: 2016
+  image_file: jeanine-mohr.jpg
+
+- first_name: Randy
+  last_name: Rhine
+  location: "Chadron, NE"
+  groups:
+    - board
+  positions:
+  bio: >
+    Chadron State College
+  image_year: 2015
+  image_file: randy-rhine.jpg
+
+- first_name: Marge
+  last_name: Rotherham
+  location: "Crawford, NE"
+  groups:
+    - board
+  positions:
+  bio: >
+    Post Playhouse Alum
+  image_year: 2015
+  image_file: marge-rotherham.jpg
+
+- first_name: Janelle
+  last_name: Visser
+  location: "Hemingford, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2019
+  image_file: janelle-visser.jpg
+
+- first_name: Kathryn S.
+  last_name: Worley
+  location: ""
+  groups:
+    - board
+  positions:
+  image_year: 2019
+  image_file: kathy-worley.jpg
