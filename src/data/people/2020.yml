@@ -243,7 +243,7 @@
   last_name: Singer
   image_year: 2020
   location: "Culver City, CA"
-  group:
+  groups:
     - crew
   staff_positions:
     - Season Production Stage Manager
@@ -254,7 +254,7 @@
   last_name: Rose
   image_year: 2020
   location: "New York, NY"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -277,7 +277,7 @@
   last_name: Berkshire
   image_year: 2020
   location: "Smithfield, PA"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -296,7 +296,7 @@
   last_name: Durand
   image_year: 2020
   location: "New York, New York"
-  group:
+  groups:
     - cast
   staff_positions:
     - Season Swing
@@ -324,7 +324,7 @@
   last_name: Schafer
   image_year: 2020
   location: "Chicago, IL"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -345,7 +345,7 @@
   last_name: Swinkin
   image_year: 2019
   location: "New York, New York"
-  group:
+  groups:
     - musicians
   staff_positions:
     - Season drummer
@@ -356,7 +356,7 @@
   last_name: Wolf
   image_year: 2020
   location: "Parrish, FL"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -376,7 +376,7 @@
   last_name: Colt
   image_year: 2020
   location: "New York"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -400,7 +400,7 @@
   last_name: Patrick
   image_year: 2020
   location: "Cincinnati Ohio"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -422,7 +422,7 @@
   last_name: Everingham
   image_year: 2020
   location: "New York, NY via Christchurch, New Zealand"
-  group:
+  groups:
     - creative
     - musicians
   production_positions:
@@ -447,7 +447,7 @@
   last_name: Cruz
   image_year: 2020
   location: "Shreveport, LA"
-  group:
+  groups:
     - creative
     - musicians
   production_positions:
@@ -471,7 +471,7 @@
   last_name: Fern
   image_year: 2019
   location: "Shakopee, MN"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -492,7 +492,7 @@
   last_name: Forgie
   image_year: 2020
   location: "New York, NY"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -512,7 +512,7 @@
   last_name: Craven
   image_year: 2020
   location: "Atlanta, GA"
-  group:
+  groups:
     - creative
   production_positions:
     Church Basement Ladies:
@@ -525,7 +525,7 @@
   image_year: 2017
   image_file: pheobe-boynton.jpg
   location: "Colorado Springs, CO"
-  group:
+  groups:
     - creative
   staff_positions:
     - Season Costume Designer
@@ -539,7 +539,7 @@
   last_name: Clarke
   image_year: 2020
   location: "Houston, TX"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -561,7 +561,7 @@
   last_name: Bloodsworth
   image_year: 2020
   location: "Moscow, ID"
-  group:
+  groups:
     - musicians
   production_positions:
     Cats:
@@ -579,7 +579,7 @@
   last_name: Lux
   image_year: 2020
   location: "New York City, NY"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -600,7 +600,7 @@
   last_name: Smith
   image_year: 2020
   location: "Hampton, NE"
-  group:
+  groups:
     - staff
   staff_positions:
     - Box Office Staff
@@ -611,7 +611,7 @@
   last_name: Lord-Remmert
   image_year: 2020
   location: "New York City"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -631,7 +631,7 @@
   last_name: Knips
   image_year: 2020
   location: "Washingtonville, NY"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -650,7 +650,7 @@
   last_name: Hollenbeck
   image_year: 2020
   location: "Chadron, NE"
-  group:
+  groups:
     - cast
     - creative
     - crew
@@ -666,7 +666,7 @@
   last_name: Kuenzer
   image_year: 2020
   location: "Plano, Texas"
-  group:
+  groups:
     - cast
   roles:
     Cats:
