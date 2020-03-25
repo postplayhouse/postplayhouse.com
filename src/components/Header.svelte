@@ -19,7 +19,11 @@
   </div>
 
   <div class="flex-initial text-center mt-8 ml-2 min-w-md">
-    <a href={site.ticketsLink} class="btn-p">Get Tickets Online</a>
+    <a href={site.ticketsLink} class="btn-p">
+      {#if site.ticketsAvailable}
+        Get Tickets Online
+      {:else}Tickets: Coming Soon{/if}
+    </a>
 
     <a
       class="text-green-700 underline sm:block sm:mt-4"
