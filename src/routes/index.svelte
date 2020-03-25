@@ -16,7 +16,7 @@
   <title>Post Playhouse</title>
 </svelte:head>
 
-<div class="mb-64">
+<div class="mb-32">
   <Feature />
 </div>
 
