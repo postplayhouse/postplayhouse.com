@@ -77,14 +77,14 @@
 
 <nav class="main-nav">
   <ul class="m-auto max-w-3xl">
-    <li>
+    <!-- <li>
       <a use:active={segment} href="productions/{site.season}">
         Our Productions
       </a>
-    </li>
-    <li>
+    </li> -->
+    <!-- <li>
       <a use:active={segment} href="calendar">Calendar</a>
-    </li>
+    </li> -->
     <li>
       <a use:active={segment} href="gifts">Gifts</a>
     </li>

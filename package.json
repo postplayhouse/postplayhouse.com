@@ -10,7 +10,7 @@
     "useCache": "yarn copyFolder --merge /opt/build/cache/hc_my_cache/static/g --to static/g",
     "fillCache": "yarn copyFolder --save static/g --to /opt/build/cache/hc_my_cache/static/g",
     "build": "yarn clean && yarn tailwind:prod && sapper build --legacy --ext '.svelte .md'",
-    "export": "yarn tailwind:prod && sapper export --legacy --ext '.svelte .md' --entry entries",
+    "export": "yarn tailwind:prod && NODE_ENV=production sapper export --legacy --ext '.svelte .md' --entry entries",
     "netlify": "yarn useCache && yarn export && yarn fillCache",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",

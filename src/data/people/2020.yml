@@ -104,35 +104,6 @@
     Don Denton is so happy to be returning to Post Playhouse after several years away. Though this time around, you won't see him on the stage. Instead, he will be directing this season's production of *Annie*. Some of Don's favorite memories were at Post Playhouse: Doing shows like *Hank Williams: Lost Highway*, and *Guys and Dolls*, working with Paige Salter. He and Paige are looking forward to making some new memories with their son, Marvin, who now gets to see the place Mommy and Daddy met.
   image_year: 2019
 
-# - first_name: Melissa
-#   last_name: Emery
-#   location: "Tallahassee, FL via Boca Raton, FL"
-#   groups:
-#     - creative
-#     - crew
-#   positions:
-#     - Season Sound Designer & Mix Engineer
-#   production_positions:
-#     Cats:
-#       - Sound Designer
-#       - Sound Mix Engineer
-#     Church Basement Ladies:
-#       - Sound Designer
-#       - Sound Mix Engineer
-#     Damn Yankees:
-#       - Sound Designer
-#       - Sound Mix Engineer
-#     Catch Me If You Can:
-#       - Sound Designer
-#       - Sound Mix Engineer
-#     Annie:
-#       - Sound Designer
-#       - Sound Mix Engineer
-#   bio_approved: true
-#   bio: >
-#     Melissa is a current student at Florida State University double-majoring in Theater and Electrical Engineering and has completed her minor in Physics. She has been involved in the sound-designing process for numerous main-stage productions at the University’s School of Theater, including _Guys and Dolls_ in October 2017, _The Addams Family_ in February 2018, and _Hairspray_ in February of 2019. She also recently designed the sound for A New Brain in The Lab Theater at Florida State in November of 2018.  She wants to thank Tom Ossowski for inviting her to be a part of this season at the Post Playhouse and is so grateful for the opportunity. She also sends thanks to Zachary Cramer at Florida State for being so patient with her while she learns and for always believing in her.
-#  image_year: 2019
-
 - first_name: Don
   last_name: Fox
   location: "Wenatchee, WA"
@@ -160,29 +131,6 @@
   bio: >
     Don is thrilled to be returning for his 6th season designing for the Post Playhouse.  Don is a native of Colorado Springs, CO, where he recently served as Production Manager for the launch of the brand new Ent Center for the Arts at the University of Colorado, Colorado Springs.  Recent and favorite credits include lighting designs for the Atlantis Resort, Paradise Island, (_Great American Variety Show_), The Borgata Casino, Atlantic City, NJ (_The Burlesque Show_), Florida State University, Tallahassee, FL (_All Shook Up, Legally Blonde, Addams Family_), THEATREWORKS AT UCCS (_A Christmas Carol_), The Moscow Ballet's North American Tours 2014, 2015, 2017, 2018 (_The Great Russian Nutcracker_), and the Numerica Performing Arts Center of Wenatchee, WA (_Young Frankenstein, August Osage County_). Don recently created and produced the world premiere of EDM Antigone which is available as an educational production to tour nationally ([www.edmAntigone.com](http://www.edmAntigone.com)).  His extensive portfolio can be viewed at [www.DonFoxDesigns.com](http://www.DonFoxDesigns.com).
   image_year: 2019
-
-# - first_name: Javier
-#   last_name: Fox
-#   location: "Colorado Springs, CO"
-#   groups:
-#     - creative
-#   positions:
-#     - Season Props Master
-#   production_positions:
-#     Cats:
-#       - Props Master
-#     Damn Yankees:
-#       - Props Master
-#     Church Basement Ladies:
-#       - Props Master
-#     Catch Me If You Can:
-#       - Props Master
-#     Annie:
-#       - Props Master
-#   bio_approved: true
-#   bio: >
-#     Javier Fox is pleased to officially join the Post Playhouse company this summer as Props Master.  Javier has previously served as props master for Numerica Performing Arts Center's productions of _Bat Boy the Musical_, _Cabaret_, _Chicago_, and _La Cage aux Folles_.  Javier is currently pursuing his Elementary Education certification at the University of Colorado, Colorado Springs.
-#   image_year: 2019
 
 - first_name: Tim
   last_name: Gaswick
@@ -243,7 +191,7 @@
   last_name: Singer
   image_year: 2020
   location: "Culver City, CA"
-  group:
+  groups:
     - crew
   staff_positions:
     - Season Production Stage Manager
@@ -254,7 +202,7 @@
   last_name: Rose
   image_year: 2020
   location: "New York, NY"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -277,7 +225,7 @@
   last_name: Berkshire
   image_year: 2020
   location: "Smithfield, PA"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -296,7 +244,7 @@
   last_name: Durand
   image_year: 2020
   location: "New York, New York"
-  group:
+  groups:
     - cast
   staff_positions:
     - Season Swing
@@ -324,7 +272,7 @@
   last_name: Schafer
   image_year: 2020
   location: "Chicago, IL"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -345,7 +293,7 @@
   last_name: Swinkin
   image_year: 2019
   location: "New York, New York"
-  group:
+  groups:
     - musicians
   staff_positions:
     - Season drummer
@@ -356,7 +304,7 @@
   last_name: Wolf
   image_year: 2020
   location: "Parrish, FL"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -376,7 +324,7 @@
   last_name: Colt
   image_year: 2020
   location: "New York"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -400,7 +348,7 @@
   last_name: Patrick
   image_year: 2020
   location: "Cincinnati Ohio"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -422,7 +370,7 @@
   last_name: Everingham
   image_year: 2020
   location: "New York, NY via Christchurch, New Zealand"
-  group:
+  groups:
     - creative
     - musicians
   production_positions:
@@ -447,7 +395,7 @@
   last_name: Cruz
   image_year: 2020
   location: "Shreveport, LA"
-  group:
+  groups:
     - creative
     - musicians
   production_positions:
@@ -471,7 +419,7 @@
   last_name: Fern
   image_year: 2019
   location: "Shakopee, MN"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -492,7 +440,7 @@
   last_name: Forgie
   image_year: 2020
   location: "New York, NY"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -512,7 +460,7 @@
   last_name: Craven
   image_year: 2020
   location: "Atlanta, GA"
-  group:
+  groups:
     - creative
   production_positions:
     Church Basement Ladies:
@@ -525,7 +473,7 @@
   image_year: 2017
   image_file: pheobe-boynton.jpg
   location: "Colorado Springs, CO"
-  group:
+  groups:
     - creative
   staff_positions:
     - Season Costume Designer
@@ -539,7 +487,7 @@
   last_name: Clarke
   image_year: 2020
   location: "Houston, TX"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -561,7 +509,7 @@
   last_name: Bloodsworth
   image_year: 2020
   location: "Moscow, ID"
-  group:
+  groups:
     - musicians
   production_positions:
     Cats:
@@ -579,7 +527,7 @@
   last_name: Lux
   image_year: 2020
   location: "New York City, NY"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -600,7 +548,7 @@
   last_name: Smith
   image_year: 2020
   location: "Hampton, NE"
-  group:
+  groups:
     - staff
   staff_positions:
     - Box Office Staff
@@ -611,7 +559,7 @@
   last_name: Lord-Remmert
   image_year: 2020
   location: "New York City"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -631,7 +579,7 @@
   last_name: Knips
   image_year: 2020
   location: "Washingtonville, NY"
-  group:
+  groups:
     - cast
   roles:
     Cats:
@@ -650,7 +598,7 @@
   last_name: Hollenbeck
   image_year: 2020
   location: "Chadron, NE"
-  group:
+  groups:
     - cast
     - creative
     - crew
@@ -666,7 +614,7 @@
   last_name: Kuenzer
   image_year: 2020
   location: "Plano, Texas"
-  group:
+  groups:
     - cast
   roles:
     Cats:

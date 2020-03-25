@@ -368,7 +368,7 @@
       `  last_name: ${lastName.trim()}`,
       `  image_year: ${site.season}`,
       `  location: "${location.trim()}"`,
-      includeGroups && `  group:\n${allGroups}`,
+      includeGroups && `  groups:\n${allGroups}`,
       `  roles:\n${yamlRoles}`,
       `  bio: |\n    ${bio.trim()}`,
       "\n",
