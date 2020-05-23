@@ -16,9 +16,14 @@
 <script>
   export let site
   export let seasons
+
+  const toInt = (s) => parseInt(s, 10)
   const years = Object.keys(seasons)
+    .map(toInt)
+    .filter((x) => x > 2018)
 </script>
 
-{#each seasons as season}
-  <a href={season}>{season}</a>
+{#each years as season}
+  <a href={`/productions/${season}`}>{season}</a>
+  <br />
 {/each}

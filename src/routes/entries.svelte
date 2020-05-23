@@ -1,7 +1,7 @@
 <script>
   const yearsWithPages = [2019, 2020]
 
-  const routes = ["/", "/bio-submission"]
+  const routes = ["/", "/bio-submission", "/calendar", "/productions"]
     .concat(yearsWithPages.map((y) => `/productions/${y}`))
     .concat(yearsWithPages.map((y) => `/who/${y}`))
 </script>
