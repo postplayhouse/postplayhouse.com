@@ -3,7 +3,7 @@
   import Modal from "../components/Modal.svelte"
 
   import Feature from "./news/2020-03-25-season-cancelled.md"
-  import AnnualRaffle from "./news/2020-03-24-annual-raffle-winners.md"
+  import BlackoutTuesday from "./news/2020-06-02-blackout-tuesday.md"
 
   $: showMailingList = false
 
@@ -17,11 +17,11 @@
 </svelte:head>
 
 <div class="mb-32">
-  <Feature />
+  <BlackoutTuesday />
 </div>
 
-<div class="mb-24 bg-green-100 p-4">
-  <AnnualRaffle />
+<div class="mb-32">
+  <Feature />
 </div>
 
 <div class="md:flex flex-row-reverse items-stretch">
