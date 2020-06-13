@@ -5,13 +5,7 @@ sticky: false
 ---
 
 ```js exec
-import Modal from "../../components/Modal.svelte"
-
-$: showDonateForm = false
-
-function toggleDonateForm() {
-  showDonateForm = !showDonateForm
-}
+import { showDonateModal } from "../../data/stores"
 ```
 
 ```css style
@@ -20,15 +14,6 @@ ul {
   margin-bottom: 1em;
 }
 ```
-
-{#if showDonateForm}
-<Modal on:close={toggleDonateForm}>
-
-  <h2 class="h2">Donate Now!</h2>
-
-  <iframe title="Donate to Post Playhouse" name='ELEOForm' id='ELEOForm' style='width:100%;min-width:320px;max-width:900px;min-height:1000px;border-width:0px;border-style:none;' scrolling='no' src='https://www.eleoonline.net/Pages/WebForms/Mobile/ShowFormMobile.aspx?id=f790c257-b67f-4508-9ff9-0fc3a16f04d2&linkto=670' ></iframe>
-</Modal>
-{/if}
 
 Several Post Playhouse alumni from over the years created a video message to share with all our wonderful patrons.
 
@@ -54,7 +39,7 @@ Chadron, NE 69337
 ### Donate online
 
 <div class="text-center my-4">
-  <button class="btn btn-p" on:click={toggleDonateForm}>Donate Online Now</button>
+  <button class="btn btn-p" on:click={showDonateModal.toggle}>Donate Online Now</button>
 </div>
 
 </div>
