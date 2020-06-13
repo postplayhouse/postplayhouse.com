@@ -2,8 +2,7 @@
   import Mailer from "../components/Mailer.svelte"
   import Modal from "../components/Modal.svelte"
 
-  import Feature from "./news/2020-03-25-season-cancelled.md"
-  import BlackoutTuesday from "./news/2020-06-02-blackout-tuesday.md"
+  import Feature from "./news/2020-06-13-post-playhouse-memories.md"
 
   $: showMailingList = false
 
@@ -16,11 +15,7 @@
   <title>Post Playhouse</title>
 </svelte:head>
 
-<div class="mb-32">
-  <BlackoutTuesday />
-</div>
-
-<div class="mb-32">
+<div class="mb-32 p-2">
   <Feature />
 </div>
 
