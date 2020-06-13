@@ -1,23 +1,43 @@
 <script>
+  /**
+   * Like the regular modal, except the showing and hiding is all done via the 
+   * `show` prop. And the contents of the modal are always loaded into the DOM.
+   * This allows forms to not lose data after closing, etc. 
+   */
+  import debounce from 'lodash/debounce'
   import { onMount, onDestroy, createEventDispatcher } from "svelte"
-  import { fade } from "svelte/transition"
-  
+
   import Freeze from "./Freeze.svelte"
+  
+  export let show = true
   
   let ref
   let portal
+
+  let transitionedOut = false
+  const delayedTransition = debounce(() => transitionedOut = !show, 200)
+  
+  $: {
+    if (show) {
+      transitionedOut = false
+    } else {
+      delayedTransition()
+    }
+  }
 
   const dispatch = createEventDispatcher()
 
   onMount(() => {
     portal = document.createElement("div")
-    portal.className = "modal"
+    portal.className = "persistent-modal"
     document.body.appendChild(portal)
     portal.appendChild(ref)
   })
 
   onDestroy(() => {
-    document.body.removeChild(portal)
+    try {
+      document.body.removeChild(portal)
+    } catch(_) {}
   })
 </script>
 
@@ -25,18 +45,26 @@
   .my-bg {
     background-color: rgba(0, 0, 0, 0.4);
   }
+
+  .disappear {
+    left: -9999rem;
+  }
+
 </style>
 
-<Freeze />
+{#if show}
+  <Freeze />
+{/if}
 
 <!-- the parent is hidden, but the child with the `ref` will be appended
 elsehwere in the DOM via `onMount` -->
 <div class="hidden">
   <div
-    class="fixed inset-0 flex justify-center items-center shadow-md my-bg
-    overflow-auto"
+    class="fixed flex justify-center items-center shadow-md my-bg
+    overflow-auto transition-opacity duration-200
+    {show ? 'opacity-100' : 'opacity-0'}
+    {transitionedOut ? 'disappear' : 'inset-0'}"
     bind:this={ref}
-    transition:fade={{ duration: 100 }}
     on:click|self={() => dispatch('close')}>
     <section
       class="absolute inset-2 block sm:inset-auto sm:top-4 mb-4 sm:w-128
