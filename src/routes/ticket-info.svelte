@@ -16,7 +16,7 @@
   import SeatingChart from "../components/SeatingChart.svelte"
   import TicketPolicy from "../components/TicketPolicy.md"
   export let site
-  export let productions
+  export let productions = []
 </script>
 
 <style>
