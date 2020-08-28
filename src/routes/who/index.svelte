@@ -19,6 +19,10 @@
   const years = Object.keys(seasons)
 </script>
 
-{#each seasons as season}
-  <a href={season}>{season}</a>
-{/each}
+<ul>
+  {#each years as year}
+    <li>
+      <a href={`/who/${year}`}>{year}</a>
+    </li>
+  {/each}
+</ul>

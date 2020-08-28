@@ -19,11 +19,12 @@
 
   const toInt = (s) => parseInt(s, 10)
   const years = Object.keys(seasons)
-    .map(toInt)
-    .filter((x) => x > 2018)
 </script>
 
-{#each years as season}
-  <a href={`/productions/${season}`}>{season}</a>
-  <br />
-{/each}
+<ul>
+  {#each years as season}
+    <li>
+      <a href={`/productions/${season}`}>{season}</a>
+    </li>
+  {/each}
+</ul>

@@ -1,0 +1,29 @@
+<script context="module">
+  export async function preload({ params, query }) {
+    const res = await this.fetch(`data/productions/${params.slug}.json`)
+    const data = await res.json()
+
+    if (res.status === 200) {
+      return {
+        site: data.site,
+        productions: data.productions,
+        slug: params.slug,
+      }
+    } else {
+      this.error(res.status, data.message)
+    }
+  }
+</script>
+
+<script>
+  import Production from "../../components/Production.svelte"
+  export let site
+  export let productions
+  export let slug
+</script>
+
+<h1 class="h1">Summer {slug} Productions</h1>
+
+{#each productions as production}
+  <Production {production} season={slug} />
+{/each}
