@@ -31,10 +31,6 @@
   })
 </script>
 
-{#if !mounted}
-  <img src={src[0]} {alt} {...rest} />
-{/if}
+{#if !mounted}<img src="{src[0]}" alt="{alt}" {...rest} />{/if}
 
-{#if winningImage}
-  <img src={winningImage} {alt} {...rest} />
-{/if}
+{#if winningImage}<img src="{winningImage}" alt="{alt}" {...rest} />{/if}

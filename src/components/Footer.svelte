@@ -33,10 +33,7 @@
       organization, or how you can support the Nebraska Cultural Endowment, at
       <a
         class="underline text-green-700"
-        href="http://www.nebraskaculturalendowment.org">
-        www.nebraskaculturalendowment.org
-      </a>
-      .
+        href="http://www.nebraskaculturalendowment.org">www.nebraskaculturalendowment.org</a>.
     </p>
   </div>
 

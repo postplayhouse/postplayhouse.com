@@ -4,7 +4,6 @@
 
 <header
   class="flex flex-col justify-around sm:flex-row items-center max-w-4xl mx-auto">
-
   <div class="flex-auto max-w-xl">
     <a href="{site.baseurl}/" title="Post Playhouse" rel="home">
       <img
@@ -19,7 +18,7 @@
   </div>
 
   <div class="flex-initial text-center mt-8 ml-2 min-w-md">
-    <a href={site.ticketsLink} class="btn-p">
+    <a href="{site.ticketsLink}" class="btn-p">
       {#if site.ticketsAvailable}
         Get Tickets Online
       {:else}Tickets: Coming Soon{/if}
@@ -36,5 +35,4 @@
       {site.boxOfficePhone}
     </a>
   </div>
-
 </header>

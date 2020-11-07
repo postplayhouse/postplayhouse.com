@@ -29,7 +29,7 @@
     </h2>
     <MaybeImage
       class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl"
-      src={[imagePath, fallbackImagePath]}
+      src="{[imagePath, fallbackImagePath]}"
       alt="Show Logo for {production.title}" />
   </header>
 
@@ -48,12 +48,12 @@
   {/if}
   {#if production.writers}
     <div class="mb-8 font-light writers">
-      <Markdown source={production.writers} />
+      <Markdown source="{production.writers}" />
     </div>
   {/if}
 
   <div class="">
-    <Markdown source={production.description} />
+    <Markdown source="{production.description}" />
 
     {#if production.sponsor}
       <div class="float-right">

@@ -10,18 +10,12 @@
 
   onMount(() => {
     matchesOldRoutes = MATCHES_OLD_ROUTES.test(window.location.pathname)
-    tryLocation = window.location.pathname.replace(MATCHES_OLD_ROUTES, function(
-      _full,
-      _1,
-      _2,
-      _3,
-      _4,
-      _5,
-      _6,
-      _7,
-    ) {
-      return `${_1}-${_3}-${_5}-${_7}`
-    })
+    tryLocation = window.location.pathname.replace(
+      MATCHES_OLD_ROUTES,
+      function (_full, _1, _2, _3, _4, _5, _6, _7) {
+        return `${_1}-${_3}-${_5}-${_7}`
+      },
+    )
   })
 </script>
 

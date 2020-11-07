@@ -32,7 +32,7 @@
     <section
       class="bg-green-200 p-3 cursor-pointer hover:bg-green-300 flex-initial
       mb-2"
-      on:click={toggleMailingList}>
+      on:click="{toggleMailingList}">
       <header class="text-xl">Join our mailing list</header>
       <p>Stay informed about what’s happening at Post Playhouse</p>
     </section>
@@ -51,20 +51,15 @@
           <img src="/images/twitter-bird.svg" alt="Twitter logo" />
         </a>
       </div>
-
     </section>
   </div>
-
 </div>
 
 {#if showMailingList}
-  <Modal on:close={toggleMailingList}>
+  <Modal on:close="{toggleMailingList}">
     <Mailer />
   </Modal>
 {/if}
 
 <!-- Sapper is no good at generating pages that have no link so we have to add these -->
-<div class="hidden">
-  <a href="/news">#</a>
-  <a href="/policies">#</a>
-</div>
+<div class="hidden"><a href="/news">#</a> <a href="/policies">#</a></div>

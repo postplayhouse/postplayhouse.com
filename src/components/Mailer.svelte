@@ -9,7 +9,7 @@
         attempts++
         return setTimeout(mailchimpStuff, 500)
       }
-      ;(function($) {
+      ;(function ($) {
         window.fnames = new Array()
         window.ftypes = new Array()
         fnames[0] = "EMAIL"
@@ -24,6 +24,7 @@
   })
 </script>
 
+<!--End mc_embed_signup-->
 <style>
   #mc_embed_signup form {
     display: block;
@@ -232,7 +233,6 @@
   <script
     type="text/javascript"
     src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js">
-
   </script>
 </svelte:head>
 
@@ -289,8 +289,14 @@
           id="mce-LNAME" />
       </div>
       <div id="mce-responses" class="clear">
-        <div class="response" id="mce-error-response" style="display:none" />
-        <div class="response" id="mce-success-response" style="display:none" />
+        <div
+          class="response"
+          id="mce-error-response"
+          style="display:none"></div>
+        <div
+          class="response"
+          id="mce-success-response"
+          style="display:none"></div>
       </div>
       <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
       <div style="position: absolute; left: -5000px;" aria-hidden="true">
@@ -312,4 +318,3 @@
     </div>
   </form>
 </div>
-<!--End mc_embed_signup-->

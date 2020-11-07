@@ -37,9 +37,9 @@ regenerate: true
   Tickets are on sale now!
   <br />
   <br />
-  <a class="btn btn-p" href={site.ticketsLink}>Get Your Tickets Now!</a>
+  <a class="btn btn-p" href="{site.ticketsLink}">Get Your Tickets Now!</a>
 </div>
 
 {#each productions as production}
-  <Production {production} season={2020} />
+  <Production production="{production}" season="{2020}" />
 {/each}

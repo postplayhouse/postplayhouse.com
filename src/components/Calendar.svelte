@@ -1,3 +1,4 @@
+<!-- end calendar component wrapper -->
 <style>
   /*/
 $test-color: #444;
@@ -737,7 +738,6 @@ $article-link-visited: $test-color;
       <div class="inner">
         <div class="calendar">
           <ul class="week">
-
             <li class="day padding" colspan="5">
               <div class="calendar-filters">
                 <div class="filter selected show-1">Cats</div>
@@ -761,7 +761,7 @@ $article-link-visited: $test-color;
                   <span class="mday">29</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-1">
                     <span class="show-time">8p</span>
                     <span class="show-title">Cats</span>
@@ -782,7 +782,7 @@ $article-link-visited: $test-color;
                   <span class="mday">30</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-1">
                     <span class="show-time">8p</span>
                     <span class="show-title">Cats</span>
@@ -790,12 +790,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-31 sunday">
               <div class="day-wrapper">
@@ -848,7 +846,7 @@ $article-link-visited: $test-color;
                   <span class="mday">2</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-1">
                     <span class="show-time">8p</span>
                     <span class="show-title">Cats</span>
@@ -903,7 +901,7 @@ $article-link-visited: $test-color;
                   <span class="mday">5</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-2">
                     <span class="show-time">8p</span>
                     <span class="show-title">Yankees</span>
@@ -924,7 +922,7 @@ $article-link-visited: $test-color;
                   <span class="mday">6</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-2">
                     <span class="show-time">8p</span>
                     <span class="show-title">Yankees</span>
@@ -932,12 +930,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-7 sunday">
               <div class="day-wrapper">
@@ -990,7 +986,7 @@ $article-link-visited: $test-color;
                   <span class="mday">9</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-1">
                     <span class="show-time">8p</span>
                     <span class="show-title">Cats</span>
@@ -1045,7 +1041,7 @@ $article-link-visited: $test-color;
                   <span class="mday">12</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-3">
                     <span class="show-time">8p</span>
                     <span class="show-title">Ladies</span>
@@ -1066,7 +1062,7 @@ $article-link-visited: $test-color;
                   <span class="mday">13</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-3">
                     <span class="show-time">8p</span>
                     <span class="show-title">Ladies</span>
@@ -1074,12 +1070,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-14 sunday">
               <div class="day-wrapper">
@@ -1132,7 +1126,7 @@ $article-link-visited: $test-color;
                   <span class="mday">16</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-2">
                     <span class="show-time">8p</span>
                     <span class="show-title">Yankees</span>
@@ -1153,7 +1147,7 @@ $article-link-visited: $test-color;
                   <span class="mday">17</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-3">
                     <span class="show-time">8p</span>
                     <span class="show-title">Ladies</span>
@@ -1174,7 +1168,7 @@ $article-link-visited: $test-color;
                   <span class="mday">18</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-1">
                     <span class="show-time">8p</span>
                     <span class="show-title">Cats</span>
@@ -1195,7 +1189,7 @@ $article-link-visited: $test-color;
                   <span class="mday">19</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-2">
                     <span class="show-time">8p</span>
                     <span class="show-title">Yankees</span>
@@ -1216,7 +1210,7 @@ $article-link-visited: $test-color;
                   <span class="mday">20</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-3">
                     <span class="show-time">8p</span>
                     <span class="show-title">Ladies</span>
@@ -1224,12 +1218,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-21 sunday">
               <div class="day-wrapper">
@@ -1282,7 +1274,7 @@ $article-link-visited: $test-color;
                   <span class="mday">23</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-1">
                     <span class="show-time">8p</span>
                     <span class="show-title">Cats</span>
@@ -1337,7 +1329,7 @@ $article-link-visited: $test-color;
                   <span class="mday">26</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-4">
                     <span class="show-time">8p</span>
                     <span class="show-title">Annie</span>
@@ -1358,7 +1350,7 @@ $article-link-visited: $test-color;
                   <span class="mday">27</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-4">
                     <span class="show-time">8p</span>
                     <span class="show-title">Annie</span>
@@ -1366,12 +1358,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-28 sunday">
               <div class="day-wrapper">
@@ -1424,7 +1414,7 @@ $article-link-visited: $test-color;
                   <span class="mday">30</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-2">
                     <span class="show-time">8p</span>
                     <span class="show-title">Yankees</span>
@@ -1445,7 +1435,7 @@ $article-link-visited: $test-color;
                   <span class="mday">1</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-3">
                     <span class="show-time">8p</span>
                     <span class="show-title">Ladies</span>
@@ -1483,7 +1473,7 @@ $article-link-visited: $test-color;
                   <span class="mday">3</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-5">
                     <span class="show-time">8p</span>
                     <span class="show-title">Catch</span>
@@ -1517,12 +1507,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-5 sunday">
               <div class="day-wrapper">
@@ -1575,7 +1563,7 @@ $article-link-visited: $test-color;
                   <span class="mday">7</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-4">
                     <span class="show-time">8p</span>
                     <span class="show-title">Annie</span>
@@ -1596,7 +1584,7 @@ $article-link-visited: $test-color;
                   <span class="mday">8</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-2">
                     <span class="show-time">8p</span>
                     <span class="show-title">Yankees</span>
@@ -1687,12 +1675,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-12 sunday">
               <div class="day-wrapper">
@@ -1745,7 +1731,7 @@ $article-link-visited: $test-color;
                   <span class="mday">14</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-1">
                     <span class="show-time">8p</span>
                     <span class="show-title">Cats</span>
@@ -1770,7 +1756,7 @@ $article-link-visited: $test-color;
                   <span class="short">Lead, SD Shows!</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-9">
                     <span class="show-time">7p</span>
                     <span class="show-title">Ladies</span>
@@ -1791,7 +1777,7 @@ $article-link-visited: $test-color;
                   <span class="mday">16</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-9">
                     <span class="show-time">7p</span>
                     <span class="show-title">Ladies</span>
@@ -1856,12 +1842,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-19 sunday">
               <div class="day-wrapper">
@@ -1914,7 +1898,7 @@ $article-link-visited: $test-color;
                   <span class="mday">21</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-4">
                     <span class="show-time">8p</span>
                     <span class="show-title">Annie</span>
@@ -1939,7 +1923,7 @@ $article-link-visited: $test-color;
                   <span class="short">Lead, SD Shows!</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <!---->
                   <li class="showing evening show-8">
                     <span class="show-time">7p</span>
@@ -1961,7 +1945,7 @@ $article-link-visited: $test-color;
                   <span class="mday">23</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <!---->
                   <li class="showing evening show-8">
                     <span class="show-time">7p</span>
@@ -2027,12 +2011,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-26 sunday">
               <div class="day-wrapper">
@@ -2085,7 +2067,7 @@ $article-link-visited: $test-color;
                   <span class="mday">28</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-4">
                     <span class="show-time">8p</span>
                     <span class="show-title">Annie</span>
@@ -2132,7 +2114,7 @@ $article-link-visited: $test-color;
                   <span class="mday">30</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <!---->
                   <li class="showing evening show-3">
                     <span class="show-time">8p</span>
@@ -2198,12 +2180,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-2 sunday">
               <div class="day-wrapper">
@@ -2256,7 +2236,7 @@ $article-link-visited: $test-color;
                   <span class="mday">4</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-4">
                     <span class="show-time">8p</span>
                     <span class="show-title">Annie</span>
@@ -2277,7 +2257,7 @@ $article-link-visited: $test-color;
                   <span class="mday">5</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <!---->
                   <li class="showing evening show-2">
                     <span class="show-time">8p</span>
@@ -2369,12 +2349,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-9 sunday">
               <div class="day-wrapper">
@@ -2427,7 +2405,7 @@ $article-link-visited: $test-color;
                   <span class="mday">11</span>
                 </div>
                 <ul class="day-content show-count-1">
-                  <div class="spacer" />
+                  <div class="spacer"></div>
                   <li class="showing evening show-1">
                     <span class="show-time">8p</span>
                     <span class="show-title">Cats</span>
@@ -2539,12 +2517,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
 
           <ul class="week">
-
             <!---->
             <li class="day day-16 sunday">
               <div class="day-wrapper">
@@ -2567,13 +2543,10 @@ $article-link-visited: $test-color;
                 </ul>
               </div>
             </li>
-
           </ul>
           <!-- week -->
-
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- end calendar component wrapper -->

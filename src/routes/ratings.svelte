@@ -18,7 +18,6 @@
 </script>
 
 <div class="via-markdown">
-
   <p>
     Starting in 2017, all of our productions have been labelled with an
     unofficial rating. We say “unofficial” because we are not adhering to any
@@ -60,7 +59,9 @@
   <ul>
     {#each productions as production}
       <li>
-        {production.title} &mdash; {production.rating}
+        {production.title}
+        &mdash;
+        {production.rating}
         {#if production.rating_explanation}
           <div class="p-2 my-2 bg-grey-200 text-grey-600 max-w-2xl">
             {production.rating_explanation}
@@ -69,5 +70,4 @@
       </li>
     {/each}
   </ul>
-
 </div>

@@ -3,10 +3,7 @@
   import site from "../data/site"
 
   function nodeIsActive(node, segment) {
-    const path = new URL(node.href).pathname
-      .slice(1)
-      .split("/")
-      .shift()
+    const path = new URL(node.href).pathname.slice(1).split("/").shift()
 
     return path === "" ? segment === undefined : path === segment
   }
@@ -85,26 +82,16 @@
     <!-- <li>
       <a use:active={segment} href="calendar">Calendar</a>
     </li> -->
+    <li><a use:active="{segment}" href="gifts">Gifts</a></li>
+    <li><a use:active="{segment}" href="who/{site.season}">Who's Who</a></li>
     <li>
-      <a use:active={segment} href="gifts">Gifts</a>
+      <a use:active="{segment}" href="industry-professionals">Work at Post</a>
     </li>
+    <li><a use:active="{segment}" href="donate">Donate</a></li>
     <li>
-      <a use:active={segment} href="who/{site.season}">Who's Who</a>
+      <a use:active="{segment}" href="plan-your-visit">Plan Your Visit</a>
     </li>
-    <li>
-      <a use:active={segment} href="industry-professionals">Work at Post</a>
-    </li>
-    <li>
-      <a use:active={segment} href="donate">Donate</a>
-    </li>
-    <li>
-      <a use:active={segment} href="plan-your-visit">Plan Your Visit</a>
-    </li>
-    <li>
-      <a use:active={segment} href="contact">Contact</a>
-    </li>
-    <li>
-      <a use:active={segment} href="about">About</a>
-    </li>
+    <li><a use:active="{segment}" href="contact">Contact</a></li>
+    <li><a use:active="{segment}" href="about">About</a></li>
   </ul>
 </nav>

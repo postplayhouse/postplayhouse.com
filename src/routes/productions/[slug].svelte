@@ -25,5 +25,5 @@
 <h1 class="h1">Summer {slug} Productions</h1>
 
 {#each productions as production}
-  <Production {production} season={slug} />
+  <Production production="{production}" season="{slug}" />
 {/each}

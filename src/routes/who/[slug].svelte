@@ -31,7 +31,6 @@
 </script>
 
 {#each ['rest', 'Board', 'Additional'] as groupName}
-
   {#if slug === '2020'}
     <p>
       <a href="/news/2020-03-25-season-cancelled" class="link-green">
@@ -47,7 +46,7 @@
       {groupName === 'rest' ? generalGroupName : groupName}
     </h2>
     {#each groupedPeople[groupName] as person}
-      <Bio {person} />
+      <Bio person="{person}" />
     {/each}
   {/if}
 {/each}

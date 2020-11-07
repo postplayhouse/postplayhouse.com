@@ -3,5 +3,6 @@
   "trailingComma": "all",
   "arrowParens": "always",
   "semi": false,
-  "plugins": ["./node_modules/svelte"]
+  "plugins": ["./node_modules/svelte"],
+  "svelteStrictMode": true
 }

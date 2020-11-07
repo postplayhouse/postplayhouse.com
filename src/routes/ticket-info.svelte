@@ -88,7 +88,7 @@
   <p>
     Ticket sales for every summer season begin November 1st of the previous
     calendar year.
-    <a class="link-green" href={site.ticketsLink}>Buy yours now</a>
+    <a class="link-green" href="{site.ticketsLink}">Buy yours now</a>
     ! Or email us at
     <a href="mailto:tickets@postplayhouse.com">tickets@postplayhouse.com</a>
     Call our box office at
@@ -108,12 +108,12 @@
     cellpadding="0">
     <tbody>
       <tr>
-        <td colspan="1" />
+        <td colspan="1"></td>
         <th colspan="2">June</th>
         <th colspan="2">July &amp; August</th>
       </tr>
       <tr>
-        <td class="solid_under" />
+        <td class="solid_under"></td>
         <td class="solid_under centered">Tues. - Thurs.</td>
         <td class="solid_under centered">Fri. - Sun.</td>
         <td class="solid_under centered">Tues. - Thurs.</td>
@@ -127,30 +127,21 @@
         <td class="centered">$30</td>
       </tr>
       <tr class="dotted_under">
-        <td>
-          Senior
-          <span class="info">(65+)</span>
-        </td>
+        <td>Senior <span class="info">(65+)</span></td>
         <td class="centered">$21</td>
         <td class="centered">$23</td>
         <td class="centered">$26</td>
         <td class="centered">$28</td>
       </tr>
       <tr class="dotted_under">
-        <td>
-          Youth
-          <span class="info">(12-)</span>
-        </td>
+        <td>Youth <span class="info">(12-)</span></td>
         <td class="centered">$17</td>
         <td class="centered">$19</td>
         <td class="centered">$19</td>
         <td class="centered">$20</td>
       </tr>
       <tr>
-        <td>
-          Group
-          <span class="info">(25 or more)</span>
-        </td>
+        <td>Group <span class="info">(25 or more)</span></td>
         <td class="centered">$19</td>
         <td class="centered">$21</td>
         <td class="centered">$25</td>
@@ -171,10 +162,9 @@
       tickets@postplayhouse.com
     </a>
     or call our box office at
-    <a class="x" href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">
-      {site.boxOfficePhone}
-    </a>
-    .
+    <a
+      class="x"
+      href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">{site.boxOfficePhone}</a>.
   </p>
 
   <h2>Subscription Pricing</h2>
@@ -259,11 +249,11 @@
     to any 4 or 5 performances by emailing us at
     <a href="mailto:tickets@postplayhouse.com">tickets@postplayhouse.com</a>
     or calling our box office at
-    <a class="x" href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">
-      {site.boxOfficePhone}
-    </a>
-    . Seats are based on availability, so please make your reservations as soon
-    as you can.
+    <a
+      class="x"
+      href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">{site.boxOfficePhone}</a>.
+    Seats are based on availability, so please make your reservations as soon as
+    you can.
   </div>
 
   <h3>Season Subscriptions {site.season}</h3>
@@ -282,8 +272,8 @@
     Please remember that seats can only be reserved based on availability, so
     call the box office to secure your seats. Also note, as stated above,
     subscriptions may only be used on 4 or 5
-    <em>different productions</em>
-    . This means they cannot be used to see the same production multiple times.
+    <em>different productions</em>. This means they cannot be used to see the
+    same production multiple times.
   </p>
 
   <h2>Seating Chart</h2>
@@ -291,5 +281,4 @@
   <SeatingChart />
 
   <TicketPolicy />
-
 </div>

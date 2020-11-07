@@ -23,8 +23,6 @@
 
 <ul>
   {#each years as season}
-    <li>
-      <a href={`/productions/${season}`}>{season}</a>
-    </li>
+    <li><a href="{`/productions/${season}`}">{season}</a></li>
   {/each}
 </ul>

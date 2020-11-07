@@ -136,7 +136,7 @@
     </div>
 
     {#each ['c', 'd', 'e', 'f', 'g', 'h', 'j', 'k', 'l', 'm'] as row}
-      <div data-row={row} class="row {row}">
+      <div data-row="{row}" class="row {row}">
         {#each [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1] as i}
           <div class="seat">
             <div class="outer">
@@ -196,20 +196,11 @@
   </div>
 
   <ul class="legend">
+    <li><span class="bullet"></span> General seating</li>
+    <li><span class="bullet handicap"></span> Handicap seating</li>
+    <li><span class="bullet companion"></span> Companion seating</li>
     <li>
-      <span class="bullet" />
-      General seating
-    </li>
-    <li>
-      <span class="bullet handicap" />
-      Handicap seating
-    </li>
-    <li>
-      <span class="bullet companion" />
-      Companion seating
-    </li>
-    <li>
-      <span class="bullet hold" />
+      <span class="bullet hold"></span>
       Held seating - Will be made available after we have confirmed the space is
       not needed for wheelchairs.
     </li>

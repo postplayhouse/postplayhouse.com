@@ -34,7 +34,7 @@
   {#if localPerson.image}
     <MaybeImage
       class="block w-full max-w-md mb-4 md:pr-4 md:float-left md:w-1/2"
-      src={[optimizedVersion(localPerson.image), localPerson.image]}
+      src="{[optimizedVersion(localPerson.image), localPerson.image]}"
       alt="portrait of {localPerson.name}" />
   {/if}
 
@@ -62,17 +62,21 @@
 
       {#each productionPositions as positionObj}
         <li class="pl-4 -text-indent-4">
-          {positionObj.position} &mdash; {positionObj.productionNames.join(', ')}
+          {positionObj.position}
+          &mdash;
+          {positionObj.productionNames.join(', ')}
         </li>
       {/each}
 
       {#each localPerson.roles as positionObj}
         <li class="pl-4 -text-indent-4">
-          {positionObj.productionName} &mdash; {positionObj.positions.join(', ')}
+          {positionObj.productionName}
+          &mdash;
+          {positionObj.positions.join(', ')}
         </li>
       {/each}
     {/if}
   </ul>
 
-  <Markdown source={localPerson.bio} />
+  <Markdown source="{localPerson.bio}" />
 </div>

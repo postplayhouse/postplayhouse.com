@@ -8,8 +8,6 @@
 
 <ul>
   {#each routes as route}
-    <li>
-      <a href={route}>{route}</a>
-    </li>
+    <li><a href="{route}">{route}</a></li>
   {/each}
 </ul>

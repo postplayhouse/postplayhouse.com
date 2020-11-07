@@ -20,5 +20,5 @@
 <h1 class="h1">Summer 2019 Productions</h1>
 
 {#each productions as production}
-  <Production {production} season={2019} />
+  <Production production="{production}" season="{2019}" />
 {/each}

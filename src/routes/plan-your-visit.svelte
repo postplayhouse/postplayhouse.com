@@ -38,20 +38,18 @@
 
 <p class="my-8">
   If you&rsquo;d like to see your business listed here, please contact us at
-  <a href="mailto:webmaster@postplayhouse.com">webmaster@postplayhouse.com</a>
-  . If you'd like to donate to the playhouse, visit our
-  <a href="/donate/">donations page</a>
-  .
+  <a href="mailto:webmaster@postplayhouse.com">webmaster@postplayhouse.com</a>.
+  If you'd like to donate to the playhouse, visit our
+  <a href="/donate/">donations page</a>.
 </p>
 
 {#each businesses as item}
-  <div class="relative" class:supporter={item.supporter}>
+  <div class="relative" class:supporter="{item.supporter}">
     <div class="flex flex-row-reverse mb-8">
-
       <div class="flex-grow bg-green-200 p-4">
         <div>
           {#if item.site}
-            <a href={item.site}>
+            <a href="{item.site}">
               <div class="text-2xl">{item.name}</div>
               {#if item.prettyURL}
                 <div class="underline text-green-800" style="max-width: 100%">
@@ -96,7 +94,7 @@
 
         {#if item.about}
           <div class="about">
-            <Markdown source={item.about} />
+            <Markdown source="{item.about}" />
           </div>
         {/if}
       </div>
@@ -106,7 +104,6 @@
           <li class="mb-2">{type}</li>
         {/each}
       </ul>
-
     </div>
   </div>
 {/each}

@@ -96,7 +96,7 @@
       .filter(Boolean).length
 
   $: bioWordCount = wordCount(bio)
-  $: bioWordCountClass = (function() {
+  $: bioWordCountClass = (function () {
     if (bioWordCount > MAX_WORDS) {
       return "text-red-500"
     }
@@ -277,7 +277,7 @@
 
     var reader = new FileReader()
 
-    reader.onload = function(evt) {
+    reader.onload = function (evt) {
       image = evt.target.result
       imageFile = pickedFile
     }
@@ -488,18 +488,18 @@ ${yamlBody({ fillRoles: true })}
 {#if state === states.noFetch}
   <div class="bg-red-200 text-red-900 p-4 rounded my-4">
     This submission form will not work from your device. Please send an email to
-    <a class="link-green" href={emailLink}>don@postplayhouse.com</a>
+    <a class="link-green" href="{emailLink}">don@postplayhouse.com</a>
   </div>
 {/if}
 
 <p>
   Have a look at
-  <a class="link-green" href={lastYearBios}>last year's bios</a>
+  <a class="link-green" href="{lastYearBios}">last year's bios</a>
   if you'd like some context.
 </p>
 
 {#if showCredsForm}
-  <form on:submit|preventDefault={submitCreds}>
+  <form on:submit|preventDefault="{submitCreds}">
     <label class="text-2xl block">
       Passphrase
       <div class="text-sm">
@@ -508,15 +508,13 @@ ${yamlBody({ fillRoles: true })}
       </div>
       <input
         class="border border-grey-500 block"
-        bind:value={passphrase}
+        bind:value="{passphrase}"
         name="passphrase"
         type="text" />
     </label>
     {#if state === states.requestingAuth}
       <button class="btn btn-p mt-4" disabled>Checking...</button>
-    {:else}
-      <button class="btn btn-p mt-4">Continue</button>
-    {/if}
+    {:else}<button class="btn btn-p mt-4">Continue</button>{/if}
 
     {#if badPassphrase}
       <span class="text-red-700">
@@ -541,15 +539,14 @@ ${yamlBody({ fillRoles: true })}
     <p class="mt-4">
       If you have trouble with this form please compose an email with all the
       information we ask you for in this form and send it to
-      <a class="link-green" href={emailLink}>don@postplayhouse.com</a>
+      <a class="link-green" href="{emailLink}">don@postplayhouse.com</a>
     </p>
   </div>
 
   <div class="lg:flex mt-8">
     <form
       class="m-auto max-w-lg p-2 lg:w-1/2 flex-none"
-      on:submit|preventDefault={noop}>
-
+      on:submit|preventDefault="{noop}">
       <div>
         <div class="text-2xl block">Headshot</div>
         <label
@@ -557,7 +554,7 @@ ${yamlBody({ fillRoles: true })}
           {#if !imageFile}Choose a file{:else}Change file{/if}
           <input
             class="hidden"
-            on:change={handleFilePick}
+            on:change="{handleFilePick}"
             name="headshot"
             accept="image/*"
             type="file" />
@@ -566,11 +563,11 @@ ${yamlBody({ fillRoles: true })}
           <img
             style="max-width: 100px; max-height: 100px;"
             class="inline-block"
-            src={image}
-            alt={imageFile.name} />
+            src="{image}"
+            alt="{imageFile.name}" />
         {/if}
         <label class="block mt-2">
-          <input type="checkbox" bind:checked={useOldHeadshot} />
+          <input type="checkbox" bind:checked="{useOldHeadshot}" />
           Please use my headshot from last year instead
         </label>
       </div>
@@ -583,7 +580,7 @@ ${yamlBody({ fillRoles: true })}
         </div>
         <input
           class="border border-grey-500 block"
-          bind:value={email}
+          bind:value="{email}"
           name="email"
           type="email" />
       </label>
@@ -593,7 +590,7 @@ ${yamlBody({ fillRoles: true })}
         <div class="text-sm">(optionally with middle name/initial)</div>
         <input
           class="border border-grey-500 block"
-          bind:value={firstName}
+          bind:value="{firstName}"
           name="firstName"
           type="text" />
       </label>
@@ -602,7 +599,7 @@ ${yamlBody({ fillRoles: true })}
         Last Name
         <input
           class="border border-grey-500 block"
-          bind:value={lastName}
+          bind:value="{lastName}"
           name="lastName"
           type="text" />
       </label>
@@ -615,7 +612,7 @@ ${yamlBody({ fillRoles: true })}
         </div>
         <input
           class="border border-grey-500 block"
-          bind:value={location}
+          bind:value="{location}"
           name="location"
           type="text" />
       </label>
@@ -633,32 +630,25 @@ ${yamlBody({ fillRoles: true })}
             <input
               class="border border-grey-500 block"
               type="text"
-              on:input={(e) => mutateRoles(production, e.target.value)} />
+              on:input="{(e) => mutateRoles(production, e.target.value)}" />
             {#if i === 0}
               <div class="text-sm mt-1">
-                <code class="text-xs bg-grey-300 rounded py-px px-1">
-                  Box Office Staff
-                </code>
-                ,
-                <code class="text-xs bg-grey-300 rounded py-px px-1">
-                  Season Sound Engineer
-                </code>
-                , etc. Actors will likely leave this blank.
+                <code class="text-xs bg-grey-300 rounded py-px px-1">Box Office
+                  Staff</code>,
+                <code class="text-xs bg-grey-300 rounded py-px px-1">Season
+                  Sound Engineer</code>, etc. Actors will likely leave this
+                blank.
               </div>
             {/if}
             {#if i === 1}
               <div class="text-sm mt-1">
-                <code class="text-xs bg-grey-300 rounded py-px px-1">
-                  Skimbleshanks, Ensemble
-                </code>
-                ,
-                <code class="text-xs bg-grey-300 rounded py-px px-1">
-                  Assistant Stage Manager
-                </code>
-                , etc.
+                <code
+                  class="text-xs bg-grey-300 rounded py-px px-1">Skimbleshanks,
+                  Ensemble</code>,
+                <code class="text-xs bg-grey-300 rounded py-px px-1">Assistant
+                  Stage Manager</code>, etc.
               </div>
             {/if}
-
           </label>
         {/each}
       </div>
@@ -675,73 +665,73 @@ ${yamlBody({ fillRoles: true })}
           Please surround the names of shows that you mention with
           <code class="text-xs bg-grey-300 rounded p-1">_underscores_</code>
           or
-          <code class="text-xs bg-grey-300 rounded p-1">*asterisks*</code>
-          . Properly notated show titles will only count as two words, maximum.
+          <code class="text-xs bg-grey-300 rounded p-1">*asterisks*</code>.
+          Properly notated show titles will only count as two words, maximum.
         </li>
       </ul>
       <div>
-        <button class="btn btn-p my-2" on:click={toggleExample}>
+        <button class="btn btn-p my-2" on:click="{toggleExample}">
           Show Example
         </button>
         {#if showExample}
-          <Modal on:close={toggleExample}>
+          <Modal on:close="{toggleExample}">
             <div class="max-w-md m-auto">
               <div class="text-2xl">This text...</div>
               <div class="font-mono text-sm bg-grey-200 p-2">{EXAMPLE_BIO}</div>
               <div class="text-2xl mt-8">...becomes this bio</div>
-              <Markdown source={EXAMPLE_BIO} />
+              <Markdown source="{EXAMPLE_BIO}" />
             </div>
           </Modal>
         {/if}
-
       </div>
       <textarea
         id="bio"
         name="bio"
-        bind:value={bio}
-        class="border border-grey-500 w-full font-mono min-h-96" />
-      <div class={`text-right ${bioWordCountClass}`}>
-        Word Count: {bioWordCount} out of a max of {MAX_WORDS}
+        bind:value="{bio}"
+        class="border border-grey-500 w-full font-mono min-h-96"></textarea>
+      <div class="{`text-right ${bioWordCountClass}`}">
+        Word Count:
+        {bioWordCount}
+        out of a max of
+        {MAX_WORDS}
       </div>
 
       <button
         class="btn btn-p mt-8 hidden lg:inline-block"
-        disabled={invalidForm | submitting}
-        on:click={onSubmit}>
+        disabled="{invalidForm | submitting}"
+        on:click="{onSubmit}">
         {#if submitting}Submitting{:else}Submit Bio{/if}
       </button>
-
     </form>
 
     <div>
       <div class="p-4 bg-grey-200 sticky top-0">
         <h3>Preview (your answers change this preview):</h3>
         <div class="bg-white rounded p-4 shadow-lg">
-          <Bio {person} {toPersonFn} />
+          <Bio person="{person}" toPersonFn="{toPersonFn}" />
         </div>
-        <div />
+        <div></div>
         {#each validations as validation (validation.name)}
           {#if validation.warn}
             <p class="mt-4">
-              <span class="inline-block p-1 bg-orange-500 rounded" />
+              <span class="inline-block p-1 bg-orange-500 rounded"></span>
               {warningMessages[validation.name]}
             </p>
           {/if}
           {#if validation.invalid}
             <p class="mt-4">
-              <span class="inline-block p-1 bg-red-500 rounded" />
+              <span class="inline-block p-1 bg-red-500 rounded"></span>
               {validationMessages[validation.name]}
             </p>
           {/if}
         {/each}
         <button
           class="btn btn-p mt-8"
-          disabled={invalidForm | submitting}
-          on:click={onSubmit}>
+          disabled="{invalidForm | submitting}"
+          on:click="{onSubmit}">
           {#if submitting}Submitting{:else}Submit Bio{/if}
         </button>
       </div>
-
     </div>
   </div>
 {/if}
@@ -767,10 +757,10 @@ ${yamlBody({ fillRoles: true })}
   <p class="mt-8">
     Looks like something is messed up. Would you mind just emailing me your
     information? My email address is
-    <a href="mailto:don@postplayhouse.com">don@postplayhouse.com</a>
-    . So sorry for the inconvenience. If your phone/computer will allow it, I'll
-    try and fill out some of the information for you if you click this button:
+    <a href="mailto:don@postplayhouse.com">don@postplayhouse.com</a>. So sorry
+    for the inconvenience. If your phone/computer will allow it, I'll try and
+    fill out some of the information for you if you click this button:
   </p>
 
-  <a href={emailLink} class="btn btn-p inline-block mt-8">Email Don Denton</a>
+  <a href="{emailLink}" class="btn btn-p inline-block mt-8">Email Don Denton</a>
 {/if}

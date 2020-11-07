@@ -19,7 +19,7 @@
         title="Clips from 2015"
         src="https://www.youtube.com/embed/Y7Nn56A3Dd8?rel=0&amp;showinfo=0"
         frameborder="0"
-        allowfullscreen />
+        allowfullscreen></iframe>
     </div>
     <div class="text-center text-sm">Clips from 2015</div>
   </div>
@@ -84,7 +84,7 @@
       scrolling="no"
       marginheight="0"
       marginwidth="0"
-      src="https://maps.google.com/maps/ms?f=q&amp;hl=en&amp;geocode=&amp;ie=UTF8&amp;msa=0&amp;msid=215815128770604665825.00045338a29dc15cb2d92&amp;ll=42.668963,-103.464013&amp;spn=0.003826,0.009656&amp;t=m&amp;output=embed" />
+      src="https://maps.google.com/maps/ms?f=q&amp;hl=en&amp;geocode=&amp;ie=UTF8&amp;msa=0&amp;msid=215815128770604665825.00045338a29dc15cb2d92&amp;ll=42.668963,-103.464013&amp;spn=0.003826,0.009656&amp;t=m&amp;output=embed"></iframe>
   </div>
 </div>
 <small>
@@ -106,8 +106,6 @@
   minutes of show times, or at the Lodge nearby. The State officers usually
   patrol the park during show times, so please do not forget to purchase a pass.
   Parking passes can also be purchased at the
-  <a href="https://ngpc-permits.ne.gov/NGPC-PS/faces/public/welcome">
-    Nebraska Game and Parks Commission website
-  </a>
-  .
+  <a href="https://ngpc-permits.ne.gov/NGPC-PS/faces/public/welcome">Nebraska
+    Game and Parks Commission website</a>.
 </p>
