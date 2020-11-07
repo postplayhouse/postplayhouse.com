@@ -5,9 +5,9 @@ image: /images/2020/full-season.jpg
 single_featured: true
 ---
 
-```js exec
-import site from "../../data/site"
-```
+<script lang="ts">
+  import site from "../../data/site"
+</script>
 
 <div class="bg-green-100 p-4 text-center">
   <strong>Update:</strong>

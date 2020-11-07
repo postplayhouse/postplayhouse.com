@@ -1,6 +1,6 @@
-<script>
-  export let title = "Annual Raffle"
-  export let excerpt =
+<script lang="ts">
+  export const title = "Annual Raffle"
+  export const excerpt =
     "Join us on March 21, 2020 for our annual raffle. You could win $5,000!"
 </script>
 

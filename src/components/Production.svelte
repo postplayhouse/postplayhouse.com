@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Markdown from "./Markdown.svelte"
   import MaybeImage from "./MaybeImage.svelte"
   export let production

@@ -5,18 +5,18 @@ single_featured: false
 image: /images/2017/mamma-mia-fb.png
 ---
 
-```js module
-import { preload as p } from "../data/preload"
-export const preload = p
-```
+<script lang="ts" context="module">
+  import { preload as p } from "../data/preload"
+  export const preload = p
+</script>
 
-```js exec
-export let site
+<script lang="ts">
+  export let site
 
-import Markdown from "../../components/Markdown.svelte"
+  import Markdown from "../../components/Markdown.svelte"
 
-let imagePath = `/images/2017/${site.data.productions["2017"][1].image}`
-```
+  let imagePath = `/images/2017/${site.data.productions["2017"][1].image}`
+</script>
 
 ![Mamma Mia logo]({imagePath})
 

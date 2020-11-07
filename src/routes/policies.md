@@ -1,5 +1,5 @@
-```js exec
-import TicketPolicy from "../components/TicketPolicy.md"
-```
+<script lang="ts">
+  import TicketPolicy from "../components/TicketPolicy.md"
+</script>
 
 <TicketPolicy />

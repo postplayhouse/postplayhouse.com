@@ -1,4 +1,4 @@
-<script context="module">
+<script lang="ts" context="module">
   export async function preload({ params, query }) {
     const res = await this.fetch(`data/productions/${params.slug}.json`)
     const data = await res.json()
@@ -15,7 +15,7 @@
   }
 </script>
 
-<script>
+<script lang="ts">
   import Production from "../../components/Production.svelte"
   export let site
   export let productions

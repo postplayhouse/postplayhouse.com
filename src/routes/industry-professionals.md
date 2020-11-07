@@ -1,9 +1,9 @@
-```js exec
-import site from "../data/site"
-export let title = "Work at Post Playhouse"
+<script lang="ts">
+  import site from "../data/site"
+  export let title = "Work at Post Playhouse"
 
-let things = ["thing1", "thing2", "thing3"]
-```
+  let things = ["thing1", "thing2", "thing3"]
+</script>
 
 ## Summer {site.season}
 

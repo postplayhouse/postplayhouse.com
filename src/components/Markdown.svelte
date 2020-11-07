@@ -1,9 +1,9 @@
-<script context="module">
+<script lang="ts" context="module">
   import marked from "marked"
   marked.setOptions({ smartypants: true })
 </script>
 
-<script>
+<script lang="ts">
   export let source
 </script>
 

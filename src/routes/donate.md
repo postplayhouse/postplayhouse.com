@@ -2,14 +2,14 @@
 title: "Donations to Post Playhouse"
 ---
 
-```js exec
-import Mission from "../components/Mission.md"
+<script lang="ts">
+  import Mission from "../components/Mission.md"
 
-import site from "../data/site"
-import { showDonateModal } from "../data/stores"
+  import site from "../data/site"
+  import { showDonateModal } from "../data/stores"
 
-const sponsorAmount = site.season - 1967
-```
+  const sponsorAmount = site.season - 1967
+</script>
 
 <p class="text-center p-2 mb-4">As a 501(c)3 nonprofit, your contribution to Post Playhouse is fully tax-deductible.</p>
 

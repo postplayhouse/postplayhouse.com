@@ -4,12 +4,12 @@ title: "Annual Raffle Winners"
 sticky: false
 ---
 
-```css style
-.add-columns {
-  margin-top: 1em;
-  columns: 13em;
-}
-```
+<style>
+  .add-columns {
+    margin-top: 1em;
+    columns: 13em;
+  }
+</style>
 
 Congratulations to our lucky winners and a sincere thank you to all who participated! And a special "thank you" to those winners who, like our Artistic Director, donated their winnings back to the Post Playhouse. We are so lucky to have the support of such a fine group of people.
 

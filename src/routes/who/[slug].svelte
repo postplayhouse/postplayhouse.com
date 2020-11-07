@@ -1,4 +1,4 @@
-<script context="module">
+<script lang="ts" context="module">
   export async function preload({ params, query }) {
     const res = await this.fetch(`data/people/${params.slug}.json`)
     const data = await res.json()
@@ -11,7 +11,7 @@
   }
 </script>
 
-<script>
+<script lang="ts">
   import Bio from "../../components/Bio.svelte"
   import { sortPeople, personIsOnlyInGroup, groupPeople } from "../../helpers"
   export let site

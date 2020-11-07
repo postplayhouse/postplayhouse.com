@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { onMount, onDestroy, createEventDispatcher } from "svelte"
   import { fade } from "svelte/transition"
 

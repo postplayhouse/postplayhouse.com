@@ -4,16 +4,16 @@ title: "Post Playhouse Memories"
 sticky: false
 ---
 
-```js exec
-import { showDonateModal } from "../../data/stores"
-```
+<script lang="ts">
+  import { showDonateModal } from "../../data/stores"
+</script>
 
-```css style
-p,
-ul {
-  margin-bottom: 1em;
-}
-```
+<style>
+  p,
+  ul {
+    margin-bottom: 1em;
+  }
+</style>
 
 Several Post Playhouse alumni from over the years created a video message to share with all our wonderful patrons.
 

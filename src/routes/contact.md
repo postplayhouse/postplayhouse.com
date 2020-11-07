@@ -2,9 +2,9 @@
 title: Contact Post Playhouse
 ---
 
-```js exec
-import site from "../data/site"
-```
+<script lang="ts">
+  import site from "../data/site"
+</script>
 
 ### Box Office
 

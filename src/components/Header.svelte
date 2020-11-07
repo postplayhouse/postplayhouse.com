@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import site from "../data/site"
 </script>
 

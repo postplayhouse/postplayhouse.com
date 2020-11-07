@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   const yearsWithPages = [2019, 2020]
 
   const routes = ["/", "/bio-submission", "/calendar", "/productions"]

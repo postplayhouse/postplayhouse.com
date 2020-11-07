@@ -1,14 +1,29 @@
 import { toCamel } from "../helpers"
 
 class Person {
+  firstName: string
+  lastName: string
+  imageYear: number
+  imageFile: string
+  location: string
+  bio: string
+  groups: string[]
+  positions: string[]
+  staffPositions: string[]
+
+  // TODO: there is a better type here...
+  productionPositions: object[]
+  roles: object[]
+
   get name() {
     return `${this.firstName} ${this.lastName}`
   }
 
   get image() {
     return this.imageYear
-      ? `/images/people/${this.imageYear}/${this.imageFile ||
-          this.name.replace(/ /g, "-").toLowerCase() + ".jpg"}`
+      ? `/images/people/${this.imageYear}/${
+          this.imageFile || this.name.replace(/ /g, "-").toLowerCase() + ".jpg"
+        }`
       : undefined
   }
 

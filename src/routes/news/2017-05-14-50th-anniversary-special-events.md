@@ -6,9 +6,9 @@ excerpt: Join the Post Playhouse in celebrating our 50 year Anniversary July 21s
 image: /images/50th-logo.png?v=1
 ---
 
-```js exec
-import site from "../../data/site"
-```
+<script lang="ts">
+  import site from "../../data/site"
+</script>
 
 <link rel="stylesheet" href="/css/anniversary-weekend-events.css">
 

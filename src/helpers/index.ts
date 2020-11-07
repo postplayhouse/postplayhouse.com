@@ -10,16 +10,15 @@ export function personIsOnlyInGroup(person, groupName) {
 }
 
 /**
- * Puts people in thier corresponding groups. Any ungrouped people come out in the rest
- * @param {Array<object>} people
- * @param  {...string} groupNames
+ * Puts people in thier corresponding groups. Any ungrouped people come out in
+ * the rest
  *
  * @example
  * const {board, additional, rest} = groupPeople(people, 'board', 'additional')
  * // All the people who didn't fit into the above categories are in the rest category
  *
  */
-export function groupPeople(people, ...groupNames) {
+export function groupPeople(people: object[], ...groupNames: string[]) {
   const grouped = {}
   const used = []
   groupNames.forEach((groupName) => {
@@ -37,10 +36,11 @@ export function groupPeople(people, ...groupNames) {
 
 /**
  * Boolean on whether the given position name appears in the list of positions for an individual person
- * @param {object} person
- * @param {string} positionName
  */
-export function personHasPositionStartingWith(person, positionName) {
+export function personHasPositionStartingWith(
+  person: object,
+  positionName: string,
+) {
   return (
     !!person.positions &&
     person.positions.some(
@@ -57,7 +57,7 @@ export function personHasPositionStartingWith(person, positionName) {
  * @param {Array<object>} arrayOfPeople
  */
 export function sortPeople(arrayOfPeople) {
-  return arrayOfPeople.slice(0).sort(function(a, b) {
+  return arrayOfPeople.slice(0).sort(function (a, b) {
     const aBoard = (a.groups || []).includes("board")
     const bBoard = (b.groups || []).includes("board")
     const aExtra = (a.groups || []).includes("additional")

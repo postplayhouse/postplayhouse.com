@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   export let segment
   import site from "../data/site"
 
@@ -11,8 +11,10 @@
   function manageNodeActiveClass(node, segment) {
     if (nodeIsActive(node, segment)) {
       node.classList.add("active")
+      // TODO add aria-active="page"
     } else {
       node.classList.remove("active")
+      // TODO add aria-active="page"
     }
   }
 

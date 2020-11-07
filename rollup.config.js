@@ -1,32 +1,35 @@
-import * as path from "path"
-import resolve from "rollup-plugin-node-resolve"
-import replace from "rollup-plugin-replace"
-import commonjs from "rollup-plugin-commonjs"
+import path from "path"
+import resolve from "@rollup/plugin-node-resolve"
+import replace from "@rollup/plugin-replace"
+import commonjs from "@rollup/plugin-commonjs"
+import url from "@rollup/plugin-url"
 import svelte from "rollup-plugin-svelte"
-import babel from "rollup-plugin-babel"
+import babel from "@rollup/plugin-babel"
 import { terser } from "rollup-plugin-terser"
-import json from "rollup-plugin-json"
+import json from "@rollup/plugin-json"
 import image from "svelte-image"
 import config from "sapper/config/rollup.js"
 import { mdsvex } from "mdsvex"
 import XXhash from "xxhash"
 import pkg from "./package.json"
+import sveltePreprocess from "svelte-preprocess"
+import typescript from "@rollup/plugin-typescript"
 
 const mode = process.env.NODE_ENV
 const dev = mode === "development"
 const legacy = !!process.env.SAPPER_LEGACY_BUILD
 
 const onwarn = (warning, onwarn) =>
+  (warning.code === "MISSING_EXPORT" && /'preload'/.test(warning.message)) ||
   (warning.code === "CIRCULAR_DEPENDENCY" &&
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
+  warning.code === "THIS_IS_UNDEFINED" ||
   onwarn(warning)
-const dedupe = (importee) =>
-  importee === "svelte" || importee.startsWith("svelte/")
-
 const cache = {}
 
-function cached(name, { markup }) {
+function cached(name, obj) {
   return {
+    ...obj,
     markup: ({ content, filename }) => {
       const key = `${name}:${filename}`
 
@@ -38,7 +41,7 @@ function cached(name, { markup }) {
         return cache[key].result
       }
 
-      const result = markup({ content, filename })
+      const result = obj.markup({ content, filename })
 
       cache[key] = {
         hash: XXhash.hash(Buffer.from(content, "utf8"), 0xcafebabe),
@@ -54,15 +57,9 @@ const preprocess = [
   cached(
     "mdsvex",
     mdsvex({
-      // html is always true
-      markdownOptions: {
-        typographer: true,
-        linkify: true,
-      },
-      extension: ".md",
-      outputMeta: true,
+      smartypants: true,
+      extensions: [".md"],
       layout: path.join(__dirname, "./src/components/DefaultMdLayout.svelte"),
-      parser: (md) => md,
     }),
   ),
   cached(
@@ -95,13 +92,14 @@ const preprocess = [
       processFoldersSizes: true,
     }),
   ),
+  cached("autoPreprocess", sveltePreprocess()),
 ]
 
 const extensions = [".svelte", ".md"]
 
 export default {
   client: {
-    input: config.client.input(),
+    input: config.client.input().replace(/\.js$/, ".ts"),
     output: config.client.output(),
     plugins: [
       replace({
@@ -115,16 +113,21 @@ export default {
         preprocess,
         extensions,
       }),
+      url({
+        sourceDir: path.resolve(__dirname, "src/node_modules/images"),
+        publicPath: "/client/",
+      }),
       resolve({
         browser: true,
-        dedupe,
+        dedupe: ["svelte"],
       }),
       commonjs(),
+      typescript({ sourceMap: dev }),
 
       legacy &&
         babel({
           extensions: [".js", ".mjs", ".html", ".svelte"],
-          runtimeHelpers: true,
+          babelHelpers: "runtime",
           exclude: ["node_modules/@babel/**"],
           presets: [
             [
@@ -151,11 +154,12 @@ export default {
         }),
     ],
 
+    preserveEntrySignatures: false,
     onwarn,
   },
 
   server: {
-    input: config.server.input(),
+    input: { server: config.server.input().server.replace(/\.js$/, ".ts") },
     output: config.server.output(),
     plugins: [
       json(),
@@ -165,25 +169,32 @@ export default {
       }),
       svelte({
         generate: "ssr",
+        hydratable: true,
         dev,
         preprocess,
         extensions,
       }),
+      url({
+        sourceDir: path.resolve(__dirname, "src/node_modules/images"),
+        publicPath: "/client/",
+        emitFiles: false, // already emitted by client build
+      }),
       resolve({
-        dedupe,
+        dedupe: ["svelte"],
       }),
       commonjs(),
+      typescript({ sourceMap: dev }),
     ],
     external: Object.keys(pkg.dependencies).concat(
-      require("module").builtinModules ||
-        Object.keys(process.binding("natives")),
+      require("module").builtinModules,
     ),
 
+    preserveEntrySignatures: "strict",
     onwarn,
   },
 
   // serviceworker: {
-  //   input: config.serviceworker.input(),
+  //   input: config.serviceworker.input().replace(/\.js$/, ".ts"),
   //   output: config.serviceworker.output(),
   //   plugins: [
   //     resolve(),
@@ -192,9 +203,11 @@ export default {
   //       "process.env.NODE_ENV": JSON.stringify(mode),
   //     }),
   //     commonjs(),
+  //     typescript({ sourceMap: dev }),
   //     !dev && terser(),
   //   ],
 
+  //   preserveEntrySignatures: false,
   //   onwarn,
   // },
 }

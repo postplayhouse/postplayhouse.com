@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte"
   import site from "../data/site"
   import Bio from "../components/Bio.svelte"
