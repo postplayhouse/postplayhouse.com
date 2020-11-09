@@ -46,7 +46,7 @@ Experience cuisine prepared by Chadron State College Dining Services-Creative Di
 
 This is an exclusive event and tickets are _limited_. Tickets must be purchased in advance either [through our online box office](https://postplayhousetickets.universitytickets.com/user_pages/event.asp?id=757&cid=74) or by calling { site.boxOfficePhone }.
 
-Tickets are \$100 per person and include the cost of dinner and two cocktails of your choice, provided by the Bean Broker. Cash bar will remain open during the event.
+Tickets are $100 per person and include the cost of dinner and two cocktails of your choice, provided by the Bean Broker. Cash bar will remain open during the event.
 
 In addition, the purchase of your ticket provides you the opportunity win an original Kit Watson pastel painting featuring the Post Playhouse. We hope you can join us for this exceptional celebration.
 
