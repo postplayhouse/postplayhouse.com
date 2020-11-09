@@ -16,7 +16,6 @@
 <script lang="ts">
   export let seasons
 
-  const toInt = (s) => parseInt(s, 10)
   const years = Object.keys(seasons)
 </script>
 

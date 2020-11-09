@@ -33,181 +33,6 @@ $subtle-bg-alt: $test-color;
 $table-border-color: $test-color;
 $article-link-visited: $test-color;
 /**/
-  .group:after,
-  .wrapper:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
-  .no-break {
-    white-space: nowrap;
-  }
-
-  .clear {
-    clear: both;
-  }
-
-  .center {
-    text-align: center;
-  }
-
-  .switcher {
-    border: 1px solid #2b8609;
-    border-radius: 3px;
-    display: inline-block;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  .switcher a {
-    display: inline-block;
-    padding: 3px 10px;
-    cursor: pointer;
-  }
-  @media (min-width: 1000px) {
-    .switcher a {
-      border-right: 1px solid #2b8609;
-    }
-  }
-  .switcher a:hover {
-    color: #2b8609;
-    background-color: #eaefe4;
-  }
-  .switcher a:last-child {
-    border-right: none;
-  }
-  .switcher a.active {
-    background-color: #2b8609;
-    color: #fff;
-  }
-
-  .captioned-image {
-    background-color: #eaefe4;
-    padding: 8px;
-    margin: 20px;
-  }
-  .captioned-image img {
-    margin-bottom: 8px;
-    width: 100%;
-  }
-  .captioned-image .caption {
-    text-align: center;
-  }
-  @media (min-width: 1000px) {
-    .captioned-image .caption {
-      font-size: 0.75em;
-    }
-  }
-
-  @media (min-width: 1000px) {
-    .six {
-      width: 49%;
-    }
-
-    .four {
-      width: 32%;
-    }
-
-    .three {
-      width: 25%;
-    }
-  }
-  .outlined {
-    background-color: #eaefe4;
-    padding: 8px;
-  }
-
-  .right {
-    float: right;
-    margin-right: 0;
-  }
-
-  .left {
-    float: left;
-    margin-left: 0;
-  }
-
-  @media (max-width: 999px) {
-    .left.six,
-    .left.four,
-    .left.three,
-    .right.six,
-    .right.four,
-    .right.three {
-      float: none;
-    }
-  }
-  @media (max-width: 999px) {
-    .captioned-image.six.left,
-    .captioned-image.six.right {
-      float: none;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-
-  .button {
-    background: #33921b;
-    /* Old browsers */
-    background: -webkit-linear-gradient(top, #33921b 0%, #246713 100%);
-    /* Chrome 10+, Safari 5.1+ */
-    background: linear-gradient(to bottom, #33921b 0%, #246713 100%);
-    /* W3C */
-    border: none;
-    border-bottom: 3px solid #153c0b;
-    border-radius: 2px;
-    color: #fff;
-    display: inline-block;
-    padding: 11px 24px 10px;
-    text-decoration: none;
-    font-size: 100%;
-    color: #fff !important;
-  }
-  .button:hover,
-  .button:focus {
-    background: #4ad327;
-    /* Old browsers */
-    background: -webkit-linear-gradient(top, #4ad327 0%, #3ba81f 100%);
-    /* Chrome 10+, Safari 5.1+ */
-    background: linear-gradient(to bottom, #4ad327 0%, #3ba81f 100%);
-    /* W3C */
-    outline: none;
-  }
-  .button:active {
-    background: #246713;
-    /* Old browsers */
-    background: -webkit-linear-gradient(top, #246713 0%, #33921b 100%);
-    /* Chrome 10+, Safari 5.1+ */
-    background: linear-gradient(to bottom, #246713 0%, #33921b 100%);
-    /* W3C */
-    border: none;
-    border-top: 3px solid #153c0b;
-    padding: 10px 24px 11px;
-  }
-  .button[disabled],
-  .button[disabled]:hover,
-  .button[disabled]:focus,
-  .button[disabled]:active,
-  .button.disabled,
-  .button.disabled:hover,
-  .button.disabled:focus,
-  .button.disabled:active {
-    background: #33921b;
-    /* Old browsers */
-    background: -webkit-linear-gradient(top, #33921b 0%, #246713 100%);
-    /* Chrome 10+, Safari 5.1+ */
-    background: linear-gradient(to bottom, #33921b 0%, #246713 100%);
-    /* W3C */
-    border: none;
-    border-bottom: 3px solid #153c0b;
-    border-radius: 2px;
-    color: #fff;
-    display: inline-block;
-    padding: 11px 24px 10px;
-    text-decoration: none;
-    font-size: 100%;
-    opacity: 0.5;
-  }
 
   .calendar-component-wrapper {
     font-family: proxima-nova, sans-serif;
@@ -280,12 +105,6 @@ $article-link-visited: $test-color;
     border-color: #58a7e6;
     text-shadow: 0.035em 0.035em 0px #0f3e63, 0.035em 0.07em 0px #0f3e63;
   }
-  .calendar-filters .filter.show-6,
-  .calendar-filters .filter.show-7,
-  .calendar-filters .filter.show-8,
-  .calendar-filters .filter.show-9 {
-    display: none;
-  }
   .calendar-filters .filter.show-1.selected {
     background-color: #e0aa36;
   }
@@ -300,10 +119,6 @@ $article-link-visited: $test-color;
   }
   .calendar-filters .filter.show-5.selected {
     background-color: #1c75bc;
-  }
-
-  .is-editing .proportional-wrapper {
-    max-width: 100%;
   }
 
   .proportional-wrapper {
@@ -475,10 +290,6 @@ $article-link-visited: $test-color;
   }
   .day-name .short {
     display: none;
-  }
-
-  .day.error {
-    background: red;
   }
 
   .day.dark {

@@ -4,7 +4,7 @@
     const data = await res.json()
 
     if (res.status === 200) {
-      return { site: data.site, productions: data.productions }
+      return { productions: data.productions }
     } else {
       this.error(res.status, data.message)
     }
@@ -13,7 +13,6 @@
 
 <script lang="ts">
   import Production from "../../components/Production.svelte"
-  export let site
   export let productions
 </script>
 

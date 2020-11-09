@@ -6,7 +6,7 @@
     const data = await res.json()
 
     if (res.status === 200) {
-      return { site: data.site, seasons: data.seasons }
+      return { seasons: data.seasons }
     } else {
       this.error(res.status, data.message)
     }
