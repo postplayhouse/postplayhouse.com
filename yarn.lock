@@ -5795,9 +5795,9 @@ svelte-check@^1.0.46:
     svelte-preprocess "^4.0.0"
     typescript "*"
 
-svelte-image@happycollision/svelte-image#beb2e192:
+svelte-image@happycollision/svelte-image#367befb9:
   version "0.1.5-pre"
-  resolved "https://codeload.github.com/happycollision/svelte-image/tar.gz/beb2e1923ef68d29b12b50b6ad092f1a9540aafa"
+  resolved "https://codeload.github.com/happycollision/svelte-image/tar.gz/367befb9b8a9ddc0832b33c1381937f9d82708b6"
   dependencies:
     potrace "^2.1.2"
     sharp "^0.22.1"
