@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte"
   import site from "../data/site"
   import Bio from "../components/Bio.svelte"
@@ -168,9 +168,7 @@
     serverError: "serverError",
   }
 
-  let creds = undefined
   let badPassphrase = false
-  let tries = 0
 
   let state = states.unauthenticated
 
@@ -189,7 +187,7 @@
   $: showSuccess = state === states.success
   $: showError = state === states.error
 
-  function dispatch(event, requirements) {
+  function dispatch(event) {
     if (event === events.foundNoFetch) {
       return (state = states.noFetch)
     }

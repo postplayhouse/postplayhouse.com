@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte"
-  export let status
-  export let error
+  export let status: number
+  export let error: Error
 
   $: matchesOldRoutes = false
   $: tryLocation = ""
@@ -46,7 +46,7 @@
   <title>{status}</title>
 </svelte:head>
 
-{#if (status === 404) & matchesOldRoutes}{(window.location = tryLocation)}{/if}
+{#if status === 404 && matchesOldRoutes}{(window.location = tryLocation)}{/if}
 
 <h1>{status}</h1>
 <p>{error.message}</p>

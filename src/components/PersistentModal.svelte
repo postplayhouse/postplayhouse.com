@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   /**
    * Like the regular modal, except the showing and hiding is all done via the
    * `show` prop. And the contents of the modal are always loaded into the DOM.

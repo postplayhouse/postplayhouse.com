@@ -1,19 +1,18 @@
-<script context="module">
+<script lang="ts" context="module">
   export async function preload({ params, query }) {
     const res = await this.fetch(`data/productions/2019.json`)
     const data = await res.json()
 
     if (res.status === 200) {
-      return { site: data.site, productions: data.productions }
+      return { productions: data.productions }
     } else {
       this.error(res.status, data.message)
     }
   }
 </script>
 
-<script>
+<script lang="ts">
   import Production from "../../components/Production.svelte"
-  export let site
   export let productions
 </script>
 

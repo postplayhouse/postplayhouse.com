@@ -6,9 +6,9 @@ excerpt: "“...we’d like to bring some of the same experiences to them as we'
 image: /images/2020/homestake.jpg
 ---
 
-```js exec
-export let excerpt = false
-```
+<script lang="ts">
+  export let excerpt = false
+</script>
 
 {#if excerpt}
 

@@ -2,9 +2,9 @@
 title: Gifts
 ---
 
-```js exec
-import site from "../data/site"
-```
+<script lang="ts">
+  import site from "../data/site"
+</script>
 
 <!--Now when you buy a gift via our [Online Box Office]({site.ticketsLink}), you can print off any of our certificates/subscription cards below and give them to the recipient! Use the information in your confirmation email to fill out the gift card. Be sure to write in your Record Locator number.
 

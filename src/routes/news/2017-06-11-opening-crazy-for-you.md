@@ -5,16 +5,16 @@ single_featured: false
 image: /images/2017/crazy-for-you-fb.png
 ---
 
-```js module
-import { preload as p } from "../data/preload"
-export const preload = p
-```
+<script lang="ts" context="module">
+  import { preload as p } from "../data/preload"
+  export const preload = p
+</script>
 
-```js exec
-export let site
-import Markdown from "../../components/Markdown.svelte"
-let imagePath = `/images/2017/${site.data.productions["2017"][2].image}`
-```
+<script lang="ts">
+  export let site
+  import Markdown from "../../components/Markdown.svelte"
+  let imagePath = `/images/2017/${site.data.productions["2017"][2].image}`
+</script>
 
 ![Crazy for You logo]({imagePath})
 

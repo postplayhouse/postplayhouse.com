@@ -1,4 +1,4 @@
-<script context="module">
+<script lang="ts" context="module">
   export async function preload({ params, query }) {
     // the `slug` parameter is available because
     // this file is called [slug].svelte
@@ -13,11 +13,9 @@
   }
 </script>
 
-<script>
-  export let site
+<script lang="ts">
   export let seasons
 
-  const toInt = (s) => parseInt(s, 10)
   const years = Object.keys(seasons)
 </script>
 

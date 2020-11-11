@@ -1,4 +1,4 @@
-<script context="module">
+<script lang="ts" context="module">
   import siteData from "../data/site"
   export async function preload({ params, query }) {
     const res = await this.fetch(`data/productions/${siteData.season}.json`)
@@ -12,7 +12,7 @@
   }
 </script>
 
-<script>
+<script lang="ts">
   import SeatingChart from "../components/SeatingChart.svelte"
   import TicketPolicy from "../components/TicketPolicy.md"
   export let site

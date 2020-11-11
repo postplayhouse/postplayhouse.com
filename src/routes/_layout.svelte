@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
   import Nav from "../components/Nav.svelte"
   import Header from "../components/Header.svelte"
   import Footer from "../components/Footer.svelte"
   import PersistentModal from "../components/PersistentModal.svelte"
   import { showDonateModal } from "../data/stores"
 
-  export let segment
+  export let segment: string
 </script>
 
 <style>

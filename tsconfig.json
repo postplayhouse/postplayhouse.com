@@ -1,14 +1,6 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "allowJs": true,
-    "noEmit": true,
-    "checkJs": true,
-    "target": "es5",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["dom", "esnext"]
-  },
-  "include": ["./src/**/*", "./typings.d.ts"],
-  "exclude": ["./src/node_modules", "./node_modules"]
+  "extends": "@tsconfig/svelte/tsconfig.json",
+
+  "include": ["src/**/*", "src/node_modules", "./typings.d.ts"],
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
 }

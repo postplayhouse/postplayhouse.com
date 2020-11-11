@@ -1,29 +1,3 @@
-<script>
-  import { onMount } from "svelte"
-
-  onMount(() => {
-    let attmpts = 0
-    function mailchimpStuff() {
-      if (!jQuery) {
-        if (attempts < 10) return
-        attempts++
-        return setTimeout(mailchimpStuff, 500)
-      }
-      ;(function ($) {
-        window.fnames = new Array()
-        window.ftypes = new Array()
-        fnames[0] = "EMAIL"
-        ftypes[0] = "email"
-        fnames[1] = "FNAME"
-        ftypes[1] = "text"
-        fnames[2] = "LNAME"
-        ftypes[2] = "text"
-      })(jQuery)
-      var $mcj = jQuery.noConflict(true)
-    }
-  })
-</script>
-
 <!--End mc_embed_signup-->
 <style>
   #mc_embed_signup form {

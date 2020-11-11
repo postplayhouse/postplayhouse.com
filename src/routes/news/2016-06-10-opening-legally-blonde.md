@@ -5,15 +5,15 @@ featured: false
 image: /images/2016/opening-blonde.jpg
 ---
 
-```js module
-import { preload as p } from "../data/preload"
-export const preload = p
-```
+<script lang="ts" context="module">
+  import { preload as p } from "../data/preload"
+  export const preload = p
+</script>
 
-```js exec
-export let site
-import Markdown from "../../components/Markdown.svelte"
-```
+<script lang="ts">
+  export let site
+  import Markdown from "../../components/Markdown.svelte"
+</script>
 
 <Markdown source={site.data.productions["2016"][3].description} />
 

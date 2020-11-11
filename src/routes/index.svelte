@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Mailer from "../components/Mailer.svelte"
   import Modal from "../components/Modal.svelte"
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import uniq from "lodash/uniq"
   import flatten from "lodash/flatten"
   import Markdown from "./Markdown.svelte"

@@ -4,9 +4,9 @@ title: The 2016 Post Playhouse, Inc., Season Announced
 excerpt: Wow! Do we *ever* have a season planned for 2016, the 49th year of our existence. We think you are going to love the musicals that were chosen with you in mind...
 ---
 
-```js exec
-import site from "../../data/site"
-```
+<script lang="ts">
+  import site from "../../data/site"
+</script>
 
 Wow! Do we _ever_ have a season planned for 2016, the 49th year of our existence. We think you are going to love the musicals that were chosen with you in mind. So plan to see the magic of:
 

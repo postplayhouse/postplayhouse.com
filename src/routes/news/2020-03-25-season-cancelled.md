@@ -4,12 +4,12 @@ title: "2020 Season Cancelled"
 sticky: false
 ---
 
-```css style
-p,
-ul {
-  margin-bottom: 1em;
-}
-```
+<style>
+  p,
+  ul {
+    margin-bottom: 1em;
+  }
+</style>
 
 <h1 class="font-uber text-3xl text-center mb-4">2021 Season in planning</h1>
 

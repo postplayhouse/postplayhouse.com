@@ -1,4 +1,4 @@
-<script context="module">
+<script lang="ts" context="module">
   export async function preload({ params, query }) {
     // the `slug` parameter is available because
     // this file is called [slug].svelte
@@ -6,15 +6,14 @@
     const data = await res.json()
 
     if (res.status === 200) {
-      return { site: data.site, seasons: data.seasons }
+      return { seasons: data.seasons }
     } else {
       this.error(res.status, data.message)
     }
   }
 </script>
 
-<script>
-  export let site
+<script lang="ts">
   export let seasons
   const years = Object.keys(seasons)
 </script>
