@@ -7,13 +7,12 @@ import svelte from "rollup-plugin-svelte"
 import babel from "@rollup/plugin-babel"
 import { terser } from "rollup-plugin-terser"
 import json from "@rollup/plugin-json"
-import image from "svelte-image"
 import config from "sapper/config/rollup.js"
-import { mdsvex } from "mdsvex"
-import XXhash from "xxhash"
 import pkg from "./package.json"
-import sveltePreprocess from "svelte-preprocess"
 import typescript from "@rollup/plugin-typescript"
+
+// file needs to be commonjs so must import as such
+const svelteClientConfig = require("./svelte.config.runtime")
 
 const mode = process.env.NODE_ENV
 const dev = mode === "development"
@@ -25,77 +24,6 @@ const onwarn = (warning, onwarn) =>
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   warning.code === "THIS_IS_UNDEFINED" ||
   onwarn(warning)
-const cache = {}
-
-function cached(name, obj) {
-  return {
-    ...obj,
-    markup: ({ content, filename }) => {
-      const key = `${name}:${filename}`
-
-      if (
-        cache[key] &&
-        XXhash.hash(Buffer.from(content, "utf8"), 0xcafebabe) ===
-          cache[key].hash
-      ) {
-        return cache[key].result
-      }
-
-      const result = obj.markup({ content, filename })
-
-      cache[key] = {
-        hash: XXhash.hash(Buffer.from(content, "utf8"), 0xcafebabe),
-        result,
-      }
-
-      return result
-    },
-  }
-}
-
-const preprocess = [
-  cached(
-    "mdsvex",
-    mdsvex({
-      smartypants: true,
-      extensions: [".md"],
-      layout: path.join(__dirname, "./src/components/DefaultMdLayout.svelte"),
-    }),
-  ),
-  cached(
-    "image",
-    image({
-      optimizeAll: true, // optimize all images discovered in img tags
-      inlineBelow: 10000, // inline all images in img tags below 10kb
-      compressionLevel: 5, // png quality level
-      quality: 50, // jpeg/webp quality level
-      tagName: "Image", // default component name
-      sizes: [400, 800, 1200], // array of sizes for srcset in pixels
-      breakpoints: [375, 768, 1024], // array of screen size breakpoints at which sizes above will be applied
-      outputDir: "g/",
-      placeholder: "trace", // or "blur",
-      webpOptions: {
-        // WebP options [sharp docs](https://sharp.pixelplumbing.com/en/stable/api-output/#webp)
-        quality: 75,
-        lossless: false,
-        force: true,
-      },
-      webp: true,
-      trace: {
-        // Potrace options for SVG placeholder
-        background: "#fff",
-        color: "#002fa7",
-        threshold: 120,
-      },
-      processFolders: ["images/people"],
-      processFoldersRecursively: true,
-      processFoldersSizes: true,
-    }),
-  ),
-  cached("autoPreprocess", sveltePreprocess()),
-]
-
-const extensions = [".svelte", ".md"]
 
 export default {
   client: {
@@ -106,13 +34,8 @@ export default {
         "process.browser": true,
         "process.env.NODE_ENV": JSON.stringify(mode),
       }),
-      svelte({
-        dev,
-        hydratable: true,
-        emitCss: true,
-        preprocess,
-        extensions,
-      }),
+
+      svelte(svelteClientConfig),
       url({
         sourceDir: path.resolve(__dirname, "src/node_modules/images"),
         publicPath: "/client/",
@@ -169,10 +92,7 @@ export default {
       }),
       svelte({
         generate: "ssr",
-        hydratable: true,
-        dev,
-        preprocess,
-        extensions,
+        ...svelteClientConfig,
       }),
       url({
         sourceDir: path.resolve(__dirname, "src/node_modules/images"),

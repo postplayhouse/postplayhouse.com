@@ -15,6 +15,10 @@ module.exports = {
       files: ["**/*.svelte"],
       processor: "svelte3/svelte3",
     },
+    {
+      files: ["**/*.test.js"],
+      env: { jest: true },
+    },
   ],
   rules: {
     "no-unused-vars": [
