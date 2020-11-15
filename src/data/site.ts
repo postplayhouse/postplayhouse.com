@@ -21,4 +21,4 @@ export default {
   boxOfficePhone: "1-888-665-1976",
   ticketsLink: "https://postplayhousetickets.universitytickets.com/",
   ticketsAvailable,
-}
+} as const
