@@ -38,4 +38,4 @@ function dataFromDirectory(directoryPath) {
   return { [dirname]: data }
 }
 
-export default dataFromDirectory(dir).data
+export default dataFromDirectory(dir).data as YearlyData
