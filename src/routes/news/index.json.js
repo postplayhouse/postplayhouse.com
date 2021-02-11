@@ -1,7 +1,7 @@
-import posts from "./_posts-metadata"
+import postsData from "./_posts-metadata"
 
 const contents = JSON.stringify(
-  posts.reverse().map(({ title, slug, date }) => ({ title, slug, date })),
+  postsData.reverse().map(({ title, slug, date }) => ({ title, slug, date })),
 )
 
 export function get(req, res) {
