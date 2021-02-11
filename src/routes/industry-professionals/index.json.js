@@ -1,8 +1,6 @@
-import { postsMetadata } from "../../helpers/blog-dir-metadata"
+import postsData from "./_posts-metadata"
 
-const contents = JSON.stringify(
-  postsMetadata("src/routes/industry-professionals/").reverse(),
-)
+const contents = JSON.stringify(postsData.reverse())
 
 export function get(req, res) {
   res.writeHead(200, {
