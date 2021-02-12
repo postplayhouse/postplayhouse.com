@@ -23,10 +23,16 @@
 
   let noOpenings = "There are currently no openings for our upcoming season."
 
-  if (new Date() < new Date(site.season, 2)) {
-    // Is past season end
+  const today = new Date()
+  const marchOfCurrentSeason = new Date(site.season, 2)
+  const midAugustOfCurrentSeason = new Date(site.season, 7, 20)
+
+  const isAfterCurrentSeason = today > midAugustOfCurrentSeason
+  const isBeforeMarchOfCurrentSeason = today < marchOfCurrentSeason
+
+  if (isAfterCurrentSeason || isBeforeMarchOfCurrentSeason) {
     noOpenings +=
-      "  We generally hold professional audtions and start looking for summer staff in the first quarter of the year."
+      " We generally hold professional audtions and start looking for summer staff in the first quarter of the year."
   }
 </script>
 
