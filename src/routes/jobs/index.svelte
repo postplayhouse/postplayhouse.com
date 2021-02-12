@@ -6,7 +6,7 @@
   }
 
   export function preload({ params, query }) {
-    return this.fetch(`industry-professionals.json`)
+    return this.fetch(`jobs.json`)
       .then((r) => r.json())
       .then((posts: Post[]) => {
         return { posts: posts.filter((p) => p.active) }
