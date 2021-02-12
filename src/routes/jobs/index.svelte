@@ -58,3 +58,19 @@
 {:else}
   <Markdown source="{noOpenings}" />
 {/if}
+
+<hr class="mt-8" />
+
+<p class="mt-4">
+  You can subscribe to our job notifications so you never miss when a new job or
+  audition notice goes live:
+</p>
+
+<ul class="list-none">
+  <li>
+    RSS:
+    <a
+      class="link-green"
+      href="{site.url}/jobs/feeds/rss">{site.url}/jobs/feeds/rss</a>
+  </li>
+</ul>

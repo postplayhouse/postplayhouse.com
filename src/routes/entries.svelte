@@ -2,7 +2,13 @@
   const yearsWithPages = [2019, 2020]
   const yearsWithCalendars = [2020]
 
-  const routes = ["/", "/bio-submission", "/calendar", "/productions"]
+  const routes = [
+    "/",
+    "/bio-submission",
+    "/calendar",
+    "/productions",
+    "/jobs/feeds/rss",
+  ]
     .concat(yearsWithPages.map((y) => `/productions/${y}`))
     .concat(yearsWithPages.map((y) => `/who/${y}`))
     .concat(yearsWithCalendars.map((y) => `/calendar/${y}`))

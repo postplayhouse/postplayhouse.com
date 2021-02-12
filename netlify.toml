@@ -111,9 +111,10 @@
 
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
-  # for = "/*"
+  for = "/jobs/feeds/rss"
 
   [headers.values]
+    Content-Type = "application/rss+xml"
     # X-Frame-Options = "DENY"
     # X-XSS-Protection = "1; mode=block"
     # Content-Security-Policy = "frame-ancestors https://www.facebook.com"
