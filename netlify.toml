@@ -115,6 +115,13 @@
 
   [headers.values]
     Content-Type = "application/rss+xml"
+
+[[headers]]
+  # Define which paths this specific [[headers]] block will cover.
+  for = "/jobs/feeds/json"
+
+  [headers.values]
+    Content-Type = "application/feed+json"
     # X-Frame-Options = "DENY"
     # X-XSS-Protection = "1; mode=block"
     # Content-Security-Policy = "frame-ancestors https://www.facebook.com"

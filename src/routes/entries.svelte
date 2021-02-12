@@ -8,6 +8,7 @@
     "/calendar",
     "/productions",
     "/jobs/feeds/rss",
+    "/jobs/feeds/json",
   ]
     .concat(yearsWithPages.map((y) => `/productions/${y}`))
     .concat(yearsWithPages.map((y) => `/who/${y}`))

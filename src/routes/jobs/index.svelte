@@ -73,4 +73,10 @@
       class="link-green"
       href="{site.url}/jobs/feeds/rss">{site.url}/jobs/feeds/rss</a>
   </li>
+  <li>
+    JSON:
+    <a
+      class="link-green"
+      href="{site.url}/jobs/feeds/json">{site.url}/jobs/feeds/json</a>
+  </li>
 </ul>
