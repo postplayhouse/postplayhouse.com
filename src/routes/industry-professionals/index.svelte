@@ -52,3 +52,5 @@
 {:else}
   <Markdown source="{noOpenings}" />
 {/if}
+
+<p>You can subscribe to our job notifications to be alerted</p>
