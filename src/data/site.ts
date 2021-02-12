@@ -4,11 +4,16 @@ const prod = process.env.NODE_ENV === "production"
 const castingComplete = false
 const ticketsAvailable = false
 
+// When doing a Netlify PR Deploy, use the provided url
+const url = prod
+  ? process.env.DEPLOY_URL || "https://postplayhouse.com"
+  : "http://localhost:3000"
+
 // All of this "site" data should eventually be moved to a better place for
 // Sapper. For now, for backward compatibility, it is all just here.
 export default {
   baseurl: "",
-  url: prod ? "https://postplayhouse.com" : "",
+  url,
   maintainerEmail: "don@postplayhouse.com",
   icon: "/images/post-playhouse-logo.png",
   title: "Post Playhouse",
