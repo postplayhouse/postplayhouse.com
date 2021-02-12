@@ -17,6 +17,7 @@
 <script lang="ts">
   import site from "../../data/site"
   import Markdown from "../../components/Markdown.svelte"
+  import Modal from "../../components/Modal.svelte"
   export let posts: Post[]
 
   const title = "Work at Post Playhouse"
@@ -34,6 +35,9 @@
     noOpenings +=
       " We generally hold professional audtions and start looking for summer staff in the first quarter of the year."
   }
+
+  let showFeedsLinks = false
+  const toggleFeedsLinks = () => (showFeedsLinks = !showFeedsLinks)
 </script>
 
 <svelte:head>
@@ -49,7 +53,12 @@
   have finalized plans for 2021.
 </p>
 
-<h2 class="h2 mb-4">Summer {site.season}</h2>
+<div class="flex items-center my-4">
+  <h2 class="h2">Summer {site.season}</h2>
+  <button class="btn btn-p ml-4" on:click="{toggleFeedsLinks}">
+    Subscribe to Jobs
+  </button>
+</div>
 
 {#if posts.length}
   {#each posts as post}
@@ -59,24 +68,37 @@
   <Markdown source="{noOpenings}" />
 {/if}
 
-<hr class="mt-8" />
+{#if showFeedsLinks}
+  <Modal on:close="{toggleFeedsLinks}">
+    <p class="my-4">
+      You can subscribe to our job notifications so you never miss when a new
+      job or audition notice goes live:
+    </p>
 
-<p class="mt-4">
-  You can subscribe to our job notifications so you never miss when a new job or
-  audition notice goes live:
-</p>
+    <ul class="my-4">
+      <li>
+        RSS:
+        <a
+          class="link-green"
+          href="{site.url}/jobs/feeds/rss">{site.url}/jobs/feeds/rss</a>
+      </li>
+      <li>
+        JSON Feed:
+        <a
+          class="link-green"
+          href="{site.url}/jobs/feeds/json">{site.url}/jobs/feeds/json</a>
+      </li>
+    </ul>
 
-<ul class="list-none">
-  <li>
-    RSS:
-    <a
-      class="link-green"
-      href="{site.url}/jobs/feeds/rss">{site.url}/jobs/feeds/rss</a>
-  </li>
-  <li>
-    JSON:
-    <a
-      class="link-green"
-      href="{site.url}/jobs/feeds/json">{site.url}/jobs/feeds/json</a>
-  </li>
-</ul>
+    <p class="mt-8 text-sm">
+      Don't know what those links are? If you have an RSS reader you can give it
+      one of the links above (probably the RSS one) and it will subscribe you to
+      this page. Kind of like podcasts, but for reading. And instead of giving
+      the url above to iTunes (or your favorite podcast player), you'll give it
+      to
+      <a class="link-green" href="https://netnewswire.com">NetNewsWire</a>,
+      <a class="link-green" href="https://feedly.com">Feedly</a>, or your
+      favorite RSS app.
+    </p>
+  </Modal>
+{/if}
