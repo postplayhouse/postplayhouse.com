@@ -25,15 +25,19 @@ const onwarn = (warning, onwarn) =>
   warning.code === "THIS_IS_UNDEFINED" ||
   onwarn(warning)
 
+const envVars = {
+  "process.browser": "true",
+  "process.env.NODE_ENV": JSON.stringify(mode),
+  "process.env.DEPLOY_PRIME_URL": JSON.stringify(process.env.DEPLOY_PRIME_URL),
+  "process.env.CONTEXT": JSON.stringify(process.env.CONTEXT), // `production`, `deploy-preview` or `branch-deploy`
+}
+
 export default {
   client: {
     input: config.client.input().replace(/\.js$/, ".ts"),
     output: config.client.output(),
     plugins: [
-      replace({
-        "process.browser": true,
-        "process.env.NODE_ENV": JSON.stringify(mode),
-      }),
+      replace(envVars),
 
       svelte(svelteClientConfig),
       url({
@@ -86,10 +90,7 @@ export default {
     output: config.server.output(),
     plugins: [
       json(),
-      replace({
-        "process.browser": false,
-        "process.env.NODE_ENV": JSON.stringify(mode),
-      }),
+      replace({ ...envVars, "process.env.browser": "false" }),
       svelte({
         generate: "ssr",
         ...svelteClientConfig,

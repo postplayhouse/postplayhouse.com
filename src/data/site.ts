@@ -1,12 +1,16 @@
 const prod = process.env.NODE_ENV === "production"
+const live = process.env.CONTEXT === "production"
+const liveUrl = "https://postplayhouse.com"
 
 // Actual values. If dev, these may change below.
 const castingComplete = false
 const ticketsAvailable = false
 
 // When doing a Netlify PR Deploy, use the provided url
-const url = prod
-  ? process.env.DEPLOY_URL || "https://postplayhouse.com"
+const url = live
+  ? liveUrl
+  : prod
+  ? process.env.DEPLOY_PRIME_URL || liveUrl
   : "http://localhost:3000"
 
 // All of this "site" data should eventually be moved to a better place for
