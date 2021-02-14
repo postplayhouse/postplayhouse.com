@@ -26,7 +26,7 @@ const onwarn = (warning, onwarn) =>
   onwarn(warning)
 
 const envVars = {
-  "process.browser": "true",
+  BROWSER: "true",
   "process.env.NODE_ENV": JSON.stringify(mode),
   "process.env.DEPLOY_PRIME_URL": JSON.stringify(process.env.DEPLOY_PRIME_URL),
   "process.env.CONTEXT": JSON.stringify(process.env.CONTEXT), // `production`, `deploy-preview` or `branch-deploy`
@@ -90,7 +90,7 @@ export default {
     output: config.server.output(),
     plugins: [
       json(),
-      replace({ ...envVars, "process.env.browser": "false" }),
+      replace({ ...envVars, BROWSER: "false" }),
       svelte({
         generate: "ssr",
         ...svelteClientConfig,

@@ -5,14 +5,19 @@
    * This allows forms to not lose data after closing, etc.
    */
   import debounce from "lodash/debounce"
-  import { onMount, onDestroy, createEventDispatcher } from "svelte"
+  import { createEventDispatcher } from "svelte"
 
   import Freeze from "./Freeze.svelte"
+  import { lifecycle } from "./Modal/modal"
+  import ModalBase from "./Modal/ModalBase.svelte"
 
   export let show = true
 
-  let ref
-  let portal
+  const dispatch = createEventDispatcher()
+
+  let ref: { current: HTMLDivElement } = { current: null }
+
+  lifecycle(ref, "persistent-modal")
 
   let transitionedOut = false
   const delayedTransition = debounce(() => (transitionedOut = !show), 200)
@@ -24,32 +29,7 @@
       delayedTransition()
     }
   }
-
-  const dispatch = createEventDispatcher()
-
-  onMount(() => {
-    portal = document.createElement("div")
-    portal.className = "persistent-modal"
-    document.body.appendChild(portal)
-    portal.appendChild(ref)
-  })
-
-  onDestroy(() => {
-    try {
-      document.body.removeChild(portal)
-    } catch (_) {}
-  })
 </script>
-
-<style>
-  .my-bg {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-
-  .disappear {
-    left: -9999rem;
-  }
-</style>
 
 {#if show}
   <Freeze />
@@ -59,22 +39,11 @@
 elsehwere in the DOM via `onMount` -->
 <div class="hidden">
   <div
-    class="fixed flex justify-center items-center shadow-md my-bg overflow-auto
-    transition-opacity duration-200 {show ? 'opacity-100' : 'opacity-0'}
-    {transitionedOut ? 'disappear' : 'inset-0'}"
-    bind:this="{ref}"
-    on:click|self="{() => dispatch('close')}">
-    <section
-      class="absolute inset-2 block sm:inset-auto sm:top-4 mb-4 sm:w-128
-      sm:min-h-64 p-4 bg-white border-green-600 border-solid border-4">
-      <button
-        class="btn py-1 px-2 leading-none absolute top-0 right-0 -mt-3 -mr-3
-        z-10"
-        on:click="{() => dispatch('close')}">
-        Close
-      </button>
-
+    class="transition-opacity duration-200 {show ? 'opacity-100' : 'opacity-0'}
+    "
+    bind:this="{ref.current}">
+    <ModalBase transitionedOut="{transitionedOut}" dispatch="{dispatch}">
       <slot />
-    </section>
+    </ModalBase>
   </div>
 </div>

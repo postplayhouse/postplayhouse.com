@@ -6,6 +6,7 @@ module.exports = {
   separator: ":",
   theme: {
     screens: {
+      xs: "460px",
       sm: "640px",
       md: "768px",
       lg: "1024px",
@@ -183,6 +184,7 @@ module.exports = {
       0: "0",
       2: "2px",
       4: "4px",
+      6: "6px",
       8: "8px",
     },
     boxShadow: {
