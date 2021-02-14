@@ -1,6 +1,6 @@
 <script lang="ts">
   import Mailer from "../components/Mailer.svelte"
-  import Modal from "../components/Modal.svelte"
+  import Modal from "../components/Modal/Modal.svelte"
 
   import Feature from "./news/2020-06-13-post-playhouse-memories.md"
 

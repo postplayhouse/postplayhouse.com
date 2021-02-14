@@ -7,9 +7,9 @@
   import debounce from "lodash/debounce"
   import { createEventDispatcher } from "svelte"
 
-  import Freeze from "./Freeze.svelte"
-  import { lifecycle } from "./Modal/modal"
-  import ModalBase from "./Modal/ModalBase.svelte"
+  import Freeze from "../Freeze.svelte"
+  import { lifecycle } from "./modal"
+  import ModalBase from "./ModalBase.svelte"
 
   export let show = true
 

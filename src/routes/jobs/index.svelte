@@ -17,7 +17,7 @@
 <script lang="ts">
   import site from "../../data/site"
   import Markdown from "../../components/Markdown.svelte"
-  import Modal from "../../components/Modal.svelte"
+  import Modal from "../../components/Modal/Modal.svelte"
   export let posts: Post[]
 
   const title = "Work at Post Playhouse"
