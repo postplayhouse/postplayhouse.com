@@ -75,14 +75,14 @@
       job or audition notice goes live:
     </p>
 
-    <ul class="my-4">
+    <ul class="my-4 list-none p-0">
       <li>
         RSS:
         <a
           class="link-green"
           href="{site.url}/jobs/feeds/rss">{site.url}/jobs/feeds/rss</a>
       </li>
-      <li>
+      <li class="mt-2">
         JSON Feed:
         <a
           class="link-green"
