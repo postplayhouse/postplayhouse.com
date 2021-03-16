@@ -2,6 +2,7 @@
   import Mailer from "../components/Mailer.svelte"
   import Modal from "../components/Modal/Modal.svelte"
 
+  import Cancel2021 from "./news/2021-03-15-cancelling-2021-season.md"
   import Feature from "./news/2020-06-13-post-playhouse-memories.md"
 
   $: showMailingList = false
@@ -15,7 +16,11 @@
   <title>Post Playhouse</title>
 </svelte:head>
 
-<div class="mb-32 p-2">
+<div class="mb-32 p-2 max-w-2xl mx-auto">
+  <Cancel2021 />
+</div>
+
+<div class="mb-32 p-2 max-w-2xl mx-auto">
   <Feature />
 </div>
 
