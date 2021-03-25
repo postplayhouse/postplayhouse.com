@@ -290,25 +290,25 @@
 #
 #
 
-- first_name: Wally
-  last_name: Seiler
-  location: "Alliance, NE"
+- first_name: Tony
+  last_name: Hindman
+  location: "Hay Springs, NE"
   groups:
     - board
   positions:
     - President of the Board
-  image_year: 2015
-  image_file: wally-seiler.jpg
+  image_year: 2018
+  image_file: tony-hindman.jpg
 
-- first_name: Karleen
-  last_name: Gramberg
-  location: "Chadron, NE"
+- first_name: Janelle
+  last_name: Visser
+  location: "Hemingford, NE"
   groups:
     - board
   positions:
     - Vice President of the Board
-  image_year: 2015
-  image_file: karleen-gramberg.jpg
+  image_year: 2019
+  image_file: janelle-visser.jpg
 
 - first_name: Jo
   last_name: Buchheit
@@ -325,6 +325,7 @@
   groups:
     - board
   positions:
+    - Secretary
   bio: >
     Crawford Clipper/Harrison Sun LLC
   image_year: 2017
@@ -336,10 +337,20 @@
   groups:
     - board
   positions:
+    - Treasurer
   bio: >
     H & R Block
   image_year: 2015
   image_file: tim-gaswick.jpg
+
+- first_name: Karleen
+  last_name: Gramberg
+  location: "Chadron, NE"
+  groups:
+    - board
+  positions:
+  image_year: 2015
+  image_file: karleen-gramberg.jpg
 
 - first_name: Alex
   last_name: Helmbrecht
@@ -348,15 +359,6 @@
     - board
   positions:
   image_year: 2020
-
-- first_name: Tony
-  last_name: Hindman
-  location: "Hay Springs, NE"
-  groups:
-    - board
-  positions:
-  image_year: 2018
-  image_file: tony-hindman.jpg
 
 - first_name: Kathie
   last_name: King
@@ -398,20 +400,11 @@
   image_year: 2015
   image_file: marge-rotherham.jpg
 
-- first_name: Janelle
-  last_name: Visser
-  location: "Hemingford, NE"
+- first_name: Wally
+  last_name: Seiler
+  location: "Alliance, NE"
   groups:
     - board
   positions:
-  image_year: 2019
-  image_file: janelle-visser.jpg
-
-- first_name: Kathryn S.
-  last_name: Worley
-  location: ""
-  groups:
-    - board
-  positions:
-  image_year: 2019
-  image_file: kathy-worley.jpg
+  image_year: 2015
+  image_file: wally-seiler.jpg
