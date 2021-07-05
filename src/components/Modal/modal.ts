@@ -1,7 +1,8 @@
+import { browser } from "$app/env"
 import { onMount } from "svelte"
 
 export function lifecycle(ref: { current: HTMLElement }, name: string) {
-  if (BROWSER)
+  if (browser)
     onMount(function createPortal() {
       const portal = document.createElement("div")
 
