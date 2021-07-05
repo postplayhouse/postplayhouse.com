@@ -6,6 +6,9 @@ import path from "path"
 import { dirname } from "path"
 import { fileURLToPath } from "url"
 
+// import.meta works. The conditions described to make it work are actually in
+// place... ?
+// @ts-expect-error see above
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const _svelteImageConfig = {
@@ -47,7 +50,9 @@ const config = {
       extensions: [".md"],
       layout: path.join(__dirname, "./src/components/DefaultMdLayout.svelte"),
     }),
-    preprocess(),
+    preprocess({
+      postcss: true,
+    }),
   ],
 
   kit: {
@@ -58,3 +63,7 @@ const config = {
 }
 
 export default config
+// Workaround until SvelteKit uses Vite 2.3.8 (and it's confirmed to fix the Tailwind JIT problem)
+const mode = process.env.NODE_ENV
+const dev = mode === "development"
+process.env.TAILWIND_MODE = dev ? "watch" : "build"
