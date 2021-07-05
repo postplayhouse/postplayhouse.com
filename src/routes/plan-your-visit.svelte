@@ -1,12 +1,12 @@
 <script lang="ts" context="module">
-  export async function preload({ params, query }) {
-    const res = await this.fetch(`data/businesses.json`)
+  export async function load(obj) {
+    const res = await obj.fetch(`data/businesses.json`)
     const data = await res.json()
 
     if (res.status === 200) {
       return { businesses: data.businesses }
     } else {
-      this.error(res.status, data.message)
+      obj.error(res.status, data.message)
     }
   }
 </script>
@@ -15,24 +15,6 @@
   import Markdown from "../components/Markdown.svelte"
   export let businesses
 </script>
-
-<style>
-  .supporter:before {
-    content: "Playhouse\aSupporter";
-    white-space: pre;
-    transform: rotate(15deg);
-    position: absolute;
-    right: -1em;
-    top: -0.5em;
-    color: white;
-    background-color: green;
-    border-radius: 8px;
-    padding: 6px;
-    text-align: center;
-    line-height: 1;
-    font-weight: lighter;
-  }
-</style>
 
 <h2 class="h2">Nearby Activities, Attractions, Food, and Lodging</h2>
 
@@ -123,3 +105,21 @@
     (PDF)
   </p>
 </div>
+
+<style>
+  .supporter:before {
+    content: "Playhouse\aSupporter";
+    white-space: pre;
+    transform: rotate(15deg);
+    position: absolute;
+    right: -1em;
+    top: -0.5em;
+    color: white;
+    background-color: green;
+    border-radius: 8px;
+    padding: 6px;
+    text-align: center;
+    line-height: 1;
+    font-weight: lighter;
+  }
+</style>

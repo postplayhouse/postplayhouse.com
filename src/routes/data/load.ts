@@ -1,5 +1,6 @@
-export function preload(_routeInfo) {
-  return this.fetch(`data.json`)
+export function load(obj) {
+  return obj
+    .fetch(`data.json`)
     .then((r) => r.json())
     .then((data) => {
       return { site: data }

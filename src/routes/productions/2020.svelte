@@ -1,12 +1,12 @@
 <script lang="ts" context="module">
-  export async function preload({ params, query }) {
-    const res = await this.fetch(`data/productions/2020.json`)
+  export async function load(obj) {
+    const res = await obj.fetch(`data/productions/2020.json`)
     const data = await res.json()
 
     if (res.status === 200) {
       return { site: data.site, productions: data.productions }
     } else {
-      this.error(res.status, data.message)
+      obj.error(res.status, data.message)
     }
   }
 </script>

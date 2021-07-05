@@ -6,8 +6,8 @@ image: /images/2017/shrek-fb.png
 ---
 
 <script lang="ts" context="module">
-  import { preload as p } from "../data/preload"
-  export const preload = p
+  import { load as p } from "../data/load"
+  export const load = p
 </script>
 
 <script lang="ts">

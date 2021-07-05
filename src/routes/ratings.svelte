@@ -1,13 +1,13 @@
 <script lang="ts" context="module">
   import siteData from "../data/site"
-  export async function preload({ params, query }) {
-    const res = await this.fetch(`data/productions/${siteData.season}.json`)
+  export async function load(obj) {
+    const res = await obj.fetch(`data/productions/${siteData.season}.json`)
     const data = await res.json()
 
     if (res.status === 200) {
       return { site: data.site, productions: data.productions }
     } else {
-      this.error(res.status, data.message)
+      obj.error(res.status, data.message)
     }
   }
 </script>
@@ -51,9 +51,9 @@
     <a href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">
       {site.boxOfficePhone}
     </a>
-    after approximately late-May every year and talk to our summer box office
-    staff. They are always happy to help guide you in choosing which productions
-    to see for the summer.
+    after approximately late-May every year and talk to our summer box office staff.
+    They are always happy to help guide you in choosing which productions to see
+    for the summer.
   </p>
 
   <ul>

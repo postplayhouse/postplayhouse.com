@@ -1,6 +1,7 @@
 <script lang="ts" context="module">
-  export function preload({ params, query }) {
-    return this.fetch(`news.json`)
+  export function load(obj) {
+    return obj
+      .fetch(`news.json`)
       .then((r) => r.json())
       .then((posts) => {
         return { posts }
@@ -11,17 +12,6 @@
 <script lang="ts">
   export let posts
 </script>
-
-<style>
-  ul {
-    margin: 0 0 1em 0;
-    line-height: 1.5;
-  }
-
-  span {
-    font-feature-settings: "tnum";
-  }
-</style>
 
 <svelte:head>
   <title>News</title>
@@ -43,3 +33,14 @@
     </li>
   {/each}
 </ul>
+
+<style>
+  ul {
+    margin: 0 0 1em 0;
+    line-height: 1.5;
+  }
+
+  span {
+    font-feature-settings: "tnum";
+  }
+</style>
