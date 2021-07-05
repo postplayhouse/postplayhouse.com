@@ -1,4 +1,11 @@
 .DS_Store
+node_modules
+/.svelte-kit
+/package
+
+# old ignores
+
+.DS_Store
 .metadata_never_index
 /node_modules/
 /src/node_modules/@sapper/

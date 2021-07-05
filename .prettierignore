@@ -1,1 +1,5 @@
-*.md
+src/**/*.md
+.svelte-kit/**
+static/**
+build/**
+node_modules/**

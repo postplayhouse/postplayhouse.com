@@ -1,8 +1,8 @@
 {
-  "endOfLine": "lf",
-  "trailingComma": "all",
-  "arrowParens": "always",
-  "semi": false,
-  "plugins": ["./node_modules/svelte"],
-  "svelteStrictMode": true
+	"endOfLine": "lf",
+	"trailingComma": "all",
+	"arrowParens": "always",
+	"semi": false,
+	"plugins": ["./node_modules/svelte"],
+	"svelteStrictMode": true
 }
