@@ -127,12 +127,13 @@ function recursiveCopyFiles(oldFolder, newFolder) {
   )
   const files = all.filter((x) => !folders.includes(x))
 
-  const copyingFiles = files.map((file) =>
-    copyFile(
-      path.join(oldFolder, file),
-      path.join(newFolder, file),
-      fs.constants.COPYFILE_EXCL,
-    ).catch(() => {}),
+  const copyingFiles = files.map(
+    (file) =>
+      copyFile(
+        path.join(oldFolder, file),
+        path.join(newFolder, file),
+        fs.constants.COPYFILE_EXCL,
+      ).catch(() => {}), // eslint-disable-line @typescript-eslint/no-empty-function
   )
   const copyingFolders = folders.map((subfolder) =>
     recursiveCopyFiles(
@@ -144,7 +145,7 @@ function recursiveCopyFiles(oldFolder, newFolder) {
   return Promise.all(flatten([copyingFiles, copyingFolders]))
 }
 
-;(async function() {
+;(async function () {
   if (action === "save") {
     // we want to overwrite the destination
     await rimrafContents(sendTo)

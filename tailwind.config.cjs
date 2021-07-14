@@ -62,6 +62,7 @@ const config = {
     },
   },
   plugins: [
+    // @ts-expect-error shrug... this is callable
     plugin(function ({ addUtilities, theme, e }) {
       const spacing = theme("spacing")
 
