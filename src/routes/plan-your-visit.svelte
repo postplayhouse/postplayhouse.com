@@ -1,12 +1,14 @@
 <script lang="ts" context="module">
-  export async function preload({ params, query }) {
-    const res = await this.fetch(`data/businesses.json`)
+  import type { Load } from "@sveltejs/kit"
+
+  export const load: Load = async (obj) => {
+    const res = await obj.fetch(`data/businesses.json`)
     const data = await res.json()
 
     if (res.status === 200) {
-      return { businesses: data.businesses }
+      return { props: { businesses: data.businesses } }
     } else {
-      this.error(res.status, data.message)
+      return { status: res.status, error: new Error(data.message) }
     }
   }
 </script>

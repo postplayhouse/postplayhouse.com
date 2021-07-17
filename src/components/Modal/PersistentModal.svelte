@@ -4,7 +4,7 @@
    * `show` prop. And the contents of the modal are always loaded into the DOM.
    * This allows forms to not lose data after closing, etc.
    */
-  import debounce from "lodash/debounce"
+  import debounce from "lodash/debounce.js"
   import { createEventDispatcher } from "svelte"
 
   import Freeze from "../Freeze.svelte"
@@ -41,7 +41,8 @@ elsehwere in the DOM via `onMount` -->
   <div
     class="transition-opacity duration-200 {show ? 'opacity-100' : 'opacity-0'}
     "
-    bind:this="{ref.current}">
+    bind:this="{ref.current}"
+  >
     <ModalBase transitionedOut="{transitionedOut}" dispatch="{dispatch}">
       <slot />
     </ModalBase>

@@ -1,14 +1,14 @@
 <script lang="ts" context="module">
   export const year = 2020
 
-  // export async function preload({ params, query }) {
-  //   const res = await this.fetch(`data/productions/${year}.json`)
+  // export async function load(obj) {
+  //   const res = await obj.fetch(`data/productions/${year}.json`)
   //   const data = await res.json()
 
   //   if (res.status === 200) {
   //     return { productions: data.productions }
   //   } else {
-  //     this.error(res.status, data.message)
+  //     obj.error(res.status, data.message)
   //   }
   // }
 </script>

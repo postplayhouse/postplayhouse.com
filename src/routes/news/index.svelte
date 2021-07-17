@@ -1,9 +1,11 @@
 <script lang="ts" context="module">
-  export function preload({ params, query }) {
-    return this.fetch(`news.json`)
+  import type { Load } from "@sveltejs/kit"
+  export const load: Load = (obj) => {
+    return obj
+      .fetch(`/news.json`)
       .then((r) => r.json())
       .then((posts) => {
-        return { posts }
+        return { props: { posts } }
       })
   }
 </script>

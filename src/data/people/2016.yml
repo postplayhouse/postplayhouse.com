@@ -1,25 +1,24 @@
-# - first_name: 
-#   last_name: 
+# - first_name:
+#   last_name:
 #   location: ""
 #   groups:
-#     - 
+#     -
 #   positions:
-#     - Beauty and the Beast --- 
-#     - The Addams Family --- 
-#     - Legally Blonde --- 
-#     - Cabaret --- 
-#     - Monty Python's Spamalot --- 
+#     - Beauty and the Beast ---
+#     - The Addams Family ---
+#     - Legally Blonde ---
+#     - Cabaret ---
+#     - Monty Python's Spamalot ---
 #   bio: >
-#     
+#
 #   image_year: 2016
 #   image_file:
-#   
-#   
+#
+#
 # Use the template above for quick entry
 # If you specify an 'image_path', the year and file are ignored and
 # the full path to the image (prepended by the baseurl) is used.
 # Start the 'image_path' with a '/'
-
 
 #
 #
@@ -48,7 +47,6 @@
   image_year: 2015
   image_file: don-denton.jpg
 
-
 - last_name: Boynton
   first_name: Pheobe H.
   location: "Ithaca, NY, Los Angeles, CA, & MS Oceania Riviera"
@@ -58,14 +56,13 @@
     - Season Costume Designer
   bio_approved: true
   bio: >
-    Pheobe Boynton is thrilled to be returning to The Post for her third season! She has been fortunate enough to make a career in costume design and construction for film and theater in Los Angeles for the past eight years, working with companies as diverse as the Los Angeles Opera, Relativity Media, Machinima, Kanye West, and Norwegian Creative Studios. This last year she was honored to design the costumes for the major motion picture *The Thinning* for Legendary Pictures. She has spent the rest of the year as the wardrobe supervisor for the Oceania Riviera visiting ports in the Caribbean, and Central America. 
+    Pheobe Boynton is thrilled to be returning to The Post for her third season! She has been fortunate enough to make a career in costume design and construction for film and theater in Los Angeles for the past eight years, working with companies as diverse as the Los Angeles Opera, Relativity Media, Machinima, Kanye West, and Norwegian Creative Studios. This last year she was honored to design the costumes for the major motion picture *The Thinning* for Legendary Pictures. She has spent the rest of the year as the wardrobe supervisor for the Oceania Riviera visiting ports in the Caribbean, and Central America.
   image_year: 2015
   image_file: pheobe-boynton.jpg
 
-
 - last_name: Fox
   first_name: Donald James
-  location: 
+  location:
   groups:
     - creative
   positions:
@@ -77,7 +74,6 @@
     Don Fox has spent the last year serving as Assistant Professor of Lighting and Sound at Indiana University of Pennsylvania in Indiana, PA.  Fox holds an MFA in Lighting Design from University of Arizona and a B.A. in Theatre Administration from St. Edward's University in Austin, TX. Now in his third season at the Post Playhouse, Fox is also Lighting Designer and Production manager for the Moscow Ballet's *Great Russian Nutcracker*.  He recently designed lights for *Legally Blonde* for Florida State University and is currently designing both scenery and lighting for FSU's production of *All Shook Up*. He is a resident designer for Tucson's Rogue Theatre Company and for Artifact Dance Project.   He is resident producer for the Numerica Performing Arts Center in Wenatchee, WA where this year he is producing *Chicago*.  Please visit Don's extensive portfolio at [www.DonFoxDesigns.com](http://www.donfoxdesigns.com/). Enjoy the show!
   image_year: 2015
   image_file: don-fox.jpg
-
 
 - last_name: Salter
   first_name: Paige
@@ -96,7 +92,6 @@
   image_year: 2015
   image_file: paige-salter.jpg
 
-
 - last_name: Sonnenschein
   first_name: Nathan
   location: "Lander, WY"
@@ -113,7 +108,6 @@
   image_year: 2016
   image_file: nathan-sonnenschein.jpg
 
-
 - last_name: Schepers
   first_name: Jessica
   location: "Sturgis, SD"
@@ -127,7 +121,6 @@
     Jessica Schepers is ecstatic to be returning to the Post Playhouse for her second season. Jessica is pursuing a B.A. in Fine Arts at Chadron State College and is expecting to graduate in 2017. Jessica has stage managed several shows at CSC including *The 39 Steps* and *Rosencrantz and Guildenstern Are Dead*. Jessica is incredibly grateful for this opportunity to ASM at the Post Playhouse and owes her success to her friends both at the Post and at CSC as well as her family. 
   image_year: 2015
   image_file: jessica-schepers.jpg
-
 
 - last_name: Phillips
   first_name: Ken
@@ -143,7 +136,6 @@
     Ken is extremely thrilled to be coming back to a place that feels like a second home to him for his third summer with the Post! Ken is currently a graduate student in lighting design at the University of Arizona, where he not only assisted in the design of two main stage shows this year, but also worked as the Projection Designer for the University’s production of Shakespeare’s *The Tempest*. Prior to this, he was working as a Freelance Stage Manager in LA. Recent LA credits included shows at Oddwing Productions, Lost Moon Radio, AMDA Conservatory College, and Disney’s El Capitan Theatre in Hollywood. He also has past directing work that’s premiered through educational programs at Live Theatre Workshop, Powerhouse Theater, The Hangar Theatre, and The Eugene O’Neill Center. In his spare time, Ken continually trains as an Actor Combatant in stage combat for film and theatre. Thank you so much to Tom Ossowski and the rest of the community for the fantastic opportunity to put up these wonderful musicals here at the Post! [www.KGPhillips.com](http://www.kgphillips.com/)
   image_year: 2016
   image_file: ken-phillips.jpg
-
 
 - last_name: Ossowski
   first_name: Tom
@@ -161,7 +153,6 @@
   image_year: 2015
   image_file: tom-ossowski.jpg
 
-
 - last_name: Cavin
   first_name: Scott
   location: "Chadron, NE via Lemoore, CA"
@@ -169,13 +160,12 @@
     - creative
     - staff
   positions:
-    - Season Technical Director 
+    - Season Technical Director
   bio_approved: true
   bio: >
     Scott graduated with a MFA from Illinois State College and a BFA from Stephens College in Columbia MO.  After graduation Scott worked and designed for theaters in Los Angles, Chicago, Albany GA, Boise ID before landing in Chadron.  Scott is currently employed at Chadron State College as an Associate Professor of Theatre. His responsibilities include Designer (Scenic, Lighting, Sound, Projection), Technical Director and Production Manager for theatre, college, community, Galaxy (touring), and Fine Arts events. Recent designs credits (Set and Light) include: *Money Shot*, *Rosencrantz & Guilderstein are Dead*, *Big River*, *Extremities*, *The Underpants*, *Little Shop of Horrors*, *Bus Stop*, *Almost Maine*, *Godspell*, *Cat on a Hot Tin Roof* and *Junglebook*. Always looking for a new challenge Scott has added Directing to his list of accomplishments.    Some of his most recent directing Credits include:  *Extremities*, *Money Shot*, *The Vampire Cowboy Trilogy*, *The Play About the Baby*, *Beautiful Child*, *The Shape of Things* and *Boy Gets Girl*.  You can see more of Scott’s work at his outdated website. [www.scottcavin.com](http://www.scottcavin.com)
   image_year: 2015
   image_file: scott-cavin.jpg
-
 
 - last_name: Schexnaydre
   first_name: Emily
@@ -194,7 +184,6 @@
   image_year: 2016
   image_file: emily-schexnaydre.jpg
 
-
 - last_name: Mortier
   first_name: Graham
   location: "Indianapolis, IN"
@@ -211,7 +200,6 @@
     Graham is so elated to be working his 1st year at Post Playhouse! He just graduated from Florida State University with his BFA in Music Theatre and is excited to start acting professionally. His FSU credits include *A Chorus Line*, *Legally Blonde*, *Ragtime*, *Cabaret*, and *Spamalot!* He would like to thank Tom for offering his first acting job and allowing him to wilkommen everyone to his Kit Kat Klub! Also, he would like to thank his friends and family for all the love and support and allowing him to reach for the stars.
   image_year: 2016
   image_file: graham-mortier.jpg
-
 
 - last_name: Ostick
   first_name: Jackie
@@ -230,7 +218,6 @@
   image_year: 2016
   image_file: jackie-ostick.jpg
 
-
 - last_name: Poarch
   first_name: Jennifer
   location: "Lenoir, NC"
@@ -243,7 +230,6 @@
     You never know where you will see Jennifer next.  Jennifer grew up in Lenoir, North Carolina and graduated from Lees-McRae College with a Bachelor of Science in Musical Theater and Dance.  She spends most of her time as a gypsy traveling from theater to theater pursuing her career as a performer/director/choreographer.  This is her second season with Post Playhouse, and she is thrilled to return.  You may remember her as Natalie/Ed in *All Shook Up* or simply running around this theater from the back office to the box office or scanning your entry tickets. Some favorite directing/choreography credits include:  *Thoroughly Modern Millie*, *9 to 5*, *Chicago*, *Fiddler on the Roof*, *Cinderella*, *Once Upon a Mattress*, *I Love You, You're Perfect...Now Change*, *Annie*, *State Fair*, *Little Shop of Horrors*.  Jennifer gives thanks to her family, friends and God for all their love and support.
   image_year: 2015
   image_file: jennifer-poarch.jpg
-
 
 - last_name: Waaland
   first_name: Nick
@@ -262,7 +248,6 @@
   image_year: 2016
   image_file: nick-waaland.jpg
 
-
 - last_name: Matthews
   first_name: Samantha A.
   location: "Connecticut, NYC, South Carolina"
@@ -279,7 +264,6 @@
     Samantha is elated to be back at Post for her third season! Previous Post credits include, Cinderella in *Rodgers and Hammerstein's Cinderella*, Marty in *Grease*, and Maria in *The Sound of Music*.  After living and working in NYC for several years, Samantha left in 2014 and has been lucky enough to spend the past year and a half traveling all over the country doing what she loves. She comes to Nebraska directly from South Carolina where she spent the beginning of 2016 near her family performing in the Myrtle Beach area. Other credits include *Les Mis&eacute;rables* (Circa21 Dinner Playhouse), *A Year with Frog and Toad* (Playhouse on Park) as well as multiple Off-Broadway productions in NYC. Samantha would like to thank everyone who ceaselessly works to make the Post Playhouse feel like home every year, Tom for giving her the opportunity to return to her favorite corner of the world, and her family for coming to visit all of the places she calls home across the country. [www.SamanthaAMatthews.com](http://www.samanthaamatthews.com/)
   image_year: 2015
   image_file: samantha-matthews.jpg
-
 
 - last_name: Houston
   first_name: Timothy
@@ -298,7 +282,6 @@
   image_year: 2016
   image_file: timothy-houston.jpg
 
-
 - last_name: Wallace
   first_name: Tommy
   location: "New York City, NY"
@@ -316,7 +299,6 @@
   image_year: 2016
   image_file: tommy-wallace.jpg
 
-
 - last_name: Phelps
   first_name: Derek
   location: "Sidney, NE"
@@ -330,10 +312,9 @@
     - Spamalot --- Herbert
   bio_approved: true
   bio: >
-    Derek is thrilled to be returning to the Post Playhouse stage this summer! Last summer Derek played Doody in Grease, Mr. Carson in *A Man of No Importance* and an Aggie in *The Best Little Whorehouse in Texas*. Derek, a recent graduate of Chadron State Collage has a BFA in Theatre performance and directing with a minor in music. CSC credits include Huck Finn in *Big River*, Leaf Conneybear in *The 25th Annual Putnam County Spelling Bee* and Seymour in *Little Shop of Horrors*. Derek was also the director of *Rosencrantz and Guildenstern are Dead* at CSC last spring. Thanks to my friends and family for their continual support and to everyone at the Post Playhouse for this wonderful opportunity. For more about Derek visit [www.derek-phelps.wix.com/actor](www.derek-phelps.wix.com/actor).
+    Derek is thrilled to be returning to the Post Playhouse stage this summer! Last summer Derek played Doody in Grease, Mr. Carson in *A Man of No Importance* and an Aggie in *The Best Little Whorehouse in Texas*. Derek, a recent graduate of Chadron State Collage has a BFA in Theatre performance and directing with a minor in music. CSC credits include Huck Finn in *Big River*, Leaf Conneybear in *The 25th Annual Putnam County Spelling Bee* and Seymour in *Little Shop of Horrors*. Derek was also the director of *Rosencrantz and Guildenstern are Dead* at CSC last spring. Thanks to my friends and family for their continual support and to everyone at the Post Playhouse for this wonderful opportunity. For more about Derek visit [www.derek-phelps.wix.com/actor](http://www.derek-phelps.wix.com/actor).
   image_year: 2016
   image_file: derek-phelps.jpg
-
 
 - last_name: Seiler
   first_name: Wally
@@ -349,7 +330,6 @@
   image_year: 2015
   image_file: wally-seiler.jpg
 
-
 - last_name: Jamison
   first_name: Kayli
   location: "New York City, NY"
@@ -363,10 +343,9 @@
     - Spamalot --- Ensemble
   bio_approved: true
   bio: >
-    Kayli is thrilled to be returning to the Post Playhouse for this amazing season! Last summer she appeared as Shy in *The Best Little Whorehouse in Texas* and Patty Simcox in *Grease*. She spent the holiday season playing Cocoa, the tap dancing reindeer in *There's No Place Like Home for the Holidays* at the Allenberry Playhouse. Other credits include Audrey in *Little Shop of Horrors*, Erma in *Anything Goes*, and Peggy Sawyer in *42nd Street* at Nebraska Wesleyan University. Kayli gives thanks to her family and boyfriend Jesse for all their love and support. 
+    Kayli is thrilled to be returning to the Post Playhouse for this amazing season! Last summer she appeared as Shy in *The Best Little Whorehouse in Texas* and Patty Simcox in *Grease*. She spent the holiday season playing Cocoa, the tap dancing reindeer in *There's No Place Like Home for the Holidays* at the Allenberry Playhouse. Other credits include Audrey in *Little Shop of Horrors*, Erma in *Anything Goes*, and Peggy Sawyer in *42nd Street* at Nebraska Wesleyan University. Kayli gives thanks to her family and boyfriend Jesse for all their love and support.
   image_year: 2016
   image_file: kayli-jamison.jpg
-
 
 - last_name: Rotherham
   first_name: Marge
@@ -380,7 +359,6 @@
     Marge is pleased to be returning to the Post Playhouse for her 9th season.  Previously, in the 1990's, she appeared as Quiser Bourdreaux (*Steel Magnolias*) and in the Olios for the melodramas.  After a several  year hiatus, her most recent roles include, Mama Lily (*Hank Williams:Lost Highway*), Aunt Eller (*Oklahoma*), Miss Lynch (*Grease*),  Mrs. Potter-Porter and Ensemble (*Annie Get Your Gun*), Ensemble (*Hollywood: A Cabaret*), Agatha And Mission Band (*Guys and Dolls*), Baroness Elberfeld (*The Sound of Music*), and The Queen (*Cinderella*) and Miss Lynch (*Grease*). Marge would like to thank Tom Ossowski and the Post Playhouse staff for bringing such great, quality entertainment to this area. But most importantly, thanks for all the long-lasting friendships and the memories that have resulted from 49 years of wonderful.
   image_year: 2015
   image_file: marge-rotherham.jpg
-
 
 - first_name: Michael
   last_name: O'Connor
@@ -399,7 +377,6 @@
   image_year: 2016
   image_file: michael-oconnor.jpg
 
-
 - last_name: Barrett
   first_name: Dewayne
   location: "New York City via Atlanta, GA"
@@ -410,10 +387,9 @@
     - "Choreographer --- The Addams Family, Legally Blonde, Cabaret, Spamalot"
   bio_approved: true
   bio: >
-    Thomas Dewayne Barrett is is an accomplished actor, singer, dancer director/choreographer where his career has taken him all around the world. Born in Atlanta, Georgia, he began dancing at a very early age and danced with both the Georgia Ballet Company as well as the Atlanta Jazz Theatre. He then moved to NYC where he began even more training. As a performer he has performed all over the country in leading roles such as: Rum Tum Tugger in *Cats*, Bobby in *A Chorus Line*, Rooster in *Annie*, Pat Gilbert in *State Fair*, Riff in *West Side Story* and Don Lockwood in *Singing in the Rain*.  Dewayne has directed/choreographed all over the world from cruise ships, regional theatre, national tours, dinner theatres, summer stock, high schools and theme parks. He is very excited to be a part of the Post Playhouse this summer and wishes to thank Don Fox for recommending me. 
+    Thomas Dewayne Barrett is is an accomplished actor, singer, dancer director/choreographer where his career has taken him all around the world. Born in Atlanta, Georgia, he began dancing at a very early age and danced with both the Georgia Ballet Company as well as the Atlanta Jazz Theatre. He then moved to NYC where he began even more training. As a performer he has performed all over the country in leading roles such as: Rum Tum Tugger in *Cats*, Bobby in *A Chorus Line*, Rooster in *Annie*, Pat Gilbert in *State Fair*, Riff in *West Side Story* and Don Lockwood in *Singing in the Rain*.  Dewayne has directed/choreographed all over the world from cruise ships, regional theatre, national tours, dinner theatres, summer stock, high schools and theme parks. He is very excited to be a part of the Post Playhouse this summer and wishes to thank Don Fox for recommending me.
   image_year: 2016
   image_file: dewayne-barrett.jpg
-
 
 - last_name: Stephens
   first_name: Ann
@@ -425,10 +401,9 @@
     - Front of House
   bio_approved: true
   bio: >
-    A Crawford native, Ann Stephens, is happy to be returning to the Post Playhouse for the 2016 season. At the Playhouse, she can often be found popping corn or making reservations. Ann enjoys the opportunity to visit with returning customers as well as greeting those new to the Post Playhouse experience. In addition to her work here, Ann enjoys baking and spending time with grandkids and the rest of her family. Her husband, Dale, is an avid golfer and can be found nearly every day of the spring, summer and autumn on the Legend Buttes Golf course in Crawford. 
+    A Crawford native, Ann Stephens, is happy to be returning to the Post Playhouse for the 2016 season. At the Playhouse, she can often be found popping corn or making reservations. Ann enjoys the opportunity to visit with returning customers as well as greeting those new to the Post Playhouse experience. In addition to her work here, Ann enjoys baking and spending time with grandkids and the rest of her family. Her husband, Dale, is an avid golfer and can be found nearly every day of the spring, summer and autumn on the Legend Buttes Golf course in Crawford.
   image_year: 2015
   image_file: ann-stephens.jpg
-
 
 - last_name: Anderson
   first_name: Benson
@@ -442,7 +417,6 @@
     Benson is honored and excited to make his Post Playhouse debut as a member of the orchestra. A rising junior studying music composition at Denison University located in central Ohio, Benson's recent pit jobs include *American Idiot* (Beck Center for the Arts) and *Hedwig and the Angry Inch* (Parallel 45). Benson also has appeared on stage as Roger in *Rent* (Denison University) and Link Larkin in *Hairspray* (Heights Youth Theatre). He thanks you all for supporting the arts and hopes you enjoy the shows and the music!
   image_year: 2016
   image_file: benson-anderson.jpg
-
 
 - last_name: McDonald
   first_name: Kiley L.
@@ -461,7 +435,6 @@
   image_year: 2016
   image_file: kiley-mcdonald.jpg
 
-
 - last_name: Holderman
   first_name: Erin Skelley
   location: "Chattanooga, Tennessee"
@@ -476,7 +449,6 @@
     Erin is so excited to be making her professional painting debut at the Post Playhouse! A recent graduate of the University of Tennessee at Chattanooga, Erin has been volunteering at her local Chattanooga Theatre Center as a scenic artist and props designer, working on shows such as *Sister Act*, *A Christmas Story: The Musical*, and *Harvey*, waiting for her chance to step into the professional world. She is so thankful to Tom and the Post Playhouse family for giving her this amazing opportunity.
   image_year: 2016
   image_file: erin-holderman.jpg
-
 
 - last_name: Brennan
   first_name: Kayleigh Marie
@@ -495,7 +467,6 @@
   image_year: 2016
   image_file: kayleigh-brennan.jpg
 
-
 - last_name: Sterling
   first_name: Brandon
   location: "Rapid City, SD & Laramie, WY"
@@ -507,10 +478,9 @@
     - "Keyboard --- Cabaret, Addams Family, Beauty and the Beast"
   bio_approved: true
   bio: >
-    Brandon has always exemplified a deep passion for music. He has performed with the finest musicians in South Dakota, free-lanced in California, and has spent the last few years as a vital member of the music community in Wyoming. Holding a Bachelor’s Degree in Music with an emphasis in Jazz and Collaborative Piano, Brandon has provided piano lessons for children and students at the collegiate level. He has worked as a rehearsal accompanist for numerous productions, and also served as a music director for his local church. After the season, he plans to pursue educational and musical opportunities in Lincoln, Nebraska.  Brandon is thrilled to be a part of such an amazing cast and production team here at the Post Playhouse, where he is the music director for *Legally Blonde* and *Spamalot*. 
+    Brandon has always exemplified a deep passion for music. He has performed with the finest musicians in South Dakota, free-lanced in California, and has spent the last few years as a vital member of the music community in Wyoming. Holding a Bachelor’s Degree in Music with an emphasis in Jazz and Collaborative Piano, Brandon has provided piano lessons for children and students at the collegiate level. He has worked as a rehearsal accompanist for numerous productions, and also served as a music director for his local church. After the season, he plans to pursue educational and musical opportunities in Lincoln, Nebraska.  Brandon is thrilled to be a part of such an amazing cast and production team here at the Post Playhouse, where he is the music director for *Legally Blonde* and *Spamalot*.
   image_year: 2016
   image_file: brandon-sterling.jpg
-
 
 - last_name: Reynolds
   first_name: Joseph J.
@@ -519,13 +489,12 @@
     - creative
     - crew
   positions:
-    - Season Sound Design & Technician 
+    - Season Sound Design & Technician
   bio_approved: true
   bio: >
     Joseph is very excited to be a part of Post Playhouse's summer season. This is his first foray into Mid-west regional theater, but previous Sound Design credits include; Ziegfeld's *Midnight Frolic* (Old Liberty Theatre, NYC), *Aida* (Milton Bassin Performing Arts Center, C.U.N.Y. Queens NYC), and summer stock productions of *Chicago*, *Singin' in the Rain*, *Call Me Madam*, *Crazy for You*, and *Bonnie and Clyde* (Ocean Professional Theater Company, Barnegat, New Jersey). He loves to travel doing sound for theater, and hangs his hat in sunny Sarasota Florida where he does audio post for student films at local colleges. Joseph is a Alumni of Full Sail in Orlando, Florida.  He would like to thank the cast and crew of Post Playhouse for making him feel most welcome in a new place, and his lovely Fiancee, Cindy, for her continual love and support.
   image_year: 2016
   image_file: joseph-reynolds.jpg
-
 
 - last_name: Li
   first_name: Joanna
@@ -538,8 +507,7 @@
     - Keyboard --- Spamalot, Legally Blonde
   bio_approved: true
   bio: >
-    Jo is excited to join Post this summer! She began her musical career as a classical organist (and still continues to play) but transitioned into musical theatre after a summer accompanying the MT program at Interlochen Arts Camp in Michigan. Some favorite recent music directing gigs include *Hedwig and the Angry Inch* at Parallel 45 Theatre in Traverse City, Michigan, and *The Wiz* at Cape Fear Regional Theatre in Fayetteville, North Carolina. 
-
+    Jo is excited to join Post this summer! She began her musical career as a classical organist (and still continues to play) but transitioned into musical theatre after a summer accompanying the MT program at Interlochen Arts Camp in Michigan. Some favorite recent music directing gigs include *Hedwig and the Angry Inch* at Parallel 45 Theatre in Traverse City, Michigan, and *The Wiz* at Cape Fear Regional Theatre in Fayetteville, North Carolina.
 
 - last_name: Haselhorst
   first_name: Leo
@@ -553,7 +521,6 @@
     Leo is very excited for his first season working at the Post. He is currently pursuing a B.A. of fine arts at Chadron State college where he has worked carpentry for several shows. Leo would like to thank all of the workers at the Post for this amazing opportunity to pursue his interests in theater.
   image_year: 2016
   image_file: leo-haselhorst.jpg
-
 
 - last_name: Voorhis
   first_name: Jacob
@@ -571,7 +538,6 @@
   image_year: 2016
   image_file: jacob-voorhis.jpg
 
-
 - last_name: Schultz
   first_name: Stephen W
   location: "Tallahassee, FL"
@@ -585,49 +551,45 @@
   image_year: 2016
   image_file: stephen-schultz.jpg
 
-
 - last_name: Owen
   first_name: Anna
   location: "Chadron, NE"
   groups:
     - staff
   positions:
-    - Stitcher 
+    - Stitcher
   bio_approved: true
   bio: >
     Anna is excited to be a part of the Post Playhouse this summer. She is working as a stitcher, helping build the costumes. Anna has just graduated from Chadron State College with a degree in Theater. She would like to thank Tom and everyone at the Post for the great opportunity and experience.
   image_year: 2016
   image_file: anna-owen.jpg
-  
-  
+
 - last_name: Blood
   first_name: Jenett
   location: "Crawford, NE"
   groups:
     - staff
   positions:
-    - Costume Stitcher 
+    - Costume Stitcher
   bio_approved: true
   bio: >
     Jenett has lived most of her life, 56 years, in Alaska after accompanying her parents there at the age of 10 months. In 2004, she retired to the Crawford area with her husband. Much of her time in Alaska was devoted toward sewing and costuming for numerous groups such as: The Pioneers of Alaska, Wareable Arts groups in Homer and Soldotna, dance and stage presentations along with some great Halloween costumes. Jenett is looking forward to working with and being a part of the Post Playhouse.
   image_year: 2016
   image_file: jenett-blood.jpg
-  
-  
+
 - last_name: Ossowski
   first_name: Gustav
   location: "Tallahassee, FL & Beatrice, NE"
   groups:
     - cast
   positions:
-    - Legally Blonde --- Rufus 
+    - Legally Blonde --- Rufus
   bio_approved: true
   bio: >
     Gus is 4 years old and was born in Colorado.  He spends his summers assistant directing shows at the Post Playhouse where he loves to "go on breaks" with the cast.  His favorite toys are yellow but he especially likes blue squirrels. This will be his second time playing the role of Rufus. He originated the role this past spring at Florida State University.
   image_year: 2016
   image_file: gustav.jpg
-  
-  
+
 - last_name: Martin
   first_name: Samuel T.
   location: "Hot Springs, SD"
@@ -641,8 +603,7 @@
     Samuel is ecstatic for his first season at the Post Playhouse! Originally from Hot Springs, SD, this Theatre Major at Chadron State College is absolutely thrilled to be joining the team. Roles at CSC include William Barfee in *The 25th Annual Putnam County Spelling Bee* and Uncle Silas/Ensemble in *Big River*. Samuel would like say thank you to all his friends and family for their continual support, and to all of the amazing people at the Post Playhouse for allowing him this incredible opportunity.
   image_year: 2016
   image_file: samuel-martin.jpg
-  
-  
+
 - last_name: Victory
   first_name: Kamden N.
   location: "Crawford, NE"
@@ -655,8 +616,7 @@
     Kamden Victory is a Crawford native where she is currently in 5th grade.  She attends Crawford Elementary School and enjoys all things music, performing, loves reading, and playing chess with her Dad.  Kamden is beyond excited about this wonderful opportunity in the performance arts.  She would like to thank the Post Playhouse and Tom for allowing her to have this amazing experience!  She would also like to thank her family for supporting and loving her.
   image_year: 2016
   image_file: kamden-victory.jpg
-  
-  
+
 - last_name: Victory
   first_name: Phaedra R.
   location: "Crawford, NE"
@@ -670,8 +630,7 @@
     A native of Crawford, Phaedra Victory has had a life-long passion for music.  As a mother of two, Phaedra feels blessed to share this experience with her daughter Kamden!  She would like to thank Tom and the Post Playhouse for welcoming her and Kamden into their family and for giving her a once in a life time memory to cherish with her daughter!  She would also like to thank her family for always supporting her and for loving her unconditionally!
   image_year: 2016
   image_file: phaedra-victory.jpg
-  
-  
+
 - last_name: Vogel
   first_name: Kylah Jo
   location: "Crawford, NE"
@@ -684,8 +643,7 @@
     Kylah Jo is ecstatic to be back at Post Playhouse for her 3rd season. Kylah's previous roles at Post include being a mouse and carriage driver in *Rodgers and Hammerstein's Cinderella*. Kylah also performed as Brigitta in *The Sound of Music*. Kylah will be entering the 6th grade at Crawford Elementary in the fall of 2016. Kylah has many different interests and hobbies. Some hobbies include reading, learning about science and history, playing basketball and running, and also playing different instruments like the flute and saxophone.  She also enjoys playing the piano and singing. "I want to thank Tom and Jenn for allowing me this amazing opportunity. Everyone at the Post are like extra brothers and sisters to me and it is so awesome to have the best little theater in the state of Nebraska!! Also, thanks to mom and dad for all the support and being the best parents."
   image_year: 2015
   image_file: kylah-vogel.jpg
-  
-  
+
 - last_name: Vogel
   first_name: Amanda
   location: "Crawford, NE"
@@ -695,11 +653,10 @@
     - Beauty and the Beast --- Townsperson
   bio_approved: true
   bio: >
-    Amanda is thrilled to be making her Post Playhouse debut! Amanda’s interests are reading, and following and watching her girls' every activity. Her greatest joy is being a wife and a mom to three girls and a new baby boy. Amanda is looking forward to working alongside her daughter, Kylah Jo this year at Post. Amanda wants to thank Tom for this very cool opportunity.  What a great little theater our little town and state park has to offer. 
+    Amanda is thrilled to be making her Post Playhouse debut! Amanda’s interests are reading, and following and watching her girls' every activity. Her greatest joy is being a wife and a mom to three girls and a new baby boy. Amanda is looking forward to working alongside her daughter, Kylah Jo this year at Post. Amanda wants to thank Tom for this very cool opportunity.  What a great little theater our little town and state park has to offer.
   image_year: 2016
   image_file: amanda-vogel.jpg
-  
-  
+
 - last_name: Victory
   first_name: Tinker Belle
   location: "Crawford, NE"
@@ -712,8 +669,7 @@
     Tink is 4 months old and lives in Crawford, Ne and was adopted by her forever family in March. Her favorite toys are her squeaky purple dog bone and her duck rope and her favorite place to be is underneath her fleece blanket sleeping or cheering on the Denver Broncos or Oklahoma Sooners with her mommy and daddy. She gets in trouble quit often by strewing toilet paper all over the house and sometimes imagines she is a cat and tries to climb or jump on anything bigger than her. Tink hasn't met anyone she doesn't love and can't wait to make her "Show Biz" debut at the Post Playhouse.
   image_year: 2016
   image_file: tink-victory.jpg
-  
-  
+
 #
 #
 #
@@ -736,7 +692,6 @@
   image_year: 2015
   image_file: connie-frandson.jpg
 
-
 - last_name: Johns
   first_name: Shellie
   groups:
@@ -749,7 +704,6 @@
   image_year: 2015
   image_file: shellie-johns.jpg
 
-
 - last_name: Denton
   first_name: Don
   groups:
@@ -761,7 +715,6 @@
     Don Denton has been performing with Post Playhouse off and on since 2008. Since that time, he has been working with Tom to rethink all their marketing efforts. For the past few years, all the mailings and the website have been designed by Don. He is very proud to continue to help the Playhouse reach for new heights both on stage and off.
   image_year: 2015
   image_file: don-denton.jpg
-
 
 - last_name: Gaswick
   first_name: Tim
@@ -797,7 +750,6 @@
   image_year: 2015
   image_file: wally-seiler.jpg
 
-
 - last_name: Gaswick
   first_name: Tim
   location: "Chadron, NE"
@@ -806,10 +758,9 @@
   positions:
   bio_approved: true
   bio: >
-    H & R Block 
+    H & R Block
   image_year: 2015
   image_file: tim-gaswick.jpg
-
 
 - last_name: Buchheit
   first_name: Jo
@@ -822,7 +773,6 @@
   image_year: 2015
   image_file: jo-buchheit.jpg
 
-
 - last_name: Hindman
   first_name: Amy
   location: "Hay Springs, NE"
@@ -834,7 +784,6 @@
   image_year: 2015
   image_file: amy-hindman.jpg
 
-
 - last_name: Rhine
   first_name: Randy
   location: "Chadron, NE"
@@ -843,10 +792,9 @@
   positions:
   bio_approved: true
   bio: >
-    Chadron State College 
+    Chadron State College
   image_year: 2015
   image_file: randy-rhine.jpg
-
 
 - last_name: Willey
   first_name: Lacy
@@ -856,10 +804,9 @@
   positions:
   bio_approved: true
   bio: >
-    Security First Bank 
+    Security First Bank
   image_year: 2015
   image_file: lacy-willey.jpg
-
 
 - last_name: King
   first_name: Kathie
@@ -872,7 +819,6 @@
   image_year: 2015
   image_file: kathie-king.jpg
 
-
 - last_name: Merrigan
   first_name: Joni
   location: "Alliance, NE"
@@ -884,7 +830,6 @@
   image_year: 2015
   image_file: joni-merrigan.jpg
 
-
 - last_name: Hoff
   first_name: Gordon
   location: "Alliance, NE"
@@ -894,10 +839,9 @@
   bio_approved: true
   bio: >
     Alliance Floral Company <br>
-    Hoffhaus Gardens 
+    Hoffhaus Gardens
   image_year: 2015
   image_file: gordon-hoff.jpg
-
 
 - last_name: Hanks
   first_name: Bev
@@ -910,7 +854,6 @@
   image_year: 2015
   image_file: bev-hanks.jpg
 
-
 - last_name: Fodnes
   first_name: Lyle
   location: "Hemingford, NE"
@@ -919,10 +862,9 @@
   positions:
   bio_approved: true
   bio: >
-    Hemingford Ledger 
+    Hemingford Ledger
   image_year: 2015
   image_file: lyle-fodnes.jpg
-
 
 - last_name: Gramberg
   first_name: Karleen
@@ -936,7 +878,6 @@
   image_year: 2015
   image_file: karleen-gramberg.jpg
 
-
 - last_name: Clark
   first_name: Diane
   location: "Crawford, NE"
@@ -945,10 +886,9 @@
   positions:
   bio_approved: true
   bio: >
-    Crawford Clipper 
+    Crawford Clipper
   image_year: 2015
   image_file: diane-clark.jpg
-
 
 - last_name: Rotherham
   first_name: Marge
@@ -958,10 +898,9 @@
   positions:
   bio_approved: true
   bio: >
-    Post Playhouse Alum 
+    Post Playhouse Alum
   image_year: 2015
   image_file: marge-rotherham.jpg
-
 
 - last_name: Feldges
   first_name: Ellen
@@ -971,7 +910,7 @@
   positions:
   bio_approved: true
   bio: >
-    New York Life Insurance Company 
+    New York Life Insurance Company
   image_year: 2015
   image_file: ellen-feldges.jpg
 
@@ -983,10 +922,9 @@
   positions:
   bio_approved: true
   bio: >
-    
+
   image_year: 2015
   image_file: raime-varvel.jpg
-
 
 - last_name: Mohr
   first_name: Jeanine
@@ -996,11 +934,9 @@
   positions:
   bio_approved: true
   bio: >
-    
+
   image_year: 2016
   image_file: jeanine-mohr.jpg
-
-
 # - first_name: Mike
 #   last_name: Morava
 #   location: "Crawford, NE"
@@ -1008,6 +944,6 @@
 #     - board
 #   positions:
 #   bio: >
-#     Director Fort Robinson State Park 
+#     Director Fort Robinson State Park
 #   image_year: 2015
 #   image_file: mike-morova.jpg

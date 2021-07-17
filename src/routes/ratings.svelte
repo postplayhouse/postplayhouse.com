@@ -1,13 +1,19 @@
 <script lang="ts" context="module">
   import siteData from "../data/site"
-  export async function preload({ params, query }) {
-    const res = await this.fetch(`data/productions/${siteData.season}.json`)
+  import type { Load } from "@sveltejs/kit"
+  export const load: Load = async (obj) => {
+    const res = await obj.fetch(`/data/productions/${siteData.season}.json`)
     const data = await res.json()
 
     if (res.status === 200) {
-      return { site: data.site, productions: data.productions }
+      return {
+        props: {
+          site: data.site,
+          productions: data.productions || [],
+        },
+      }
     } else {
-      this.error(res.status, data.message)
+      return { status: res.status, error: new Error(data.message) }
     }
   }
 </script>
@@ -51,23 +57,25 @@
     <a href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">
       {site.boxOfficePhone}
     </a>
-    after approximately late-May every year and talk to our summer box office
-    staff. They are always happy to help guide you in choosing which productions
-    to see for the summer.
+    after approximately late-May every year and talk to our summer box office staff.
+    They are always happy to help guide you in choosing which productions to see
+    for the summer.
   </p>
 
-  <ul>
-    {#each productions as production}
-      <li>
-        {production.title}
-        &mdash;
-        {production.rating}
-        {#if production.rating_explanation}
-          <div class="p-2 my-2 bg-grey-200 text-grey-600 max-w-2xl">
-            {production.rating_explanation}
-          </div>
-        {/if}
-      </li>
-    {/each}
-  </ul>
+  {#if productions.length > 0}
+    <ul>
+      {#each productions as production}
+        <li>
+          {production.title}
+          &mdash;
+          {production.rating}
+          {#if production.rating_explanation}
+            <div class="p-2 my-2 bg-grey-200 text-grey-600 max-w-2xl">
+              {production.rating_explanation}
+            </div>
+          {/if}
+        </li>
+      {/each}
+    </ul>
+  {/if}
 </div>

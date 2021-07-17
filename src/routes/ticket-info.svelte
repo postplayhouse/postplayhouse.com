@@ -1,13 +1,14 @@
 <script lang="ts" context="module">
+  import type { Load } from "@sveltejs/kit"
   import siteData from "../data/site"
-  export async function preload({ params, query }) {
-    const res = await this.fetch(`data/productions/${siteData.season}.json`)
+  export const load: Load = async (obj) => {
+    const res = await obj.fetch(`/data/productions/${siteData.season}.json`)
     const data = await res.json()
 
     if (res.status === 200) {
-      return { site: data.site, productions: data.productions }
+      return { props: { site: data.site, productions: data.productions } }
     } else {
-      this.error(res.status, data.message)
+      return { status: res.status, error: new Error(data.message) }
     }
   }
 </script>
@@ -105,7 +106,8 @@
     border="0"
     width="100%"
     cellspacing="0"
-    cellpadding="0">
+    cellpadding="0"
+  >
     <tbody>
       <tr>
         <td colspan="1"></td>
@@ -162,9 +164,9 @@
       tickets@postplayhouse.com
     </a>
     or call our box office at
-    <a
-      class="x"
-      href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">{site.boxOfficePhone}</a>.
+    <a class="x" href="tel:+{site.boxOfficePhone.replace(/-/g, '')}"
+      >{site.boxOfficePhone}</a
+    >.
   </p>
 
   <h2>Subscription Pricing</h2>
@@ -183,7 +185,8 @@
       border="0"
       width="100%"
       cellspacing="0"
-      cellpadding="0">
+      cellpadding="0"
+    >
       <tbody>
         <tr>
           <th colspan="3" scope="col">
@@ -216,7 +219,8 @@
       border="0"
       width="100%"
       cellspacing="0"
-      cellpadding="0">
+      cellpadding="0"
+    >
       <tbody>
         <tr>
           <th colspan="3" scope="col">
@@ -249,11 +253,10 @@
     to any 4 or 5 performances by emailing us at
     <a href="mailto:tickets@postplayhouse.com">tickets@postplayhouse.com</a>
     or calling our box office at
-    <a
-      class="x"
-      href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">{site.boxOfficePhone}</a>.
-    Seats are based on availability, so please make your reservations as soon as
-    you can.
+    <a class="x" href="tel:+{site.boxOfficePhone.replace(/-/g, '')}"
+      >{site.boxOfficePhone}</a
+    >. Seats are based on availability, so please make your reservations as soon
+    as you can.
   </div>
 
   <h3>Season Subscriptions {site.season}</h3>

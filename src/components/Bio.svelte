@@ -1,6 +1,6 @@
 <script lang="ts">
-  import uniq from "lodash/uniq"
-  import flatten from "lodash/flatten"
+  import uniq from "lodash/uniq.js"
+  import flatten from "lodash/flatten.js"
   import Markdown from "./Markdown.svelte"
   import MaybeImage from "./MaybeImage.svelte"
   import { toPerson } from "../models/Person"
@@ -35,7 +35,8 @@
     <MaybeImage
       class="block w-full max-w-md mb-4 md:pr-4 md:float-left md:w-1/2"
       src="{[optimizedVersion(localPerson.image), localPerson.image]}"
-      alt="portrait of {localPerson.name}" />
+      alt="portrait of {localPerson.name}"
+    />
   {/if}
 
   <div class="text-2xl leading-none">{localPerson.name}</div>
@@ -45,18 +46,21 @@
   {/if}
 
   <ul
-    class="list-none font-thin mb-2 pl-0 {localPerson.image ? 'sm:float-left sm:w-1/2' : ''}">
+    class="list-none font-thin mb-2 pl-0 {localPerson.image
+      ? 'sm:float-left sm:w-1/2'
+      : ''}"
+  >
     {#if localPerson.positions.length}
       <!-- Always use localPerson.positions by itself if it exists -->
       {#each localPerson.positions as position}
         <li class="pl-4 -text-indent-4">
-          {@html position.replace('---', '&mdash;')}
+          {@html position.replace("---", "&mdash;")}
         </li>
       {/each}
     {:else}
       {#each localPerson.staffPositions as position}
         <li class="pl-4 -text-indent-4">
-          {@html position.replace('---', '&mdash;')}
+          {@html position.replace("---", "&mdash;")}
         </li>
       {/each}
 
@@ -64,7 +68,7 @@
         <li class="pl-4 -text-indent-4">
           {positionObj.position}
           &mdash;
-          {positionObj.productionNames.join(', ')}
+          {positionObj.productionNames.join(", ")}
         </li>
       {/each}
 
@@ -72,7 +76,7 @@
         <li class="pl-4 -text-indent-4">
           {positionObj.productionName}
           &mdash;
-          {positionObj.positions.join(', ')}
+          {positionObj.positions.join(", ")}
         </li>
       {/each}
     {/if}

@@ -1,4 +1,5 @@
 import { posts, feed } from "./_feed"
+import type { RequestHandler } from "@sveltejs/kit"
 
 const jsonFeedPage = `${feed.feedsUrlBase}/json`
 
@@ -20,10 +21,11 @@ const renderJsonFeed = (posts) =>
     })),
   })
 
-export function get(req, res) {
-  res.writeHead(200, {
-    "Content-Type": "application/feed+json",
-  })
-
-  res.end(renderJsonFeed(posts))
+export const get: RequestHandler = () => {
+  return {
+    headers: {
+      "Content-Type": "application/feed+json",
+    },
+    body: renderJsonFeed(posts),
+  }
 }

@@ -1,14 +1,16 @@
 <script lang="ts" context="module">
-  export async function preload({ params, query }) {
+  import type { Load } from "@sveltejs/kit"
+
+  export const load: Load = async (obj) => {
     // the `slug` parameter is available because
     // this file is called [slug].svelte
-    const res = await this.fetch(`data/people.json`)
+    const res = await obj.fetch(`data/people.json`)
     const data = await res.json()
 
     if (res.status === 200) {
-      return { seasons: data.seasons }
+      return { props: { seasons: data.seasons } }
     } else {
-      this.error(res.status, data.message)
+      return { status: res.status, error: new Error(data.message) }
     }
   }
 </script>

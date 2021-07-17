@@ -1,15 +1,21 @@
 <script lang="ts" context="module">
-  export async function preload({ params, query }) {
-    const res = await this.fetch(`data/productions/${params.slug}.json`)
+  import type { Load } from "@sveltejs/kit"
+
+  export const load: Load = async (obj) => {
+    const res = await obj.fetch(
+      `/data/productions/${obj.page.params["slug"]}.json`,
+    )
     const data = await res.json()
 
     if (res.status === 200) {
       return {
-        productions: data.productions,
-        slug: params.slug,
+        props: {
+          productions: data.productions,
+          slug: obj.page.params["slug"],
+        },
       }
     } else {
-      this.error(res.status, data.message)
+      return { status: res.status, error: new Error("poo poo") }
     }
   }
 </script>

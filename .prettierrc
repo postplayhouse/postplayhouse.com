@@ -4,5 +4,6 @@
   "arrowParens": "always",
   "semi": false,
   "plugins": ["./node_modules/svelte"],
-  "svelteStrictMode": true
+  "svelteStrictMode": true,
+  "svelteSortOrder": "options-scripts-styles-markup"
 }

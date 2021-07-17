@@ -1,97 +1,126 @@
-const path = require("path")
-const { mdsvex } = require("mdsvex")
-const sveltePreprocess = require("svelte-preprocess")
+import path from "path"
+import { fileURLToPath } from "url"
 
-const mode = process.env.NODE_ENV
-const dev = mode === "development"
+import { preprocess as compilerPreprocess } from "svelte/compiler"
 
-/**
- * This array of objects needs to be turned into an array of preprocessors
- * before running. The reason for extracting them like so is to shield the
- * language server from code it cannot run.
- */
-const preprocessors = [
-  {
-    name: "mdsvex",
-    makeProcessor: mdsvex,
-    config: {
+import replace from "@rollup/plugin-replace"
+import staticSite from "@sveltejs/adapter-static"
+import { mdsvex } from "mdsvex"
+import preprocess from "svelte-preprocess"
+import svelteImage from "svelte-image"
+
+// import.meta works. The conditions described to make it work are actually in
+// place... ?
+// @ts-expect-error see above
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+const imagePreprocessor = svelteImage({
+  optimizeAll: true, // optimize all images discovered in img tags
+  inlineBelow: 10000, // inline all images in img tags below 10kb
+  compressionLevel: 5, // png quality level
+  quality: 50, // jpeg/webp quality level
+  optimizeRemote: false,
+  processFolders: [
+    // These are all problem folders, where the images are not referenced in a
+    // way that svelteImage understands, but still need to be present in the
+    // build. Referencing them here forces the entire folder to be processed,
+    // even if the reference to a given image is eventually removed. Probably
+    // not a big deal, since there will be few, if any cases where that happens.
+    "images/people",
+    "images/perennials",
+    "images/2014",
+    "images/2015",
+    "images/2016",
+    "images/2017",
+    "images/2018",
+    "images/2019",
+    "images/2020",
+  ],
+  processFoldersRecursively: true,
+  processFoldersSizes: true,
+})
+
+// There is some kind of race condition between the preprocessor and the adapter
+// such that any images created in the `static/g/` folder aren't present on the
+// first run of `npm run build`. Since this project only relies upon the
+// recursive folder image processing done by svelte-image, we can just feed it
+// one fake template when this file is loaded. By the time the actual adapter is
+// run, the images will already be in place.
+//
+// This is a hack, to be sure. Perhaps when SvelteKit hits 1.0, this won't be a
+// problem anymore? To reproduce the actual issue, comment out the next line
+// (since it is the workaround) and run `npm run clean && npm run build`. If you
+// don't get any 404 errors from prerender, then the bug is gone.
+imagePreprocessor.markup({ content: "<html/>" })
+
+function runImagesAfterOthers(otherProcessors) {
+  return {
+    markup: async ({ content, filename }) => {
+      const otherProcessorsReturn = await compilerPreprocess(
+        content,
+        otherProcessors,
+        { filename },
+      )
+      content = otherProcessorsReturn.code
+
+      const { code } = await imagePreprocessor.markup({ content })
+      return {
+        ...otherProcessorsReturn,
+        code,
+      }
+    },
+  }
+}
+
+/** @xActualType {Array<[string | RegExp, string] | [RegExp, (substring: string, ...args: any[]) => string]>} */
+/** @type {Array<[string, string]>} */
+const replacements = [
+  ["process.env.NODE_ENV", JSON.stringify(process.env.NODE_ENV)],
+  [
+    "process.env.DEPLOY_PRIME_URL",
+    JSON.stringify(process.env.DEPLOY_PRIME_URL),
+  ],
+  ["process.env.CONTEXT", JSON.stringify(process.env.CONTEXT)],
+]
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  // Consult https://github.com/sveltejs/svelte-preprocess
+  // for more information about preprocessors
+  extensions: [".svelte", ".md"],
+  preprocess: runImagesAfterOthers([
+    mdsvex({
       smartypants: true,
       extensions: [".md"],
       layout: path.join(__dirname, "./src/components/DefaultMdLayout.svelte"),
+    }),
+    preprocess({
+      postcss: true,
+      replace: replacements,
+    }),
+  ]),
+
+  kit: {
+    // hydrate the <div id="svelte"> element in src/app.html
+    target: "#svelte",
+    adapter: staticSite(),
+    prerender: { force: true },
+    vite: {
+      plugins: [
+        replace({
+          values: replacements.reduce(
+            (acc, [key, value]) => ({ ...acc, [key]: value }),
+            {},
+          ),
+          preventAssignment: true,
+        }),
+      ],
     },
   },
-
-  /**
-   * The processor for svelte image causes a problem for the language server
-   * integration. The actual function that creates its preprocessor is housed in
-   * the svelte.config.runtime.js file, but will use the config object below to
-   * populate it.
-   */
-  {
-    name: "svelteImage",
-    makeProcessor: () => {
-      throw new Error("No processor for svelteImage")
-    },
-    config: {
-      optimizeAll: true, // optimize all images discovered in img tags
-      inlineBelow: 10000, // inline all images in img tags below 10kb
-      compressionLevel: 5, // png quality level
-      quality: 50, // jpeg/webp quality level
-      tagName: "Image", // default component name
-      sizes: [400, 800, 1200], // array of sizes for srcset in pixels
-      breakpoints: [375, 768, 1024], // array of screen size breakpoints at which sizes above will be applied
-      outputDir: "g/",
-      placeholder: "trace", // or "blur",
-      webpOptions: {
-        // WebP options [sharp docs](https://sharp.pixelplumbing.com/en/stable/api-output/#webp)
-        quality: 75,
-        lossless: false,
-        force: true,
-      },
-      webp: true,
-      trace: {
-        // Potrace options for SVG placeholder
-        background: "#fff",
-        color: "#002fa7",
-        threshold: 120,
-      },
-      processFolders: ["images/people"],
-      processFoldersRecursively: true,
-      processFoldersSizes: true,
-    },
-  },
-  // Leaving this type error, but it is correct as is. If the error goes away,
-  // so can this comment.
-  { name: "sveltePreprocess", makeProcessor: sveltePreprocess, config: {} },
-]
-
-const finalizePreprocessor = (x) => x.makeProcessor(x.config)
-
-const extensions = [".svelte", ".md"]
-
-const languageServerConfig = {
-  dev,
-  hydratable: true,
-  emitCss: true,
-  preprocess: preprocessors
-    .filter((x) => x.name !== "svelteImage")
-    .map(finalizePreprocessor),
-  extensions,
 }
 
-module.exports = {
-  ...languageServerConfig,
-
-  // The following params shouldn't affect consumers of this config. If that
-  // changes, a refactor will be in order.
-  /**
-   * The `finalizePreprocessors` function that you supply will be given access
-   * to the preprocessors array. Return an array with the same-shaped objects.
-   */
-  ___createPostPlayhouseRuntimeConfig({ preprocessorPlug = (x) => x }) {
-    return {
-      ...languageServerConfig,
-      preprocess: preprocessors.map(preprocessorPlug).map(finalizePreprocessor),
-    }
-  },
-}
+export default config
+// Workaround until SvelteKit uses Vite 2.3.8 (and it's confirmed to fix the Tailwind JIT problem)
+const mode = process.env.NODE_ENV
+const dev = mode === "development"
+process.env.TAILWIND_MODE = dev ? "watch" : "build"
