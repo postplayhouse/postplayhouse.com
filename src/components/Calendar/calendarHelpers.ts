@@ -109,10 +109,9 @@ export function dslToData(
 ): CalendarData {
   function datesToDateTimeObj(datesStr: string) {
     const obj: MonthDetails = {}
-    const dayAndDetailsTuple: Array<[
-      number,
-      { msFromMidnight: number; color: string; venue: string },
-    ]> = datesStr
+    const dayAndDetailsTuple: Array<
+      [number, { msFromMidnight: number; color: string; venue: string }]
+    > = datesStr
       .split(/[, ]+/)
       .filter(Boolean)
       .map((token) => token.match(/(\d+)(.*)/).slice(1, 3))

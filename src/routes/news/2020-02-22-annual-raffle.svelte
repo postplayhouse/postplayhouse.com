@@ -80,7 +80,8 @@
     <img
       src="/images/perennials/shamrock.svg"
       class="shamrock"
-      alt="four leaf clover replacing the letter O in Post Playhouse" />
+      alt="four leaf clover replacing the letter O in Post Playhouse"
+    />
     st Playhouse
   </span>
   <span class="sm:whitespace-no-wrap">Board of Directors</span>
@@ -125,8 +126,8 @@
 <p class="p mb-2">
   The purchase of a raffle ticket also allows
   <strong>you and a guest</strong>
-  to join us at the fund-raiser. You'll enjoy dinner, wine, beer, and have a
-  great time!
+  to join us at the fund-raiser. You'll enjoy dinner, wine, beer, and have a great
+  time!
 </p>
 <p class="p mb-2">
   Bring some extra cash for the silent auction and to play other games and win

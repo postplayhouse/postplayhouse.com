@@ -508,7 +508,8 @@ ${yamlBody({ fillRoles: true })}
         class="border border-grey-500 block"
         bind:value="{passphrase}"
         name="passphrase"
-        type="text" />
+        type="text"
+      />
     </label>
     {#if state === states.requestingAuth}
       <button class="btn btn-p mt-4" disabled>Checking...</button>
@@ -531,8 +532,8 @@ ${yamlBody({ fillRoles: true })}
         <em>compose</em>
         your bio.
       </strong>
-      Write it first, then copy and paste in here. Never trust an internet
-      connection with draft writing!
+      Write it first, then copy and paste in here. Never trust an internet connection
+      with draft writing!
     </p>
     <p class="mt-4">
       If you have trouble with this form please compose an email with all the
@@ -544,25 +545,31 @@ ${yamlBody({ fillRoles: true })}
   <div class="lg:flex mt-8">
     <form
       class="m-auto max-w-lg p-2 lg:w-1/2 flex-none"
-      on:submit|preventDefault="{noop}">
+      on:submit|preventDefault="{noop}"
+    >
       <div>
         <div class="text-2xl block">Headshot</div>
         <label
-          class="btn btn-p inline-block cursor-pointer {useOldHeadshot ? 'opacity-50' : ''}">
+          class="btn btn-p inline-block cursor-pointer {useOldHeadshot
+            ? 'opacity-50'
+            : ''}"
+        >
           {#if !imageFile}Choose a file{:else}Change file{/if}
           <input
             class="hidden"
             on:change="{handleFilePick}"
             name="headshot"
             accept="image/*"
-            type="file" />
+            type="file"
+          />
         </label>
         {#if image && !useOldHeadshot}
           <img
             style="max-width: 100px; max-height: 100px;"
             class="inline-block"
             src="{image}"
-            alt="{imageFile.name}" />
+            alt="{imageFile.name}"
+          />
         {/if}
         <label class="block mt-2">
           <input type="checkbox" bind:checked="{useOldHeadshot}" />
@@ -580,7 +587,8 @@ ${yamlBody({ fillRoles: true })}
           class="border border-grey-500 block"
           bind:value="{email}"
           name="email"
-          type="email" />
+          type="email"
+        />
       </label>
 
       <label class="text-2xl mt-8 block">
@@ -590,7 +598,8 @@ ${yamlBody({ fillRoles: true })}
           class="border border-grey-500 block"
           bind:value="{firstName}"
           name="firstName"
-          type="text" />
+          type="text"
+        />
       </label>
 
       <label class="text-2xl mt-8 block">
@@ -599,7 +608,8 @@ ${yamlBody({ fillRoles: true })}
           class="border border-grey-500 block"
           bind:value="{lastName}"
           name="lastName"
-          type="text" />
+          type="text"
+        />
       </label>
 
       <label class="text-2xl mt-8 block">
@@ -612,7 +622,8 @@ ${yamlBody({ fillRoles: true })}
           class="border border-grey-500 block"
           bind:value="{location}"
           name="location"
-          type="text" />
+          type="text"
+        />
       </label>
 
       <div>
@@ -628,23 +639,26 @@ ${yamlBody({ fillRoles: true })}
             <input
               class="border border-grey-500 block"
               type="text"
-              on:input="{(e) => mutateRoles(production, e.target.value)}" />
+              on:input="{(e) => mutateRoles(production, e.target.value)}"
+            />
             {#if i === 0}
               <div class="text-sm mt-1">
-                <code class="text-xs bg-grey-300 rounded py-px px-1">Box Office
-                  Staff</code>,
-                <code class="text-xs bg-grey-300 rounded py-px px-1">Season
-                  Sound Engineer</code>, etc. Actors will likely leave this
-                blank.
+                <code class="text-xs bg-grey-300 rounded py-px px-1"
+                  >Box Office Staff</code
+                >,
+                <code class="text-xs bg-grey-300 rounded py-px px-1"
+                  >Season Sound Engineer</code
+                >, etc. Actors will likely leave this blank.
               </div>
             {/if}
             {#if i === 1}
               <div class="text-sm mt-1">
-                <code
-                  class="text-xs bg-grey-300 rounded py-px px-1">Skimbleshanks,
-                  Ensemble</code>,
-                <code class="text-xs bg-grey-300 rounded py-px px-1">Assistant
-                  Stage Manager</code>, etc.
+                <code class="text-xs bg-grey-300 rounded py-px px-1"
+                  >Skimbleshanks, Ensemble</code
+                >,
+                <code class="text-xs bg-grey-300 rounded py-px px-1"
+                  >Assistant Stage Manager</code
+                >, etc.
               </div>
             {/if}
           </label>
@@ -697,7 +711,8 @@ ${yamlBody({ fillRoles: true })}
       <button
         class="btn btn-p mt-8 hidden lg:inline-block"
         disabled="{invalidForm | submitting}"
-        on:click="{onSubmit}">
+        on:click="{onSubmit}"
+      >
         {#if submitting}Submitting{:else}Submit Bio{/if}
       </button>
     </form>
@@ -726,7 +741,8 @@ ${yamlBody({ fillRoles: true })}
         <button
           class="btn btn-p mt-8"
           disabled="{invalidForm | submitting}"
-          on:click="{onSubmit}">
+          on:click="{onSubmit}"
+        >
           {#if submitting}Submitting{:else}Submit Bio{/if}
         </button>
       </div>

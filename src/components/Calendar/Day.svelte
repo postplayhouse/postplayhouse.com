@@ -41,7 +41,8 @@
 
 <li
   class="day day-{dayNum} {dayLong.toLowerCase()}"
-  class:dark="{daySchedule.length === 0}">
+  class:dark="{daySchedule.length === 0}"
+>
   <div class="day-wrapper">
     <div class="day-identifiers">
       <span class="day-name">

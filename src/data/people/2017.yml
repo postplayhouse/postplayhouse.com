@@ -20,7 +20,6 @@
 # the full path to the image (prepended by the baseurl) is used.
 # Start the 'image_path' with a '/'
 
-
 #
 #
 #
@@ -30,7 +29,6 @@
 #
 #
 #
-
 
 - last_name: Agsten
   first_name: Eric
@@ -44,7 +42,6 @@
     Weeks before starting the season at the Post Playhouse, Eric Agsten graduated from Indiana University of Pennsylvania (IUP) with a B.S. in Communications Media, and a minor in Theater. He spent the last three semesters of his undergrad as Sound Designer/Engineer for four of the IUP Theater Department’s shows, including a musical (_The 25th Annual Putnam County Spelling Bee_), a play (_We Are Proud To Present..._), an operetta (_Die Fledermaus_), and a devised piece (_The Electriad_).
   image_year: 2017
   image_file: eric-agsten.jpg
-
 
 - last_name: Alagna
   first_name: Lauren
@@ -63,7 +60,6 @@
   image_year: 2017
   image_file: lauren-alagna.jpg
 
-
 - last_name: Barrett
   first_name: Dewayne
   location: "New York City via Atlanta, GA"
@@ -81,7 +77,6 @@
   image_year: 2016
   image_file: dewayne-barrett.jpg
 
-
 - last_name: Bennett-Parker
   first_name: Max
   location: "Santa Cruz, CA"
@@ -96,7 +91,6 @@
     Max has music directed for a variety of west coast companies, shows such as _Tommy_, _Altar Boyz_, _Into the Woods_, _The Wiz_ and many more. He is the arranger/orchestrator for the new musical, _Escaping Queens_, with readings in New York and on the west coast. Performance credits include _Anything Goes_, _Urinetown_, _Bash_ and the Tom Lehrer-curated _Shakespeare Deconstructed_. He's composed original music for the plays _Touch_, and _The Nether_, and the documentary _The Last Captain_.
   image_year: 2017
   image_file: max-parker.jpg
-
 
 # - last_name: Blundell
 #   first_name: Shelby
@@ -124,7 +118,6 @@
   image_year: 2017
   image_file: pheobe-boynton.jpg
 
-
 - last_name: Carter
   first_name: Kathleen
   location: "New York City, NY"
@@ -141,7 +134,6 @@
     Kathleen Carter, originally from South Carolina, is now based in New York City. Favorite regional credits include _A Christmas Story_ (Miss Shields), _A Chorus Line_ (Cassie), _On Golden Pond_ (Chelsea), _Vanya and Sonia and Masha and Spike_ (Masha), and _Steel Magnolias_ (Shelby). She has appeared in national commercials for names like Tanqueray and Amway. She has also choreographed and danced in small production music videos. She is thrilled to spending her summer at The Post Playhouse!
   image_year: 2017
   image_file: kathleen-carter.jpg
-
 
 - last_name: Cooley
   first_name: Christopher Cody
@@ -160,7 +152,6 @@
   image_year: 2017
   image_file: christopher-cooley.jpg
 
-
 - last_name: de Lacy
   first_name: Chelsea
   location: "New York City via New Hampshire"
@@ -178,7 +169,6 @@
   image_year: 2017
   image_file: chelsea-delacy.jpg
 
-
 - last_name: Denton
   first_name: Don
   groups: >
@@ -190,7 +180,6 @@
     Don Denton has been performing with Post Playhouse off and on since 2008. Since that time, he has been working with Tom to rethink all their marketing efforts. For the past few years, all the mailings and the website have been designed by Don. He is very proud to continue to help the Playhouse reach for new heights even from afar.
   image_year: 2015
   image_file: don-denton.jpg
-
 
 - last_name: Dixon
   first_name: Chuckie
@@ -209,7 +198,6 @@
   image_year: 2017
   image_file: chuckie-dixon.jpg
 
-
 - last_name: Dornemann
   first_name: Matt
   location: "Concord, MA"
@@ -227,7 +215,6 @@
   image_year: 2017
   image_file: matt-dornemann.jpg
 
-
 - last_name: Fitch
   first_name: Josh
   location: "Elm Creek, NE"
@@ -240,7 +227,6 @@
     Josh Fitch is excited to be working this year for the Post Playhouse. Growing up in a small village named Elm Creek, Josh Fitch transferred from Chadron State College and is now attending college at the University of Nebraska at Kearney. Josh Fitch is a junior this year and is planning on graduating in two more years.  Josh is getting his major in Theatre and a minor in marketing management. Josh Fitch has been a part of many show throughout his college carrier. Josh has stage managed _Money Shot_ at Chadron State College. Josh was also the assistant stage manager for _The 25th Annual Putnam County Spelling Bee_. While at UNK Josh has stage managed two shows, _Hecuba_, and _The Threepenny Opera_.  Josh has been building theatrical sets for Crane River Theatre out of Kearney for three years now. Josh is happy to be at the Post Playhouse for its 50th year.
   image_year: 2017
   image_file: josh-fitch.jpg
-
 
 - last_name: Fitzsimons
   first_name: Tim
@@ -259,7 +245,6 @@
   image_year: 2017
   image_file: tim-fitzsimons.jpg
 
-
 - last_name: Fox
   first_name: Don
   location: "Wenatchee, WA"
@@ -275,7 +260,6 @@
   image_year: 2015
   image_file: don-fox.jpg
 
-
 - last_name: Gaswick
   first_name: Tim
   groups: >
@@ -287,7 +271,6 @@
     Tim is the franchise owner of the Chadron H&R Block office, and has been the accountant for the playhouse since 2007.  He and his wife Kari have four children, Kaylee, Aaron, Braxton, and Seth. Tim not only serves as the accountant, but also as the treasurer on the playhouse board. He enjoys working with the great talent and staff every summer, and looks forward to many years with the playhouse.
   image_year: 2015
   image_file: tim-gaswick.jpg
-
 
 - last_name: Graziani
   first_name: Brian Keith
@@ -306,7 +289,6 @@
   image_year: 2017
   image_file: brian-graziani.jpg
 
-
 - last_name: Harlow
   first_name: Korey
   location: "Fredericksburg, Virginia"
@@ -324,7 +306,6 @@
   image_year: 2017
   image_file: korey-harlow.jpg
 
-
 - last_name: Haselhorst
   first_name: Leo
   location: "Randolph, NE"
@@ -338,7 +319,6 @@
     Leo Haselhorst is excited to be returning to the Post again this summer as tech director. A native of Randolph Nebraska, Leo is currently pursuing a BA in graphic design and theatre at Chadron State College. Leo has a variety of experience through carpentry and technical work at CSC, the Post Playhouse, and the Numerica Performing Arts Center. He would like to thank everyone at the Post for the opportunity to pursue his interests in theatre.
   image_year: 2017
   image_file: leo-haselhorst.jpg
-
 
 - last_name: Hendricks
   first_name: Brian
@@ -357,7 +337,6 @@
   image_year: 2017
   image_file: brian-hendricks.jpg
 
-
 - last_name: Hemmo
   first_name: Josh
   location: "Tucson, AZ"
@@ -370,7 +349,6 @@
     Josh Hemmo is very excited to be working at the Post Playhouse for the first time! He is from Tucson, AZ and graduated with a BFA in Technical Theatre, Lighting Design emphasis from the University of Arizona. He recently partnered with Don Fox and has become a part of Don Fox Designs, LLC! Select credits include lighting fellow at Berkeley Rep, resident lighting designer for Totem Pole Playhouse, _Show Risqué_ for the Hard Rock Hotel and Casino Biloxi, and _Bat Boy_ for the Numerica Performing Arts Center in Wenatchee, WA. <jhemmolighting.com>
   image_year: 2017
   image_file: josh-hemmo.jpg
-
 
 - last_name: Isom
   first_name: Alix
@@ -389,7 +367,6 @@
   image_year: 2017
   image_file: alix-isom.jpg
 
-
 - last_name: Johns
   first_name: Shellie
   groups: >
@@ -401,7 +378,6 @@
     Conferencing --- Chadron State University
   image_year: 2015
   image_file: shellie-johns.jpg
-
 
 - last_name: Lawson
   first_name: Dominique Allen
@@ -420,7 +396,6 @@
   image_year: 2017
   image_file: dominique-lawson.jpg
 
-
 - last_name: Lewis
   first_name: Taylor Lynn
   location: "Fort Worth, TX"
@@ -437,7 +412,6 @@
     Taylor Lewis is thrilled to be spending her first summer at Post Playhouse! She is a graduate of Texas Christian University with a BFA in Acting, and now resides in New York City. She would like to thank Dewayne for this amazing opportunity, and her parents for their constant love and support while she travels the country following her dreams. [www.taylorlynnlewis.com](http://www.taylorlynnlewis.com)
   image_year: 2017
   image_file: taylor-lewis.jpg
-
 
 - last_name: Martin
   first_name: Samuel T.
@@ -458,7 +432,6 @@
   image_year: 2016
   image_file: samuel-martin.jpg
 
-
 - last_name: Mays
   first_name: Tori
   location: "Tucson, AZ"
@@ -471,7 +444,6 @@
     Tori Mays is a first year MFA Lighting Design Candidate at the University of Arizona and she is super excited to work at the Post for a few weeks this summer!  Recent design credits include: _Dialogue of the Carmelites_ (UA), _Born Yesterday_ (ART), and _The Birds_ (Huron Playhouse).  She has also assisted designers at Arizona Theatre Company.  Love to her mom, sisters, friends, and family.  <torimayslighting.com>
   image_year: 2017
   image_file: tori-mays.jpg
-
 
 - last_name: Ossowski
   first_name: Tom
@@ -489,7 +461,6 @@
   image_year: 2015
   image_file: tom-ossowski.jpg
 
-
 - last_name: Owen
   first_name: Anna
   location: "Chadron, NE"
@@ -503,7 +474,6 @@
   image_year: 2017
   image_file: anna-owen.jpg
 
-
 - last_name: Owens
   first_name: Hunter
   location: "Chadron, NE"
@@ -516,7 +486,6 @@
     Hunter is a 9 year old from Crawford, NE and this is his first time performing at the Post Playhouse! He is excited to share his love for music with everyone that comes to the Fort. In his free time he loves to play piano, draw, ride horses, play with his friends and spend time with family. He is very thankful to have the opportunity to be on the stage and meet people from all over the country. Thank you to everyone who comes out to support the arts!
   image_year: 2017
   image_file: hunter-owens.jpg
-
 
 - last_name: Pagano
   first_name: Cat
@@ -535,7 +504,6 @@
   image_year: 2017
   image_file: cat-pagano.jpg
 
-
 - last_name: Peters
   first_name: Brittney
   location: "Rapid City, SD"
@@ -552,7 +520,6 @@
   image_year: 2017
   image_file: brittney-peters.jpg
 
-
 - last_name: Phillips
   first_name: Heather
   location: "Texas"
@@ -565,7 +532,6 @@
     Heather is an Arizona native newly relocated to Texas. She graduated from the University of Arizona with a BFA in Technical Theatre, Lighting design and technology emphasis. She has worked often with Artifact Dance Company in Tucson doing both lighting and stage management and was most recently the Stage Manager on Surrounding Dillinger. A teacher, she has also been the head of the drama program at Camp Robin Hood in New Hampshire for the last several summers. This is her first season at the Post Playhouse and is ecstatic to be joining the team.
   image_year: 2017
   image_file: heather-phillips.jpg
-
 
 - last_name: Phillips
   first_name: Ken
@@ -582,7 +548,6 @@
   image_year: 2016
   image_file: ken-phillips.jpg
 
-
 - last_name: Pool
   first_name: Sarah
   location: "Arlington, TX"
@@ -598,7 +563,6 @@
   image_year: 2017
   image_file: sarah-pool.jpg
 
-
 - last_name: Prado
   first_name: Bristol
   location: ""
@@ -611,7 +575,6 @@
     Bristol is excited to be back for her second stint at the Post Playhouse. She previously appeared as Gretl in _The Sound of Music_. She is 8 years old and attends Hay Springs Public Schools. In her free time, she enjoys dance and gymnastics classes, going to music lessons, singing at local open mic nights, and binge watching Netflix. Thanks to everyone for supporting the local arts.
   image_year: 2017
   image_file: bristol-prado.jpg
-
 
 - last_name: Rice
   first_name: Jane A.
@@ -626,7 +589,6 @@
     Jane is excited and pleased to be returning to the Post Playhouse after a 35 year hiatus.  In 1982 she managed the ticket office, appeared in two melodramas, olio acts, and the touring children's theater.  Her most recent claims to fame were in the Scottsbluff, Nebraska centennial play, _Through Her Eyes_, in the leading role as Elizabeth Strickler, and Miss Watson in the Theater West production of _Big River_. Throughout high school and college (Chadron State College) Jane participated in many plays and a few musicals. She is now a retired elementary teacher substituting for Chadron Public Schools. After all this time the call of the theater has lured her back. She will be filling in for Marge Rotherham for a few performances as the mother in _Crazy for You_, and an ensemble member in _Young Frankenstein_. She would like to thank Tom Ossowski and Dewayne Barrett for taking an interest in her at the May 6th auditions.
   image_year: 2017
   image_file: jane-rice.jpg
-
 
 - last_name: Rotherham
   first_name: Marge
@@ -644,7 +606,6 @@
   image_year: 2017
   image_file: marge-rotherham.jpg
 
-
 - last_name: Schepers
   first_name: Jessica
   location: "Sturgis, SD"
@@ -659,7 +620,6 @@
   image_year: 2017
   image_file: jessica-schepers.jpg
 
-
 - last_name: Schut
   first_name: Tanner
   location: "Corvallis, OR"
@@ -672,7 +632,6 @@
     Tanner Schut is excited to be a part of the Post Playhouse company for its 50th season. Originally from Corvallis, Oregon, he is currently studying music, broadcasting and digital media at the University of Idaho, in Moscow. Tanner would like to extent his thanks to Dewayne for the opportunity, and his family for their constant love and support.
   image_year: 2017
   image_file: tanner-schut.jpg
-
 
 - last_name: Seiler
   first_name: Wally
@@ -688,7 +647,6 @@
     Wally is returning to the Post Playhouse, Inc., for a sixth season and can't think of a better way to spend a summer.  Previously, he has appeared on the Playhouse stage as Andrew Carnes (_Oklahoma!_). Pawnee Bill (_Annie Get Your Gun_), Baron Elberfeld (_The Sound of Music_), Arvide Abernathy (_Guys and Dolls_), Russell Tinsworthy (_Nine to Five_), Ensemble (_Hollywood: a Cabaret_), Baldy (_A Man of No Importance_), the King (_Cinderella_), Mayor Rufus Poindexter and Senator Wingwoah (_The Best Little Whorehouse in Texas_), Sir Not Appearing and Monk (_Spamalot_) and Bookseller and Ensemble (_Beauty and the Beast_).  Wally is grateful to be a part of the magic that is created on the stage of the Post Playhouse, Inc.
   image_year: 2015
   image_file: wally-seiler.jpg
-
 
 - last_name: Solum
   first_name: Lilianna
@@ -707,7 +665,6 @@
   image_year: 2017
   image_file: liliana-solum.jpg
 
-
 - last_name: Stephens
   first_name: Ann
   location: "Crawford, NE"
@@ -721,7 +678,6 @@
     Crawford native, Ann Stephens, is happy to be returning to the Post Playhouse for the 2017 season.  At the Playhouse, she can often be found cleaning, popping corn, watering plants, or making reservations. Ann enjoys the opportunity to visit with returning customers as well as greeting those new to the Playhouse experience. In addition to her work here, Ann enjoys baking and spending time with grandkids and the rest of her family. Her husband, Dale, is an avid golfer and can be found nearly every day of the spring, summer and autumn on the Legend Buttes Golf course in Crawford.
   image_year: 2017
   image_file: ann-stephens.jpg
-
 
 - last_name: Thies
   first_name: Taylor
@@ -740,7 +696,6 @@
   image_year: 2017
   image_file: taylor-thies.jpg
 
-
 - last_name: Turner
   first_name: Renée Elizabeth
   location: "Miami, FL"
@@ -757,7 +712,6 @@
     Renèe Elizabeth Turner, a South Florida native, is a classically trained actress and vocalist who graduated Summa Cum Laude from FAU. Some of her favorite roles include: "Missy" (_The Winter Wonderettes_), "Sister Margaretta" (_The Sound of Music_), "Minnie/Angela" (_Parade_), and "Nettie Fowler" (_Carousel_) as well as having performed with Broadway composer Marc Shaiman. She thanks GOD, her Amazing husband Andrew/"Muffin", her beautiful parents Clarence and Elizabeth, family, friends, and the Incredible Thomas Dewayne Barrett for this Phenomenal Blessing in being a part of the Post Playhouse 50th Anniversary Season. ♥
   image_year: 2017
   image_file: renee-turner.jpg
-
 
 - last_name: Venho
   first_name: Aili
@@ -776,7 +730,6 @@
   image_year: 2017
   image_file: aili-venho.jpg
 
-
 - last_name: Victory
   first_name: Kamden N.
   location: "Crawford, NE"
@@ -789,7 +742,6 @@
     Kamden is from Crawford Ne and is excited to be returning to the Post Playhouse for her 2nd year. She played Chip in last years Post Playhouse performance of _Disney's Beauty and the Beast_ and loved every minute of it!  Kamden adores everything music and just recently wrote her first song! When she isn't playing the piano or singing, she loves to read, play chess with her Dad, ride bikes and do anything and everything with her sister. She would like to thank Dewayne and Tom for the opportunity to live out her big dream in this small part of the world and would like to thank her family for always encouraging her to be the best she can be and for supporting her dreams!
   image_year: 2017
   image_file: kamden-victory.jpg
-
 
 - last_name: Victory
   first_name: Kendall
@@ -804,7 +756,6 @@
   image_year: 2017
   image_file: kendall-victory.jpg
 
-
 - last_name: Vogel
   first_name: Keslyn May
   location: "Crawford, NE"
@@ -814,10 +765,9 @@
     # - Cinderella --- Ensemble
   bio_approved: true
   bio: >
-    Keslyn May Vogel is happy to be returning to Post Playhouse for the 50th anniversary season. Keslyn is 9 years old and will be a fourth grader this coming fall. Previous roles at Post include being a mouse and coachman in _Rogers and Hammerstein's Cinderella_, and Marta in _The Sound of Music_. Keslyn enjoys singing and dancing, collecting unicorn figurines, playing sports, rollerblading, reading books, and collecting rocks and studying them. Keslyn is grateful for this opportunity and wants to thank Mom, Dad, and Dewayne for allowing her this amazing opportunity! 
+    Keslyn May Vogel is happy to be returning to Post Playhouse for the 50th anniversary season. Keslyn is 9 years old and will be a fourth grader this coming fall. Previous roles at Post include being a mouse and coachman in _Rogers and Hammerstein's Cinderella_, and Marta in _The Sound of Music_. Keslyn enjoys singing and dancing, collecting unicorn figurines, playing sports, rollerblading, reading books, and collecting rocks and studying them. Keslyn is grateful for this opportunity and wants to thank Mom, Dad, and Dewayne for allowing her this amazing opportunity!
   image_year: 2017
   image_file: keslyn-vogel.jpg
-
 
 - last_name: Vogel
   first_name: Kylah Jo
@@ -828,11 +778,10 @@
     # - Beauty and the Beast --- Chip/Ensemble
   bio_approved: true
   bio: >
-    Kylah Jo Vogel is ecstatic to be returning for her 4th season at the Post Playhouse. Previous roles at the Post include Brigitta in _The Sound of Music_, a mouse and coachman in _Cinderella_, and most recently Chip in _Beauty and the Beast_.  She will be a 7th grader at Crawford Jr./Sr. High School. Kylah Jo enjoys running, singing, playing basketball and shooting hoops, reading an array of books, watching The Voice and Dancing with the Stars. She would like to thank her parents and grandparents for their love and support but mostly thankful to God for her talents and love for the arts! 
+    Kylah Jo Vogel is ecstatic to be returning for her 4th season at the Post Playhouse. Previous roles at the Post include Brigitta in _The Sound of Music_, a mouse and coachman in _Cinderella_, and most recently Chip in _Beauty and the Beast_.  She will be a 7th grader at Crawford Jr./Sr. High School. Kylah Jo enjoys running, singing, playing basketball and shooting hoops, reading an array of books, watching The Voice and Dancing with the Stars. She would like to thank her parents and grandparents for their love and support but mostly thankful to God for her talents and love for the arts!
   image_year: 2015
   image_file: kylah-vogel.jpg
-  
-  
+
 - last_name: Voorhis
   first_name: Jacob
   location: "Belle Fourche, South Dakota and Chadron, Nebraska"
@@ -846,9 +795,6 @@
     Jacob is thrilled to be returning to the Post Playhouse, this time as a musician. He loved his time in the spotlight tower but is excited for this new creative adventure. He is an incoming Senior Applied Music Major at CSC specializing in guitar and bass. He would like to thank all those who support him on a daily basis and Dewayne and the others at the Post for giving him a chance to play for this season.
   image_year: 2017
   image_file: jacob-voorhis.jpg
-
-
-
 
 #
 #
@@ -876,7 +822,6 @@
   image_year: 2017
   image_file: david-abaire.jpg
 
-
 - last_name: Moore
   first_name: Jason
   location: ""
@@ -890,7 +835,6 @@
   image_year: 2017
   image_file: jason-moore.jpg
 
-
 - last_name: Tesori
   first_name: Jeanine
   location: ""
@@ -903,10 +847,6 @@
     Jeanine Tesori won the Tony Award for Best Original Score with Lisa Kron for the musical _Fun Home_, which is currently playing on Broadway. She has also written Tony-nominated scores for _Twelfth Night_ at Lincoln Center; _Thoroughly Modern Millie_ (lyrics, Dick Scanlan); _Caroline, or Change_ (lyrics, Tony Kushner); and _Shrek The Musical_ (lyrics, David Lindsay-Abaire). The production of _Caroline, or Change_ at the National Theatre in London received the Olivier Award for Best New Musical. Her 1997 Off-Broadway musical _Violet_ (lyrics, Brian Crawley) opened on Broadway in 2014 and garnered four Tony nominations, including Best Musical Revival. Opera: _A Blizzard on Marblehead Neck_ (libretto, Tony Kushner; Glimmerglass) and _The Lion, The Unicorn, and Me_ (libretto, J. D. McClatchy, Kennedy Center). Music for plays: _Mother Courage_ (dir. George C. Wolfe, with Meryl Streep and Kevin Kline), _John Guare's A Free Man of Color_ (Lincoln Center Theater, dir. George C. Wolfe), and Romeo and Juliet (Delacorte Gala). Film scores: _Nights in Rodanthe_, _Every Day_, and _You're Not You_. Ms. Tesori is a member of the Dramatists Guild and was cited by the ASCAP as the first female composer to have two new musicals running concurrently on Broadway. She is the founding artistic director of _Encores! Off-Center_ at New York City Center, and is a lecturer in music at Yale University. Most of all, she is the proud parent of Siena Rafter, a senior at LaGuardia High School for the Arts.
   image_year: 2017
   image_file: jeanine-tesori.jpg
-
-
-
-
 
 #
 #
@@ -928,7 +868,6 @@
 #
 #
 
-
 - last_name: Seiler
   first_name: Wally
   location: "Alliance, NE"
@@ -940,7 +879,6 @@
   bio: >
   image_year: 2015
   image_file: wally-seiler.jpg
-
 
 - last_name: Gaswick
   first_name: Tim
@@ -954,7 +892,6 @@
   image_year: 2015
   image_file: tim-gaswick.jpg
 
-
 - last_name: Buchheit
   first_name: Jo
   location: "Hemingford, NE"
@@ -966,7 +903,6 @@
   image_year: 2015
   image_file: jo-buchheit.jpg
 
-
 - last_name: Hindman
   first_name: Amy
   location: "Hay Springs, NE"
@@ -977,7 +913,6 @@
   bio: >
   image_year: 2015
   image_file: amy-hindman.jpg
-
 
 - last_name: Rhine
   first_name: Randy
@@ -991,7 +926,6 @@
   image_year: 2015
   image_file: randy-rhine.jpg
 
-
 - last_name: Willey
   first_name: Lacy
   location: "Harrison, NE"
@@ -1004,7 +938,6 @@
   image_year: 2015
   image_file: lacy-willey.jpg
 
-
 - last_name: King
   first_name: Kathie
   location: "Gordon, NE"
@@ -1016,7 +949,6 @@
   image_year: 2015
   image_file: kathie-king.jpg
 
-
 - last_name: Merrigan
   first_name: Joni
   location: "Alliance, NE"
@@ -1027,7 +959,6 @@
   bio: >
   image_year: 2015
   image_file: joni-merrigan.jpg
-
 
 - last_name: Hoff
   first_name: Gordon
@@ -1042,7 +973,6 @@
   image_year: 2015
   image_file: gordon-hoff.jpg
 
-
 - last_name: Hanks
   first_name: Bev
   location: "Hemingford, NE"
@@ -1053,7 +983,6 @@
   bio: >
   image_year: 2015
   image_file: bev-hanks.jpg
-
 
 - last_name: Fodnes
   first_name: Lyle
@@ -1067,7 +996,6 @@
   image_year: 2015
   image_file: lyle-fodnes.jpg
 
-
 - last_name: Gramberg
   first_name: Karleen
   location: "Chadron, NE"
@@ -1079,7 +1007,6 @@
     Vice President of the Board
   image_year: 2015
   image_file: karleen-gramberg.jpg
-
 
 - last_name: Clark
   first_name: Diane
@@ -1093,7 +1020,6 @@
   image_year: 2015
   image_file: diane-clark.jpg
 
-
 - last_name: Rotherham
   first_name: Marge
   location: "Crawford, NE"
@@ -1105,7 +1031,6 @@
     Post Playhouse Alum
   image_year: 2015
   image_file: marge-rotherham.jpg
-
 
 - last_name: Feldges
   first_name: Ellen
@@ -1154,7 +1079,6 @@
 
   image_year: 2017
   image_file: vicki-dewald.jpg
-
 
 - last_name: Lecher
   first_name: Danielle
