@@ -19,7 +19,7 @@
   }
 </style>
 
-<article class="mt-16 clearfix">
+<article class="mt-16 flow-root">
   <header>
     <h2 class="text-6xl leading-none mb-2">
       {#if production.pre_title}

@@ -669,7 +669,7 @@ ${yamlBody({ fillRoles: true })}
       <ul>
         <li>
           You can create links with
-          <code class="whitespace-no-wrap text-xs bg-grey-300 rounded p-1">
+          <code class="whitespace-nowrap text-xs bg-grey-300 rounded p-1">
             [your text](http://yoursite.com)
           </code>
         </li>

@@ -38,7 +38,7 @@
     padding: 0;
   }
 
-  /* clearfix */
+  /* flow-root */
   ul::after {
     content: "";
     display: block;

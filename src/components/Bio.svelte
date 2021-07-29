@@ -30,7 +30,7 @@
   const optimizedVersion = (str) => "/g" + str.split(".").join("-800.")
 </script>
 
-<div class="clearfix mb-8">
+<div class="flow-root mb-8">
   {#if localPerson.image}
     <MaybeImage
       class="block w-full max-w-md mb-4 md:pr-4 md:float-left md:w-1/2"
@@ -46,7 +46,7 @@
   {/if}
 
   <ul
-    class="list-none font-thin mb-2 pl-0 {localPerson.image
+    class="list-none font-extralight mb-2 pl-0 {localPerson.image
       ? 'sm:float-left sm:w-1/2'
       : ''}"
   >

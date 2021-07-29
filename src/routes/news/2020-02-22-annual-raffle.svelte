@@ -75,7 +75,7 @@
 
 <h4 class="small-pop text-5xl font-bold leading-none">
   with the
-  <span class="relative inline-block sm:whitespace-no-wrap">
+  <span class="relative inline-block sm:whitespace-nowrap">
     P
     <img
       src="/images/perennials/shamrock.svg"
@@ -84,7 +84,7 @@
     />
     st Playhouse
   </span>
-  <span class="sm:whitespace-no-wrap">Board of Directors</span>
+  <span class="sm:whitespace-nowrap">Board of Directors</span>
 </h4>
 
 <h5 class="text-3xl mt-8 leading-none">Join us for our Annual Raffle!</h5>

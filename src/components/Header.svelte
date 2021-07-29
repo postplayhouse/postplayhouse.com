@@ -13,7 +13,7 @@
       />
       <h1 class="hidden">{site.title}</h1>
     </a>
-    <h2 class="font-hairline text-center text-xl tracking-wide">
+    <h2 class="font-thin text-center text-xl tracking-wide">
       Professional talent from across the country...
       <span style="white-space:nowrap">So close to home</span>
     </h2>
