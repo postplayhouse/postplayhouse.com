@@ -1,4 +1,5 @@
 import { posts, feed } from "./_feed"
+import type { RequestHandler } from "@sveltejs/kit"
 
 const rssFeedPage = `${feed.feedsUrlBase}/rss`
 
@@ -26,10 +27,9 @@ const renderXmlRssFeed = (posts) => `<?xml version="1.0" encoding="UTF-8"?>
     .join("\n")}
 </feed>`
 
-export function get(req, res) {
-  res.writeHead(200, {
-    "Content-Type": "application/rss+xml",
-  })
-
-  res.end(renderXmlRssFeed(posts))
+export const get: RequestHandler = () => {
+  return {
+    headers: { "Content-Type": "application/rss+xml" },
+    body: renderXmlRssFeed(posts),
+  }
 }

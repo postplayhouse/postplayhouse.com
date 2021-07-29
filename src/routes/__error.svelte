@@ -1,11 +1,19 @@
+<script context="module" lang="ts">
+  import type { ErrorLoad } from "@sveltejs/kit"
+
+  export const load: ErrorLoad = ({ error, status }) => {
+    return { props: { error, status } }
+  }
+</script>
+
 <script lang="ts">
+  import { dev } from "$app/env"
   import { onMount } from "svelte"
   export let status: number
   export let error: Error
 
   $: matchesOldRoutes = false
   $: tryLocation = ""
-  const dev = process.env.NODE_ENV === "development"
   const MATCHES_OLD_ROUTES = /^(\/?news\/\d{4})(\/)(\d{2})(\/)(\d{2})(\/)(.*)/g
 
   onMount(() => {
@@ -46,7 +54,7 @@
   <title>{status}</title>
 </svelte:head>
 
-{#if status === 404 && matchesOldRoutes}{(window.location = tryLocation)}{/if}
+{#if status === 404 && matchesOldRoutes}{(window.location.href = tryLocation)}{/if}
 
 <h1>{status}</h1>
 <p>{error.message}</p>

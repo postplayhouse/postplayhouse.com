@@ -1,15 +1,13 @@
 <script lang="ts">
-  export let segment
+  export let activePath: string
   import site from "../data/site"
 
-  function nodeIsActive(node, segment) {
-    const path = new URL(node.href).pathname.slice(1).split("/").shift()
-
-    return path === "" ? segment === undefined : path === segment
+  function nodeIsActive(node: HTMLAnchorElement, activePath: string) {
+    return new URL(node.href).pathname === activePath
   }
 
-  function manageNodeActiveClass(node, segment) {
-    if (nodeIsActive(node, segment)) {
+  function manageNodeActiveClass(node: HTMLAnchorElement, activePath: string) {
+    if (nodeIsActive(node, activePath)) {
       node.classList.add("active")
       // TODO add aria-active="page"
     } else {
@@ -18,12 +16,12 @@
     }
   }
 
-  function active(node, segment) {
-    manageNodeActiveClass(node, segment)
+  function active(node: HTMLAnchorElement, activePath: string) {
+    manageNodeActiveClass(node, activePath)
 
     return {
-      update(segment) {
-        manageNodeActiveClass(node, segment)
+      update(activePath: string) {
+        manageNodeActiveClass(node, activePath)
       },
     }
   }
@@ -40,7 +38,7 @@
     padding: 0;
   }
 
-  /* clearfix */
+  /* flow-root */
   ul::after {
     content: "";
     display: block;
@@ -77,21 +75,23 @@
 <nav class="main-nav">
   <ul class="m-auto max-w-3xl">
     <!-- <li>
-      <a use:active={segment} href="productions/{site.season}">
+      <a use:active={activePath} href="productions/{site.season}">
         Our Productions
       </a>
     </li> -->
     <!-- <li>
-      <a use:active={segment} href="calendar">Calendar</a>
+      <a use:active={activePath} href="calendar">Calendar</a>
     </li> -->
-    <li><a use:active="{segment}" href="gifts">Gifts</a></li>
-    <li><a use:active="{segment}" href="who/{site.season}">Who's Who</a></li>
-    <li><a use:active="{segment}" href="jobs">Work at Post</a></li>
-    <li><a use:active="{segment}" href="donate">Donate</a></li>
+    <li><a use:active="{activePath}" href="/gifts">Gifts</a></li>
     <li>
-      <a use:active="{segment}" href="plan-your-visit">Plan Your Visit</a>
+      <a use:active="{activePath}" href="/who/{site.season}">Who's Who</a>
     </li>
-    <li><a use:active="{segment}" href="contact">Contact</a></li>
-    <li><a use:active="{segment}" href="about">About</a></li>
+    <li><a use:active="{activePath}" href="/jobs">Work at Post</a></li>
+    <li><a use:active="{activePath}" href="/donate">Donate</a></li>
+    <li>
+      <a use:active="{activePath}" href="/plan-your-visit">Plan Your Visit</a>
+    </li>
+    <li><a use:active="{activePath}" href="/contact">Contact</a></li>
+    <li><a use:active="{activePath}" href="/about">About</a></li>
   </ul>
 </nav>

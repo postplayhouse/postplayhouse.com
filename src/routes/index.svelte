@@ -24,7 +24,8 @@
     <a href="/donate">
       <img
         alt="actors making a heart with thier hands"
-        src="/images/perennials/donations.jpg" />
+        src="/images/perennials/donations.jpg"
+      />
     </a>
   </section>
 
@@ -32,7 +33,8 @@
     <section
       class="bg-green-200 p-3 cursor-pointer hover:bg-green-300 flex-initial
       mb-2"
-      on:click="{toggleMailingList}">
+      on:click="{toggleMailingList}"
+    >
       <header class="text-xl">Join our mailing list</header>
       <p>Stay informed about what’s happening at Post Playhouse</p>
     </section>
@@ -42,12 +44,14 @@
       <div class="flex flex-wrap justify-around items-center flex-1">
         <a
           class="block w-24 h-24 md:w-16 md:h-16 p-2 hover:bg-green-300"
-          href="http://facebook.com/post.playhouse">
+          href="http://facebook.com/post.playhouse"
+        >
           <img src="/images/facebook-logo.svg" alt="Facebook logo" />
         </a>
         <a
           class="block w-24 h-24 md:w-16 md:h-16 p-2 hover:bg-green-300"
-          href="http://twitter.com/postplayhouse">
+          href="http://twitter.com/postplayhouse"
+        >
           <img src="/images/twitter-bird.svg" alt="Twitter logo" />
         </a>
       </div>

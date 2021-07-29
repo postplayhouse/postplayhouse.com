@@ -10,7 +10,7 @@
   # the build. This is relative to the base directory if one has been set, or the
   # root directory if a base has not been set. This sample publishes the
   # directory located at the absolute path "root/project/build-output"
-  # publish = "build-output/"
+  publish = "build"
 
   # Default build command.
   command = "npm run netlify"
@@ -20,7 +20,7 @@
   # or the root directory if a base has not been set.
   # functions = "functions/"
 
-  environment = { NODE_VERSION = "12.16.3", NPM_VERSION = "7.0.11" }
+  environment = { NODE_VERSION = "16.4.0", NPM_VERSION = "7.18.1" }
 
 # Production context: all deploys from the Production branch set in your site’s
 # deploy contexts will inherit these settings.

@@ -19,7 +19,7 @@
   }
 </style>
 
-<article class="mt-16 clearfix">
+<article class="mt-16 flow-root">
   <header>
     <h2 class="text-6xl leading-none mb-2">
       {#if production.pre_title}
@@ -30,7 +30,8 @@
     <MaybeImage
       class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl"
       src="{[imagePath, fallbackImagePath]}"
-      alt="Show Logo for {production.title}" />
+      alt="Show Logo for {production.title}"
+    />
   </header>
 
   {#if production.opening}
@@ -62,7 +63,8 @@
           <img
             class="w-48 max-w-full block"
             alt="sponsor logo"
-            src="/images/sponsors/{production.sponsor.image}" />
+            src="/images/sponsors/{production.sponsor.image}"
+          />
         {:else if production.sponsor.text}
           {@html production.sponsor.text}
         {/if}
