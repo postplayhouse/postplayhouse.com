@@ -104,7 +104,7 @@ const config = {
     // hydrate the <div id="svelte"> element in src/app.html
     target: "#svelte",
     adapter: staticSite(),
-    prerender: { force: true },
+    prerender: { onError: "continue" },
     vite: {
       plugins: [
         replace({
