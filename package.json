@@ -15,6 +15,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+    "test": "jest",
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "dependencies": {
@@ -27,6 +28,9 @@
     "@rollup/plugin-replace": "^3.0.0",
     "@sveltejs/adapter-static": "next",
     "@sveltejs/kit": "next",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/svelte": "^3.0.3",
+    "@types/jest": "^26.0.24",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
     "autoprefixer": "^10.2.6",
@@ -35,6 +39,7 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-svelte3": "^3.2.0",
     "frontmatter": "^0.0.3",
+    "jest": "^27.0.6",
     "markdown-it": "^9.1.0",
     "mdsvex": "^0.8.8",
     "postcss": "^8.3.5",
@@ -44,8 +49,10 @@
     "svelte": "^3.34.0",
     "svelte-check": "^2.0.0",
     "svelte-image": "happycollision/svelte-image#72ac687e53844289bcd23e73a22d44f7ac8c8ede",
+    "svelte-jester": "^1.7.0",
     "svelte-preprocess": "^4.7.3",
     "tailwindcss": "^2.2.4",
+    "ts-jest": "^27.0.4",
     "tslib": "^2.0.0",
     "typescript": "^4.0.0"
   },

@@ -90,7 +90,7 @@ describe("<Day>", () => {
       expect(getByText("Guys & Dolls")).toBeInTheDocument()
 
       // ordering
-      const [show1, show2] = container.querySelectorAll(".showing")
+      const [show1, show2] = Array.from(container.querySelectorAll(".showing"))
       expect(show1).toHaveClass("show-red")
       expect(show2).toHaveClass("show-blue")
     })
