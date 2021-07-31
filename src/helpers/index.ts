@@ -83,7 +83,8 @@ export function objPropsToCamel(obj: IHash<unknown>) {
   return Object.keys(obj).reduce((acc, current) => {
     if (typeof current !== "string") return acc
     acc[toCamel(current)] = obj[current]
-  }, {})
+    return acc
+  }, {} as IHash<unknown>)
 }
 
 export function slugify(str: string) {
@@ -179,6 +180,11 @@ export function assert<T>(
 ): asserts x is Exclude<T, undefined | null> {
   if (x === undefined || x === null)
     throw new Error(`Assertion failed! ${message}`)
+}
+
+export function asserted<T>(x: T, message = "") {
+  assert(x, message)
+  return x
 }
 
 /** only lowercase words allowed */

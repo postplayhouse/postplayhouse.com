@@ -97,7 +97,6 @@ function loadLegitFiles(dirPath: string) {
             (fileName.endsWith(".svelte") || fileName.endsWith(".md")),
         )
       if (files.length !== 1) {
-        console.log(files)
         throw new Error("Found the wrong number of files in folder " + folder)
       }
 

@@ -25,6 +25,7 @@
     "marked": "^4.1.1"
   },
   "devDependencies": {
+    "@popperjs/core": "^2.9.2",
     "@rollup/plugin-replace": "^4.0.0",
     "@sveltejs/adapter-netlify": "1.0.0-next.78",
     "@testing-library/jest-dom": "^5.16.5",
@@ -36,7 +37,7 @@
     "@typescript-eslint/parser": "^5.39.0",
     "autoprefixer": "^10.4.12",
     "cssnano": "^5.1.13",
-    "eslint": "^8.24.0",
+    "date-fns": "^2.23.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-svelte3": "^4.0.0",
     "frontmatter": "^0.0.3",
