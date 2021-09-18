@@ -25,7 +25,7 @@
     image: stuart-trust.png
 
 - title: Desperate Measures
-  short_title:
+  short_title: Desperate
   rating: G
   color: blue
   image: desperate-measures.jpg
@@ -107,12 +107,11 @@
       August 2e, 3e, 5a, 10a, 12e,
   roles_sorting:
   sponsor:
-    image: hindman-family.png
+    text: Footprints
 
 - title: Something Rotten!
   short_title: Rotten
-  rating: H
-  rating_explanation: This show might be generally less interesting for young audiences and contains a few moments with adult themes, reminiscent of the movie, if you are familiar with that.
+  rating: G
   color: red
   image: something-rotten.jpg
   opening: 2020-07-01

@@ -66,7 +66,8 @@
             src="/images/sponsors/{production.sponsor.image}"
           />
         {:else if production.sponsor.text}
-          {@html production.sponsor.text}
+          <span class="text-3xl font-bold">{@html production.sponsor.text}</span
+          >
         {/if}
       </div>
     {/if}
