@@ -28,8 +28,9 @@
 </script>
 
 <script lang="ts">
-  import Production from "../../components/Production.svelte"
+  import Production from "$components/Production.svelte"
   import MaybeImage from "$components/MaybeImage.svelte"
+  import TicketsButton from "$components/TicketsButton.svelte"
   export let productions
   export let year
 
@@ -58,7 +59,7 @@
     Tickets are on sale now!
     <br />
     <br />
-    <a class="btn btn-p" href="{site.ticketsLink}">Get Your Tickets Now!</a>
+    <TicketsButton />
   </div>
 {/if}
 
