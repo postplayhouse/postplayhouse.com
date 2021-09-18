@@ -115,6 +115,11 @@ const config = {
           preventAssignment: true,
         }),
       ],
+      resolve: {
+        alias: {
+          $components: path.resolve("./src/components"),
+        },
+      },
     },
   },
 }

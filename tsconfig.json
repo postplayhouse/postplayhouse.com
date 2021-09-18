@@ -24,7 +24,7 @@
     "checkJs": true,
     "noEmit": true,
     "paths": {
-      "$lib/*": ["src/lib/*"]
+      "$components/*": ["src/components/*"]
     },
     // My settings
     "noPropertyAccessFromIndexSignature": true,
