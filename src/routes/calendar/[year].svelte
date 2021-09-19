@@ -2,7 +2,7 @@
   import type { Load } from "@sveltejs/kit"
   export const load: Load = async (obj) => {
     const res = await obj.fetch(
-      `/data/productions/${obj.page.params["slug"]}.json`,
+      `/data/productions/${obj.page.params["year"]}.json`,
     )
     const data = await res.json()
 
@@ -10,7 +10,7 @@
       return {
         props: {
           productions: data.productions,
-          year: parseInt(obj.page.params["slug"]),
+          year: parseInt(obj.page.params["year"]),
         },
       }
     } else {

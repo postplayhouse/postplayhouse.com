@@ -26,7 +26,7 @@ export const posts = postsData
     return {
       author: { name: "Post Playhouse" },
       title: post.title,
-      id: `${professionalsPage}/${post.slug}`,
+      id: `${professionalsPage}/${post.year}`,
       publishedDate: dateInNebraska(post.date),
       updatedDate: dateInNebraska(post.updatedDate || post.date),
       html: marked(

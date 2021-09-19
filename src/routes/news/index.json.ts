@@ -3,7 +3,7 @@ import type { RequestHandler } from "@sveltejs/kit"
 
 const contents = postsData
   .reverse()
-  .map(({ title, slug, date }) => ({ title, slug, date }))
+  .map(({ title, year, date }) => ({ title, year, date }))
 
 export const get: RequestHandler = () => {
   return { body: contents }
