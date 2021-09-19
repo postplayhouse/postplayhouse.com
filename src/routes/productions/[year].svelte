@@ -3,7 +3,6 @@
   import site from "../../data/site"
 
   export const load: Load = async (obj) => {
-    console.log(obj.page)
     const res = await obj.fetch(
       `/data/productions/${obj.page.params["year"]}.json`,
     )
