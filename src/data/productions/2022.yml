@@ -30,14 +30,12 @@
   color: blue
   image: desperate-measures.jpg
   opening: 2020-06-03
-  # writers: |
-  #   MUSIC BY
-  #   Andrew Lloyd Webber
+  writers: |
+    BOOK & LYRICS BY  
+    Peter Kellogg
 
-  #   BASED ON THE BOOK
-  #   Old Possum's Book of Practical Cats
-  #   BY
-  #   T.S. Eliot
+    MUSIC BY  
+    David Friedman
   description: |
     When the dangerously handsome Johnny Blood’s life is on the line, he must put his fate into the hands of a colorful cast of characters including a mysterious sheriff, an eccentric priest, an authoritarian governor, a saloon girl gone good, and a nun out of the habit. Before the sun sets, will they rise up and pull off the greatest caper yet, or will Johnny be left hanging?
 
@@ -57,19 +55,20 @@
   color: yellow
   image: the-sound-of-music.jpg
   opening: 2020-06-10
-  # writers: |
-  #   MUSIC BY
-  #   Charles Strouse
+  writers: |
+    MUSIC BY  
+    Richard Rodgers
 
-  #   LYRICS BY
-  #   Martin Charnin
+    LYRICS BY  
+    Oscar Hammerstein II
 
-  #   BOOK BY
-  #   Thomas Meehan
+    BOOK BY  
+    Howard Lindsay and Russel Crouse
+
   description: |
     The world's most beloved musical comes again to the Post Playhouse stage!
 
-    In Austria, 1938, an exuberant young governess attempts to bring music and joy back to a broken family, all the while facing danger and intrigue as the Nazis gain power. Featuring a trove of cherished songs, including "Climb Every Mountain," "My Favorite Things," "Do Re Mi," "Sixteeen Going on Seventeen" and of course, "The Sound of Music".
+    In Austria, 1938, an exuberant young governess attempts to bring music and joy back to a broken family, all the while facing danger and intrigue as the Nazis gain power. Featuring a trove of cherished songs, including "Climb Every Mountain," "My Favorite Things," "Do Re Mi," "Sixteen Going on Seventeen" and of course, "The Sound of Music".
   dates:
     fort_rob: |
       June 10e, 11e, 12a, 16e, 19a, 22e,
@@ -115,16 +114,15 @@
   color: red
   image: something-rotten.jpg
   opening: 2020-07-01
-  # writers: |
-  #   MUSIC BY
-  #   Marc Shaiman
+  writers: |
+    BOOK BY  
+    Karey Kirkpatrick  
+    John O'Farrell
 
-  #   LYRICS BY
-  #   Scott Wittman
-  #   Marc Shaiman
+    MUSIC & LYRICS BY  
+    Karey Kirkpatrick  
+    Wayne Kirkpatrick
 
-  #   BOOK BY
-  #   Terrence McNally
   description: |
     Two brothers set out to write the world’s first musical in this hilarious mash-up of sixteenth-century Shakespeare and twenty-first-century Broadway!
 
