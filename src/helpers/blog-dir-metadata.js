@@ -67,7 +67,7 @@ const prepMdsvexFiles = prepFiles(["md"], (details) => {
     ...details,
     ...fm.data,
     content: fm.content,
-    slug: details.basename,
+    year: details.basename,
     title: fm.data.title || titleFromBasename(details.basename),
   }
 })
@@ -76,11 +76,11 @@ const prepSvelteFiles = prepFiles(["svelte"], (details) => {
   const match = details.content.match(
     /^\s*(export )?(const|let) title = ("|')(.*?)("|')/m,
   )
-  // We only need the slug and title, because the actual svelte component
+  // We only need the year and title, because the actual svelte component
   // will take over the content when it is routed.
   return {
     ...details,
-    slug: details.basename,
+    year: details.basename,
     title: match ? match[4] : titleFromBasename(details.basename),
   }
 })
@@ -96,9 +96,9 @@ function loadLegitFiles(dirPath) {
  * or exported title in svelte files is merged into the resulting objects as
  * well.
  *
- * @param {string} dirPath The realtive path starting at the repo root, ending
+ * @param {string} dirPath The relative path starting at the repo root, ending
  * with a slash
- * @typedef {{slug: string, title: string}} ArticleDetails
+ * @typedef {{year: string, title: string}} ArticleDetails
  * @returns {Array<Details & ArticleDetails>}
  * @example postsMetadata("src/routes/news/")
  *
@@ -108,5 +108,5 @@ export function postsMetadata(dirPath) {
 
   return prepSvelteFiles(dirPath, thisDirBlogFiles)
     .concat(prepMdsvexFiles(dirPath, thisDirBlogFiles))
-    .sort((a, b) => (a.slug > b.slug ? 1 : -1))
+    .sort((a, b) => (a.year > b.year ? 1 : -1))
 }

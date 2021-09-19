@@ -38,7 +38,7 @@
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
     <li>
-      <a rel="prefetch" href="news/{post.slug}">
+      <a rel="prefetch" href="news/{post.year}">
         <span>{post.date}</span>
         {post.title}
       </a>
