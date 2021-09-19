@@ -110,7 +110,6 @@
   <table
     id="ticket-prices"
     class="tickets"
-    border="0"
     width="100%"
     cellspacing="0"
     cellpadding="0"
@@ -189,7 +188,6 @@
     <table
       id="subscription-prices"
       class="tickets"
-      border="0"
       width="100%"
       cellspacing="0"
       cellpadding="0"
@@ -223,7 +221,6 @@
     <table
       id="subscription-prices"
       class="tickets"
-      border="0"
       width="100%"
       cellspacing="0"
       cellpadding="0"
