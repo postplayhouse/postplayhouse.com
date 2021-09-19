@@ -2,5 +2,5 @@
   "files.associations": {
     "*.md": "mdx"
   },
-  "cSpell.words": ["mdsvex"]
+  "cSpell.words": ["frontmatter", "mdsvex"]
 }
