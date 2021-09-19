@@ -80,7 +80,7 @@
       </a>
     </li>
     <li>
-      <a use:active="{activePath}" href="/calendar">Calendar</a>
+      <a use:active="{activePath}" href="/calendar/{site.season}">Calendar</a>
     </li>
     <li><a use:active="{activePath}" href="/gifts">Gifts</a></li>
     <li>
