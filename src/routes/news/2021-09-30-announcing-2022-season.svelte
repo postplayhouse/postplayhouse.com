@@ -19,23 +19,10 @@
 </p>
 
 <div class="w-2/3 m-auto">
-  <img src="/images/2022/the-sound-of-music.jpg" alt="" />
-</div>
-<div class="flex gap-2">
-  <div class="w-1/2">
-    <img src="/images/2022/damn-yankees.png" alt="" />
-  </div>
-  <div class="w-1/2">
-    <img src="/images/2022/desperate-measures.jpg" alt="" />
-  </div>
-</div>
-<div class="flex gap-2">
-  <div class="w-1/2">
-    <img src="/images/2022/something-rotten.jpg" alt="" />
-  </div>
-  <div class="w-1/2">
-    <img src="/images/2022/church-basement-ladies.png" alt="" />
-  </div>
+  <img
+    src="/images/2022/full-season.jpg"
+    alt="2022 season logos: The Sound of Music, Damn Yankees, Chuch Basement Ladies, Desperate Measures, and Something Rotten!"
+  />
 </div>
 
 <section class="space-y-2">
