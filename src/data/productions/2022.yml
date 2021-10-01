@@ -106,7 +106,8 @@
       August 2e, 3e, 5a, 10a, 12e,
   roles_sorting:
   sponsor:
-    text: Footprints
+    image: footprints.png
+    link: https://footprints.com
 
 - title: Something Rotten!
   short_title: Rotten
