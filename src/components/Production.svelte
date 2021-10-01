@@ -1,6 +1,7 @@
 <script lang="ts">
   import Markdown from "./Markdown.svelte"
   import MaybeImage from "./MaybeImage.svelte"
+  import MaybeLink from "./MaybeLink.svelte"
   export let production
   export let season
 
@@ -57,7 +58,7 @@
     <Markdown source="{production.description}" />
 
     {#if production.sponsor}
-      <div class="float-right">
+      <MaybeLink class="float-right" href="{production.sponsor.link}">
         <p>Sponsored By</p>
         {#if production.sponsor.image}
           <img
@@ -69,7 +70,7 @@
           <span class="text-3xl font-bold">{@html production.sponsor.text}</span
           >
         {/if}
-      </div>
+      </MaybeLink>
     {/if}
   </div>
 </article>
