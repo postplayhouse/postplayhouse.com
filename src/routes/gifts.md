@@ -6,7 +6,8 @@ title: Gifts
   import site from "../data/site"
 </script>
 
-<!--Now when you buy a gift via our [Online Box Office]({site.ticketsLink}), you can print off any of our certificates/subscription cards below and give them to the recipient! Use the information in your confirmation email to fill out the gift card. Be sure to write in your Record Locator number.
+<!--
+When you buy a gift via our [Online Box Office]({site.ticketsLink}), you can print off any of our certificates/subscription cards below and give them to the recipient! Use the information in your confirmation email to fill out the gift card. Be sure to write in your Record Locator number.
 
 Subscribers: even if it's not a gift, print off a subscription card for a convenient place to write down all the information about your shows after you reserve them.
 
@@ -36,6 +37,9 @@ Click to download the PDF to print. Don't forget to fill out the record locator 
 
 <a href="/documents/subscription-presenter.pdf" download><img src="/documents/subscription-presenter.png" alt="Image of Subscription Presentation Card" style="border: 1px solid #eee"></a>
 
-Click to download the PDF. It contains the printing instructions. -->
+Click to download the PDF. It contains the printing instructions.
+-->
 
-[Our 2020 Season has been cancelled.](/news/2020-03-25-season-cancelled) We will make gifts available again as we prepare for our 2021 Summer Season. We can't wait to see you then!
+If you've purchased a Season Subscription or a Gift Certificate prior to December 10 through our [Online Box Office]({site.ticketsLink}), we will contact you and ask if you would like us to send you a pre-filled Subscription Card or Gift Certificate to present as a gift. Just reply to our email and we'll get them sent to you soon.
+
+We will have the certificates and subscription cards available to print directly from this page as well. So please check back here in a few days if you'd like to print these items yourself.
