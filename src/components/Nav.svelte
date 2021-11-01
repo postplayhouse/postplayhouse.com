@@ -74,14 +74,14 @@
 
 <nav class="main-nav">
   <ul class="m-auto max-w-3xl">
-    <!-- <li>
-      <a use:active={activePath} href="productions/{site.season}">
+    <li>
+      <a use:active="{activePath}" href="/productions/{site.season}">
         Our Productions
       </a>
-    </li> -->
-    <!-- <li>
-      <a use:active={activePath} href="calendar">Calendar</a>
-    </li> -->
+    </li>
+    <li>
+      <a use:active="{activePath}" href="/calendar/{site.season}">Calendar</a>
+    </li>
     <li><a use:active="{activePath}" href="/gifts">Gifts</a></li>
     <li>
       <a use:active="{activePath}" href="/who/{site.season}">Who's Who</a>

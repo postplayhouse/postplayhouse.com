@@ -4,7 +4,7 @@ const liveUrl = "https://postplayhouse.com"
 
 // Actual values. If dev, these may change below.
 const castingComplete = false
-const ticketsAvailable = false
+const ticketsAvailable = true
 
 // When doing a Netlify PR Deploy, use the provided url
 const url = live
@@ -24,10 +24,10 @@ export default {
   twitter: "postplayhouse",
   facebook: "post.playhouse",
   castingComplete: prod ? castingComplete : true,
-  season: 2021,
+  season: 2022,
   description:
     "Post Playhouse, Inc. is Northwestern Nebraska's favorite live theatre company, producing several musicals running in a repertory schedule every summer by bringing together highly skilled creative professionals from across the country and nearby. Post Playhouse, Inc. performs its productions at the theatre in Fort Robinson State Park.",
   boxOfficePhone: "1-888-665-1976",
-  ticketsLink: "https://postplayhousetickets.universitytickets.com/",
+  ticketsLink: "https://postplayhouse.showare.com/",
   ticketsAvailable,
 } as const

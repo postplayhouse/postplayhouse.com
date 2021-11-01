@@ -3,6 +3,7 @@
   import Modal from "../components/Modal/Modal.svelte"
 
   import Feature from "./news/2021-07-05-returning-in-2022.md"
+  import SeasonAnnounced from "./news/2021-09-30-announcing-2022-season.svelte"
 
   $: showMailingList = false
 
@@ -14,6 +15,11 @@
 <svelte:head>
   <title>Post Playhouse</title>
 </svelte:head>
+
+<div class="mb-32 p-2 max-w-2xl mx-auto">
+  <h1 class="h1">Announcing our 2022 season!</h1>
+  <SeasonAnnounced />
+</div>
 
 <div class="mb-32 p-2 max-w-2xl mx-auto">
   <Feature />

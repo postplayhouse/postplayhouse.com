@@ -89,21 +89,27 @@
   <p>
     Ticket sales for every summer season begin November 1st of the previous
     calendar year.
-    <a class="link-green" href="{site.ticketsLink}">Buy yours now</a>
-    ! Or email us at
-    <a href="mailto:tickets@postplayhouse.com">tickets@postplayhouse.com</a>
-    Call our box office at
-    <a class="x" href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">
-      {site.boxOfficePhone}
-    </a>
   </p>
 
-  <h2>Ticket Prices</h2>
+  {#if site.ticketsAvailable}
+    <a class="link-green" href="{site.ticketsLink}">Buy yours now!</a><br />
+  {/if}
+
+  Or email us at
+  <a class="link-green" href="mailto:tickets@postplayhouse.com"
+    >tickets@postplayhouse.com</a
+  ><br />
+
+  Call our box office at
+  <a class="x" href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">
+    {site.boxOfficePhone}
+  </a>
+
+  <h2 class="h2 mt-4 mb-2">Ticket Prices</h2>
 
   <table
     id="ticket-prices"
     class="tickets"
-    border="0"
     width="100%"
     cellspacing="0"
     cellpadding="0"
@@ -152,7 +158,7 @@
     </tbody>
   </table>
 
-  <h3>Group Rates</h3>
+  <h3 class="h3 mt-4 mb-2">Group Rates</h3>
 
   <p>
     Groups of 25 or more may purchase tickets at the rate noted above. Tickets
@@ -160,7 +166,7 @@
     are never reduced or refunded. The Post Playhouse cannot be responsible for
     unused group tickets. Group rate tickets can not be purchased online. Please
     email us for group rate ticket needs at
-    <a class href="mailto:tickets@postplayhouse.com">
+    <a class="link-green" href="mailto:tickets@postplayhouse.com">
       tickets@postplayhouse.com
     </a>
     or call our box office at
@@ -169,7 +175,7 @@
     >.
   </p>
 
-  <h2>Subscription Pricing</h2>
+  <h2 class="h2 mt-4 mb-2">Subscription Pricing</h2>
 
   <p>
     Subscriptions are the best way to see what Post Playhouse has to offer each
@@ -182,7 +188,6 @@
     <table
       id="subscription-prices"
       class="tickets"
-      border="0"
       width="100%"
       cellspacing="0"
       cellpadding="0"
@@ -216,7 +221,6 @@
     <table
       id="subscription-prices"
       class="tickets"
-      border="0"
       width="100%"
       cellspacing="0"
       cellpadding="0"
@@ -259,7 +263,7 @@
     as you can.
   </div>
 
-  <h3>Season Subscriptions {site.season}</h3>
+  <h3 class="h3 mt-4 mb-2">Season Subscriptions {site.season}</h3>
 
   <p>
     Please choose from the following shows to fill out your season subscription:
@@ -279,7 +283,7 @@
     same production multiple times.
   </p>
 
-  <h2>Seating Chart</h2>
+  <h2 class="h2 mt-4 mb-2">Seating Chart</h2>
 
   <SeatingChart />
 

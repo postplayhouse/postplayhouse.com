@@ -2,7 +2,7 @@
   import type { Load } from "@sveltejs/kit"
   export const load: Load = async (obj) => {
     const res = await obj.fetch(
-      `/data/productions/${obj.page.params["slug"]}.json`,
+      `/data/productions/${obj.page.params["year"]}.json`,
     )
     const data = await res.json()
 
@@ -10,7 +10,7 @@
       return {
         props: {
           productions: data.productions,
-          year: parseInt(obj.page.params["slug"]),
+          year: parseInt(obj.page.params["year"]),
         },
       }
     } else {
@@ -27,7 +27,7 @@
   const hasCalendar = !!productions?.find((prod) => prod.dates)
 </script>
 
-<h1 class="text-center font-uber text-4xl">{year} Season</h1>
+<h1 class="text-center font-uber text-4xl mb-2">{year} Season</h1>
 
 {#if year === 2020}
   <h3 class="h3 text-center">
@@ -38,8 +38,12 @@
   </p>
 {/if}
 
+{#if year === 2021}
+  <h3 class="h3 text-center">The 2021 Season was cancelled due to COVID-19.</h3>
+{/if}
+
 {#if hasCalendar}
   <Calendar productions="{productions}" year="{year}" />
 {:else}
-  <h2>There is no historical calendar for {year}</h2>
+  <h2 class="text-center">There is no historical calendar for {year}</h2>
 {/if}

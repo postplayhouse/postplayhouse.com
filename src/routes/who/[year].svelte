@@ -2,7 +2,7 @@
   import type { Load } from "@sveltejs/kit"
 
   export const load: Load = async (obj) => {
-    const res = await obj.fetch(`/data/people/${obj.page.params["slug"]}.json`)
+    const res = await obj.fetch(`/data/people/${obj.page.params["year"]}.json`)
     const data = await res.json()
 
     if (res.status === 200) {
@@ -10,7 +10,7 @@
         props: {
           site: data.site,
           people: data.people,
-          slug: obj.page.params["slug"],
+          year: obj.page.params["year"],
         },
       }
     } else {
@@ -23,11 +23,11 @@
   import Bio from "../../components/Bio.svelte"
   import { sortPeople, personIsOnlyInGroup, groupPeople } from "../../helpers"
   export let site
-  export let slug
+  export let year
   export let people
 
   const shouldFilterActors =
-    site.season.toString() === slug && site.castingComplete === false
+    site.season.toString() === year && site.castingComplete === false
 
   people = sortPeople(people).filter((person) => {
     return shouldFilterActors ? !personIsOnlyInGroup(person, "cast") : true
@@ -39,7 +39,7 @@
 </script>
 
 {#each ["rest", "Board", "Additional"] as groupName}
-  {#if slug === "2020"}
+  {#if year === "2020"}
     <p>
       <a href="/news/2020-03-25-season-cancelled" class="link-green">
         Our 2020 Season was sadly cancelled.

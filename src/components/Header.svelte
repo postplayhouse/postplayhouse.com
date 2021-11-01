@@ -1,5 +1,6 @@
 <script lang="ts">
   import site from "../data/site"
+  import TicketsButton from "./TicketsButton.svelte"
 </script>
 
 <header
@@ -20,11 +21,7 @@
   </div>
 
   <div class="flex-initial text-center mt-8 ml-2 min-w-md">
-    <a href="{site.ticketsLink}" class="btn-p">
-      {#if site.ticketsAvailable}
-        Get Tickets Online
-      {:else}Tickets: Coming Soon{/if}
-    </a>
+    <TicketsButton />
 
     <a
       class="text-green-700 underline sm:block sm:mt-4"

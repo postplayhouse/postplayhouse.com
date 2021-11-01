@@ -2,8 +2,8 @@
   import type { Load } from "@sveltejs/kit"
 
   export const load: Load = async (obj) => {
-    // the `slug` parameter is available because
-    // this file is called [slug].svelte
+    // the `year` parameter is available because
+    // this file is called [year].svelte
     const res = await obj.fetch(`data/people.json`)
     const data = await res.json()
 
