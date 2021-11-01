@@ -50,23 +50,7 @@
   about: |
     Some of the best smoked BBQ you'll ever eat.
 
-- name: "The Drifter Cookshack & Bunkhouse"
-  site: http://www.highplainshomestead.com
-  type:
-    - restaurant
-    - bed and breakfast
-    - outdoor activities
-  supporter: true
-  address:
-    street: 263 Sand Creek Road
-    city: Crawford
-    state: NE
-    zip: 69339
-  phone: 308-665-2592
-  about: |
-    Located a few miles outside of downtown Crawford, this family-run bed & breakfast and restaurant is well worth the travel. You will get some of the best home cooked food you've had in ages and an amazing view of one of the most beautiful areas Northwest Nebraska has to offer. The Kesselring's have been long time supporters of the playhouse and even offer and dinner and a play package in conjunction with Post Playhouse. See their site for the details.
-
-- name: "Helen's Pancake & Steak House"
+- name: "The Grove"
   type:
     - restaurant
   phone: 308-432-9958
