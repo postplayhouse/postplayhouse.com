@@ -49,13 +49,6 @@
 
 <h1 class="h1">{title}</h1>
 
-<p class="bg-green-200 p-4 my-4">
-  <strong>Notice:</strong>
-  Due to continuing health concerns, we are holding off on announcing our 2021 season
-  until we have more information. We will update this page as soon as we have finalized
-  plans for 2021.
-</p>
-
 <div class="flex items-center my-4">
   <h2 class="h2">Summer {site.season}</h2>
   <button class="btn btn-p ml-4" on:click="{toggleFeedsLinks}">
