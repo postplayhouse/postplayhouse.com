@@ -164,15 +164,7 @@
     Groups of 25 or more may purchase tickets at the rate noted above. Tickets
     may be added to a group sale (if seats are available) up to show date but
     are never reduced or refunded. The Post Playhouse cannot be responsible for
-    unused group tickets. Group rate tickets can not be purchased online. Please
-    email us for group rate ticket needs at
-    <a class="link-green" href="mailto:tickets@postplayhouse.com">
-      tickets@postplayhouse.com
-    </a>
-    or call our box office at
-    <a class="x" href="tel:+{site.boxOfficePhone.replace(/-/g, '')}"
-      >{site.boxOfficePhone}</a
-    >.
+    unused group tickets.
   </p>
 
   <h2 class="h2 mt-4 mb-2">Subscription Pricing</h2>
