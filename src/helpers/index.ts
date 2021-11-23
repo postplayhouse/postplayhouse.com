@@ -108,3 +108,19 @@ export function objPropsToCamel(obj) {
     acc[toCamel(current)] = obj[current]
   }, {})
 }
+
+/**
+ * Where start and end dates are inclusive. Each date must be "mm/dd/yyy". If no
+ * compareDateStr is given, today is used.
+ */
+export function dateIsBetween(
+  startDateStr: string,
+  endDateStr: string,
+  compareDateStr?: string,
+) {
+  const compareDate_ = compareDateStr ? new Date(compareDateStr) : new Date()
+  const compareDate = compareDate_.setHours(0, 0, 0, 0)
+  const startDate = new Date(startDateStr).setHours(0, 0, 0, 0)
+  const endDate = new Date(endDateStr).setHours(0, 0, 0, 0)
+  return compareDate <= endDate && compareDate >= startDate
+}
