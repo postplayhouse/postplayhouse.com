@@ -4,42 +4,42 @@ title: Gifts
 
 <script lang="ts">
   import site from "../data/site"
+  import { dateIsBetween } from "../helpers"
+
+  const now_year = new Date().getFullYear()
+  const is_holidays = dateIsBetween(`10/01/${now_year}`, `12/10/${now_year}`)
 </script>
 
-<!--
-When you buy a gift via our [Online Box Office]({site.ticketsLink}), you can print off any of our certificates/subscription cards below and give them to the recipient! Use the information in your confirmation email to fill out the gift card. Be sure to write in your Record Locator number.
+{#if is_holidays}
+<div class="p-4 border-2 border-green-800 bg-green-100 mb-4">
+
+## Holiday Gift Extras
+
+No matter when you purchase a Season Subscripton or Gift Certificate, you can always print them from downloadable files below. However, during the holidays, we like to lend a hand.
+
+If you've purchased a Season Subscription or a Gift Certificate prior to December 10 through our [Online Box Office]({site.ticketsLink}), we will contact you via email and ask if you would like us to send you a pre-filled Subscription Card or Gift Certificate to present as a gift. Just reply to the email we sent you and we'll ship the cards to you before December 25th.
+
+</div>
+{/if}
+
+When you buy a gift via our [Online Box Office]({site.ticketsLink}), you can print off any of our certificates/subscription cards below and give them to the recipient.
 
 Subscribers: even if it's not a gift, print off a subscription card for a convenient place to write down all the information about your shows after you reserve them.
 
-Just download the one you want and print!
-
 ## { site.season } Gift Certificate
 
-<a href="/documents/gift-certificate.pdf" download><img src="/documents/gift-certificate.png" alt="Image of Gift Certificate"></a>
+Click to download.
 
-You can also download and print a decorative backing if you like.
+<a href="/documents/gift-certificate.pdf" download class="border-2 hover:border-green-800 border-transparent inline-block mb-8"><img src="/documents/gift-certificate.jpg" alt="Image of Gift Certificate" class="max-w-md"/></a>
 
-<a href="/documents/gift-certificate-backing.pdf" download><img src="/documents/gift-certificate-backing.png" alt="Image of Gift Certificate Backing"></a>
+## { site.season } Season Subscription Card
 
-## { site.season } Season 5 Show Subscription Card
+Click to download.
 
-<a href="/documents/subscription-card-5.pdf" download><img src="/documents/subscription-card-5.png" alt="Image of Subscription Card"></a>
-
-Click to download the PDF to print. Don't forget to fill out the record locator (find it in your purchase confirmation email).
-
-## { site.season } Season 4 Show Subscription Card
-
-<a href="/documents/subscription-card-4.pdf" download><img src="/documents/subscription-card-4.png" alt="Image of Subscription Card"></a>
-
-Click to download the PDF to print. Don't forget to fill out the record locator (find it in your purchase confirmation email).
+<a href="/documents/subscription-card.pdf" download class="border-2 hover:border-green-800 border-transparent inline-block mb-8"><img src="/documents/subscription-card.png" alt="Image of Subscription Card" class="max-w-md"/></a>
 
 ## Post Playhouse Season Subscription Presentation Card
 
-<a href="/documents/subscription-presenter.pdf" download><img src="/documents/subscription-presenter.png" alt="Image of Subscription Presentation Card" style="border: 1px solid #eee"></a>
+Click to download.
 
-Click to download the PDF. It contains the printing instructions.
--->
-
-If you've purchased a Season Subscription or a Gift Certificate prior to December 10 through our [Online Box Office]({site.ticketsLink}), we will contact you and ask if you would like us to send you a pre-filled Subscription Card or Gift Certificate to present as a gift. Just reply to our email and we'll get them sent to you soon.
-
-We will have the certificates and subscription cards available to print directly from this page as well. So please check back here in a few days if you'd like to print these items yourself.
+<a href="/documents/subscription-presenter.pdf" download class="border-2 hover:border-green-800 border-transparent inline-block mb-8"><img src="/documents/subscription-presenter.png" alt="Image of Subscription Presentation Card" class="border border-gray-100 max-w-md"/></a>
