@@ -3,7 +3,7 @@ const defaultTheme = require("tailwindcss/defaultTheme")
 
 const config = {
   mode: "jit",
-  purge: ["./src/**/*.{html,js,svelte,ts}"],
+  purge: ["./src/**/*.{html,js,svelte,ts,md}"],
   theme: {
     extend: {
       borderWidth: { 6: "6px" },
