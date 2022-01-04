@@ -21,7 +21,7 @@ const dateInNebraska = (dateArg) =>
   new Date(dateArg).toISOString().replace("Z", "-07:00")
 
 export const posts = postsData
-  .filter((post) => post.active || post.feed)
+  .filter((post) => ((post as unknown) as { feed: boolean }).feed)
   .map((post) => {
     return {
       author: { name: "Post Playhouse" },
