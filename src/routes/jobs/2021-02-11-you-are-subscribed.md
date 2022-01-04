@@ -1,6 +1,6 @@
 ---
 title: You are subscribed!
-active: false
+website: false
 feed: true
 ---
 

@@ -3,8 +3,9 @@
 
   type Post = {
     content: string
-    active: boolean
     title: string
+    website: boolean
+    feed: boolean
   }
 
   export const load: Load = (obj) => {
@@ -12,7 +13,7 @@
       .fetch(`/jobs.json`)
       .then((r) => r.json())
       .then((posts: Post[]) => {
-        return { props: { posts: posts.filter((p) => p.active) } }
+        return { props: { posts: posts.filter((p) => p.website) } }
       })
   }
 </script>
@@ -41,6 +42,9 @@
 
   let showFeedsLinks = false
   const toggleFeedsLinks = () => (showFeedsLinks = !showFeedsLinks)
+  function slugify(str: string) {
+    return str.replace(/\W+/g, "-")
+  }
 </script>
 
 <svelte:head>
@@ -49,15 +53,30 @@
 
 <h1 class="h1">{title}</h1>
 
-<div class="flex items-center my-4">
-  <h2 class="h2">Summer {site.season}</h2>
-  <button class="btn btn-p ml-4" on:click="{toggleFeedsLinks}">
-    Subscribe to Jobs
+<div class="flex items-center my-4 border border-green-600 bg-green-200 p-2">
+  <button class="btn btn-p mr-4" on:click="{toggleFeedsLinks}">
+    Subscribe to jobs updates
   </button>
+  Never miss an employment opportunity announcement
 </div>
+
+{#if posts.length > 1}
+  <ul class="list-none">
+    {#each posts as post}
+      <li class="text-lg">
+        Jump to <a class="link-green" href="#{slugify(post.title)}"
+          >{post.title}</a
+        >
+      </li>
+    {/each}
+  </ul>
+{/if}
 
 {#if posts.length}
   {#each posts as post}
+    <h1 class="h2 font-bold mt-12 mb-4" id="{slugify(post.title)}">
+      {post.title}
+    </h1>
     <Markdown source="{post.content}" />
   {/each}
 {:else}
