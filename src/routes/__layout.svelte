@@ -32,7 +32,7 @@
 </PersistentModal>
 
 <Header />
-<Nav activePath="{$page.path}" />
+<Nav activePath="{$page.url.pathname}" />
 
 <main class="relative m-auto py-8 px-2 sm:px-8">
   <slot />
