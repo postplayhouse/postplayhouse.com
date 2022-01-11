@@ -54,7 +54,8 @@
   <title>{status}</title>
 </svelte:head>
 
-{#if status === 404 && matchesOldRoutes}{(window.location.href = tryLocation)}{/if}
+{#if status === 404 && matchesOldRoutes}{(window.location.href =
+    tryLocation)}{/if}
 
 <h1>{status}</h1>
 <p>{error.message}</p>

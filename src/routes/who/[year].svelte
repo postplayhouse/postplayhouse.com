@@ -2,7 +2,7 @@
   import type { Load } from "@sveltejs/kit"
 
   export const load: Load = async (obj) => {
-    const res = await obj.fetch(`/data/people/${obj.page.params["year"]}.json`)
+    const res = await obj.fetch(`/data/people/${obj.params["year"]}.json`)
     const data = await res.json()
 
     if (res.status === 200) {
@@ -10,7 +10,7 @@
         props: {
           site: data.site,
           people: data.people,
-          year: obj.page.params["year"],
+          year: obj.params["year"],
         },
       }
     } else {

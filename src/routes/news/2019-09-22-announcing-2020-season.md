@@ -12,4 +12,3 @@ single_featured: true
 ![2020 Season Production logos](/images/2020/full-season.jpg)
 
 <p class="text-center m-4">Tickets are on sale now!</p>
-

@@ -1,16 +1,14 @@
 <script lang="ts" context="module">
   import type { Load } from "@sveltejs/kit"
   export const load: Load = async (obj) => {
-    const res = await obj.fetch(
-      `/data/productions/${obj.page.params["year"]}.json`,
-    )
+    const res = await obj.fetch(`/data/productions/${obj.params["year"]}.json`)
     const data = await res.json()
 
     if (res.status === 200) {
       return {
         props: {
           productions: data.productions,
-          year: parseInt(obj.page.params["year"]),
+          year: parseInt(obj.params["year"]),
         },
       }
     } else {
