@@ -11,6 +11,7 @@ title: Gifts
 </script>
 
 {#if is_holidays}
+
 <div class="p-4 border-2 border-green-800 bg-green-100 mb-4">
 
 ## Holiday Gift Extras

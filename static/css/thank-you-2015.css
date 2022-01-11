@@ -1,1 +1,24 @@
-.full.thank-you-2015{font-size:1em;text-align:left}.thank-you-2015 h1,.thank-you-2015 h2,.thank-you-2015 h3,.thank-you-2015 h4,.thank-you-2015 h5{text-align:center;clear:both;margin-top:2em}.thank-you-2015 h2{font-size:3em;margin:.5em auto}.thank-you-2015 h3{font-size:1.5em}.thank-you-2015 h4{font-size:1.25em;font-weight:bold}
+.full.thank-you-2015 {
+  font-size: 1em;
+  text-align: left;
+}
+.thank-you-2015 h1,
+.thank-you-2015 h2,
+.thank-you-2015 h3,
+.thank-you-2015 h4,
+.thank-you-2015 h5 {
+  text-align: center;
+  clear: both;
+  margin-top: 2em;
+}
+.thank-you-2015 h2 {
+  font-size: 3em;
+  margin: 0.5em auto;
+}
+.thank-you-2015 h3 {
+  font-size: 1.5em;
+}
+.thank-you-2015 h4 {
+  font-size: 1.25em;
+  font-weight: bold;
+}

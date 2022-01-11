@@ -1,6 +1,6 @@
 ---
 # layout: post
-title:  "New Toll Free Number"
+title: "New Toll Free Number"
 sticky: false
 ---
 

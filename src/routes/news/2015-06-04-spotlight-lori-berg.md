@@ -1,6 +1,6 @@
 ---
 # layout: spotlight-series
-title:  "In The Spotlight: Lori Berg"
+title: "In The Spotlight: Lori Berg"
 excerpt: "Enjoying her first season at Post, Lori tells us a bit about creativity, story-telling, and what it means to be a director."
 image: /images/2015/lori-giving-notes.jpg
 ---
@@ -28,12 +28,11 @@ Every show --- whether I am acting in it, or directing it --- is an opportunity 
 
 ### What brings you to Post Playhouse?
 
-A dear friend, Jorie Janeway, who is appearing for her fourth season here at Post, is also in my theatre troupe in Los Angeles. Jorie speaks so highly of Post Playhouse that I finally asked her to tell me more. Well, what she told me --- sold me. And it just so happened that Tom needed a co-director for *The Best Little Whorehouse in Texas*. I am so thankful to be invited here to create some musical theatre memories --- for creative team and audience alike.
+A dear friend, Jorie Janeway, who is appearing for her fourth season here at Post, is also in my theatre troupe in Los Angeles. Jorie speaks so highly of Post Playhouse that I finally asked her to tell me more. Well, what she told me --- sold me. And it just so happened that Tom needed a co-director for _The Best Little Whorehouse in Texas_. I am so thankful to be invited here to create some musical theatre memories --- for creative team and audience alike.
 
 ### Have you worked in as remote an area as this before?
 
 Over the years since graduate performance studies, I have returned to a theatre in rural Central Illinois to direct entire seasons and individual shows. The town in which the theatre is located is a burg of only 1000. Folks come from miles around due to its reputation. That experience reminds me so much of directing here at Post. However... And this is big... The professional calibre of technical and creative team, as well as the actors here at Post, is a marked difference from the experience to which I referred. I've [also] "told the story" throughout the US, Central America, Asia, and most recently in Brazil.
-
 
 ### Have you ever been to this part of the country?
 
@@ -56,12 +55,12 @@ I enjoy teaching "beginners." In young students, I see the lights turn on inside
 
 ### How would you describe your experience working at Post Playhouse so far?
 
-I have a few choice words to use when describing my Post Playhouse experience: 
+I have a few choice words to use when describing my Post Playhouse experience:
 
 Talent  
 Commitment  
 Team  
-Supportive  
+Supportive
 
 I have experienced a lot of collaborations. Few have measured up to the teamwork that is the Post Playhouse. All the communities and the many, many audience members who will share the stories of this summer---well, y'all are in for a treat!
 

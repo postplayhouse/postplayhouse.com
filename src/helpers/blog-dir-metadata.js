@@ -58,8 +58,10 @@ function titleFromBasename(fileBasename) {
  * @param {(details: Details) => any} mapFn
  * @returns {(dirPath: string, fileNames: string[]) => any}
  */
-const prepFiles = (extensions, mapFn = (x) => x) => (dirPath, fileNames) =>
-  fileNames.reduce(getDetails(dirPath, extensions), []).map(mapFn)
+const prepFiles =
+  (extensions, mapFn = (x) => x) =>
+  (dirPath, fileNames) =>
+    fileNames.reduce(getDetails(dirPath, extensions), []).map(mapFn)
 
 const prepMdsvexFiles = prepFiles(["md"], (details) => {
   const fm = frontmatter(details.content)

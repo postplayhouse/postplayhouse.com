@@ -17,5 +17,5 @@ a markdown component to display (when "active" on the website.)
 ## Content
 
 Since these are regular .md files and cannot know what the live url of the site
-is (local, PR, production), we search and replace the string __URL__ with
+is (local, PR, production), we search and replace the string `__URL__` with
 the live url.

@@ -1,10 +1,10 @@
 ---
 # layout: post
-title:  "Fun at the annual raffle"
+title: "Fun at the annual raffle"
 featured: false
 ---
 
-Thanks to all those who bought tickets and came out to support the playhouse. We all had such a wonderful time, and we are now more excited than ever to get started on rehearsals... which aren't *that* far off!
+Thanks to all those who bought tickets and came out to support the playhouse. We all had such a wonderful time, and we are now more excited than ever to get started on rehearsals... which aren't _that_ far off!
 
 <div class="featured-pictures">
   <div class="picture">
