@@ -4,7 +4,7 @@ import { fileURLToPath } from "url"
 import { preprocess as compilerPreprocess } from "svelte/compiler"
 
 import replace from "@rollup/plugin-replace"
-import staticSite from "@sveltejs/adapter-static"
+import adapter from "@sveltejs/adapter-static"
 import { mdsvex } from "mdsvex"
 import preprocess from "svelte-preprocess"
 import svelteImage from "svelte-image"
@@ -85,9 +85,9 @@ const replacements = [
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+  extensions: [".svelte", ".md"],
   // Consult https://github.com/sveltejs/svelte-preprocess
   // for more information about preprocessors
-  extensions: [".svelte", ".md"],
   preprocess: runImagesAfterOthers([
     mdsvex({
       smartypants: true,
@@ -101,9 +101,9 @@ const config = {
   ]),
 
   kit: {
+    adapter: adapter(),
     // hydrate the <div id="svelte"> element in src/app.html
     target: "#svelte",
-    adapter: staticSite(),
     prerender: { onError: "continue" },
     vite: {
       plugins: [
