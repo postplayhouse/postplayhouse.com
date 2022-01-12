@@ -41,7 +41,7 @@
     "eslint-plugin-svelte3": "^3.2.1",
     "frontmatter": "^0.0.3",
     "jest": "^27.0.6",
-    "markdown-it": "^9.1.0",
+    "markdown-it": "^12.3.2",
     "mdsvex": "^0.8.8",
     "postcss": "^8.3.5",
     "postcss-load-config": "^3.1.0",
