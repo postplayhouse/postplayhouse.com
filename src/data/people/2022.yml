@@ -399,3 +399,12 @@
   positions:
   image_year: 2015
   image_file: wally-seiler.jpg
+
+- first_name: Matt
+  last_name: Watson
+  location: ""
+  groups:
+    - board
+  positions:
+  image_year: 2022
+  image_file: matt-watson.jpg
