@@ -25,7 +25,38 @@
   </div>
 </div>
 
-<h2 class="h2">Location</h2>
+<h2 class="h2">Contact</h2>
+
+<h3 class="h3 mt-4">Box Office</h3>
+<p>
+  <a class="link-green" href="{site.boxOfficePhoneLink}"
+    >{site.boxOfficePhone}</a
+  ><br />
+  <a class="link-green" href="mailto:tickets@postplayhouse.com"
+    >tickets@postplayhouse.com</a
+  >
+</p>
+
+<h3 class="h3 mt-4">Auditions</h3>
+<p>
+  Please visit <a class="link-green" href="/jobs">the jobs page</a> for more information
+</p>
+
+<h3 class="h3 mt-4">Producing Artistic Director</h3>
+<p>
+  Tom Ossowski: <a class="link-green" href="mailto:tom@postplayhouse.com"
+    >tom@postplayhouse.com</a
+  >
+</p>
+
+<h3 class="h3 mt-4">Mailing address</h3>
+<p>
+  Post Playhouse<br />
+  P.O. Box 365<br />
+  Crawford, NE 69939
+</p>
+
+<h2 class="h2 mt-4">Location</h2>
 
 <p>
   Post Playhouse, Inc. produces its summer season at the theatre located on Fort

@@ -46,7 +46,7 @@
   {/if}
 
   <ul
-    class="list-none font-extralight mb-2 pl-0 {localPerson.image
+    class="list-none font-thin mb-2 pl-0 {localPerson.image
       ? 'sm:float-left sm:w-1/2'
       : ''}"
   >
