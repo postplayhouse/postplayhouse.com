@@ -1,0 +1,51 @@
+/**
+ * Azo Sans Uber, licensed through Fontspring.com to Don Denton
+ */
+@font-face {
+  font-family: "azo-sans-uber";
+  src: url("AzoSansUber-webfont.woff2") format("woff2"),
+    url("AzoSansUber-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/**
+ * Metropolis is open source with the super-permissive license. Thanks to Chris
+ * Simpson and https://fontsarena.com/metropolis-by-chris-simpson/
+ */
+@font-face {
+  font-family: "metropolis";
+  src: url("metropolis/Metropolis-Thin.woff2") format("woff2"),
+    url("metropolis/Metropolis-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "metropolis";
+  src: url("metropolis/Metropolis-Regular.woff2") format("woff2"),
+    url("metropolis/Metropolis-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "metropolis";
+  src: url("metropolis/Metropolis-RegularItalic.woff2") format("woff2"),
+    url("metropolis/Metropolis-RegularItalic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "metropolis";
+  src: url("metropolis/Metropolis-Bold.woff2") format("woff2"),
+    url("metropolis/Metropolis-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

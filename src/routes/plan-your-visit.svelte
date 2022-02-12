@@ -32,7 +32,7 @@
     padding: 6px;
     text-align: center;
     line-height: 1;
-    font-weight: lighter;
+    font-weight: 100;
   }
 </style>
 

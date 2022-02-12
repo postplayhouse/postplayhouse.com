@@ -8,7 +8,7 @@ const config = {
     extend: {
       borderWidth: { 6: "6px" },
       fontFamily: {
-        sans: ["proxima-nova", ...defaultTheme.fontFamily.sans],
+        sans: ["metropolis", ...defaultTheme.fontFamily.sans],
         uber: ["azo-sans-uber", "Arial Black"],
       },
       screens: {

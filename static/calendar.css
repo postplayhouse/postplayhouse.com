@@ -1,5 +1,4 @@
 .calendar-component-wrapper {
-  font-family: proxima-nova, sans-serif;
   background: #d1dcc4;
   font-size: 1.5rem;
 }
@@ -15,7 +14,6 @@
   border: 1px solid #d1dcc4;
   color: #9fb684;
   float: left;
-  font-family: proxima-nova, sans-serif;
   font-size: 2.625rem;
   padding: 0.3rem 0.78rem;
   line-height: 3rem;
@@ -106,7 +104,6 @@
 }
 
 .calendar {
-  font-family: proxima-nova, sans-serif;
   padding: 1em;
   overflow: hidden;
   margin: auto;
@@ -187,7 +184,7 @@
   display: none;
 }
 .day.monday .day-name .short {
-  display: inline;
+  display: none;
 }
 
 .week:first-child .day:first-child {
@@ -208,6 +205,7 @@
   display: none;
   color: black;
   font-family: azo-sans-uber, sans-serif;
+  letter-spacing: normal;
   font-weight: bolder;
   position: absolute;
   background: transparent;
@@ -249,7 +247,7 @@
 
 .day-name {
   display: none;
-  font-family: proxima-nova-extra-condensed;
+  font-size: 0.7em;
   line-height: 1;
   color: black;
 }
@@ -317,8 +315,7 @@
 }
 
 .mday {
-  font-family: proxima-nova-condensed;
-  font-weight: 300;
+  font-size: 0.7em;
   color: black;
   text-align: right;
   margin-bottom: 6px;
@@ -449,6 +446,7 @@
 
 .showing {
   flex-basis: 1.44em;
+  display: flex;
 }
 @media (max-width: 574px) {
   .showing {
@@ -457,20 +455,20 @@
 }
 
 .show-time {
-  font-family: proxima-nova-condensed;
   color: black;
   margin-left: 2%;
   text-shadow: none;
   text-align: center;
   background-color: white;
-  width: 1.5em;
+  width: 2em;
+  flex-basis: 2em;
+  flex-shrink: 0;
   border-radius: 10%;
   padding: 0.1em 0;
   line-height: 1;
 }
 @media (min-width: 575px) and (max-width: 900px) {
   .show-time {
-    font-weight: bold;
     width: 1.75em;
   }
 }
@@ -485,11 +483,8 @@
 .show-title {
   flex-grow: 1;
   white-space: nowrap;
-}
-@media (min-width: 575px) and (max-width: 900px) {
-  .show-title {
-    font-family: proxima-nova-condensed;
-  }
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 @media (max-width: 574px) {
   .show-title {

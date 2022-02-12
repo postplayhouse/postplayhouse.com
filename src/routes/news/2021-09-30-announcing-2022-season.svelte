@@ -42,7 +42,7 @@
 
   <p>
     <strong>When you log in for the first time on the new site</strong>, you'll
-    need to use the "forgot password" function to reset your password.
+    need to use the “forgot password” function to reset your password.
   </p>
 </section>
 

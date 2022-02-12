@@ -22,17 +22,17 @@
 
 <article class="mt-16 flow-root">
   <header>
-    <h2 class="text-6xl leading-none mb-2">
-      {#if production.pre_title}
-        <div class="text-lg leading-none">{production.pre_title}</div>
-      {/if}
-      {production.title}
-    </h2>
     <MaybeImage
       class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl"
       src="{[imagePath, fallbackImagePath]}"
       alt="Show Logo for {production.title}"
     />
+    <h2 class="text-4xl leading-none mb-2">
+      {#if production.pre_title}
+        <div class="text-lg leading-none">{production.pre_title}</div>
+      {/if}
+      {production.title}
+    </h2>
   </header>
 
   {#if production.opening}
@@ -49,7 +49,7 @@
     </div>
   {/if}
   {#if production.writers}
-    <div class="mb-8 font-light writers">
+    <div class="mb-8 writers">
       <Markdown source="{production.writers}" />
     </div>
   {/if}

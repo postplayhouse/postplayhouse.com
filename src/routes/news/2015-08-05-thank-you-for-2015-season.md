@@ -6,7 +6,7 @@ excerpt: Thanks to everyone for our __best season ever__! Really. View this arti
 
 <link rel="stylesheet" type="text/css" href="/css/thank-you-2015.css">
 <div class="full thank-you-2015">
-  <h2 style="font-weight: bold; font-family: azo-sans-uber">Thank You!</h2>
+  <h2 class="font-uber">Thank You!</h2>
   <h3>Thanks to everyone for our <strong>best season ever</strong>! Really. Have a look:</h3>
 
   <div class="group">
