@@ -54,7 +54,7 @@
   <p>
     If you are ever curious about the content of a production, you can call our
     box office at
-    <a href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">
+    <a href="{site.boxOfficePhoneLink}">
       {site.boxOfficePhone}
     </a>
     after approximately late-May every year and talk to our summer box office staff.

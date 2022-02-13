@@ -29,10 +29,7 @@
     >
       Ticket Information
     </a>
-    <a
-      class="mt-2 text-lg block"
-      href="tel:+{site.boxOfficePhone.replace(/-/g, '')}"
-    >
+    <a class="mt-2 text-lg block" href="{site.boxOfficePhoneLink}">
       {site.boxOfficePhone}
     </a>
   </div>
