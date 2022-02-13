@@ -101,7 +101,7 @@
   ><br />
 
   Call our box office at
-  <a class="x" href="tel:+{site.boxOfficePhone.replace(/-/g, '')}">
+  <a class="x" href="{site.boxOfficePhoneLink}">
     {site.boxOfficePhone}
   </a>
 
@@ -171,9 +171,7 @@
       tickets@postplayhouse.com
     </a>
     or call our box office at
-    <a class="x" href="tel:+{site.boxOfficePhone.replace(/-/g, '')}"
-      >{site.boxOfficePhone}</a
-    >.
+    <a class="x" href="{site.boxOfficePhoneLink}">{site.boxOfficePhone}</a>.
   </p>
 
   <h2 class="h2 mt-4 mb-2">Subscription Pricing</h2>
@@ -258,10 +256,9 @@
     to any 4 or 5 performances by emailing us at
     <a href="mailto:tickets@postplayhouse.com">tickets@postplayhouse.com</a>
     or calling our box office at
-    <a class="x" href="tel:+{site.boxOfficePhone.replace(/-/g, '')}"
-      >{site.boxOfficePhone}</a
-    >. Seats are based on availability, so please make your reservations as soon
-    as you can.
+    <a class="x" href="{site.boxOfficePhoneLink}">{site.boxOfficePhone}</a>.
+    Seats are based on availability, so please make your reservations as soon as
+    you can.
   </div>
 
   <h3 class="h3 mt-4 mb-2">Season Subscriptions {site.season}</h3>
