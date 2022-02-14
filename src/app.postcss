@@ -65,7 +65,7 @@
   }
 
   ._h3 {
-    @apply text-xl;
+    @apply text-xl font-bold;
   }
 
   ._h4 {
@@ -113,6 +113,14 @@ been given an explicit class */
     @apply link-green;
   }
 
+  .via-markdown h1:not([class]) {
+    @apply _h1 mt-3 mb-1;
+  }
+
+  .via-markdown h1:not([class]):first-child {
+    @apply _h1 mt-0 mb-1;
+  }
+
   .via-markdown h2:not([class]) {
     @apply _h2 mt-3 mb-1;
   }
@@ -126,7 +134,7 @@ been given an explicit class */
   }
 
   .via-markdown p:not([class]) {
-    @apply my-1;
+    @apply my-2;
   }
 
   .via-markdown img:not([class]) {
