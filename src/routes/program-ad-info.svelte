@@ -78,6 +78,16 @@ Have your in-house designer create an ad that fits the dimensions you've
 purchased, making sure to bake all your ad copy into the image itself. Export
 the image at 300ppi and send it along to Don.
 
+### Fonts
+
+Don cannot use any fonts you request unless they are properly licensed. So if
+you want a particular font, please create the entire ad yourself as an image,
+using your fully-licensed font, and send that to Don.
+
+You may _request_ a font, but if Don doesn't have access to it in his design
+tools, he cannot purchase or use it in your ad. He also cannot accept a font
+file from you unless the proper licencing information also accompanies the file.
+
 ## Additional, helpful materials to send us
 
 - If you have a website, please include the address in your email to Don. He can
