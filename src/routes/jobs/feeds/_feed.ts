@@ -1,4 +1,4 @@
-import marked from "marked"
+import { marked } from "marked"
 
 import postsData from "../_posts-metadata"
 import site from "../../../data/site"
@@ -29,7 +29,7 @@ export const posts = postsData
       id: `${professionalsPage}/${post.year}`,
       publishedDate: dateInNebraska(post.date),
       updatedDate: dateInNebraska(post.updatedDate || post.date),
-      html: marked(
+      html: marked.parse(
         post.content +
           `\n\nVisit our site for the [full job listing](${professionalsPage})`,
       ),

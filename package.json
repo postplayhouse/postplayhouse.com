@@ -23,7 +23,7 @@
     "compression": "^1.7.1",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
-    "marked": "^0.7.0"
+    "marked": "^4.0.12"
   },
   "devDependencies": {
     "@rollup/plugin-replace": "^3.0.0",
@@ -32,6 +32,8 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/svelte": "^3.0.3",
     "@types/jest": "^26.0.24",
+    "@types/lodash": "^4.14.178",
+    "@types/marked": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "autoprefixer": "^10.2.6",

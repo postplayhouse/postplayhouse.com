@@ -64,7 +64,7 @@ type Business = {
   about?: string
 }
 
-type Person = {
+type YamlPerson = {
   last_name: string
   first_name: string
   location: string
@@ -84,5 +84,5 @@ type YearlyData = {
   businesses: Business[]
   bio_check_emails: { submit_subject: string; submit_body: string }
   productions: Record<Year, Production[]>
-  people: Record<Year, Person[]>
+  people: Record<Year, YamlPerson[]>
 }

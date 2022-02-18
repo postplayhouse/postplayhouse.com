@@ -1,16 +1,19 @@
-export function personIsInGroup(person, groupName) {
+import type { Person } from "../models/Person"
+
+type PersonLike = Person | YamlPerson
+export function personIsInGroup(person: PersonLike, groupName: string) {
   return !!(
     Array.isArray(person.groups) &&
-    person.groups.map((x) => x.toLowerCase(x)).includes(groupName.toLowerCase())
+    person.groups.map((x) => x.toLowerCase()).includes(groupName.toLowerCase())
   )
 }
 
-export function personIsOnlyInGroup(person, groupName) {
+export function personIsOnlyInGroup(person: PersonLike, groupName: string) {
   return personIsInGroup(person, groupName) && person.groups.length === 1
 }
 
 /**
- * Puts people in thier corresponding groups. Any ungrouped people come out in
+ * Puts people in their corresponding groups. Any ungrouped people come out in
  * the rest
  *
  * @example
@@ -18,11 +21,14 @@ export function personIsOnlyInGroup(person, groupName) {
  * // All the people who didn't fit into the above categories are in the rest category
  *
  */
-export function groupPeople(people: object[], ...groupNames: string[]) {
-  const grouped = {}
-  const used = []
+export function groupPeople<G extends string, P extends PersonLike>(
+  people: P[],
+  ...groupNames: G[]
+): Record<G | "rest", P[]> {
+  const grouped = {} as Record<G | "rest", P[]>
+  const used = [] as P[]
   groupNames.forEach((groupName) => {
-    grouped[groupName] = []
+    grouped[groupName] = [] as P[]
     people.forEach((person) => {
       if (personIsInGroup(person, groupName)) {
         grouped[groupName].push(person)
@@ -38,7 +44,7 @@ export function groupPeople(people: object[], ...groupNames: string[]) {
  * Boolean on whether the given position name appears in the list of positions for an individual person
  */
 export function personHasPositionStartingWith(
-  person: object,
+  person: PersonLike,
   positionName: string,
 ) {
   return (
@@ -54,9 +60,8 @@ export function personHasPositionStartingWith(
 /**
  * Sorts people by board membership, board positions of note, then name.
  * Non-board members come first.
- * @param {Array<object>} arrayOfPeople
  */
-export function sortPeople(arrayOfPeople) {
+export function sortPeople(arrayOfPeople: YamlPerson[]) {
   return arrayOfPeople.slice(0).sort(function (a, b) {
     const aBoard = (a.groups || []).includes("board")
     const bBoard = (b.groups || []).includes("board")
@@ -92,21 +97,25 @@ export function sortPeople(arrayOfPeople) {
   })
 }
 
-export function lowerFirst(str) {
+export function lowerFirst(str: string) {
   return str.charAt(0).toLowerCase() + str.substr(1)
 }
 
-export function toCamel(str) {
+export function toCamel(str: string) {
   return lowerFirst(str).replace(/([-_\s]\w)/g, (_full, [_, letter]) =>
     letter.toUpperCase(),
   )
 }
 
-export function objPropsToCamel(obj) {
+export function objPropsToCamel(obj: IHash<unknown>) {
   return Object.keys(obj).reduce((acc, current) => {
     if (typeof current !== "string") return acc
     acc[toCamel(current)] = obj[current]
   }, {})
+}
+
+export function slugify(str: string) {
+  return str.replace(/[^A-Za-z]/g, "-")
 }
 
 /**
