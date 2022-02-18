@@ -8,12 +8,6 @@
   import { showDonateModal } from "../data/stores"
 </script>
 
-<style>
-  main {
-    max-width: 56em;
-  }
-</style>
-
 <PersistentModal on:close="{showDonateModal.toggle}" show="{$showDonateModal}">
   <h2 class="h2">Donate Now!</h2>
 
@@ -39,3 +33,9 @@
 </main>
 
 <Footer />
+
+<style>
+  main {
+    max-width: 56em;
+  }
+</style>

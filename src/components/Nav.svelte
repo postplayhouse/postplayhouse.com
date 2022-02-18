@@ -27,6 +27,29 @@
   }
 </script>
 
+<nav class="main-nav">
+  <ul class="m-auto max-w-3xl">
+    <li>
+      <a use:active="{activePath}" href="/productions/{site.season}">
+        Our Productions
+      </a>
+    </li>
+    <li>
+      <a use:active="{activePath}" href="/calendar/{site.season}">Calendar</a>
+    </li>
+    <li>
+      <a use:active="{activePath}" href="/plan-your-visit">Plan Your Visit</a>
+    </li>
+    <li><a use:active="{activePath}" href="/gifts">Gifts</a></li>
+    <li>
+      <a use:active="{activePath}" href="/who/{site.season}">Who's Who</a>
+    </li>
+    <li><a use:active="{activePath}" href="/jobs">Jobs</a></li>
+    <li><a use:active="{activePath}" href="/donate">Donate</a></li>
+    <li><a use:active="{activePath}" href="/about">About</a></li>
+  </ul>
+</nav>
+
 <style>
   nav {
     border-bottom: 1px solid rgba(62, 155, 50, 0.1);
@@ -70,26 +93,3 @@
     display: block;
   }
 </style>
-
-<nav class="main-nav">
-  <ul class="m-auto max-w-3xl">
-    <li>
-      <a use:active="{activePath}" href="/productions/{site.season}">
-        Our Productions
-      </a>
-    </li>
-    <li>
-      <a use:active="{activePath}" href="/calendar/{site.season}">Calendar</a>
-    </li>
-    <li>
-      <a use:active="{activePath}" href="/plan-your-visit">Plan Your Visit</a>
-    </li>
-    <li><a use:active="{activePath}" href="/gifts">Gifts</a></li>
-    <li>
-      <a use:active="{activePath}" href="/who/{site.season}">Who's Who</a>
-    </li>
-    <li><a use:active="{activePath}" href="/jobs">Jobs</a></li>
-    <li><a use:active="{activePath}" href="/donate">Donate</a></li>
-    <li><a use:active="{activePath}" href="/about">About</a></li>
-  </ul>
-</nav>

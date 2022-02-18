@@ -18,24 +18,6 @@
   export let businesses
 </script>
 
-<style>
-  .supporter:before {
-    content: "Playhouse\aSupporter";
-    white-space: pre;
-    transform: rotate(15deg);
-    position: absolute;
-    right: -1em;
-    top: -0.5em;
-    color: white;
-    background-color: green;
-    border-radius: 8px;
-    padding: 6px;
-    text-align: center;
-    line-height: 1;
-    font-weight: 100;
-  }
-</style>
-
 <h2 class="h2">Nearby Activities, Attractions, Food, and Lodging</h2>
 
 <p class="my-8">
@@ -125,3 +107,21 @@
     (PDF)
   </p>
 </div>
+
+<style>
+  .supporter:before {
+    content: "Playhouse\aSupporter";
+    white-space: pre;
+    transform: rotate(15deg);
+    position: absolute;
+    right: -1em;
+    top: -0.5em;
+    color: white;
+    background-color: green;
+    border-radius: 8px;
+    padding: 6px;
+    text-align: center;
+    line-height: 1;
+    font-weight: 100;
+  }
+</style>

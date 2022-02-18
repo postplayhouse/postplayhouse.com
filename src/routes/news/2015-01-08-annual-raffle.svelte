@@ -4,6 +4,52 @@
     "Join us on March 14, 2015 for our annual raffle. You could win $10,000!"
 </script>
 
+--- # layout: post title: "Annual Raffle" excerpt: "Join us on March 14, 2015
+for our annual raffle. You could win $10,000!" ---
+
+<div class="full lucky">
+  <h3>Get Lucky</h3>
+  <img src="/images/perennials/shamrock.svg" class="shamrock" alt="shamrock" />
+  <h4>with the <span>Post Playhouse</span> Board of Directors!</h4>
+  <p class="clear">Join us for the Post Playhouse Inc. Annual Raffle!</p>
+  <p class="pop">
+    Saturday, March 14, 2015 <span class="no-break">from 5:30-7pm</span>
+  </p>
+  <p>
+    Fort Robinson State Park<br />
+    Buffalo Soldier's Barracks<br />
+    <span class="info">Park Sticker Required</span>
+  </p>
+  <ul class="prizes">
+    <li>1st Prize: <span class="prize">$10,000</span></li>
+    <li>2nd Prize: <span class="prize">$1,000</span></li>
+    <li>Every 10th Ticket: <span class="prize">$100</span></li>
+  </ul>
+
+  <p class="long group">
+    <img
+      src="/images/perennials/homestead.png"
+      class="homestead"
+      alt="High Plains Homestead Logo"
+    />Raffle tickets are priced at $100 each. The purchase of a raffle ticket
+    allows you and a guest to join us at the fund-raiser. You'll enjoy hors
+    d'oeuvres, wine, and have a great time!
+  </p>
+
+  <div class="purchase-info">
+    <h4>Only 200 Raffle Tickets Available!</h4>
+    <p class="long">
+      Get yours from a <a href="/who/2015/#board">Post Playhouse Board Member</a
+      >
+      or by contacting the Craford Clipper: <br />
+      email:
+      <a href="mailto:crawfordclipper@gmail.com">crawfordclipper@gmail.com</a
+      ><br />
+      phone: 308-665-2310
+    </p>
+  </div>
+</div>
+
 <style>
   .group,
   .wrapper {
@@ -174,49 +220,3 @@
     }
   }
 </style>
-
---- # layout: post title: "Annual Raffle" excerpt: "Join us on March 14, 2015
-for our annual raffle. You could win $10,000!" ---
-
-<div class="full lucky">
-  <h3>Get Lucky</h3>
-  <img src="/images/perennials/shamrock.svg" class="shamrock" alt="shamrock" />
-  <h4>with the <span>Post Playhouse</span> Board of Directors!</h4>
-  <p class="clear">Join us for the Post Playhouse Inc. Annual Raffle!</p>
-  <p class="pop">
-    Saturday, March 14, 2015 <span class="no-break">from 5:30-7pm</span>
-  </p>
-  <p>
-    Fort Robinson State Park<br />
-    Buffalo Soldier's Barracks<br />
-    <span class="info">Park Sticker Required</span>
-  </p>
-  <ul class="prizes">
-    <li>1st Prize: <span class="prize">$10,000</span></li>
-    <li>2nd Prize: <span class="prize">$1,000</span></li>
-    <li>Every 10th Ticket: <span class="prize">$100</span></li>
-  </ul>
-
-  <p class="long group">
-    <img
-      src="/images/perennials/homestead.png"
-      class="homestead"
-      alt="High Plains Homestead Logo"
-    />Raffle tickets are priced at $100 each. The purchase of a raffle ticket
-    allows you and a guest to join us at the fund-raiser. You'll enjoy hors
-    d'oeuvres, wine, and have a great time!
-  </p>
-
-  <div class="purchase-info">
-    <h4>Only 200 Raffle Tickets Available!</h4>
-    <p class="long">
-      Get yours from a <a href="/who/2015/#board">Post Playhouse Board Member</a
-      >
-      or by contacting the Craford Clipper: <br />
-      email:
-      <a href="mailto:crawfordclipper@gmail.com">crawfordclipper@gmail.com</a
-      ><br />
-      phone: 308-665-2310
-    </p>
-  </div>
-</div>

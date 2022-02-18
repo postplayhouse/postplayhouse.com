@@ -9,17 +9,6 @@
   const fallbackImagePath = `/images/${season}/${production.image}`
 </script>
 
-<style>
-  @media screen and (max-width: 767px) {
-    /* A little hack to make better use of whitespace on smaller screens */
-    .writers :global(.via-markdown) {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-    }
-  }
-</style>
-
 <article class="mt-16 flow-root">
   <header>
     <MaybeImage
@@ -74,3 +63,14 @@
     {/if}
   </div>
 </article>
+
+<style>
+  @media screen and (max-width: 767px) {
+    /* A little hack to make better use of whitespace on smaller screens */
+    .writers :global(.via-markdown) {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+  }
+</style>
