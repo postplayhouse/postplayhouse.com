@@ -1,3 +1,96 @@
+<div class="seating-chart">
+  <div class="stage">Stage</div>
+
+  <div class="seats">
+    <div data-row="b" class="row b">
+      {#each [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4] as i}
+        <div class="seat">
+          <div class="outer">
+            <div class="seat-number">{i}</div>
+          </div>
+        </div>
+      {/each}
+      {#each [3, 2, 1] as _na}
+        <div class="seat placeholder">
+          <div class="outer">
+            <div class="seat-number">()</div>
+          </div>
+        </div>
+      {/each}
+    </div>
+
+    {#each ["c", "d", "e", "f", "g", "h", "j", "k", "l", "m"] as row}
+      <div data-row="{row}" class="row {row}">
+        {#each [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1] as i}
+          <div class="seat">
+            <div class="outer">
+              <div class="seat-number">{i}</div>
+            </div>
+          </div>
+        {/each}
+      </div>
+    {/each}
+
+    <div data-row="n" class="row n">
+      <div class="seat handicap">
+        <div class="outer">
+          <div class="seat-number">14</div>
+        </div>
+      </div>
+      <div class="seat companion">
+        <div class="outer">
+          <div class="seat-number">13</div>
+        </div>
+      </div>
+      <div class="seat handicap">
+        <div class="outer">
+          <div class="seat-number">12</div>
+        </div>
+      </div>
+      <div class="seat companion">
+        <div class="outer">
+          <div class="seat-number">11</div>
+        </div>
+      </div>
+      {#each [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] as i}
+        <div class="seat">
+          <div class="outer">
+            <div class="seat-number">{i}</div>
+          </div>
+        </div>
+      {/each}
+    </div>
+
+    <div data-row="p" class="row p">
+      {#each [14, 13, 12, 11] as i}
+        <div class="seat hold">
+          <div class="outer">
+            <div class="seat-number">{i}</div>
+          </div>
+        </div>
+      {/each}
+      {#each [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] as i}
+        <div class="seat">
+          <div class="outer">
+            <div class="seat-number">{i}</div>
+          </div>
+        </div>
+      {/each}
+    </div>
+  </div>
+
+  <ul class="legend">
+    <li><span class="bullet"></span> General seating</li>
+    <li><span class="bullet handicap"></span> Handicap seating</li>
+    <li><span class="bullet companion"></span> Companion seating</li>
+    <li>
+      <span class="bullet hold"></span>
+      Held seating - Will be made available after we have confirmed the space is
+      not needed for wheelchairs.
+    </li>
+  </ul>
+</div>
+
 <style>
   .seating-chart {
     font-size: 10px;
@@ -113,96 +206,3 @@
     display: none;
   }
 </style>
-
-<div class="seating-chart">
-  <div class="stage">Stage</div>
-
-  <div class="seats">
-    <div data-row="b" class="row b">
-      {#each [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4] as i}
-        <div class="seat">
-          <div class="outer">
-            <div class="seat-number">{i}</div>
-          </div>
-        </div>
-      {/each}
-      {#each [3, 2, 1] as _na}
-        <div class="seat placeholder">
-          <div class="outer">
-            <div class="seat-number">()</div>
-          </div>
-        </div>
-      {/each}
-    </div>
-
-    {#each ["c", "d", "e", "f", "g", "h", "j", "k", "l", "m"] as row}
-      <div data-row="{row}" class="row {row}">
-        {#each [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1] as i}
-          <div class="seat">
-            <div class="outer">
-              <div class="seat-number">{i}</div>
-            </div>
-          </div>
-        {/each}
-      </div>
-    {/each}
-
-    <div data-row="n" class="row n">
-      <div class="seat handicap">
-        <div class="outer">
-          <div class="seat-number">14</div>
-        </div>
-      </div>
-      <div class="seat companion">
-        <div class="outer">
-          <div class="seat-number">13</div>
-        </div>
-      </div>
-      <div class="seat handicap">
-        <div class="outer">
-          <div class="seat-number">12</div>
-        </div>
-      </div>
-      <div class="seat companion">
-        <div class="outer">
-          <div class="seat-number">11</div>
-        </div>
-      </div>
-      {#each [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] as i}
-        <div class="seat">
-          <div class="outer">
-            <div class="seat-number">{i}</div>
-          </div>
-        </div>
-      {/each}
-    </div>
-
-    <div data-row="p" class="row p">
-      {#each [14, 13, 12, 11] as i}
-        <div class="seat hold">
-          <div class="outer">
-            <div class="seat-number">{i}</div>
-          </div>
-        </div>
-      {/each}
-      {#each [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] as i}
-        <div class="seat">
-          <div class="outer">
-            <div class="seat-number">{i}</div>
-          </div>
-        </div>
-      {/each}
-    </div>
-  </div>
-
-  <ul class="legend">
-    <li><span class="bullet"></span> General seating</li>
-    <li><span class="bullet handicap"></span> Handicap seating</li>
-    <li><span class="bullet companion"></span> Companion seating</li>
-    <li>
-      <span class="bullet hold"></span>
-      Held seating - Will be made available after we have confirmed the space is
-      not needed for wheelchairs.
-    </li>
-  </ul>
-</div>

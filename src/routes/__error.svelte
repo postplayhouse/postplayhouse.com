@@ -27,6 +27,20 @@
   })
 </script>
 
+<svelte:head>
+  <title>{status}</title>
+</svelte:head>
+
+{#if status === 404 && matchesOldRoutes}{(window.location.href =
+    tryLocation)}{/if}
+
+<h1>{status}</h1>
+<p>{error.message}</p>
+
+{#if dev && error.stack}
+  <pre>{error.stack}</pre>
+{/if}
+
 <style>
   h1,
   p {
@@ -49,17 +63,3 @@
     }
   }
 </style>
-
-<svelte:head>
-  <title>{status}</title>
-</svelte:head>
-
-{#if status === 404 && matchesOldRoutes}{(window.location.href =
-    tryLocation)}{/if}
-
-<h1>{status}</h1>
-<p>{error.message}</p>
-
-{#if dev && error.stack}
-  <pre>{error.stack}</pre>
-{/if}

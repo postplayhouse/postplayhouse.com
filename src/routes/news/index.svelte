@@ -14,17 +14,6 @@
   export let posts
 </script>
 
-<style>
-  ul {
-    margin: 0 0 1em 0;
-    line-height: 1.5;
-  }
-
-  span {
-    font-feature-settings: "tnum";
-  }
-</style>
-
 <svelte:head>
   <title>News</title>
 </svelte:head>
@@ -45,3 +34,14 @@
     </li>
   {/each}
 </ul>
+
+<style>
+  ul {
+    margin: 0 0 1em 0;
+    line-height: 1.5;
+  }
+
+  span {
+    font-feature-settings: "tnum";
+  }
+</style>

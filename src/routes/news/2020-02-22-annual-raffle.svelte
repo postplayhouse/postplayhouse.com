@@ -4,73 +4,6 @@
     "Join us on March 21, 2020 for our annual raffle. You could win $5,000!"
 </script>
 
-<style>
-  .title {
-    margin: 0 auto;
-    width: 100%;
-    line-height: 1;
-    font-size: 80px;
-    font-weight: bold;
-  }
-  @media (min-width: 650px) {
-    .title {
-      font-size: 122px;
-    }
-  }
-  @media (min-width: 850px) {
-    .title {
-      font-size: 160px;
-    }
-  }
-  .big-pop {
-    color: #94d788;
-    text-shadow: -0.1em -0.1em 0 #033f0b, -0.09em -0.09em 0 #033f0b,
-      -0.08em -0.08em 0 #033f0b, -0.07em -0.07em 0 #033f0b,
-      -0.06em -0.06em 0 #033f0b, -0.05em -0.05em 0 #033f0b,
-      -0.04em -0.04em 0 #033f0b, -0.03em -0.03em 0 #033f0b,
-      -0.02em -0.02em 0 #033f0b, -0.01em -0.01em 0 #033f0b,
-      -0.095em -0.095em 0 #033f0b, -0.085em -0.085em 0 #033f0b,
-      -0.075em -0.075em 0 #033f0b, -0.065em -0.065em 0 #033f0b,
-      -0.055em -0.055em 0 #033f0b, -0.045em -0.045em 0 #033f0b,
-      -0.035em -0.035em 0 #033f0b, -0.025em -0.025em 0 #033f0b,
-      -0.015em -0.015em 0 #033f0b, -0.005em -0.005em 0 #033f0b;
-  }
-  .small-pop {
-    color: #94d788;
-    text-shadow: -0.01em -0.01em 0 #033f0b, -0.02em -0.02em 0 #033f0b,
-      -0.03em -0.03em 0 #033f0b;
-  }
-  .prizes {
-    margin: 1em auto;
-    list-style: none;
-    padding-left: 0;
-    font-size: 1.5em;
-    max-width: 24rem;
-  }
-  .prizes li {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 24rem;
-    justify-content: space-between;
-  }
-  .prize {
-    font-weight: bold;
-    font-size: 1.5em;
-  }
-  .prizes li:nth-of-type(1) {
-    font-size: 1.2em;
-  }
-  .shamrock {
-    width: 1.4ex;
-    height: 1.4ex;
-    display: inline-block;
-    margin: 0 -0.3em;
-  }
-  .p {
-    max-width: 36em;
-  }
-</style>
-
 <h3 class="big-pop title">Get Lucky!</h3>
 
 <h4 class="small-pop text-5xl font-bold leading-none">
@@ -170,3 +103,70 @@
     308-665-2310
   </li>
 </ul>
+
+<style>
+  .title {
+    margin: 0 auto;
+    width: 100%;
+    line-height: 1;
+    font-size: 80px;
+    font-weight: bold;
+  }
+  @media (min-width: 650px) {
+    .title {
+      font-size: 122px;
+    }
+  }
+  @media (min-width: 850px) {
+    .title {
+      font-size: 160px;
+    }
+  }
+  .big-pop {
+    color: #94d788;
+    text-shadow: -0.1em -0.1em 0 #033f0b, -0.09em -0.09em 0 #033f0b,
+      -0.08em -0.08em 0 #033f0b, -0.07em -0.07em 0 #033f0b,
+      -0.06em -0.06em 0 #033f0b, -0.05em -0.05em 0 #033f0b,
+      -0.04em -0.04em 0 #033f0b, -0.03em -0.03em 0 #033f0b,
+      -0.02em -0.02em 0 #033f0b, -0.01em -0.01em 0 #033f0b,
+      -0.095em -0.095em 0 #033f0b, -0.085em -0.085em 0 #033f0b,
+      -0.075em -0.075em 0 #033f0b, -0.065em -0.065em 0 #033f0b,
+      -0.055em -0.055em 0 #033f0b, -0.045em -0.045em 0 #033f0b,
+      -0.035em -0.035em 0 #033f0b, -0.025em -0.025em 0 #033f0b,
+      -0.015em -0.015em 0 #033f0b, -0.005em -0.005em 0 #033f0b;
+  }
+  .small-pop {
+    color: #94d788;
+    text-shadow: -0.01em -0.01em 0 #033f0b, -0.02em -0.02em 0 #033f0b,
+      -0.03em -0.03em 0 #033f0b;
+  }
+  .prizes {
+    margin: 1em auto;
+    list-style: none;
+    padding-left: 0;
+    font-size: 1.5em;
+    max-width: 24rem;
+  }
+  .prizes li {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 24rem;
+    justify-content: space-between;
+  }
+  .prize {
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+  .prizes li:nth-of-type(1) {
+    font-size: 1.2em;
+  }
+  .shamrock {
+    width: 1.4ex;
+    height: 1.4ex;
+    display: inline-block;
+    margin: 0 -0.3em;
+  }
+  .p {
+    max-width: 36em;
+  }
+</style>

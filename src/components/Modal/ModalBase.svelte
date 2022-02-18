@@ -3,16 +3,6 @@
   export let dispatch: (evtName: string) => void
 </script>
 
-<style>
-  .my-bg {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-
-  .disappear {
-    left: -9999rem;
-  }
-</style>
-
 <div
   class="fixed shadow-md my-bg overflow-y-auto xs:p-4
     {transitionedOut ? 'disappear' : 'inset-0'}"
@@ -36,3 +26,13 @@
     <slot />
   </section>
 </div>
+
+<style>
+  .my-bg {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .disappear {
+    left: -9999rem;
+  }
+</style>
