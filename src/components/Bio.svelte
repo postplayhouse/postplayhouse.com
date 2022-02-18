@@ -5,26 +5,26 @@
   import MaybeImage from "./MaybeImage.svelte"
   import { toPerson } from "../models/Person"
 
-  export let person
+  export let person: YamlPerson
   export let toPersonFn = toPerson
 
   $: localPerson = toPersonFn(person)
 
-  let productionPositions = []
+  let productionPositions: Array<{
+    position: string
+    productionNames: string[]
+  }> = []
 
   // Pivot prductionName and positions for localPerson.productionPositions
   $: {
-    localPerson.productionPositions.forEach((po) =>
-      productionPositions.push(po.positions),
-    )
-    productionPositions = uniq(flatten(productionPositions)).map(
-      (position) => ({
-        position,
-        productionNames: localPerson.productionPositions
-          .filter((po) => po.positions.includes(position))
-          .map((po) => po.productionName),
-      }),
-    )
+    productionPositions = uniq(
+      flatten(localPerson.productionPositions.map((x) => x.positions)),
+    ).map((position) => ({
+      position,
+      productionNames: localPerson.productionPositions
+        .filter((po) => po.positions.includes(position))
+        .map((po) => po.productionName),
+    }))
   }
 
   const optimizedVersion = (str) => "/g" + str.split(".").join("-800.")

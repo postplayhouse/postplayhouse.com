@@ -7,13 +7,14 @@ class Person {
   imageFile: string
   location: string
   bio: string
+  bioApproved: boolean
   groups: string[]
   positions: string[]
   staffPositions: string[]
 
   // TODO: there is a better type here...
-  productionPositions: object[]
-  roles: object[]
+  productionPositions: Array<{ productionName: string; positions: string[] }>
+  roles: Array<{ productionName: string; positions: string[] }>
 
   get name() {
     return `${this.firstName} ${this.lastName}`
@@ -27,13 +28,14 @@ class Person {
       : undefined
   }
 
-  constructor(personLike) {
+  constructor(personLike: YamlPerson | Person) {
     this.imageFile = undefined
     this.imageYear = 0
     this.firstName = undefined
     this.lastName = undefined
     this.location = undefined
     this.bio = ""
+    this.bioApproved = false
     this.groups = []
 
     // string arrays
@@ -72,6 +74,10 @@ class Person {
   }
 }
 
-export function toPerson(personLike) {
+export function toPerson(personLike: YamlPerson | Person) {
   return new Person(personLike)
 }
+
+type Person_ = Person
+
+export type { Person_ as Person }
