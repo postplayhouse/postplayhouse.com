@@ -13,7 +13,7 @@
   const PLACEHOLDER_IMAGE = "https://www.fillmurray.com/400/500"
   const EXAMPLE_BIO = `Don Denton is so happy to be returning to Post Playhouse after several years away. Though this time around, you won't see him on the stage. Instead, he will be directing this season's production of *Annie*. Some of Don's favorite memories were at Post Playhouse: Doing shows like *Hank Williams: Lost Highway*, and *Guys and Dolls*, working with Paige Salter. He and Paige are looking forward to making some new memories with their son, Marvin, who now gets to see the place Mommy and Daddy met. Visit [dondentonactor.com](https://dondentonactor.com) for more about Don.`
 
-  let lastYearBios = `/who/${site.season - 1}`
+  let lastYearBios = `/who/${site.season - 3}`
 
   let passphrase = ""
   let firstName = ""
@@ -27,11 +27,11 @@
 
   let productions = [
     "Entire Season",
-    "Cats",
+    "The Sound of Music",
     "Church Basement Ladies",
-    "Annie",
     "Damn Yankees",
-    "Catch Me If You Can",
+    "Something Rotten!",
+    "Desperate Measures",
   ]
   let roles = []
   let staffPositions = []
@@ -490,11 +490,13 @@ ${yamlBody({ fillRoles: true })}
   </div>
 {/if}
 
-<p>
-  Have a look at
-  <a class="link-green" href="{lastYearBios}">last year's bios</a>
-  if you'd like some context.
-</p>
+{#if state !== states.success}
+  <p>
+    Have a look at
+    <a class="link-green" href="{lastYearBios}">last year's bios</a>
+    if you'd like some context.
+  </p>
+{/if}
 
 {#if showCredsForm}
   <form on:submit|preventDefault="{submitCreds}">
@@ -573,7 +575,7 @@ ${yamlBody({ fillRoles: true })}
         {/if}
         <label class="block mt-2">
           <input type="checkbox" bind:checked="{useOldHeadshot}" />
-          Please use my headshot from last year instead
+          I've worked at Post before. Please use my headshot from last time instead.
         </label>
       </div>
 
@@ -643,22 +645,25 @@ ${yamlBody({ fillRoles: true })}
             />
             {#if i === 0}
               <div class="text-sm mt-1">
+                (Actors will most likely leave this one blank.)<br />
+                Examples:<br />
                 <code class="text-xs bg-grey-300 rounded py-px px-1"
                   >Box Office Staff</code
-                >,
+                ><br />
                 <code class="text-xs bg-grey-300 rounded py-px px-1"
                   >Season Sound Engineer</code
-                >, etc. Actors will likely leave this blank.
+                >
               </div>
             {/if}
             {#if i === 1}
               <div class="text-sm mt-1">
+                Examples: <br />
                 <code class="text-xs bg-grey-300 rounded py-px px-1"
-                  >Skimbleshanks, Ensemble</code
-                >,
+                  >Franz, Ensemble</code
+                ><br />
                 <code class="text-xs bg-grey-300 rounded py-px px-1"
                   >Assistant Stage Manager</code
-                >, etc.
+                >
               </div>
             {/if}
           </label>
