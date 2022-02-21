@@ -4,6 +4,7 @@
   import Bio from "../components/Bio.svelte"
   import Modal from "../components/Modal/Modal.svelte"
   import Markdown from "../components/Markdown.svelte"
+  import type { Person } from "../models/Person"
 
   onMount(() => {
     if (!window.fetch) dispatch(events.foundNoFetch)
@@ -33,12 +34,16 @@
     "Something Rotten!",
     "Desperate Measures",
   ]
-  let roles = []
-  let staffPositions = []
-  let productionPositions = []
-  let positions = []
+  let roles: Person["roles"] = []
+  let staffPositions: Person["staffPositions"] = []
+  let productionPositions: Person["productionPositions"] = []
+  let positions: Person["positions"] = []
 
-  function updateRole(productionName, position, localRoles) {
+  function updateRole(
+    productionName: string,
+    position: string,
+    localRoles: Person["roles"],
+  ) {
     const updatedRole = {
       productionName,
       positions: position
@@ -68,7 +73,10 @@
     return localRoles
   }
 
-  function mutateRoles(productionName, position) {
+  function mutateRoles(
+    productionName: string,
+    position: Person["positions"][0],
+  ) {
     roles = updateRole(productionName, position, roles)
   }
 
@@ -86,9 +94,8 @@
       bio ||
       `Bill is thrilled (everyone says thrilled) to be making his Post Playhouse debut! Previous credits include _Ghostbusters_, _Groundhog Day_, and many more.`,
   }
-  let toPersonFn = (x) => x
 
-  let wordCount = (s) =>
+  let wordCount = (s: string) =>
     s
       .replace(/[_*]\w+\s+.*?[_*]/g, "SHOW TITLE")
       .replace(/[_*].*?[_*]/g, "SHOW")
@@ -187,7 +194,7 @@
   $: showSuccess = state === states.success
   $: showError = state === states.error
 
-  function dispatch(event) {
+  function dispatch(event: string) {
     if (event === events.foundNoFetch) {
       return (state = states.noFetch)
     }
@@ -268,8 +275,10 @@
     }
   }
 
-  function handleFilePick(e) {
-    const pickedFile = e.target.files[0]
+  function handleFilePick(
+    e: Parameters<svelte.JSX.FormEventHandler<HTMLInputElement>>[0],
+  ) {
+    const pickedFile = e.currentTarget.files[0]
     if (!pickedFile || !pickedFile.type.match("image.*"))
       return (image = PLACEHOLDER_IMAGE)
 
@@ -283,52 +292,52 @@
     reader.readAsDataURL(pickedFile)
   }
 
-  const sanitizedPassphrase = (str) =>
+  const sanitizedPassphrase = (str: string) =>
     str
       .replace(/[^A-z ]/g, "")
       .toLowerCase()
       .trim()
 
-  function confirmPassphrase() {
-    return window
-      .fetch(
-        "https://happycollision-postplayhouse-bio-submission.builtwithdark.com/confirm-passphrase",
-        {
-          method: "GET",
-          headers: new Headers({
-            Authorization: sanitizedPassphrase(passphrase),
-          }),
-        },
-      )
-      .then((res) => {
-        if (res.ok) {
-          dispatch(events.confirmedPassphrase)
-        } else if (res.status === 403) {
-          dispatch(events.badPassphrase)
-        } else {
-          dispatch(events.serverError)
-        }
-      })
+  async function confirmPassphrase() {
+    const res = await window.fetch(
+      "https://happycollision-postplayhouse-bio-submission.builtwithdark.com/confirm-passphrase",
+      {
+        method: "GET",
+        headers: new Headers({
+          Authorization: sanitizedPassphrase(passphrase),
+        }),
+      },
+    )
+    if (res.ok) {
+      dispatch(events.confirmedPassphrase)
+    } else if (res.status === 403) {
+      dispatch(events.badPassphrase)
+    } else {
+      dispatch(events.serverError)
+    }
   }
 
-  function getCreds(count = 2) {
-    return window
-      .fetch(
-        `https://happycollision-postplayhouse-bio-submission.builtwithdark.com/upload-url?count=${count}`,
-        {
-          method: "GET",
-          headers: new Headers({
-            Authorization: sanitizedPassphrase(passphrase),
-          }),
-        },
-      )
-      .then((resp) => {
-        if (resp.ok) return resp.json()
-        else throw new Error("could not get creds")
-      })
+  type Creds = { authorizationToken: string; uploadUrl: string }
+
+  /**
+   * The count will determine how many sets of creds are returned in the array
+   * (we need one set per file to upload)
+   */
+  async function getCreds(count = 2): Promise<Creds[]> {
+    const resp = await window.fetch(
+      `https://happycollision-postplayhouse-bio-submission.builtwithdark.com/upload-url?count=${count}`,
+      {
+        method: "GET",
+        headers: new Headers({
+          Authorization: sanitizedPassphrase(passphrase),
+        }),
+      },
+    )
+    if (resp.ok) return resp.json()
+    else throw new Error("could not get creds")
   }
 
-  const safeName = (str) =>
+  const safeName = (str: string) =>
     str
       .replace(/ +/g, "-")
       .replace(/[^A-z-]/g, "")
@@ -340,7 +349,7 @@
     fillRoles,
     includeGroups,
   }: { fillRoles?: boolean; includeGroups?: boolean } = {}) => {
-    let localRoles = JSON.parse(JSON.stringify(roles))
+    let localRoles: typeof roles = JSON.parse(JSON.stringify(roles))
 
     if (fillRoles) {
       productions.forEach((prod) => {
@@ -393,7 +402,7 @@ ${yamlBody({ fillRoles: true })}
     `Bio Submission: ${name || "YOUR NAME"}`,
   )}&body=${encodeURIComponent(emailBody)}`
 
-  function uploadText(payload, basename, creds) {
+  function uploadText(payload: string, basename: string, creds: Creds) {
     return window.fetch(creds.uploadUrl, {
       method: "POST",
       headers: new Headers({
@@ -401,17 +410,17 @@ ${yamlBody({ fillRoles: true })}
         Authorization: creds.authorizationToken,
         "X-Bz-Content-Sha1": "do_not_verify",
         "X-Bz-File-Name": `${basename}.txt`,
-        "Content-Length": payload.length,
+        "Content-Length": payload.length + "",
       }),
       body: payload,
     })
   }
 
-  function uploadImage(imageFile, newFileBaseName, creds) {
+  function uploadImage(imageFile: File, newFileBaseName: string, creds: Creds) {
     if (!imageFile) return Promise.reject("no image file provided")
 
     const { size, type, name } = imageFile
-    const ext = name.slice([name.lastIndexOf(".") + 1])
+    const ext = name.slice(name.lastIndexOf(".") + 1)
 
     return window.fetch(creds.uploadUrl, {
       method: "POST",
@@ -420,7 +429,7 @@ ${yamlBody({ fillRoles: true })}
         Authorization: creds.authorizationToken,
         "X-Bz-Content-Sha1": "do_not_verify",
         "X-Bz-File-Name": `${newFileBaseName}.${ext}`,
-        "Content-Length": size,
+        "Content-Length": size + "",
       }),
       body: imageFile,
     })
@@ -734,8 +743,7 @@ ${yamlBody({ fillRoles: true })}
       <div class="p-4 bg-grey-200 sticky top-0">
         <h3>Preview (your answers change this preview):</h3>
         <div class="bg-white rounded p-4 shadow-lg">
-          <!-- @ts-expect-error // the toPersonFn supplied fixes missing stuff -->
-          <Bio person="{person}" toPersonFn="{toPersonFn}" />
+          <Bio person="{person}" />
         </div>
         <div></div>
         {#each validations as validation (validation.name)}

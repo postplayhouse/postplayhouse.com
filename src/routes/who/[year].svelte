@@ -1,5 +1,6 @@
 <script lang="ts" context="module">
   import type { Load } from "@sveltejs/kit"
+  import { toPerson } from "../../models/Person"
 
   export const load: Load = async (obj) => {
     const res = await obj.fetch(`/data/people/${obj.params["year"]}.json`)
@@ -53,7 +54,7 @@
       {groupName === "rest" ? generalGroupName : groupName}
     </h2>
     {#each groupedPeople[groupName] as person}
-      <Bio person="{person}" />
+      <Bio person="{toPerson(person)}" />
     {/each}
   {/if}
 {/each}
