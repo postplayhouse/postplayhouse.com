@@ -276,7 +276,7 @@
     var reader = new FileReader()
 
     reader.onload = function (evt) {
-      image = evt.target.result
+      image = evt.target.result as string
       imageFile = pickedFile
     }
 
@@ -336,7 +336,10 @@
 
   const onSubmit = () => dispatch(events.postBio)
 
-  $: yamlBody = ({ fillRoles, includeGroups } = {}) => {
+  $: yamlBody = ({
+    fillRoles,
+    includeGroups,
+  }: { fillRoles?: boolean; includeGroups?: boolean } = {}) => {
     let localRoles = JSON.parse(JSON.stringify(roles))
 
     if (fillRoles) {
@@ -431,9 +434,14 @@ ${yamlBody({ fillRoles: true })}
     let bioTries = 0
     let headshotTries = 0
 
+    const messageToMyself =
+      "Don't forget:\n\n1. change `roles` to `production_positions` for non-cast members\n2. move anything from `Entire Season` to `staff_positions`\n3. delete all incorrect group memberships for each person"
+
     const doBioUpload = async () =>
       uploadText(
-        `${yamlBody({ includeGroups: true })}\n\n\n${email}`,
+        `${yamlBody({
+          includeGroups: true,
+        })}\n\n\n${email}\n\n\n${messageToMyself}`,
         basename,
         (await getCreds(1))[0],
       ).then((resp) => {
@@ -441,7 +449,7 @@ ${yamlBody({ fillRoles: true })}
           return true
         } else if (bioTries < 3) {
           bioTries++
-          return getCreds(1).then((creds) => doBioUpload(creds[0]))
+          return doBioUpload()
         } else {
           throw new Error("Could not upload Bio")
         }
@@ -641,7 +649,7 @@ ${yamlBody({ fillRoles: true })}
             <input
               class="border border-grey-500 block"
               type="text"
-              on:input="{(e) => mutateRoles(production, e.target.value)}"
+              on:input="{(e) => mutateRoles(production, e.currentTarget.value)}"
             />
             {#if i === 0}
               <div class="text-sm mt-1">
@@ -715,7 +723,7 @@ ${yamlBody({ fillRoles: true })}
 
       <button
         class="btn btn-p mt-8 hidden lg:inline-block"
-        disabled="{invalidForm | submitting}"
+        disabled="{invalidForm || submitting}"
         on:click="{onSubmit}"
       >
         {#if submitting}Submitting{:else}Submit Bio{/if}
@@ -726,6 +734,7 @@ ${yamlBody({ fillRoles: true })}
       <div class="p-4 bg-grey-200 sticky top-0">
         <h3>Preview (your answers change this preview):</h3>
         <div class="bg-white rounded p-4 shadow-lg">
+          <!-- @ts-expect-error // the toPersonFn supplied fixes missing stuff -->
           <Bio person="{person}" toPersonFn="{toPersonFn}" />
         </div>
         <div></div>
@@ -745,7 +754,7 @@ ${yamlBody({ fillRoles: true })}
         {/each}
         <button
           class="btn btn-p mt-8"
-          disabled="{invalidForm | submitting}"
+          disabled="{invalidForm || submitting}"
           on:click="{onSubmit}"
         >
           {#if submitting}Submitting{:else}Submit Bio{/if}
