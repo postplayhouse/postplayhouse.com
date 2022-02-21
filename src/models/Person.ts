@@ -23,7 +23,8 @@ class Person {
   get image() {
     return this.imageYear
       ? `/images/people/${this.imageYear}/${
-          this.imageFile || this.name.replace(/ /g, "-").toLowerCase() + ".jpg"
+          this.imageFile ||
+          this.name.replace(/\W+/g, "-").toLowerCase() + ".jpg"
         }`
       : undefined
   }
