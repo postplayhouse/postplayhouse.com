@@ -32,17 +32,6 @@
   bio: ""
   image_year: 2015
 
-- first_name: Linda
-  last_name: Dabbs
-  image_year: 2018
-  location: "Crawford and Omaha, NE"
-  groups:
-    - staff
-  positions:
-    - Paint Charge
-    - Props
-  bio: ""
-
 - first_name: Don
   last_name: Denton
   location: "Bettendorf, IA"
@@ -266,17 +255,6 @@
     Chadron State College
   image_year: 2015
   image_file: randy-rhine.jpg
-
-- first_name: Marge
-  last_name: Rotherham
-  location: "Crawford, NE"
-  groups:
-    - board
-  positions:
-  bio: >
-    Post Playhouse Alum
-  image_year: 2015
-  image_file: marge-rotherham.jpg
 
 - first_name: Wally
   last_name: Seiler
