@@ -20,6 +20,17 @@
   bio: ""
   image_year: 2016
 
+- first_name: Pheobe H.
+  last_name: Boynton
+  image_year: 2017
+  image_file: pheobe-boynton.jpg
+  location: "Colorado Springs, CO"
+  groups:
+    - creative
+  staff_positions:
+    - Season Costume Designer
+  bio: ""
+
 - first_name: Scott
   last_name: Cavin
   location: "Chadron, NE via Lemoore, CA"
@@ -39,6 +50,28 @@
     - Marketing Designer
   bio: ""
   image_year: 2019
+
+- first_name: Emily
+  last_name: Durand
+  image_year: 2022
+  location: "New York City"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Elsa Schraeder
+      - Nun
+      - Maria u.s
+    Damn Yankees:
+      - Wife
+      - Ensemble
+    Something Rotten!:
+      - Ensemble
+    Desperate Measures:
+      - Ensemble
+      - Female u.s.
+  bio: |
+    Emily is elated to make her Post Playhouse debut with this incredible season! A NYC based actor, Emily has been seen Off-Broadway in *Molasses in January* and as Rainbow on the national tour of *The Rainbow Fish*. Select Regional Credits: *The Full Monty* (Argyle Theatre), *The Wizard of Oz* (Argyle Theatre), and *Christmas at the Palace* (Palace Theatre). Emily has been a proud member of SAG-AFTRA since 1997 and holds a BFA Musical Theatre from Millikin University. She is also a certified voice teacher and owns E.D.V.S (Emily Durand Vocal Studio) where she teaches both in person in NYC and virtually. She would like to thank Dewayne and Tom for the opportunity to be on stage again and YOU, the audience, for supporting the arts after a long two-year intermission! _“For Uncle Peter.”_ www.emilydurand.com
 
 - first_name: Don
   last_name: Fox
@@ -77,16 +110,133 @@
   bio: |
     Heather Gonzalez is delighted to join Post Playhouse for her first season. She believes that stories have the power to transform lives, and is passionate about being part of that process, especially as a freelance costume designer. Her design credits include _Native Gardens_ (Warehouse Theatre), _La Belle Hélène_ (Opera at USC), _Tick, Tick… Boom!_ (Trustus Theatre), _Metamorphoses_, _She Kills Monsters_, _Season of Echoes dance piece_, (University of South Carolina) _Newsies_, _The Adventures of Tom Sawyer_ (Utah Shakespeare Festival), _Julius Caesar_ (Women of Will), _Laughter on the 23rd Floor_, _Greater Tuna_ (Neil Simon Festival), and _Little Women_ (Southern Utah University). She received her BA in English Education and Creative Writing with a minor in Theater Arts from Southern Utah University, and her MFA in Costume Design and Technology from the University of South Carolina this spring.
 
+- first_name: Bill
+  last_name: Huntington
+  image_year: 2022
+  location: "Hay Springs"
+  groups:
+    - cast
+  roles:
+    Damn Yankees:
+      - Ensemble
+    Something Rotten!:
+      - Francis Bacon
+  bio: |
+    Bill is excited to be returning for his second season at the Post Playhouse. It was so fun to meet and get to know the performers from around the country. He has appeared in productions from Sheridan County Players and last seen in _The Music Man_ at the Post Playhouse.
+
+- first_name: Tommy
+  last_name: Krob
+  image_year: 2022
+  location: "Casa Grande, AZ"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Franz
+    Damn Yankees:
+      - Rocky
+      - Ensemble
+    Something Rotten!:
+      - Ensemble
+    Desperate Measures:
+      - Johnny Blood
+  bio: |
+    Tommy is emphatically excited to be joining Post Playhouse for the first time this Summer. He is looking forward to his first adventure in Nebraska and can't wait to see what new friends, memories, and artistic experiences await him. Previous performance credits include _Seussical: The Musical_ (Cedar Summerstock), _A Smalltowne Christmas_ (Stephens College), _Into the Woods_ (Viterbo University), and _Fred Scheer's Lumberjack Show_. He received his BFA in Music Theatre from Viterbo University in La Crosse, WI.
+
+- first_name: Jeffrey
+  last_name: Laughrun
+  image_year: 2022
+  location: "Pasadena, CA"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Max Detweiler
+    Damn Yankees:
+      - Smokey
+      - Ensemble
+    Something Rotten!:
+      - Nigel Bottom
+    Desperate Measures:
+      - Ensemble
+  bio: |
+    Jeffrey was born and raised in West Des Moines, Iowa and currently resides in Pasadena, California. He graduated from Oklahoma City University with a BM in Music Theatre in 2019. Past credits include John Wellington Wells in *The Sorcerer*, The D’Ysquiths in *Gentleman’s Guide*, and Major-General Stanley in *Pirates of Penzance* (all at College Light Opera Company). Jeffrey’s offstage hobbies include calisthenics, board games, and Pokémon battling. [jeffreylaughrun.com](http://jeffreylaughrun.com)
+
+- first_name: Jaden
+  last_name: Lux
+  image_year: 2022
+  location: "New York City via Iowa"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Ensemble
+      - Swing
+    Damn Yankees:
+      - Eddie
+      - Welsch
+      - Ensemble
+    Something Rotten!:
+      - Ensemble
+      - Swing
+    Desperate Measures:
+      - Ensemble
+      - Swing
+  bio: |
+    Post Playhouse debut! Jaden is a New York-based performing artist. He is an Iowa native and graduate of Morningside University in Sioux City, IA. His most recent work was with the _Naked Boys Singing_ Las Vegas residency serving as the swing and dance captain. Other credits include _Guys and Dolls_ and _Mamma Mia!_ both at Venice Theatre in Venice, FL. Visit [jadenlux.com](http://jadenlux.com) for more about Jaden or follow him on Instagram: @Jaden.lux.
+
+- first_name: Jesse
+  last_name: McFarland
+  image_year: 2022
+  location: "Tyler, TX"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Admiral Von Schreiber
+    Damn Yankees:
+      - Joe Hardy
+    Something Rotten!:
+      - Nostradamus
+    Desperate Measures:
+      - Sheriff Martin
+  bio: |
+    Jesse McFarland is so excited to be making his Post Playhouse debut!  Jesse's favorite roles have been Man 2 in _I Love You, You're Perfect, Now Change_, Roy in _Fun Home_, and Henry in _Henry V_. In his free time, he enjoys playing all sorts of video games and mountain biking.
+
+    Jesse is so excited to be working with such talented performers and he would like to thank his family for being so supportive of his career in the arts!
+
+- first_name: Kyle
+  last_name: Munson
+  image_year: 2022
+  location: "Prairieville, LA"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Herr Zeller
+    Damn Yankees:
+      - Benny Van Buren
+    Something Rotten!:
+      - Minstrel
+      - Brother Jeremiah
+    Desperate Measures:
+      - Father Morse
+  bio: |
+    Kyle Munson is so excited to spend the summer working at Post Playhouse! A graduate of Northwestern State University in Natchitoches, Louisiana (give the pronunciation your best guess), some of his favorite past roles include Father Flynn in _Doubt: a Parable_ at NSU, Quasimodo in _The Hunchback of Notre Dame_ at Bigfork Summer Playhouse and Franklin Hart Jr. in _9 to 5_ at the Macklanburg Playhouse. Fun fact: _Damn Yankees_ was the first musical he was ever in! If you like what you see, you can find him by his name on Facebook or Instagram, or visit http://kyleenochmunson.sqarespace.com to see some of his work! As they say in his home state of Louisiana, "Laissez les bons temps rouler," or, "Let the good times roll!"
+
 - first_name: Tom
   last_name: Ossowski
-  location: "Tallahasse, FL via Beatrice, NE"
+  location: "Tallahassee, FL via Plymouth, NE"
   groups:
     - creative
     - staff
   staff_positions:
     - Producing Artistic Director
-  bio_approved: false
-  bio: ""
+  production_positions:
+    Something Rotten!:
+      - Director
+  bio: |
+    Tom Ossowski is an Associate Professor for the BFA Music Theatre Program at FSU and the Producing Artistic Director for the Post Playhouse. At the Post Playhouse, Tom has directed _The Music Man_, _Legally Blonde_, _Spamalot_, _A Man of No Importance_, _All Shook Up_, _9 to 5_, _The Drowsy Chaperone_, _Grease_, _The Wizard of Oz_, _Always…Patsy Cline_, and _Oklahoma!_. FSU directing credits include _Beauty & the Beast_, _All Shook Up_, _Legally Blonde_, _Cabaret_, and _Sweeney Todd_. Music directing credits include _Cinderella_, _Guys and Dolls_, _A Chorus Line_, _Ragtime_, _Jesus Christ Superstar_, _RENT_, and _Urinetown_. Tom directed _Into The Woods_ and _The Family_ for The Central Academy of Drama in Beijing.
   image_year: 2015
 
 - first_name: Ken
@@ -98,6 +248,30 @@
   bio: ""
   image_year: 2018
 
+- first_name: Hope Elizabeth
+  last_name: Schafer
+  image_year: 2022
+  location: "New York, NY"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Maria
+    Church Basement Ladies:
+      - Vivian
+    Damn Yankees:
+      - Gloria
+    Something Rotten!:
+      - Portia
+  bio: |
+    Hope, (She/Her), originally from Oklahoma, is a New York City based performer. She was last seen at The Post Playhouse in 2019 playing the titular role in *Mary Poppins*. Hope received her BFA in Musical Theatre in Chicago in 2018 and has been performing regionally for years. Some of her post Covid lockdown credits include: "Patsy Cline" in *Always…Patsy Cline*, "Stephanie" in the developmental production of *May We All* , a soloist at Feinstein’s 54 Below in NYC, and most recently, "Cleva Chaney" in the world premiere of *A Thousand Faces*.
+
+    Other "pre-Covid" favorites include: "Philoclea" in *Head Over Heels*, the "Ingenue" in *Indecent* , and "Wendy" in *Peter Pan*.
+
+    “I am so happy to be back on the Fort with friends, old and new!” 
+
+    insta: @hopeeschafer
+
 - first_name: Ann
   last_name: Stephens
   image_year: 2020
@@ -107,17 +281,6 @@
   staff_positions:
     - Box Office Manager
   bio_approved: false
-  bio: ""
-
-- first_name: Pheobe H.
-  last_name: Boynton
-  image_year: 2017
-  image_file: pheobe-boynton.jpg
-  location: "Colorado Springs, CO"
-  groups:
-    - creative
-  staff_positions:
-    - Season Costume Designer
   bio: ""
 
 - first_name: Tom (Shuyu)
