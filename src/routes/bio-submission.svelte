@@ -121,9 +121,14 @@
     { name: "email", invalid: !email },
     { name: "image", invalid: !(imageFile || useOldHeadshot) },
     {
-      name: "unclosedTitle",
+      name: "unclosedTitleUnderscore",
       warn: (bio.match(/_/g) || []).length % 2 > 0,
     },
+    {
+      name: "unclosedTitleAsterisk",
+      warn: (bio.match(/\*/g) || []).length % 2 > 0,
+    },
+    { name: "noShowsPresent", warn: (bio.match(/_/g) || []).length === 0 },
   ]
 
   const validationMessages = {
@@ -139,8 +144,12 @@
   }
 
   const warningMessages = {
-    unclosedTitle:
-      "Thanks for marking the titles of shows with underscores. But it looks like you didn't close one out. Check the preview above to see where it is. If you meant to have an actual underscore in your bio somewhere, that's fine.",
+    noShowsPresent:
+      "It looks like your bio doesn't include the titles of any productions you've been involved with. That's fine. But if you <em>meant to</em> include titles, you probably forgot to surround them with either asterisks or underscores. See the instructions above the bio field for how to notate show titles.",
+    unclosedTitleUnderscore:
+      "If you meant to have an actual underscore (<code>_</code>) in you bio, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
+    unclosedTitleAsterisk:
+      "If you meant to have an actual asterisk (<code>*</code>) in you bio, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
   }
 
   $: invalidForm = validations.some((v) => v.invalid === true)
@@ -746,20 +755,26 @@ ${yamlBody({ fillRoles: true })}
           <Bio person="{person}" />
         </div>
         <div></div>
-        {#each validations as validation (validation.name)}
-          {#if validation.warn}
-            <p class="mt-4">
-              <span class="inline-block p-1 bg-orange-500 rounded"></span>
-              {warningMessages[validation.name]}
-            </p>
-          {/if}
-          {#if validation.invalid}
-            <p class="mt-4">
-              <span class="inline-block p-1 bg-red-500 rounded"></span>
-              {validationMessages[validation.name]}
-            </p>
-          {/if}
-        {/each}
+        {#if validations.length > 0}
+          <ul class="list-none p-0">
+            {#each validations as validation (validation.name)}
+              {#if validation.invalid}
+                <li class="mt-4">
+                  <span class="inline-block p-1 bg-red-500 rounded"></span>
+                  {@html validationMessages[validation.name]}
+                </li>
+              {/if}
+              {#if validation.warn}
+                <li
+                  class="mt-4 border border-yellow-500 bg-yellow-100 p-2 rounded prose"
+                >
+                  <header class="font-bold text-yellow-600">Warning:</header>
+                  <p>{@html warningMessages[validation.name]}</p>
+                </li>
+              {/if}
+            {/each}
+          </ul>
+        {/if}
         <button
           class="btn btn-p mt-8"
           disabled="{invalidForm || submitting}"
