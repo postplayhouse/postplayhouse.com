@@ -35,7 +35,17 @@ We will refer to the following terminology in the rest of this article:
 Your ad is purchased at one of four sizes: Full Page, Half Page, 1/4 Page, or
 1/8 Page. The dimensions are explained in the following image:
 
-![chart of ad dimensions](/g/images/perennials/ad-dimensions.png)
+![chart of ad dimensions](/g/images/perennials/ad-dimensions.2.png)
+
+> Page Dimensions:  
+> 8.375” x 10.875”
+> 
+> Approximate Ad Dimensions:  
+> (The actual ads will be individually sized for fit and finish, hewing close to the following)  
+> Full Page: 7.9” x  10.1”  
+> Half Page: 7.9” x  5”  
+> 1/4 Page: 3.9” x  5”  
+> 1/8 Page: 3.9” x  2.4”  
 
 **Please ensure that the artwork you send is close to 300ppi or more.**
 
