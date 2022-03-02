@@ -186,15 +186,6 @@
   image_year: 2019
   image_file: janelle-visser.jpg
 
-- first_name: Jo
-  last_name: Buchheit
-  location: "Hemingford, NE"
-  groups:
-    - board
-  positions:
-  image_year: 2015
-  image_file: jo-buchheit.jpg
-
 - first_name: Jess
   last_name: Espinoza
   location: "Crawford, Nebraska"
