@@ -69,7 +69,7 @@
 
 <a href="#TheBoard" class="block link-green my-4">Jump to the Board</a>
 
-<div class="lists-per-show">
+<div>
   {#each productions as production}
     <h3>{production.title}</h3>
     <ProductionList people="{personnel}" production="{production}" />
@@ -77,38 +77,41 @@
   {/each}
 </div>
 
-<div class="not-bios-page-wink-wink">
+<div class="my-8">
   {#each personnel.filter(notInBoard) as person}
     <div
-      class="plain-bio bio-approved-{person.bioApproved ?? 'false'}"
+      class="helvetica {!person.bioApproved ? '' : 'bg-red-400/30 p-4'}"
       id="{personSlug(person)}"
     >
+      {#if person.bioApproved}
+        <div class="text-red-400 text-center text-xl mb-4">
+          {person.firstName}'s bio or roles are not yet approved.
+        </div>
+      {/if}
+
       {#if notInAdditional(person) && person.image}
         <img
-          class="plain-bio-headshot"
           src="{person.image}"
           alt="{person.image ? '' : 'missing '}picture of {person.name}"
+          class="max-w-sm max-h-96 m-auto"
         />
       {/if}
-      <div class="bio-unapproved-text">
-        {person.firstName}'s bio or roles are not yet approved.
-      </div>
 
-      <div class="plain-bio-text">
-        <h3 class="name">{person.name}</h3>
+      <div class="m-auto max-w-2xl">
+        <h3 class="text-2xl">{person.name}</h3>
 
         {#if person.location}
           {@html marked.parseInline(person.location)}
         {/if}
 
         {#if person.positions.length > 0}
-          <p class="positions">
+          <p class="my-8">
             {#each person.positions as position}
               {@html position.replace(/---/g, "&mdash;")}<br />
             {/each}
           </p>
         {:else if person.productionPositions.length > 0 || person.roles.length > 0 || person.staffPositions.length > 0}
-          <p class="positions">
+          <p class="my-8">
             {#each person.staffPositions as position}
               {@html position.replace(/---/g, "&mdash;")}<br />
             {/each}
@@ -127,77 +130,38 @@
 
         {@html marked(person.bio)}
       </div>
+    </div>
+    <a class="link-green" href="#TheTop">Back to Top</a>
+  {/each}
+</div>
 
-      <a class="link-green" href="#TheTop">Back to Top</a>
+<div class="my-8 space-y-8">
+  <h1 id="TheBoard" class="text-4xl">Board Headshots and Names</h1>
+
+  {#each personnel.filter(inBoard) as person}
+    <div class="helvetica">
+      {#if person.image}
+        <img
+          src="{person.image}"
+          alt="{person.image ? '' : 'missing '}picture of {person.name}"
+          class="max-w-sm max-h-96 m-auto"
+        />
+      {/if}
+
+      <div class="text-center">
+        <div>{person.name}</div>
+        {#each person.positions as position}
+          {position}
+        {/each}
+      </div>
     </div>
   {/each}
 </div>
 
-<h1 id="TheBoard" style="font-size:3em;">Board Headshots and Names</h1>
-
-{#each personnel.filter(inBoard) as person}
-  <div class="plain-bio">
-    {#if person.image}
-      <img
-        class="plain-bio-headshot"
-        src="{person.image}"
-        alt="{person.image ? '' : 'missing '}picture of {person.name}"
-      />
-    {/if}
-
-    <div class="plain-bio-text">
-      <span class="name">{person.name}</span>
-    </div>
-  </div>
-{/each}
-
 <style>
-  .plain-bio {
-    margin-bottom: 5em;
-    font-size: 14px !important;
+  .helvetica {
     font-family: Helvetica !important;
-    line-height: 1.2;
   }
-  .plain-bio-text .name {
-    font-size: 20px;
-    color: black;
-  }
-  .plain-bio p {
-    margin: 0 !important;
-  }
-  .plain-bio a:visited,
-  .plain-bio a:link {
-    color: inherit !important;
-  }
-  .plain-bio-headshot {
-    margin: auto;
-    display: block;
-    max-width: 900px;
-  }
-  .plain-bio-text {
-    max-width: 600px;
-    margin: auto;
-    margin-top: 10px;
-  }
-
-  .bio-unapproved-text {
-    display: none;
-  }
-  .bio-approved-false {
-    opacity: 0.5;
-  }
-  .bio-approved-false .bio-unapproved-text {
-    display: block;
-    font-size: 1.5em;
-    color: #911;
-    text-align: center;
-    padding: 1em;
-  }
-
-  br {
-    line-height: 1;
-  }
-
   .approved-true::before {
     color: green;
     content: "\2713";
@@ -216,16 +180,5 @@
   .approved-false {
     margin-right: 1em;
     margin-left: 3em;
-  }
-
-  .plain-bio img,
-  .bio img {
-    margin: auto;
-    display: block;
-    max-width: 200px;
-  }
-
-  .plain-bio p.positions {
-    margin: 12px auto !important;
   }
 </style>
