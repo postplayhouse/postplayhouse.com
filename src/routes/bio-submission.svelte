@@ -140,7 +140,12 @@
       name: "unclosedTitleAsterisk",
       warn: (bio.match(/\*/g) || []).length % 2 > 0,
     },
-    { name: "noShowsPresent", warn: (bio.match(/_/g) || []).length === 0 },
+    {
+      name: "noShowsPresent",
+      warn:
+        (bio.match(/_/g) || []).length === 0 &&
+        (bio.match(/\*/g) || []).length === 0,
+    },
     {
       name: "unclosedTitleUnderscoreLongerBio",
       warn: (longerBio.match(/_/g) || []).length % 2 > 0,
@@ -151,7 +156,10 @@
     },
     {
       name: "noShowsPresentLongerBio",
-      warn: addLongerBio && (longerBio.match(/_/g) || []).length === 0,
+      warn:
+        addLongerBio &&
+        (longerBio.match(/_/g) || []).length === 0 &&
+        (longerBio.match(/\*/g) || []).length === 0,
     },
     { name: "longerBioIsEmpty", warn: addLongerBio && !longerBio },
     {
