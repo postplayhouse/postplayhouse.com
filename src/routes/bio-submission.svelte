@@ -5,6 +5,7 @@
   import Modal from "../components/Modal/Modal.svelte"
   import Markdown from "../components/Markdown.svelte"
   import type { Person } from "../models/Person"
+  import { marked } from "marked"
 
   onMount(() => {
     if (!window.fetch) dispatch(events.foundNoFetch)
@@ -23,6 +24,8 @@
   let imageFile = null
   let location = ""
   let bio = ""
+  let addLongerBio = false
+  let longerBio = ""
   let email = ""
   let useOldHeadshot = false
 
@@ -93,6 +96,7 @@
     bio:
       bio ||
       `Bill is thrilled (everyone says thrilled) to be making his Post Playhouse debut! Previous credits include _Ghostbusters_, _Groundhog Day_, and many more.`,
+    longerBio: addLongerBio ? longerBio : "",
   }
 
   let wordCount = (s: string) =>
@@ -113,6 +117,14 @@
     return "text-black"
   })()
 
+  $: longerBioWordCount = wordCount(longerBio)
+  $: longerBioWordCountClass = (function () {
+    if (longerBioWordCount <= MAX_WORDS) {
+      return "text-red-500"
+    }
+    return "text-black"
+  })()
+
   $: validations = [
     { name: "wordCount", invalid: bioWordCount > MAX_WORDS },
     { name: "firstName", invalid: !firstName },
@@ -129,6 +141,23 @@
       warn: (bio.match(/\*/g) || []).length % 2 > 0,
     },
     { name: "noShowsPresent", warn: (bio.match(/_/g) || []).length === 0 },
+    {
+      name: "unclosedTitleUnderscoreLongerBio",
+      warn: (longerBio.match(/_/g) || []).length % 2 > 0,
+    },
+    {
+      name: "unclosedTitleAsteriskLongerBio",
+      warn: (longerBio.match(/\*/g) || []).length % 2 > 0,
+    },
+    {
+      name: "noShowsPresentLongerBio",
+      warn: addLongerBio && (longerBio.match(/_/g) || []).length === 0,
+    },
+    { name: "longerBioIsEmpty", warn: addLongerBio && !longerBio },
+    {
+      name: "longerBioIsShort",
+      invalid: addLongerBio && longerBioWordCount <= MAX_WORDS,
+    },
   ]
 
   const validationMessages = {
@@ -141,15 +170,24 @@
       "Despite the fact that the stage manager has your email address, I need it attached to this form. Please add it.",
     image:
       "Use the green button near the top of the form to pick an image, or indicate you'd like to use one from a previous season.",
+    longerBioIsShort: `If your longer bio for the website is ${MAX_WORDS} or less, please don't submit two bios. (Uncheck the additional bio box)`,
   }
 
   const warningMessages = {
     noShowsPresent:
       "It looks like your bio doesn't include the titles of any productions you've been involved with. That's fine. But if you <em>meant to</em> include titles, you probably forgot to surround them with either asterisks or underscores. See the instructions above the bio field for how to notate show titles.",
+    noShowsPresentLongerBio:
+      "It looks like your longer bio for the website doesn't include the titles of any productions you've been involved with. That's fine. But if you <em>meant to</em> include titles, you probably forgot to surround them with either asterisks or underscores. See the instructions above the bio field for how to notate show titles.",
     unclosedTitleUnderscore:
       "If you meant to have an actual underscore (<code>_</code>) in you bio, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
+    unclosedTitleUnderscoreLongerBio:
+      "If you meant to have an actual underscore (<code>_</code>) in your longer bio for the website, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
     unclosedTitleAsterisk:
-      "If you meant to have an actual asterisk (<code>*</code>) in you bio, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
+      "If you meant to have an actual asterisk (<code>*</code>) in your bio, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
+    unclosedTitleAsteriskLongerBio:
+      "If you meant to have an actual asterisk (<code>*</code>) in your longer bio for the website, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
+    longerBioIsEmpty:
+      "You checked the box that you'd like to add a longer bio for the website, but then you left it empty. That's fine, I'll just use the other bio.",
   }
 
   $: invalidForm = validations.some((v) => v.invalid === true)
@@ -389,14 +427,18 @@
       `  location: "${location.trim()}"`,
       includeGroups && `  groups:\n${allGroups}`,
       `  roles:\n${yamlRoles}`,
-      `  bio: |\n    ${bio.trim()}`,
+      !addLongerBio && `  bio: |\n    ${bio.trim()}`,
+      addLongerBio && `program_bio: |\n    ${bio.trim()}`,
+      addLongerBio && `longer_website_bio: |\n    ${longerBio.trim()}`,
       "\n",
     ]
       .filter(Boolean)
       .join("\n")
   }
 
-  $: emailBody = `Please fill/double check the form below, including copy/pasting your bio directly into this email (no attachments for bios, please). Additionally, attach a headshot to this email. Thanks!
+  $: emailBody = `Please fill/double check the form below, including copy/pasting your bio directly into this email (no attachments for bios, please). Remember that you must submit either one bio that is 125 words or less (show titles count for a maximum of two words), or two bios where one is 125 words or less for the printed program and the other is longer for the website.
+
+Additionally, attach a headshot to this email. Thanks!
 
 I'll email you when I have added your information to the website, so you can check that I got it right.
 
@@ -452,14 +494,22 @@ ${yamlBody({ fillRoles: true })}
     let bioTries = 0
     let headshotTries = 0
 
-    const messageToMyself =
-      "Don't forget:\n\n1. change `roles` to `production_positions` for non-cast members\n2. move anything from `Entire Season` to `staff_positions`\n3. delete all incorrect group memberships for each person"
+    const messageToMyself = `
+bio words:        ${bioWordCount}
+longer bio words: ${addLongerBio ? longerBioWordCount : "n/a"}
+
+Don't forget:
+
+1. change \`roles\` to \`production_positions\` for non-cast members
+2. move anything from \`Entire Season\` to \`staff_positions\`
+3. delete all incorrect group memberships for each person
+4. if two bios, change \`longer_website_bio\` to \`bio\``
 
     const doBioUpload = async () =>
       uploadText(
         `${yamlBody({
           includeGroups: true,
-        })}\n\n\n${email}\n\n\n${messageToMyself}`,
+        })}\n\n\n${messageToMyself}`,
         basename,
         (await getCreds(1))[0],
       ).then((resp) => {
@@ -696,26 +746,32 @@ ${yamlBody({ fillRoles: true })}
         {/each}
       </div>
 
-      <label for="bio" class="text-2xl mt-24 block">Your Bio.</label>
-      <ul>
-        <li>
-          You can create links with
-          <code class="whitespace-nowrap text-xs bg-grey-300 rounded p-1">
-            [your text](http://yoursite.com)
-          </code>
-        </li>
-        <li>
-          Please surround the names of shows that you mention with
-          <code class="text-xs bg-grey-300 rounded p-1">_underscores_</code>
-          or
-          <code class="text-xs bg-grey-300 rounded p-1">*asterisks*</code>.
-          Properly notated show titles will only count as two words, maximum.
-        </li>
-      </ul>
-      <div>
-        <button class="btn btn-p my-2" on:click="{toggleExample}">
+      <label for="bio" class="text-2xl mt-24 block"
+        >Program {#if !addLongerBio}and Website{/if} Bio</label
+      >
+
+      <div class="bg-gray-200 rounded p-2 my-2">
+        Formatting directions:
+        <ul>
+          <li>
+            You can create links with
+            <code class="whitespace-nowrap text-xs bg-grey-400 rounded p-1">
+              [your text](http://yoursite.com)
+            </code>
+          </li>
+          <li>
+            Please surround the names of shows that you mention with
+            <code class="text-xs bg-grey-400 rounded p-1">_underscores_</code>
+            or
+            <code class="text-xs bg-grey-400 rounded p-1">*asterisks*</code>.
+            Properly notated show titles will only count as two words, maximum.
+          </li>
+        </ul>
+        <button class="btn btn-p mt-2" on:click="{toggleExample}">
           Show Example
         </button>
+      </div>
+      <div>
         {#if showExample}
           <Modal on:close="{toggleExample}">
             <div class="max-w-md m-auto">
@@ -739,6 +795,33 @@ ${yamlBody({ fillRoles: true })}
         {MAX_WORDS}
       </div>
 
+      <label class="block my-2">
+        <input type="checkbox" bind:checked="{addLongerBio}" />
+        <span class="text-sm">
+          I'd like to submit an additional bio longer than {MAX_WORDS} words for
+          the website. I understand that
+          <strong>either bio may be used for the printed program</strong>, but
+          it will be at the sole discretion of the person laying out the
+          program.
+        </span>
+      </label>
+
+      {#if addLongerBio}
+        <div>
+          <label for="longerBio" class="text-2xl mt-8 block">Website Bio</label>
+          <textarea
+            id="longerBio"
+            name="longerBio"
+            bind:value="{longerBio}"
+            class="border border-grey-500 w-full font-mono min-h-96"></textarea>
+          <div class="{`text-right ${longerBioWordCountClass}`}">
+            Word Count:
+            {longerBioWordCount} (must be <em>more than</em> 125 words, otherwise
+            only submit one bio please)
+          </div>
+        </div>
+      {/if}
+
       <button
         class="btn btn-p mt-8 hidden lg:inline-block"
         disabled="{invalidForm || submitting}"
@@ -754,7 +837,12 @@ ${yamlBody({ fillRoles: true })}
         <div class="bg-white rounded p-4 shadow-lg">
           <Bio person="{person}" />
         </div>
-        <div></div>
+        {#if addLongerBio}<div class="mt-8">
+            <header>Website Bio:</header>
+            <div class="bg-white rounded shadow-lg p-2">
+              {@html marked.parse(longerBio || "(Empty)")}
+            </div>
+          </div>{/if}
         {#if validations.length > 0}
           <ul class="list-none p-0">
             {#each validations as validation (validation.name)}
