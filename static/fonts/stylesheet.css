@@ -49,3 +49,12 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: "metropolis";
+  src: url("metropolis/Metropolis-BoldItalic.woff2") format("woff2"),
+    url("metropolis/Metropolis-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
