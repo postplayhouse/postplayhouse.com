@@ -1,8 +1,10 @@
 ---
-title: Local Actor Auditions for our 2022 Season
-website: true
-feed: false
+title: "Update: Local Actor Auditions for our 2022 Season"
+website: false
+feed: true
 ---
+
+The following is a reposting of our local actor auditions with a date change. There were community conflicts with our original two dates, so we switched from Friday and Saturday to Saturday and Sunday.
 
 ### Local Actor Auditions (No appointment necessary)
 
