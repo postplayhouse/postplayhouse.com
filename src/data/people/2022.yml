@@ -8,6 +8,19 @@
 #
 #
 
+- first_name: Aubrey
+  last_name: Anderson
+  image_year: 2022
+  location: "Sterling, KS"
+  groups:
+    - crew
+    - staff
+  staff_positions:
+    - Costume worker
+    - stitcher
+  bio: |
+    Aubrey Anderson is a freshman attending Sterling college in Central Kansas. She is majoring in Theater and has spent her year participating in shows and costuming. Since enrolling, Aubrey was seen in *Newsies*, *The Lion The Witch and The Wardrobe*, and *Legally Blonde*. She also was Wardrobe manager for *Book of Will*. She hopes to do costuming professionally and is so excited to be working with an amazing theater all summer.
+
 - first_name: Dewayne
   last_name: Barrett
   location: "New York City via Atlanta, GA"
@@ -43,13 +56,26 @@
   bio: ""
   image_year: 2015
 
+- first_name: Daniel
+  last_name: Denton
+  image_year: 2022
+  location: "Lawrence, KS"
+  groups:
+    - staff
+  staff_positions:
+    - Box Office IT
+  bio: |
+    Daniel performed on the Post Playhouse stage in the 2011-2014 seasons. His favorite roles from those bygone years included Jinx in *Forever Plaid*, Jesus in *Godspell*, and Tom in *Schoolhouse Rock Live*. Since then, he's gotten married and had a son! While you won't see him on stage this summer, he is helping to keep the box office running smoothly by putting his newfound tech skills to use. He does have a strong passion for performance, but is ever grateful for the opportunity to work for Post Playhouse in any capacity. He lives in Lawrence, Kansas with his wife, Amber, his son, Ollie, and his dog, Millie.
+
 - first_name: Don
   last_name: Denton
-  location: "Bettendorf, IA"
+  image_year: 2019
+  location: "Chattanooga, TN"
   staff_positions:
     - Marketing Designer
-  bio: ""
-  image_year: 2019
+    - General IT
+  bio: |
+    Don is so happy to see the Post Playhouse opening its doors after a couple summers of hiatus. Some of Don's favorite memories were at Post Playhouse: Doing shows like *Hank Williams: Lost Highway*, and *Guys and Dolls*, working with Paige Salter. Though they'd only be visiting for a week or so, he and Paige are looking forward to making some new memories with their sons, Marvin and Darby, enjoying the place where Mommy and Daddy first met. Visit [dondentonactor.com](https://dondentonactor.com) for more about Don.
 
 - first_name: Emily
   last_name: Durand
@@ -72,6 +98,36 @@
       - Female u.s.
   bio: |
     Emily is elated to make her Post Playhouse debut with this incredible season! A NYC based actor, Emily has been seen Off-Broadway in *Molasses in January* and as Rainbow on the national tour of *The Rainbow Fish*. Select Regional Credits: *The Full Monty* (Argyle Theatre), *The Wizard of Oz* (Argyle Theatre), and *Christmas at the Palace* (Palace Theatre). Emily has been a proud member of SAG-AFTRA since 1997 and holds a BFA Musical Theatre from Millikin University. She is also a certified voice teacher and owns E.D.V.S (Emily Durand Vocal Studio) where she teaches both in person in NYC and virtually. She would like to thank Dewayne and Tom for the opportunity to be on stage again and YOU, the audience, for supporting the arts after a long two-year intermission! _“For Uncle Peter.”_ www.emilydurand.com
+
+- first_name: Dara
+  last_name: Edwards
+  image_year: 2019
+  location: "Chadron, NE"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Ensemble
+  bio: |
+    Dara is very excited to be back this year at the Post Playhouse! Performing in 2019's *The Music Man* was such a joy. She would like to thank everyone at the Post for again giving her such an amazing opportunity and hopes we all have an amazing summer!
+
+- first_name: Anna
+  last_name: Fernandez
+  image_year: 2022
+  location: "Albany, NY"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Sister Margaretta
+    Damn Yankees:
+      - Lola
+    Something Rotten!:
+      - Bea
+    Desperate Measures:
+      - Susanna
+  bio: |
+    Anna is ecstatic to be making her debut here at Post Playhouse! She is a recent graduate of the University at Buffalo, where she received her BFA in Music Theatre. Past credits include *A Chorus Line* (Diana Morales), *Guys and Dolls* (Sarah Brown), and *The Threepenny Opera* (Lucy Brown). She would like to thank her family and friends for their constant patience and support.
 
 - first_name: Sam
   last_name: Forgie
@@ -97,6 +153,7 @@
 
 - first_name: Don
   last_name: Fox
+  image_year: 2019
   location: "Wenatchee, WA"
   groups:
     - creative
@@ -104,17 +161,17 @@
     - Season Scenic Designer
   bio_approved: false
   bio: ""
-  image_year: 2019
 
 - first_name: Tim
   last_name: Gaswick
+  image_year: 2015
   groups:
     - staff
   staff_positions:
     - Accountant
   bio_approved: false
-  bio: ""
-  image_year: 2015
+  bio: |
+    Tim is the franchise owner of the Chadron H&R Block office, and has been the accountant for the playhouse since 2007.  He and his wife Kari have four children, Kaylee, Aaron, Braxton, and Seth. Tim not only serves as the accountant, but also as the treasurer on the playhouse board. He enjoys working with the great talent and staff every summer, and looks forward to many years with the playhouse.
 
 - first_name: Heather
   last_name: Gonzalez
@@ -145,6 +202,24 @@
       - Francis Bacon
   bio: |
     Bill is excited to be returning for his second season at the Post Playhouse. It was so fun to meet and get to know the performers from around the country. He has appeared in productions from Sheridan County Players and last seen in _The Music Man_ at the Post Playhouse.
+
+- first_name: Jacob
+  last_name: Jackson
+  image_year: 2022
+  location: "Bloomington, IN"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Ensemble
+    Damn Yankees:
+      - Ensemble
+    Something Rotten!:
+      - Nick Bottom
+    Desperate Measures:
+      - Governor
+  bio: |
+    Jacob is so excited to be making his Post Playhouse Debut! He is currently based in Bloomington, Indiana where he is studying Musical Theatre at Indiana University. Regional: _A Year with Frog and Toad_, _Closer than Ever_. IU Theatre: _Company_, _Bright Star_, _The Threepenny Opera_. Jacob would like to thank all of his mentors at IU and everyone at Post Playhouse for this amazing opportunity. Love to Mom, Dad, Marsha, and all of his friends.
 
 - first_name: Tommy
   last_name: Krob
@@ -226,6 +301,24 @@
     Jesse McFarland is so excited to be making his Post Playhouse debut!  Jesse's favorite roles have been Man 2 in _I Love You, You're Perfect, Now Change_, Roy in _Fun Home_, and Henry in _Henry V_. In his free time, he enjoys playing all sorts of video games and mountain biking.
 
     Jesse is so excited to be working with such talented performers and he would like to thank his family for being so supportive of his career in the arts!
+
+- first_name: Barbi
+  last_name: McGuire
+  image_year: 2022
+  location: "Racine, WI"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Sister Berthe/Frau Schmidt
+    Church Basement Ladies:
+      - Mavis
+    Damn Yankees:
+      - Meg Boyd
+    Something Rotten!:
+      - Ensemble
+  bio: |
+    Barbi is excited to be making her Post Playhouse debut with this wonderful season. Recent Regional productions: (Pines Dinner Theatre, PA) *Home for the Holidays*, (Myers Dinner Theatre IN) *Moon over Buffalo*, (The Broadway Palm FL) *Sound of Music* (Cornwell’s Dinner Theatre MI) *Church Basement Ladies*, *Savannah Sipping Society*, *Nana’s Naughty Knickers* (Sight and Sound MO) *Jonah*. Wisconsin Local productions: (6th Street Theatre) *Chapatti*, (Racine Theatre Guild) *A Christmas Carol*, *9 to 5*, *Grease*, (Sunset Playhouse) *Into the Woods*. National tours: *Fiddler on the Roof*, *Two from Galilee*. She is so grateful that we can get back to "normal" and entertain audiences that support our passion. She thanks her husband Lonnie for letting her play in Nebraska for the summer"  http://barbimcguire.com
 
 - first_name: Jenna Lee
   last_name: Moore
@@ -334,6 +427,18 @@
   bio: |
     Kristina Miranda Sloan is joyful to be shaking off the pandemic cobwebs in a glorious return to the Post Playhouse stage. She was last here for the 2016 season as the female swing. She is a graduate of the U of A with a degree in theatre and music and is a member of the international touring swing trio The Manhattan Dolls. Favorite roles have included Magnolia in _Show Boat_ and The Head in _Head The Musical!_ She would like to thank her family and multiple guinea pigs for their enduring love and support and adorable snuggling, respectively.
 
+- first_name: Courtney
+  last_name: Smith
+  image_year: 2022
+  location: "Hampton, NE"
+  groups:
+    - crew
+    - staff
+  staff_positions:
+    - Assistant Stage Manager
+  bio: |
+    This is Courtney's first year at the Post Playhouse. After graduating CSC, Courtney has gotten to work as a Stage Manager for CSC for *Little Shop of Horrors* and *I Love You, You're Perfect, Now Change*. She is excited to finally be stepping in to the professional theatre world and learn new ways to be a better Stage Manager/ASM.
+
 - first_name: Ann
   last_name: Stephens
   image_year: 2020
@@ -343,7 +448,29 @@
   staff_positions:
     - Box Office Manager
   bio_approved: false
-  bio: ""
+  bio: |
+    Ann Stephens has worked as part of the Post Playhouse for many summers, first as a volunteer usher, a volunteer in the concession stand, and for the past several years, she has managed the Box Office. Before retirement, Ann had a long and rewarding career as a classroom teacher and as a public education administrator, working in Texas, Arizona, Idaho and Nebraska before joining Post Playhouse staff. In off-season months, Ann enjoys being with her grandchildren, reading, baking, and volunteering throughout her home community of Crawford. Whether you are ready to make additional reservations for more of our superb productions or ready to enjoy some treats at intermission, you’re likely to see Ann... and she’s USUALLY smiling.
+
+- first_name: Melissa
+  last_name: Wickland
+  image_year: 2022
+  location: "Chicago, IL"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Leisl
+    Church Basement Ladies:
+      - Signe
+    Damn Yankees:
+      - Wife
+      - Sister
+      - Ensemble
+    Something Rotten!:
+      - Ensemble
+      - Portia Understudy
+  bio: |
+    Melissa is so excited to be back onstage, making her Post Playhouse Debut! She is currently based in Chicago after growing up in the suburbs. Melissa graduated in 2020 from Viterbo University with her BFA in Music Theatre and minor in Dance. Some of her favorite roles include Belle (_Beauty and the Beast_), Millie (_Thoroughly Modern Millie_), and Demeter (_Cats_). When not performing herself, Melissa is teaching young ones how to sing and dance in Chicago. A big thank you to her family, her partner Marcus, her cat Bubba, and the cast and creative team for all of their support in making this happen. Theatre is back!!! http://MelissaWickland.com
 
 - first_name: Tom (Shuyu)
   last_name: Zhang
