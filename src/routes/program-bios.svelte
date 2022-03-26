@@ -61,7 +61,16 @@
   <div class="grid grid-cols-3">
     {#each personnel.filter(notInBoard) as person}
       <div class="approved-{person.bioApproved ?? 'false'}">
-        <a class="link-green" href="#{personSlug(person)}">{person.name}</a>
+        <a class="link-green" href="#{personSlug(person)}">
+          {person.name}
+          {#if !person.bio}
+            <span
+              class="bg-yellow-200 rounded-full p-1 px-2 text-black whitespace-nowrap !no-underline"
+            >
+              no bio
+            </span>
+          {/if}
+        </a>
       </div>
     {/each}
   </div>
@@ -178,7 +187,6 @@
 
   .approved-true,
   .approved-false {
-    margin-right: 1em;
-    margin-left: 3em;
+    margin-left: 1em;
   }
 </style>
