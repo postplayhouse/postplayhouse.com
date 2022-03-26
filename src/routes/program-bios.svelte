@@ -58,9 +58,9 @@
 <div class="my-4">
   <header>Bio Approved?</header>
 
-  <div class="grid grid-cols-3">
+  <ol class="grid grid-cols-3">
     {#each personnel.filter(notInBoard) as person}
-      <div class="approved-{person.bioApproved ?? 'false'}">
+      <li class="approved-{person.bioApproved ?? 'false'}">
         <a class="link-green" href="#{personSlug(person)}">
           {person.name}
           {#if !person.bio}
@@ -71,9 +71,9 @@
             </span>
           {/if}
         </a>
-      </div>
+      </li>
     {/each}
-  </div>
+  </ol>
 </div>
 
 <a href="#TheBoard" class="block link-green my-4">Jump to the Board</a>
