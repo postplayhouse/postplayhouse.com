@@ -6,11 +6,10 @@ feed: true
 
 ### Seeking a drummer
 
-Post Playhouse is still seeking a drummer for the 2022 summer season. The band arrives May 16 and our final performance is August 14. Shows:
+Post Playhouse is still seeking a drummer for the 2022 summer season. The band arrives May 16 and our final performance is August 14. Our drummer will play four of our five shows:
 
 - The Sound of Music
 - Something Rotten!
-- Church Basement Ladies
 - Damn Yankees
 - Desperate Measures
 
