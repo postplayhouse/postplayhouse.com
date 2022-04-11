@@ -8,6 +8,7 @@ class Person {
   location: string
   bio: string
   bioApproved: boolean
+  programBio: string | undefined
   groups: string[]
   positions: string[]
   staffPositions: string[]
@@ -15,6 +16,10 @@ class Person {
   // TODO: there is a better type here...
   productionPositions: Array<{ productionName: string; positions: string[] }>
   roles: Array<{ productionName: string; positions: string[] }>
+
+  get id() {
+    return this.firstName + this.lastName + this.location
+  }
 
   get name() {
     return `${this.firstName} ${this.lastName}`
@@ -35,6 +40,7 @@ class Person {
     this.firstName = undefined
     this.lastName = undefined
     this.location = undefined
+    this.programBio = undefined
     this.bio = ""
     this.bioApproved = false
     this.groups = []

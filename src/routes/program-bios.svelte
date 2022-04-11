@@ -51,9 +51,29 @@
   function notInAdditional(person: Person) {
     return !personIsInGroup(person, "additional")
   }
+
+  let showShortBio: Set<string> = new Set()
+
+  function toggleShortBio(person: Person) {
+    showShortBio.has(person.id)
+      ? showShortBio.delete(person.id)
+      : showShortBio.add(person.id)
+
+    showShortBio = showShortBio
+  }
+
+  let showUi = true
 </script>
 
 <div id="TheTop"></div>
+
+<label
+  ><input
+    type="checkbox"
+    checked="{showUi}"
+    on:change="{() => (showUi = !showUi)}"
+  /> Show non-program UI in Bios (buttons/anchors)</label
+>
 
 <div class="my-4">
   <header>Bio Approved?</header>
@@ -89,7 +109,7 @@
 <div class="my-8">
   {#each personnel.filter(notInBoard) as person}
     <div
-      class="helvetica {!person.bioApproved ? '' : 'bg-red-400/30 p-4'}"
+      class="helvetica {!person.bioApproved ? '' : 'bg-red-400/30 p-4'} my-8"
       id="{personSlug(person)}"
     >
       {#if person.bioApproved}
@@ -137,10 +157,26 @@
           </p>
         {/if}
 
-        {@html marked(person.bio)}
+        {#if person.programBio && showUi}
+          <button
+            class="btn py-1 px-2"
+            type="button"
+            on:click="{() => toggleShortBio(person)}"
+          >
+            {#if showShortBio.has(person.id)}Show Long Bio{:else}Show Short Bio{/if}
+          </button>
+        {/if}
+
+        {#if showShortBio.has(person.id)}
+          {@html marked(person.programBio)}
+        {:else}
+          {@html marked(person.bio)}
+        {/if}
       </div>
     </div>
-    <a class="link-green" href="#TheTop">Back to Top</a>
+    {#if showUi}
+      <a class="link-green" href="#TheTop">Back to Top</a>
+    {/if}
   {/each}
 </div>
 

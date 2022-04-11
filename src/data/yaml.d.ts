@@ -75,6 +75,7 @@ type YamlPerson = {
   production_positions: IHash<string[]>
   bio_approved?: boolean
   bio: string
+  program_bio?: string
   image_year: number
   /** defaults to firstname-lastname.jpg if not present */
   image_file?: string
