@@ -30,6 +30,8 @@
     "First Keys/Conductor",
     "Second Keys",
     "Third Keys",
+    "Bassist",
+    "Bass",
     "Drummer",
   ]
 </script>
