@@ -7,6 +7,7 @@
     "Director",
     "Choreographer",
     "Music Director",
+    "Assistant Director",
     "Production Stage Manager",
     "Lighting Designer",
     "Sound Designer",

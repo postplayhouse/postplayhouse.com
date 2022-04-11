@@ -185,11 +185,12 @@
   location: "New York, NY"
   groups:
     - cast
+  production_positions:
+    Church Basement Ladies:
+      - Assistant Director
   roles:
     The Sound of Music:
       - Capt. Von Trapp
-    Church Basement Ladies:
-      - Assistant Director
     Damn Yankees:
       - Mr. Applegate
     Something Rotten!:
