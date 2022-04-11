@@ -23,15 +23,26 @@
 
 - first_name: Dewayne
   last_name: Barrett
-  location: "New York City via Atlanta, GA"
+  image_year: 2022
+  location: "Sarasota, FL"
   groups:
     - creative
     - staff
   staff_positions:
-    - Post Playhouse Artistic Director
-  bio_approved: false
-  bio: ""
-  image_year: 2016
+    - Artistic Director
+  production_positions:
+    The Sound of Music:
+      - Director
+      - Choreographer
+    Damn Yankees:
+      - Director
+      - Choreographer
+    Something Rotten!:
+      - Choreographer
+  program_bio: |
+    Dewayne is so excited to be back at the Post for his 7th Season. Dewayne serves as the Artistic Director as well as a director/choreographer. Previous shows here at the Post he has directed and or choreographed include; _42nd Street_, _Crazy for You_, _Addams Family_, _Mary Poppins_, _Mamma Mia_, _Chicago_, _Shrek_,_Young Frankenstein_, _Little Mermaid_, to name a few. Dewayne also teaches at The Central Academy of Drama in Beijing,China. He has choreographed for theme parks, cruise ships, dinner theatres, regional theatre, high schools, colleges, parades, dance companies and a tour of _Damn Yankees_. He is thrilled that we are back for an exciting 2022 Season.
+  bio: |
+    Dewayne Barrett is an accomplished actor, singer, dancer, teacher, and director/choreographer whose career has taken him all around the world. This is Dewayne's 7th year with the Post Playhouse and serves as Artistic Director. Born in Atlanta, Georgia, he began dancing at a very early age and danced with both the Georgia Ballet Company and The Atlanta Jazz Theatre. He then moved to NYC where he began even more training. As a performer he has performed all over the country in leading roles such as Rum Tum Tugger in _Cats_, Bobby in _A Chorus Line_, Rooster in _Annie_, Pat Gilbert in _State Fair_, Riff in _West Side Story_ and Don Lockwood in _Singing in the Rain_. Dewayne sailed around the world on cruise ships both as a singer/dancer and as director/choreographer for many top line cruise lines including; Royal Viking Line, SilverSea, Cunard, Saga and Asuka Japanese Line. Dewayne has taught at Dance Masters of Wisconsin and taught many musical theatre master classes across the United States. He is a director/choreographer/teacher at the Central Academy of Drama in Beijing, China, where he opened _Oklahoma!_ and _In the Heights_ in Mandarin. He has choreographed for national tours, theme parks, dinner theatres, regional and community theatres, high schools, music videos, movies and parades.
 
 - first_name: Pheobe H.
   last_name: Boynton
@@ -42,19 +53,58 @@
     - creative
   staff_positions:
     - Season Costume Designer
-  bio: ""
+  bio: |
+    Pheobe H. Boynton is thrilled to be returning to The Post Playhouse for her seventh season! She is a freelance costume designer originally from Ithaca, NY and currently based out of the Theatreworks costume shop in Colorado Springs, CO. She has a bachelors in art history from Cornell University, and an MFA in theater design and technology from the University of Missouri-Kansas City. She has done work for a wide variety of clients and companies including the Los Angeles Opera, Norwegian Cruise Line Holdings, Kanye West, Kansas City Repertory Theater, The Arvada Center, Theatreworks, Chadron State College, The Unicorn Theater, The Hangar Theatre, Legendary Pictures, YouTube Studios, Relativity Media, Investigation Discovery and Theatrical Arts International. [www.pheobebird.com](http://www.pheobebird.com)
 
 - first_name: Scott
   last_name: Cavin
+  image_year: 2015
   location: "Chadron, NE via Lemoore, CA"
   groups:
     - creative
     - staff
   positions:
     - Season Technical Director
-  bio_approved: false
-  bio: ""
-  image_year: 2015
+  bio: |
+    Scott is excited to be returning to the Post Playhouse. Scott is a Professor of Theatre at Chadron State College (CSC). His responsibilities include Designer (Scenic, Lighting, Sound, Projection), Technical Director and Production Manager for the Theatre Program.  In the past he has also directed for CSC Theatre.  He has recently assumed the duties of Program Director for Theatre at CSC.  As Program Director Scott has started the Artist in Residence program and added a Musical Theatre option to the curriculum at CSC.
+
+- first_name: Cody
+  last_name: Bloodsworth
+  image_year: 2022
+  location: "Moscow, ID"
+  groups:
+    - musicians
+  staff_positions:
+    - Season Bassist
+  bio: |
+    Cody was introduced to the bass at age 16 based on the needs of his high school jazz program. This change opened the door to a multitude of performance opportunities. Playing for various jazz ensembles, choirs, and large theater productions, eventually inspired him to continue his education at the Lionel Hampton School of Music. After three years of pursuing a bachelor's in Music Education, Cody is excited to make a return to his roots as a theater bassist. You can find out more about Cody's credits and educational materials here: https://www.themodernebassist.com/home
+
+- first_name: David
+  last_name: Craven
+  image_year: 2022
+  location: "Atlanta, GA"
+  groups:
+    - creative
+  production_positions:
+    Church Basement Ladies:
+      - Director
+      - Choreographer
+    Desperate Measures:
+      - Director
+      - Choreographer
+  bio: |
+    David is excited to direct/choreograph *Church Basement Ladies* for the 4th time! David has a BS in Architecture Design from Georgia Tech and an MFA in Directing Theatre from Minnesota State University, Mankato. David owns and runs Atlanta’s largest caroling company, Like the Dickens (www.LiketheDickens.com). Onstage David’s favorite roles include: Fred/Petruchio in *Kiss Me Kate*, Jesus in *Godspell*, El Gallo in *The Fantasticks*, Cat in the Hat in *Seussical*, Sam in *Mamma Mia*, Jerry in  *The Full Monty*, Sister Mary Amnesia in *Nunsense Amen!*, Dracula in *The Kiss of Dracula*,  and Captain/Hennessey in *Dames at Sea*. Favorite shows directed include:  *Guys and Dolls*, *Ragtime*, *Forever Plaid*, *Anything Goes*, *Oleanna*, *Reckless*, *The Rink* and *Into the Woods*. David is a proud member of Actor’s Equity Association.
+
+- first_name: Linda
+  last_name: Dabbs
+  image_year: 2018
+  location: "Crawford and Omaha, NE"
+  groups:
+    - staff
+  staff_positions:
+    - Season Paint Charge
+  bio: >
+    Linda is a recent transplant from Omaha to the Crawford area. She has been painting theater sets for 14 years. After being in the art field as an Art Director for various ad agencies, an outdoor billboard company, along with Art Director at Omaha's Henry Doorly Zoo. Some of the theatres she has painted for are Kountze Memorial at Mahoney State Park, Lofté Community Theatre, Manley, NE, Lincoln Community Theatre, Opera Omaha and Lincoln University Opera. Now semi retired to paint and produce pottery for her own enjoyment. She lives on a ranch north of Crawford with her faithful, but noisy dog, Beau. On good days she can be found wandering the hills with either camera in hand or watercolor brushes. Linda wishes to thank Dewayne and Tom for bringing her into the Post Playhouse family.
 
 - first_name: Daniel
   last_name: Denton
@@ -159,8 +209,8 @@
     - creative
   positions:
     - Season Scenic Designer
-  bio_approved: false
-  bio: ""
+  bio: |
+    Don Fox (MFA University of Arizona) is a lighting, scenic, and media designer currently serving as the Production Manager and Technical Director at the new Central Kitsap Performing Arts Center in Silverdale, WA.  He has been designing various production elements for all of the Post Playhouse shows since 2014.  Don is the lighting designer for the Moscow Ballet's _Great Russian Nutcracker_ tours and has taught at Indiana University of Pennsylvania, The University of Colorado, Colorado Springs, and most recently at the University of Arizona, Tucson.  Favorite Post productions include _Cabaret_, _Little Shop of Horrors_, _Sister Act_, _Shrek_, _Footloose_, _Mary Poppins_, and _The Best Little Whorehouse in Texas_.  Don's extensive portfolio of work can be seen at www.donfoxdesigns.com.
 
 - first_name: Tim
   last_name: Gaswick
@@ -169,7 +219,6 @@
     - staff
   staff_positions:
     - Accountant
-  bio_approved: false
   bio: |
     Tim is the franchise owner of the Chadron H&R Block office, and has been the accountant for the playhouse since 2007.  He and his wife Kari have four children, Kaylee, Aaron, Braxton, and Seth. Tim not only serves as the accountant, but also as the treasurer on the playhouse board. He enjoys working with the great talent and staff every summer, and looks forward to many years with the playhouse.
 
@@ -240,6 +289,17 @@
   bio: |
     Tommy is emphatically excited to be joining Post Playhouse for the first time this Summer. He is looking forward to his first adventure in Nebraska and can't wait to see what new friends, memories, and artistic experiences await him. Previous performance credits include _Seussical: The Musical_ (Cedar Summerstock), _A Smalltowne Christmas_ (Stephens College), _Into the Woods_ (Viterbo University), and _Fred Scheer's Lumberjack Show_. He received his BFA in Music Theatre from Viterbo University in La Crosse, WI.
 
+- first_name: Em
+  last_name: Laudeman
+  image_year: 2022
+  location: "Cleveland, OH"
+  groups:
+    - staff
+  staff_positions:
+    - Development Director
+  bio: |
+    Em worked as an actress at Post Playhouse for four seasons spanning from 2009-2019 and is delighted to now be part of the administrative team. You may remember Em in _The Wizard of Oz_ '10 (Dorothy), _Oklahoma!_ '12 (Laurie), and _The Music Man_ '19 (Marian). Em received her BFA in music theatre from Elon University and her MPA in nonprofit management from Indiana University. She has worked in development and advancement for arts organizations around the country since 2015. She looks forward to visiting her home away from home in Nebraska this summer and bringing her husband and daughter (aka theatre lover in the making) along!
+
 - first_name: Jeffrey
   last_name: Laughrun
   image_year: 2022
@@ -281,6 +341,22 @@
       - Swing
   bio: |
     Post Playhouse debut! Jaden is a New York-based performing artist. He is an Iowa native and graduate of Morningside University in Sioux City, IA. His most recent work was with the _Naked Boys Singing_ Las Vegas residency serving as the swing and dance captain. Other credits include _Guys and Dolls_ and _Mamma Mia!_ both at Venice Theatre in Venice, FL. Visit [jadenlux.com](http://jadenlux.com) for more about Jaden or follow him on Instagram: @Jaden.lux.
+
+- first_name: Christopher
+  last_name: Mason
+  image_year: 2022
+  location: "Tucson, AZ"
+  groups:
+    - creative
+  production_positions:
+    The Sound of Music:
+      - Lighting Designer
+    Church Basement Ladies:
+      - Lighting Designer
+    Desperate Measures:
+      - Lighting Designer
+  bio: |
+    Christopher Mason is excited about his first assignments at The Post Playhouse. After 26 years as an air traffic controller, his love of theatre was rekindled through his kids' involvement in youth theatre in Tucson. So he retired from the government and went to the University of Arizona to earn his degree in Theatre Design and Technology. He currently is pursuing his master's degree in lighting design at the University of Arizona. Recent lighting credits include *Passage*, *High Fidelity*, *Next To Normal*, *[Title of Show]*, *Hot Mikado*, and *Three Sisters* all in Tucson as well as several children's theatre productions. You can see examples of his work at [Designs of Christopher Mason](http://lux2152.com). Huge thanks to my wife and family for all their support.
 
 - first_name: Jesse
   last_name: McFarland
@@ -447,9 +523,30 @@
     - staff
   staff_positions:
     - Box Office Manager
-  bio_approved: false
   bio: |
     Ann Stephens has worked as part of the Post Playhouse for many summers, first as a volunteer usher, a volunteer in the concession stand, and for the past several years, she has managed the Box Office. Before retirement, Ann had a long and rewarding career as a classroom teacher and as a public education administrator, working in Texas, Arizona, Idaho and Nebraska before joining Post Playhouse staff. In off-season months, Ann enjoys being with her grandchildren, reading, baking, and volunteering throughout her home community of Crawford. Whether you are ready to make additional reservations for more of our superb productions or ready to enjoy some treats at intermission, you’re likely to see Ann... and she’s USUALLY smiling.
+
+- first_name: Jerod
+  last_name: Turner
+  image_year: 2022
+  location: "Chicago, IL via Eureka, MO"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Rolf Gruber
+    Damn Yankees:
+      - Sohovik
+      - Ensemble
+    Something Rotten!:
+      - Shakespeare
+      - Ensemble
+    Desperate Measures:
+      - Ensemble
+  program_bio: |
+    Excited to be coming back to the Post Playhouse, Jerod Turner (He/They/She), is thrilled to be making a return to Nebraska. You might have seen Jerod in the 2019 Post Playhouse season as a college freshman and is proudly coming back as a graduate of the Class of 2022 at Columbia College Chicago with a Bachelor of Fine Arts in Musical Theater in Chicago, IL. A former Missouri native, Jerod comes from a small town named Eureka but has resided in Chicago for the past four years. Jerod is so elated to be making their long awaited return to the stage after an unexpected theater hiatus due to the pandemic. Outside of the theater, Jerod is involved with modeling, drag, and back up dancing.
+  bio: |
+    Excited to be coming back to the Post Playhouse, Jerod Turner (He/They/She), is thrilled to be making a return to Nebraska. You might have seen Jerod in the 2019 Post Playhouse season as a college freshman and is proudly coming back as a graduate of the Class of 2022 at Columbia College Chicago with a Bachelor of Fine Arts in Musical Theater in Chicago, IL. A former Missouri native, Jerod comes from a small town named Eureka but has resided in Chicago for the past four years. Jerod is so elated to be making their long awaited return to the stage after an unexpected theater hiatus due to the pandemic. Outside of the theater, Jerod is involved with modeling, drag, and back up dancing. “Lots of love to family and friends for the constant support and here’s to a summer filled with memories!”
 
 - first_name: Melissa
   last_name: Wickland
