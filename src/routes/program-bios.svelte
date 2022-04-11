@@ -76,11 +76,11 @@
 >
 
 <div class="my-4">
-  <header>Bio Approved?</header>
+  <header>Jump to Bio</header>
 
   <ol class="grid grid-cols-3">
     {#each personnel.filter(notInBoard) as person}
-      <li class="approved-{person.bioApproved ?? 'false'}">
+      <li>
         <a class="link-green" href="#{personSlug(person)}">
           {person.name}
           {#if !person.bio}
@@ -100,24 +100,15 @@
 
 <div>
   {#each productions as production}
-    <h3>{production.title}</h3>
+    <h3 class="h3">{production.title}</h3>
     <ProductionList people="{personnel}" production="{production}" />
     <CastList people="{personnel}" production="{production}" />
   {/each}
 </div>
 
-<div class="my-8">
+<div class="helvetica my-8">
   {#each personnel.filter(notInBoard) as person}
-    <div
-      class="helvetica {!person.bioApproved ? '' : 'bg-red-400/30 p-4'} my-8"
-      id="{personSlug(person)}"
-    >
-      {#if person.bioApproved}
-        <div class="text-red-400 text-center text-xl mb-4">
-          {person.firstName}'s bio or roles are not yet approved.
-        </div>
-      {/if}
-
+    <div class="my-8" id="{personSlug(person)}">
       {#if notInAdditional(person) && person.image}
         <img
           src="{person.image}"
@@ -206,23 +197,5 @@
 <style>
   .helvetica {
     font-family: Helvetica !important;
-  }
-  .approved-true::before {
-    color: green;
-    content: "\2713";
-    display: inline-block;
-    width: 1em;
-  }
-
-  .approved-false::before {
-    color: red;
-    content: "x";
-    display: inline-block;
-    width: 1em;
-  }
-
-  .approved-true,
-  .approved-false {
-    margin-left: 1em;
   }
 </style>
