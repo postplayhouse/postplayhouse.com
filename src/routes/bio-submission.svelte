@@ -511,7 +511,10 @@ Don't forget:
 1. change \`roles\` to \`production_positions\` for non-cast members
 2. move anything from \`Entire Season\` to \`staff_positions\`
 3. delete all incorrect group memberships for each person
-4. if two bios, change \`longer_website_bio\` to \`bio\``
+4. if two bios, change \`longer_website_bio\` to \`bio\`
+
+${email}
+`
 
     const doBioUpload = async () =>
       uploadText(
