@@ -78,7 +78,7 @@
 <div class="my-4">
   <header>Jump to Bio</header>
 
-  <ol class="grid grid-cols-3">
+  <ol class="md:[columns:3]">
     {#each personnel.filter(notInBoard) as person}
       <li>
         <a class="link-green" href="#{personSlug(person)}">
