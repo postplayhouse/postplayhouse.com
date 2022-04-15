@@ -486,12 +486,19 @@
 
 - first_name: Ken
   last_name: Phillips
-  location: "Bloomington, IN"
-  groups:
-    - staff
-    - creative
-  bio: ""
   image_year: 2018
+  location: "Kenosha, WI"
+  groups:
+    - creative
+  production_positions:
+    Damn Yankees:
+      - Lighting Designer
+    Something Rotten!:
+      - Lighting and Projection Designer
+  bio: |
+    Ken is thrilled to be back at the Playhouse for his seventh season! He has designed lighting and projection content all around the country; mostly working in Musical Theatre & Opera. Most notably his lighting and projection work on *The Turn of the Screw* at Indiana University won the National Opera Associations Division VIII Production Competition Award for 2022. Currently he serves as professor of lighting and projection design (as well as the Production Manager) for the theatre department at University of Wisconsin-Parkside. 
+
+    He would like to thank Dewayne and Tom for having him back for another fabulous year, and to give thanks to his wife Alexandra for all her support. To see more of his work head to his website at [www.KGPhillips.com](http://www.KGPhillips.com).
 
 - first_name: Hope Elizabeth
   last_name: Schafer
