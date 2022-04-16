@@ -3,7 +3,7 @@
   import Modal from "../components/Modal/Modal.svelte"
 
   import SeasonAnnounced from "./news/2021-09-30-announcing-2022-season.svelte"
-  import AnnualRaffle from "./news/2020-03-24-annual-raffle-winners.md"
+  import AnnualRaffleWinners from "./news/2022-04-15-annual-raffle-winners.md"
 
   $: showMailingList = false
 
@@ -17,7 +17,7 @@
 </svelte:head>
 
 <div class="mb-24 bg-green-100 p-4">
-  <AnnualRaffle />
+  <AnnualRaffleWinners />
 </div>
 
 <div class="mb-32 p-2 max-w-2xl mx-auto">
