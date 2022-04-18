@@ -2,6 +2,7 @@
   import unique from "lodash/uniq.js"
   import diff from "lodash/difference.js"
   import type { Person } from "../../models/Person"
+  import { concat } from "lodash"
 
   const sortedPositions = [
     "Director",
@@ -61,7 +62,7 @@
 
 {#if unknownPositions.length > 0}
   <div class="my-4">
-    <p>
+    <p class="bg-red-300 border border-red-600 px-2">
       WARNING: Unknown positions exist. These may not be sorted in a desireable
       way.
     </p>
@@ -75,7 +76,7 @@
 
 <h4 class="production-positions-heading">Production Staff</h4>
 <ul class="production-positions people-list">
-  {#each sortedPositions as position}
+  {#each sortedPositions.concat(unknownPositions) as position}
     {#each people as person}
       {#each person.productionPositions as personPosition}
         {#if positionIsForProduction(personPosition)}

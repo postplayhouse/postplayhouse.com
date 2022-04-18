@@ -35,7 +35,7 @@
 
 {#if unknownPositions.length > 0}
   <div class="my-4">
-    <p>
+    <p class="bg-red-300 border border-red-600 px-2">
       WARNING: Unknown positions exist. These may not be sorted in a desireable
       way.
     </p>

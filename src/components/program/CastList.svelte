@@ -43,7 +43,7 @@
 </script>
 
 {#if unusedSortedRoles.length > 0}
-  <div>
+  <div class="bg-red-300 border border-red-600 px-2">
     WARNING: There are unused sorting roles:
     {#each unusedSortedRoles as unusedSortedRole}
       <div>{unusedSortedRole}</div>
