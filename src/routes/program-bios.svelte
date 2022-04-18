@@ -31,6 +31,7 @@
 <script lang="ts">
   import CastList from "$components/program/CastList.svelte"
   import ProductionList from "$components/program/ProductionList.svelte"
+  import StaffPositions from "$components/program/StaffPositions.svelte"
   import { sortPeople, personIsInGroup, slugify } from "../helpers"
   import Error from "./__error.svelte"
   export let people: YamlPerson[]
@@ -98,13 +99,13 @@
 
 <a href="#TheBoard" class="block link-green my-4">Jump to the Board</a>
 
-<div>
-  {#each productions as production}
-    <h3 class="h3">{production.title}</h3>
-    <ProductionList people="{personnel}" production="{production}" />
-    <CastList people="{personnel}" production="{production}" />
-  {/each}
-</div>
+<StaffPositions people="{personnel}" />
+
+{#each productions as production}
+  <h3 class="h3">{production.title}</h3>
+  <ProductionList people="{personnel}" production="{production}" />
+  <CastList people="{personnel}" production="{production}" />
+{/each}
 
 <div class="helvetica my-8">
   {#each personnel.filter(notInBoard) as person}
