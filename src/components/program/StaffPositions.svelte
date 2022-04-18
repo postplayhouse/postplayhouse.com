@@ -8,6 +8,8 @@
     "Artistic Director",
     "Production Stage Manager",
     "Assistant Stage Manager",
+    "Season Scenic Designer",
+    "Season Technical Director",
     "Season Costume Designer",
     "Stitcher",
     "Wardrobe",
