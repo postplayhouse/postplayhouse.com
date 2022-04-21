@@ -53,7 +53,7 @@
 <p>
   Post Playhouse<br />
   P.O. Box 365<br />
-  Crawford, NE 69939
+  Crawford, NE 69339
 </p>
 
 <h2 class="h2 mt-4">Location</h2>
