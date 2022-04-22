@@ -1,6 +1,7 @@
 import path from "path"
 import { fileURLToPath } from "url"
 
+import WatchAndRun from "@kitql/vite-plugin-watch-and-run"
 import { preprocess as compilerPreprocess } from "svelte/compiler"
 
 import replace from "@rollup/plugin-replace"
@@ -8,10 +9,8 @@ import adapter from "@sveltejs/adapter-static"
 import { mdsvex } from "mdsvex"
 import preprocess from "svelte-preprocess"
 import svelteImage from "svelte-image"
+import { spawnSync } from "child_process"
 
-// import.meta works. The conditions described to make it work are actually in
-// place... ?
-// @ts-expect-error see above
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const imagePreprocessor = svelteImage({
@@ -114,6 +113,12 @@ const config = {
           ),
           preventAssignment: true,
         }),
+        WatchAndRun([
+          {
+            watch: "**/src/data/**/*.yml",
+            run: "touch ./src/data/_yaml.ts",
+          },
+        ]),
       ],
       resolve: {
         alias: {
