@@ -26,6 +26,7 @@
     "marked": "^4.0.12"
   },
   "devDependencies": {
+    "@kitql/vite-plugin-watch-and-run": "^0.3.0",
     "@rollup/plugin-replace": "^3.0.0",
     "@sveltejs/adapter-static": "next",
     "@sveltejs/kit": "next",
