@@ -2,6 +2,7 @@
   import unique from "lodash/uniq.js"
   import diff from "lodash/difference.js"
   import type { Person } from "../../models/Person"
+  import { join, split } from "lodash"
 </script>
 
 <script lang="ts">
