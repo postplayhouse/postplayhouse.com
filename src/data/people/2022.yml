@@ -618,15 +618,20 @@
   location: "Rushville, NE"
   groups:
     - cast
+    - crew
+  staff_positions:
+    - Run Crew
+    - Build Crew
   roles:
     Damn Yankees:
-      - Lynch/Commissioner
+      - Lynch
+      - Commissioner
     Something Rotten!:
       - Thomas Middleton
   bio: |
-    Zackary is very excited to start his first summer at the Post Playhouse. He is currently a student at Chadron State College. His favorite roles include Charlie in *The Whale*, Ash in *Evil Dead the Musical*, and Man 1 in *I Love You, You´re Perfect, Now Change*.
+    Zackary is very excited to start his first summer at the Post Playhouse. He is currently a junior majoring in Theatre at Chadron State College. His favorite roles include Charlie in *The Whale*, Ash in *Evil Dead the Musical*, and Man 1 in *I Love You, You´re Perfect, Now Change*.
 
-    He would like to give his family a big thank you for supporting him throughout his theatre career.
+     He would like to give a huge thank you to his family for supporting him and to all the amazing directors he has had along the way, especially Mrs. Johnson and Mr. Lovell for first introducing him to theatre.
 
 - first_name: Melissa
   last_name: Wickland
