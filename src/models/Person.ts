@@ -25,6 +25,10 @@ class Person {
     return `${this.firstName} ${this.lastName}`
   }
 
+  get slug() {
+    return this.name.toLowerCase().replace(/[^a-z]/g, "-")
+  }
+
   get image() {
     return this.imageYear
       ? `/images/people/${this.imageYear}/${

@@ -15,6 +15,7 @@
     | "staffPositions"
     | "roles"
     | "bio"
+    | "slug"
   >
 
   // Pivot prductionName and positions for localPerson.productionPositions
@@ -33,7 +34,7 @@
   const optimizedVersion = (str: string) => "/g" + str.split(".").join("-800.")
 </script>
 
-<div class="flow-root mb-8">
+<div class="flow-root mb-8" id="{person.slug}">
   {#if person.image}
     <MaybeImage
       class="block w-full max-w-md mb-4 md:pr-4 md:float-left md:w-1/2"
