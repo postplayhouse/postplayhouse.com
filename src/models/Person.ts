@@ -1,3 +1,5 @@
+import uniq from "lodash/uniq.js"
+import flatten from "lodash/flatten.js"
 import { toCamel } from "../helpers"
 
 class Person {
@@ -37,6 +39,21 @@ class Person {
           this.name.replace(/\W+/g, "-").toLowerCase() + ".jpg"
         }`
       : undefined
+  }
+
+  get productionPositionsByPosition() {
+    // Pivot prductionName and positions for localPerson.productionPositions
+    return uniq(flatten(this.productionPositions.map((x) => x.positions))).map(
+      (position) => ({
+        position,
+        productionNames: this.productionPositions
+          .filter((po) => po.positions.includes(position))
+          .map((po) => po.productionName),
+      }),
+    ) as Array<{
+      position: string
+      productionNames: string[]
+    }>
   }
 
   constructor(personLike: YamlPerson | Person) {

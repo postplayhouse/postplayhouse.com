@@ -16,20 +16,8 @@
     | "roles"
     | "bio"
     | "slug"
+    | "productionPositionsByPosition"
   >
-
-  // Pivot prductionName and positions for localPerson.productionPositions
-  let productionPositions: Array<{
-    position: string
-    productionNames: string[]
-  }> = uniq(flatten(person.productionPositions.map((x) => x.positions))).map(
-    (position) => ({
-      position,
-      productionNames: person.productionPositions
-        .filter((po) => po.positions.includes(position))
-        .map((po) => po.productionName),
-    }),
-  )
 
   const optimizedVersion = (str: string) => "/g" + str.split(".").join("-800.")
 </script>
@@ -68,7 +56,7 @@
         </li>
       {/each}
 
-      {#each productionPositions as positionObj}
+      {#each person.productionPositionsByPosition as positionObj}
         <li class="pl-4 -text-indent-4">
           {positionObj.position}
           &mdash;
