@@ -16,8 +16,7 @@
     - crew
     - staff
   staff_positions:
-    - Costume worker
-    - stitcher
+    - Stitcher/Wardrobe
   bio: |
     Aubrey Anderson is a freshman attending Sterling college in Central Kansas. She is majoring in Theater and has spent her year participating in shows and costuming. Since enrolling, Aubrey was seen in *Newsies*, *The Lion The Witch and The Wardrobe*, and *Legally Blonde*. She also was Wardrobe manager for *Book of Will*. She hopes to do costuming professionally and is so excited to be working with an amazing theater all summer.
 
@@ -51,8 +50,9 @@
   location: "Colorado Springs, CO"
   groups:
     - creative
-  staff_positions:
-    - Season Costume Designer
+  production_positions:
+    Damn Yankees:
+      - Costume Designer
   bio: |
     Pheobe H. Boynton is thrilled to be returning to The Post Playhouse for her seventh season! She is a freelance costume designer originally from Ithaca, NY and currently based out of the Theatreworks costume shop in Colorado Springs, CO. She has a bachelors in art history from Cornell University, and an MFA in theater design and technology from the University of Missouri-Kansas City. She has done work for a wide variety of clients and companies including the Los Angeles Opera, Norwegian Cruise Line Holdings, Kanye West, Kansas City Repertory Theater, The Arvada Center, Theatreworks, Chadron State College, The Unicorn Theater, The Hangar Theatre, Legendary Pictures, YouTube Studios, Relativity Media, Investigation Discovery and Theatrical Arts International. [www.pheobebird.com](http://www.pheobebird.com)
 
@@ -63,7 +63,7 @@
   groups:
     - creative
     - staff
-  positions:
+  staff_positions:
     - Season Technical Director
   bio: |
     Scott is excited to be returning to the Post Playhouse. Scott is a Professor of Theatre at Chadron State College (CSC). His responsibilities include Designer (Scenic, Lighting, Sound, Projection), Technical Director and Production Manager for the Theatre Program.  In the past he has also directed for CSC Theatre.  He has recently assumed the duties of Program Director for Theatre at CSC.  As Program Director Scott has started the Artist in Residence program and added a Musical Theatre option to the curriculum at CSC.
@@ -74,8 +74,6 @@
   location: "Moscow, ID"
   groups:
     - musicians
-  staff_positions:
-    - Season Bassist
   production_positions:
     The Sound of Music:
       - Bassist
@@ -122,7 +120,7 @@
   groups:
     - staff
   staff_positions:
-    - Season Paint Charge
+    - Paint Charge
   bio: >
     Linda is a recent transplant from Omaha to the Crawford area. She has been painting theater sets for 14 years. After being in the art field as an Art Director for various ad agencies, an outdoor billboard company, along with Art Director at Omaha's Henry Doorly Zoo. Some of the theatres she has painted for are Kountze Memorial at Mahoney State Park, Lofté Community Theatre, Manley, NE, Lincoln Community Theatre, Opera Omaha and Lincoln University Opera. Now semi retired to paint and produce pottery for her own enjoyment. She lives on a ranch north of Crawford with her faithful, but noisy dog, Beau. On good days she can be found wandering the hills with either camera in hand or watercolor brushes. Linda wishes to thank Dewayne and Tom for bringing her into the Post Playhouse family.
 
@@ -153,6 +151,8 @@
   location: "Colorado Springs, CO"
   groups:
     - creative
+  staff_positions:
+    - Stitcher/Wardrobe
   production_positions:
     Church Basement Ladies:
       - Costume Designer
@@ -240,8 +240,19 @@
   location: "Wenatchee, WA"
   groups:
     - creative
-  positions:
+  staff_positions:
     - Season Scenic Designer
+  production_positions:
+    Church Basement Ladies:
+      - Scenic Designer
+    The Sound of Music:
+      - Scenic Designer
+    Damn Yankees:
+      - Scenic Designer
+    Something Rotten!:
+      - Scenic Designer
+    Desperate Measures:
+      - Scenic Designer
   bio: |
     Don Fox (MFA University of Arizona) is a lighting, scenic, and media designer currently serving as the Production Manager and Technical Director at the new Central Kitsap Performing Arts Center in Silverdale, WA.  He has been designing various production elements for all of the Post Playhouse shows since 2014.  Don is the lighting designer for the Moscow Ballet's _Great Russian Nutcracker_ tours and has taught at Indiana University of Pennsylvania, The University of Colorado, Colorado Springs, and most recently at the University of Arizona, Tucson.  Favorite Post productions include _Cabaret_, _Little Shop of Horrors_, _Sister Act_, _Shrek_, _Footloose_, _Mary Poppins_, and _The Best Little Whorehouse in Texas_.  Don's extensive portfolio of work can be seen at www.donfoxdesigns.com.
 
@@ -290,7 +301,7 @@
   groups:
     - staff
   staff_positions:
-    - Box Office
+    - Box Office Staff
   bio: |
     Shanie is excited to return to The Post Playhouse for her second season! Shanie graduated from Chadron State College in the spring of 2020 and is happy to be back working in theatre. You can find her at the box office or helping out in the scenic and costume shops. Some of her favorite things include DnD, reading, herbal tea, and anime.
 
@@ -382,9 +393,8 @@
   groups:
     - creative
     - crew
-  roles:
-    Entire Season:
-      - Season Sound Designer & Board Mixer
+  staff_positions:
+    - Season Sound Designer & Board Mixer
   bio: |
     Chris is grateful to Tom, Dewayne, and Scott for the opportunity to help bring this full summer stock to life! Chris is currently pursuing a Bachelor’s in Technical Theatre and Design at Chadron State College. Chris has been involved in backstage work at CSC since the fall of 2019 and has been involved in shows since his days at Norfolk Senior High School.
 
@@ -474,7 +484,7 @@
   roles:
     The Sound of Music:
       - Herr Zeller
-      - Captain von Trapp understudy
+      - (u/s) Captain von Trapp
     Damn Yankees:
       - Van Buren
     Something Rotten!:
@@ -482,7 +492,7 @@
       - Brother Jeremiah
       - Priest
       - Ensemble
-      - Nostradamus understudy
+      - (u/s) Nostradamus
     Desperate Measures:
       - Father Morse
   bio: |
@@ -617,10 +627,10 @@
       - Karin
     Damn Yankees:
       - Doris
-      - US Gloria
+      - (u/s) Gloria
     Something Rotten!:
       - Ensemble
-      - US Bea
+      - (u/s) Bea
     Desperate Measures:
       - Bella Rose
   bio: |
@@ -634,7 +644,16 @@
     - crew
     - staff
   staff_positions:
-    - Assistant Stage Manager
+    - Season Assistant Stage Manager
+  production_positions:
+    The Sound of Music:
+      - Assistant Stage Manager
+    Damn Yankees:
+      - Assistant Stage Manager
+    Something Rotten!:
+      - Assistant Stage Manager
+    Desperate Measures:
+      - Assistant Stage Manager
   bio: |
     This is Courtney's first year at the Post Playhouse. After graduating CSC, Courtney has gotten to work as a Stage Manager for CSC for *Little Shop of Horrors* and *I Love You, You're Perfect, Now Change*. She is excited to finally be stepping in to the professional theatre world and learn new ways to be a better Stage Manager/ASM.
 
@@ -679,8 +698,7 @@
     - cast
     - crew
   staff_positions:
-    - Run Crew
-    - Build Crew
+    - Build & Run Crew
   roles:
     Damn Yankees:
       - Lynch
@@ -709,7 +727,7 @@
       - Ensemble
     Something Rotten!:
       - Ensemble
-      - Portia Understudy
+      - (u/s) Portia
   bio: |
     Melissa is so excited to be back onstage, making her Post Playhouse Debut! She is currently based in Chicago after growing up in the suburbs. Melissa graduated in 2020 from Viterbo University with her BFA in Music Theatre and minor in Dance. Some of her favorite roles include Belle (_Beauty and the Beast_), Millie (_Thoroughly Modern Millie_), and Demeter (_Cats_). When not performing herself, Melissa is teaching young ones how to sing and dance in Chicago. A big thank you to her family, her partner Marcus, her cat Bubba, and the cast and creative team for all of their support in making this happen. Theatre is back!!! http://MelissaWickland.com
 
@@ -721,7 +739,7 @@
     - crew
     - staff
   staff_positions:
-    - Production Stage Manager
+    - Season Stage Manager
   bio: |
     Tom is a big fan of musicals and a current MFA candidate in the Stage Management program in University of Illnois at Urbana Champaign. His stage management credits include: _November Dance_ (Dance at Illinois), _Turn of the Screw_ (Lyric Theatre at Illinois), _Tempest_ (Interlochen Center of Arts), _Pshitter!_ (Illinois Theatre), _Avenue Q_ (ZJU Musial Group) and _Macbeth_ (Department of Foreign Language, PKU). His dream is to work in a professional _Les Miserablés_ production in the future.
 
