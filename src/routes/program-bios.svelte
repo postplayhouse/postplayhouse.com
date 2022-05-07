@@ -71,46 +71,64 @@
 <label
   ><input
     type="checkbox"
-    checked="{showUi}"
+    checked="{!showUi}"
     on:change="{() => (showUi = !showUi)}"
-  /> Show non-program UI in Bios (buttons/anchors)</label
+  /> View for copy/paste bios</label
 >
 
-<div class="my-4">
-  <header>Jump to Bio</header>
+{#if showUi}
+  <div class="my-4">
+    <header>Jump to Bio</header>
 
-  <ol class="md:[columns:3]">
-    {#each personnel.filter(notInBoard) as person}
-      <li>
-        <a class="link-green" href="#{personSlug(person)}">
-          {person.name}
-          {#if !person.bio}
-            <span
-              class="bg-yellow-200 rounded-full p-1 px-2 text-black whitespace-nowrap !no-underline"
-            >
-              no bio
-            </span>
-          {/if}
-        </a>
-      </li>
-    {/each}
-  </ol>
-</div>
+    <ol class="md:[columns:3]">
+      {#each personnel.filter(notInBoard) as person}
+        <li>
+          <a class="link-green" href="#{personSlug(person)}">
+            {person.name}
+            {#if !person.bio}
+              <span
+                class="bg-yellow-200 rounded-full p-1 px-2 text-black whitespace-nowrap !no-underline"
+              >
+                no bio
+              </span>
+            {/if}
+          </a>
+        </li>
+      {/each}
+    </ol>
+  </div>
 
-<a href="#TheBoard" class="block link-green my-4">Jump to the Board</a>
+  <a href="#TheBoard" class="block link-green my-4">Jump to the Board</a>
 
-<StaffPositions people="{personnel}" />
+  <StaffPositions people="{personnel}" />
 
-{#each productions as production}
-  <h3 class="h3">{production.title}</h3>
-  <ProductionList people="{personnel}" production="{production}" />
-  <CastList people="{personnel}" production="{production}" />
-{/each}
+  {#each productions as production}
+    <h3 class="h3">{production.title}</h3>
+    <ProductionList people="{personnel}" production="{production}" />
+    <CastList people="{personnel}" production="{production}" />
+  {/each}
+{/if}
+
+{#if !showUi}
+  <div class="bg-blue-200 border-2 border-blue-800 p-4 space-y-2">
+    <p>
+      When you copy/paste from here into Affinity Publisher, you'll want to
+      first paste into a Rich Text editor then copy again before pasting into
+      Affinity. This will preserve the italics of all the show titles.
+    </p>
+    <p>
+      There is also an interesting issue where tons of non-breaking spaces may
+      be added to the Rich Text, despite them not being present in the HTML.
+      That can be solved by finding and replaceing the non-breaking spaces.
+      You'll be able to find one by looking for odd line breaks.
+    </p>
+  </div>
+{/if}
 
 <div class="helvetica my-8">
   {#each personnel.filter(notInBoard) as person}
     <div class="my-8" id="{personSlug(person)}">
-      {#if notInAdditional(person) && person.image}
+      {#if notInAdditional(person) && person.image && showUi}
         <img
           src="{person.image}"
           alt="{person.image ? '' : 'missing '}picture of {person.name}"
@@ -122,7 +140,7 @@
         <h3 class="text-2xl">{person.name}</h3>
 
         {#if person.location}
-          {@html marked.parseInline(person.location)}
+          {person.location}
         {/if}
 
         {#if person.positions.length > 0}
@@ -131,14 +149,14 @@
               {@html position.replace(/---/g, "&mdash;")}<br />
             {/each}
           </p>
-        {:else if person.productionPositions.length > 0 || person.roles.length > 0 || person.staffPositions.length > 0}
+        {:else if person.productionPositionsByPosition.length > 0 || person.roles.length > 0 || person.staffPositions.length > 0}
           <p class="my-8">
             {#each person.staffPositions as position}
               {@html position.replace(/---/g, "&mdash;")}<br />
             {/each}
 
-            {#each person.productionPositions as position}
-              {position.productionName} &mdash; {position.positions.join(
+            {#each person.productionPositionsByPosition as position}
+              {position.position} &mdash; {position.productionNames.join(
                 ", ",
               )}<br />
             {/each}
@@ -172,28 +190,30 @@
   {/each}
 </div>
 
-<div class="my-8 space-y-8">
-  <h1 id="TheBoard" class="text-4xl">Board Headshots and Names</h1>
+{#if showUi}
+  <div class="my-8 space-y-8">
+    <h1 id="TheBoard" class="text-4xl">Board Headshots and Names</h1>
 
-  {#each personnel.filter(inBoard) as person}
-    <div class="helvetica">
-      {#if person.image}
-        <img
-          src="{person.image}"
-          alt="{person.image ? '' : 'missing '}picture of {person.name}"
-          class="max-w-sm max-h-96 m-auto"
-        />
-      {/if}
+    {#each personnel.filter(inBoard) as person}
+      <div class="helvetica">
+        {#if person.image}
+          <img
+            src="{person.image}"
+            alt="{person.image ? '' : 'missing '}picture of {person.name}"
+            class="max-w-sm max-h-96 m-auto"
+          />
+        {/if}
 
-      <div class="text-center">
-        <div>{person.name}</div>
-        {#each person.positions as position}
-          {position}
-        {/each}
+        <div class="text-center">
+          <div>{person.name}</div>
+          {#each person.positions as position}
+            {position}
+          {/each}
+        </div>
       </div>
-    </div>
-  {/each}
-</div>
+    {/each}
+  </div>
+{/if}
 
 <style>
   .helvetica {
