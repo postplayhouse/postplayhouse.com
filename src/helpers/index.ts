@@ -133,3 +133,26 @@ export function dateIsBetween(
   const endDate = new Date(endDateStr).setHours(0, 0, 0, 0)
   return compareDate <= endDate && compareDate >= startDate
 }
+
+/**
+ * Expects a YYYY-MM-DD and returns the friendly, `M d, YYYY` format. Optional weekday
+ */
+export function formatDate(
+  dateStr: string,
+  options: { prependWeekday?: boolean } = {},
+) {
+  const [year, month, day] = dateStr.split("-")
+  const date = new Date()
+  date.setFullYear(Number(year))
+  date.setMonth(Number(month) - 1)
+  date.setDate(Number(day))
+
+  const settings: Parameters<Date["toLocaleDateString"]>[1] = {
+    weekday: options.prependWeekday ? "long" : undefined,
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }
+
+  return date.toLocaleDateString("en-US", settings)
+}

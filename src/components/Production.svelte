@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { formatDate } from "../helpers"
+
   import Markdown from "./Markdown.svelte"
   import MaybeImage from "./MaybeImage.svelte"
   import MaybeLink from "./MaybeLink.svelte"
@@ -25,7 +27,9 @@
   </header>
 
   {#if production.opening}
-    <div class="font-bold">Opens {production.opening}</div>
+    <div class="font-bold">
+      Opens {formatDate(production.opening, { prependWeekday: true })}
+    </div>
   {/if}
   {#if production.rating}
     <div class="">
