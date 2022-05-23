@@ -79,6 +79,7 @@ type YamlPerson = {
   image_year: number
   /** defaults to firstname-lastname.jpg if not present */
   image_file?: string
+  lobby_display?: boolean
 }
 
 type YearlyData = {

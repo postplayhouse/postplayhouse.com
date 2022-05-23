@@ -6,6 +6,7 @@ class Person {
   imageYear: number
   imageFile: string
   location: string
+  lobbyDisplay?: boolean
   bio: string
   bioApproved: boolean
   programBio: string | undefined
@@ -44,6 +45,7 @@ class Person {
     this.firstName = undefined
     this.lastName = undefined
     this.location = undefined
+    this.lobbyDisplay = undefined
     this.programBio = undefined
     this.bio = ""
     this.bioApproved = false
