@@ -1,0 +1,72 @@
+<script lang="ts">
+  import { fade } from "svelte/transition"
+  import { createEventDispatcher } from "svelte"
+  import { toPerson } from "../../../models/Person"
+  import { browser } from "$app/env"
+  import { marked } from "marked"
+
+  const fast = browser && document.location.search.includes("fast=1")
+
+  const INT = fast ? 3000 : 30000
+
+  const dispatch = createEventDispatcher()
+
+  function eventDone() {
+    dispatch("done")
+  }
+
+  export let actors: YamlPerson[]
+
+  const slides = actors.map(toPerson).filter((x) => x.lobbyDisplay === true)
+
+  let current = 0
+
+  function getNextIndex() {
+    return (current + 1) % slides.length
+  }
+
+  function nextOrDone() {
+    const nextInt = getNextIndex()
+    if (nextInt > 0) {
+      current = nextInt
+      setTimeout(nextOrDone, INT)
+    } else {
+      eventDone()
+    }
+  }
+
+  setTimeout(nextOrDone, INT)
+
+  const optimizedVersion = (str: string) => "/g" + str.split(".").join("-400.")
+</script>
+
+{#each slides as person, i}
+  {#if i === current}
+    <article class="absolute inset-0 flex flex-col">
+      <header
+        class="bg-green-300 text-left text-black p-4 font-sans [font-size:2.5vw] flex justify-between"
+      >
+        <p>
+          These talented actors joined us after local auditions this summer.
+        </p>
+        <span>
+          ({i + 1} of {slides.length} )
+        </span>
+      </header>
+
+      <div class="grow relative p-8" transition:fade>
+        <img
+          src="{optimizedVersion(person.image)}"
+          alt="actor"
+          class="max-h-128 float-left mr-8 mb-8"
+        />
+        <div class="text-black [font-size:4vw]">
+          {person.name}
+        </div>
+        <div class="[font-size:2.5vw]">
+          {@html marked.parseInline(person.bio)}
+        </div>
+      </div>
+    </article>
+  {/if}
+{/each}

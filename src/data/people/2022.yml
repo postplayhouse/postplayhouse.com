@@ -63,6 +63,7 @@
 
 - first_name: Ross
   last_name: Boyd
+  lobby_display: true
   image_year: 2022
   location: "Harrison, NE"
   groups:
@@ -111,6 +112,7 @@
 
 - first_name: Kinleigh
   last_name: Cover
+  lobby_display: true
   image_year: 2022
   location: "Crawford, NE"
   groups:
@@ -119,7 +121,7 @@
     The Sound of Music:
       - Gretyl
   bio: |
-    Kinleigh is 6 years old and from Crawford NE. She’s the only girl with 3 brothers, so she’s great at dressing up while also being tough. Her whole life she’s been entertaining those around her with her singing and imagination. She’s been involved with the Missoula Children’s Theatre and is excited to take this next step with the Post play House.
+    Kinleigh is 6 years old and from Crawford NE. She’s the only girl with 3 brothers, so she’s great at dressing up while also being tough. Her whole life she’s been entertaining those around her with her singing and imagination. She’s been involved with the Missoula Children’s Theatre and is excited to take this next step with the Post Playhouse.
 
 - first_name: David
   last_name: Craven
@@ -614,6 +616,7 @@
 
 - first_name: Bristol Q.
   last_name: Prado
+  lobby_display: true
   image_year: 2022
   location: "Chadron, NE"
   groups:
@@ -725,6 +728,7 @@
 
 - first_name: Adday
   last_name: Tewahade
+  lobby_display: true
   image_year: 2022
   location: "Chadron, NE"
   groups:
@@ -739,6 +743,7 @@
 
 - first_name: Dana
   last_name: Tewahade
+  lobby_display: true
   image_year: 2022
   location: "Chadron, NE"
   groups:
@@ -773,6 +778,7 @@
 
 - first_name: Reese
   last_name: Watson
+  lobby_display: true
   image_year: 2022
   location: "Chadron, NE"
   groups:
