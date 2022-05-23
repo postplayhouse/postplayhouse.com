@@ -70,7 +70,7 @@
     - cast
   roles:
     The Sound of Music:
-      - Friederich
+      - Kurt
   bio: |
     Ross is the ten year old son of Sarah Bannan and TJ Boyd. He is enrolled at Harrison Elementary where he will be in the fifth grade this fall. Ross enjoys hanging out with his family and friends, helping out on his papa's ranch, and playing video games with his dad. This is Ross's first time acting in a production and he's so excited to have the opportunity to try something new.
 
@@ -627,6 +627,19 @@
   bio: |
     Bristol, an 8th grader at Chadron Middle School, is excited to be back at the Post Playhouse for a third season, this time as Louisa in *The Sound of Music.*  She has previously performed at the Post Playhouse as Gretl in *The Sound of Music* and Young Fiona in *Shrek the Musical.*  During the school year Bristol stays active with HAL, science fair, volleyball, wrestling, and track.  In her free time, she enjoys painting and spending time with her 6 siblings. She would like to thank her family for supporting her in her adventures, Tom and Dewayne for having faith in her, and the local communities for supporting the arts and the Post Playhouse.
 
+- first_name: Gavin
+  last_name: Rhoden
+  lobby_display: true
+  image_year: 2022
+  location: "Chadron, NE"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Frederick
+  bio: |
+    Gavin is eleven years old and this is his first season at the Post Playhouse. He is looking forward to meeting new people and singing and dancing with some very special talent here in Crawford, NE. Gavin is very excited to be in the musical "The Sound of Music". Gavin has participated in several school musicals and plays and enjoys all his time spent on stage!  His favorite character played in school was Larry the Cable Guy. When he is not on stage he enjoys painting, gaming, and riding the motorcycle with his dad.
+
 - first_name: Hope Elizabeth
   last_name: Schafer
   image_year: 2022
@@ -715,6 +728,19 @@
   bio: |
     This is Courtney's first year at the Post Playhouse. After graduating CSC, Courtney has gotten to work as a Stage Manager for CSC for *Little Shop of Horrors* and *I Love You, You're Perfect, Now Change*. She is excited to finally be stepping in to the professional theatre world and learn new ways to be a better Stage Manager/ASM.
 
+- first_name: Matthew
+  last_name: Smith
+  lobby_display: true
+  image_year: 2022
+  location: "Chadron, NE"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Friedrich
+  bio: |
+    Matthew, a 6th grader at Chadron Middle School, is thrilled to join the cast of The Sound of Music as Friedrich, the eldest von Trapp boy. Matthew enjoys singing, acting, gymnastics, basketball, golf, camping, and fishing. Matthew has been on the stage from a young age staring as Santa Clause in the Chadron Primary School Christmas play as well as playing Michael in _Peter Pan Jr._ Matthew is a member of the Panhandle Gymnastics Advanced Boys Team, the Chadron Middle School Student Council, and Chadron Travel Basketball Team. Matthew is grateful to be part of the cast for _The Sound of Music_ this season and looks forward to working with the wonderful cast and crew.
+
 - first_name: Ann
   last_name: Stephens
   image_year: 2020
@@ -739,7 +765,7 @@
   bio: |
     Adday is ecstatic to be making her Post Playhouse debut after waiting 2 years to audition.  Although she is involved in several school activities, Adday is most at home on a stage acting, singing and dancing. She plans her summers around opportunities to perform. Recent roles: Captain Hook, *Peter Pan Jr.*; Sebastian, *The Little Mermaid Jr.*; Veruca Salt, *Willy Wonka Jr.*; Tessie, *Annie Jr*;
 
-    Adday so grateful for this opportunity to learn from the amazing Post Playhouse cast and crew.
+    Adday is so grateful for this opportunity to learn from the amazing Post Playhouse cast and crew.
 
 - first_name: Dana
   last_name: Tewahade
