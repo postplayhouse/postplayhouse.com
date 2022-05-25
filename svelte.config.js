@@ -9,7 +9,6 @@ import adapter from "@sveltejs/adapter-static"
 import { mdsvex } from "mdsvex"
 import preprocess from "svelte-preprocess"
 import svelteImage from "svelte-image"
-import { spawnSync } from "child_process"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -101,8 +100,6 @@ const config = {
 
   kit: {
     adapter: adapter(),
-    // hydrate the <div id="svelte"> element in src/app.html
-    target: "#svelte",
     prerender: { onError: "continue" },
     vite: {
       plugins: [
