@@ -1,9 +1,39 @@
+<script lang="ts" context="module">
+  import type { Load } from "@sveltejs/kit"
+  import site from "../data/site"
+
+  const currentYear = new Date().getFullYear()
+  const seasonYear = site.season
+
+  export const load: Load = async (obj) => {
+    if (currentYear !== seasonYear) return { props: { productions: [] } }
+
+    const res = await obj.fetch(`/data/productions/${currentYear}.json`)
+    const data = await res.json()
+
+    if (res.status === 200) {
+      return {
+        props: {
+          productions: data.productions,
+        },
+      }
+    } else {
+      return {
+        status: res.status,
+        error: new Error(
+          `could not fetch /data/productions/${currentYear}.json`,
+        ),
+      }
+    }
+  }
+</script>
+
 <script lang="ts">
   import Mailer from "../components/Mailer.svelte"
   import Modal from "../components/Modal/Modal.svelte"
+  import Openings from "../components/OpeningAnnouncements.svelte"
 
-  import SeasonAnnounced from "./news/2021-09-30-announcing-2022-season.svelte"
-  import AnnualRaffleWinners from "./news/2022-04-15-annual-raffle-winners.md"
+  export let productions: Production[]
 
   $: showMailingList = false
 
@@ -16,13 +46,16 @@
   <title>Post Playhouse</title>
 </svelte:head>
 
-<div class="mb-24 bg-green-100 p-4">
-  <AnnualRaffleWinners />
-</div>
-
 <div class="mb-32 p-2 max-w-2xl mx-auto">
-  <h1 class="h1">Announcing our 2022 season!</h1>
-  <SeasonAnnounced />
+  <Openings productions="{productions}" closingDate="2022-08-14">
+    <h3 class="h1 font-uber my-8">Our 2022 Summer Season</h3>
+    <div class="w-2/3 m-auto">
+      <img
+        src="/images/2022/full-season.jpg"
+        alt="2022 season logos: The Sound of Music, Damn Yankees, Chuch Basement Ladies, Desperate Measures, and Something Rotten!"
+      />
+    </div>
+  </Openings>
 </div>
 
 <div class="md:flex flex-row-reverse items-stretch">
