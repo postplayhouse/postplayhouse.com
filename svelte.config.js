@@ -100,7 +100,7 @@ const config = {
 
   kit: {
     adapter: adapter(),
-    prerender: { onError: "continue" },
+    prerender: { onError: "continue", default: true },
     vite: {
       plugins: [
         replace({
