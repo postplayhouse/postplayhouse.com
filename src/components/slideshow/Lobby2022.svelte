@@ -4,23 +4,34 @@
   import Donors1 from "./Lobby2022/Annual1.svelte"
   import Special from "./Lobby2022/Special.svelte"
   import Actors from "./Lobby2022/Actors.svelte"
+  import { onMount } from "svelte"
+  import {
+    initLocalAppVersion,
+    refreshIfAppVersionOutdated,
+  } from "../../helpers/app-version"
+
+  onMount(initLocalAppVersion)
 
   export let actors: YamlPerson[]
 
   const shows = [Actors, Special, Donors1000, Donors1]
 
   let current = 0
-  let evenOdd = 1
+  let inc = 1
 
   function nextShow() {
     console.log("next show")
-    evenOdd += 1
+    inc += 1
     current = (current + 1) % shows.length
+
+    if (inc > shows.length && inc % shows.length === 0) {
+      refreshIfAppVersionOutdated()
+    }
   }
 </script>
 
 <div class="fixed inset-0 bg-white">
-  {#if evenOdd % 2 === 0}
+  {#if inc % 2 === 0}
     <div
       transition:fade="{{ duration: 1000 }}"
       class="absolute inset-0 bg-white"

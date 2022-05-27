@@ -2,10 +2,8 @@
   import { fade } from "svelte/transition"
   import { createEventDispatcher } from "svelte"
   import { toPerson } from "../../../models/Person"
-  import { browser } from "$app/env"
   import { marked } from "marked"
-
-  const fast = browser && document.location.search.includes("fast=1")
+  import { fast } from "./helpers"
 
   const INT = fast ? 3000 : 30000
 
@@ -37,7 +35,8 @@
 
   setTimeout(nextOrDone, INT)
 
-  const optimizedVersion = (str: string) => "/g" + str.split(".").join("-400.")
+  const optimizedVersion = (str: string | undefined) =>
+    str && "/g" + str.split(".").join("-400.")
 </script>
 
 {#each slides as person, i}

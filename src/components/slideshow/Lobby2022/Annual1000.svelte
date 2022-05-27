@@ -1,9 +1,7 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
   import { createEventDispatcher } from "svelte"
-  import { browser } from "$app/env"
-
-  const fast = browser && document.location.search.includes("fast=1")
+  import { fast } from "./helpers"
 
   const INT = fast ? 500 : 5000
 

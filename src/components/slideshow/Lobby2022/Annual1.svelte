@@ -3,9 +3,7 @@
 
   import { linear } from "svelte/easing"
   import { createEventDispatcher } from "svelte"
-  import { browser } from "$app/env"
-
-  const fast = browser && document.location.search.includes("fast=1")
+  import { fast } from "./helpers"
 
   const SLOWNESS = fast ? 1 : 8
 
@@ -289,14 +287,14 @@
     if (nextIndex > 0) {
       const oldIndex = current
       current = nextIndex
-      setTimeout(() => (slides[nextIndex].position = "top"), 10)
-      setTimeout(() => (slides[oldIndex].position = "bottom"), 10)
+      setTimeout(() => (slides[nextIndex]!.position = "top"), 10)
+      setTimeout(() => (slides[oldIndex]!.position = "bottom"), 10)
     } else {
       eventDone()
     }
   }
 
-  setTimeout(() => (slides[current].position = "top"), 10)
+  setTimeout(() => (slides[current]!.position = "top"), 10)
 
   const [send, receive] = crossfade({
     duration: (d) => d * SLOWNESS,
