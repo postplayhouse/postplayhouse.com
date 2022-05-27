@@ -237,6 +237,19 @@
   bio: |
     Anna is ecstatic to be making her debut here at Post Playhouse! She is a recent graduate of the University at Buffalo, where she received her BFA in Music Theatre. Past credits include *A Chorus Line* (Diana Morales), *Guys and Dolls* (Sarah Brown), and *The Threepenny Opera* (Lucy Brown). She would like to thank her family and friends for their constant patience and support.
 
+- first_name: Magdalena
+  last_name: Fisher
+  lobby_display: true
+  image_year: 2022
+  location: "Chadron, NE"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Marta von Trapp
+  bio: |
+    Magdalena, 8 years old and soon to be third grader from Chadron, NE is the daughter of Tyler Fisher and Kristin and Brandon Ritterbush. Magdalena has been on the stage before playing a fairy and lost child in _Peter Pan Jr._ She has also been involved in dance and gymnastics along with being a "little sister" in the Teen and Miss Scholarship pageants. Magdalena enjoys spending time with her friends and family, swimming, listening and singing to music, camping and playing with her dog Jazee. She is also excited to join 4-H this summer and show her cat and dog along with other projects. She is so excited to be part of this cast! Magdalena is very grateful for this opportunity!
+
 - first_name: Riley
   last_name: Frey
   image_year: 2022
@@ -563,6 +576,21 @@
       - First Keys/Conductor
   bio: |
     Jenna Lee Moore, Assistant Professor of Musical Theatre at Southeast Missouri State University, holds a DMA in Vocal Pedagogy and Performance from the Frost School of Music and is an active music director at both the university and professional level. Favorite music directing credits include the world premiere of _Unlimited: The Music and Lyrics of Stephen Schwartz_, _Urinetown_, _Little Shop of Horrors_, and the New York premiere of _An American Hero: A World War II Musical_ at the New York Musical Festival. In addition to music directing, Jenna is a practicing performer in opera and musical theatre. Recent roles include Rosie in _Mamma Mia_ and Auntie/Bearded Lady in _Side Show_. She lives in Cape Girardeau with her dog, Spike, and two cats, Pinkerton and Spencer.
+
+- first_name: Natalie
+  last_name: Mullen
+  lobby_display: true
+  image_year: 2022
+  location: "Hemingford, NE"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Brigitta von Trapp
+  bio: |
+    Natalie is very excited to be making her acting debut at Post Playhouse. She was fortunate to attend *The Little Mermaid* with her aunt and cousin a few years ago, so when the opportunity arose to audition, she couldn't pass up the chance!
+
+    Natalie has been able to participate in the community Christmas production in Hemingford the past 2 years and definitely caught the acting bug, especially after getting to portray a very unusual version of Tinker Bell. She is looking forward to learning all she can this summer from her fellow cast members, and the directors and crew who make the Playhouse such a resounding success.
 
 - first_name: Tom
   last_name: Ossowski
