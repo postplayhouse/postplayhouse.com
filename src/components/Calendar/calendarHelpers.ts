@@ -1,3 +1,7 @@
+type Year = Date.Year
+type Month = Date.Month
+type Day = Date.Day
+
 const monthRegexp = {
   jan: /^\s*jan\w* (.*)$/im,
   feb: /^\s*feb\w* (.*)$/im,
@@ -220,7 +224,7 @@ export function getWeeksFromProductions(
   year: Year,
 ): Array<
   Array<{
-    date: { year: number; month: number; day: number }
+    date: SimpleDate
 
     showings: Showing[]
   }>

@@ -17,7 +17,7 @@ export const feed = {
   icon: `${site.url}/${site.icon}`,
 }
 
-const dateInNebraska = (dateArg) =>
+const dateInNebraska = (dateArg: ConstructorParameters<typeof Date>[0]) =>
   new Date(dateArg).toISOString().replace("Z", "-07:00")
 
 export const posts = postsData

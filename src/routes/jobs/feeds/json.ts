@@ -3,7 +3,7 @@ import type { RequestHandler } from "@sveltejs/kit"
 
 const jsonFeedPage = `${feed.feedsUrlBase}/json`
 
-const renderJsonFeed = (posts) =>
+const renderJsonFeed = (posts_: typeof posts) =>
   JSON.stringify({
     version: "https://jsonfeed.org/version/1.1",
     title: feed.title,
@@ -11,7 +11,7 @@ const renderJsonFeed = (posts) =>
     home_page_url: feed.htmlLink,
     description: feed.description,
     feed_url: jsonFeedPage,
-    items: posts.map((post) => ({
+    items: posts_.map((post) => ({
       id: post.id,
       title: post.title,
       date_published: post.publishedDate,

@@ -1,14 +1,15 @@
 <script lang="ts" context="module">
   import type { Load } from "@sveltejs/kit"
   export const load: Load = async (obj) => {
-    const res = await obj.fetch(`/data/productions/${obj.params["year"]}.json`)
+    const year = parseInt(obj.params["year"] as string)
+    const res = await obj.fetch(`/data/productions/${year}.json`)
     const data = await res.json()
 
     if (res.status === 200) {
       return {
         props: {
           productions: data.productions,
-          year: parseInt(obj.params["year"]),
+          year,
         },
       }
     } else {
@@ -19,8 +20,8 @@
 
 <script lang="ts">
   import Calendar from "../../components/Calendar/Calendar.svelte"
-  export let productions: YearlyData["productions"][Year]
-  export let year: Year
+  export let productions: YearlyData["productions"][Date.Year]
+  export let year: Date.Year
 
   const hasCalendar = !!productions?.find((prod) => prod.dates)
 </script>

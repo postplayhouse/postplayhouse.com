@@ -540,7 +540,12 @@ describe("combineShows", () => {
 
 describe("getWeeksFromProductions", () => {
   test("it renders data for calendar", () => {
-    expect(getWeeksFromProductions(productions[2020], 2020)[10]).toMatchObject([
+    expect(
+      getWeeksFromProductions(
+        productions[2020] as unknown as Production[],
+        2020,
+      )[10],
+    ).toMatchObject([
       // All show weekend
       {},
       {},

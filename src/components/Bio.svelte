@@ -15,8 +15,8 @@
     | "staffPositions"
     | "roles"
     | "bio"
-    | "slug"
-  >
+  > &
+    Partial<Pick<Person, "slug">>
 
   // Pivot prductionName and positions for localPerson.productionPositions
   let productionPositions: Array<{

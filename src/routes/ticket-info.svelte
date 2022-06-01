@@ -16,8 +16,8 @@
 <script lang="ts">
   import SeatingChart from "../components/SeatingChart.svelte"
   import TicketPolicy from "../components/TicketPolicy.md"
-  export let site
-  export let productions = []
+  export let site: typeof siteData
+  export let productions: Production[] = []
 </script>
 
 <div class="via-markdown">

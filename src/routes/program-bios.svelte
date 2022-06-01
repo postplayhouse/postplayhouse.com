@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
   import type { Load } from "@sveltejs/kit"
-  import { Person, toPerson } from "../models/Person"
+  import { type Person, toPerson } from "../models/Person"
   import site from "../data/site"
   import { marked } from "marked"
 
@@ -32,7 +32,6 @@
   import CastList from "$components/program/CastList.svelte"
   import ProductionList from "$components/program/ProductionList.svelte"
   import { sortPeople, personIsInGroup, slugify } from "../helpers"
-  import Error from "./__error.svelte"
   export let people: YamlPerson[]
   export let productions: Production[]
 
@@ -159,7 +158,9 @@
         {/if}
 
         {#if showShortBio.has(person.id)}
-          {@html marked(person.programBio)}
+          {@html marked(
+            person.programBio || "(no program bio actually exists)",
+          )}
         {:else}
           {@html marked(person.bio)}
         {/if}

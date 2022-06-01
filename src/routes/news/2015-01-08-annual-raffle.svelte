@@ -51,12 +51,10 @@ for our annual raffle. You could win $10,000!" ---
 </div>
 
 <style>
-  .group,
-  .wrapper {
+  .group {
     *zoom: 1;
   }
-  .group:after,
-  .wrapper:after {
+  .group:after {
     content: "";
     display: table;
     clear: both;

@@ -15,7 +15,7 @@
 
 <script lang="ts">
   import Markdown from "../components/Markdown.svelte"
-  export let businesses
+  export let businesses: Business[]
 </script>
 
 <h2 class="h2">Nearby Activities, Attractions, Food, and Lodging</h2>

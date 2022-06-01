@@ -21,7 +21,7 @@
   let firstName = ""
   let lastName = ""
   let image = ""
-  let imageFile = null
+  let imageFile: null | File = null
   let location = ""
   let bio = ""
   let addLongerBio = false
@@ -333,14 +333,14 @@
   function handleFilePick(
     e: Parameters<svelte.JSX.FormEventHandler<HTMLInputElement>>[0],
   ) {
-    const pickedFile = e.currentTarget.files[0]
+    const pickedFile = e.currentTarget.files?.[0]
     if (!pickedFile || !pickedFile.type.match("image.*"))
       return (image = PLACEHOLDER_IMAGE)
 
     var reader = new FileReader()
 
     reader.onload = function (evt) {
-      image = evt.target.result as string
+      image = evt.target?.result as string
       imageFile = pickedFile
     }
 
@@ -378,7 +378,9 @@
    * The count will determine how many sets of creds are returned in the array
    * (we need one set per file to upload)
    */
-  async function getCreds(count = 2): Promise<Creds[]> {
+  async function getCreds<T extends number>(
+    count: T,
+  ): Promise<ConstructTuple<T, Creds>> {
     const resp = await window.fetch(
       `https://happycollision-postplayhouse-bio-submission.builtwithdark.com/upload-url?count=${count}`,
       {
@@ -516,7 +518,7 @@ Don't forget:
 ${email}
 `
 
-    const doBioUpload = async () =>
+    const doBioUpload = async (): Promise<true> =>
       uploadText(
         `${yamlBody({
           includeGroups: true,
@@ -534,17 +536,19 @@ ${email}
         }
       })
 
-    const doHeadshotUpload = async () =>
-      uploadImage(imageFile, basename, (await getCreds(1))[0]).then((resp) => {
-        if (resp.ok) {
-          return true
-        } else if (headshotTries < 3) {
-          headshotTries++
-          return getCreds(1).then(doHeadshotUpload)
-        } else {
-          throw new Error("Could not upload Headshot")
-        }
-      })
+    const doHeadshotUpload = async (): Promise<true> =>
+      uploadImage(imageFile as File, basename, (await getCreds(1))[0]).then(
+        (resp) => {
+          if (resp.ok) {
+            return true
+          } else if (headshotTries < 3) {
+            headshotTries++
+            return getCreds(1).then(doHeadshotUpload)
+          } else {
+            throw new Error("Could not upload Headshot")
+          }
+        },
+      )
 
     const jobs = [doBioUpload(), !useOldHeadshot && doHeadshotUpload()].filter(
       Boolean,
@@ -657,7 +661,7 @@ ${email}
             style="max-width: 100px; max-height: 100px;"
             class="inline-block"
             src="{image}"
-            alt="{imageFile.name}"
+            alt="{imageFile?.name}"
           />
         {/if}
         <label class="block mt-2">

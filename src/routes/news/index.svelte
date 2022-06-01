@@ -11,7 +11,7 @@
 </script>
 
 <script lang="ts">
-  export let posts
+  export let posts: Array<{ title: string; year: string; date: string }>
 </script>
 
 <svelte:head>

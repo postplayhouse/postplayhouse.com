@@ -24,7 +24,7 @@
   import Bio from "../../components/Bio.svelte"
   import { sortPeople, personIsOnlyInGroup, groupPeople } from "../../helpers"
   export let site
-  export let year
+  export let year: string
   export let people
 
   const shouldFilterActors =
@@ -37,9 +37,11 @@
   const generalGroupName = shouldFilterActors
     ? "Crew and Staff"
     : "Cast, Musicians, Crew, and Staff"
+
+  const groupNames = ["rest", "Board", "Additional"] as const
 </script>
 
-{#each ["rest", "Board", "Additional"] as groupName}
+{#each groupNames as groupName}
   {#if year === "2020"}
     <p>
       <a href="/news/2020-03-25-season-cancelled" class="link-green">

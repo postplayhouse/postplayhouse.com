@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { Showing } from "./calendarHelpers"
+  import type { Showing, SimpleDate } from "./calendarHelpers"
 
   import Day from "./Day.svelte"
 
   export let days: Array<{
-    date: { year: number; month: number; day: number }
+    date: SimpleDate
     showings: Showing[]
   }>
 

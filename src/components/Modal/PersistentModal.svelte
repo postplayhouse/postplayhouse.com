@@ -8,16 +8,16 @@
   import { createEventDispatcher } from "svelte"
 
   import Freeze from "../Freeze.svelte"
-  import { lifecycle } from "./modal"
+  import { mountInPortal, type LifecycleRef } from "./modal"
   import ModalBase from "./ModalBase.svelte"
 
   export let show = true
 
   const dispatch = createEventDispatcher()
 
-  let ref: { current: HTMLDivElement } = { current: null }
+  let ref: LifecycleRef<HTMLDivElement> = { current: null }
 
-  lifecycle(ref, "persistent-modal")
+  mountInPortal(ref, "persistent-modal")
 
   let transitionedOut = false
   const delayedTransition = debounce(() => (transitionedOut = !show), 200)

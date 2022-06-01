@@ -10,7 +10,7 @@
       return {
         props: {
           productions: data.productions,
-          year: parseInt(obj.params["year"]),
+          year: parseInt(obj.params["year"] as string),
         },
       }
     } else {
@@ -28,8 +28,8 @@
   import Production from "$components/Production.svelte"
   import MaybeImage from "$components/MaybeImage.svelte"
   import TicketsButton from "$components/TicketsButton.svelte"
-  export let productions
-  export let year
+  export let productions: Production[]
+  export let year: Date.Year
 
   const seasonImg = `/images/${year}/full-season.jpg`
 </script>

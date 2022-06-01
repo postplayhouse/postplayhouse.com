@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { onMount, onDestroy, createEventDispatcher } from "svelte"
+  import { createEventDispatcher } from "svelte"
   import { fade } from "svelte/transition"
 
   import Freeze from "../Freeze.svelte"
-  import { lifecycle } from "./modal"
+  import { mountInPortal, type LifecycleRef } from "./modal"
   import ModalBase from "./ModalBase.svelte"
 
   const dispatch = createEventDispatcher()
 
-  let ref: { current: HTMLDivElement } = { current: null }
+  let ref: LifecycleRef<HTMLDivElement> = { current: null }
 
-  lifecycle(ref, "modal")
+  mountInPortal(ref, "modal")
 </script>
 
 <Freeze />

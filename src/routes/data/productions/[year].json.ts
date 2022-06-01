@@ -6,7 +6,7 @@ export const get: RequestHandler = (req) => {
   return {
     body: {
       site,
-      productions: data.productions[req.params["year"]] || [],
+      productions: data.productions[req.params["year"] as string] || [],
     },
   }
 }

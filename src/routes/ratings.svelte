@@ -19,8 +19,8 @@
 </script>
 
 <script lang="ts">
-  export let site
-  export let productions
+  export let site: typeof siteData
+  export let productions: Production[]
 </script>
 
 <div class="via-markdown">

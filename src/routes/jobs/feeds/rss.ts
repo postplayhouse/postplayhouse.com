@@ -3,7 +3,9 @@ import type { RequestHandler } from "@sveltejs/kit"
 
 const rssFeedPage = `${feed.feedsUrlBase}/rss`
 
-const renderXmlRssFeed = (posts) => `<?xml version="1.0" encoding="UTF-8"?>
+const renderXmlRssFeed = (
+  posts_: typeof posts,
+) => `<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>${feed.title}</title>
   <icon>${feed.icon}</icon>
@@ -11,7 +13,7 @@ const renderXmlRssFeed = (posts) => `<?xml version="1.0" encoding="UTF-8"?>
   <link rel="self" type="application/atom+xml" href="${rssFeedPage}" />
   <id>${rssFeedPage}</id>
   <updated>${feed.updatedDate}</updated>
-  ${posts
+  ${posts_
     .map(
       (item) => `
     <entry>
