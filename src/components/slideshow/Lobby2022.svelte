@@ -20,11 +20,12 @@
   let inc = 1
 
   function nextShow() {
-    console.log("next show")
     inc += 1
     current = (current + 1) % shows.length
 
-    if (inc > shows.length && inc % shows.length === 0) {
+    const isSixthFullRun = (inc - 1) % (shows.length * 6) === 0
+
+    if (isSixthFullRun) {
       refreshIfAppVersionOutdated()
     }
   }
