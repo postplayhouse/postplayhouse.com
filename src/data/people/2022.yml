@@ -445,6 +445,45 @@
   bio: |
     Chris is grateful to Tom, Dewayne, and Scott for the opportunity to help bring this full summer stock to life! Chris is currently pursuing a Bachelor’s in Technical Theatre and Design at Chadron State College. Chris has been involved in backstage work at CSC since the fall of 2019 and has been involved in shows since his days at Norfolk Senior High School.
 
+- first_name: Abigail
+  last_name: Long
+  lobby_display: true
+  image_year: 2022
+  location: "Alliance"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Marta
+  bio: |
+    Abigail is 8 years old and loves gymnastics, being goofy, and spending time with her huge family. She enjoyed playing in Peter Pan Christmas at Hemingford Public Schools.
+
+- first_name: Delilah
+  last_name: Long
+  lobby_display: true
+  image_year: 2022
+  location: "Alliance"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Brigitta
+  bio: |
+    Delilah is 10 years old and plans on being the President of the United States when she gets older. She has played in Peter Pan Christmas at Hemingford Public Schools. She loves science, history, volleyball, softball and being a silly.
+
+- first_name: Huckleberry
+  last_name: Long
+  lobby_display: true
+  image_year: 2022
+  location: "Alliance"
+  groups:
+    - cast
+  roles:
+    The Sound of Music:
+      - Kurt
+  bio: |
+    "Yep, my name is Huckleberry." Huckleberry is 7 and already living up to his name. He loves racing his 4 wheeler jeep all over the fields, and finding the best jumps. He enjoys wrestling, football, and baseball. He is going to be a famous car racer when he grows up.
+
 - first_name: Jaden
   last_name: Lux
   image_year: 2022
