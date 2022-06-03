@@ -19,7 +19,6 @@
 </script>
 
 <script lang="ts">
-  export let site: typeof siteData
   export let productions: Production[]
 </script>
 
@@ -49,17 +48,6 @@
     one one-hundredth of one percent of all audience members. All this to say
     that we choose shows that we believe all our patrons will be in some way
     delighted to experience, and we haven’t missed the mark yet.
-  </p>
-
-  <p>
-    If you are ever curious about the content of a production, you can call our
-    box office at
-    <a href="{site.boxOfficePhoneLink}">
-      {site.boxOfficePhone}
-    </a>
-    after approximately late-May every year and talk to our summer box office staff.
-    They are always happy to help guide you in choosing which productions to see
-    for the summer.
   </p>
 
   {#if productions.length > 0}

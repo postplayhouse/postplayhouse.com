@@ -27,6 +27,7 @@
 - title: Desperate Measures
   short_title: Desperate
   rating: H
+  rating_explanation: Nothing in this show is overt, but it is probably not as entertaining for small children.
   color: blue
   image: desperate-measures.jpg
   opening: 2022-06-03
@@ -113,6 +114,7 @@
 - title: Something Rotten!
   short_title: Rotten
   rating: H
+  rating_explanation: Nothing in this show is overt, but it is probably not as entertaining for small children.
   color: red
   image: something-rotten.jpg
   opening: 2022-07-01
