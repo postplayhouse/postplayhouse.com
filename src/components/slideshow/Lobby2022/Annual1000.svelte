@@ -28,6 +28,7 @@
         "Security First Bank",
         "Susan Sehnert Stuart, in Honor of Walt and Jean Sehnert",
         "Linda and Jon Steven Wiley",
+        "Red Beard Garage & Towing",
       ],
     },
     {
