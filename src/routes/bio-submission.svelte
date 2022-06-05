@@ -431,8 +431,8 @@
       .join("\n")
 
     return [
-      `- first_name: ${firstName.trim()}`,
-      `  last_name: ${lastName.trim()}`,
+      `- last_name: ${lastName.trim()}`,
+      `  first_name: ${firstName.trim()}`,
       `  image_year: ${site.season}`,
       `  location: "${location.trim()}"`,
       includeGroups && `  groups:\n${allGroups}`,

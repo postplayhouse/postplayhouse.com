@@ -360,8 +360,8 @@
   image_year: 2015
   image_file: marge-rotherham.jpg
 
-- first_name: Michael
-  last_name: O'Connor
+- last_name: O'Connor
+  first_name: Michael
   location: "Long Island, NY"
   groups:
     - cast
