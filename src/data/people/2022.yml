@@ -1088,15 +1088,6 @@
   image_year: 2015
   image_file: tim-gaswick.jpg
 
-- last_name: Gramberg
-  first_name: Karleen
-  location: "Chadron, NE"
-  groups:
-    - board
-  positions:
-  image_year: 2015
-  image_file: karleen-gramberg.jpg
-
 - last_name: Helmbrecht
   first_name: Alex
   # location: "Hay Springs, NE"
