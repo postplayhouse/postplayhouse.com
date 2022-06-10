@@ -5,7 +5,7 @@
   import { marked } from "marked"
   import { fast } from "./helpers"
 
-  const INT = fast ? 3000 : 30000
+  const INT = fast ? 3000 : 15000
 
   const dispatch = createEventDispatcher()
 
