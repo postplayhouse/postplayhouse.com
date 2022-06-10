@@ -13,8 +13,6 @@ function getTodayString() {
 }
 
 async function getRemoteVersion() {
-  if (!browser) return noVersion
-
   try {
     const resp = await window.fetch("/_app/version.json?t=" + Date.now())
     const data = await resp.json()
@@ -25,18 +23,14 @@ async function getRemoteVersion() {
 }
 
 function getLocalVersion() {
-  if (!browser) return noVersion
-
   try {
-    return window.sessionStorage.getItem(VERSION_KEY)
+    return window.sessionStorage.getItem(VERSION_KEY) || "0"
   } catch {
     return noVersion
   }
 }
 
 function setLocalVersion(version: string) {
-  if (!browser) return
-
   try {
     window.sessionStorage.setItem(VERSION_KEY, version)
   } catch {
@@ -45,8 +39,6 @@ function setLocalVersion(version: string) {
 }
 
 async function remoteVersionIsGreaterThanLocal() {
-  if (!browser) return false
-
   const remote = await getRemoteVersion()
   const local = getLocalVersion()
 
@@ -56,8 +48,7 @@ async function remoteVersionIsGreaterThanLocal() {
 export async function initLocalAppVersion() {
   if (!browser) return
 
-  const remote = await getRemoteVersion()
-  setLocalVersion(remote)
+  setLocalVersion(await getRemoteVersion())
 }
 
 export async function refreshIfAppVersionOutdated() {
@@ -65,20 +56,26 @@ export async function refreshIfAppVersionOutdated() {
 
   let refreshes = 0
   const timesKey = "post_app_refreshes_" + getTodayString()
+
   try {
     refreshes = Number(window.sessionStorage.getItem(timesKey) || "0")
   } catch {
-    refreshes = MAX_DAILY_REFRESHES
+    // If we cannot write to storage, we'll be refreshing every time. Let's bail
+    // and save on bandwidth.
+    return
   }
 
   if (refreshes >= MAX_DAILY_REFRESHES) return
 
   if (await remoteVersionIsGreaterThanLocal()) {
     refreshes = refreshes + 1
+
     try {
       window.sessionStorage.setItem(timesKey, String(refreshes))
     } catch {
-      refreshes = MAX_DAILY_REFRESHES
+      // At this point, failure to set the item is not a limitation of the
+      // browser, since we've attempted other gets and sets already. So treat
+      // this like a one-off and ignore the failure.
     }
 
     if (refreshes > MAX_DAILY_REFRESHES) return
