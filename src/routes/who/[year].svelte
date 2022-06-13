@@ -38,7 +38,7 @@
     ? "Crew and Staff"
     : "Cast, Musicians, Crew, and Staff"
 
-  const groupNames = ["rest", "Board", "Additional"] as const
+  const groupNames = ["rest", "Additional", "Board"] as const
 </script>
 
 {#each groupNames as groupName}

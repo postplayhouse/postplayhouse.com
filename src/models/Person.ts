@@ -3,6 +3,7 @@ import { toCamel } from "../helpers"
 class Person {
   firstName: string
   lastName: string
+  sortName: string
   imageYear: number
   imageFile: string
   location: string
@@ -44,6 +45,7 @@ class Person {
     this.imageYear = 0
     this.firstName = undefined
     this.lastName = undefined
+    this.sortName = undefined
     this.location = undefined
     this.lobbyDisplay = undefined
     this.programBio = undefined

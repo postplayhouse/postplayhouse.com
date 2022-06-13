@@ -35,7 +35,14 @@
   export let people: YamlPerson[]
   export let productions: Production[]
 
-  const personnel = sortPeople(people).map(toPerson)
+  const initialSort = sortPeople(people).map(toPerson)
+  const additional = initialSort.filter((x) => personIsInGroup(x, "additional"))
+
+  // Additional bios to the end
+  const sortedPeople = [
+    ...initialSort.filter((x) => !additional.includes(x)),
+    ...additional,
+  ]
 
   function personSlug(person: Person) {
     return slugify(person.firstName + person.lastName)
@@ -78,7 +85,7 @@
   <header>Jump to Bio</header>
 
   <ol class="md:[columns:3]">
-    {#each personnel.filter(notInBoard) as person}
+    {#each sortedPeople.filter(notInBoard) as person}
       <li>
         <a class="link-green" href="#{personSlug(person)}">
           {person.name}
@@ -100,13 +107,13 @@
 <div>
   {#each productions as production}
     <h3 class="h3">{production.title}</h3>
-    <ProductionList people="{personnel}" production="{production}" />
-    <CastList people="{personnel}" production="{production}" />
+    <ProductionList people="{sortedPeople}" production="{production}" />
+    <CastList people="{sortedPeople}" production="{production}" />
   {/each}
 </div>
 
 <div class="helvetica my-8">
-  {#each personnel.filter(notInBoard) as person}
+  {#each sortedPeople.filter(notInBoard) as person}
     <div class="my-8" id="{personSlug(person)}">
       {#if notInAdditional(person) && person.image}
         <img
@@ -175,7 +182,7 @@
 <div class="my-8 space-y-8">
   <h1 id="TheBoard" class="text-4xl">Board Headshots and Names</h1>
 
-  {#each personnel.filter(inBoard) as person}
+  {#each sortedPeople.filter(inBoard) as person}
     <div class="helvetica">
       {#if person.image}
         <img

@@ -92,6 +92,8 @@ type Business = {
 type YamlPerson = {
   last_name: string
   first_name: string
+  /** Sort by this value first, if it appears. Then last, first. */
+  sort_name?: string
   location: string
   groups: string[]
   positions?: string[]
