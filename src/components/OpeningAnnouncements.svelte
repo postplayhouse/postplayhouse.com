@@ -1,70 +1,148 @@
 <script lang="ts">
-  import { diffDays, getDateFor, getToday } from "../helpers"
+  import {
+    diffDays,
+    formatDate,
+    getDateFor,
+    getToday,
+    nonValueToEmptyStr,
+  } from "../helpers"
+  import { weekdays } from "./Calendar/calendarHelpers"
+
+  import Markdown from "./Markdown.svelte"
+  import MaybeImage from "./MaybeImage.svelte"
+  import TicketsButton from "./TicketsButton.svelte"
 
   export let productions: Production[] = []
   export let closingDate: string
 
-  import Markdown from "./Markdown.svelte"
-  import TicketsButton from "./TicketsButton.svelte"
-
   const today = getToday()
 
   const daysToClosing = diffDays(today, getDateFor(closingDate))
-  const isBeforeClosing = daysToClosing > 0
+  const isBeforeClosing = daysToClosing >= 0
 
-  const enhancedProductions = productions.map((p) => ({
-    ...p,
-    daysUntilOpening: diffDays(today, getDateFor(p.opening)),
-  }))
-
-  const nextOpening = enhancedProductions
+  const enhancedProductions = productions
+    .map((p) => ({
+      ...p,
+      daysUntilOpening: diffDays(today, getDateFor(p.opening)),
+      dayOfWeek: weekdays[getDateFor(p.opening).getDay()],
+      season: getDateFor(p.opening).getFullYear(),
+    }))
     .sort((a, b) => a.daysUntilOpening - b.daysUntilOpening)
-    .find((p) => p.daysUntilOpening >= 0)
+    .map(({ image, ...p }) => ({
+      ...p,
+      imagePath: `/g/images/${p.season}/${image}`,
+      fallbackImagePath: `/images/${p.season}/${image}`,
+    }))
+
+  const openingSoon = enhancedProductions
+    // Nothing that is already open
+    .filter((p) => p.daysUntilOpening > -1)
+    // Things that open in the next 4 days. Historically, this has always been a
+    // Monday (4 days before Friday).
+    .filter((p) => p.daysUntilOpening <= 4)
+    .at(0)
+
+  const nowRunning = enhancedProductions.filter((p) => p.daysUntilOpening <= 0)
+
+  const allShowsAreRunning =
+    isBeforeClosing && !enhancedProductions.find((p) => p.daysUntilOpening > 0)
 </script>
 
-{#if nextOpening}
-  <h3 class="h1 font-uber">
-    {nextOpening.title} opens {nextOpening.daysUntilOpening > 0
-      ? "this Friday"
-      : "today"}!
-  </h3>
+{#if !isBeforeClosing}
+  <h3 class="h1 my-8">Thank you for a wonderful season!</h3>
 
-  <div class="md:flex items-center my-8">
-    <div class="shrink">
-      <img
-        src="{`/images/${today.getFullYear()}/${nextOpening.image}`}"
-        alt="{nextOpening.title} logo"
-      />
+  <p class="text-3xl my-8">
+    We were delighted to bring you a summer season full of entertainment, and we
+    can't wait to see you next year!
+  </p>
+
+  <slot name="seasonArtworkImage" />
+{:else}
+  {#if openingSoon}
+    <h3 class="h1 font-uber">
+      {openingSoon.title} opens {openingSoon.daysUntilOpening > 0
+        ? `on ${openingSoon.dayOfWeek}`
+        : "today"}!
+    </h3>
+
+    <div class="md:flex items-center my-8">
+      <div class="shrink">
+        <MaybeImage
+          src="{[openingSoon.imagePath, openingSoon.fallbackImagePath]}"
+          alt="Show Logo for {openingSoon.title}"
+        />
+      </div>
+      <div class="text-center md:text-left shrink-0">
+        <Markdown source="{openingSoon.writers}" />
+      </div>
     </div>
-    <div class="text-center md:text-left shrink-0">
-      <Markdown source="{nextOpening.writers}" />
-    </div>
-  </div>
 
-  <Markdown source="{nextOpening.description}" />
-
-  <div class="flex justify-center m-4">
-    <TicketsButton />
-  </div>
-{/if}
-
-{#if daysToClosing < 30 && !nextOpening}
-  <div class="my-12">
-    <h3 class="h1">Hurry! Summer is almost over!</h3>
-    <p class="h3 text-center">
-      There are only {daysToClosing} days left before our final performance this
-      year!
-    </p>
+    <Markdown source="{openingSoon.description}" />
 
     <div class="flex justify-center m-4">
       <TicketsButton />
     </div>
-  </div>
-{/if}
+  {/if}
 
-{#if productions.length > 0 && isBeforeClosing}
-  <slot />
-  <div class="flex justify-center m-4">
-    <TicketsButton />
-  </div>
+  {#if daysToClosing < 30}
+    <div class="my-12">
+      <h3 class="h1 mb-4">Hurry, time is running out!</h3>
+      {#if daysToClosing > 1}
+        <p class="text-2xl">
+          There are only <span class="text-3xl font-bold"
+            >{daysToClosing} more days</span
+          >
+          until our final performance on {formatDate(closingDate, {
+            skipYear: true,
+          })}!
+        </p>
+      {:else if daysToClosing === 1}
+        <p class="h3 text-center">Tomorrow is our final performance!</p>
+      {:else}
+        <p class="h3 text-center">
+          Today is your last chance to see us this summer!
+        </p>
+      {/if}
+
+      <div class="flex justify-center m-4">
+        <TicketsButton />
+      </div>
+    </div>
+  {/if}
+
+  {#if enhancedProductions.length > 0}
+    <h3 class="h1 my-8">
+      Our {nonValueToEmptyStr(enhancedProductions.at(0)?.season)} Summer Season
+    </h3>
+
+    {#if allShowsAreRunning}
+      <div class="text-3xl text-center my-8">All shows are now running!</div>
+    {/if}
+
+    <slot name="seasonArtworkImage" />
+
+    <div class="flex justify-center my-12">
+      <TicketsButton />
+    </div>
+
+    {#if !allShowsAreRunning && nowRunning.length > 0}
+      <div>
+        <h4 class="h1 mt-24 mb-12">Now running:</h4>
+
+        <ul class="list-none p-0 m-auto flex flex-wrap">
+          {#each nowRunning as production}
+            <li class="max-w-full md:w-1/2 p-2">
+              <MaybeImage
+                src="{[production.imagePath, production.fallbackImagePath]}"
+                alt="{production.title}"
+              />
+            </li>
+          {/each}
+        </ul>
+        <div class="flex justify-center my-12">
+          <TicketsButton />
+        </div>
+      </div>
+    {/if}
+  {/if}
 {/if}

@@ -40,7 +40,6 @@ export const weekdays = [
   "Thursday",
   "Friday",
   "Saturday",
-  "Sunday",
 ] as const
 
 export const secondsToMs = (num: number) => num * 1000

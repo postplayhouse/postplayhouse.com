@@ -48,13 +48,11 @@
 
 <div class="mb-32 p-2 max-w-2xl mx-auto">
   <Openings productions="{productions}" closingDate="2022-08-14">
-    <h3 class="h1 font-uber my-8">Our 2022 Summer Season</h3>
-    <div class="w-2/3 m-auto">
-      <img
-        src="/images/2022/full-season.jpg"
-        alt="2022 season logos: The Sound of Music, Damn Yankees, Chuch Basement Ladies, Desperate Measures, and Something Rotten!"
-      />
-    </div>
+    <img
+      slot="seasonArtworkImage"
+      src="/images/2022/full-season.jpg"
+      alt="2022 season logos: The Sound of Music, Damn Yankees, Chuch Basement Ladies, Desperate Measures, and Something Rotten!"
+    />
   </Openings>
 </div>
 
