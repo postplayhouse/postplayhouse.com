@@ -1,30 +1,16 @@
 <script lang="ts">
+  import { diffDays, getDateFor, getToday } from "../helpers"
+
   export let productions: Production[] = []
   export let closingDate: string
 
   import Markdown from "./Markdown.svelte"
   import TicketsButton from "./TicketsButton.svelte"
 
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-
-  function getDateFor(str: string) {
-    const [y, m, d] = str.split("-").map(Number) as [number, number, number]
-    const showDay = new Date(today.getTime())
-    showDay.setFullYear(y)
-    showDay.setMonth(m - 1)
-    showDay.setDate(d)
-    return showDay
-  }
+  const today = getToday()
 
   const daysToClosing = diffDays(today, getDateFor(closingDate))
   const isBeforeClosing = daysToClosing > 0
-
-  function diffDays(a: Date, b: Date) {
-    const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
-
-    return Math.round((b.getTime() - a.getTime()) / oneDay)
-  }
 
   const enhancedProductions = productions.map((p) => ({
     ...p,

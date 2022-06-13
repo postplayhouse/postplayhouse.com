@@ -139,7 +139,7 @@ export function dateIsBetween(
  */
 export function formatDate(
   dateStr: string,
-  options: { prependWeekday?: boolean } = {},
+  options: { prependWeekday?: boolean; skipYear?: boolean } = {},
 ) {
   const [year, month, day] = dateStr.split("-")
   const date = new Date()
@@ -149,10 +149,54 @@ export function formatDate(
 
   const settings: Parameters<Date["toLocaleDateString"]>[1] = {
     weekday: options.prependWeekday ? "long" : undefined,
-    year: "numeric",
+    year: options.skipYear ? undefined : "numeric",
     month: "long",
     day: "numeric",
   }
 
   return date.toLocaleDateString("en-US", settings)
+}
+
+/**
+ * Ensure that when the value is coerced into a string, that the string never
+ * says "undefined", "NaN", "null"
+ */
+export function nonValueToEmptyStr<T>(x: T) {
+  if (Number.isNaN(x)) return ""
+  if (x === null) return ""
+  if (typeof x === "undefined") return ""
+  return x
+}
+
+/**
+ * Returns today as a Date at midnight
+ */
+export function getToday() {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  return today
+}
+
+/**
+ * Get an actual Date for the string "MMMM-DD-YYYY". Midnight.
+ * @param str
+ * @returns
+ */
+export function getDateFor(str: string) {
+  const [y, m, d] = str.split("-").map(Number) as [number, number, number]
+  const showDay = new Date(getToday().getTime())
+  showDay.setFullYear(y)
+  showDay.setMonth(m - 1)
+  showDay.setDate(d)
+  return showDay
+}
+
+/**
+ * The number of days from date A to date B. The order matters. If date B is in
+ * the past, the result will be negative. Zero means date B and A are the same.
+ */
+export function diffDays(a: Date, b: Date) {
+  const oneDay = 24 * 60 * 60 * 1000 // hours*minutes*seconds*milliseconds
+
+  return Math.round((b.getTime() - a.getTime()) / oneDay)
 }
