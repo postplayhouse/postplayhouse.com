@@ -59,6 +59,7 @@ type Y = IsYear<"2022">
 type Production = {
   title: string
   short_title?: string
+  pre_title?: string
   rating?: string
   rating_explanation?: string
   color: string
@@ -69,7 +70,7 @@ type Production = {
   description: string
   dates?: { fort_rob?: string; lead?: string }
   roles_sorting?: string[]
-  sponsor?: { image?: string }
+  sponsor?: { image?: string; link?: string; text?: string }
 }
 
 type Business = {

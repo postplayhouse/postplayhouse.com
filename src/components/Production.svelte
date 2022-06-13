@@ -4,7 +4,7 @@
   import Markdown from "./Markdown.svelte"
   import MaybeImage from "./MaybeImage.svelte"
   import MaybeLink from "./MaybeLink.svelte"
-  export let production
+  export let production: Production
   export let season
 
   const imagePath = `/g/images/${season}/${production.image}`
