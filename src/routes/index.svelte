@@ -81,7 +81,7 @@
     </section>
 
     <section class="bg-green-200 p-3 flex-1 mb-2 flex flex-col">
-      <header class="text-xl">Stay connected with post</header>
+      <header class="text-xl">Stay connected with Post</header>
       <div class="flex flex-wrap justify-around items-center flex-1">
         <a
           class="block w-24 h-24 md:w-16 md:h-16 p-2 hover:bg-green-300"
