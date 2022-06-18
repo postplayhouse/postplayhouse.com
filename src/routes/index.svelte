@@ -46,6 +46,34 @@
   <title>Post Playhouse</title>
 </svelte:head>
 
+<div class="mb-32 p-2 max-w-2xl mx-auto space-y-4">
+  <h1 class="h1">Cancellations for the weekend of June 18th</h1>
+  <p>
+    This message is to let you know that Post Playhouse has cancelled its shows
+    for Saturday, June 18 and Sunday, June 19.
+  </p>
+  <p>
+    With audience health a top priority, this decision was made after positive
+    Covid test results were detected in our company. We know that, while it may
+    be an inconvenience for all, it is the best decision we can make for
+    everyone at this time.
+  </p>
+
+  <p>
+    If your performance is affected, you may call Post Playhouse to either
+    exchange your tickets for another show, request a refund for your tickets or
+    donate back to the Post Playhouse. Please be patient if your call is not
+    answered immediately.
+  </p>
+
+  <p>
+    We are not sure at this time when shows will resume. Check back here for the
+    announcement of our re-opening.
+  </p>
+
+  <p>Thank you for your patience and understanding!</p>
+</div>
+
 <div class="mb-32 p-2 max-w-2xl mx-auto">
   <Openings productions="{productions}" closingDate="2022-08-14">
     <img
