@@ -11,10 +11,6 @@ type ConstructTuple<
   Res extends T[] = [],
 > = Res["length"] extends L ? Res : ConstructTuple<L, T, [...Res, T]>
 
-declare const poop: ConstructTuple<2, { hello: string }>
-
-poop
-
 namespace NodeJS {
   interface ProcessEnv {
     NODE_ENV?: "development" | "production" | "test"
@@ -22,3 +18,5 @@ namespace NodeJS {
     DEPLOY_PRIME_URL?: string
   }
 }
+
+declare const BUILD_TIME: string

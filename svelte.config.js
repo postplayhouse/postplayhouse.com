@@ -79,6 +79,7 @@ const replacements = [
     JSON.stringify(process.env.DEPLOY_PRIME_URL),
   ],
   ["process.env.CONTEXT", JSON.stringify(process.env.CONTEXT)],
+  ["BUILD_TIME", JSON.stringify(new Date().toUTCString())],
 ]
 
 /** @type {import('@sveltejs/kit').Config} */

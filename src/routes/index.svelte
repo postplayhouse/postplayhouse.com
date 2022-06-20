@@ -47,11 +47,18 @@
 </svelte:head>
 
 <div class="mb-32 p-2 max-w-2xl mx-auto space-y-4">
-  <h1 class="h1">Cancellations for the weekend of June 18th</h1>
+  <h1 class="h1">Cancelations: June 18–22</h1>
+  <h2 class="h2">Performances canceled through Wednesday the 22nd.</h2>
+  <div class="text-sm text-gray-500">
+    Last update: {new Date(BUILD_TIME).toLocaleString()}
+  </div>
+
   <p>
-    This message is to let you know that Post Playhouse has cancelled its shows
-    for Saturday, June 18 and Sunday, June 19.
+    Post Playhouse has canceled its performances from Saturday, June 18 through
+    Wednesday, June 22. Please check back soon for information about Thursday as
+    our situation changes.
   </p>
+
   <p>
     With audience health a top priority, this decision was made after positive
     Covid test results were detected in our company. We know that, while it may
@@ -69,6 +76,12 @@
   <p>
     We are not sure at this time when shows will resume. Check back here for the
     announcement of our re-opening.
+  </p>
+
+  <p class="font-bold">
+    For those who would like to support Post Playhouse though these several days
+    of cancelled performances, please
+    <a class="link-green" href="/donate">visit our donations page</a>.
   </p>
 
   <p>Thank you for your patience and understanding!</p>
