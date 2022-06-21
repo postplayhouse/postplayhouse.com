@@ -3,7 +3,6 @@
   import Donors1000 from "./Lobby2022/Annual1000.svelte"
   import Donors1 from "./Lobby2022/Annual1.svelte"
   import Special from "./Lobby2022/Special.svelte"
-  import Actors from "./Lobby2022/Actors.svelte"
   import { onMount } from "svelte"
   import {
     initLocalAppVersion,
@@ -14,7 +13,7 @@
 
   export let actors: YamlPerson[]
 
-  const shows = [Actors, Special, Donors1000, Donors1]
+  const shows = [Special, Donors1000, Donors1]
 
   let current = 0
   let inc = 1
