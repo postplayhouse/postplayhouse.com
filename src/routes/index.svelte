@@ -55,8 +55,9 @@
 
   <p>
     Post Playhouse has canceled its performances from Saturday, June 18 through
-    Wednesday, June 22. Please check back soon for information about Thursday as
-    our situation changes.
+    Wednesday, June 22. There was never a performance scheduled for Thursday, so
+    please check back soon for information about Friday's scheduled opening of
+    Church Basement Ladies as our situation evolves.
   </p>
 
   <p>
