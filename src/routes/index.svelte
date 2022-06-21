@@ -48,16 +48,19 @@
 
 <div class="mb-32 p-2 max-w-2xl mx-auto space-y-4">
   <h1 class="h1">Cancelations: June 18–22</h1>
-  <h2 class="h2">Performances canceled through Wednesday the 22nd.</h2>
+  <h2 class="h2">Re-opening on Friday!</h2>
   <div class="text-sm text-gray-500">
     Last update: {new Date(BUILD_TIME).toLocaleString()}
   </div>
 
   <p>
     Post Playhouse has canceled its performances from Saturday, June 18 through
-    Wednesday, June 22. There was never a performance scheduled for Thursday, so
-    please check back soon for information about Friday's scheduled opening of
-    Church Basement Ladies as our situation evolves.
+    Wednesday, June 22. There was never a performance scheduled for Thursday,
+    and <span class="font-bold"
+      >we are pleased to announce that we will be going forward with our
+      scheduled opening of Church Basement Ladies on Friday!</span
+    >
+    Please do check back here as our situation evolves.
   </p>
 
   <p>
