@@ -47,16 +47,15 @@
 </svelte:head>
 
 <div class="mb-32 p-2 max-w-2xl mx-auto space-y-4">
-  <h1 class="h1">Cancelations: June 18–22</h1>
-  <h2 class="h2">Re-opening on Friday!</h2>
+  <h1 class="h1">Re-opening on Friday!</h1>
+  <h2 class="h2">Cancelations end after tonight!</h2>
   <div class="text-sm text-gray-500">
     Last update: {new Date(BUILD_TIME).toLocaleString()}
   </div>
 
   <p>
-    Post Playhouse has canceled its performances from Saturday, June 18 through
-    Wednesday, June 22. There was never a performance scheduled for Thursday,
-    and <span class="font-bold"
+    We had to cancel performances from last Saturday through tonight. There was
+    never a performance scheduled for tomorrow, and <span class="font-bold"
       >we are pleased to announce that we will be going forward with our
       scheduled opening of Church Basement Ladies on Friday!</span
     >
@@ -64,10 +63,10 @@
   </p>
 
   <p>
-    With audience health a top priority, this decision was made after positive
-    Covid test results were detected in our company. We know that, while it may
-    be an inconvenience for all, it is the best decision we can make for
-    everyone at this time.
+    With audience health a top priority, the decision to cancel a few
+    performancews was made after positive Covid test results were detected in
+    our company. We know that, while it may be an inconvenience for all, it is
+    the best decision we can make for everyone at this time.
   </p>
 
   <p>
@@ -77,18 +76,16 @@
     answered immediately.
   </p>
 
-  <p>
-    We are not sure at this time when shows will resume. Check back here for the
-    announcement of our re-opening.
-  </p>
-
   <p class="font-bold">
-    For those who would like to support Post Playhouse though these several days
-    of cancelled performances, please
+    For those who would like to support Post Playhouse to recouperate some
+    operating costs for the few days of canceled performances, please
     <a class="link-green" href="/donate">visit our donations page</a>.
   </p>
 
-  <p>Thank you for your patience and understanding!</p>
+  <p>
+    Thank you for your patience and understanding, and we can't wait to see you
+    THIS FRIDAY!
+  </p>
 </div>
 
 <div class="mb-32 p-2 max-w-2xl mx-auto">
