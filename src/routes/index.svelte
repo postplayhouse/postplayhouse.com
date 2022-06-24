@@ -46,48 +46,6 @@
   <title>Post Playhouse</title>
 </svelte:head>
 
-<div class="mb-32 p-2 max-w-2xl mx-auto space-y-4">
-  <h1 class="h1">Re-opening on Friday!</h1>
-  <h2 class="h2">Cancelations end after tonight!</h2>
-  <div class="text-sm text-gray-500">
-    Last update: {new Date(BUILD_TIME).toLocaleString()}
-  </div>
-
-  <p>
-    We had to cancel performances from last Saturday through tonight. There was
-    never a performance scheduled for tomorrow, and <span class="font-bold"
-      >we are pleased to announce that we will be going forward with our
-      scheduled opening of Church Basement Ladies on Friday!</span
-    >
-    Please do check back here as our situation evolves.
-  </p>
-
-  <p>
-    With audience health a top priority, the decision to cancel a few
-    performancews was made after positive Covid test results were detected in
-    our company. We know that, while it may be an inconvenience for all, it is
-    the best decision we can make for everyone at this time.
-  </p>
-
-  <p>
-    If your performance is affected, you may call Post Playhouse to either
-    exchange your tickets for another show, request a refund for your tickets or
-    donate back to the Post Playhouse. Please be patient if your call is not
-    answered immediately.
-  </p>
-
-  <p class="font-bold">
-    For those who would like to support Post Playhouse to recouperate some
-    operating costs for the few days of canceled performances, please
-    <a class="link-green" href="/donate">visit our donations page</a>.
-  </p>
-
-  <p>
-    Thank you for your patience and understanding, and we can't wait to see you
-    THIS FRIDAY!
-  </p>
-</div>
-
 <div class="mb-32 p-2 max-w-2xl mx-auto">
   <Openings productions="{productions}" closingDate="2022-08-14">
     <img
