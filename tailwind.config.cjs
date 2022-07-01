@@ -7,6 +7,7 @@ const config = {
     extend: {
       borderWidth: { 6: "6px" },
       fontFamily: {
+        // @ts-expect-error
         sans: ["metropolis", ...defaultTheme.fontFamily.sans],
         uber: ["azo-sans-uber", "Arial Black"],
       },
@@ -61,7 +62,6 @@ const config = {
     },
   },
   plugins: [
-    // @ts-expect-error shrug... this is callable
     plugin(function ({ addUtilities, theme, e }) {
       const spacing = theme("spacing")
 
