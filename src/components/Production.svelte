@@ -31,6 +31,13 @@
       Opens {formatDate(production.opening, { prependWeekday: true })}
     </div>
   {/if}
+  {#if production.writers}
+    <!-- Making every paragraph a flex box ensures that the position and name of
+  the person will not flow differently around the floated show logo -->
+    <div class="mb-8 writers [&_p]:flex">
+      <Markdown source="{production.writers}" />
+    </div>
+  {/if}
   {#if production.rating}
     <div class="">
       <a class="link-green" href="/ratings">Rating: {production.rating}</a>
@@ -39,11 +46,6 @@
           {production.rating_explanation}
         </div>
       {/if}
-    </div>
-  {/if}
-  {#if production.writers}
-    <div class="mb-8 writers">
-      <Markdown source="{production.writers}" />
     </div>
   {/if}
 
