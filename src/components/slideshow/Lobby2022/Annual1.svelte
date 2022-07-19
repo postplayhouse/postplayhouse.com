@@ -103,6 +103,7 @@
       names: [
         "Jeff Abegglen",
         "Michael Albano",
+        "Bev and Les Anway",
         "Rod & Stacy Baillie",
         "Gordon Bair",
         "David And Laura Batchelor",
