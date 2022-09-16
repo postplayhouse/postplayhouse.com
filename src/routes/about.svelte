@@ -42,13 +42,6 @@
   Please visit <a class="link-green" href="/jobs">the jobs page</a> for more information
 </p>
 
-<h3 class="h3 mt-4">Producing Artistic Director</h3>
-<p>
-  Tom Ossowski: <a class="link-green" href="mailto:tom@postplayhouse.com"
-    >tom@postplayhouse.com</a
-  >
-</p>
-
 <h3 class="h3 mt-4">Mailing address</h3>
 <p>
   Post Playhouse<br />
