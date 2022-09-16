@@ -1,7 +1,7 @@
 ---
 title: Seeking a season drummer
-website: true
-feed: true
+website: false
+feed: false
 ---
 
 ### Seeking a drummer

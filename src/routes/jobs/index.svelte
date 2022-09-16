@@ -74,13 +74,19 @@
 
 {#if posts.length}
   {#each posts as post}
-    <h1 class="h2 font-bold mt-12 mb-4" id="{slugify(post.title)}">
+    <h2 class="h2 font-bold mt-12 mb-4" id="{slugify(post.title)}">
       {post.title}
-    </h1>
+    </h2>
     <Markdown source="{post.content}" />
   {/each}
 {:else}
-  <Markdown source="{noOpenings}" />
+  <h2 class="h2 font-bold mt-12 mb-4">There are currently no openings.</h2>
+  {#if isAfterCurrentSeason || isBeforeMarchOfCurrentSeason}
+    <p>
+      We generally hold professional audtions and start looking for summer staff
+      in the first quarter of the year.
+    </p>
+  {/if}
 {/if}
 
 {#if showFeedsLinks}

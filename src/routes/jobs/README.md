@@ -9,7 +9,7 @@ a markdown component to display (when "active" on the website.)
 ## Frontmatter
 
 - title: string. shown in the rss feed and on the jobs page
-- active: boolean. whether to show on jobs page
+- website: boolean. whether to show on jobs page
 - feed: boolean. whether to include in the rss/json feeds
 - updatedDate: ISO string... if _really_ necessary something like
   "2022-01-04T04:01:45.251Z"

@@ -1,7 +1,7 @@
 ---
 title: "Box office positions are open"
-website: true
-feed: true
+website: false
+feed: false
 ---
 
 ### Box Office positions are open
