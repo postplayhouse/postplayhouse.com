@@ -69,8 +69,10 @@
       grateful.
     </p>
     <p>
-      The Board now turns its attention to the 2023 season, as well as hiring a
-      new artistic director to continuing our mission. See you next season!
+      The Board now turns its attention to the 2023 season, as well as <a
+        class="link-green"
+        href="/jobs">hiring a new artistic director</a
+      > to continuing our mission. See you next season!
     </p>
   </div>
 </div>
