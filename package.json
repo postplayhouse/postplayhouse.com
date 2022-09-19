@@ -8,7 +8,7 @@
     "useCache": "npm run copyFolder -- --merge /opt/build/cache/hc_my_cache/static/g --to static/g",
     "fillCache": "npm run copyFolder -- --save static/g --to /opt/build/cache/hc_my_cache/static/g",
     "netlify": "npm run useCache && npm run build:noClean && npm run fillCache",
-    "dev": "svelte-kit dev",
+    "dev": "vite dev",
     "build": "npm run clean && svelte-kit build",
     "build:noClean": "svelte-kit build",
     "package": "svelte-kit package",
@@ -19,6 +19,7 @@
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "dependencies": {
+    "@sveltejs/kit": "^1.0.0-next.405",
     "compression": "^1.7.1",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
@@ -28,7 +29,6 @@
     "@kitql/vite-plugin-watch-and-run": "^0.3.0",
     "@rollup/plugin-replace": "^3.0.0",
     "@sveltejs/adapter-static": "next",
-    "@sveltejs/kit": "next",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/svelte": "^3.0.3",
     "@types/jest": "^27.0.0",
