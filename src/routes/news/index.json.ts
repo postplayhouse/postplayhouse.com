@@ -5,6 +5,6 @@ const contents = postsData
   .reverse()
   .map(({ title, year, date }) => ({ title, year, date }))
 
-export const get: RequestHandler = () => {
+export const GET: RequestHandler = () => {
   return { body: contents }
 }

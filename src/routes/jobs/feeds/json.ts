@@ -21,7 +21,7 @@ const renderJsonFeed = (posts_: typeof posts) =>
     })),
   })
 
-export const get: RequestHandler = () => {
+export const GET: RequestHandler = () => {
   return {
     headers: {
       "Content-Type": "application/feed+json",

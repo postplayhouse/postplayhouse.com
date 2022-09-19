@@ -29,7 +29,7 @@ const renderXmlRssFeed = (
     .join("\n")}
 </feed>`
 
-export const get: RequestHandler = () => {
+export const GET: RequestHandler = () => {
   return {
     headers: { "Content-Type": "application/rss+xml" },
     body: renderXmlRssFeed(posts),
