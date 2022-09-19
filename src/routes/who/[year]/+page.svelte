@@ -1,0 +1,66 @@
+<script lang="ts" context="module">
+  throw new Error("@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)");
+
+  // import type { Load } from "@sveltejs/kit"
+  // import { toPerson } from "../../../models/Person"
+
+  // export const load: Load = async (obj) => {
+  //   const res = await obj.fetch(`/data/people/${obj.params["year"]}.json`)
+  //   const data = await res.json()
+
+  //   if (res.status === 200) {
+  //     return {
+  //       props: {
+  //         site: data.site,
+  //         people: data.people,
+  //         year: obj.params["year"],
+  //       },
+  //     }
+  //   } else {
+  //     return { status: res.status, error: new Error(data.message) }
+  //   }
+  // }
+</script>
+
+<script lang="ts">
+  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
+  import Bio from "../../../components/Bio.svelte"
+  import { sortPeople, personIsOnlyInGroup, groupPeople } from "../../../helpers"
+  export let site
+  export let year: string
+  export let people
+
+  const shouldFilterActors =
+    site.season.toString() === year && site.castingComplete === false
+
+  people = sortPeople(people).filter((person) => {
+    return shouldFilterActors ? !personIsOnlyInGroup(person, "cast") : true
+  })
+  const groupedPeople = groupPeople(people, "Board", "Additional")
+  const generalGroupName = shouldFilterActors
+    ? "Crew and Staff"
+    : "Cast, Musicians, Crew, and Staff"
+
+  const groupNames = ["rest", "Additional", "Board"] as const
+</script>
+
+{#each groupNames as groupName}
+  {#if year === "2020"}
+    <p>
+      <a href="/news/2020-03-25-season-cancelled" class="link-green">
+        Our 2020 Season was sadly cancelled.
+      </a>
+      Preserved here are the people we were really looking forward to working with.
+    </p>
+  {/if}
+
+  {#if groupedPeople[groupName].length}
+    <h2 class="h2 sm:sticky top-0 bg-white mb-4">
+      {groupName === "rest" ? generalGroupName : groupName}
+    </h2>
+    {#each groupedPeople[groupName] as person}
+      <Bio person="{toPerson(person)}" />
+    {/each}
+  {/if}
+{/each}
