@@ -1,5 +1,7 @@
 <script lang="ts" context="module">
-  throw new Error("@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)");
+  throw new Error(
+    "@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)",
+  )
 
   // import type { Load } from "@sveltejs/kit"
   // import siteData from "../../data/site"
@@ -16,10 +18,12 @@
 </script>
 
 <script lang="ts">
-  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+  throw new Error(
+    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
+  )
 
-  import SeatingChart from "../../components/SeatingChart.svelte"
-  import TicketPolicy from "../../components/TicketPolicy.md"
+  import SeatingChart from "$components/SeatingChart.svelte"
+  import TicketPolicy from "$components/TicketPolicy.md"
   export let site: typeof siteData
   export let productions: Production[] = []
 </script>

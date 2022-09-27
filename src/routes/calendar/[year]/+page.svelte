@@ -1,7 +1,9 @@
 <script lang="ts">
-  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+  throw new Error(
+    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
+  )
 
-  import Calendar from "../../../components/Calendar/Calendar.svelte"
+  import Calendar from "$components/Calendar/Calendar.svelte"
   export let productions: YearlyData["productions"][Date.Year]
   export let year: Date.Year
 

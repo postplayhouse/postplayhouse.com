@@ -16,7 +16,7 @@ image: /images/2017/shrek-fb.png
   throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
 
   export let site
-  import Markdown from "../../../components/Markdown.svelte"
+  import Markdown from "$components/Markdown.svelte"
   let imagePath = `/images/2017/${site.data.productions["2017"][0].image}`
 </script>
 

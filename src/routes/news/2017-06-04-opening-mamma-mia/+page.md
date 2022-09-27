@@ -17,7 +17,7 @@ image: /images/2017/mamma-mia-fb.png
 
   export let site
 
-  import Markdown from "../../../components/Markdown.svelte"
+  import Markdown from "$components/Markdown.svelte"
 
   let imagePath = `/images/2017/${site.data.productions["2017"][1].image}`
 </script>

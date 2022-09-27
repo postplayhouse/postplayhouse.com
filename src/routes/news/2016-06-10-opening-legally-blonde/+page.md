@@ -16,7 +16,7 @@ image: /images/2016/opening-blonde.jpg
   throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
 
   export let site
-  import Markdown from "../../../components/Markdown.svelte"
+  import Markdown from "$components/Markdown.svelte"
 </script>
 
 <Markdown source={site.data.productions["2016"][3].description} />

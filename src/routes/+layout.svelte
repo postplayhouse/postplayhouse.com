@@ -1,10 +1,10 @@
 <script lang="ts">
   import "../app.postcss"
   import { page } from "$app/stores"
-  import Nav from "../components/Nav.svelte"
-  import Header from "../components/Header.svelte"
-  import Footer from "../components/Footer.svelte"
-  import PersistentModal from "../components/Modal/PersistentModal.svelte"
+  import Nav from "$components/Nav.svelte"
+  import Header from "$components/Header.svelte"
+  import Footer from "$components/Footer.svelte"
+  import PersistentModal from "$components/Modal/PersistentModal.svelte"
   import { showDonateModal } from "../data/stores"
 </script>
 

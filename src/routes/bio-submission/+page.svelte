@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte"
   import site from "../../data/site"
-  import Bio from "../../components/Bio.svelte"
-  import Modal from "../../components/Modal/Modal.svelte"
-  import Markdown from "../../components/Markdown.svelte"
+  import Bio from "$components/Bio.svelte"
+  import Modal from "$components/Modal/Modal.svelte"
+  import Markdown from "$components/Markdown.svelte"
   import type { Person } from "../../models/Person"
   import { marked } from "marked"
 

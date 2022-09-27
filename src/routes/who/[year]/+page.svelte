@@ -1,5 +1,7 @@
 <script lang="ts" context="module">
-  throw new Error("@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)");
+  throw new Error(
+    "@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)",
+  )
 
   // import type { Load } from "@sveltejs/kit"
   // import { toPerson } from "../../../models/Person"
@@ -23,10 +25,16 @@
 </script>
 
 <script lang="ts">
-  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+  throw new Error(
+    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
+  )
 
-  import Bio from "../../../components/Bio.svelte"
-  import { sortPeople, personIsOnlyInGroup, groupPeople } from "../../../helpers"
+  import Bio from "$components/Bio.svelte"
+  import {
+    sortPeople,
+    personIsOnlyInGroup,
+    groupPeople,
+  } from "../../../helpers"
   export let site
   export let year: string
   export let people

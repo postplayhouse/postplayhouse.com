@@ -3,7 +3,7 @@ title: "Donations to Post Playhouse"
 ---
 
 <script lang="ts">
-  import Mission from "../../components/Mission.md"
+  import Mission from "$components/Mission.md"
 
   import site from "../../data/site"
   import { showDonateModal } from "../../data/stores"
