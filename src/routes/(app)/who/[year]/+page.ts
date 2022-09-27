@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit"
-import type { PageLoad } from "@sveltejs/kit"
+import type { PageLoad } from "./$types"
 import { toPerson } from "$models/Person"
 
 throw new Error(

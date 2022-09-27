@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit"
-import type { PageLoad } from "@sveltejs/kit"
+import type { PageLoad } from "./$types"
 import { type Person, toPerson } from "$models/Person"
 import site from "$data/site"
 import { marked } from "marked"

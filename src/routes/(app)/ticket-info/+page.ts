@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit"
-import type { PageLoad } from "@sveltejs/kit"
+import type { PageLoad } from "./$types"
 import siteData from "$data/site"
 throw new Error(
   "@migration task: Check if you need to migrate the load function input (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292693)",
