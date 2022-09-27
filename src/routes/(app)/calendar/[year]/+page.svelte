@@ -1,11 +1,10 @@
 <script lang="ts">
-  throw new Error(
-    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
-  )
-
   import Calendar from "$components/Calendar/Calendar.svelte"
-  export let productions: YearlyData["productions"][Date.Year]
-  export let year: Date.Year
+
+  import type { PageData } from "./$types"
+  export let data: PageData
+
+  const { productions, year } = data
 
   const hasCalendar = !!productions?.find((prod) => prod.dates)
 </script>
