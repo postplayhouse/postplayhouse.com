@@ -16,6 +16,7 @@
     "paths": {
       "$components/*": ["src/components/*"],
       "$data/*": ["src/data/*"],
+      "$helpers": ["src/helpers"],
       "$helpers/*": ["src/helpers/*"],
       "$models/*": ["src/models/*"]
     }
