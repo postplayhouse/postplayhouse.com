@@ -1,47 +1,10 @@
-<script lang="ts" context="module">
-  throw new Error(
-    "@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)",
-  )
-
-  // import type { Load } from "@sveltejs/kit"
-  // import site from "$data/site"
-
-  // const currentYear = new Date().getFullYear()
-  // const seasonYear = site.season
-
-  // export const load: Load = async (obj) => {
-  //   if (currentYear !== seasonYear) return { props: { productions: [] } }
-
-  //   const res = await obj.fetch(`/data/productions/${currentYear}.json`)
-  //   const data = await res.json()
-
-  //   if (res.status === 200) {
-  //     return {
-  //       props: {
-  //         productions: data.productions,
-  //       },
-  //     }
-  //   } else {
-  //     return {
-  //       status: res.status,
-  //       error: new Error(
-  //         `could not fetch /data/productions/${currentYear}.json`,
-  //       ),
-  //     }
-  //   }
-  // }
-</script>
-
 <script lang="ts">
-  throw new Error(
-    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
-  )
-
   import Mailer from "$components/Mailer.svelte"
   import Modal from "$components/Modal/Modal.svelte"
   import Openings from "$components/OpeningAnnouncements.svelte"
 
-  export let productions: Production[]
+  import type { PageData } from "./$types"
+  export let data: PageData
 
   $: showMailingList = false
 
