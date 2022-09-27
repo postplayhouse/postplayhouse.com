@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { formatDate } from "../helpers"
+  import { formatDate } from "$helpers"
 
   import Markdown from "./Markdown.svelte"
   import MaybeImage from "./MaybeImage.svelte"

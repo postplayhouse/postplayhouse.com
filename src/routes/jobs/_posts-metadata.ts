@@ -1,4 +1,4 @@
-import { postsMetadata } from "../../helpers/blog-dir-metadata"
+import { postsMetadata } from "$helpers/blog-dir-metadata"
 import site from "$data/site"
 
 export default postsMetadata("src/routes/jobs/").map((post) => ({

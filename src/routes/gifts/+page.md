@@ -4,7 +4,7 @@ title: Gifts
 
 <script lang="ts">
   import site from "$data/site"
-  import { dateIsBetween } from "../../helpers"
+  import { dateIsBetween } from "$helpers"
 
   const now_year = new Date().getFullYear()
   const is_holidays = dateIsBetween(`10/01/${now_year}`, `12/10/${now_year}`)

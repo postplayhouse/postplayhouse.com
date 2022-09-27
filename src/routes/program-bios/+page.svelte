@@ -39,7 +39,7 @@
 
   import CastList from "$components/program/CastList.svelte"
   import ProductionList from "$components/program/ProductionList.svelte"
-  import { sortPeople, personIsInGroup, slugify } from "../../helpers"
+  import { sortPeople, personIsInGroup, slugify } from "$helpers"
   export let people: YamlPerson[]
   export let productions: Production[]
 

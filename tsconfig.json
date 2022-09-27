@@ -15,7 +15,8 @@
     "noEmit": true,
     "paths": {
       "$components/*": ["src/components/*"],
-      "$data/*": ["src/data/*"]
+      "$data/*": ["src/data/*"],
+      "$helpers/*": ["src/helpers/*"]
     }
   }
 }

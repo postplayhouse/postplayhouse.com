@@ -7,7 +7,7 @@
   import {
     initLocalAppVersion,
     refreshIfAppVersionOutdated,
-  } from "../../helpers/app-version"
+  } from "$helpers/app-version"
 
   onMount(initLocalAppVersion)
 

@@ -30,11 +30,7 @@
   )
 
   import Bio from "$components/Bio.svelte"
-  import {
-    sortPeople,
-    personIsOnlyInGroup,
-    groupPeople,
-  } from "../../../helpers"
+  import { sortPeople, personIsOnlyInGroup, groupPeople } from "$helpers"
   export let site
   export let year: string
   export let people

@@ -5,7 +5,7 @@
     getDateFor,
     getToday,
     nonValueToEmptyStr,
-  } from "../helpers"
+  } from "$helpers"
   import { weekdays } from "./Calendar/calendarHelpers"
 
   import Markdown from "./Markdown.svelte"
