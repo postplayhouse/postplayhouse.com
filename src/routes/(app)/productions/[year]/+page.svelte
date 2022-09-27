@@ -1,43 +1,13 @@
-<script lang="ts" context="module">
-  throw new Error(
-    "@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)",
-  )
-
-  // import type { Load } from "@sveltejs/kit"
-  // import site from "$data/site"
-
-  // export const load: Load = async (obj) => {
-  //   const res = await obj.fetch(`/data/productions/${obj.params["year"]}.json`)
-  //   const data = await res.json()
-
-  //   if (res.status === 200) {
-  //     return {
-  //       props: {
-  //         productions: data.productions,
-  //         year: parseInt(obj.params["year"] as string),
-  //       },
-  //     }
-  //   } else {
-  //     return {
-  //       status: res.status,
-  //       error: new Error(
-  //         `could not fetch /data/productions/${obj.params["year"]}.json`,
-  //       ),
-  //     }
-  //   }
-  // }
-</script>
-
 <script lang="ts">
-  throw new Error(
-    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
-  )
-
   import Production from "$components/Production.svelte"
   import MaybeImage from "$components/MaybeImage.svelte"
   import TicketsButton from "$components/TicketsButton.svelte"
-  export let productions: Production[]
-  export let year: Date.Year
+  import site from "$data/site"
+
+  import type { PageData } from "./$types"
+  export let data: PageData
+
+  const { productions, year } = data
 
   const seasonImg = `/images/${year}/full-season.jpg`
 </script>
