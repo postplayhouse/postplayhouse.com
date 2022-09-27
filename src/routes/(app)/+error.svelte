@@ -1,18 +1,6 @@
-<script context="module" lang="ts">
-  throw new Error("@migration task: Replace error load function (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3293209)");
-
-  // import type { Load } from "@sveltejs/kit"
-
-  // export const load: Load = ({ error, status }) => {
-  //   return { props: { error, status } }
-  // }
-</script>
-
 <script lang="ts">
-  import { dev } from "$app/env"
   import { onMount } from "svelte"
-  export let status: number
-  export let error: Error
+  import { page } from "$app/stores"
 
   $: matchesOldRoutes = false
   $: tryLocation = ""
@@ -30,18 +18,14 @@
 </script>
 
 <svelte:head>
-  <title>{status}</title>
+  <title>{$page.status}</title>
 </svelte:head>
 
-{#if status === 404 && matchesOldRoutes}{(window.location.href =
+{#if $page.status === 404 && matchesOldRoutes}{(window.location.href =
     tryLocation)}{/if}
 
-<h1>{status}</h1>
-<p>{error.message}</p>
-
-{#if dev && error.stack}
-  <pre>{error.stack}</pre>
-{/if}
+<h1>{$page.status}</h1>
+<p>{$page.error?.message}</p>
 
 <style>
   h1,
