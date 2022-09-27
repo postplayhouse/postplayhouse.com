@@ -1,7 +1,8 @@
 <script lang="ts">
-  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+  import type { PageData } from ".svelte-kit/types/src/routes/(app)/who/$types"
+  export let data: PageData
 
-  export let seasons
+  const { seasons } = data
   const years = Object.keys(seasons)
 </script>
 
