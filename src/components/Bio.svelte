@@ -3,7 +3,7 @@
   import flatten from "lodash/flatten.js"
   import Markdown from "./Markdown.svelte"
   import MaybeImage from "./MaybeImage.svelte"
-  import type { Person } from "../models/Person"
+  import type { Person } from "$models/Person"
 
   export let person: Pick<
     Person,

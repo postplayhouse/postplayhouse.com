@@ -28,6 +28,7 @@ const config = {
       $components: path.resolve("./src/components"),
       $data: path.resolve("./src/data"),
       $helpers: path.resolve("./src/helpers"),
+      $models: path.resolve("./src/models"),
     },
   },
 }

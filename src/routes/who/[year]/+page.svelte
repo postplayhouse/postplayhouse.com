@@ -4,7 +4,7 @@
   )
 
   // import type { Load } from "@sveltejs/kit"
-  // import { toPerson } from "../../../models/Person"
+  // import { toPerson } from "$models/Person"
 
   // export const load: Load = async (obj) => {
   //   const res = await obj.fetch(`/data/people/${obj.params["year"]}.json`)

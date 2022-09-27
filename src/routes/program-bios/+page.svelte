@@ -4,7 +4,7 @@
   )
 
   // import type { Load } from "@sveltejs/kit"
-  // import { type Person, toPerson } from "../../models/Person"
+  // import { type Person, toPerson } from "$models/Person"
   // import site from "$data/site"
   // import { marked } from "marked"
 
