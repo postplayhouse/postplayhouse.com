@@ -1,10 +1,10 @@
 <script lang="ts">
-  throw new Error(
-    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
-  )
-
   import Markdown from "$components/Markdown.svelte"
-  export let businesses: Business[]
+
+  import type { PageData } from "./$types"
+  export let data: PageData
+
+  const { businesses } = data
 </script>
 
 <h2 class="h2">Nearby Activities, Attractions, Food, and Lodging</h2>
