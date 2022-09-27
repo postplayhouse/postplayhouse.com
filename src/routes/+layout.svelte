@@ -5,7 +5,7 @@
   import Header from "$components/Header.svelte"
   import Footer from "$components/Footer.svelte"
   import PersistentModal from "$components/Modal/PersistentModal.svelte"
-  import { showDonateModal } from "../data/stores"
+  import { showDonateModal } from "$data/stores"
 </script>
 
 <PersistentModal on:close="{showDonateModal.toggle}" show="{$showDonateModal}">

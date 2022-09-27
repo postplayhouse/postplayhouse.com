@@ -4,7 +4,7 @@
   )
 
   // import type { Load } from "@sveltejs/kit"
-  // import siteData from "../../data/site"
+  // import siteData from "$data/site"
   // export const load: Load = async (obj) => {
   //   const res = await obj.fetch(`/data/productions/${siteData.season}.json`)
   //   const data = await res.json()

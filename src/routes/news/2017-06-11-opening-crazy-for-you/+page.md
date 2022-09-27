@@ -8,7 +8,7 @@ image: /images/2017/crazy-for-you-fb.png
 <script lang="ts" context="module">
   throw new Error("@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)");
 
-  // import { load as p } from "../../data/load"
+  // import { load as p } from "$data/load"
   // export const load = p
 </script>
 

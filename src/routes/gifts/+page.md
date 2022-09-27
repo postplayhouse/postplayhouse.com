@@ -3,7 +3,7 @@ title: Gifts
 ---
 
 <script lang="ts">
-  import site from "../../data/site"
+  import site from "$data/site"
   import { dateIsBetween } from "../../helpers"
 
   const now_year = new Date().getFullYear()

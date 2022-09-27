@@ -1,6 +1,6 @@
 <script lang="ts">
   export let activePath: string
-  import site from "../data/site"
+  import site from "$data/site"
 
   function nodeIsActive(node: HTMLAnchorElement, activePath: string) {
     return new URL(node.href).pathname === activePath

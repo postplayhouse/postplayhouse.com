@@ -1,11 +1,13 @@
-import { error } from '@sveltejs/kit';
+import { error } from "@sveltejs/kit"
 import type { PageLoad } from "@sveltejs/kit"
-import site from "../data/site"
+import site from "$data/site"
 
 const currentYear = new Date().getFullYear()
 const seasonYear = site.season
 
-throw new Error("@migration task: Check if you need to migrate the load function input (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292693)");
+throw new Error(
+  "@migration task: Check if you need to migrate the load function input (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292693)",
+)
 export const load: PageLoad = async (obj) => {
   if (currentYear !== seasonYear) return { productions: [] }
 
@@ -14,9 +16,9 @@ export const load: PageLoad = async (obj) => {
 
   if (res.status === 200) {
     return {
-  productions: data.productions,
-}
+      productions: data.productions,
+    }
   } else {
-    throw error(500, `could not fetch /data/productions/${currentYear}.json`);
+    throw error(500, `could not fetch /data/productions/${currentYear}.json`)
   }
 }

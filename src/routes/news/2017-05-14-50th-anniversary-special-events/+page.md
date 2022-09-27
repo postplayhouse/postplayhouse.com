@@ -7,7 +7,7 @@ image: /images/50th-logo.png?v=1
 ---
 
 <script lang="ts">
-  import site from "../../../data/site"
+  import site from "$data/site"
 </script>
 
 <link rel="stylesheet" href="/css/anniversary-weekend-events.css">

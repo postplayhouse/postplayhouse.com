@@ -1,8 +1,10 @@
 <script lang="ts" context="module">
-  throw new Error("@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)");
+  throw new Error(
+    "@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)",
+  )
 
   // import type { Load } from "@sveltejs/kit"
-  // import site from "../../../data/site"
+  // import site from "$data/site"
 
   // export const load: Load = async (obj) => {
   //   const res = await obj.fetch(`/data/productions/${obj.params["year"]}.json`)
@@ -27,7 +29,9 @@
 </script>
 
 <script lang="ts">
-  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+  throw new Error(
+    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
+  )
 
   import Production from "$components/Production.svelte"
   import MaybeImage from "$components/MaybeImage.svelte"

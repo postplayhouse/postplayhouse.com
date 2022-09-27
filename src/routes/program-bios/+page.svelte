@@ -1,9 +1,11 @@
 <script lang="ts" context="module">
-  throw new Error("@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)");
+  throw new Error(
+    "@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)",
+  )
 
   // import type { Load } from "@sveltejs/kit"
   // import { type Person, toPerson } from "../../models/Person"
-  // import site from "../../data/site"
+  // import site from "$data/site"
   // import { marked } from "marked"
 
   // marked.setOptions({ smartypants: true })
@@ -31,7 +33,9 @@
 </script>
 
 <script lang="ts">
-  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+  throw new Error(
+    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
+  )
 
   import CastList from "$components/program/CastList.svelte"
   import ProductionList from "$components/program/ProductionList.svelte"

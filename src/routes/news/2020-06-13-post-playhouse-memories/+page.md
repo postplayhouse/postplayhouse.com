@@ -5,7 +5,7 @@ sticky: false
 ---
 
 <script lang="ts">
-  import { showDonateModal } from "../../../data/stores"
+  import { showDonateModal } from "$data/stores"
 </script>
 
 <style>

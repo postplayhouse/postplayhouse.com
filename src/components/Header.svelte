@@ -1,5 +1,5 @@
 <script lang="ts">
-  import site from "../data/site"
+  import site from "$data/site"
   import TicketsButton from "./TicketsButton.svelte"
 </script>
 
