@@ -1,12 +1,11 @@
 <script lang="ts">
-  throw new Error(
-    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
-  )
-
   import site from "$data/site"
   import Markdown from "$components/Markdown.svelte"
   import Modal from "$components/Modal/Modal.svelte"
-  export let posts: Post[]
+
+  import type { PageData } from "./$types"
+  export let data: PageData
+  const { posts } = data
 
   const title = "Work at Post Playhouse"
 

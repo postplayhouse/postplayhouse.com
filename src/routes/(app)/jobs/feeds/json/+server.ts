@@ -22,17 +22,9 @@ const renderJsonFeed = (posts_: typeof posts) =>
   })
 
 export const GET: RequestHandler = () => {
-  throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292701)");
-  // Suggestion (check for correctness before using):
-  // return new Response(renderJsonFeed(posts), {
-  //   headers: {
-  //     "Content-Type": "application/feed+json",
-  //   }
-  // });
-  return {
+  return new Response(renderJsonFeed(posts), {
     headers: {
       "Content-Type": "application/feed+json",
     },
-    body: renderJsonFeed(posts),
-  }
+  })
 }
