@@ -1,7 +1,8 @@
 <script lang="ts">
-  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+  import type { PageData } from "./$types"
+  export let data: PageData
 
-  export let posts: Array<{ title: string; year: string; date: string }>
+  const { posts } = data
 </script>
 
 <svelte:head>

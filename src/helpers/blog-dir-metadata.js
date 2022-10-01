@@ -1,4 +1,5 @@
 import * as fs from "fs"
+import * as path from "path"
 import frontmatter from "frontmatter"
 
 const STARTS_WITH_DATE = /^\d{4}-\d{2}-\d{2}-/
@@ -11,7 +12,14 @@ const STARTS_WITH_DATE = /^\d{4}-\d{2}-\d{2}-/
  * @returns {(acc: Array<Details>, filename: string) => Array<Details>}
  */
 const getDetails = (directory, extensions) => (acc, fileName) => {
-  const [basename, ext] = fileName.split(".")
+  const [basename, ext] = fileName.split("/+page.")
+
+  if (!(basename && ext)) {
+    throw new Error(
+      "The basename or extension were not found for this blog article",
+    )
+  }
+
   if (extensions.indexOf(ext) === -1) {
     return acc
   }
@@ -31,7 +39,7 @@ function firstCap(s) {
 /**
  * Capitalizes first char of all words, minus excluded words, if given
  * @param {string} s
- * @param {string[]?} exclude
+ * @param {string[]} exclude
  * @returns {string}
  */
 function titleCase(s, exclude = []) {
@@ -87,10 +95,28 @@ const prepSvelteFiles = prepFiles(["svelte"], (details) => {
   }
 })
 
+/**
+ * @param {string} dirPath
+ */
 function loadLegitFiles(dirPath) {
   return fs
     .readdirSync(dirPath, "utf-8")
-    .filter((fileName) => STARTS_WITH_DATE.test(fileName))
+    .filter((folder) => STARTS_WITH_DATE.test(folder))
+    .map((folder) => {
+      const files = fs
+        .readdirSync(path.join(dirPath, folder))
+        .filter(
+          (fileName) =>
+            fileName.startsWith("+page.") &&
+            (fileName.endsWith(".svelte") || fileName.endsWith(".md")),
+        )
+      if (files.length !== 1) {
+        console.log(files)
+        throw new Error("Found the wrong number of files in folder " + folder)
+      }
+
+      return `${folder}/${files[0]}`
+    })
 }
 
 /**
