@@ -4,45 +4,40 @@ import frontmatter from "frontmatter"
 
 const STARTS_WITH_DATE = /^\d{4}-\d{2}-\d{2}-/
 
-/**
- *
- * @param {string} directory
- * @param {string[]} extensions
- * @typedef {{basename: string, ext: string, content: string, date: string}} Details
- * @returns {(acc: Array<Details>, filename: string) => Array<Details>}
- */
-const getDetails = (directory, extensions) => (acc, fileName) => {
-  const [basename, ext] = fileName.split("/+page.")
+type Details = { basename: string; ext: string; content: string; date: string }
 
-  if (!(basename && ext)) {
-    throw new Error(
-      "The basename or extension were not found for this blog article",
-    )
-  }
+const getDetails =
+  (
+    directory: string,
+    extensions: string[],
+  ): ((acc: Array<Details>, filename: string) => Array<Details>) =>
+  (acc, fileName) => {
+    const [basename, ext] = fileName.split("/+page.")
 
-  if (extensions.indexOf(ext) === -1) {
-    return acc
+    if (!(basename && ext)) {
+      throw new Error(
+        "The basename or extension were not found for this blog article",
+      )
+    }
+
+    if (extensions.indexOf(ext) === -1) {
+      return acc
+    }
+    const content = fs.readFileSync(`${directory}/${fileName}`, "utf8")
+    return [...acc, { basename, ext, content, date: basename.slice(0, 10) }]
   }
-  const content = fs.readFileSync(`${directory}/${fileName}`, "utf8")
-  return [...acc, { basename, ext, content, date: basename.slice(0, 10) }]
-}
 
 /**
  * Capitalizes the first char of the string
- * @param {string} s
- * @returns {string}
  */
-function firstCap(s) {
+function firstCap(s: string) {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
 /**
  * Capitalizes first char of all words, minus excluded words, if given
- * @param {string} s
- * @param {string[]} exclude
- * @returns {string}
  */
-function titleCase(s, exclude = []) {
+function titleCase(s: string, exclude: string[] = []) {
   return s
     .split(" ")
     .map((word, i) =>
@@ -52,22 +47,16 @@ function titleCase(s, exclude = []) {
 }
 
 /**
- *
- * @param {string} fileBasename
- * @returns {string}
  */
-function titleFromBasename(fileBasename) {
+function titleFromBasename(fileBasename: string) {
   return titleCase(fileBasename.slice(10).replace(/-/g, " ").trim())
 }
 
-/**
- *
- * @param {string[]} extensions
- * @param {(details: Details) => any} mapFn
- * @returns {(dirPath: string, fileNames: string[]) => any}
- */
 const prepFiles =
-  (extensions, mapFn = (x) => x) =>
+  (
+    extensions: string[],
+    mapFn: (details: Details) => any = (x) => x,
+  ): ((dirPath: string, fileNames: string[]) => any) =>
   (dirPath, fileNames) =>
     fileNames.reduce(getDetails(dirPath, extensions), []).map(mapFn)
 
@@ -95,10 +84,7 @@ const prepSvelteFiles = prepFiles(["svelte"], (details) => {
   }
 })
 
-/**
- * @param {string} dirPath
- */
-function loadLegitFiles(dirPath) {
+function loadLegitFiles(dirPath: string) {
   return fs
     .readdirSync(dirPath, "utf-8")
     .filter((folder) => STARTS_WITH_DATE.test(folder))
@@ -119,19 +105,21 @@ function loadLegitFiles(dirPath) {
     })
 }
 
+type ArticleDetails = { year: string; title: string }
+
 /**
  * This will return an array of articles' metadata. Frontmatter data in md files
  * or exported title in svelte files is merged into the resulting objects as
  * well.
  *
- * @param {string} dirPath The relative path starting at the repo root, ending
+ * @param dirPath The relative path starting at the repo root, ending
  * with a slash
- * @typedef {{year: string, title: string}} ArticleDetails
- * @returns {Array<Details & ArticleDetails>}
- * @example postsMetadata("src/routes/news/")
+ * @example postsMetadata("src/routes/(app)/news/")
  *
  */
-export function postsMetadata(dirPath) {
+export function postsMetadata(
+  dirPath: string,
+): Array<Details & ArticleDetails> {
   const thisDirBlogFiles = loadLegitFiles(dirPath)
 
   return prepSvelteFiles(dirPath, thisDirBlogFiles)
