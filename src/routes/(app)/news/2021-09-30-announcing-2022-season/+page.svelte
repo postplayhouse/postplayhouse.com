@@ -1,8 +1,4 @@
 <script lang="ts">
-  throw new Error(
-    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
-  )
-
   import TicketsButton from "$components/TicketsButton.svelte"
   import site from "$data/site"
   export const title = "Announcing our 2022 season!"

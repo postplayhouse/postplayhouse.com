@@ -1,6 +1,4 @@
 <script lang="ts">
-  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
-
   export const title = "Annual Raffle - Postponed to March 23"
   export const excerpt =
     "Join us on March 23, 2019 for our annual raffle. You could win $5,000!"
