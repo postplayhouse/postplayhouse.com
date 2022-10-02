@@ -9,12 +9,16 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    // My options
+
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "noEmit": true,
     "paths": {
-      "$components/*": ["src/components/*"]
+      "$components/*": ["src/components/*"],
+      "$data/*": ["src/data/*"],
+      "$helpers": ["src/helpers"],
+      "$helpers/*": ["src/helpers/*"],
+      "$models/*": ["src/models/*"]
     }
   }
 }

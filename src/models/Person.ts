@@ -1,4 +1,4 @@
-import { toCamel } from "../helpers"
+import { toCamel } from "$helpers"
 
 class Person {
   firstName: string

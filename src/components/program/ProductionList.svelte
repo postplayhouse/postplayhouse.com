@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
   import unique from "lodash/uniq.js"
   import diff from "lodash/difference.js"
-  import type { Person } from "../../models/Person"
+  import type { Person } from "$models/Person"
 
   const sortedPositions = [
     "Director",

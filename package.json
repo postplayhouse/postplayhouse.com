@@ -8,17 +8,17 @@
     "useCache": "npm run copyFolder -- --merge /opt/build/cache/hc_my_cache/static/g --to static/g",
     "fillCache": "npm run copyFolder -- --save static/g --to /opt/build/cache/hc_my_cache/static/g",
     "netlify": "npm run useCache && npm run build:noClean && npm run fillCache",
-    "dev": "svelte-kit dev",
-    "build": "npm run clean && svelte-kit build",
-    "build:noClean": "svelte-kit build",
-    "package": "svelte-kit package",
-    "preview": "svelte-kit preview",
+    "dev": "vite dev --port 3000",
+    "build": "npm run clean && vite build",
+    "build:noClean": "vite build",
+    "preview": "vite preview --port 3000",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --check --plugin-search-dir=. . && eslint .",
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "dependencies": {
+    "@sveltejs/kit": "^1.0.0-next.406",
     "compression": "^1.7.1",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
@@ -28,10 +28,9 @@
     "@kitql/vite-plugin-watch-and-run": "^0.3.0",
     "@rollup/plugin-replace": "^3.0.0",
     "@sveltejs/adapter-static": "next",
-    "@sveltejs/kit": "next",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/svelte": "^3.0.3",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.0",
     "@types/lodash": "^4.14.178",
     "@types/marked": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
@@ -59,9 +58,5 @@
     "tslib": "^2.3.1",
     "typescript": "~4.6.2"
   },
-  "type": "module",
-  "volta": {
-    "node": "16.7.0",
-    "npm": "7.18.1"
-  }
+  "type": "module"
 }

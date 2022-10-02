@@ -1,4 +1,4 @@
-import type { Person } from "../models/Person"
+import type { Person } from "$models/Person"
 
 type PersonLike = Person | YamlPerson
 export function personIsInGroup(person: PersonLike, groupName: string) {

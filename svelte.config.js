@@ -1,10 +1,8 @@
 import path from "path"
 import { fileURLToPath } from "url"
 
-import WatchAndRun from "@kitql/vite-plugin-watch-and-run"
 import { preprocess as compilerPreprocess } from "svelte/compiler"
 
-import replace from "@rollup/plugin-replace"
 import adapter from "@sveltejs/adapter-static"
 import { mdsvex } from "mdsvex"
 import preprocess from "svelte-preprocess"
@@ -72,7 +70,7 @@ function runImagesAfterOthers(otherProcessors) {
 
 /** @xActualType {Array<[string | RegExp, string] | [RegExp, (substring: string, ...args: any[]) => string]>} */
 /** @type {Array<[string, string]>} */
-const replacements = [
+export const replacements = [
   ["process.env.NODE_ENV", JSON.stringify(process.env.NODE_ENV)],
   [
     "process.env.DEPLOY_PRIME_URL",
@@ -101,29 +99,7 @@ const config = {
 
   kit: {
     adapter: adapter(),
-    prerender: { onError: "continue", default: true },
-    vite: {
-      plugins: [
-        replace({
-          values: replacements.reduce(
-            (acc, [key, value]) => ({ ...acc, [key]: value }),
-            {},
-          ),
-          preventAssignment: true,
-        }),
-        WatchAndRun([
-          {
-            watch: "**/src/data/**/*.yml",
-            run: "touch ./src/data/_yaml.ts",
-          },
-        ]),
-      ],
-      resolve: {
-        alias: {
-          $components: path.resolve("./src/components"),
-        },
-      },
-    },
+    prerender: { onError: "continue" },
   },
 }
 

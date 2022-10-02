@@ -1,4 +1,4 @@
-import { browser } from "$app/env"
+import { browser } from "$app/environment"
 
 const MAX_DAILY_REFRESHES = 5
 
