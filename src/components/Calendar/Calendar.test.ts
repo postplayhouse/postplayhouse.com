@@ -2,7 +2,7 @@
 import "@testing-library/jest-dom"
 import { render } from "@testing-library/svelte"
 import Calendar from "./Calendar.svelte"
-import data from "$data/_yaml"
+import data from "../../data/_yaml"
 
 describe("<Calendar>", () => {
   test("shows proper date details", () => {
