@@ -95,6 +95,3 @@
     <Mailer />
   </Modal>
 {/if}
-
-<!-- Sapper is no good at generating pages that have no link so we have to add these -->
-<div class="hidden"><a href="/news">#</a> <a href="/policies">#</a></div>
