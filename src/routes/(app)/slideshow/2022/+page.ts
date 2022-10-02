@@ -1,12 +1,6 @@
 import { error } from "@sveltejs/kit"
 import type { PageLoad } from "./$types"
-import { marked } from "marked"
 
-marked.setOptions({ smartypants: true })
-
-throw new Error(
-  "@migration task: Check if you need to migrate the load function input (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292693)",
-)
 export const load: PageLoad = async (obj) => {
   const peopleRes = await obj.fetch(`/data/people/2022.json`)
   const peopleData = await peopleRes.json()

@@ -1,6 +1,5 @@
 import { json } from "@sveltejs/kit"
 
-// @migration task: Check imports
 import postsData from "../news/_posts-metadata"
 import type { RequestHandler } from "@sveltejs/kit"
 

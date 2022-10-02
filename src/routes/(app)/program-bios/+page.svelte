@@ -1,47 +1,19 @@
 <script lang="ts" context="module">
-  throw new Error(
-    "@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)",
-  )
+  import { marked } from "marked"
+  import { type Person, toPerson } from "$models/Person"
 
-  // import type { Load } from "@sveltejs/kit"
-  // import { type Person, toPerson } from "$models/Person"
-  // import site from "$data/site"
-  // import { marked } from "marked"
-
-  // marked.setOptions({ smartypants: true })
-
-  // export const load: Load = async (obj) => {
-  //   const peopleRes = await obj.fetch(`/data/people/${site.season}.json`)
-  //   const peopleData = await peopleRes.json()
-  //   if (peopleRes.status !== 200)
-  //     return { status: 500, error: new Error(peopleData.message) }
-
-  //   const productionsRes = await obj.fetch(
-  //     `/data/productions/${site.season}.json`,
-  //   )
-  //   const productionsData = await productionsRes.json()
-  //   if (productionsRes.status !== 200)
-  //     return { status: 500, error: new Error(productionsData.message) }
-
-  //   return {
-  //     props: {
-  //       people: peopleData.people,
-  //       productions: productionsData.productions,
-  //     },
-  //   }
-  // }
+  marked.setOptions({ smartypants: true })
 </script>
 
 <script lang="ts">
-  throw new Error(
-    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
-  )
-
   import CastList from "$components/program/CastList.svelte"
   import ProductionList from "$components/program/ProductionList.svelte"
   import { sortPeople, personIsInGroup, slugify } from "$helpers"
-  export let people: YamlPerson[]
-  export let productions: Production[]
+
+  import type { PageData } from "./$types"
+  export let data: PageData
+
+  const { people, productions } = data
 
   const initialSort = sortPeople(people).map(toPerson)
   const additional = initialSort.filter((x) => personIsInGroup(x, "additional"))

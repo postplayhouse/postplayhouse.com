@@ -1,31 +1,11 @@
-<script lang="ts" context="module">
-  throw new Error(
-    "@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)",
-  )
-
-  // import type { Load } from "@sveltejs/kit"
-  // import siteData from "$data/site"
-  // export const load: Load = async (obj) => {
-  //   const res = await obj.fetch(`/data/productions/${siteData.season}.json`)
-  //   const data = await res.json()
-
-  //   if (res.status === 200) {
-  //     return { props: { site: data.site, productions: data.productions } }
-  //   } else {
-  //     return { status: res.status, error: new Error(data.message) }
-  //   }
-  // }
-</script>
-
 <script lang="ts">
-  throw new Error(
-    "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)",
-  )
-
   import SeatingChart from "$components/SeatingChart.svelte"
   import TicketPolicy from "$components/TicketPolicy.md"
-  export let site: typeof siteData
-  export let productions: Production[] = []
+
+  import type { PageData } from "./$types"
+  export let data: PageData
+  const { site } = data
+  const productions = data.yaml.productions[site.season]!
 </script>
 
 <div class="via-markdown">
