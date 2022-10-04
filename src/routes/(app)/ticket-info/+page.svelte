@@ -1,32 +1,52 @@
 <script lang="ts">
   import SeatingChart from "$components/SeatingChart.svelte"
   import TicketPolicy from "$components/TicketPolicy.md"
+  import Mailer from "$components/Mailer.svelte"
+  import Modal from "$components/Modal/Modal.svelte"
 
   import type { PageData } from "./$types"
   export let data: PageData
   const { site } = data
   const productions = data.yaml.productions[site.season]!
+
+  $: showMailingList = false
+
+  function toggleMailingList() {
+    showMailingList = !showMailingList
+  }
 </script>
 
 <div class="via-markdown">
   <p>
-    Ticket sales for every summer season begin November 1st of the previous
-    calendar year.
+    Ticket sales for every summer season begin in the fall. Check back here for
+    on-sale date announcements, or <button
+      type="button"
+      class="link-green"
+      on:click="{toggleMailingList}">subscribe to our newsletter</button
+    >.
   </p>
+
+  {#if showMailingList}
+    <Modal on:close="{toggleMailingList}">
+      <Mailer />
+    </Modal>
+  {/if}
 
   {#if site.ticketsAvailable}
     <a class="link-green" href="{site.ticketsLink}">Buy yours now!</a><br />
   {/if}
 
-  Or email us at
-  <a class="link-green" href="mailto:tickets@postplayhouse.com"
-    >tickets@postplayhouse.com</a
-  ><br />
+  <div class="mt-2">
+    Or email us at
+    <a class="link-green" href="mailto:tickets@postplayhouse.com"
+      >tickets@postplayhouse.com</a
+    ><br />
 
-  Call our box office at
-  <a class="x" href="{site.boxOfficePhoneLink}">
-    {site.boxOfficePhone}
-  </a>
+    Call our box office at
+    <a class="x" href="{site.boxOfficePhoneLink}">
+      {site.boxOfficePhone}
+    </a>
+  </div>
 
   <h2 class="h2 mt-4 mb-2">Ticket Prices</h2>
 

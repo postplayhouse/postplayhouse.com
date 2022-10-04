@@ -4,7 +4,7 @@ const liveUrl = "https://postplayhouse.com"
 
 // Actual values. If dev, these may change below.
 const castingComplete = true
-const ticketsAvailable = true
+const ticketsAvailable = false
 
 // When doing a Netlify PR Deploy, use the provided url
 const url = live
