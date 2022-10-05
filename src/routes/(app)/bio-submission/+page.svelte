@@ -6,6 +6,7 @@
   import Markdown from "$components/Markdown.svelte"
   import type { Person } from "$models/Person"
   import { marked } from "marked"
+  import { sanitizedPassphrase } from "$helpers"
 
   onMount(() => {
     if (!window.fetch) dispatch(events.foundNoFetch)
@@ -347,22 +348,13 @@
     reader.readAsDataURL(pickedFile)
   }
 
-  const sanitizedPassphrase = (str: string) =>
-    str
-      .replace(/[^A-z ]/g, "")
-      .toLowerCase()
-      .trim()
-
   async function confirmPassphrase() {
-    const res = await window.fetch(
-      "https://happycollision-postplayhouse-bio-submission.builtwithdark.com/confirm-passphrase",
-      {
-        method: "GET",
-        headers: new Headers({
-          Authorization: sanitizedPassphrase(passphrase),
-        }),
-      },
-    )
+    const res = await window.fetch("/api/bio-submission/confirm-passphrase", {
+      method: "GET",
+      headers: new Headers({
+        Authorization: sanitizedPassphrase(passphrase),
+      }),
+    })
     if (res.ok) {
       dispatch(events.confirmedPassphrase)
     } else if (res.status === 403) {
@@ -382,7 +374,7 @@
     count: T,
   ): Promise<ConstructTuple<T, Creds>> {
     const resp = await window.fetch(
-      `https://happycollision-postplayhouse-bio-submission.builtwithdark.com/upload-url?count=${count}`,
+      `/api/bio-submission/upload-url?count=${count}`,
       {
         method: "GET",
         headers: new Headers({

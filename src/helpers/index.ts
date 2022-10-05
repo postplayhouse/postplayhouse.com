@@ -172,3 +172,20 @@ export function diffDays(a: Date, b: Date) {
 
   return Math.round((b.getTime() - a.getTime()) / oneDay)
 }
+
+export function assert<T>(
+  x: T,
+  message = "",
+): asserts x is Exclude<T, undefined | null> {
+  if (x === undefined || x === null)
+    throw new Error(`Assertion failed! ${message}`)
+}
+
+/** only lowercase words allowed */
+export function sanitizedPassphrase(str: string | undefined | null) {
+  assert(str)
+  return str
+    .replace(/[^A-z ]/g, "")
+    .toLowerCase()
+    .trim()
+}

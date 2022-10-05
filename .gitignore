@@ -11,6 +11,8 @@ node_modules
 /static/g/
 /static/index.css
 
+.netlify/
+
 # local, temp files only
 /working files/
 *.ignore/

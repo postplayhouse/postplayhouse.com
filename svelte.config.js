@@ -3,7 +3,7 @@ import { fileURLToPath } from "url"
 
 import { preprocess as compilerPreprocess } from "svelte/compiler"
 
-import adapter from "@sveltejs/adapter-static"
+import adapter from "@sveltejs/adapter-netlify"
 import { mdsvex } from "mdsvex"
 import preprocess from "svelte-preprocess"
 import svelteImage from "svelte-image"

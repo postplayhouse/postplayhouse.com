@@ -62,9 +62,9 @@
 # PER-DEPLOY.
 
 # A basic redirect rule
-[[redirects]]
-  from = "/industry-professionals"
-  to = "/jobs"
+# [[redirects]]
+#   from = "/industry-professionals"
+#   to = "/jobs"
 
 # # A redirect rule with many of the supported properties
 # [[redirects]]
