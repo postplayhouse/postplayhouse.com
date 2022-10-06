@@ -8,6 +8,11 @@
   import { marked } from "marked"
   import { sanitizedPassphrase } from "$helpers"
 
+  import type { PageData } from "./$types"
+  export let data: PageData
+
+  const { disabled } = data
+
   onMount(() => {
     if (!window.fetch) dispatch(events.foundNoFetch)
   })
@@ -207,6 +212,7 @@
   }
 
   const states = {
+    submissionsDisabled: "submissionsDisabled",
     unauthenticated: "unauthenticated",
     requestingAuth: "requestingAuth",
     incompleteForm: "incompleteForm",
@@ -233,7 +239,7 @@
 
   let badPassphrase = false
 
-  let state = states.unauthenticated
+  let state = disabled ? states.submissionsDisabled : states.unauthenticated
 
   $: showCredsForm = [states.unauthenticated, states.requestingAuth].includes(
     state,
@@ -260,6 +266,10 @@
     }
 
     switch (state) {
+      case states.submissionsDisabled: {
+        // You can checkout any time you like, but you can never leave
+        return
+      }
       case states.unauthenticated: {
         switch (event) {
           case events.requestAuth:
@@ -566,6 +576,15 @@ ${email}
 
 <h2 class="h2">Bio Submission</h2>
 
+{#if state === states.submissionsDisabled}
+  <article>
+    <header><h3 class="h3">Bio submissions are unavailable</h3></header>
+    <p class="my-8">
+      We will turn on bio submissions as the summer season approaches.
+    </p>
+  </article>
+{/if}
+
 {#if state === states.noFetch}
   <div class="bg-red-200 text-red-900 p-4 rounded my-4">
     This submission form will not work from your device. Please send an email to
@@ -573,7 +592,7 @@ ${email}
   </div>
 {/if}
 
-{#if state !== states.success}
+{#if showCredsForm || showMain}
   <p>
     Have a look at
     <a class="link-green" href="{lastYearBios}">last year's bios</a>
