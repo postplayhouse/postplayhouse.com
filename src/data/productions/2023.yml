@@ -1,19 +1,17 @@
-- title: Damn Yankees
-  short_title: Yankees
+- title: Leader of the Pack
+  short_title: Leader
   rating: G
-  color: green
-  image: damn-yankees.png
+  color: red
+  image: leader.png
   opening: 2022-05-27
   writers: |
     MUSIC AND LYRICS BY  
-    Jerry Ross  
-    Richard Adler
 
-    BOOK BY  
-    Douglass Wallop  
-    George Abbott
+
+    BOOK BY
+
   description: |
-    Would you do _anything_ to help your favorite baseball team win the pennant? In the Faustian baseball musical, _Damn Yankees_, Joe Boyd sells his soul to the devil to be the home run hitter that will guide his favorite team, the Washington Senators, to a win against those "damn Yankees." Featuring the classical musical theatre selections, "Heart" and "Whatever Lola Wants", follow Joe in his quest to save his team... and his soul.
+    It will be hard to stay in your seats, as toes will be tapping and spirits will be soaring, in celebration of American songwriter Ellie Greenwich.  This bio-musical follows her from humble beginnings through her illustrious career, jam packed with dozens of billboard hits including "Chapel of Love", "Be My Baby", "Leader of the Pack", "Do-Wah-Diddy" and "River Deep, Mountain High".
   dates:
     fort_rob: |
       May 27e, 28e, 29a, 31e,
@@ -21,32 +19,22 @@
       July 6e, 9e, 15a, 10a, 21e, 23a, 30m,
       August 4e, 6m, 9e, 13e,
   roles_sorting:
-  sponsor:
-    image: stuart-trust.png
 
-- title: Desperate Measures
-  short_title: Desperate
+- title: Clue the Musical
+  short_title: Clue
   rating: H
-  rating_explanation: Nothing in this show is overt, but it is probably not as entertaining for small children.
+  rating_explanation: It is a comedy, but it is about murder, so consider your kids' ages.
   color: blue
-  image: desperate-measures.jpg
+  image: clue.jpg
   opening: 2022-06-03
   writers: |
     BOOK & LYRICS BY  
-    Peter Kellogg
 
-    MUSIC BY  
-    David Friedman
 
-    ORCHESTRATIONS BY  
-    David Hancock Turner
+    MUSIC BY
 
-    VOCAL ARRANGEMENTS BY  
-    David Friedman
   description: |
-    When the dangerously handsome Johnny Blood’s life is on the line, he must put his fate into the hands of a colorful cast of characters including a mysterious sheriff, an eccentric priest, an authoritarian governor, a saloon girl gone good, and a nun out of the habit. Before the sun sets, will they rise up and pull off the greatest caper yet, or will Johnny be left hanging?
-
-    This witty and wild new musical comedy takes the Bard’s Measure for Measure and shakes things up!
+    Was it Professor Plum in the Library with the Wrench?  Or maybe Ms. Peacock in the Kitchen with the Rope?  Based on the timeless board game, _Clue the Musical_ offers a different ending and plot twists at every single performance, keeping both the audiences and the actors onstage guessing!  A musical romp perfect for the entire family: can you untangle the clues and solve a murder?
   dates:
     fort_rob: |
       June 3e, 4e, 5a, 8e, 14e, 17e, 21e, 29e,
@@ -54,93 +42,67 @@
       August 5e, 12a,
   roles_sorting:
   sponsor:
-    image: tag.png
-    link: https://tagfinancialsolutions.com
+    image: stuart-trust.png
 
-- title: The Sound of Music
-  short_title: Music
+- title: Joseph and the Amazing Technicolor Dreamcoat
+  short_title: Joseph
   rating: G
-  color: yellow
-  image: the-sound-of-music.jpg
+  color: purple
+  image: joseph.jpg
   opening: 2022-06-10
   writers: |
     MUSIC BY  
-    Richard Rodgers
+    Andrew Lloyd Webber
 
     LYRICS BY  
-    Oscar Hammerstein II
-
-    BOOK BY  
-    Howard Lindsay and Russel Crouse
-
+    Tim Rice
   description: |
-    The world's most beloved musical comes again to the Post Playhouse stage!
-
-    In Austria, 1938, an exuberant young governess attempts to bring music and joy back to a broken family, all the while facing danger and intrigue as the Nazis gain power. Featuring a trove of cherished songs, including "Climb Every Mountain," "My Favorite Things," "Do Re Mi," "Sixteen Going on Seventeen" and of course, "The Sound of Music".
+    An international hit, this entertaining and inspiring spectacle musical tells the age-old Biblical story of Joseph and his coat of many colors.  As a young dreamer, Joseph rises from being outcast by his jealous brothers to becoming advisor to the Pharaoh in a kaleidoscope of song and dance on the stage.
   dates:
     fort_rob: |
       June 10e, 11e, 12a, 16e, 19a, 22e,
       July 2a, 6a, 9m, 13a, 16m, 19e, 23m, 27a, 30e, 31a,
       August 6e, 7a, 10e, 13a,
   roles_sorting:
-  sponsor:
-    image: security-first-bank.png
 
-- title: Church Basement Ladies
-  short_title: Ladies
+- title: You’re a Good Man Charlie Brown
+  short_title: Charlie
   rating: G
-  color: purple
-  image: church-basement-ladies.png
+  color: yellow
+  image: charlie-brown.png
   opening: 2022-06-24
   writers: |
     MUSIC AND LYRICS BY  
-    Drew Jansen
 
-    LIBRETTO BY  
-    Jim Stowell  
-    Jessica Zuehlke
+    LIBRETTO BY
 
-    INSPIRED BY THE BOOK  
-    _Growing Up Lutheran_  
-    BY  
-    Janet Letnes Martin  
-    Suzann Nelson
   description: |
-    A celebration of the church basement kitchen and the women who work there, _Church Basement Ladies_ features four distinct characters and their relationships as they organize the food and the problems of a rural Minnesota church. From the elderly matriarch of the kitchen to the young bride-to-be learning the proper order of things, the book and music give us a touching, funny look at their lives as we see them handle a record breaking Christmas dinner, the funeral of a dear friend, a Hawaiian Easter Fundraiser, and a steaming hot July wedding. They stave off potential disasters, share and debate recipes, instruct the young, and keep the Pastor on due course while thoroughly enjoying, (and tolerating) each other. Funny and down to earth, you will recognize these ladies as they begin to see the Church year unfold from below the House of God. This is most certainly true!
+    Perfect for the entire family, all the iconic Peanuts characters we adore, including Snoopy, Lucy and lovable Charlie Brown, come to life in this highly entertaining, Tony Award winning musical!
   dates:
     fort_rob: |
       June 24e, 25e, 26a,
       July 5e, 8e, 13e, 24a, 15e, 20a, 23e, 27e, 29e, 30a,
       August 2e, 3e, 5a, 10a, 12e,
   roles_sorting:
-  sponsor:
-    image: footprints.png
-    link: https://footprints.com
 
-- title: Something Rotten!
-  short_title: Rotten
-  rating: H
-  rating_explanation: Nothing in this show is overt, but it is probably not as entertaining for small children.
-  color: red
-  image: something-rotten.jpg
+- title: The Spitfire Grill
+  short_title: Spitfire
+  rating: G
+  color: green
+  image: spitfire.jpg
   opening: 2022-07-01
   writers: |
     BOOK BY  
-    Karey Kirkpatrick  
-    John O'Farrell
 
-    MUSIC & LYRICS BY  
-    Karey Kirkpatrick  
-    Wayne Kirkpatrick
+    MUSIC & LYRICS BY
 
   description: |
-    Two brothers set out to write the world’s first musical in this hilarious mash-up of sixteenth-century Shakespeare and twenty-first-century Broadway!
-
-    Nick and Nigel Bottom are desperate to write a hit play but are stuck in the shadow of that Renaissance rock star known as "The Bard." When a local soothsayer foretells that the future of theatre involves singing, dancing, and acting at the same time, Nick and Nigel set out to write the world’s very first musical.
+    This heart-warming blues & folk tinged musical celebrates second chances. Follow Percy, a young woman who dreams of a new start in a small Wisconsin town. Her unique idea to save the struggling local diner takes the town on a journey of self-discovery while stories, gossip, good coffee and a hot breakfast are all served up at _The Spitfire Grill_. The cherished film version stars Oscar winners Marcia Gay Harden and Ellen Burstyn.
   dates:
     fort_rob: |
       July 1e, 2e, 3a, 8a, 12e, 14e, 16e, 17a, 20e, 22a, 26e, 28e,
       August 3a, 6a, 11e, 14a,
   roles_sorting:
   sponsor:
-    image: big-bats.png
+    image: footprints.png
+    link: https://footprints.com
