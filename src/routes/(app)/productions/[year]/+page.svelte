@@ -27,6 +27,28 @@
   <h3 class="h3 text-center">The 2021 Season was cancelled due to COVID-19.</h3>
 {/if}
 
+{#if year === 2023}
+  <h3 class="h3 text-center">This season is sponsored by:</h3>
+  <ul>
+    <li>
+      <img src="/images/sponsors/csc.jpg" alt="Chadron State College" />
+    </li>
+    <li>
+      <img
+        src="/images/sponsors/g.jpg"
+        alt="Gardner, Loutzenhiser & Ryan, P.C."
+      />
+      (Gardner, Loutzenhiser & Ryan, P.C.)
+    </li>
+    <li>
+      <img
+        src="/images/sponsors/security-first-bank.png"
+        alt="Security First Bank"
+      />
+    </li>
+  </ul>
+{/if}
+
 <MaybeImage src="{[seasonImg]}" alt="All {year} productions" />
 
 {#if site.ticketsAvailable && site.season === year}
