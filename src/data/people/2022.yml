@@ -1055,23 +1055,13 @@
 #
 #
 
-- last_name: Hindman
-  first_name: Tony
-  location: "Hay Springs, NE"
-  groups:
-    - board
-  positions:
-    - President of the Board
-  image_year: 2018
-  image_file: tony-hindman.jpg
-
 - last_name: Visser
   first_name: Janelle
   location: "Hemingford, NE"
   groups:
     - board
   positions:
-    - Vice President of the Board
+    - Acting President of the Board
   image_year: 2019
   image_file: janelle-visser.jpg
 
