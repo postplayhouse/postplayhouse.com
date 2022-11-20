@@ -1,7 +1,7 @@
 - title: Leader of the Pack
   short_title: Leader
   rating: G
-  color: red
+  color: blue
   image: leader.png
   opening: 2022-05-27
   writers: |
@@ -14,17 +14,17 @@
     It will be hard to stay in your seats, as toes will be tapping and spirits will be soaring, in celebration of American songwriter Ellie Greenwich.  This bio-musical follows her from humble beginnings through her illustrious career, jam packed with dozens of billboard hits including "Chapel of Love", "Be My Baby", "Leader of the Pack", "Do-Wah-Diddy" and "River Deep, Mountain High".
   dates:
     fort_rob: |
-      May 27e, 28e, 29a, 31e,
-      June 7e, 15e, 18e, 28e,
-      July 6e, 9e, 15a, 10a, 21e, 23a, 30m,
-      August 4e, 6m, 9e, 13e,
+      May 26e, 27e, 28a, 30e,
+      June 6e, 14e, 17e, 27e,
+      July 5e, 9a, 14a, 20e, 22e, 29a,
+      August 3e, 5e, 8e, 13a,
   roles_sorting:
 
 - title: Clue the Musical
   short_title: Clue
   rating: H
   rating_explanation: It is a comedy, but it is about murder, so consider your kids' ages.
-  color: blue
+  color: purple
   image: clue.jpg
   opening: 2022-06-03
   writers: |
@@ -37,9 +37,9 @@
     Was it Professor Plum in the Library with the Wrench?  Or maybe Ms. Peacock in the Kitchen with the Rope?  Based on the timeless board game, _Clue the Musical_ offers a different ending and plot twists at every single performance, keeping both the audiences and the actors onstage guessing!  A musical romp perfect for the entire family: can you untangle the clues and solve a murder?
   dates:
     fort_rob: |
-      June 3e, 4e, 5a, 8e, 14e, 17e, 21e, 29e,
-      July 7e, 9a, 16a, 22e, 29a,
-      August 5e, 12a,
+      June 2e, 3e, 4a, 7e, 13e, 16e, 20e, 28e,
+      July 6e, 8m, 15a, 21e, 25e, 28a,
+      August 4e, 6a, 11a,
   roles_sorting:
   sponsor:
     image: stuart-trust.png
@@ -47,7 +47,7 @@
 - title: Joseph and the Amazing Technicolor Dreamcoat
   short_title: Joseph
   rating: G
-  color: purple
+  color: green
   image: joseph.jpg
   opening: 2022-06-10
   writers: |
@@ -60,9 +60,9 @@
     An international hit, this entertaining and inspiring spectacle musical tells the age-old Biblical story of Joseph and his coat of many colors.  As a young dreamer, Joseph rises from being outcast by his jealous brothers to becoming advisor to the Pharaoh in a kaleidoscope of song and dance on the stage.
   dates:
     fort_rob: |
-      June 10e, 11e, 12a, 16e, 19a, 22e,
-      July 2a, 6a, 9m, 13a, 16m, 19e, 23m, 27a, 30e, 31a,
-      August 6e, 7a, 10e, 13a,
+      June 9e, 10e, 11a, 15e, 18a, 21e,
+      July 1a, 7a, 8a, 12a, 15m, 18e, 22a, 23a, 26a, 29e,
+      August 5m, 9e, 12a,
   roles_sorting:
 
 - title: You’re a Good Man Charlie Brown
@@ -80,15 +80,15 @@
     Perfect for the entire family, all the iconic Peanuts characters we adore, including Snoopy, Lucy and lovable Charlie Brown, come to life in this highly entertaining, Tony Award winning musical!
   dates:
     fort_rob: |
-      June 24e, 25e, 26a,
-      July 5e, 8e, 13e, 24a, 15e, 20a, 23e, 27e, 29e, 30a,
-      August 2e, 3e, 5a, 10a, 12e,
+      June 23e, 24e, 25a,
+      July 5a, 8e, 12e, 14e, 16a, 19a, 22m, 26e, 28e, 29m,
+      August 2a, 4a, 9a, 11e,
   roles_sorting:
 
 - title: The Spitfire Grill
   short_title: Spitfire
   rating: G
-  color: green
+  color: red
   image: spitfire.jpg
   opening: 2022-07-01
   writers: |
@@ -100,8 +100,9 @@
     This heart-warming blues & folk tinged musical celebrates second chances. Follow Percy, a young woman who dreams of a new start in a small Wisconsin town. Her unique idea to save the struggling local diner takes the town on a journey of self-discovery while stories, gossip, good coffee and a hot breakfast are all served up at _The Spitfire Grill_. The cherished film version stars Oscar winners Marcia Gay Harden and Ellen Burstyn.
   dates:
     fort_rob: |
-      July 1e, 2e, 3a, 8a, 12e, 14e, 16e, 17a, 20e, 22a, 26e, 28e,
-      August 3a, 6a, 11e, 14a,
+      June 30e,
+      July 1e, 2a, 7e, 11e, 13e, 15e, 19e, 21a, 27e, 30a,
+      August 1e, 2e, 5a, 10e, 12e,
   roles_sorting:
   sponsor:
     image: footprints.png
