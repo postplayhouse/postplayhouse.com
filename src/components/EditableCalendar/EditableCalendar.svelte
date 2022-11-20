@@ -13,6 +13,13 @@
 
   $: dates = Array.from(makeDateIterator($schedule))
 
+  $: perfsByProd = $schedule.productions
+    .map((x) => ({ ...x, id: x.shortTitle }))
+    .map((x) => ({
+      ...x,
+      performances: $schedule.performances.filter((y) => y.id === x.id),
+    }))
+
   function handleChoice(
     choice: Omit<PerformanceDetails, "id"> & {
       production: ProductionDetails | null
@@ -214,4 +221,43 @@
       {/each}
     </div>
   {/each}
+</div>
+
+<div class="mt-12">
+  <h2 class="h1">Details</h2>
+  <h3 class="h2 mt-4">Performance Counts</h3>
+  <div class="mt-6 flex justify-between tabular-nums">
+    {#each perfsByProd as prod}
+      <div>
+        <div class="text-3xl font-bold">
+          {prod.longTitle}
+        </div>
+
+        <div class="grid grid-cols-2 justify-end">
+          10am:
+          <div class="text-2xl font-bold opacity-70 justify-self-end">
+            {prod.performances.filter((x) => x.slot === 1).length}
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 justify-end">
+          2pm:
+          <div class="text-2xl font-bold opacity-70 justify-self-end">
+            {prod.performances.filter((x) => x.slot === 2).length}
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 justify-end">
+          8pm:
+          <div class="text-2xl font-bold opacity-70 justify-self-end">
+            {prod.performances.filter((x) => x.slot === 3).length}
+          </div>
+        </div>
+        <div class="mt-4 grid grid-cols-2 gap-4 justify-end">
+          total
+          <div class="text-2xl font-bold opacity-70 justify-self-end">
+            {prod.performances.length}
+          </div>
+        </div>
+      </div>
+    {/each}
+  </div>
 </div>
