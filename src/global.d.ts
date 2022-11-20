@@ -3,6 +3,8 @@
 
 type IAnyFunction = (...args: unknown[]) => unknown
 
+type Callback = () => unknown
+
 type IHash<T> = Record<string, T>
 
 type ConstructTuple<

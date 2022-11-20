@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  export let src = []
+  export let src: string[] = []
 
   const { src: _, alt, ...rest } = $$props
 
@@ -8,27 +8,29 @@
     src = [src]
   }
 
-  function checkImage(imageSrc, good, bad = () => {}) {
+  function checkImage(imageSrc: string, good: Callback, bad = () => {}) {
     var img = new Image()
     img.onload = good
     img.onerror = bad
     img.src = imageSrc
   }
 
-  function report(i) {
-    winningIndex = i < winningIndex ? i : winningIndex
-    winningImage = src[winningIndex]
+  function reportSrcExists(srcIndex: number) {
+    winningSrcIndex = srcIndex < winningSrcIndex ? srcIndex : winningSrcIndex
+    winningSrc = src[winningSrcIndex]
   }
 
-  $: winningImage = null
-  let winningIndex = Infinity
+  // The lowest index for src wins
+  $: winningSrc = undefined as string | undefined
+  let winningSrcIndex = Infinity
 
-  // For SSR, we can render the assumed first image
+  // We render nothing unless mounted in the client. SSR will result in lots of
+  // thrown error noise
   let mounted = false
   onMount(() => {
     mounted = true
-    src.map((path, i) => checkImage(path, () => report(i)))
+    src.forEach((path, i) => checkImage(path, () => reportSrcExists(i)))
   })
 </script>
 
-{#if winningImage}<img src="{winningImage}" alt="{alt}" {...rest} />{/if}
+{#if winningSrc}<img src="{winningSrc}" alt="{alt}" {...rest} />{/if}
