@@ -8,6 +8,7 @@
   import { add } from "date-fns"
   import { onMount } from "svelte"
   import { browser } from "$app/environment"
+  import Annual1 from "$components/slideshow/Lobby2022/Annual1.svelte"
 
   onMount(replaceAfterMount)
 
@@ -67,6 +68,32 @@
 
       console.log(productions[i]![property])
       schedule.set({ performances, productions })
+    }
+  }
+
+  function slotToWebCode(slot: number) {
+    switch (slot) {
+      case 1:
+        return "m"
+      case 2:
+        return "a"
+      case 3:
+        return "e"
+      default:
+        return "WTF"
+    }
+  }
+
+  function slotToPushCardSymbol(slot: number) {
+    switch (slot) {
+      case 1:
+        return "‡"
+      case 2:
+        return "*"
+      case 3:
+        return ""
+      default:
+        return "WTF"
     }
   }
 </script>
@@ -260,4 +287,90 @@
       </div>
     {/each}
   </div>
+
+  <h3 class="h2 mt-8">Performance Dates as push card info</h3>
+  {#each perfsByProd as prod}
+    <div class="text-3xl font-bold mt-4">
+      {prod.longTitle}
+    </div>
+
+    {#if prod.performances.filter((x) => x.month === 5).length > 0}
+      <div class="">
+        May
+        <span class="">
+          {#each prod.performances.filter((x) => x.month === 5) as perf}
+            {perf.day}{slotToPushCardSymbol(perf.slot)},{" "}
+          {/each}
+        </span>
+      </div>
+    {/if}
+
+    <div class="">
+      June
+      <span class="">
+        {#each prod.performances.filter((x) => x.month === 6) as perf}
+          {perf.day}{slotToPushCardSymbol(perf.slot)},{" "}
+        {/each}
+      </span>
+    </div>
+    <div class="">
+      July
+      <span class="">
+        {#each prod.performances.filter((x) => x.month === 7) as perf}
+          {perf.day}{slotToPushCardSymbol(perf.slot)},{" "}
+        {/each}
+      </span>
+    </div>
+    <div class="">
+      August
+      <span class="">
+        {#each prod.performances.filter((x) => x.month === 8) as perf}
+          {perf.day}{slotToPushCardSymbol(perf.slot)},{" "}
+        {/each}
+      </span>
+    </div>
+  {/each}
+
+  <h3 class="h2 mt-8">Performance Dates as website data</h3>
+  {#each perfsByProd as prod}
+    <div class="text-3xl font-bold mt-4">
+      {prod.longTitle}
+    </div>
+
+    {#if prod.performances.filter((x) => x.month === 5).length > 0}
+      <div class="">
+        May
+        <span class="">
+          {#each prod.performances.filter((x) => x.month === 5) as perf}
+            {perf.day}{slotToWebCode(perf.slot)},{" "}
+          {/each}
+        </span>
+      </div>
+    {/if}
+
+    <div class="">
+      June
+      <span class="">
+        {#each prod.performances.filter((x) => x.month === 6) as perf}
+          {perf.day}{slotToWebCode(perf.slot)},{" "}
+        {/each}
+      </span>
+    </div>
+    <div class="">
+      July
+      <span class="">
+        {#each prod.performances.filter((x) => x.month === 7) as perf}
+          {perf.day}{slotToWebCode(perf.slot)},{" "}
+        {/each}
+      </span>
+    </div>
+    <div class="">
+      August
+      <span class="">
+        {#each prod.performances.filter((x) => x.month === 8) as perf}
+          {perf.day}{slotToWebCode(perf.slot)},{" "}
+        {/each}
+      </span>
+    </div>
+  {/each}
 </div>
