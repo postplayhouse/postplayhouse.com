@@ -1,7 +1,7 @@
 - title: Leader of the Pack
   short_title: Leader
   rating: G
-  color: blue
+  color: red
   image: leader.png
   opening: 2022-05-27
   writers: |
@@ -24,7 +24,7 @@
   short_title: Clue
   rating: H
   rating_explanation: It is a comedy, but it is about murder, so consider your kids' ages.
-  color: purple
+  color: blue
   image: clue.jpg
   opening: 2022-06-03
   writers: |
@@ -52,7 +52,7 @@
 - title: Joseph and the Amazing Technicolor Dreamcoat
   short_title: Joseph
   rating: G
-  color: green
+  color: purple
   image: joseph.jpg
   opening: 2022-06-10
   writers: |
@@ -94,7 +94,7 @@
 - title: The Spitfire Grill
   short_title: Spitfire
   rating: G
-  color: red
+  color: green
   image: spitfire.jpg
   opening: 2022-07-01
   writers: |
