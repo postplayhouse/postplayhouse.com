@@ -2,7 +2,7 @@
   short_title: Leader
   rating: G
   color: red
-  image: leader.png
+  image: leader-of-the-pack.png
   opening: 2022-05-27
   writers: |
     MUSIC AND LYRICS BY  
@@ -25,7 +25,7 @@
   rating: H
   rating_explanation: It is a comedy, but it is about murder, so consider your kids' ages.
   color: blue
-  image: clue.jpg
+  image: clue.png
   opening: 2022-06-03
   writers: |
     MUSIC BY  
@@ -53,7 +53,7 @@
   short_title: Joseph
   rating: G
   color: purple
-  image: joseph.jpg
+  image: joseph.png
   opening: 2022-06-10
   writers: |
     MUSIC BY  
@@ -95,7 +95,7 @@
   short_title: Spitfire
   rating: G
   color: green
-  image: spitfire.jpg
+  image: spitfire-grill.png
   opening: 2022-07-01
   writers: |
     MUSIC BY  
