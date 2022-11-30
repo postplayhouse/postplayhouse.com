@@ -69,6 +69,9 @@
       July 1a, 7a, 8a, 12a, 15m, 18e, 22a, 23a, 26a, 29e,
       August 5m, 9e, 12a,
   roles_sorting:
+  sponsor:
+    image: tag.png
+
 
 - title: You’re a Good Man Charlie Brown
   short_title: Charlie
