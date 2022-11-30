@@ -21,7 +21,7 @@
   </div>
 
   <div class="flex-initial text-center mt-8 ml-2 min-w-md">
-    <!-- <TicketsButton /> -->
+    <TicketsButton />
 
     <a
       class="text-green-700 underline sm:block sm:mt-4"
