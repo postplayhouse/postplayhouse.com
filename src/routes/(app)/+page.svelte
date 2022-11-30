@@ -2,6 +2,7 @@
   import Mailer from "$components/Mailer.svelte"
   import Modal from "$components/Modal/Modal.svelte"
   import Openings from "$components/OpeningAnnouncements.svelte"
+  import SeasonAnnounced  from "./news/2022-12-01-announcing-2023-season/+page.svelte"
 
   import type { PageData } from "./$types"
   export let data: PageData
@@ -18,6 +19,11 @@
 <svelte:head>
   <title>Post Playhouse</title>
 </svelte:head>
+
+<div class="mb-32 p-2 max-w-2xl mx-auto">
+  <h1 class="h1 mb-6">2023 Season tickets on sale now!</h1>
+  <SeasonAnnounced />
+</div>
 
 <div class="mb-32 p-2 max-w-2xl mx-auto">
   <Openings productions="{productions}" closingDate="2023-08-13" />
