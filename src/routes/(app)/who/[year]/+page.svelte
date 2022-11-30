@@ -1,7 +1,12 @@
 <script lang="ts">
   import { toPerson } from "$models/Person"
   import Bio from "$components/Bio.svelte"
-  import { sortPeople, personIsOnlyInGroup, groupPeople } from "$helpers"
+  import {
+    sortPeople,
+    personIsOnlyInGroup,
+    groupPeople,
+    sortBoardMembers,
+  } from "$helpers"
 
   import type { PageData } from "./$types"
   export let data: PageData
@@ -19,6 +24,8 @@
     : "Cast, Musicians, Crew, and Staff"
 
   const groupNames = ["rest", "Additional", "Board"] as const
+
+  groupedPeople["Board"] = sortBoardMembers(groupedPeople["Board"])
 </script>
 
 {#each groupNames as groupName}
