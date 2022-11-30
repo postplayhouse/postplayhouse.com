@@ -1,7 +1,7 @@
 <script lang="ts">
   import Mailer from "$components/Mailer.svelte"
   import Modal from "$components/Modal/Modal.svelte"
-  import Openings from "$components/OpeningAnnouncements.svelte"
+  // import Openings from "$components/OpeningAnnouncements.svelte"
   import SeasonAnnounced  from "./news/2022-12-01-announcing-2023-season/+page.svelte"
 
   import type { PageData } from "./$types"
@@ -25,9 +25,9 @@
   <SeasonAnnounced />
 </div>
 
-<div class="mb-32 p-2 max-w-2xl mx-auto">
+<!-- <div class="mb-32 p-2 max-w-2xl mx-auto">
   <Openings productions="{productions}" closingDate="2023-08-13" />
-</div>
+</div> -->
 
 <div class="md:flex flex-row-reverse items-stretch">
   <section class=" mb-2">
