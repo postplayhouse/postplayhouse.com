@@ -81,37 +81,34 @@
 #
 #
 
-- last_name: Hindman
-  first_name: Tony
-  location: "Hay Springs, NE"
-  groups:
-    - board
-  positions:
-    - President of the Board
-  image_year: 2018
-  image_file: tony-hindman.jpg
-
 - last_name: Visser
   first_name: Janelle
   location: "Hemingford, NE"
   groups:
     - board
   positions:
-    - Vice President of the Board
+    - President of the Board
   image_year: 2019
   image_file: janelle-visser.jpg
 
-- last_name: Espinoza
-  first_name: Jess
-  location: "Crawford, Nebraska"
+- last_name: Seiler
+  first_name: Wally
+  location: "Alliance, NE"
+  groups:
+    - board
+  positions:
+    - Vice President of the Board
+  image_year: 2015
+  image_file: wally-seiler.jpg
+
+- last_name: Helmbrecht
+  first_name: Alex
+  # location: "Hay Springs, NE"
   groups:
     - board
   positions:
     - Secretary
-  bio: >
-    Crawford Clipper/Harrison Sun LLC
-  image_year: 2017
-  image_file: jess-espinoza.jpg
+  image_year: 2022
 
 - last_name: Gaswick
   first_name: Tim
@@ -125,13 +122,16 @@
   image_year: 2015
   image_file: tim-gaswick.jpg
 
-- last_name: Helmbrecht
-  first_name: Alex
-  # location: "Hay Springs, NE"
+- last_name: Espinoza
+  first_name: Jess
+  location: "Crawford, Nebraska"
   groups:
     - board
   positions:
-  image_year: 2022
+  bio: >
+    Crawford Clipper/Harrison Sun LLC
+  image_year: 2017
+  image_file: jess-espinoza.jpg
 
 - last_name: Mohr
   first_name: Jeanine
@@ -152,15 +152,6 @@
     Chadron State College
   image_year: 2015
   image_file: randy-rhine.jpg
-
-- last_name: Seiler
-  first_name: Wally
-  location: "Alliance, NE"
-  groups:
-    - board
-  positions:
-  image_year: 2015
-  image_file: wally-seiler.jpg
 
 - last_name: Watson
   first_name: Matt
