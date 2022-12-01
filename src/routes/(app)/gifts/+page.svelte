@@ -4,7 +4,7 @@
   const title = "Gifts"
 
   const now_year = new Date().getFullYear()
-  const is_holidays = dateIsBetween(`10/01/${now_year}`, `12/10/${now_year}`)
+  const is_holidays = dateIsBetween(`10/01/${now_year}`, `12/15/${now_year}`)
 </script>
 
 <svelte:head>
@@ -25,7 +25,7 @@
 
     <p>
       If you've purchased a Season Subscription or a Gift Certificate prior to
-      December 10 through our <a class="link-green" href="{site.ticketsLink}"
+      December 15th through our <a class="link-green" href="{site.ticketsLink}"
         >Online Box Office</a
       >, we will contact you via email and ask if you would like us to send you
       a pre-filled Subscription Card or Gift Certificate to present as a gift.
@@ -71,7 +71,7 @@
     download
     class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
     ><img
-      src="/documents/subscription-card.png"
+      src="/documents/subscription-card.jpg"
       alt="Subscription Card"
       class="max-w-md"
     /></a
