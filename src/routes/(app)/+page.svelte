@@ -1,10 +1,13 @@
 <script lang="ts">
   import Mailer from "$components/Mailer.svelte"
   import Modal from "$components/Modal/Modal.svelte"
-  import Openings from "$components/OpeningAnnouncements.svelte"
+  // import Openings from "$components/OpeningAnnouncements.svelte"
+  import SeasonAnnounced  from "./news/2022-12-01-announcing-2023-season/+page.svelte"
 
   import type { PageData } from "./$types"
   export let data: PageData
+
+  const { productions } = data
 
   $: showMailingList = false
 
@@ -18,35 +21,13 @@
 </svelte:head>
 
 <div class="mb-32 p-2 max-w-2xl mx-auto">
-  <h3 class="h1 my-8">Thank you for a wonderful season!</h3>
-
-  <p class="text-3xl my-8">
-    We were delighted to bring you a summer season full of entertainment!
-  </p>
-
-  <div class="my-4 space-y-4 text-lg">
-    <p>
-      The Board of Directors of the Post Playhouse wants to thank everyone
-      involved in the Post for another great year. 2022 was a remarkable
-      “comeback” season that everyone should be proud of.
-    </p>
-    <p>
-      We particularly want to thank Tom Ossowski for <a
-        href="/news/2022-08-14-tom-says-goodbye"
-        class="link-green">his many years of service</a
-      >
-      to the Post Playhouse. His leadership, artistic approach, and positive attitude
-      elevated the Post Playhouse to what it is today. For that, we are eternally
-      grateful.
-    </p>
-    <p>
-      The Board now turns its attention to the 2023 season, as well as <a
-        class="link-green"
-        href="/jobs">hiring a new artistic director</a
-      > to continuing our mission. See you next season!
-    </p>
-  </div>
+  <h1 class="h1 mb-6">2023 Season tickets on sale now!</h1>
+  <SeasonAnnounced />
 </div>
+
+<!-- <div class="mb-32 p-2 max-w-2xl mx-auto">
+  <Openings productions="{productions}" closingDate="2023-08-13" />
+</div> -->
 
 <div class="md:flex flex-row-reverse items-stretch">
   <section class=" mb-2">

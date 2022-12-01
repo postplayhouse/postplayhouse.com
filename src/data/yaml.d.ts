@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 namespace Date {
-  type Year = 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | 2021 | 2022
+  type Year = 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | 2021 | 2022 | 2023
   type Month = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
   type Day =
     | 1

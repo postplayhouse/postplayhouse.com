@@ -57,15 +57,42 @@ export function personHasPositionStartingWith(
   )
 }
 
+function peopleSortFn(a: YamlPerson, b: YamlPerson) {
+  const aName = (a.sort_name || "") + a.last_name + a.first_name
+  const bName = (b.sort_name || "") + b.last_name + b.first_name
+  return aName.localeCompare(bName)
+}
+
 /**
  * Sorts people by board membership, board positions of note, then name.
  * Non-board members come first.
  */
 export function sortPeople(arrayOfPeople: YamlPerson[]) {
-  return arrayOfPeople.slice(0).sort(function (a, b) {
-    const aName = (a.sort_name || "") + a.last_name + a.first_name
-    const bName = (b.sort_name || "") + b.last_name + b.first_name
-    return aName.localeCompare(bName)
+  return arrayOfPeople.slice(0).sort(peopleSortFn)
+}
+
+const boardPositions = ["President", "Vice President", "Secretary", "Treasurer"]
+
+/**
+ * Sorts board members who have positions to the front of the line, by position,
+ * then by name.
+ */
+export function sortBoardMembers(arrayOfPeople: YamlPerson[]) {
+  return arrayOfPeople.slice(0).sort((a, b) => {
+    if ((a.positions?.length || 0) === 0 && (b.positions?.length || 0) === 0) {
+      return peopleSortFn(a, b)
+    }
+    if ((a.positions?.length || 0) === 0) return 1
+    if ((b.positions?.length || 0) === 0) return -1
+
+    const aPos = boardPositions.findIndex((x) =>
+      a.positions?.[0]?.startsWith(x),
+    )
+    const bPos = boardPositions.findIndex((x) =>
+      b.positions?.[0]?.startsWith(x),
+    )
+
+    return aPos - bPos
   })
 }
 
