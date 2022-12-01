@@ -31,6 +31,8 @@ const imagePreprocessor = svelteImage({
     "images/2018",
     "images/2019",
     "images/2020",
+    "images/2022",
+    "images/2023",
   ],
   processFoldersRecursively: true,
   processFoldersSizes: true,
