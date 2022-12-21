@@ -34,9 +34,9 @@ Please contact the box office at { site.boxOfficePhone } or email us at [tom@pos
 You can also send donations via mail:
 
 Post Playhouse  
-c/o Tim Gaswick  
-H&R Block  
-P.O. Box 749  
+c/o Jim Gardner  
+Casey Peterson LTD  
+PO Box 447  
 Chadron, NE 69337
 
 Please make all checks payable to Post Playhouse and include your name, mailing address, and email address so we can contact you regarding your benefits.
@@ -55,11 +55,11 @@ All Sponsor benefits plus name recognition in the theatre lobby and in our annua
 
 All Sustainer benefits plus 2 complimentary tickets and invitations to an opening night performance and celebration of 1 show of your choice
 
-### Artistic Director’s Society: $1,000 -- $4,999
+### Artistic Director’s Society: $1,000 -- $5,999
 
 All Signature Supporter benefits plus 2 more tickets and invitations to an opening night celebration
 
-### Show Sponsor: $5,000 -- $9,999
+### Show Sponsor: $6,000 -- $9,999
 
 All Artistic Director’s Society benefits plus 6 additional complimentary tickets (10 total) to the opening night performance and celebration of your sponsored show. Complimentary pre-show buffet for opening night for your 10 guests at the Fort Robinson Restaurant in the Lodge. Your name will receive recognition in the preshow announcement for each performance. Other perks include a behind the scenes tour, name recognition on our website, highway signs, and many other printed materials.
 
