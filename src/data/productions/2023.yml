@@ -3,7 +3,7 @@
   rating: G
   color: red
   image: leader-of-the-pack.png
-  opening: 2022-05-27
+  opening: 2023-05-26
   writers: |
     MUSIC AND LYRICS BY  
     Ellie Greenwich
@@ -26,7 +26,7 @@
   rating_explanation: It is a comedy, but it is about murder, so consider your kids' ages.
   color: blue
   image: clue.png
-  opening: 2022-06-03
+  opening: 2023-06-02
   writers: |
     MUSIC BY  
     Galen Blum   
@@ -54,7 +54,7 @@
   rating: G
   color: purple
   image: joseph.png
-  opening: 2022-06-10
+  opening: 2023-06-09
   writers: |
     MUSIC BY  
     Andrew Lloyd Webber
@@ -72,13 +72,12 @@
   sponsor:
     image: tag.png
 
-
 - title: You’re a Good Man Charlie Brown
   short_title: Charlie
   rating: G
   color: yellow
   image: charlie-brown.png
-  opening: 2022-06-24
+  opening: 2023-06-23
   writers: |
     MUSIC AND LYRICS BY  
     Clark Gesner
@@ -99,7 +98,7 @@
   rating: G
   color: green
   image: spitfire-grill.png
-  opening: 2022-07-01
+  opening: 2023-06-30
   writers: |
     MUSIC BY  
     James Valcq
