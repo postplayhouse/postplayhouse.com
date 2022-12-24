@@ -1,7 +1,7 @@
 ---
 title: "Producing Artistic Director"
-website: true
-feed: true
+website: false
+feed: false
 ---
 
 ## Producing Artistic Director
