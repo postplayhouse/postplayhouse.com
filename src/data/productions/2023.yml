@@ -19,6 +19,8 @@
       July 5e, 9a, 14a, 20e, 22e, 29a,
       August 3e, 5e, 8e, 13a,
   roles_sorting:
+  sponsor:
+    image: westco.png
 
 - title: Clue the Musical
   short_title: Clue
