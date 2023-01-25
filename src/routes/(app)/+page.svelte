@@ -22,20 +22,30 @@
 
 <a
   class="block mb-16 p-6 max-w-2xl mx-auto bg-green-100 shadow-md border border-green-400 hover:border-green-600 hover:shadow-lg hover:scale-105 transform-gpu transition-all group"
+  href="/jobs"
+>
+  <h1 class="h2 mb-2 group-hover:underline">Announcing auditions for 2023!</h1>
+  <p>
+    Seeking professional actors from across the country. Local actor auditions
+    will be announced soon as well!
+  </p>
+  <div class="link-green mt-2 text-right">Read the entire job posting</div>
+</a>
+
+<a
+  class="block mb-16 p-6 max-w-2xl mx-auto bg-green-100 shadow-md border border-green-400 hover:border-green-600 hover:shadow-lg hover:scale-105 transform-gpu transition-all group"
   href="/news/2023-01-13-new-artistic-director-announced"
 >
-  <h1 class="h2 mb-4 group-hover:underline">
+  <h1 class="h2 mb-2 group-hover:underline">
     Meet Our New Artistic Director... <br />Andy Meyers!
   </h1>
   <p>
-    “Being able to celebrate our awesome and historic venue this summer is going
-    to be so rewarding. I love being part of a tight knit community and just
-    cannot wait to be part of the community in Northwest Nebraska!”
+    “I love being part of a tight knit community and just cannot wait to be part
+    of the community in Northwest Nebraska!”
   </p>
 
-  <div class="link-green mt-4 text-right">Read the entire announcement</div>
+  <div class="link-green mt-2 text-right">Read the entire announcement</div>
 </a>
-
 <div class="mb-32 p-2 max-w-2xl mx-auto">
   <h1 class="h1 mb-6">2023 Season tickets on sale now!</h1>
   <SeasonAnnounced />
