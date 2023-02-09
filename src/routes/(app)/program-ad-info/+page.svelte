@@ -96,7 +96,7 @@ using your fully-licensed font, and send that to Don.
 
 You may _request_ a font, but if Don doesn't have access to it in his design
 tools, he cannot purchase or use it in your ad. He also cannot accept a font
-file from you unless the proper licencing information also accompanies the file.
+file from you unless the proper licensing information also accompanies the file.
 
 ## Additional, helpful materials to send us
 
@@ -109,10 +109,10 @@ examples as well.
 - If you have an **in-house designer**, or just the **contact information of the
 person that designed your logo**, you can send that as well. Don may not
 actually reach out to that person, but if he needs a better resolution of your
-logo, thier contact information can save several steps.
+logo, their contact information can save several steps.
 
 - If you have the **original logo design files** for your company's logo, please
-send those as well. In the last 12 years, Don has recieved about 4 logos that
+send those as well. In the last 12 years, Don has received about 4 logos that
 were a large enough resolution that he didn't have to go back and ask for a
 better/bigger one. Most of the time, someone at the company could locate a
 better file.
