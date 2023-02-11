@@ -3,11 +3,12 @@
   import TicketPolicy from "$components/TicketPolicy.md"
   import Mailer from "$components/Mailer.svelte"
   import Modal from "$components/Modal/Modal.svelte"
+  import site from "$data/site"
 
   import type { PageData } from "./$types"
   export let data: PageData
-  const { site } = data
-  const productions = data.yaml.productions[site.season]!
+
+  const { productions } = data
 
   $: showMailingList = false
 

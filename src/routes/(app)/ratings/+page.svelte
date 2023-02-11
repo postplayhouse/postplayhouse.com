@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { PageData } from "./$types"
   export let data: PageData
-  const productions = data.yaml.productions[data.site.season]!
+  const { productions } = data
 </script>
 
 <div class="via-markdown">
