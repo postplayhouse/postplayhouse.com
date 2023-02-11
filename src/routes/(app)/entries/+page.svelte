@@ -1,6 +1,5 @@
 <script lang="ts">
-  const yearsWithPages = [2019, 2020]
-  const yearsWithCalendars = [2020]
+  import { yearsWithCalendars, yearsWithPages } from "$data/site"
 
   const routes = [
     "/",

@@ -17,7 +17,7 @@ const boxOfficePhone = "1-888-665-1976"
 
 // All of this "site" data should eventually be moved to a better place for
 // Sapper. For now, for backward compatibility, it is all just here.
-export default {
+export const site = {
   baseurl: "",
   url,
   maintainerEmail: "don@postplayhouse.com",
@@ -34,3 +34,13 @@ export default {
   ticketsLink: "https://postplayhouse.showare.com/",
   ticketsAvailable,
 } as const
+
+export const yearsWithPages = [2019, 2020, 2021, 2022, 2023]
+export const yearsWithCalendars = [2020, 2021, 2022, 2023]
+
+if (!yearsWithCalendars.includes(site.season))
+  throw new Error(
+    "Don't forget to add new seasons here so they appear after the next season rolls over",
+  )
+
+export default site
