@@ -101,7 +101,7 @@ const config = {
 
   kit: {
     adapter: adapter(),
-    prerender: { onError: "continue" },
+    prerender: { handleHttpError: "warn", handleMissingId: "warn" },
   },
 }
 
