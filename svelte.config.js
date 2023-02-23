@@ -100,7 +100,7 @@ const config = {
   ]),
 
   kit: {
-    adapter: adapter(),
+    adapter: adapter({ split: true }),
     prerender: { handleHttpError: "warn", handleMissingId: "warn" },
   },
 }
