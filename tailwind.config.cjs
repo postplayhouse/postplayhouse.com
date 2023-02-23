@@ -7,7 +7,6 @@ const config = {
     extend: {
       borderWidth: { 6: "6px" },
       fontFamily: {
-        // @ts-expect-error
         sans: ["metropolis", ...defaultTheme.fontFamily.sans],
         uber: ["azo-sans-uber", "Arial Black"],
       },
@@ -64,6 +63,8 @@ const config = {
   plugins: [
     plugin(function ({ addUtilities, theme, e }) {
       const spacing = theme("spacing")
+
+      if (!spacing) throw new Error("No spacing exists in the tailwind theme.")
 
       const indents = Object.entries(spacing).map(([name, distance]) => ({
         [`.${e(`text-indent-${name}`)}`]: {
