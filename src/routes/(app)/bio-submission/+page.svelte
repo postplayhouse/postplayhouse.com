@@ -37,11 +37,11 @@
 
   let productions = [
     "Entire Season",
-    "The Sound of Music",
-    "Church Basement Ladies",
-    "Damn Yankees",
-    "Something Rotten!",
-    "Desperate Measures",
+    "Leader of the Pack",
+    "Clue the Musical",
+    "Joseph and the Amazing Technicolor Dreamcoat",
+    "You're a Good Man Charlie Brown",
+    "The Spitfire Grill",
   ]
   let roles: Person["roles"] = []
   let staffPositions: Person["staffPositions"] = []
