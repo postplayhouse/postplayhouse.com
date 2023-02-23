@@ -320,6 +320,7 @@
             return (state = states.error)
           }
           case events.sendHeadshotBioSuccess: {
+            handleNotify()
             return (state = states.success)
           }
           default:
@@ -561,6 +562,18 @@ ${email}
         dispatch(events.sendHeadshotBioSuccess)
       })
       .catch(() => dispatch(events.sendHeadshotBioFailure))
+  }
+
+  function handleNotify() {
+    // This notification is icing on the cake, so it doesn't really matter if it
+    // fails.
+    window.fetch(`/api/bio-submission/notify`, {
+      method: "POST",
+      headers: new Headers({
+        Authorization: sanitizedPassphrase(passphrase),
+      }),
+      body: JSON.stringify({ name: `${firstName} ${lastName}` }),
+    })
   }
 
   const submitCreds = () => dispatch(events.requestAuth)
