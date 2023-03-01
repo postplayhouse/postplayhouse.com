@@ -18,7 +18,7 @@
     title="Donate to Post Playhouse"
     name="ELEOForm"
     id="ELEOForm"
-    style="width:100%;max-width:900px;min-height:1000px;border-width:0px;border-style:none;"
+    style="width:100%;max-width:900px;min-height:1100px;border-width:0px;border-style:none;"
     scrolling="no"
     src="https://www.eleoonline.net/Pages/WebForms/Mobile/ShowFormMobile.aspx?id=f790c257-b67f-4508-9ff9-0fc3a16f04d2&linkto=670"
   ></iframe>
