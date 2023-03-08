@@ -1,7 +1,7 @@
 ---
 title: Professional Actor Auditions for our 2023 Season
-website: true
-feed: true
+website: false
+feed: false
 ---
 
 Producing Artistic Director Andy Meyers is now accepting auditions for the 2023
