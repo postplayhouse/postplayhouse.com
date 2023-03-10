@@ -35,8 +35,10 @@
   let email = ""
   let useOldHeadshot = false
 
+  const ENTIRE_SEASON = "Entire Season"
+
   let productions = [
-    "Entire Season",
+    ENTIRE_SEASON,
     "Leader of the Pack",
     "Clue the Musical",
     "Joseph and the Amazing Technicolor Dreamcoat",
@@ -420,7 +422,13 @@
       })
     }
 
+    const entireSeasonRolesAsYaml = localRoles
+      .filter((r) => r.productionName === ENTIRE_SEASON)
+      .map((r) => r.positions.map((p) => `    - ${p.trim()}`).join("\n"))
+      .join("\n")
+
     const yamlRoles = localRoles
+      .filter((r) => r.productionName !== ENTIRE_SEASON)
       .map(
         (r) =>
           `    ${r.productionName}:\n${r.positions
@@ -439,6 +447,8 @@
       `  image_year: ${site.season}`,
       `  location: "${location.trim()}"`,
       includeGroups && `  groups:\n${allGroups}`,
+      `  staff_positions:\n${entireSeasonRolesAsYaml}`,
+      `  production_positions:`,
       `  roles:\n${yamlRoles}`,
       !addLongerBio && `  bio: |\n    ${bio.trim()}`,
       addLongerBio && `program_bio: |\n    ${bio.trim()}`,
@@ -513,8 +523,8 @@ longer bio words: ${addLongerBio ? longerBioWordCount : "n/a"}
 
 Don't forget:
 
-1. change \`roles\` to \`production_positions\` for non-cast members
-2. move anything from \`Entire Season\` to \`staff_positions\`
+1. delete either \`roles:\` (for non-cast members) or \`production_positions:\` (for cast members)
+2. double check everything in \`staff_positions\`
 3. delete all incorrect group memberships for each person
 4. if two bios, change \`longer_website_bio\` to \`bio\`
 
