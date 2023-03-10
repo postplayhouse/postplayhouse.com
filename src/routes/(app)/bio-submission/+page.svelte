@@ -500,9 +500,9 @@ ${yamlBody({ fillRoles: true })}
   }
 
   async function handleSubmit() {
-    const basename = `${safeName(firstName)}-${safeName(
+    const basename = `${Date.now()}-${safeName(firstName)}-${safeName(
       lastName,
-    )}_${Date.now()}`
+    )}`
 
     let bioTries = 0
     let headshotTries = 0
