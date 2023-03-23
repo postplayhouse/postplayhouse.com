@@ -22,18 +22,6 @@
 
 <a
   class="block mb-16 p-6 max-w-2xl mx-auto bg-green-100 shadow-md border border-green-400 hover:border-green-600 hover:shadow-lg hover:scale-105 transform-gpu transition-all group"
-  href="/jobs"
->
-  <h1 class="h2 mb-2 group-hover:underline">Announcing auditions for 2023!</h1>
-  <p>
-    Seeking professional actors from across the country. Local actor auditions
-    will be announced soon as well!
-  </p>
-  <div class="link-green mt-2 text-right">Read the entire job posting</div>
-</a>
-
-<a
-  class="block mb-16 p-6 max-w-2xl mx-auto bg-green-100 shadow-md border border-green-400 hover:border-green-600 hover:shadow-lg hover:scale-105 transform-gpu transition-all group"
   href="/news/2023-01-13-new-artistic-director-announced"
 >
   <h1 class="h2 mb-2 group-hover:underline">
