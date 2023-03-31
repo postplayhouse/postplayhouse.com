@@ -43,7 +43,10 @@
       {groupName === "rest" ? generalGroupName : groupName}
     </h2>
     {#each groupedPeople[groupName] as person}
-      <Bio person="{toPerson(person)}" />
+      <Bio
+        person="{toPerson(person)}"
+        hideProductionRoles="{shouldFilterActors}"
+      />
     {/each}
   {/if}
 {/each}

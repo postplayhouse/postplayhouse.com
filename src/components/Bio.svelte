@@ -5,6 +5,8 @@
   import MaybeImage from "./MaybeImage.svelte"
   import type { Person } from "$models/Person"
 
+  export let hideProductionRoles: boolean = false
+
   export let person: Pick<
     Person,
     | "productionPositions"
@@ -76,13 +78,15 @@
         </li>
       {/each}
 
-      {#each person.roles as positionObj}
-        <li class="pl-4 -text-indent-4">
-          {positionObj.productionName}
-          &mdash;
-          {positionObj.positions.join(", ")}
-        </li>
-      {/each}
+      {#if person.roles && !hideProductionRoles}
+        {#each person.roles as positionObj}
+          <li class="pl-4 -text-indent-4">
+            {positionObj.productionName}
+            &mdash;
+            {positionObj.positions.join(", ")}
+          </li>
+        {/each}
+      {/if}
     {/if}
   </ul>
 
