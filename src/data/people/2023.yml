@@ -311,6 +311,84 @@
   bio: |
     Originally from Elberta, Alabama and a graduate of the Bachelor of Fine Arts (Acting) Program at the University of Southern Mississippi (2021), Elizabeth quickly dove into the world of technical theatre when she stage managed Perseverance Productions’ *A Christmas Carol* National Tour in 2021. She returned to *A Christmas Carol* in 2022 to both act in (Millie, Ensemble) and company manage the tour. She also spent several months last year working on and acting in shows in Farmington, NM. These shows include *The Music Man* (Ensemble), *The Pirates of Penzance* (Daughter/Policeman), *Annie* (Lily), and *Sweeney Todd* (Featured Soloist). She also stage managed the World Premiere of *Gene Kelly’s Lost Musical*. She is thrilled to be a part of both the production team and cast this summer at Post Playhouse!
 
+- last_name: Cathey
+  first_name: Mariah
+  image_year: 2023
+  location: "Billings, MT"
+  groups:
+    - cast
+    - crew
+  production_positions:
+    The Spitfire Grill:
+      - Deck Stage Manager
+  roles:
+    Leader of the Pack:
+      - Mickey
+    Joseph and the Amazing Technicolor Dreamcoat:
+      - Potipher's Wife
+  bio: |
+    Making her Post Playhouse debut, Mariah Cathey is thrilled to be part of the 2023 season. Originally from Culbertson, MT, she looks forward to any opportunity to share her passion for theatre. Mariah spent the last nine years at Fort Peck Summer Theatre in shows such as *Mamma Mia*, *Peter Pan*, as well as a fan favorite, *Grease*. Mariah is currently pursuing a degree at Rocky Mountain College in Theatre Arts: Performance and cheerleading on the RMC Cheer Team. She hopes to continue sharing her talents with everyone for years to come. She would like to thank her mother, Kelly, and her sister, Michaela, for always supporting her. Most of all, she would like to thank Andy Meyers for helping her find her voice.
+
+- last_name: Mammano
+  first_name: Sydney
+  image_year: 2023
+  location: "South Jordan, UT"
+  groups:
+    - creative
+  staff_positions:
+    - Assistant Media and Scenic Design
+  bio: |
+    Syd is beyond excited to be working at Post Playhouse for the first time. She is even more excited to be working with her friend Stephen Seder with scenic design and media this season. Syd was recently found at the Arizona Theatre Company as the stage management apprentice where worked on shows *Cinderella*, *An American in Paris*, and *Chorus Line.* She wants to thank her family for being there for her and her best friend Kate for always pushing her and encouraging her. Thank you to you too for watching!
+
+- last_name: Callahan
+  first_name: Michael
+  image_year: 2023
+  location: "New York City, NY"
+  groups:
+    - creative
+  production_positions:
+    Leader of the Pack:
+      - Choreographer
+    Clue the Musical:
+      - Choreographer
+  bio: |
+    Michael Callahan is so excited to be working at Post Playhouse this summer. Michael is a Performer/Choreographer based out of New York City. Originally from Louisville, Kentucky, Michael studied at The Youth Performing Arts School, Broadway Theatre Project, and Interlochen Arts Academy. He went on to earn his B.F.A. in Musical Theatre from Elon University. Broadway credits include *Aladdin* (Dance Captain/Fight Captain/Swing/u/s Iago) and *Cinderella* (Raccoon/u/s Jean-Michel). National Tours include *Aladdin*,  *Cinderella*. Regionally, he has worked with Musical Theatre Louisville, Asolo Repertory Theatre, Ogunquit Playhouse, Sacramento Music Circus, Goodspeed Opera House, Transcendence Theatre Company, Maltz Jupiter Theatre, TUTS, Hangar Theatre and Derby Dinner Playhouse. Currently, Michael is in the Broadway Production of *Aladdin the Musical* and is the Dance Supervisor of *Aladdin*-Mexico City. www.michaelcallahan.me
+
+- last_name: Romandine
+  first_name: Connor
+  image_year: 2023
+  location: "Oconto Falls, WI"
+  groups:
+    - cast
+  roles:
+    Leader of the Pack:
+      - Keith/Ensemble
+    Joseph and the Amazing Technicolor Dreamcoat:
+      - Simeon
+    You're a Good Man Charlie Brown:
+      - Snoopy
+  bio: |
+    Connor is so excited to be making his Post Playhouse Debut this year! Connor is currently studying at the University of Montana for his BFA in musical theater.  He has recently been a part of productions of both *She Loves me* and *Cabaret*. Connor would like to thank his entire family for all the love and support they give him!
+
+- last_name: Court
+  first_name: Haley Alexa
+  image_year: 2023
+  location: "New York City, NY"
+  groups:
+    - cast
+  roles:
+    Leader of the Pack:
+      - Annie Golden
+    Clue the Musical:
+      - Miss Scarlet
+    Joseph and the Amazing Technicolor Dreamcoat:
+      - Zebulum
+      - u/s Narrator
+    You're a Good Man Charlie Brown:
+      - Sally
+  bio: |
+    Haley is eager and excited to be making her Post Playhouse debut! While her roots are in Missoula, Montana, she is currently living in NYC. Her most recent performance in the new musical *My True Love* was featured at the 2023 Spark Theatre Festival. She has been featured at Fort Peck Summer Theatre and Bigfork Summer Playhouse. Favorite roles include Suzy in *The Marvelous Wonderettes*, Gertrude McFuzz in *Seussical*, Heidi in *[title of show]*, Little Sally in *Urinetown*, Columbia in *The Rocky Horror Show LIVE!*, and Logainne Schwartzy in *The 25th Annual Putnam County Spelling Bee*. Haley is forever thankful for the endless love and support of her friends and family!
+
 #
 #
 #
@@ -360,17 +438,21 @@
     - Secretary
   image_year: 2022
 
-- last_name: Gaswick
-  first_name: Tim
+- last_name: Gardner
+  first_name: Jim
+  image_year: 2023
   location: "Chadron, NE"
   groups:
     - board
   positions:
     - Treasurer
-  bio: >
-    H & R Block
-  image_year: 2015
-  image_file: tim-gaswick.jpg
+
+- last_name: Lecher
+  first_name: Danielle
+  image_year: 2023
+  location: "Chadron, NE"
+  groups:
+    - board
 
 - last_name: Mohr
   first_name: Jeanine
@@ -380,6 +462,13 @@
   positions:
   image_year: 2016
   image_file: jeanine-mohr.jpg
+
+- last_name: Redden
+  first_name: Ali
+  image_year: 2023
+  location: "Crawford, NE"
+  groups:
+    - board
 
 - last_name: Rhine
   first_name: Randy
