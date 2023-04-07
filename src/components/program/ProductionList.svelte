@@ -60,16 +60,25 @@
 </script>
 
 {#if unknownPositions.length > 0}
-  <div class="my-4">
-    <p>
-      WARNING: Unknown positions exist. These may not be sorted in a desireable
-      way.
-    </p>
-    <ol>
-      {#each unknownPositions as unknownPosition}
-        <li>{unknownPosition}</li>
+  <div class="my-4 bg-yellow-200 border border-yellow-500">
+    <p>Unknown positions exist. (Can't sort these without a website update.)</p>
+    <ul class="unknown-positions people-list">
+      {#each unknownPositions as position}
+        {#each people as person}
+          {#each person.productionPositions as personPosition}
+            {#if positionIsForProduction(personPosition)}
+              {#if personPosition.positions.includes(position)}
+                <li>
+                  <span class="position">{position}</span>
+                  <span class="separator"></span>
+                  <span class="fulfiller">{person.name}</span>
+                </li>
+              {/if}
+            {/if}
+          {/each}
+        {/each}
       {/each}
-    </ol>
+    </ul>
   </div>
 {/if}
 
