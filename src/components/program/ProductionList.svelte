@@ -6,6 +6,7 @@
   const sortedPositions = [
     "Director",
     "Choreographer",
+    "Director/Choreographer",
     "Music Director",
     "Assistant Director",
     "Production Stage Manager",
@@ -16,6 +17,7 @@
     "Technical Director",
     "Rehearsal Stage Manager",
     "Assistant Stage Manager",
+    "Deck Stage Manager",
     "Backstage Manager",
     "Calling Stage Manager",
     "Master Electrician",
@@ -30,6 +32,7 @@
     "First Keys/Conductor",
     "Second Keys",
     "Third Keys",
+    "Pit Keys",
     "Bassist",
     "Bass",
     "Drummer",
