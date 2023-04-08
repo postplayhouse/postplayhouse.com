@@ -2,11 +2,10 @@ import { env } from "$env/dynamic/private"
 import { assert } from "$helpers"
 import { json } from "@sveltejs/kit"
 import { passphraseIsCorrect } from "../passphraseHelpers"
-import type { RequestHandler } from "./$types"
 
 const slackUrl = env["SLACK_WEBHOOK_URL"]
 
-export const POST: RequestHandler = async ({ request }) => {
+export const POST = async ({ request }) => {
   assert(slackUrl, "no slackUrl from ENV")
 
   if (!passphraseIsCorrect(request)) return new Response("", { status: 403 })

@@ -8,8 +8,7 @@
     sortBoardMembers,
   } from "$helpers"
 
-  import type { PageData } from "./$types"
-  export let data: PageData
+  export let data
   const { site, year, people: people_ } = data
 
   const shouldFilterActors =

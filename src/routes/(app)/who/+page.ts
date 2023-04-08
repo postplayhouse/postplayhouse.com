@@ -1,7 +1,6 @@
 import { error } from "@sveltejs/kit"
-import type { PageLoad } from "./$types"
 
-export const load: PageLoad = async (obj) => {
+export async function load(obj) {
   // the `year` parameter is available because
   // this file is called [year].svelte
   const res = await obj.fetch(`data/people.json`)

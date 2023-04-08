@@ -7,8 +7,7 @@
 <script lang="ts">
   import Slideshow from "$components/slideshow/Lobby2022.svelte"
 
-  import type { PageData } from "./$types"
-  export let data: PageData
+  export let data
 </script>
 
 <Slideshow actors="{data.people}" />

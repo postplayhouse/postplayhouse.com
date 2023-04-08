@@ -1,11 +1,10 @@
 import { error } from "@sveltejs/kit"
-import type { PageLoad } from "./$types"
 import site from "$data/site"
 import { marked } from "marked"
 
 marked.setOptions({ smartypants: true })
 
-export const load: PageLoad = async (obj) => {
+export async function load(obj) {
   const peopleRes = await obj.fetch(`/data/people/${site.season}.json`)
   const peopleData = await peopleRes.json()
   if (peopleRes.status !== 200) throw error(500, peopleData.message)

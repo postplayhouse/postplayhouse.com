@@ -2,7 +2,6 @@ import { env } from "$env/dynamic/private"
 import { assert } from "$helpers"
 import { error, json } from "@sveltejs/kit"
 import { passphraseIsCorrect } from "../passphraseHelpers"
-import type { RequestHandler } from "./$types"
 import type { AuthorizeAccountSuccessResponse } from "./b2-types"
 
 type GetAuthorizeAccountResponse = AuthorizeAccountSuccessResponse
@@ -34,7 +33,7 @@ const authorizeEndpoint =
 
 const headers = new Headers({ Authorization: auth })
 
-export const GET: RequestHandler = async ({ request }) => {
+export const GET = async ({ request }) => {
   assert(b2Creds.bucketId, "no bucketId from ENV")
   assert(b2Creds.key, "no key from ENV")
   assert(b2Creds.keyId, "no keyId from ENV")

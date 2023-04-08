@@ -4,9 +4,8 @@
   // import Openings from "$components/OpeningAnnouncements.svelte"
   import SeasonAnnounced from "./news/2022-12-01-announcing-2023-season/+page.svelte"
 
-  import type { PageData } from "./$types"
   import MaybeImage from "$components/MaybeImage.svelte"
-  export let data: PageData
+  export let data
 
   const { productions } = data
 

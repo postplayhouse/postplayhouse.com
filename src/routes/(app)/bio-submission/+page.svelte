@@ -8,8 +8,7 @@
   import { marked } from "marked"
   import { sanitizedPassphrase } from "$helpers"
 
-  import type { PageData } from "./$types"
-  export let data: PageData
+  export let data
 
   const { disabled } = data
 

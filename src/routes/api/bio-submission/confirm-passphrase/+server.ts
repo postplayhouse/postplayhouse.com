@@ -1,8 +1,7 @@
 import { json } from "@sveltejs/kit"
 import { passphraseIsCorrect } from "../passphraseHelpers"
-import type { RequestHandler } from "./$types"
 
-export const GET: RequestHandler = async ({ request }) => {
+export const GET = async ({ request }) => {
   return passphraseIsCorrect(request)
     ? new Response("", { status: 201 })
     : json(

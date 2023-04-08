@@ -4,8 +4,7 @@
   import TicketsButton from "$components/TicketsButton.svelte"
   import site from "$data/site"
 
-  import type { PageData } from "./$types"
-  export let data: PageData
+  export let data
 
   const { productions, year } = data
 

@@ -1,11 +1,10 @@
 import { error } from "@sveltejs/kit"
-import type { PageLoad } from "./$types"
 import site from "$data/site"
 
 const currentYear = new Date().getFullYear()
 const seasonYear = site.season
 
-export const load: PageLoad = async (obj) => {
+export async function load(obj) {
   if (currentYear !== seasonYear) return { productions: [] }
 
   const res = await obj.fetch(`/data/productions/${currentYear}.json`)

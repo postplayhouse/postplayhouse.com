@@ -5,8 +5,7 @@
   import Modal from "$components/Modal/Modal.svelte"
   import site from "$data/site"
 
-  import type { PageData } from "./$types"
-  export let data: PageData
+  export let data
 
   const { productions } = data
 

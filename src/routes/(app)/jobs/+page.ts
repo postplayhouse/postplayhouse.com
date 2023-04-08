@@ -1,5 +1,3 @@
-import type { PageLoad } from "./$types"
-
 type Post = {
   content: string
   title: string
@@ -7,7 +5,7 @@ type Post = {
   feed: boolean
 }
 
-export const load: PageLoad = async (obj) => {
+export async function load(obj) {
   const r = await obj.fetch(`/jobs.json`)
   const posts = (await r.json()) as Post[]
   return { posts: posts.filter((p) => p.website) }

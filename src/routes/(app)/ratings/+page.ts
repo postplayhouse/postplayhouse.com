@@ -1,8 +1,7 @@
 import { error } from "@sveltejs/kit"
-import type { PageLoad } from "./$types"
 import siteData from "$data/site"
 
-export const load: PageLoad = async (obj) => {
+export async function load(obj) {
   const productionRes = await obj.fetch(
     `/data/productions/${siteData.season}.json`,
   )

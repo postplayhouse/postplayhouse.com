@@ -1,10 +1,8 @@
-import type { PageLoad } from "./$types"
-
 const disabled = false
 
 // When disabled, prevent hydration
 export const csr = !disabled
 
-export const load: PageLoad = async () => {
+export async function load() {
   return { disabled }
 }

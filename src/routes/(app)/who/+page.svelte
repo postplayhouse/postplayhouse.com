@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type { PageData } from ".svelte-kit/types/src/routes/(app)/who/$types"
-  export let data: PageData
+  export let data
 
   const { seasons } = data
   const years = Object.keys(seasons)
