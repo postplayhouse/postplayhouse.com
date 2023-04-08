@@ -3,7 +3,7 @@ const live = process.env.CONTEXT === "production"
 const liveUrl = "https://postplayhouse.com"
 
 // Actual values. If dev, these may change below.
-const castingComplete = false
+const castingComplete = true
 const ticketsAvailable = true
 
 // When doing a Netlify PR Deploy, use the provided url
