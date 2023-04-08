@@ -34,7 +34,8 @@
       <a href="/news/2020-03-25-season-cancelled" class="link-green">
         Our 2020 Season was sadly cancelled.
       </a>
-      Preserved here are the people we were really looking forward to working with.
+      Preserved here are the bios of the people we were really looking forward to
+      working with.
     </p>
   {/if}
 
