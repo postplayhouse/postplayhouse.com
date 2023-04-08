@@ -94,6 +94,8 @@
       July 5a, 8e, 12e, 14e, 16a, 19a, 22m, 26e, 28e, 29m,
       August 2a, 4a, 9a, 11e,
   roles_sorting:
+  sponsor:
+    image: mobius.webp
 
 - title: The Spitfire Grill
   short_title: Spitfire
