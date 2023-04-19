@@ -39,10 +39,16 @@
 <div class="flow-root mb-8" id="{person.slug}">
   {#if person.image}
     <MaybeImage
-      class="block w-full max-w-md mb-4 md:pr-4 md:float-left md:w-1/2"
+      class="block w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2 border"
       src="{[optimizedVersion(person.image), person.image]}"
       alt="portrait of {person.name}"
     />
+  {:else}
+    <div
+      class="flex w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2 min-h-64 border-4 border-neutral-300 items-center justify-center"
+    >
+      ({person.name} not pictured)
+    </div>
   {/if}
 
   <div class="text-2xl leading-none">{person.name}</div>

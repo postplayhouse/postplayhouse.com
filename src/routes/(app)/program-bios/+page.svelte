@@ -94,11 +94,11 @@
 <div class="helvetica my-8">
   {#each sortedPeople.filter(notInBoard) as person}
     <div class="my-8" id="{personSlug(person)}">
-      {#if notInAdditional(person) && person.image}
+      {#if notInAdditional(person)}
         <img
           src="{person.image}"
           alt="{person.image ? '' : 'missing '}picture of {person.name}"
-          class="max-w-sm max-h-96 m-auto"
+          class="max-w-sm max-h-96 m-auto min-h-64 block"
         />
       {/if}
 
@@ -163,13 +163,11 @@
 
   {#each sortedPeople.filter(inBoard) as person}
     <div class="helvetica">
-      {#if person.image}
-        <img
-          src="{person.image}"
-          alt="{person.image ? '' : 'missing '}picture of {person.name}"
-          class="max-w-sm max-h-96 m-auto"
-        />
-      {/if}
+      <img
+        src="{person.image}"
+        alt="{person.image ? '' : 'missing '}picture of {person.name}"
+        class="max-w-sm max-h-96 m-auto min-h-64 block"
+      />
 
       <div class="text-center">
         <div>{person.name}</div>
