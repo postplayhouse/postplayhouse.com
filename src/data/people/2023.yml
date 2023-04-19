@@ -630,6 +630,18 @@
   bio: |
     Kenley is thrilled to join the stage for the first time at the Post Playhouse.  She has been attending shows every summer since she was six years old and has dreamed of one day being a part of the production.  Her stage experience includes being asked as a middle school student to be part of the Ensemble in her local high school productions of *Guys and Dolls* and *Cinderella* and playing the part of Hortencia in *Matilda Jr.*. Kenley would like to thank her Grandma Dee for driving her to Crawford every summer and sharing her love of the theatre and her Mom, Dad, sister Wesley and brother Bosten for their unending love and support.
 
+- last_name: Lidgett
+  first_name: Christopher
+  image_year: 2022
+  image_file: christopher-a-lidgett.jpg
+  location: "Norfolk, NE"
+  groups:
+    - crew
+  staff_positions:
+    - Technical Crew
+  bio: |
+    Chris is grateful to come back for another season of bringing this summer stock to life! Chris is has recently earned his Bachelor’s in Technical Theatre and Design at Chadron State College. Chris has been involved in backstage work at CSC since the fall of 2019 and has been involved in shows since his days at Norfolk Senior High School.
+
 #
 #
 #
@@ -688,6 +700,13 @@
   positions:
     - Treasurer
 
+- last_name: Hughes
+  first_name: Irene
+  image_year: 2023
+  location: "Crawford, NE"
+  groups:
+    - board
+
 - last_name: Lecher
   first_name: Danielle
   image_year: 2023
@@ -721,6 +740,13 @@
     Chadron State College
   image_year: 2015
   image_file: randy-rhine.jpg
+
+- last_name: Taylor
+  first_name: Sara
+  image_year: null
+  location: "Chadron, NE"
+  groups:
+    - board
 
 - last_name: Watson
   first_name: Matt
