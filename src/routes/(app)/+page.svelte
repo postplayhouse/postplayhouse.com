@@ -27,8 +27,8 @@
   <h1 class="h2 mb-2 group-hover:underline">Meet Our 2023 Cast and Crew!</h1>
   <MaybeImage
     src="{[
-      '/g/images/people/2023/cast.jpg?v=2',
-      '/images/people/2023/cast.jpg?v=2',
+      '/g/images/people/2023/cast.jpg?v=3',
+      '/images/people/2023/cast.jpg?v=3',
     ]}"
   />
 
