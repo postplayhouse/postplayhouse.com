@@ -48,7 +48,7 @@
   <section class=" mb-2">
     <a href="/donate">
       <img
-        alt="actors making a heart with thier hands"
+        alt="actors making a heart with their arms"
         src="/images/perennials/donations.jpg"
       />
     </a>
