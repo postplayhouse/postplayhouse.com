@@ -13,15 +13,21 @@
   <h3 class="h3">
     Help make our next season happen by donating to our Annual Fund!
   </h3>
+  <p>
+    Clicking the link below will take you to a site called Eleo Online, where
+    you can complete your donation. Thank you so much for your support!
+  </p>
 
-  <iframe
-    title="Donate to Post Playhouse"
-    name="ELEOForm"
-    id="ELEOForm"
-    style="width:100%;max-width:900px;min-height:1100px;border-width:0px;border-style:none;"
-    scrolling="no"
-    src="https://www.eleoonline.net/Pages/WebForms/Mobile/ShowFormMobile.aspx?id=f790c257-b67f-4508-9ff9-0fc3a16f04d2&linkto=670"
-  ></iframe>
+  <div class="text-center mt-4">
+    <a
+      href="https://www.eleoonline.net/Pages/WebForms/Mobile/ShowFormMobile.aspx?id=f790c257-b67f-4508-9ff9-0fc3a16f04d2&linkto=670"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn p-4 px-6 inline-block"
+    >
+      Visit our donation form</a
+    >
+  </div>
 </PersistentModal>
 
 <Header />
