@@ -11,8 +11,6 @@
 
   onMount(initLocalAppVersion)
 
-  export let actors: YamlPerson[]
-
   const shows = [Special, Donors1000, Donors1]
 
   let current = 0
@@ -36,22 +34,14 @@
       transition:fade="{{ duration: 1000 }}"
       class="absolute inset-0 bg-white"
     >
-      <svelte:component
-        this="{shows[current]}"
-        on:done="{() => nextShow()}"
-        actors="{actors}"
-      />
+      <svelte:component this="{shows[current]}" on:done="{() => nextShow()}" />
     </div>
   {:else}
     <div
       transition:fade="{{ duration: 1000 }}"
       class="absolute inset-0 bg-white"
     >
-      <svelte:component
-        this="{shows[current]}"
-        on:done="{() => nextShow()}"
-        actors="{actors}"
-      />
+      <svelte:component this="{shows[current]}" on:done="{() => nextShow()}" />
     </div>
   {/if}
 </div>

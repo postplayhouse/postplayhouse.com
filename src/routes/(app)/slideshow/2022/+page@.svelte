@@ -6,8 +6,6 @@
 
 <script lang="ts">
   import Slideshow from "$components/slideshow/Lobby2022.svelte"
-
-  export let data
 </script>
 
-<Slideshow actors="{data.people}" />
+<Slideshow />
