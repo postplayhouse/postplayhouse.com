@@ -2,7 +2,6 @@
   import { fade } from "svelte/transition"
   import Donors1000 from "./Lobby2023/Annual1000.svelte"
   import Donors1 from "./Lobby2023/Annual1.svelte"
-  import Special from "./Lobby2023/Special.svelte"
   import { onMount } from "svelte"
   import {
     initLocalAppVersion,
@@ -11,7 +10,7 @@
 
   onMount(initLocalAppVersion)
 
-  const shows = [Special, Donors1000, Donors1]
+  const shows = [Donors1000, Donors1]
 
   let current = 0
   let inc = 1
@@ -44,11 +43,4 @@
       <svelte:component this="{shows[current]}" on:done="{() => nextShow()}" />
     </div>
   {/if}
-
-  <div
-    class="absolute bottom-0 w-full p-8 bg-white/50 flex justify-center items-center text-red-500 font-bold text-[4vw]"
-  >
-    This is a copy of last year's slideshow, but you are on the correct page for
-    2023. This will be updated as soon as possible.
-  </div>
 </div>

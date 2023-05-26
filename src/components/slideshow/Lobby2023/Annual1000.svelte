@@ -11,43 +11,49 @@
     dispatch("done")
   }
   const sections = [
-    { title: "$200,000+", names: ["Shuttered Venue Operators Grant"] },
     {
       title: "$10,000+",
-      names: ["Chadron State College", "Nebraska Arts Council"],
+      names: [
+        "Casey Peterson",
+        "Chadron State College",
+        "Security First Bank",
+        "Anonymous (1)",
+      ],
+    },
+    {
+      title: "$6,000+",
+      names: [
+        "Footprints, Your Birkenstock Store",
+        "Todd A. Gaswick at TAG Financial Solutions ",
+        "Mobius Communications",
+        "Susan Sehnert Stuart",
+        "WESTCO",
+      ],
     },
     {
       title: "$5,000+",
       names: [
-        "Big Bat's, LLC",
-        "Caterpillar Foundation",
-        "Footprints",
-        "Lee & Elizabeth Fritzler",
-        "Todd Gaswick",
-        "Tim Hindman Family",
-        "Security First Bank",
-        "Susan Sehnert Stuart, in Honor of Walt and Jean Sehnert",
-        "Linda and Jon Steven Wiley",
-        "Red Beard Garage & Towing",
+        "Bill and Virginia Coffee Family Foundation",
+        "Nebraska Arts Council",
       ],
     },
     {
       title: "$2,500+",
-      names: [
-        "Darold Newblom Foundation",
-        "Walmart Foundation",
-        "Janet E Williams",
-        "Bertram and Patricia Witham Foundation",
-      ],
+      names: ["Darold Newblom Foundation", "Linda and Jon Steven Wiley"],
     },
     {
       title: "$1,000+",
       names: [
-        "David Bauerkemper",
-        "Steve Cleveland",
-        "Helen Kent",
+        "H&R Block of Chadron",
+        "Jack Isaacs",
         "Martin Drug & Mercantile",
+        "Jeanine Mohr",
+        "Phillips F & T Inc.",
+        "Annie and Richard Sellman",
+        "Cathy Soester",
         "Janelle Visser",
+        "Walmart Foundation",
+        "Bertram and Patricia Witham Foundation",
       ],
     },
   ]
