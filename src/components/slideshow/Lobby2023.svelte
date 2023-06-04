@@ -12,8 +12,8 @@
   onMount(initLocalAppVersion)
 
   const showsAndTimers = [
-    [Donors1000, positiveIntStore(8), "Large Donations"],
-    [Donors1, positiveIntStore(10), "Regular Donations"],
+    [Donors1000, positiveIntStore(8, "2023 ld"), "Large Donations"],
+    [Donors1, positiveIntStore(10, "2023 rd"), "Regular Donations"],
   ] as const
 
   const shows = showsAndTimers.map(([show]) => show)
