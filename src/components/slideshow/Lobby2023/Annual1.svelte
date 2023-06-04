@@ -2,10 +2,10 @@
   import { crossfade } from "svelte/transition"
 
   import { linear } from "svelte/easing"
-  import { createEventDispatcher } from "svelte"
-  import { fast } from "./helpers"
+  import { createEventDispatcher, onDestroy } from "svelte"
+  import { browser } from "$app/environment"
 
-  const SLOWNESS = fast ? 1 : 8
+  export let durationMultiplier: number
 
   const dispatch = createEventDispatcher()
 
@@ -163,22 +163,34 @@
     return (current + 1) % sections.length
   }
 
+  let currentTimeout: number
+
   function nextOrDone() {
+    if (!browser) return
+
     const nextIndex = getNextIndex()
     if (nextIndex > 0) {
       const oldIndex = current
       current = nextIndex
-      setTimeout(() => (slides[nextIndex]!.position = "top"), 10)
-      setTimeout(() => (slides[oldIndex]!.position = "bottom"), 10)
+      currentTimeout = window.setTimeout(() => {
+        slides[nextIndex]!.position = "top"
+        slides[oldIndex]!.position = "bottom"
+      }, 10)
     } else {
       eventDone()
     }
   }
 
-  setTimeout(() => (slides[current]!.position = "top"), 10)
+  currentTimeout = browser
+    ? window.setTimeout(() => (slides[current]!.position = "top"), 10)
+    : 0
+
+  onDestroy(() => clearTimeout(currentTimeout))
 
   const [send, receive] = crossfade({
-    duration: (d) => d * SLOWNESS,
+    duration: (distance) => {
+      return distance * durationMultiplier
+    },
     easing: linear,
 
     fallback() {

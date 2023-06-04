@@ -1,9 +1,10 @@
 <script lang="ts">
   import { fade } from "svelte/transition"
-  import { createEventDispatcher } from "svelte"
-  import { fast } from "./helpers"
+  import { createEventDispatcher, onDestroy } from "svelte"
+  import { browser } from "$app/environment"
 
-  const INT = fast ? 500 : 5000
+  export let durationMultiplier: number
+  const INT = durationMultiplier * 500
 
   const dispatch = createEventDispatcher()
 
@@ -67,17 +68,22 @@
     return (current + 1) % slides.length
   }
 
+  let currentTimeout: number
+
   function nextOrDone() {
+    if (!browser) return
     const nextInt = getNextIndex()
     if (nextInt > 0) {
       current = nextInt
-      setTimeout(nextOrDone, INT)
+      currentTimeout = window.setTimeout(nextOrDone, INT)
     } else {
       eventDone()
     }
   }
 
-  setTimeout(nextOrDone, INT)
+  currentTimeout = browser ? window.setTimeout(nextOrDone, INT) : 0
+
+  onDestroy(() => clearTimeout(currentTimeout))
 </script>
 
 {#each slides as slide, i}
