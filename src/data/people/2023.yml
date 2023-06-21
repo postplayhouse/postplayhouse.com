@@ -802,17 +802,6 @@
   groups:
     - board
 
-- last_name: Rhine
-  first_name: Randy
-  location: "Chadron, NE"
-  groups:
-    - board
-  positions:
-  bio: >
-    Chadron State College
-  image_year: 2015
-  image_file: randy-rhine.jpg
-
 - last_name: Taylor
   first_name: Sara
   image_year: null
