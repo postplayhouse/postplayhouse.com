@@ -3,6 +3,7 @@
   import Modal from "$components/Modal/Modal.svelte"
   // import Openings from "$components/OpeningAnnouncements.svelte"
   import SeasonAnnounced from "./news/2022-12-01-announcing-2023-season/+page.svelte"
+  import Cabaret from "./news/2023-07-20-cabaret-announcement/+page.md"
 
   import MaybeImage from "$components/MaybeImage.svelte"
   export let data
@@ -19,6 +20,10 @@
 <svelte:head>
   <title>Post Playhouse</title>
 </svelte:head>
+
+<div class="mb-16 p-2 max-w-2xl mx-auto">
+  <Cabaret />
+</div>
 
 <a
   class="block mb-16 p-6 max-w-2xl mx-auto bg-green-100 shadow-md border border-green-400 hover:border-green-600 hover:shadow-lg hover:scale-105 transform-gpu transition-all group"
