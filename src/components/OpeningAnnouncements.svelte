@@ -103,11 +103,7 @@
           Today is your last chance to see us this summer!
         </p>
       {/if}
-
-      <div class="m-4 h3">
-        (We are sold out! But you can call the box office to inquire about wait
-        lists.)
-      </div>
+      <slot name="ticketAvailability" />
     </div>
   {/if}
 
