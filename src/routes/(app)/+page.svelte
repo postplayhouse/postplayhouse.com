@@ -19,6 +19,21 @@
 
 <svelte:head>
   <title>Post Playhouse</title>
+
+  <meta
+    name="description"
+    content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
+  />
+  <link rel="canonical" href="https://postplayhouse.com" />
+
+  <!-- Facebook Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Post Playhouse" />
+  <meta
+    property="og:description"
+    content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
+  />
+  <meta property="og:image" content="/images/playhouse-pic.jpg" />
 </svelte:head>
 
 <div class="mb-16 p-2 max-w-2xl mx-auto">
