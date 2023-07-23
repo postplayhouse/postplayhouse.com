@@ -33,7 +33,6 @@
     property="og:description"
     content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
   />
-  <meta property="og:image" content="/images/playhouse-pic.jpg" />
 </svelte:head>
 
 <div class="mb-16 p-2 max-w-2xl mx-auto">
