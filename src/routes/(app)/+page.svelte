@@ -2,10 +2,7 @@
   import Mailer from "$components/Mailer.svelte"
   import Modal from "$components/Modal/Modal.svelte"
   import Openings from "$components/OpeningAnnouncements.svelte"
-  import SeasonAnnounced from "./news/2022-12-01-announcing-2023-season/+page.svelte"
-  import Cabaret from "./news/2023-07-20-cabaret-announcement/+page.md"
 
-  import MaybeImage from "$components/MaybeImage.svelte"
   export let data
 
   const { productions } = data
@@ -34,10 +31,6 @@
     content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
   />
 </svelte:head>
-
-<div class="mb-16 p-2 max-w-2xl mx-auto">
-  <Cabaret />
-</div>
 
 <div class="mb-32 p-2 max-w-2xl mx-auto">
   <Openings productions="{productions}" closingDate="2023-08-13">
