@@ -34,7 +34,7 @@
 
 <a
   class="block mb-16 p-6 max-w-2xl mx-auto bg-green-100 shadow-md border border-green-400 hover:border-green-600 hover:shadow-lg hover:scale-105 transform-gpu transition-all group"
-  href="/who/2023"
+  href="/news/2023-10-10-new-artistic-team"
 >
   <h1 class="h2 mb-2 group-hover:underline">Next Year's Artistic Team</h1>
   <Markdown
