@@ -57,44 +57,43 @@
     <div class="text-lg text-green-700">{person.location}</div>
   {/if}
 
-  <ul
-    class="list-none font-thin mb-2 pl-0 {person.image
-      ? 'sm:float-left sm:w-1/2'
-      : ''}"
-  >
-    {#if person.positions.length}
-      <!-- Always use localPerson.positions by itself if it exists -->
-      {#each person.positions as position}
-        <li class="pl-4 -text-indent-4">
-          {@html position.replace("---", "&mdash;")}
-        </li>
-      {/each}
-    {:else}
-      {#each person.staffPositions as position}
-        <li class="pl-4 -text-indent-4">
-          {@html position.replace("---", "&mdash;")}
-        </li>
-      {/each}
-
-      {#each productionPositions as positionObj}
-        <li class="pl-4 -text-indent-4">
-          {positionObj.position}
-          &mdash;
-          {positionObj.productionNames.join(", ")}
-        </li>
-      {/each}
-
-      {#if person.roles && !hideProductionRoles}
-        {#each person.roles as positionObj}
+  <div class="flow-root float-left font-thin mb-2">
+    <ul class="list-none pl-0">
+      {#if person.positions.length}
+        <!-- Always use localPerson.positions by itself if it exists -->
+        {#each person.positions as position}
           <li class="pl-4 -text-indent-4">
-            {positionObj.productionName}
-            &mdash;
-            {positionObj.positions.join(", ")}
+            {@html position.replace("---", "&mdash;")}
           </li>
         {/each}
+      {:else}
+        {#each person.staffPositions as position}
+          <li class="pl-4 -text-indent-4">
+            {@html position.replace("---", "&mdash;")}
+          </li>
+        {/each}
+
+        {#each productionPositions as positionObj}
+          <li class="pl-4 -text-indent-4">
+            {positionObj.position}
+            &mdash;
+            {positionObj.productionNames.join(", ")}
+          </li>
+        {/each}
+
+        {#if person.roles && !hideProductionRoles}
+          {#each person.roles as positionObj}
+            <li class="pl-4 -text-indent-4">
+              {positionObj.productionName}
+              &mdash;
+              {positionObj.positions.join(", ")}
+            </li>
+          {/each}
+        {/if}
       {/if}
-    {/if}
-  </ul>
+    </ul>
+  </div>
+  <br />
 
   <Markdown source="{person.bio}" />
 </div>
