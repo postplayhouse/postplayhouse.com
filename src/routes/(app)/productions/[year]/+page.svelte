@@ -64,6 +64,10 @@
   {#each productions as production}
     <Production production="{production}" season="{year}" />
   {/each}
+{:else if year > new Date().getFullYear()}
+  <h2 class="text-xl text-center">
+    Our shows for {year} will be announced soon...
+  </h2>
 {:else}
   <h2 class="text-xl text-center">
     There is no historical production info for {year}

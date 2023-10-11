@@ -3,8 +3,8 @@ const live = process.env.CONTEXT === "production"
 const liveUrl = "https://postplayhouse.com"
 
 // Actual values. If dev, these may change below.
-const castingComplete = true
-const ticketsAvailable = true
+const castingComplete = false
+const ticketsAvailable = false
 
 // When doing a Netlify PR Deploy, use the provided url
 const url = live
@@ -26,7 +26,7 @@ export const site = {
   twitter: "postplayhouse",
   facebook: "post.playhouse",
   castingComplete: prod ? castingComplete : true,
-  season: 2023,
+  season: 2024,
   description:
     "Post Playhouse, Inc. is Northwestern Nebraska's favorite live theatre company, producing several musicals running in a repertory schedule every summer by bringing together highly skilled creative professionals from across the country and nearby. Post Playhouse, Inc. performs its productions at the theatre in Fort Robinson State Park.",
   boxOfficePhone,
@@ -35,8 +35,8 @@ export const site = {
   ticketsAvailable,
 } as const
 
-export const yearsWithPages = [2019, 2020, 2021, 2022, 2023]
-export const yearsWithCalendars = [2020, 2021, 2022, 2023]
+export const yearsWithPages = [2019, 2020, 2021, 2022, 2023, 2024]
+export const yearsWithCalendars = [2020, 2021, 2022, 2023, 2024]
 
 if (!yearsWithCalendars.includes(site.season))
   throw new Error(

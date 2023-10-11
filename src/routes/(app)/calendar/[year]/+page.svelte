@@ -25,6 +25,8 @@
 
 {#if hasCalendar}
   <Calendar productions="{productions}" year="{year}" />
+{:else if year > new Date().getFullYear()}
+  <h2 class="text-center">Our {year} shows will be announced soon...</h2>
 {:else}
   <h2 class="text-center">There is no historical calendar for {year}</h2>
 {/if}

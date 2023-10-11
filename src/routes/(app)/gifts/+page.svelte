@@ -5,6 +5,8 @@
 
   const now_year = new Date().getFullYear()
   const is_holidays = dateIsBetween(`10/01/${now_year}`, `12/15/${now_year}`)
+
+  const certificatesAreAvailable = false
 </script>
 
 <svelte:head>
@@ -13,7 +15,7 @@
 
 <h1 class="h1">{title}</h1>
 
-{#if is_holidays}
+{#if is_holidays && certificatesAreAvailable}
   <div class="p-4 border-2 border-green-800 bg-green-100 my-4">
     <h2 class="h2">Holiday Gift Extras</h2>
 
@@ -35,62 +37,69 @@
   </div>
 {/if}
 
-<p class="my-4">
-  When you buy a gift via our
-  <a class="link-green" href="{site.ticketsLink}">Online Box Office</a>, you can
-  print off any of our certificates/subscription cards below and give them to
-  the recipient. Subscribers: even if it's not a gift, print off a subscription
-  card for a convenient place to write down all the information about your shows
-  after you reserve them.
-</p>
+{#if !certificatesAreAvailable}
+  <div>
+    We will have the certificates and subscription cards available to print
+    directly from this page. So please check back here after December 1st.
+  </div>
+{:else}
+  <p class="my-4">
+    When you buy a gift via our
+    <a class="link-green" href="{site.ticketsLink}">Online Box Office</a>, you
+    can print off any of our certificates/subscription cards below and give them
+    to the recipient. Subscribers: even if it's not a gift, print off a
+    subscription card for a convenient place to write down all the information
+    about your shows after you reserve them.
+  </p>
 
-<h2 class="h2">{site.season} Gift Certificate</h2>
+  <h2 class="h2">{site.season} Gift Certificate</h2>
 
-<p>Click to download.</p>
+  <p>Click to download.</p>
 
-<p>
-  <a
-    href="/documents/gift-certificate.pdf"
-    download
-    class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
-    ><img
-      src="/documents/gift-certificate.jpg"
-      alt="Gift Certificate"
-      class="max-w-md"
-    /></a
-  >
-</p>
+  <p>
+    <a
+      href="/documents/gift-certificate.pdf"
+      download
+      class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
+      ><img
+        src="/documents/gift-certificate.jpg"
+        alt="Gift Certificate"
+        class="max-w-md"
+      /></a
+    >
+  </p>
 
-<h2 class="h2">{site.season} Season Subscription Card</h2>
+  <h2 class="h2">{site.season} Season Subscription Card</h2>
 
-<p>Click to download.</p>
+  <p>Click to download.</p>
 
-<p>
-  <a
-    href="/documents/subscription-card.pdf"
-    download
-    class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
-    ><img
-      src="/documents/subscription-card.jpg"
-      alt="Subscription Card"
-      class="max-w-md"
-    /></a
-  >
-</p>
+  <p>
+    <a
+      href="/documents/subscription-card.pdf"
+      download
+      class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
+      ><img
+        src="/documents/subscription-card.jpg"
+        alt="Subscription Card"
+        class="max-w-md"
+      /></a
+    >
+  </p>
 
-<h2 class="h2">Post Playhouse Season Subscription Presentation Card</h2>
+  <h2 class="h2">Post Playhouse Season Subscription Presentation Card</h2>
 
-<p>Click to download.</p>
+  <p>Click to download.</p>
 
-<p>
-  <a
-    href="/documents/subscription-presenter.pdf"
-    download
-    class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
-    ><img
-      src="/documents/subscription-presenter.png"
-      alt="Subscription Presentation Card"
-      class="border-2 border-gray-200 max-w-md"
-    /></a
-  >
-</p>
+  <p>
+    <a
+      href="/documents/subscription-presenter.pdf"
+      download
+      class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
+      ><img
+        src="/documents/subscription-presenter.png"
+        alt="Subscription Presentation Card"
+        class="border-2 border-gray-200 max-w-md"
+      /></a
+    >
+  </p>
+{/if}

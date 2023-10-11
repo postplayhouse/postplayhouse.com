@@ -1,0 +1,180 @@
+#
+#
+#
+#
+#        CAST CREW MUSICIANS CREATIVE ADDITIONAL STAFF
+#
+#
+#
+#
+
+- last_name: Denton
+  first_name: Don
+  image_year: 2019
+  location: "Chattanooga, TN"
+  staff_positions:
+    - General IT
+  bio: |
+    Don has stepped down from his position of designing all Post Playhouse's printed and digital materials and taking care of the bulk of the marketing related tasks. It was a fun 13 years, but he is very happy to have extra time with his family, now that his main responsibility to the Playhouse is making sure the website works and everyone gets their emails. Best of luck to all the new, talented folks who are stepping in to keep creating art in the Northwest corner of Nebraska!
+
+- last_name: Galván
+  first_name: Brooke
+  image_year: 2022
+  image_file: brooke-galvan.jpg
+  location: "Clarkston, MI"
+  groups:
+    - staff
+  staff_positions:
+    - Remote Box Office Staff
+  bio: |
+    Brooke is thrilled to be joining Post Playhouse for another season, this time as the remote assistant box office manager. She is an actress with experience stretching from the Quad Cities to the south suburbs of Chicago. When she isn’t answering the phones from home, you’ll find her writing freelance scripts and monologues, playing with her new baby boy, and exploring the outdoors. She wishes so much to be able to support our talented cast from the audience! Break legs, everyone!
+
+- last_name: Laudeman
+  first_name: Em
+  image_year: 2022
+  location: "Cleveland, OH"
+  groups:
+    - staff
+  staff_positions:
+    - Interim Executive Director
+  program_bio: |
+    Em is delighted to be part of the administrative team, supporting Andy Meyers through the transition into his first year at Post! Em worked as an actress at Post Playhouse for four seasons spanning from 2009-2019 before joining the administrative team. She received her BFA in music theatre from Elon University and her MPA in nonprofit management from Indiana University. Em has worked in administration and advancement for arts organizations around the country since 2015 and you may remember Em on the Post Playhouse stage in The Wizard of Oz ‘10 (Dorothy), Oklahoma! ‘12 (Laurie), and The Music Man ‘19 (Marian). Thanks to Jake and Persephone for all their love and support!
+  bio: |
+    Em is delighted to be part of the administrative team, supporting Andy Meyers through the transition into his first year at Post! Em worked as an actress at Post Playhouse for four seasons spanning from 2009-2019 before joining the administrative team. She received her BFA in music theatre from Elon University and her MPA in nonprofit management from Indiana University. Em has worked in administration and advancement for arts organizations around the country since 2015, most notably The Cleveland Orchestra and the San Diego Symphony. You may remember Em on the Post Playhouse stage in The Wizard of Oz ‘10 (Dorothy), Oklahoma! ‘12 (Laurie), and The Music Man ‘19 (Marian). She looks forward to visiting her home away from home in Nebraska this summer and bringing her husband and 2 year old daughter along!
+
+- last_name: Stephens
+  first_name: Ann
+  image_year: 2020
+  location: "Crawford, NE"
+  groups:
+    - staff
+  staff_positions:
+    - Box Office Manager
+  bio: |
+    Ann Stephens has worked as part of the Post Playhouse for many summers, first as a volunteer usher, a volunteer in the concession stand, and for the past several years, she has managed the Box Office. Before retirement, Ann had a long and rewarding career as a classroom teacher and as a public education administrator, working in Texas, Arizona, Idaho and Nebraska before joining Post Playhouse staff. In off-season months, Ann enjoys being with her grandchildren, reading, baking, and volunteering throughout her home community of Crawford. Whether you are ready to make additional reservations for more of our superb productions or ready to enjoy some treats at intermission, you’re likely to see Ann... and she’s USUALLY smiling.
+
+- last_name: Phillips
+  first_name: Ken
+  image_year: 2018
+  location: "Tucson, AZ"
+  groups:
+    - staff
+  staff_positions:
+    - Managing Director
+  bio: |
+    Ken is honored to be stepping into a new role for the Post Playhouse. Ten years ago Phillips joined the Post Playhouse family as the stage manager and fell in love with the people, area, and met his wife while working at Post. He has grown with the Post Playhouse over the past decade by becoming the production manager, season lighting designer, and media projection designer. Phillips said he would like to thank the community for always welcoming him back every year and is excited to take on a more involved role with the theatre.
+
+- last_name: Barrett
+  first_name: Dewayne
+  image_year: 2022
+  location: "Sarasota, FL"
+  groups:
+    - staff
+  staff_positions:
+    - Artistic Director
+  bio: |
+    Barrett had his first season in 2016 and immediately fell in love with the theatre, the region, and the people. In 2017, he became associate artistic director as well as directing and choreographing several productions. Originally from Atlanta, he moved to New York City to begin his career. He has performed in leading roles around the country, appearing in Cats, Crazy for You, West Side Story, and A Chorus Line. He has directed and choreographed for national tours, regional theatres, dinner theatres, community theatres, cruise ships, movies, high schools, music videos, parades, dance companies, and internationally at The Central Academy of Drama in Beijing, China. He said he is excited to continue bringing professional talent from across the country. Barrett added he is looking forward to working with Phillips and he knows together they will bring the best entertainment to northwest Nebraska.
+
+#
+#
+#
+#
+#        ADDITIONAL BIOS
+#
+#
+#
+#
+
+#
+#
+#
+#
+#        BOARD
+#
+#
+#
+#
+
+- last_name: Visser
+  first_name: Janelle
+  location: "Hemingford, NE"
+  groups:
+    - board
+  positions:
+    - President of the Board
+  image_year: 2019
+  image_file: janelle-visser.jpg
+
+- last_name: Seiler
+  first_name: Wally
+  location: "Alliance, NE"
+  groups:
+    - board
+  positions:
+    - Vice President of the Board
+  image_year: 2015
+  image_file: wally-seiler.jpg
+
+- last_name: Helmbrecht
+  first_name: Alex
+  # location: "Hay Springs, NE"
+  groups:
+    - board
+  positions:
+    - Secretary
+  image_year: 2022
+
+- last_name: Gardner
+  first_name: Jim
+  image_year: 2023
+  location: "Chadron, NE"
+  groups:
+    - board
+  positions:
+    - Treasurer
+
+- last_name: Hughes
+  first_name: Irene
+  image_year: 2023
+  location: "Crawford, NE"
+  groups:
+    - board
+
+- last_name: Lecher
+  first_name: Danielle
+  image_year: 2023
+  location: "Chadron, NE"
+  groups:
+    - board
+
+- last_name: Mohr
+  first_name: Jeanine
+  location: "Chadron, Nebraska"
+  groups:
+    - board
+  positions:
+  image_year: 2016
+  image_file: jeanine-mohr.jpg
+
+- last_name: Redden
+  first_name: Ali
+  image_year: 2023
+  location: "Crawford, NE"
+  groups:
+    - board
+
+- last_name: Taylor
+  first_name: Sara
+  image_year: null
+  location: "Chadron, NE"
+  groups:
+    - board
+
+- last_name: Watson
+  first_name: Matt
+  location: ""
+  groups:
+    - board
+  positions:
+  image_year: 2022
+  image_file: matt-watson.jpg
