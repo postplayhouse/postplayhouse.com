@@ -1,7 +1,6 @@
 <script lang="ts">
   import Mailer from "$components/Mailer.svelte"
   import Modal from "$components/Modal/Modal.svelte"
-  import Openings from "$components/OpeningAnnouncements.svelte"
 
   export let data
 
@@ -31,17 +30,6 @@
     content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
   />
 </svelte:head>
-
-<div class="mb-32 p-2 max-w-2xl mx-auto">
-  <Openings productions="{productions}" closingDate="2023-08-13">
-    <div slot="seasonArtworkImage" class="w-full max-w-2xl m-auto">
-      <img
-        src="/images/2023/full-season.jpg"
-        alt="2023 season logos: Leader of the Pack, Clue the Musical, Joseph and the Amazing Technicolor Dreamcoat, You're a Good Man Charlie Brown, The Spitfire Grill"
-      />
-    </div>
-  </Openings>
-</div>
 
 <div class="md:flex flex-row-reverse items-stretch">
   <section class=" mb-2">
