@@ -3,6 +3,8 @@
   import Markdown from "$components/Markdown.svelte"
   import Modal from "$components/Modal/Modal.svelte"
 
+  import Announcement2024 from "./news/2023-10-17-announcing-2024-season/+page.md"
+
   export let data
 
   const { productions } = data
@@ -47,6 +49,10 @@ As we look toward the 2024 season, the Post Playhouse is thrilled to announce tw
 
   <div class="link-green mt-2 text-right">Read more</div>
 </a>
+
+<div class="mb-12">
+  <Announcement2024 />
+</div>
 
 <div class="md:flex flex-row-reverse items-stretch">
   <section class=" mb-2">
