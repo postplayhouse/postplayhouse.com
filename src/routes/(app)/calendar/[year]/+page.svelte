@@ -1,5 +1,6 @@
 <script lang="ts">
   import Calendar from "$components/Calendar/Calendar.svelte"
+  import site from "$data/site"
 
   export let data
 
@@ -25,8 +26,14 @@
 
 {#if hasCalendar}
   <Calendar productions="{productions}" year="{year}" />
+{:else if year > new Date().getFullYear() && site.showsAnnounced}
+  <h2 class="text-center text-xl">Our {year} schedule will be up soon...</h2>
 {:else if year > new Date().getFullYear()}
-  <h2 class="text-center">Our {year} shows will be announced soon...</h2>
+  <h2 class="text-center text-xl">
+    Our {year} shows will be announced soon...
+  </h2>
 {:else}
-  <h2 class="text-center">There is no historical calendar for {year}</h2>
+  <h2 class="text-center text-xl">
+    There is no historical calendar for {year}
+  </h2>
 {/if}
