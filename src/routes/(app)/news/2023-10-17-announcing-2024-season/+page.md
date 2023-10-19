@@ -4,9 +4,11 @@ sticky: true
 excerpt: "We've got some incredible shows lined up this year!"
 ---
 
+We are excited to announce our upcoming 2024 Summer Season! Special thanks to our season sponsors: Casey Peterson LTD, Chadron State College, and Security First Bank.
+
 ### The SpongeBob Musical
 
-_Sponsored by Westco_
+_Sponsored by WESTCO_
 
 Plunge into this stunning all-singing, all-dancing, dynamic stage show. When the citizens of Bikini Bottom discover that a volcano will soon erupt and destroy their humble home, SpongeBob and his friends must come together to save the fate of their undersea world. With lives hanging in the balance and all hope lost, a most unexpected hero rises up. The power of optimism really can save the world. A terrific show for the entire family and one that many ages will enjoy.
 
