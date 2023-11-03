@@ -14,6 +14,8 @@ Plunge into this stunning all-singing, all-dancing, dynamic stage show. When the
 
 ### Jersey Boys
 
+_Sponsored by Anne Armstrong Sellman_
+
 A show that is in high demand with theatres across the country, we are thrilled to get the rights to this popular musical! This behind-the-music story of Frankie Valli and The Four Seasons will take you from the streets of Newark to the heights of stardom. Follow the incredible journey of four guys bound by one dream to make it to the top without giving up, selling out or forgetting where they came from. Experience electrifying performances of golden greats that took these guys all the way to the Rock and Roll Hall of Fame: “Sherry,” “Big Girls Don’t Cry,” “Can’t Take My Eyes Off You,” “My Eyes Adored You” and more.
 
 ### The Wizard of Oz
@@ -23,6 +25,8 @@ _Sponsored by Susan Sehnert Stuart_
 Follow the yellow brick road in this delightful stage adaptation of L. Frank Baum’s beloved tale, featuring the iconic musical score from the MGM film. The timeless tale, in which young Dorothy Gale travels from Kansas over the rainbow to the magical Land of Oz, continues to thrill audiences worldwide.
 
 ### Honky Tonk Laundry
+
+_Sponsored by Janelle Visser and Jeanine Mohr_
 
 When Lana Mae Hopkins, owner and proprietress of the Wishy Washy Washateria, hires Katie to help out in the laundromat, they soon find themselves up to their elbows in soap, suds, and cheatin’ hearts. Watch these two country angels join forces to turn their good ol’ laundromat into a bootscootin’ honky-tonk and exact a touch of revenge against those that done ’em wrong, all while guaranteeing every customer a good, clean time. Honky Tonk Laundry features the music of Carrie Underwood, Trisha Yearwood, Martina McBridge, Reba McEntire, Sara Evans, the Dixie Chicks, Chely Wright, Dolly Parton, Pam Tillis, Gretchen Wilson, Terri Clark, Tammy Wynette, Loretta Lynn, and Patsy Cline.
 
