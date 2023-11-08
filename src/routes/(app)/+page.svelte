@@ -2,8 +2,7 @@
   import Mailer from "$components/Mailer.svelte"
   import Markdown from "$components/Markdown.svelte"
   import Modal from "$components/Modal/Modal.svelte"
-
-  import Announcement2024 from "./news/2023-10-17-announcing-2024-season/+page.md"
+  import Openings from "$components/OpeningAnnouncements.svelte"
 
   export let data
 
@@ -50,8 +49,15 @@ As we look toward the 2024 season, the Post Playhouse is thrilled to announce tw
   <div class="link-green mt-2 text-right">Read more</div>
 </a>
 
-<div class="mb-12">
-  <Announcement2024 />
+<div class="mb-32 p-2 max-w-2xl mx-auto">
+  <Openings productions="{productions}" closingDate="2024-08-11">
+    <div slot="seasonArtworkImage" class="w-full max-w-2xl m-auto">
+      <img
+        src="/images/2024/full-season.jpg"
+        alt="2024 season logos: The Wizard of Oz, Honky Tonk Laundry, Kiss Me Kate, The SpongeBob Musical, Jersey Boys"
+      />
+    </div>
+  </Openings>
 </div>
 
 <div class="md:flex flex-row-reverse items-stretch">
