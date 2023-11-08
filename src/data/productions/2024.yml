@@ -1,0 +1,93 @@
+- title: The SpongeBob Musical
+  short_title: SpongeBob
+  rating: G
+  color: yellow
+  image: spongebob.png
+  opening: 2024-05-24
+  writers:
+  description: |
+    Plunge into this stunning all-singing, all-dancing, dynamic stage show. When the citizens of Bikini Bottom discover that a volcano will soon erupt and destroy their humble home, SpongeBob and his friends must come together to save the fate of their undersea world. With lives hanging in the balance and all hope lost, a most unexpected hero rises up. The power of optimism really can save the world. A terrific show for the entire family and one that many ages will enjoy.
+  dates:
+    fort_rob: |
+      May 24e, 25e, 26a, 28e,
+      June 5e, 7e, 9a, 12e, 18e, 21e,
+      July 2e, 10a, 13m, 18e, 21a, 27m, 30e,
+      August 3a, 7e, 11a,
+  roles_sorting:
+  sponsor:
+    image: westco.png
+    link: https://www.westco.coop
+
+- title: Jersey Boys
+  short_title: Jersey
+  rating: H
+  rating_explanation: There is some adult subject matter and language.
+  color: red
+  image: jersey-boys.png
+  opening: 2024-05-31
+  writers:
+  description: |
+    A show that is in high demand with theatres across the country, we are thrilled to get the rights to this popular musical! This behind-the-music story of Frankie Valli and The Four Seasons will take you from the streets of Newark to the heights of stardom. Follow the incredible journey of four guys bound by one dream to make it to the top without giving up, selling out or forgetting where they came from. Experience electrifying performances of golden greats that took these guys all the way to the Rock and Roll Hall of Fame: “Sherry,” “Big Girls Don’t Cry,” “Can’t Take My Eyes Off You,” “My Eyes Adored You” and more.
+  dates:
+    fort_rob: |
+      May 31e,
+      June 1e, 2a, 4e, 6e, 8e, 11e, 19e, 22e, 25e,
+      July 9e, 12a, 17e, 20a, 25e, 28a,
+      August 1e, 3m, 8a, 10a,
+  roles_sorting:
+  sponsor:
+    text: Anne Armstrong Sellman
+
+- title: The Wizard of Oz
+  short_title: Oz
+  rating: G
+  color: green
+  image: wizard-of-oz.png
+  opening: 2024-06-14
+  writers:
+  description: |
+    Follow the yellow brick road in this delightful stage adaptation of L. Frank Baum’s beloved tale, featuring the iconic musical score from the MGM film. The timeless tale, in which young Dorothy Gale travels from Kansas over the rainbow to the magical Land of Oz, continues to thrill audiences worldwide.
+  dates:
+    fort_rob: |
+      June 14e, 15e, 16a, 20e, 23a, 26e,
+      July 6a, 12e, 14a, 19e, 20m, 24e, 26a, 27e, 31e,
+      August 4a, 7a, 10e,
+  roles_sorting:
+  sponsor:
+    image: stuart-trust.png
+
+- title: Honky Tonk Laundry
+  short_title: Honky Tonk
+  rating: G
+  color: purple
+  image: honky-tonk-laundry.png
+  opening: 2024-06-28
+  writers:
+  description: |
+    When Lana Mae Hopkins, owner and proprietress of the Wishy Washy Washateria, hires Katie to help out in the laundromat, they soon find themselves up to their elbows in soap, suds, and cheatin’ hearts. Watch these two country angels join forces to turn their good ol’ laundromat into a bootscootin’ honky-tonk and exact a touch of revenge against those that done ’em wrong, all while guaranteeing every customer a good, clean time. Honky Tonk Laundry features the music of Carrie Underwood, Trisha Yearwood, Martina McBridge, Reba McEntire, Sara Evans, the Dixie Chicks, Chely Wright, Dolly Parton, Pam Tillis, Gretchen Wilson, Terri Clark, Tammy Wynette, Loretta Lynn, and Patsy Cline.
+  dates:
+    fort_rob: |
+      June 28e, 29e, 30a,
+      July 3e, 10e, 13a, 16e, 20e, 24a, 26e,
+      August 2a, 3e, 8e, 9a,
+  roles_sorting:
+  sponsor:
+    text: Janelle Visser and Jeanine Mohr
+
+- title: Kiss Me Kate
+  short_title: Kate
+  rating: G
+  color: blue
+  image: kiss-me-kate.png
+  opening: 2024-07-05
+  writers:
+  description: |
+    Passions run high as leading lady Lilli Vanessi and her ex-husband, actor/director Fred Graham, battle onstage and off in a production of Shakespeare’s Taming of the Shrew. With romance, comedy, explosive dance, sophistication, and behind-the-scenes high jinks, Kiss Me, Kate combines the irreverent humor of four brilliant writers: Sam and Bella Spewack, Cole Porter, and William Shakespeare.
+  dates:
+    fort_rob: |
+      July 5e, 6e, 7a, 11e, 13e, 17a, 19a, 23e, 27a, 31a,
+      August 2e, 6e, 9e,
+  roles_sorting:
+  sponsor:
+    image: footprints.png
+    link: https://footprints.com

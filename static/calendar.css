@@ -231,7 +231,7 @@
     transform: rotate(0);
   }
 }
-.day.day-26 .month-name.may {
+.day.day-24 .month-name.may {
   display: block;
 }
 .day.day-1 .month-name.jun {
@@ -239,6 +239,7 @@
 }
 .day.day-1 .month-name.jul {
   display: block;
+  top: 0;
 }
 .day.day-1 .month-name.aug {
   display: block;
@@ -283,7 +284,7 @@
 .week:nth-child(2) .day.dark .day-name {
   color: white;
 }
-.week:nth-child(2) .thursday .day-name {
+.week:nth-child(2) .saturday .day-name {
   display: none;
 }
 
