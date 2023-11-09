@@ -5,7 +5,7 @@ sticky: false
 ---
 
 <script lang="ts">
-  import { showDonateModal } from "$data/stores"
+  import DonateBtn from "$components/DonateBtn.svelte"
 </script>
 
 <style>
@@ -41,7 +41,7 @@ Chadron, NE 69337
 ### Donate online
 
 <div class="text-center my-4">
-  <button class="btn btn-p" on:click={showDonateModal.toggle}>Donate Online Now</button>
+  <DonateBtn/>
 </div>
 
 </div>

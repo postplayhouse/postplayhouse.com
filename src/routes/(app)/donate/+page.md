@@ -3,19 +3,17 @@ title: "Donations to Post Playhouse"
 ---
 
 <script lang="ts">
+  import DonateBtn from "$components/DonateBtn.svelte"
   import Mission from "$components/Mission.md"
 
   import site from "$data/site"
-  import { showDonateModal } from "$data/stores"
 
   const sponsorAmount = site.season - 1967
 </script>
 
 <p class="text-center p-2 mb-4">As a 501(c)3 nonprofit, your contribution to Post Playhouse is fully tax-deductible.</p>
 
-<div class="text-center my-4">
-  <button class="btn btn-p" on:click={showDonateModal.toggle}>Donate Online Now</button>
-</div>
+<DonateBtn/>
 
 ## Our Mission
 
@@ -25,9 +23,7 @@ title: "Donations to Post Playhouse"
 
 If you like our mission or are a fan of our productions, consider donating today. View our contributor levels below to see the benefits of donating to Post Playhouse.
 
-<div class="text-center my-4">
-  <button class="btn btn-p" on:click={showDonateModal.toggle}>Donate Online Now</button>
-</div>
+<DonateBtn/>
 
 Please contact the box office at { site.boxOfficePhone } or email us at [elaudeman@postplayhouse.com](mailto:elaudeman@postplayhouse.com) with any questions about donating.
 
@@ -67,6 +63,4 @@ All Artistic Director’s Society benefits plus 6 additional complimentary ticke
 
 Contact us and we would be happy to let you know what our current needs are!
 
-<div class="text-center my-4">
-  <button class="btn btn-p" on:click={showDonateModal.toggle}>Donate Online Now</button>
-</div>
+<DonateBtn/>
