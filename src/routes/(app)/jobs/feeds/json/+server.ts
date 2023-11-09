@@ -1,8 +1,6 @@
 import { posts, feed } from "../_feed"
 import type { RequestHandler } from "@sveltejs/kit"
 
-export const prerender = true
-
 const jsonFeedPage = `${feed.feedsUrlBase}/json`
 
 const renderJsonFeed = (posts_: typeof posts) =>
