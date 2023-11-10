@@ -51,52 +51,46 @@
   <h2 class="h2 mt-4 mb-2">Ticket Prices</h2>
 
   <table
-    id="ticket-prices"
-    class="tickets"
-    width="100%"
+    class="[&_th]:font-normal [&_th,&_td]:h-10"
     cellspacing="0"
     cellpadding="0"
   >
+    <thead class="[&_th]:px-4 [&_th]:py-2">
+      <tr class="border-b border-gray-400">
+        <th class=""></th>
+        <th class="">Single Ticket</th>
+        <th class="">4-Show Subscription</th>
+        <th class="">5-Show Subscription</th>
+      </tr>
+    </thead>
     <tbody>
-      <tr>
-        <td colspan="1"></td>
-        <th colspan="2">June</th>
-        <th colspan="2">July &amp; August</th>
+      <tr class="border-b">
+        <th class="text-left w-[9.5rem]">Adult</th>
+        <td class="text-center">$30</td>
+        <td class="text-center">$96</td>
+        <td class="text-center">$120</td>
+      </tr>
+      <tr class="border-b">
+        <th class="text-left w-[9.5rem]"
+          >Senior <span class="text-xs">(65+)</span></th
+        >
+        <td class="text-center">$25</td>
+        <td class="text-center">$80</td>
+        <td class="text-center">$100</td>
+      </tr>
+      <tr class="border-b">
+        <th class="text-left w-[9.5rem]"
+          >Youth <span class="text-xs">(12-)</span></th
+        >
+        <td class="text-center">$20</td>
+        <td class="text-center">$64</td>
+        <td class="text-center">$80</td>
       </tr>
       <tr>
-        <td class="solid_under"></td>
-        <td class="solid_under centered">Tues. - Thurs.</td>
-        <td class="solid_under centered">Fri. - Sun.</td>
-        <td class="solid_under centered">Tues. - Thurs.</td>
-        <td class="solid_under centered">Fri. - Sun.</td>
-      </tr>
-      <tr class="dotted_under">
-        <td>Adult</td>
-        <td class="centered">$23</td>
-        <td class="centered">$25</td>
-        <td class="centered">$28</td>
-        <td class="centered">$30</td>
-      </tr>
-      <tr class="dotted_under">
-        <td>Senior <span class="info">(65+)</span></td>
-        <td class="centered">$21</td>
-        <td class="centered">$23</td>
-        <td class="centered">$26</td>
-        <td class="centered">$28</td>
-      </tr>
-      <tr class="dotted_under">
-        <td>Youth <span class="info">(12-)</span></td>
-        <td class="centered">$17</td>
-        <td class="centered">$19</td>
-        <td class="centered">$19</td>
-        <td class="centered">$20</td>
-      </tr>
-      <tr>
-        <td>Group <span class="info">(25 or more)</span></td>
-        <td class="centered">$19</td>
-        <td class="centered">$21</td>
-        <td class="centered">$25</td>
-        <td class="centered">$27</td>
+        <th class="text-left w-[9.5rem]"
+          >Group <span class="text-xs">(25 or more)</span></th
+        >
+        <td class="text-center">$25</td>
       </tr>
     </tbody>
   </table>
@@ -117,7 +111,7 @@
     <a class="x" href="{site.boxOfficePhoneLink}">{site.boxOfficePhone}</a>.
   </p>
 
-  <h2 class="h2 mt-4 mb-2">Subscription Pricing</h2>
+  <h2 id="subscriptions" class="h2 mt-4 mb-2">Season Subscriptions</h2>
 
   <p>
     Subscriptions are the best way to see what Post Playhouse has to offer each
@@ -126,88 +120,9 @@
     to pick your dates or seats at the time of purchase, they make great gifts.
   </p>
 
-  <div class="subscription-pricing">
-    <table
-      id="subscription-prices"
-      class="tickets"
-      width="100%"
-      cellspacing="0"
-      cellpadding="0"
-    >
-      <tbody>
-        <tr>
-          <th colspan="3" scope="col">
-            5 Show Subscriptions
-            <div class="info">See 5 shows for less than the price of 4!</div>
-          </th>
-        </tr>
-        <tr>
-          <td width="33.333%" class="centered">Adult</td>
-          <td width="33.333%" class="centered">
-            Senior&nbsp;
-            <span class="info">(65+)</span>
-          </td>
-          <td width="33.333%" class="centered">
-            Youth&nbsp;
-            <span class="info">(12-)</span>
-          </td>
-        </tr>
-        <tr>
-          <td class="centered">$110</td>
-          <td class="centered">$105</td>
-          <td class="centered">$80</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table
-      id="subscription-prices"
-      class="tickets"
-      width="100%"
-      cellspacing="0"
-      cellpadding="0"
-    >
-      <tbody>
-        <tr>
-          <th colspan="3" scope="col">
-            4 Show Season Subscriptions
-            <div class="info">See 4 shows for nearly the price of 3!</div>
-          </th>
-        </tr>
-        <tr>
-          <td width="33.333%" class="centered">Adult</td>
-          <td width="33.333%" class="centered">
-            Senior
-            <span class="info">(65+)</span>
-          </td>
-          <td width="33.333%" class="centered">
-            Youth
-            <span class="info">(12-)</span>
-          </td>
-        </tr>
-        <tr>
-          <td class="centered">$85</td>
-          <td class="centered">$80</td>
-          <td class="centered">$65</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="subscriber-alert">
-    Subscribers: After purchasing your subscription, you can reserve your seats
-    to any 4 or 5 performances by emailing us at
-    <a href="mailto:tickets@postplayhouse.com">tickets@postplayhouse.com</a>
-    or calling our box office at
-    <a class="x" href="{site.boxOfficePhoneLink}">{site.boxOfficePhone}</a>.
-    Seats are based on availability, so please make your reservations as soon as
-    you can.
-  </div>
-
-  <h3 class="h3 mt-4 mb-2">Season Subscriptions {site.season}</h3>
-
-  <p>
-    Please choose from the following shows to fill out your season subscription:
+  <p class="mt-2">
+    This year, you'll choose from the following shows to fill out your season
+    subscription:
   </p>
 
   <ol class="my-2">
@@ -216,12 +131,18 @@
     {/each}
   </ol>
 
-  <p>
-    Please remember that seats can only be reserved based on availability, so
-    call the box office to secure your seats. Also note, as stated above,
-    subscriptions may only be used on 4 or 5
-    <em>different productions</em>. This means they cannot be used to see the
-    same production multiple times.
+  <p class="bg-gray-200 border p-4 my-4">
+    <strong>Subscribers:</strong> After purchasing your subscription, you can
+    reserve seats to any 4 or 5 <em>different</em> productions by emailing us at
+    <a href="mailto:tickets@postplayhouse.com">tickets@postplayhouse.com</a>,
+    calling our box office at
+    <a class="x" href="{site.boxOfficePhoneLink}">{site.boxOfficePhone}</a>, or
+    using the online system.
+    <strong>
+      Though Season Subscriptions are very flexible, seats are still based on
+      availability, so please make your reservations as soon as you can. We
+      usually sell out toward the end of the season!
+    </strong>
   </p>
 
   <h2 class="h2 mt-4 mb-2">Seating Chart</h2>
