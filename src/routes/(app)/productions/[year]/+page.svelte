@@ -26,10 +26,10 @@
   <h3 class="h3 text-center">The 2021 Season was cancelled due to COVID-19.</h3>
 {/if}
 
-{#if year === 2023}
+{#if year === 2023 || year === 2024}
   <h3 class="h3 text-center">This season is sponsored by:</h3>
   <ul
-    class="grid grid-cols-2 gap-4 justify-between list-none max-w-lg m-auto mt-8"
+    class="grid grid-cols-2 gap-4 justify-between list-none max-w-lg m-auto my-8"
   >
     <li>
       <img src="/images/sponsors/csc.png" alt="Chadron State College" />
@@ -43,7 +43,7 @@
     <li class="col-span-2">
       <img
         src="/images/sponsors/casey-peterson-financial.png"
-        alt="Gardner, Loutzenhiser & Ryan, P.C."
+        alt="Casey Peterson Financial"
       />
     </li>
   </ul>

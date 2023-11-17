@@ -40,6 +40,27 @@
         alt="2024 season logos: The Wizard of Oz, Honky Tonk Laundry, Kiss Me Kate, The SpongeBob Musical, Jersey Boys"
       />
     </div>
+
+    <div slot="seasonSponsors">
+      <div class="text-center mb-4 font-bold">
+        Special thanks to our Season Sponsors:
+      </div>
+      <div class="grid grid-cols-2 gap-8 items-center max-w-[24rem] m-auto">
+        <img
+          alt="Logo for Chadron State College"
+          src="/images/sponsors/csc.png"
+        />
+        <img
+          alt="Logo for Security First Bank"
+          src="/images/sponsors/security-first-bank.png"
+        />
+        <img
+          alt="Logo for Casey Peterson Financial"
+          src="/images/sponsors/casey-peterson-financial.png"
+          class="col-span-2"
+        />
+      </div>
+    </div>
   </Openings>
 </div>
 

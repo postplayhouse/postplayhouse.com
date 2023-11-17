@@ -122,6 +122,8 @@
       <TicketsButton />
     </div>
 
+    <slot name="seasonSponsors" />
+
     {#if !allShowsAreRunning && nowRunning.length > 0}
       <div>
         <h4 class="h1 mt-24 mb-12">Now running:</h4>
