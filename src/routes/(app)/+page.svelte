@@ -1,6 +1,5 @@
 <script lang="ts">
   import Mailer from "$components/Mailer.svelte"
-  import Markdown from "$components/Markdown.svelte"
   import Modal from "$components/Modal/Modal.svelte"
   import Openings from "$components/OpeningAnnouncements.svelte"
 
@@ -33,23 +32,7 @@
   />
 </svelte:head>
 
-<a
-  class="block mb-16 p-6 max-w-2xl mx-auto bg-green-100 shadow-md border border-green-400 hover:border-green-600 hover:shadow-lg hover:scale-105 transform-gpu transition-all group"
-  href="/news/2023-10-10-new-artistic-team"
->
-  <h1 class="h2 mb-2 group-hover:underline">Next Year's Artistic Team</h1>
-  <Markdown
-    source="{`Dear friends,
-
-The Post Playhouse Board, staff, and artists are grateful to all of our supporters for a wonderful 2023 season. We were proud to give northwest Nebraska another summer of quality musical theatre entertainment thanks to the leadership of Andy Meyers, who served as producing artistic director.
-
-As we look toward the 2024 season, the Post Playhouse is thrilled to announce two familiar faces are stepping up to leadership positions...`}"
-  />
-
-  <div class="link-green mt-2 text-right">Read more</div>
-</a>
-
-<div class="mb-32 p-2 max-w-2xl mx-auto">
+<div class="mb-16 p-2 max-w-2xl mx-auto">
   <Openings productions="{productions}" closingDate="2024-08-11">
     <div slot="seasonArtworkImage" class="w-full max-w-2xl m-auto">
       <img
