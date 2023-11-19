@@ -3,6 +3,7 @@
   "trailingComma": "all",
   "arrowParens": "always",
   "semi": false,
-  "plugins": ["./node_modules/svelte"],
-  "svelteStrictMode": true
+  "plugins": ["prettier-plugin-svelte"],
+  "svelteStrictMode": true,
+  "useTabs": true
 }
