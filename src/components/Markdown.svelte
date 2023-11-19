@@ -1,12 +1,12 @@
 <script lang="ts" context="module">
-  import { marked } from "marked"
-  marked.setOptions({ smartypants: true })
+	import { marked } from "marked"
+	marked.setOptions({ smartypants: true })
 </script>
 
 <script lang="ts">
-  export let source
+	export let source
 </script>
 
 <div class="via-markdown">
-  {@html marked.parse(source)}
+	{@html marked.parse(source)}
 </div>

@@ -6,80 +6,80 @@ const VERSION_KEY = "post_app_version"
 const noVersion = Date.now().toString()
 
 function getTodayString() {
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
+	const today = new Date()
+	today.setHours(0, 0, 0, 0)
 
-  return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
+	return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
 }
 
 async function getRemoteVersion() {
-  try {
-    const resp = await window.fetch("/_app/version.json?t=" + Date.now())
-    const data = await resp.json()
-    return data.version as string
-  } catch {
-    return noVersion
-  }
+	try {
+		const resp = await window.fetch("/_app/version.json?t=" + Date.now())
+		const data = await resp.json()
+		return data.version as string
+	} catch {
+		return noVersion
+	}
 }
 
 function getLocalVersion() {
-  try {
-    return window.sessionStorage.getItem(VERSION_KEY) || "0"
-  } catch {
-    return noVersion
-  }
+	try {
+		return window.sessionStorage.getItem(VERSION_KEY) || "0"
+	} catch {
+		return noVersion
+	}
 }
 
 function setLocalVersion(version: string) {
-  try {
-    window.sessionStorage.setItem(VERSION_KEY, version)
-  } catch {
-    // no-op
-  }
+	try {
+		window.sessionStorage.setItem(VERSION_KEY, version)
+	} catch {
+		// no-op
+	}
 }
 
 async function remoteVersionIsGreaterThanLocal() {
-  const remote = await getRemoteVersion()
-  const local = getLocalVersion()
+	const remote = await getRemoteVersion()
+	const local = getLocalVersion()
 
-  return Number(remote) > Number(local)
+	return Number(remote) > Number(local)
 }
 
 export async function initLocalAppVersion() {
-  if (!browser) return
+	if (!browser) return
 
-  setLocalVersion(await getRemoteVersion())
+	setLocalVersion(await getRemoteVersion())
 }
 
 export async function refreshIfAppVersionOutdated() {
-  if (!browser) return
+	if (!browser) return
 
-  let refreshes = 0
-  const timesKey = "post_app_refreshes_" + getTodayString()
+	let refreshes = 0
+	const timesKey = "post_app_refreshes_" + getTodayString()
 
-  try {
-    refreshes = Number(window.sessionStorage.getItem(timesKey) || "0")
-  } catch {
-    // If we cannot write to storage, we'll be refreshing every time. Let's bail
-    // and save on bandwidth.
-    return
-  }
+	try {
+		refreshes = Number(window.sessionStorage.getItem(timesKey) || "0")
+	} catch {
+		// If we cannot write to storage, we'll be refreshing every time. Let's bail
+		// and save on bandwidth.
+		return
+	}
 
-  if (refreshes >= MAX_DAILY_REFRESHES) return
+	if (refreshes >= MAX_DAILY_REFRESHES) return
 
-  if (await remoteVersionIsGreaterThanLocal()) {
-    refreshes = refreshes + 1
+	if (await remoteVersionIsGreaterThanLocal()) {
+		refreshes = refreshes + 1
 
-    try {
-      window.sessionStorage.setItem(timesKey, String(refreshes))
-    } catch {
-      // At this point, failure to set the item is not a limitation of the
-      // browser, since we've attempted other gets and sets already. So treat
-      // this like a one-off and ignore the failure.
-    }
+		try {
+			window.sessionStorage.setItem(timesKey, String(refreshes))
+		} catch {
+			// At this point, failure to set the item is not a limitation of the
+			// browser, since we've attempted other gets and sets already. So treat
+			// this like a one-off and ignore the failure.
+		}
 
-    if (refreshes > MAX_DAILY_REFRESHES) return
+		if (refreshes > MAX_DAILY_REFRESHES) return
 
-    window.location.reload()
-  }
+		window.location.reload()
+	}
 }

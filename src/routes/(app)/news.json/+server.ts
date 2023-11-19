@@ -6,9 +6,9 @@ import type { RequestHandler } from "@sveltejs/kit"
 export const prerender = true
 
 const contents = postsData
-  .reverse()
-  .map(({ title, year, date }) => ({ title, year, date }))
+	.reverse()
+	.map(({ title, year, date }) => ({ title, year, date }))
 
 export const GET: RequestHandler = () => {
-  return json(contents)
+	return json(contents)
 }

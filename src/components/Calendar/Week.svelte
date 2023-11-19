@@ -1,23 +1,23 @@
 <script lang="ts">
-  import type { Showing, SimpleDate } from "./calendarHelpers"
+	import type { Showing, SimpleDate } from "./calendarHelpers"
 
-  import Day from "./Day.svelte"
+	import Day from "./Day.svelte"
 
-  export let days: Array<{
-    date: SimpleDate
-    showings: Showing[]
-  }>
+	export let days: Array<{
+		date: SimpleDate
+		showings: Showing[]
+	}>
 
-  export let padStartCount = 0
+	export let padStartCount = 0
 </script>
 
 <ul class="week">
-  {#if padStartCount}
-    <li class="day padding" colspan="{padStartCount}">
-      <slot />
-    </li>
-  {/if}
-  {#each days as day}
-    <Day date="{day.date}" daySchedule="{day.showings}" />
-  {/each}
+	{#if padStartCount}
+		<li class="day padding" colspan="{padStartCount}">
+			<slot />
+		</li>
+	{/if}
+	{#each days as day}
+		<Day date="{day.date}" daySchedule="{day.showings}" />
+	{/each}
 </ul>

@@ -6,7 +6,7 @@ export const prerender = true
 const rssFeedPage = `${feed.feedsUrlBase}/rss`
 
 const renderXmlRssFeed = (
-  posts_: typeof posts,
+	posts_: typeof posts,
 ) => `<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>${feed.title}</title>
@@ -16,8 +16,8 @@ const renderXmlRssFeed = (
   <id>${rssFeedPage}</id>
   <updated>${feed.updatedDate}</updated>
   ${posts_
-    .map(
-      (item) => `
+		.map(
+			(item) => `
     <entry>
       <title>${item.title}</title>
       <author><name>${item.author.name}</name></author>
@@ -27,12 +27,12 @@ const renderXmlRssFeed = (
       <published>${item.publishedDate}</published>
       <updated>${item.updatedDate}</updated>
     </entry>`,
-    )
-    .join("\n")}
+		)
+		.join("\n")}
 </feed>`
 
 export const GET: RequestHandler = () => {
-  return new Response(renderXmlRssFeed(posts), {
-    headers: { "Content-Type": "application/rss+xml" },
-  })
+	return new Response(renderXmlRssFeed(posts), {
+		headers: { "Content-Type": "application/rss+xml" },
+	})
 }

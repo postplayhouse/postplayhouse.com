@@ -1,3 +1,3 @@
 declare module "*.md" {
-  export { SvelteComponent as default } from "svelte"
+	export { SvelteComponent as default } from "svelte"
 }

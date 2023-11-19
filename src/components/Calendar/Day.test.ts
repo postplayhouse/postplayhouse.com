@@ -9,90 +9,90 @@ const FRIDAY = { year: 2021, month: 6, day: 4 }
 
 // For now, venue is not used, but still included
 const SHOW_1 = {
-  msFromMidnight: TWO_PM,
-  color: "red",
-  title: "Annie",
-  venue: "fort_rob",
+	msFromMidnight: TWO_PM,
+	color: "red",
+	title: "Annie",
+	venue: "fort_rob",
 }
 const SHOW_2 = {
-  msFromMidnight: EIGHT_PM,
-  color: "blue",
-  title: "Guys & Dolls",
-  venue: "fort_rob",
+	msFromMidnight: EIGHT_PM,
+	color: "blue",
+	title: "Guys & Dolls",
+	venue: "fort_rob",
 }
 
 describe("<Day>", () => {
-  test("shows proper date details", () => {
-    const { getByText, container } = render(Day, {
-      date: FRIDAY,
-      daySchedule: [SHOW_1],
-    })
+	test("shows proper date details", () => {
+		const { getByText, container } = render(Day, {
+			date: FRIDAY,
+			daySchedule: [SHOW_1],
+		})
 
-    expect(getByText("Friday")).toBeInTheDocument()
-    expect(getByText("Jun")).toBeInTheDocument()
-    expect(getByText("4")).toBeInTheDocument()
+		expect(getByText("Friday")).toBeInTheDocument()
+		expect(getByText("Jun")).toBeInTheDocument()
+		expect(getByText("4")).toBeInTheDocument()
 
-    expect(container.querySelector(".friday")).toBeInTheDocument()
-    expect(container.querySelector(".jun")).toBeInTheDocument()
-  })
+		expect(container.querySelector(".friday")).toBeInTheDocument()
+		expect(container.querySelector(".jun")).toBeInTheDocument()
+	})
 
-  describe("Dark days", () => {
-    test("expectd output", () => {
-      const { container } = render(Day, { date: MONDAY })
+	describe("Dark days", () => {
+		test("expectd output", () => {
+			const { container } = render(Day, { date: MONDAY })
 
-      expect(container.querySelector(".dark")).toBeInTheDocument()
-      expect(container.querySelector(".show-count-0")).toBeInTheDocument()
-    })
-  })
+			expect(container.querySelector(".dark")).toBeInTheDocument()
+			expect(container.querySelector(".show-count-0")).toBeInTheDocument()
+		})
+	})
 
-  describe("Showings", () => {
-    test("single show, 2pm", () => {
-      const { container, getByText } = render(Day, {
-        date: FRIDAY,
-        daySchedule: [SHOW_1],
-      })
+	describe("Showings", () => {
+		test("single show, 2pm", () => {
+			const { container, getByText } = render(Day, {
+				date: FRIDAY,
+				daySchedule: [SHOW_1],
+			})
 
-      expect(container.querySelector(".show-count-1")).toBeInTheDocument()
-      expect(container.querySelector(".show-red")).toBeInTheDocument()
-      expect(getByText("2p")).toBeInTheDocument()
-      expect(getByText("Annie")).toBeInTheDocument()
+			expect(container.querySelector(".show-count-1")).toBeInTheDocument()
+			expect(container.querySelector(".show-red")).toBeInTheDocument()
+			expect(getByText("2p")).toBeInTheDocument()
+			expect(getByText("Annie")).toBeInTheDocument()
 
-      expect(container.querySelector(".spacer")).not.toBeInTheDocument()
-    })
+			expect(container.querySelector(".spacer")).not.toBeInTheDocument()
+		})
 
-    test("single show, 8pm", () => {
-      const { container, getByText } = render(Day, {
-        date: FRIDAY,
-        daySchedule: [SHOW_2],
-      })
+		test("single show, 8pm", () => {
+			const { container, getByText } = render(Day, {
+				date: FRIDAY,
+				daySchedule: [SHOW_2],
+			})
 
-      expect(container.querySelector(".show-count-1")).toBeInTheDocument()
-      expect(container.querySelector(".show-blue")).toBeInTheDocument()
-      expect(getByText("8p")).toBeInTheDocument()
-      expect(getByText("Guys & Dolls")).toBeInTheDocument()
+			expect(container.querySelector(".show-count-1")).toBeInTheDocument()
+			expect(container.querySelector(".show-blue")).toBeInTheDocument()
+			expect(getByText("8p")).toBeInTheDocument()
+			expect(getByText("Guys & Dolls")).toBeInTheDocument()
 
-      expect(container.querySelector(".spacer")).toBeInTheDocument()
-    })
+			expect(container.querySelector(".spacer")).toBeInTheDocument()
+		})
 
-    test("two shows, different id, 2 and 8", () => {
-      const { container, getByText } = render(Day, {
-        date: FRIDAY,
-        daySchedule: [SHOW_1, SHOW_2],
-      })
+		test("two shows, different id, 2 and 8", () => {
+			const { container, getByText } = render(Day, {
+				date: FRIDAY,
+				daySchedule: [SHOW_1, SHOW_2],
+			})
 
-      // existance
-      expect(container.querySelector(".show-count-2")).toBeInTheDocument()
-      expect(container.querySelector(".show-red")).toBeInTheDocument()
-      expect(container.querySelector(".show-blue")).toBeInTheDocument()
-      expect(getByText("2p")).toBeInTheDocument()
-      expect(getByText("8p")).toBeInTheDocument()
-      expect(getByText("Annie")).toBeInTheDocument()
-      expect(getByText("Guys & Dolls")).toBeInTheDocument()
+			// existance
+			expect(container.querySelector(".show-count-2")).toBeInTheDocument()
+			expect(container.querySelector(".show-red")).toBeInTheDocument()
+			expect(container.querySelector(".show-blue")).toBeInTheDocument()
+			expect(getByText("2p")).toBeInTheDocument()
+			expect(getByText("8p")).toBeInTheDocument()
+			expect(getByText("Annie")).toBeInTheDocument()
+			expect(getByText("Guys & Dolls")).toBeInTheDocument()
 
-      // ordering
-      const [show1, show2] = Array.from(container.querySelectorAll(".showing"))
-      expect(show1).toHaveClass("show-red")
-      expect(show2).toHaveClass("show-blue")
-    })
-  })
+			// ordering
+			const [show1, show2] = Array.from(container.querySelectorAll(".showing"))
+			expect(show1).toHaveClass("show-red")
+			expect(show2).toHaveClass("show-blue")
+		})
+	})
 })

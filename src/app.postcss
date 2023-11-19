@@ -4,165 +4,165 @@
 @tailwind utilities;
 
 @layer components {
-  ol,
-  ul {
-    padding-left: 2em;
-    list-style: decimal;
-  }
+	ol,
+	ul {
+		padding-left: 2em;
+		list-style: decimal;
+	}
 
-  ul {
-    list-style-type: disc;
-  }
+	ul {
+		list-style-type: disc;
+	}
 
-  .btn {
-    @apply bg-green-700 text-white font-bold tracking-wide
+	.btn {
+		@apply bg-green-700 text-white font-bold tracking-wide
       rounded-sm border-solid border-green-900 
       border-0 border-b-2;
-  }
+	}
 
-  .btn:hover {
-    @apply bg-green-500 border-green-700;
-  }
+	.btn:hover {
+		@apply bg-green-500 border-green-700;
+	}
 
-  .btn:disabled,
-  .btn:disabled:hover {
-    @apply bg-green-700 border-green-900;
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
+	.btn:disabled,
+	.btn:disabled:hover {
+		@apply bg-green-700 border-green-900;
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
 
-  .btn-p {
-    @apply btn py-2 px-4;
-  }
+	.btn-p {
+		@apply btn py-2 px-4;
+	}
 
-  .link-green {
-    @apply underline text-green-600;
-  }
+	.link-green {
+		@apply underline text-green-600;
+	}
 
-  .link-green:hover {
-    @apply text-green-700;
-  }
+	.link-green:hover {
+		@apply text-green-700;
+	}
 
-  .r-16x9 {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-  }
+	.r-16x9 {
+		position: relative;
+		padding-bottom: 56.25%;
+		height: 0;
+	}
 
-  .r-child {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-  }
+	.r-child {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+	}
 
-  ._h1 {
-    @apply text-3xl font-uber text-center;
-  }
+	._h1 {
+		@apply text-3xl font-uber text-center;
+	}
 
-  ._h2 {
-    @apply text-green-700 text-2xl;
-  }
+	._h2 {
+		@apply text-green-700 text-2xl;
+	}
 
-  ._h3 {
-    @apply text-lg font-bold;
-  }
+	._h3 {
+		@apply text-lg font-bold;
+	}
 
-  ._h4 {
-    @apply text-lg;
-  }
+	._h4 {
+		@apply text-lg;
+	}
 
-  ._blockquote {
-    @apply pl-4 border-l-4 border-gray-300;
-  }
+	._blockquote {
+		@apply pl-4 border-l-4 border-gray-300;
+	}
 
-  .h1 {
-    @apply _h1;
-  }
+	.h1 {
+		@apply _h1;
+	}
 
-  .h2 {
-    @apply _h2;
-  }
+	.h2 {
+		@apply _h2;
+	}
 
-  .h3 {
-    @apply _h3;
-  }
+	.h3 {
+		@apply _h3;
+	}
 
-  .h4 {
-    @apply _h4;
-  }
+	.h4 {
+		@apply _h4;
+	}
 
-  .blockquote {
-    @apply _blockquote;
-  }
+	.blockquote {
+		@apply _blockquote;
+	}
 
-  @media screen and (min-width: 640px) {
-    .h1 {
-      @apply _h1 text-4xl;
-    }
+	@media screen and (min-width: 640px) {
+		.h1 {
+			@apply _h1 text-4xl;
+		}
 
-    .h2 {
-      @apply _h2 text-3xl;
-    }
+		.h2 {
+			@apply _h2 text-3xl;
+		}
 
-    .h3 {
-      @apply _h3 text-xl;
-    }
+		.h3 {
+			@apply _h3 text-xl;
+		}
 
-    .h4 {
-      @apply _h4;
-    }
-  }
+		.h4 {
+			@apply _h4;
+		}
+	}
 
-  /* We have to not only target markdown transpiled, but also things that have not
+	/* We have to not only target markdown transpiled, but also things that have not
 been given an explicit class */
 
-  .via-markdown a:not([class]) {
-    @apply link-green;
-  }
+	.via-markdown a:not([class]) {
+		@apply link-green;
+	}
 
-  .via-markdown h1:not([class]) {
-    @apply _h1 mt-3 mb-1;
-  }
+	.via-markdown h1:not([class]) {
+		@apply _h1 mt-3 mb-1;
+	}
 
-  .via-markdown h1:not([class]):first-child {
-    @apply _h1 mt-0 mb-1;
-  }
+	.via-markdown h1:not([class]):first-child {
+		@apply _h1 mt-0 mb-1;
+	}
 
-  .via-markdown h2:not([class]) {
-    @apply _h2 mt-3 mb-1;
-  }
+	.via-markdown h2:not([class]) {
+		@apply _h2 mt-3 mb-1;
+	}
 
-  .via-markdown h3:not([class]) {
-    @apply _h3 mt-2;
-  }
+	.via-markdown h3:not([class]) {
+		@apply _h3 mt-2;
+	}
 
-  .via-markdown h4:not([class]) {
-    @apply _h4 mt-3 mb-2;
-  }
+	.via-markdown h4:not([class]) {
+		@apply _h4 mt-3 mb-2;
+	}
 
-  .via-markdown p:not([class]) {
-    @apply my-2;
-  }
+	.via-markdown p:not([class]) {
+		@apply my-2;
+	}
 
-  .via-markdown blockquote:not([class]) {
-    @apply _blockquote;
-  }
+	.via-markdown blockquote:not([class]) {
+		@apply _blockquote;
+	}
 
-  .via-markdown img:not([class]) {
-    @apply block my-4 mx-auto;
-  }
+	.via-markdown img:not([class]) {
+		@apply block my-4 mx-auto;
+	}
 
-  @media screen and (min-width: 640) {
-    .via-markdown h2:not([class]) {
-      @apply text-3xl;
-    }
+	@media screen and (min-width: 640) {
+		.via-markdown h2:not([class]) {
+			@apply text-3xl;
+		}
 
-    .via-markdown h3:not([class]) {
-      @apply text-2xl;
-    }
+		.via-markdown h3:not([class]) {
+			@apply text-2xl;
+		}
 
-    .via-markdown h4:not([class]) {
-      @apply text-xl;
-    }
-  }
+		.via-markdown h4:not([class]) {
+			@apply text-xl;
+		}
+	}
 }
