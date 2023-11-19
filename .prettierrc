@@ -1,9 +1,9 @@
 {
-  "endOfLine": "lf",
-  "trailingComma": "all",
-  "arrowParens": "always",
-  "semi": false,
-  "plugins": ["prettier-plugin-svelte"],
-  "svelteStrictMode": true,
-  "useTabs": true
+	"endOfLine": "lf",
+	"trailingComma": "all",
+	"arrowParens": "always",
+	"semi": false,
+	"plugins": ["prettier-plugin-svelte"],
+	"svelteStrictMode": true,
+	"useTabs": true
 }

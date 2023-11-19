@@ -11,32 +11,32 @@ import svelteImage from "svelte-image"
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const imagePreprocessor = svelteImage({
-  optimizeAll: true, // optimize all images discovered in img tags
-  inlineBelow: 10000, // inline all images in img tags below 10kb
-  compressionLevel: 5, // png quality level
-  quality: 50, // jpeg/webp quality level
-  optimizeRemote: false,
-  processFolders: [
-    // These are all problem folders, where the images are not referenced in a
-    // way that svelteImage understands, but still need to be present in the
-    // build. Referencing them here forces the entire folder to be processed,
-    // even if the reference to a given image is eventually removed. Probably
-    // not a big deal, since there will be few, if any cases where that happens.
-    "images/people",
-    "images/perennials",
-    "images/2014",
-    "images/2015",
-    "images/2016",
-    "images/2017",
-    "images/2018",
-    "images/2019",
-    "images/2020",
-    "images/2022",
-    "images/2023",
-    "images/2024",
-  ],
-  processFoldersRecursively: true,
-  processFoldersSizes: true,
+	optimizeAll: true, // optimize all images discovered in img tags
+	inlineBelow: 10000, // inline all images in img tags below 10kb
+	compressionLevel: 5, // png quality level
+	quality: 50, // jpeg/webp quality level
+	optimizeRemote: false,
+	processFolders: [
+		// These are all problem folders, where the images are not referenced in a
+		// way that svelteImage understands, but still need to be present in the
+		// build. Referencing them here forces the entire folder to be processed,
+		// even if the reference to a given image is eventually removed. Probably
+		// not a big deal, since there will be few, if any cases where that happens.
+		"images/people",
+		"images/perennials",
+		"images/2014",
+		"images/2015",
+		"images/2016",
+		"images/2017",
+		"images/2018",
+		"images/2019",
+		"images/2020",
+		"images/2022",
+		"images/2023",
+		"images/2024",
+	],
+	processFoldersRecursively: true,
+	processFoldersSizes: true,
 })
 
 // There is some kind of race condition between the preprocessor and the adapter
@@ -53,57 +53,57 @@ const imagePreprocessor = svelteImage({
 imagePreprocessor.markup({ content: "<html/>" })
 
 function runImagesAfterOthers(otherProcessors) {
-  return {
-    markup: async ({ content, filename }) => {
-      const otherProcessorsReturn = await compilerPreprocess(
-        content,
-        otherProcessors,
-        { filename },
-      )
-      content = otherProcessorsReturn.code
+	return {
+		markup: async ({ content, filename }) => {
+			const otherProcessorsReturn = await compilerPreprocess(
+				content,
+				otherProcessors,
+				{ filename },
+			)
+			content = otherProcessorsReturn.code
 
-      const { code } = await imagePreprocessor.markup({ content })
-      return {
-        ...otherProcessorsReturn,
-        code,
-      }
-    },
-  }
+			const { code } = await imagePreprocessor.markup({ content })
+			return {
+				...otherProcessorsReturn,
+				code,
+			}
+		},
+	}
 }
 
 /** @xActualType {Array<[string | RegExp, string] | [RegExp, (substring: string, ...args: any[]) => string]>} */
 /** @type {Array<[string, string]>} */
 export const replacements = [
-  ["process.env.NODE_ENV", JSON.stringify(process.env.NODE_ENV)],
-  [
-    "process.env.DEPLOY_PRIME_URL",
-    JSON.stringify(process.env.DEPLOY_PRIME_URL),
-  ],
-  ["process.env.CONTEXT", JSON.stringify(process.env.CONTEXT)],
-  ["BUILD_TIME", JSON.stringify(new Date().toUTCString())],
+	["process.env.NODE_ENV", JSON.stringify(process.env.NODE_ENV)],
+	[
+		"process.env.DEPLOY_PRIME_URL",
+		JSON.stringify(process.env.DEPLOY_PRIME_URL),
+	],
+	["process.env.CONTEXT", JSON.stringify(process.env.CONTEXT)],
+	["BUILD_TIME", JSON.stringify(new Date().toUTCString())],
 ]
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  extensions: [".svelte", ".md"],
-  // Consult https://github.com/sveltejs/svelte-preprocess
-  // for more information about preprocessors
-  preprocess: runImagesAfterOthers([
-    mdsvex({
-      smartypants: true,
-      extensions: [".md"],
-      layout: path.join(__dirname, "./src/components/DefaultMdLayout.svelte"),
-    }),
-    preprocess({
-      postcss: true,
-      replace: replacements,
-    }),
-  ]),
+	extensions: [".svelte", ".md"],
+	// Consult https://github.com/sveltejs/svelte-preprocess
+	// for more information about preprocessors
+	preprocess: runImagesAfterOthers([
+		mdsvex({
+			smartypants: true,
+			extensions: [".md"],
+			layout: path.join(__dirname, "./src/components/DefaultMdLayout.svelte"),
+		}),
+		preprocess({
+			postcss: true,
+			replace: replacements,
+		}),
+	]),
 
-  kit: {
-    adapter: adapter({ split: true }),
-    prerender: { handleHttpError: "warn", handleMissingId: "warn" },
-  },
+	kit: {
+		adapter: adapter({ split: true }),
+		prerender: { handleHttpError: "warn", handleMissingId: "warn" },
+	},
 }
 
 export default config

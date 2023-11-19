@@ -23,23 +23,23 @@ export type LifecycleRef<T> = { current: T | null }
  * ```
  */
 export function mountInPortal(
-  ref: LifecycleRef<HTMLElement>,
-  portalClassName: string,
+	ref: LifecycleRef<HTMLElement>,
+	portalClassName: string,
 ) {
-  if (browser)
-    onMount(function createPortal() {
-      const portal = document.createElement("div")
+	if (browser)
+		onMount(function createPortal() {
+			const portal = document.createElement("div")
 
-      portal.className = portalClassName
-      document.body.appendChild(portal)
-      portal.appendChild(ref.current as HTMLElement)
+			portal.className = portalClassName
+			document.body.appendChild(portal)
+			portal.appendChild(ref.current as HTMLElement)
 
-      return () => {
-        try {
-          document.body.removeChild(portal)
-        } catch {
-          //
-        }
-      }
-    })
+			return () => {
+				try {
+					document.body.removeChild(portal)
+				} catch {
+					//
+				}
+			}
+		})
 }

@@ -4,5 +4,5 @@ const disabled = false
 export const csr = !disabled
 
 export async function load() {
-  return { disabled }
+	return { disabled }
 }

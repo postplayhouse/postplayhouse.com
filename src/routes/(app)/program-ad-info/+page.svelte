@@ -1,13 +1,13 @@
 <script lang="ts">
-  import Markdown from "$components/Markdown.svelte"
+	import Markdown from "$components/Markdown.svelte"
 </script>
 
 <svelte:head>
-  <title>Post Playhouse: Program Ad Information</title>
+	<title>Post Playhouse: Program Ad Information</title>
 </svelte:head>
 
 <Markdown
-  source="{`
+	source="{`
 # Program Ad Information
 
 Thank you so much for supporting Post Playhouse via an ad space purchase in our
