@@ -1,17 +1,6 @@
 <script lang="ts">
-  import TicketsButton from "$components/TicketsButton.svelte"
-  import site from "$data/site"
   export const title = "Announcing our 2022 season!"
 </script>
-
-{#if site.season === 2022 && site.ticketsAvailable}
-  <div class="bg-green-100 p-4 my-2 text-center">
-    <strong>Update:</strong>
-    <a href="{site.ticketsLink}" class="link-green"
-      >Tickets are now on sale! Get yours today!</a
-    >
-  </div>
-{/if}
 
 <p class="my-2">
   We are so happy to be back, and we can't wait for you to see these wonderful
@@ -45,9 +34,3 @@
     need to use the “forgot password” function to reset your password.
   </p>
 </section>
-
-{#if site.season === 2022}
-  <div class="flex justify-center m-4">
-    <TicketsButton />
-  </div>
-{/if}

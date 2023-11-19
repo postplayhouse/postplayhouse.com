@@ -4,7 +4,7 @@ const liveUrl = "https://postplayhouse.com"
 
 // Actual values. If dev, these may change below.
 const castingComplete = false
-const ticketsAvailable = true
+const ticketsAvailableDate = "2023-11-17T00:00:00"
 const showsAnnounced = true
 
 // When doing a Netlify PR Deploy, use the provided url
@@ -33,9 +33,13 @@ export const site = {
   boxOfficePhone,
   boxOfficePhoneLink: `tel:+${boxOfficePhone.replace(/-/g, "")}`,
   ticketsLink: "https://postplayhouse.showare.com/",
-  ticketsAvailable,
+  ticketsAvailableDate,
   showsAnnounced,
 } as const
+
+export function ticketsAvailable() {
+  return new Date() >= new Date(ticketsAvailableDate)
+}
 
 export const yearsWithPages = [2019, 2020, 2021, 2022, 2023, 2024]
 export const yearsWithCalendars = [2020, 2021, 2022, 2023, 2024]

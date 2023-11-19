@@ -2,7 +2,7 @@
   import Production from "$components/Production.svelte"
   import MaybeImage from "$components/MaybeImage.svelte"
   import TicketsButton from "$components/TicketsButton.svelte"
-  import site from "$data/site"
+  import site, { ticketsAvailable } from "$data/site"
 
   export let data
 
@@ -51,7 +51,7 @@
 
 <MaybeImage src="{[seasonImg]}" alt="All {year} productions" />
 
-{#if site.ticketsAvailable && site.season === year}
+{#if ticketsAvailable() && site.season === year}
   <div class="my-4 text-center">
     Tickets are on sale now!
     <br />

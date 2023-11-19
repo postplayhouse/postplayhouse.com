@@ -3,7 +3,7 @@
   import TicketPolicy from "$components/TicketPolicy.md"
   import Mailer from "$components/Mailer.svelte"
   import Modal from "$components/Modal/Modal.svelte"
-  import site from "$data/site"
+  import site, { ticketsAvailable } from "$data/site"
 
   export let data
 
@@ -32,7 +32,7 @@
     </Modal>
   {/if}
 
-  {#if site.ticketsAvailable}
+  {#if ticketsAvailable()}
     <a class="link-green" href="{site.ticketsLink}">Buy yours now!</a><br />
   {/if}
 

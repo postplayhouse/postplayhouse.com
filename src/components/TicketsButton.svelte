@@ -1,8 +1,8 @@
 <script lang="ts">
-  import site from "$data/site"
+  import site, { ticketsAvailable } from "$data/site"
 </script>
 
-{#if site.ticketsAvailable}
+{#if ticketsAvailable()}
   <a href="{site.ticketsLink}" class="btn-p">Get Your Tickets Now!</a>
 {:else}
   <button type="button" class="btn-p" disabled>Tickets Available Soon</button>
