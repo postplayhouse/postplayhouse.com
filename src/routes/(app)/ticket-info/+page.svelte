@@ -4,6 +4,7 @@
   import Mailer from "$components/Mailer.svelte"
   import Modal from "$components/Modal/Modal.svelte"
   import site, { ticketsAvailable } from "$data/site"
+  import ParkingNotice from "$components/ParkingNotice.svelte"
 
   export let data
 
@@ -150,6 +151,8 @@
   <SeatingChart />
 
   <TicketPolicy />
+
+  <ParkingNotice />
 </div>
 
 <style>
