@@ -6,24 +6,7 @@
   <title>Post Playhouse: About</title>
 </svelte:head>
 
-<div class="md:flex flex-row-reverse">
-  <div class="flex-initial md:w-1/2">
-    <p>{site.description}</p>
-  </div>
-
-  <div class="flex-initial md:w-1/2 md:mr-2">
-    <div class="r-16x9">
-      <iframe
-        class="r-child"
-        allow="all"
-        title="Clips from 2015"
-        src="https://www.youtube.com/embed/Y7Nn56A3Dd8?rel=0&amp;showinfo=0"
-        frameborder="0"
-        allowfullscreen></iframe>
-    </div>
-    <div class="text-center text-sm">Clips from 2015</div>
-  </div>
-</div>
+<p class="mb-8">{site.description}</p>
 
 <h2 class="h2">Contact</h2>
 
@@ -66,7 +49,7 @@
     >
       Bing Maps
     </a>
-    --- to the theatre
+    — to the theatre
   </li>
   <li>
     <a
@@ -76,7 +59,7 @@
     >
       Google Maps
     </a>
-    --- to the theatre
+    — to the theatre
   </li>
   <li>
     <a
@@ -86,7 +69,7 @@
     >
       MapQuest
     </a>
-    --- to Fort Robinson
+    — to Fort Robinson
   </li>
   <li>
     <a
@@ -97,11 +80,11 @@
     >
       Yahoo Maps
     </a>
-    --- to Fort Robinson
+    — to Fort Robinson
   </li>
 </ul>
 
-<div class="w-full max-w-2xl">
+<div class="w-full max-w-2xl my-4">
   <div class="r-16x9">
     <iframe
       class="r-child"
@@ -115,17 +98,17 @@
       src="https://maps.google.com/maps/ms?f=q&amp;hl=en&amp;geocode=&amp;ie=UTF8&amp;msa=0&amp;msid=215815128770604665825.00045338a29dc15cb2d92&amp;ll=42.668963,-103.464013&amp;spn=0.003826,0.009656&amp;t=m&amp;output=embed"
     ></iframe>
   </div>
+  <small>
+    View
+    <a
+      href="https://maps.google.com/maps/ms?f=q&amp;hl=en&amp;geocode=&amp;ie=UTF8&amp;msa=0&amp;msid=215815128770604665825.00045338a29dc15cb2d92&amp;ll=42.668963,-103.464013&amp;spn=0.003826,0.009656&amp;t=m&amp;source=embed"
+      class="link-green"
+    >
+      the theatre
+    </a>
+    in a larger map
+  </small>
 </div>
-<small>
-  View
-  <a
-    href="https://maps.google.com/maps/ms?f=q&amp;hl=en&amp;geocode=&amp;ie=UTF8&amp;msa=0&amp;msid=215815128770604665825.00045338a29dc15cb2d92&amp;ll=42.668963,-103.464013&amp;spn=0.003826,0.009656&amp;t=m&amp;source=embed"
-    class="link-green"
-  >
-    the theatre
-  </a>
-  in a larger map
-</small>
 
 <h2 class="h2">Parking</h2>
 
