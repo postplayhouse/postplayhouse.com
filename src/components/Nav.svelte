@@ -2,8 +2,12 @@
 	export let activePath: string
 	import site from "$data/site"
 
+	function trimTrailingSlash(str: string) {
+		return str.replace(/\/$/, "")
+	}
+
 	function nodeIsActive(node: HTMLAnchorElement, activePath: string) {
-		return new URL(node.href).pathname === activePath
+		return trimTrailingSlash(new URL(node.href).pathname) === trimTrailingSlash(activePath)
 	}
 
 	function manageNodeActiveClass(node: HTMLAnchorElement, activePath: string) {
@@ -17,6 +21,7 @@
 	}
 
 	function active(node: HTMLAnchorElement, activePath: string) {
+		console.log(new URL(node.href).pathname, activePath)
 		manageNodeActiveClass(node, activePath)
 
 		return {
