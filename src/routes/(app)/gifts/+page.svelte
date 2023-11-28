@@ -6,7 +6,7 @@
 	const now_year = new Date().getFullYear()
 	const is_holidays = dateIsBetween(`10/01/${now_year}`, `12/15/${now_year}`)
 
-	const certificatesAreAvailable = false
+	const certificatesAreAvailable = true
 </script>
 
 <svelte:head>
