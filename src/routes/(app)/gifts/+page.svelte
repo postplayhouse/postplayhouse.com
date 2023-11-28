@@ -58,11 +58,11 @@
 
 	<p>
 		<a
-			href="/documents/gift-certificate.pdf"
+			href="/documents/{site.season}/gift-certificate.pdf"
 			download
 			class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
 			><img
-				src="/documents/gift-certificate.jpg"
+				src="/documents/{site.season}/gift-certificate.jpg"
 				alt="Gift Certificate"
 				class="max-w-md"
 			/></a
@@ -75,11 +75,11 @@
 
 	<p>
 		<a
-			href="/documents/subscription-card.pdf"
+			href="/documents/{site.season}/subscription-card.pdf"
 			download
 			class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
 			><img
-				src="/documents/subscription-card.jpg"
+				src="/documents/{site.season}/subscription-card.jpg"
 				alt="Subscription Card"
 				class="max-w-md"
 			/></a
