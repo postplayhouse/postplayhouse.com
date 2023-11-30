@@ -30,9 +30,9 @@
 			December 15th through our <a class="link-green" href="{site.ticketsLink}"
 				>Online Box Office</a
 			>, we will contact you via email and ask if you would like us to send you
-			a pre-filled Subscription Card or Gift Certificate to present as a gift.
-			Just reply to the email we sent you and we'll ship the cards to you before
-			December 25th.
+			a Subscription Card or Gift Certificate to present as a gift. Just reply
+			to the email we sent you and we'll ship the cards to you before December
+			25th.
 		</p>
 	</div>
 {/if}
