@@ -20,7 +20,7 @@
 		<h2 class="h2">Holiday Gift Extras</h2>
 
 		<p>
-			No matter when you purchase a Season Subscripton or Gift Certificate, you
+			No matter when you purchase a Season Subscription or Gift Certificate, you
 			can always print them from downloadable files below. However, during the
 			holidays, we like to lend a hand.
 		</p>
