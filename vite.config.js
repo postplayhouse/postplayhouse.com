@@ -18,7 +18,11 @@ const config = {
 		WatchAndRun([
 			{
 				watch: "**/src/data/**/*.yml",
-				run: "touch ./src/data/_yaml.ts",
+				run: "touch ./src/data/_yaml.ts && echo didit",
+			},
+			{
+				watch: "**/src/routes/\\(app\\)/jobs/**/*.md",
+				run: "touch ./src/routes/\\(app\\)/jobs/_posts-metadata.ts && echo didit",
 			},
 		]),
 		sveltekit(),
