@@ -10,7 +10,7 @@
 
 	export let data
 
-	const { disabled } = data
+	const { disabled, productions: productions_ } = data
 
 	onMount(() => {
 		if (!window.fetch) dispatch(events.foundNoFetch)
@@ -20,7 +20,7 @@
 	const PLACEHOLDER_IMAGE = "https://www.fillmurray.com/400/500"
 	const EXAMPLE_BIO = `Don Denton is so happy to be returning to Post Playhouse after several years away. Though this time around, you won't see him on the stage. Instead, he will be directing this season's production of *Annie*. Some of Don's favorite memories were at Post Playhouse: Doing shows like *Hank Williams: Lost Highway*, and *Guys and Dolls*, working with Paige Salter. He and Paige are looking forward to making some new memories with their son, Marvin, who now gets to see the place Mommy and Daddy met. Visit [dondentonactor.com](https://dondentonactor.com) for more about Don.`
 
-	let lastYearBios = `/who/${site.season - 3}`
+	let lastYearBios = `/who/${site.season - 1}`
 
 	let passphrase = ""
 	let firstName = ""
@@ -36,14 +36,7 @@
 
 	const ENTIRE_SEASON = "Entire Season"
 
-	let productions = [
-		ENTIRE_SEASON,
-		"Leader of the Pack",
-		"Clue the Musical",
-		"Joseph and the Amazing Technicolor Dreamcoat",
-		"You're a Good Man Charlie Brown",
-		"The Spitfire Grill",
-	]
+	let productions = [ENTIRE_SEASON, ...productions_.map((p) => p.title)]
 	let roles: Person["roles"] = []
 	let staffPositions: Person["staffPositions"] = []
 	let productionPositions: Person["productionPositions"] = []
