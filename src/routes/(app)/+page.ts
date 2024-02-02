@@ -10,6 +10,6 @@ export async function load(obj) {
 			productions: data.productions,
 		}
 	} else {
-		throw error(500, `could not fetch /data/productions/${site.season}.json`)
+		error(500, `could not fetch /data/productions/${site.season}.json`)
 	}
 }

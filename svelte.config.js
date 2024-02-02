@@ -103,6 +103,12 @@ const config = {
 	kit: {
 		adapter: adapter({ split: true }),
 		prerender: { handleHttpError: "warn", handleMissingId: "warn" },
+		alias: {
+			$components: path.resolve("./src/components"),
+			$data: path.resolve("./src/data"),
+			$helpers: path.resolve("./src/helpers"),
+			$models: path.resolve("./src/models"),
+		},
 	},
 }
 

@@ -7,13 +7,13 @@ marked.setOptions({ smartypants: true })
 export async function load(obj) {
 	const peopleRes = await obj.fetch(`/data/people/${site.season}.json`)
 	const peopleData = await peopleRes.json()
-	if (peopleRes.status !== 200) throw error(500, peopleData.message)
+	if (peopleRes.status !== 200) error(500, peopleData.message)
 
 	const productionsRes = await obj.fetch(
 		`/data/productions/${site.season}.json`,
 	)
 	const productionsData = await productionsRes.json()
-	if (productionsRes.status !== 200) throw error(500, productionsData.message)
+	if (productionsRes.status !== 200) error(500, productionsData.message)
 
 	return {
 		people: peopleData.people as YamlPerson[],

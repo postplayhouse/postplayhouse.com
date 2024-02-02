@@ -11,6 +11,6 @@ export async function load(obj) {
 			year: obj.params["year"],
 		}
 	} else {
-		throw error(500, data.message)
+		error(500, data.message)
 	}
 }

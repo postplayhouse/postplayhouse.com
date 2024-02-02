@@ -19,35 +19,35 @@
 		"prepare": "husky"
 	},
 	"lint-staged": {
-		"*.{js,ts,svelte}": [
-			"eslint --fix"
-		],
 		"*": [
 			"prettier --ignore-unknown --write"
 		]
 	},
 	"dependencies": {
-		"@sveltejs/kit": "^1.30.3",
 		"compression": "^1.7.4",
 		"js-yaml": "^4.1.0",
-		"lodash": "^4.17.21",
+		"lodash-es": "^4.17.21",
 		"marked": "^4.1.1"
 	},
 	"devDependencies": {
 		"@popperjs/core": "^2.9.2",
-		"@rollup/plugin-replace": "^5.0.2",
-		"@sveltejs/adapter-netlify": "^2.0",
+		"@rollup/plugin-replace": "^5.0.5",
+		"@sveltejs/adapter-netlify": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@testing-library/jest-dom": "^6.1.4",
 		"@testing-library/svelte": "^4.1.0",
+		"@types/eslint": "8.56.0",
 		"@types/jest": "^29.5.8",
-		"@types/lodash": "^4.14.186",
+		"@types/lodash-es": "^4.14.186",
 		"@types/marked": "^4.0.7",
 		"@typescript-eslint/eslint-plugin": "^6.10.0",
 		"@typescript-eslint/parser": "^6.10.0",
 		"autoprefixer": "^10.4.16",
 		"cssnano": "^6.0.1",
 		"date-fns": "^2.23.0",
-		"eslint-config-prettier": "^9.0.0",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"frontmatter": "^0.0.3",
 		"husky": "^9.0.10",
@@ -68,7 +68,8 @@
 		"ts-jest": "^29.1.1",
 		"tslib": "^2.6.2",
 		"typescript": "5.2.2",
-		"vite-plugin-watch-and-run": "^1.4.1"
+		"vite": "^5.0.3",
+		"vite-plugin-watch-and-run": "^1.6.0"
 	},
 	"type": "module"
 }

@@ -13,12 +13,5 @@
 		"noPropertyAccessFromIndexSignature": true,
 		"noUncheckedIndexedAccess": true,
 		"noEmit": true,
-		"paths": {
-			"$components/*": ["./src/components/*"],
-			"$data/*": ["./src/data/*"],
-			"$helpers": ["./src/helpers"],
-			"$helpers/*": ["./src/helpers/*"],
-			"$models/*": ["./src/models/*"],
-		},
 	},
 }

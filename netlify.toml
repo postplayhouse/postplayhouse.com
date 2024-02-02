@@ -13,7 +13,7 @@
   publish = "build"
 
   # Default build command.
-  command = "npm run netlify"
+  command = "pnpm run netlify"
 
   # Directory with the serverless functions, including background functions,
   # to deploy to AWS. This is relative to the base directory if one has been set, 

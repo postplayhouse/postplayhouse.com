@@ -49,7 +49,7 @@ export const GET = async ({ request }) => {
 		const resp = await fetch(authorizeEndpoint, { headers, method: "GET" })
 
 		if (!resp.ok) {
-			throw error(500, "Could not authorize account for storage provider")
+			error(500, "Could not authorize account for storage provider")
 		}
 
 		const authData = (await resp.json()) as GetAuthorizeAccountResponse
@@ -61,7 +61,7 @@ export const GET = async ({ request }) => {
 		})
 
 		if (!resp2.ok) {
-			throw error(
+			error(
 				500,
 				"Could not fetch upload endpoint details from the storage provider",
 			)
