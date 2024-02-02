@@ -163,7 +163,7 @@
 			name: "noShowsPresentLongerBio",
 			warn:
 				addLongerBio &&
-				longerBio.length > MAX_WORDS &&
+				longerBioWordCount > MAX_WORDS &&
 				(longerBio.match(/_/g) || []).length === 0 &&
 				(longerBio.match(/\*/g) || []).length === 0,
 		},
