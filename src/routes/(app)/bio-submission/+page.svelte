@@ -8,6 +8,8 @@
 	import { marked } from "marked"
 	import { sanitizedPassphrase } from "$helpers"
 
+	import billMurray from "./bill-murray.jpg"
+
 	export let data
 
 	const { disabled, productions: productions_ } = data
@@ -17,7 +19,7 @@
 	})
 
 	const MAX_WORDS = 125
-	const PLACEHOLDER_IMAGE = "https://www.fillmurray.com/400/500"
+	const PLACEHOLDER_IMAGE = billMurray
 	const EXAMPLE_BIO = `Don Denton is so happy to be returning to Post Playhouse after several years away. Though this time around, you won't see him on the stage. Instead, he will be directing this season's production of *Annie*. Some of Don's favorite memories were at Post Playhouse: Doing shows like *Hank Williams: Lost Highway*, and *Guys and Dolls*, working with Paige Salter. He and Paige are looking forward to making some new memories with their son, Marvin, who now gets to see the place Mommy and Daddy met. Visit [dondentonactor.com](https://dondentonactor.com) for more about Don.`
 
 	let lastYearBios = `/who/${site.season - 1}`
@@ -126,12 +128,6 @@
 	})()
 
 	$: validations = [
-		{ name: "wordCount", invalid: bioWordCount > MAX_WORDS },
-		{ name: "firstName", invalid: !firstName },
-		{ name: "location", invalid: !location },
-		{ name: "emptyBio", invalid: !bio },
-		{ name: "email", invalid: !email },
-		{ name: "image", invalid: !(imageFile || useOldHeadshot) },
 		{
 			name: "unclosedTitleUnderscore",
 			warn: (bio.match(/_/g) || []).length % 2 > 0,
@@ -143,6 +139,7 @@
 		{
 			name: "noShowsPresent",
 			warn:
+				bio.length > 0 &&
 				(bio.match(/_/g) || []).length === 0 &&
 				(bio.match(/\*/g) || []).length === 0,
 		},
@@ -158,10 +155,16 @@
 			name: "noShowsPresentLongerBio",
 			warn:
 				addLongerBio &&
+				longerBio.length > MAX_WORDS &&
 				(longerBio.match(/_/g) || []).length === 0 &&
 				(longerBio.match(/\*/g) || []).length === 0,
 		},
-		{ name: "longerBioIsEmpty", warn: addLongerBio && !longerBio },
+		{ name: "wordCount", invalid: bioWordCount > MAX_WORDS },
+		{ name: "firstName", invalid: !firstName },
+		{ name: "location", invalid: !location },
+		{ name: "emptyBio", invalid: !bio },
+		{ name: "email", invalid: !email },
+		{ name: "image", invalid: !(imageFile || useOldHeadshot) },
 		{
 			name: "longerBioIsShort",
 			invalid: addLongerBio && longerBioWordCount <= MAX_WORDS,
@@ -183,9 +186,9 @@
 
 	const warningMessages = {
 		noShowsPresent:
-			"It looks like your bio doesn't include the titles of any productions you've been involved with. That's fine. But if you <em>meant to</em> include titles, you probably forgot to surround them with either asterisks or underscores. See the instructions above the bio field for how to notate show titles.",
+			"<strong>It looks like your bio doesn't include the titles of any productions</strong> you've been involved with. That's fine. But if you <em>meant to</em> include titles, you probably forgot to <strong>surround them with either *asterisks* or _underscores_</strong>. See the instructions above the bio field for how to notate show titles.",
 		noShowsPresentLongerBio:
-			"It looks like your longer bio for the website doesn't include the titles of any productions you've been involved with. That's fine. But if you <em>meant to</em> include titles, you probably forgot to surround them with either asterisks or underscores. See the instructions above the bio field for how to notate show titles.",
+			"It looks like <strong>your longer bio for the website doesn't include the titles of any productions</strong> you've been involved with. That's fine. But if you <em>meant to</em> include titles, you probably forgot to <strong>surround them with either *asterisks* or _underscores_</strong>. See the instructions above the bio field for how to notate show titles.",
 		unclosedTitleUnderscore:
 			"If you meant to have an actual underscore (<code>_</code>) in you bio, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
 		unclosedTitleUnderscoreLongerBio:
@@ -194,8 +197,6 @@
 			"If you meant to have an actual asterisk (<code>*</code>) in your bio, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
 		unclosedTitleAsteriskLongerBio:
 			"If you meant to have an actual asterisk (<code>*</code>) in your longer bio for the website, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
-		longerBioIsEmpty:
-			"You checked the box that you'd like to add a longer bio for the website, but then you left it empty. That's fine, I'll just use the other bio.",
 	}
 
 	$: invalidForm = validations.some((v) => v.invalid === true)
@@ -864,14 +865,6 @@ ${email}
 					</div>
 				</div>
 			{/if}
-
-			<button
-				class="btn btn-p mt-8 hidden lg:inline-block"
-				disabled="{invalidForm || submitting}"
-				on:click="{onSubmit}"
-			>
-				{#if submitting}Submitting{:else}Submit Bio{/if}
-			</button>
 		</form>
 
 		<div>
