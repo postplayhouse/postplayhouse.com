@@ -1,10 +1,9 @@
 <script lang="ts">
-	import uniq from "lodash/uniq.js"
-	import flatten from "lodash/flatten.js"
+	import uniq from "lodash-es/uniq.js"
+	import flatten from "lodash-es/flatten.js"
 	import Markdown from "./Markdown.svelte"
 	import MaybeImage from "./MaybeImage.svelte"
 	import type { Person } from "$models/Person"
-	import { startsWith } from "lodash"
 
 	export let hideProductionRoles: boolean = false
 

@@ -9,6 +9,6 @@ export async function load(obj) {
 	if (res.status === 200) {
 		return { seasons: data.seasons }
 	} else {
-		throw error(500, data.message)
+		error(500, data.message)
 	}
 }

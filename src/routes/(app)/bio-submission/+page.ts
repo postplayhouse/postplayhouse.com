@@ -17,6 +17,6 @@ export async function load(obj) {
 			disabled,
 		}
 	} else {
-		throw error(500, `could not fetch /data/productions/${site.season}.json`)
+		error(500, `could not fetch /data/productions/${site.season}.json`)
 	}
 }

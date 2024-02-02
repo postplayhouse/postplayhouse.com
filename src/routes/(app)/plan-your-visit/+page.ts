@@ -7,6 +7,6 @@ export async function load(obj) {
 	if (res.status === 200) {
 		return { businesses: data.businesses as Business[] }
 	} else {
-		throw error(500, data.message)
+		error(500, data.message)
 	}
 }

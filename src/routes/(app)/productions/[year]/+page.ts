@@ -10,9 +10,6 @@ export async function load(obj) {
 			year: parseInt(obj.params["year"] as string),
 		}
 	} else {
-		throw error(
-			500,
-			`could not fetch /data/productions/${obj.params["year"]}.json`,
-		)
+		error(500, `could not fetch /data/productions/${obj.params["year"]}.json`)
 	}
 }

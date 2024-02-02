@@ -4,7 +4,7 @@
 	 * `show` prop. And the contents of the modal are always loaded into the DOM.
 	 * This allows forms to not lose data after closing, etc.
 	 */
-	import debounce from "lodash/debounce.js"
+	import debounce from "lodash-es/debounce.js"
 	import { createEventDispatcher } from "svelte"
 
 	import Freeze from "../Freeze.svelte"
