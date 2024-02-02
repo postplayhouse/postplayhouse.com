@@ -36,6 +36,14 @@
 	let email = ""
 	let useOldHeadshot = false
 
+	function handleUseOldHeadshotChange(e: Event) {
+		const unchecked = !(e.target as HTMLInputElement).checked
+		if (unchecked) {
+			image = ""
+			imageFile = null
+		}
+	}
+
 	const ENTIRE_SEASON = "Entire Season"
 
 	let productions = [ENTIRE_SEASON, ...productions_.map((p) => p.title)]
@@ -675,13 +683,13 @@ ${email}
 						: ''}"
 				>
 					{#if !imageFile}Choose a file{:else}Change file{/if}
-					<input
-						class="hidden"
-						on:change="{handleFilePick}"
-						name="headshot"
-						accept="image/*"
-						type="file"
-					/>
+					{#if !useOldHeadshot}<input
+							class="hidden"
+							on:change="{handleFilePick}"
+							name="headshot"
+							accept="image/*"
+							type="file"
+						/>{/if}
 				</label>
 				{#if image && !useOldHeadshot}
 					<img
@@ -692,7 +700,11 @@ ${email}
 					/>
 				{/if}
 				<label class="block mt-2">
-					<input type="checkbox" bind:checked="{useOldHeadshot}" />
+					<input
+						type="checkbox"
+						on:change="{handleUseOldHeadshotChange}"
+						bind:checked="{useOldHeadshot}"
+					/>
 					I've worked at Post before. Please use my headshot from last time instead.
 				</label>
 			</div>

@@ -24,6 +24,10 @@
 	// thrown error noise
 	onMount(async () => {
 		for (const path of src) {
+			if (path.startsWith("data:")) {
+				winningSrc = path
+				break
+			}
 			if (await checkImageExists(path)) {
 				winningSrc = path
 				break
