@@ -10,5 +10,5 @@ export const GET = async ({ request }) => {
 					message: "The passphrase you gave was incorrect.",
 				},
 				{ status: 403 },
-		  )
+			)
 }

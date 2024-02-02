@@ -11,8 +11,8 @@ const showsAnnounced = true
 const url = live
 	? liveUrl
 	: prod
-	? process.env.DEPLOY_PRIME_URL || liveUrl
-	: "http://localhost:3000"
+		? process.env.DEPLOY_PRIME_URL || liveUrl
+		: "http://localhost:3000"
 
 const boxOfficePhone = "1-888-665-1976"
 

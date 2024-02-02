@@ -7,7 +7,10 @@
 	}
 
 	function nodeIsActive(node: HTMLAnchorElement, activePath: string) {
-		return trimTrailingSlash(new URL(node.href).pathname) === trimTrailingSlash(activePath)
+		return (
+			trimTrailingSlash(new URL(node.href).pathname) ===
+			trimTrailingSlash(activePath)
+		)
 	}
 
 	function manageNodeActiveClass(node: HTMLAnchorElement, activePath: string) {

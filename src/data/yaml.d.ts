@@ -46,11 +46,10 @@ type ToNumber<
 
 type A = Lowercase<2010>
 
-type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y
-	? 1
-	: 2
-	? true
-	: false
+type Equal<X, Y> =
+	(<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2
+		? true
+		: false
 
 type IsYear<X> = Equal<ToNumber<X>, Date.Year> extends true ? X : never
 type X = ToNumber<"45">

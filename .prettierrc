@@ -3,7 +3,8 @@
 	"trailingComma": "all",
 	"arrowParens": "always",
 	"semi": false,
-	"plugins": ["prettier-plugin-svelte"],
 	"svelteStrictMode": true,
-	"useTabs": true
+	"useTabs": true,
+	"plugins": ["prettier-plugin-svelte"],
+	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
 }

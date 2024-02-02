@@ -202,7 +202,7 @@ const makeSimpleDate = (dt: Date | SimpleDate): SimpleDate =>
 				year: dt.getFullYear() as Year,
 				month: (dt.getMonth() + 1) as Month,
 				day: dt.getDate() as Day,
-		  }
+			}
 		: dt
 
 function dateMatches(

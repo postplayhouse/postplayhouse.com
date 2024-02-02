@@ -85,11 +85,11 @@ export function sortBoardMembers(arrayOfPeople: YamlPerson[]) {
 		if ((a.positions?.length || 0) === 0) return 1
 		if ((b.positions?.length || 0) === 0) return -1
 
-		const aPos = boardPositions.findIndex(
-			(x) => a.positions?.[0]?.startsWith(x),
+		const aPos = boardPositions.findIndex((x) =>
+			a.positions?.[0]?.startsWith(x),
 		)
-		const bPos = boardPositions.findIndex(
-			(x) => b.positions?.[0]?.startsWith(x),
+		const bPos = boardPositions.findIndex((x) =>
+			b.positions?.[0]?.startsWith(x),
 		)
 
 		return aPos - bPos

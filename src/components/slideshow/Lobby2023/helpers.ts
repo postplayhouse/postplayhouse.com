@@ -27,10 +27,10 @@ export function positiveIntStore(initialValue = 1, localStorageName?: string) {
 					// noop
 				}
 				return newVal
-		  }
+			}
 		: (newVal: number) => {
 				return newVal
-		  }
+			}
 
 	return {
 		subscribe,

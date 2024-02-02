@@ -36,7 +36,7 @@ class Person {
 			? `/images/people/${this.imageYear}/${
 					this.imageFile ||
 					this.name.replace(/\W+/g, "-").toLowerCase() + ".jpg"
-			  }`
+				}`
 			: undefined
 	}
 
