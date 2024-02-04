@@ -30,6 +30,7 @@
 		"marked": "^4.1.1"
 	},
 	"devDependencies": {
+		"@octokit/rest": "^20.0.2",
 		"@popperjs/core": "^2.9.2",
 		"@rollup/plugin-replace": "^5.0.5",
 		"@sveltejs/adapter-netlify": "^3.0.0",
