@@ -2,6 +2,7 @@ import { json } from "@sveltejs/kit"
 import { passphraseIsCorrect } from "../passphraseHelpers"
 import { Octokit } from "@octokit/rest"
 import { env } from "$env/dynamic/private"
+import site from "$data/site"
 
 const octokit = new Octokit({
 	auth: env["GITHUB_ACCESS_TOKEN"],
@@ -9,7 +10,7 @@ const octokit = new Octokit({
 
 const owner = "postplayhouse"
 const repo = "postplayhouse.com"
-const filePath = "src/data/people/2024.yml"
+const filePath = `src/data/people/${site.season}.yml`
 const masterBranch = "master"
 
 async function updatePeopleData({
@@ -92,18 +93,13 @@ async function updatePeopleData({
 		})
 
 		let pullRequest: string | undefined = (
-			await octokit.pulls
-				.list({
-					owner,
-					repo,
-					head: `${owner}:${markerBranch}`,
-					base: masterBranch,
-					state: "open",
-				})
-				.then((res) => {
-					console.log(res.data)
-					return res
-				})
+			await octokit.pulls.list({
+				owner,
+				repo,
+				head: `${owner}:${markerBranch}`,
+				base: masterBranch,
+				state: "open",
+			})
 		).data[0]?.html_url
 
 		if (!pullRequest) {
