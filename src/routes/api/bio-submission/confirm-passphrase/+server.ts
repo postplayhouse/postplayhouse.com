@@ -1,8 +1,8 @@
 import { json } from "@sveltejs/kit"
-import { passphraseIsCorrect } from "../passphraseHelpers"
+import { individualPassphraseDetails } from "../passphraseHelpers"
 
 export const GET = async ({ request }) => {
-	return passphraseIsCorrect(request)
+	return individualPassphraseDetails(request).correct
 		? new Response("", { status: 201 })
 		: json(
 				{

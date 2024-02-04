@@ -1,7 +1,7 @@
 import { env } from "$env/dynamic/private"
 import { assert } from "$helpers"
 import { error, json } from "@sveltejs/kit"
-import { passphraseIsCorrect } from "../passphraseHelpers"
+import { individualPassphraseDetails } from "../passphraseHelpers"
 import type { AuthorizeAccountSuccessResponse } from "./b2-types"
 
 type GetAuthorizeAccountResponse = AuthorizeAccountSuccessResponse
@@ -38,7 +38,8 @@ export const GET = async ({ request }) => {
 	assert(b2Creds.key, "no key from ENV")
 	assert(b2Creds.keyId, "no keyId from ENV")
 
-	if (!passphraseIsCorrect(request)) return new Response("", { status: 403 })
+	if (!individualPassphraseDetails(request).correct)
+		return new Response("", { status: 403 })
 
 	const url = new URL(request.url)
 	const count = Number(url.searchParams.get("count")) || 1

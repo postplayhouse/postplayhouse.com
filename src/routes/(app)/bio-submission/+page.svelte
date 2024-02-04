@@ -37,6 +37,7 @@
 	let longerBio = ""
 	let email = ""
 	let useOldHeadshot = false
+	let pullRequest = ""
 
 	function handleUseOldHeadshotChange(e: Event) {
 		const unchecked = !(e.target as HTMLInputElement).checked
@@ -223,9 +224,14 @@
 
 	let badPassphrase = false
 
-	let state = disabled ? states.submissionsDisabled : states.unauthenticated
-	// uncomment below to develop faster
-	state = states.incompleteForm
+	let startingState = disabled
+		? states.submissionsDisabled
+		: states.unauthenticated
+
+	// uncomment below for development
+	// startingState = states.incompleteForm
+
+	let state = startingState
 
 	$: showCredsForm = [states.unauthenticated, states.requestingAuth].includes(
 		state,
@@ -396,16 +402,16 @@
 
 	const safeName = (str: string) =>
 		str
-			.replace(/ +/g, "-")
-			.replace(/[^A-z-]/g, "")
+			.trim()
 			.toLowerCase()
+			.replace(/[^a-z]+/gi, "-")
 
 	const onSubmit = () => dispatch(events.postBio)
 
 	$: yamlBody = ({
-		fillRoles,
+		includeEmptyRoles: fillRoles,
 		includeGroups,
-	}: { fillRoles?: boolean; includeGroups?: boolean } = {}) => {
+	}: { includeEmptyRoles?: boolean; includeGroups?: boolean } = {}) => {
 		let localRoles: typeof roles = JSON.parse(JSON.stringify(roles))
 
 		if (fillRoles) {
@@ -436,19 +442,22 @@
 			.map((x) => `    - ${x}`)
 			.join("\n")
 
+		function bioTrim(text: string) {
+			return text.trim().replaceAll("\n", "\n    ")
+		}
+
 		return [
 			`- last_name: ${lastName.trim()}`,
 			`  first_name: ${firstName.trim()}`,
-			`  image_year: ${oldImage ? oldImage.split("/")[3] : site.season}`,
+			`  image_year: ${useOldHeadshot ? oldImage.split("/")[3] : site.season}`,
 			`  location: "${location.trim()}"`,
 			includeGroups && `  groups:\n${allGroups}`,
 			`  staff_positions:\n${entireSeasonRolesAsYaml}`,
 			`  production_positions:`,
 			`  roles:\n${yamlRoles}`,
-			!addLongerBio && `  bio: |\n    ${bio.trim()}`,
-			addLongerBio && `program_bio: |\n    ${bio.trim()}`,
-			addLongerBio && `longer_website_bio: |\n    ${longerBio.trim()}`,
-			"\n",
+			!addLongerBio && `  bio: |\n    ${bioTrim(bio)}`,
+			addLongerBio && `  program_bio: |\n    ${bioTrim(bio)}`,
+			addLongerBio && `  bio: |\n    ${bioTrim(longerBio)}`,
 		]
 			.filter(Boolean)
 			.join("\n")
@@ -464,7 +473,7 @@ I'll email you when I have added your information to the website, so you can che
 ~Don Denton
 ----------------------------------------
 
-${yamlBody({ fillRoles: true })}
+${yamlBody({ includeEmptyRoles: true })}
 `
 
 	$: emailLink = `mailto:don@postplayhouse.com?subject=${encodeURIComponent(
@@ -482,6 +491,27 @@ ${yamlBody({ fillRoles: true })}
 				"Content-Length": payload.length + "",
 			}),
 			body: payload,
+		})
+	}
+
+	function uploadBioToGh(
+		name: string,
+		email: string,
+		bioYaml: string,
+		imageFile?: File,
+	) {
+		const fd = new FormData()
+		imageFile && fd.append("imageFile", imageFile)
+		fd.append("bioYaml", bioYaml)
+		fd.append("name", name)
+		fd.append("email", email)
+
+		return window.fetch("/api/bio-submission/bio-to-gh", {
+			method: "POST",
+			headers: new Headers({
+				Authorization: sanitizedPassphrase(passphrase),
+			}),
+			body: fd,
 		})
 	}
 
@@ -509,6 +539,40 @@ ${yamlBody({ fillRoles: true })}
 			lastName,
 		)}`
 
+		let ghTries = 0
+
+		const doGhUpload = (): Promise<
+			{ success: true; pullRequest: string } | { success: false }
+		> =>
+			uploadBioToGh(
+				`${firstName} ${lastName}`,
+				email,
+				yamlBody(),
+				imageFile ?? undefined,
+			)
+				.then(async (resp) => {
+					if (resp.ok) {
+						return {
+							success: true,
+							pullRequest: (await resp.json()).pullRequest,
+						}
+					} else if (ghTries < 3) {
+						ghTries++
+						return doGhUpload()
+					} else {
+						throw new Error("Could not upload Bio to GitHub")
+					}
+				})
+				.catch(() => ({ success: false }))
+
+		const ghResult = await doGhUpload()
+
+		if (ghResult.success) {
+			pullRequest = ghResult.pullRequest
+			dispatch(events.sendHeadshotBioSuccess)
+			return
+		}
+
 		let bioTries = 0
 		let headshotTries = 0
 
@@ -521,7 +585,6 @@ Don't forget:
 1. delete either \`roles:\` (for non-cast members) or \`production_positions:\` (for cast members)
 2. double check everything in \`staff_positions\`
 3. delete all incorrect group memberships for each person
-4. if two bios, change \`longer_website_bio\` to \`bio\`
 
 ${email}
 `
@@ -577,7 +640,7 @@ ${email}
 			headers: new Headers({
 				Authorization: sanitizedPassphrase(passphrase),
 			}),
-			body: JSON.stringify({ name: `${firstName} ${lastName}` }),
+			body: JSON.stringify({ name: `${firstName} ${lastName}`, pullRequest }),
 		})
 	}
 
@@ -731,7 +794,7 @@ ${email}
 							class="hidden"
 							on:change="{handleFilePick}"
 							name="headshot"
-							accept="image/*"
+							accept=".jpg,.jpeg,.heif"
 							type="file"
 						/>
 					</label>
