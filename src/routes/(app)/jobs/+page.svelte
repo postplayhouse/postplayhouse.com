@@ -8,19 +8,12 @@
 
 	const title = "Work at Post Playhouse"
 
-	let noOpenings = "There are currently no openings for our upcoming season."
-
 	const today = new Date()
 	const marchOfCurrentSeason = new Date(site.season, 2)
 	const midAugustOfCurrentSeason = new Date(site.season, 7, 20)
 
 	const isAfterCurrentSeason = today > midAugustOfCurrentSeason
 	const isBeforeMarchOfCurrentSeason = today < marchOfCurrentSeason
-
-	if (isAfterCurrentSeason || isBeforeMarchOfCurrentSeason) {
-		noOpenings +=
-			" We generally hold professional audtions and start looking for summer staff in the first quarter of the year."
-	}
 
 	let showFeedsLinks = false
 	const toggleFeedsLinks = () => (showFeedsLinks = !showFeedsLinks)
@@ -65,8 +58,8 @@
 	<h2 class="h2 font-bold mt-12 mb-4">There are currently no openings.</h2>
 	{#if isAfterCurrentSeason || isBeforeMarchOfCurrentSeason}
 		<p>
-			We generally hold professional audtions and start looking for summer staff
-			in the first quarter of the year.
+			We generally hold professional auditions and start looking for summer
+			staff in the first quarter of the year.
 		</p>
 	{/if}
 {/if}
