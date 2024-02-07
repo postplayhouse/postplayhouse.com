@@ -4,6 +4,7 @@
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
 	import { isToday } from "date-fns"
+	import Raffle2024 from "./news/2024-02-06-annual-raffle/+page.svelte"
 
 	export let data
 
@@ -50,6 +51,10 @@
 		<DonateBtn />
 	</div>
 {/if}
+
+<div class="bg-green-50 p-8 -mx-8 border-green-800 border rounded">
+	<Raffle2024 />
+</div>
 
 <div class="mb-16 p-2 max-w-2xl mx-auto">
 	<Openings {productions} closingDate="2024-08-11">
