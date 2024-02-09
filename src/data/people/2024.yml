@@ -9,7 +9,28 @@
 #
 
 # start __1__
-undefined
+- last_name: Denton
+  first_name: Don
+  image_year: 2024
+  location: "Chatt-town"
+  staff_positions:
+    - asdf
+  production_positions:
+  roles:
+    The SpongeBob Musical:
+      - asdf
+    Jersey Boys:
+      - asdf
+    The Wizard of Oz:
+      - asdf
+    Honky Tonk Laundry:
+      - asdf
+    Kiss Me Kate:
+      - asdf
+  bio: |
+    Meh.
+
+
 # end __1__
 # start __2__
 - last_name: Galván
