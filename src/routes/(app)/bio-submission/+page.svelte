@@ -3,12 +3,11 @@
 	import site from "$data/site"
 	import Bio from "$components/Bio.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
-	import Markdown from "$components/Markdown.svelte"
 	import type { Person } from "$models/Person"
-	import { marked } from "marked"
 	import { sanitizedPassphrase } from "$helpers"
 
 	import billMurray from "./bill-murray.jpg"
+	import TextEditor from "./TextEditor.svelte"
 
 	export let data
 
@@ -20,7 +19,6 @@
 
 	const MAX_WORDS = 125
 	const PLACEHOLDER_IMAGE = billMurray
-	const EXAMPLE_BIO = `Don Denton is so happy to be returning to Post Playhouse after several years away. Though this time around, you won't see him on the stage. Instead, he will be directing this season's production of *Annie*. Some of Don's favorite memories were at Post Playhouse: Doing shows like *Hank Williams: Lost Highway*, and *Guys and Dolls*, working with Paige Salter. He and Paige are looking forward to making some new memories with their son, Marvin, who now gets to see the place Mommy and Daddy met. Visit [dondentonactor.com](https://dondentonactor.com) for more about Don.`
 
 	let lastYearBios = `/who/${site.season - 1}`
 
@@ -137,27 +135,11 @@
 
 	$: validations = [
 		{
-			name: "unclosedTitleUnderscore",
-			warn: (bio.match(/_/g) || []).length % 2 > 0,
-		},
-		{
-			name: "unclosedTitleAsterisk",
-			warn: (bio.match(/\*/g) || []).length % 2 > 0,
-		},
-		{
 			name: "noShowsPresent",
 			warn:
 				bio.length > 0 &&
 				(bio.match(/_/g) || []).length === 0 &&
 				(bio.match(/\*/g) || []).length === 0,
-		},
-		{
-			name: "unclosedTitleUnderscoreLongerBio",
-			warn: (longerBio.match(/_/g) || []).length % 2 > 0,
-		},
-		{
-			name: "unclosedTitleAsteriskLongerBio",
-			warn: (longerBio.match(/\*/g) || []).length % 2 > 0,
 		},
 		{
 			name: "noShowsPresentLongerBio",
@@ -186,7 +168,7 @@
 		wordCount: `Your bio is too long. Keep it at or under ${MAX_WORDS} words.`,
 		emptyBio: "You must supply some kind of bio.",
 		email:
-			"Despite the fact that the stage manager has your email address, I need it attached to this form. Please add it.",
+			"Please add your email address so that our program designer can get in touch quickly if needs be.",
 		image:
 			"Use the green button near the top of the form to pick an image, or indicate you'd like to use one from a previous season.",
 		longerBioIsShort: `If your longer bio for the website is ${MAX_WORDS} or less, please don't submit two bios. (Uncheck the additional bio box)`,
@@ -194,17 +176,9 @@
 
 	const warningMessages = {
 		noShowsPresent:
-			"<strong>It looks like your bio doesn't include the titles of any productions</strong> you've been involved with. That's fine. But if you <em>meant to</em> include titles, you probably forgot to <strong>surround them with either *asterisks* or _underscores_</strong>. See the instructions above the bio field for how to notate show titles.",
+			"<strong>It looks like your bio doesn't include the titles of any productions</strong> you've been involved with. That's fine. But if you did include production titles, you forgot to <em>italicize them</em>.",
 		noShowsPresentLongerBio:
-			"It looks like <strong>your longer bio for the website doesn't include the titles of any productions</strong> you've been involved with. That's fine. But if you <em>meant to</em> include titles, you probably forgot to <strong>surround them with either *asterisks* or _underscores_</strong>. See the instructions above the bio field for how to notate show titles.",
-		unclosedTitleUnderscore:
-			"If you meant to have an actual underscore (<code>_</code>) in you bio, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
-		unclosedTitleUnderscoreLongerBio:
-			"If you meant to have an actual underscore (<code>_</code>) in your longer bio for the website, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
-		unclosedTitleAsterisk:
-			"If you meant to have an actual asterisk (<code>*</code>) in your bio, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
-		unclosedTitleAsteriskLongerBio:
-			"If you meant to have an actual asterisk (<code>*</code>) in your longer bio for the website, you can ignore this warning. Otherwise you may have been marking your show titles and forgot to close one out. Check the preview above to see where it is.",
+			"It looks like <strong>your longer bio for the website doesn't include the titles of any productions</strong> you've been involved with. That's fine. But if you did include production titles, you forgot to <em>italicize them</em>.",
 	}
 
 	$: invalidForm = validations.some((v) => v.invalid === true)
@@ -589,9 +563,6 @@ ${email}
 
 	const submitCreds = () => dispatch(events.requestAuth)
 	const noop = () => {}
-
-	let showExample = false
-	const toggleExample = () => (showExample = !showExample)
 </script>
 
 <svelte:head>
@@ -803,46 +774,11 @@ ${email}
 			<label for="bio" class="text-2xl mt-24 block"
 				>Program {#if !addLongerBio}and Website{/if} Bio</label
 			>
-
-			<div class="bg-gray-200 rounded p-2 my-2">
-				Formatting directions:
-				<ul>
-					<li>
-						You can create links with
-						<code class="whitespace-nowrap text-xs bg-grey-400 rounded p-1">
-							[your text](http://yoursite.com)
-						</code>
-					</li>
-					<li>
-						Please surround the names of shows that you mention with
-						<code class="text-xs bg-grey-400 rounded p-1">_underscores_</code>
-						or
-						<code class="text-xs bg-grey-400 rounded p-1">*asterisks*</code>.
-						Properly notated show titles will only count as two words, maximum.
-					</li>
-				</ul>
-				<button class="btn btn-p mt-2" on:click="{toggleExample}">
-					Show Example
-				</button>
-			</div>
-			<div>
-				{#if showExample}
-					<Modal on:close="{toggleExample}">
-						<div class="max-w-md m-auto">
-							<div class="text-2xl">This text...</div>
-							<div class="font-mono text-sm bg-grey-200 p-2">{EXAMPLE_BIO}</div>
-							<div class="text-2xl mt-8">...becomes this bio</div>
-							<Markdown source="{EXAMPLE_BIO}" />
-						</div>
-					</Modal>
-				{/if}
-			</div>
-			<textarea
-				id="bio"
-				name="bio"
-				bind:value="{bio}"
-				class="border border-grey-500 w-full font-mono min-h-96"
-			></textarea>
+			<p class="my-2">
+				Please italicize production titles. Feel free to add links which will
+				appear in the website version.
+			</p>
+			<TextEditor content="{bio}" onChange="{(x) => (bio = x)}" />
 			<div class="{`text-right ${bioWordCountClass}`}">
 				Word Count:
 				{bioWordCount}
@@ -864,12 +800,10 @@ ${email}
 			{#if addLongerBio}
 				<div>
 					<label for="longerBio" class="text-2xl mt-8 block">Website Bio</label>
-					<textarea
-						id="longerBio"
-						name="longerBio"
-						bind:value="{longerBio}"
-						class="border border-grey-500 w-full font-mono min-h-96"
-					></textarea>
+					<TextEditor
+						content="{longerBio}"
+						onChange="{(x) => (longerBio = x)}"
+					/>
 					<div class="{`text-right ${longerBioWordCountClass}`}">
 						Word Count:
 						{longerBioWordCount} (must be <em>more than</em> 125 words, otherwise
@@ -885,12 +819,7 @@ ${email}
 				<div class="bg-white rounded p-4 shadow-lg">
 					<Bio {person} />
 				</div>
-				{#if addLongerBio}<div class="mt-8">
-						<header>Website Bio:</header>
-						<div class="bg-white rounded shadow-lg p-2">
-							{@html marked.parse(longerBio || "(Empty)")}
-						</div>
-					</div>{/if}
+
 				{#if validations.length > 0}
 					<ul class="list-none p-0">
 						{#each validations as validation (validation.name)}
