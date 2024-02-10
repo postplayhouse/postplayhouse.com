@@ -15,6 +15,7 @@ export async function load(obj) {
 			productions: data.productions as Production[],
 			year: site.season,
 			disabled,
+			...obj.data,
 		}
 	} else {
 		error(500, `could not fetch /data/productions/${site.season}.json`)

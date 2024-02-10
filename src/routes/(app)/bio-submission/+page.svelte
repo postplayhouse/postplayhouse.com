@@ -8,10 +8,13 @@
 
 	import billMurray from "./bill-murray.jpg"
 	import TextEditor from "./TextEditor.svelte"
+	import PreviousHeadshotPicker from "./PreviousHeadshotPicker.svelte"
 
 	export let data
 
-	const { disabled, productions: productions_ } = data
+	const { disabled, productions: productions_, imageFiles } = data
+
+	console.log(data)
 
 	onMount(() => {
 		if (!window.fetch) dispatch(events.foundNoFetch)
@@ -26,6 +29,7 @@
 	let firstName = ""
 	let lastName = ""
 	let image = ""
+	let oldImage = ""
 	let imageFile: null | File = null
 	let location = ""
 	let bio = ""
@@ -95,7 +99,7 @@
 
 	$: person = {
 		name: name || "Bill Murray",
-		image: useOldHeadshot ? "" : image || PLACEHOLDER_IMAGE,
+		image: useOldHeadshot ? oldImage : image || PLACEHOLDER_IMAGE,
 		location: location || "Chicago, IL",
 		roles,
 		staffPositions,
@@ -155,6 +159,7 @@
 		{ name: "emptyBio", invalid: !bio },
 		{ name: "email", invalid: !email },
 		{ name: "image", invalid: !(imageFile || useOldHeadshot) },
+		{ name: "oldImage", invalid: useOldHeadshot && !oldImage },
 		{
 			name: "longerBioIsShort",
 			invalid: addLongerBio && longerBioWordCount <= MAX_WORDS,
@@ -171,6 +176,8 @@
 			"Please add your email address so that our program designer can get in touch quickly if needs be.",
 		image:
 			"Use the green button near the top of the form to pick an image, or indicate you'd like to use one from a previous season.",
+		oldImage:
+			"You indicated that you wanted to use an old headshot, but you didn't select one.",
 		longerBioIsShort: `If your longer bio for the website is ${MAX_WORDS} or less, please don't submit two bios. (Uncheck the additional bio box)`,
 	}
 
@@ -421,7 +428,7 @@
 		return [
 			`- last_name: ${lastName.trim()}`,
 			`  first_name: ${firstName.trim()}`,
-			`  image_year: ${site.season}`,
+			`  image_year: ${oldImage ? oldImage.split("/")[3] : site.season}`,
 			`  location: "${location.trim()}"`,
 			includeGroups && `  groups:\n${allGroups}`,
 			`  staff_positions:\n${entireSeasonRolesAsYaml}`,
@@ -691,13 +698,29 @@ ${email}
 
 			<div class="my-32">
 				<div class="text-2xl block">Headshot<i>*</i></div>
-				<label
-					class="btn text-center btn-p w-[9em] inline-block cursor-pointer {useOldHeadshot
-						? 'opacity-50'
-						: ''}"
-				>
-					{#if !imageFile}Choose a file{:else}Change file{/if}
-					{#if !useOldHeadshot}
+				<label class="block mt-2">
+					<input
+						tabindex="0"
+						type="checkbox"
+						on:change="{handleUseOldHeadshotChange}"
+						bind:checked="{useOldHeadshot}"
+					/>
+					I've worked at Post before, and I'd like to use my old headshot.
+				</label>
+				{#if useOldHeadshot}
+					<div class="my-4">
+						<PreviousHeadshotPicker
+							options="{imageFiles}"
+							on:optionSelected="{(x) => (oldImage = x.detail)}"
+						/>
+					</div>
+				{:else}
+					<label
+						class="btn text-center btn-p w-[9em] inline-block cursor-pointer {useOldHeadshot
+							? 'opacity-50'
+							: ''}"
+					>
+						{#if !imageFile}Choose a file{:else}Change file{/if}
 						<input
 							class="hidden"
 							on:change="{handleFilePick}"
@@ -705,8 +728,8 @@ ${email}
 							accept="image/*"
 							type="file"
 						/>
-					{/if}
-				</label>
+					</label>
+				{/if}
 				<img
 					class="inline-block w-[100px] h-[100px] object-contain {image &&
 					!useOldHeadshot
@@ -715,16 +738,6 @@ ${email}
 					src="{image}"
 					alt="{imageFile?.name}"
 				/>
-
-				<label class="block mt-2">
-					<input
-						tabindex="0"
-						type="checkbox"
-						on:change="{handleUseOldHeadshotChange}"
-						bind:checked="{useOldHeadshot}"
-					/>
-					I've worked at Post before. Please use my headshot from last time instead.
-				</label>
 			</div>
 
 			<div class="my-48">
