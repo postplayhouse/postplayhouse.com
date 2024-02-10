@@ -24,7 +24,6 @@
 	}
 
 	function active(node: HTMLAnchorElement, activePath: string) {
-		console.log(new URL(node.href).pathname, activePath)
 		manageNodeActiveClass(node, activePath)
 
 		return {
