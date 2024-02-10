@@ -242,6 +242,17 @@
 	$: showSuccess = state === states.success
 	$: showError = state === states.error
 
+	let topOfMainEl: HTMLElement | null = null
+	$: {
+		if (showMain && topOfMainEl) {
+			topOfMainEl.scrollIntoView({
+				behavior: "smooth",
+				block: "start",
+				inline: "nearest",
+			})
+		}
+	}
+
 	function dispatch(event: string) {
 		if (event === events.foundNoFetch) {
 			return (state = states.noFetch)
@@ -669,7 +680,7 @@ ${email}
 {/if}
 
 {#if showMain}
-	<div class="mt-4 mb-24 max-w-lg">
+	<div bind:this="{topOfMainEl}" class="mt-4 mb-24 max-w-lg">
 		<p class="mt-4 bg-amber-100 border border-amber-800 p-4">
 			If you have trouble with this form please compose an email with all the
 			information we ask you for below and send it to
