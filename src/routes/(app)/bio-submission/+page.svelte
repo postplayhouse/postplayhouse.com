@@ -217,6 +217,8 @@
 	let badPassphrase = false
 
 	let state = disabled ? states.submissionsDisabled : states.unauthenticated
+	// uncomment below to develop faster
+	// state = states.incompleteForm
 
 	$: showCredsForm = [states.unauthenticated, states.requestingAuth].includes(
 		state,
@@ -587,22 +589,59 @@ ${email}
 	</div>
 {/if}
 
-{#if showCredsForm || showMain}
-	<p>
+{#if showCredsForm}
+	<p class="my-4">
 		Have a look at
 		<a class="link-green" href="{lastYearBios}">last year's bios</a>
 		if you'd like some context.
 	</p>
-{/if}
 
-{#if showCredsForm}
-	<form on:submit|preventDefault="{submitCreds}">
+	<div class="bg-green-100 rounded p-4">
+		<p>Please have the following ready to go before you start:</p>
+		<ul>
+			<li>
+				The <strong>passphrase</strong> contained in an email we sent you after you
+				signed your contract. If you don't have it, contact us.
+			</li>
+			<li>
+				Your <strong>headshot</strong>
+				<ul>
+					<li>as a JPEG (very common) or HEIF (iPhone pic format)</li>
+					<li>less than 20MB in file size (it <em>probably</em> is already)</li>
+				</ul>
+			</li>
+			<li>
+				Your <strong>bio</strong>
+				<ul>
+					<li>
+						It should be written in the third person. ("Jane is thrilled to be
+						joining Post Playhouse...")
+					</li>
+					<li>
+						It must be {MAX_WORDS} words or less. (You can optionally submit an
+						<em>additional</em>, longer one as well)
+					</li>
+					<li>
+						Use <em>italics</em> for production titles. (NOT ALL CAPS, not "Within
+						Quotes")
+					</li>
+					<li>
+						You may include links, which will be present on the website version
+						of your bio.
+					</li>
+					<li>
+						We highly recommend composing it on your phone or computer first,
+						then pasting it into the form on this site.
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<form class="mt-12" on:submit|preventDefault="{submitCreds}">
 		<label class="text-2xl block">
-			Passphrase
-			<div class="text-sm">
-				This was given to you in the same communication that linked you to this
-				page. If not, please contact the stage manager for the passphrase.
-			</div>
+			Done reading above?<br />Enter the passphrase to get started!
+
 			<input
 				class="border border-grey-500 block"
 				bind:value="{passphrase}"
@@ -623,68 +662,24 @@ ${email}
 {/if}
 
 {#if showMain}
-	<div class="mt-4 max-w-lg">
-		<p>
-			Please
-			<strong>
-				don't trust this form as a place to
-				<em>compose</em>
-				your bio.
-			</strong>
-			Write it first, then copy and paste in here. Never trust an internet connection
-			with draft writing!
-		</p>
-		<p class="mt-4">
+	<div class="mt-4 mb-24 max-w-lg">
+		<p class="mt-4 bg-amber-100 border border-amber-800 p-4">
 			If you have trouble with this form please compose an email with all the
-			information we ask you for in this form and send it to
-			<a class="link-green" href="{emailLink}">don@postplayhouse.com</a>
+			information we ask you for below and send it to
+			<a class="underline" href="{emailLink}">don@postplayhouse.com</a>
 		</p>
 	</div>
 
-	<div class="lg:flex mt-8">
+	<div class="lg:flex mt-8 mb-24">
 		<form
 			class="m-auto max-w-lg p-2 lg:w-1/2 flex-none"
 			on:submit|preventDefault="{noop}"
 		>
-			<div>
-				<div class="text-2xl block">Headshot</div>
-				<label
-					class="btn btn-p inline-block cursor-pointer {useOldHeadshot
-						? 'opacity-50'
-						: ''}"
-				>
-					{#if !imageFile}Choose a file{:else}Change file{/if}
-					{#if !useOldHeadshot}<input
-							class="hidden"
-							on:change="{handleFilePick}"
-							name="headshot"
-							accept="image/*"
-							type="file"
-						/>{/if}
-				</label>
-				{#if image && !useOldHeadshot}
-					<img
-						style="max-width: 100px; max-height: 100px;"
-						class="inline-block"
-						src="{image}"
-						alt="{imageFile?.name}"
-					/>
-				{/if}
-				<label class="block mt-2">
-					<input
-						type="checkbox"
-						on:change="{handleUseOldHeadshotChange}"
-						bind:checked="{useOldHeadshot}"
-					/>
-					I've worked at Post before. Please use my headshot from last time instead.
-				</label>
-			</div>
-
-			<label class="text-2xl mt-8 block">
-				Email address
+			<label class="text-2xl block">
+				Email address<i>*</i>
 				<div class="text-sm">
-					(This is only so Don can contact you about your bio. It is not shared
-					to our site or in our program.)
+					(So our program designer can contact you if necessary. It is not
+					shared with the public.)
 				</div>
 				<input
 					class="border border-grey-500 block"
@@ -694,42 +689,80 @@ ${email}
 				/>
 			</label>
 
-			<label class="text-2xl mt-8 block">
-				First Name
-				<div class="text-sm">(optionally with middle name/initial)</div>
-				<input
-					class="border border-grey-500 block"
-					bind:value="{firstName}"
-					name="firstName"
-					type="text"
+			<div class="my-32">
+				<div class="text-2xl block">Headshot<i>*</i></div>
+				<label
+					class="btn text-center btn-p w-[9em] inline-block cursor-pointer {useOldHeadshot
+						? 'opacity-50'
+						: ''}"
+				>
+					{#if !imageFile}Choose a file{:else}Change file{/if}
+					{#if !useOldHeadshot}
+						<input
+							class="hidden"
+							on:change="{handleFilePick}"
+							name="headshot"
+							accept="image/*"
+							type="file"
+						/>
+					{/if}
+				</label>
+				<img
+					class="inline-block w-[100px] h-[100px] object-contain {image &&
+					!useOldHeadshot
+						? ''
+						: 'invisible'}"
+					src="{image}"
+					alt="{imageFile?.name}"
 				/>
-			</label>
 
-			<label class="text-2xl mt-8 block">
-				Last Name
-				<input
-					class="border border-grey-500 block"
-					bind:value="{lastName}"
-					name="lastName"
-					type="text"
-				/>
-			</label>
+				<label class="block mt-2">
+					<input
+						tabindex="0"
+						type="checkbox"
+						on:change="{handleUseOldHeadshotChange}"
+						bind:checked="{useOldHeadshot}"
+					/>
+					I've worked at Post before. Please use my headshot from last time instead.
+				</label>
+			</div>
 
-			<label class="text-2xl mt-8 block">
-				Location
-				<div class="text-sm">
-					(where you'd like people to know you are from. City and state, eg:
-					"Crawford, NE")
-				</div>
-				<input
-					class="border border-grey-500 block"
-					bind:value="{location}"
-					name="location"
-					type="text"
-				/>
-			</label>
+			<div class="my-48">
+				<label class="text-2xl mt-8 block">
+					First Name<i>*</i>
+					<div class="text-sm">(optionally with middle name/initial)</div>
+					<input
+						class="border border-grey-500 block"
+						bind:value="{firstName}"
+						name="firstName"
+						type="text"
+					/>
+				</label>
+				<label class="text-2xl mt-8 block">
+					Last Name<i>*</i>
+					<input
+						class="border border-grey-500 block"
+						bind:value="{lastName}"
+						name="lastName"
+						type="text"
+					/>
+				</label>
+				<label class="text-2xl mt-8 block">
+					Location<i>*</i>
+					<div class="text-sm">
+						(where you'd like people to know you are from. City and state, eg:
+						"Crawford, NE")
+					</div>
+					<input
+						class="border border-grey-500 block"
+						bind:value="{location}"
+						name="location"
+						type="text"
+					/>
+				</label>
+			</div>
 
-			<div>
+			<div class="my-48">
 				<span class="text-2xl mt-24 block">Production Roles/Positions</span>
 				<div class="text-sm">
 					Please indicate what role you are playing or what your positions are
@@ -772,7 +805,7 @@ ${email}
 			</div>
 
 			<label for="bio" class="text-2xl mt-24 block"
-				>Program {#if !addLongerBio}and Website{/if} Bio</label
+				>Program {#if !addLongerBio}and Website{/if} Bio<i>*</i></label
 			>
 			<p class="my-2">
 				Please italicize production titles. Feel free to add links which will
@@ -787,7 +820,7 @@ ${email}
 			</div>
 
 			<label class="block my-2">
-				<input type="checkbox" bind:checked="{addLongerBio}" />
+				<input tabindex="0" type="checkbox" bind:checked="{addLongerBio}" />
 				<span class="text-sm">
 					I'd like to submit an additional bio longer than {MAX_WORDS} words for
 					the website. I understand that
@@ -817,7 +850,7 @@ ${email}
 			<div class="p-4 bg-grey-200 sticky top-0">
 				<h3>Preview (your answers change this preview):</h3>
 				<div class="bg-white rounded p-4 shadow-lg">
-					<Bio {person} />
+					<Bio {person} isSubmissionPreview />
 				</div>
 
 				{#if validations.length > 0}
@@ -841,6 +874,7 @@ ${email}
 					</ul>
 				{/if}
 				<button
+					tabindex="0"
 					class="btn btn-p mt-8"
 					disabled="{invalidForm || submitting}"
 					on:click="{onSubmit}"
@@ -880,3 +914,10 @@ ${email}
 
 	<a href="{emailLink}" class="btn btn-p inline-block mt-8">Email Don Denton</a>
 {/if}
+
+<style>
+	i {
+		color: red;
+		font-style: normal;
+	}
+</style>

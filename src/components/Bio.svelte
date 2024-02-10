@@ -6,6 +6,7 @@
 	import type { Person } from "$models/Person"
 
 	export let hideProductionRoles: boolean = false
+	export let isSubmissionPreview = false
 
 	export let person: Pick<
 		Person,
@@ -52,7 +53,11 @@
 		<div
 			class="flex w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2 min-h-64 border-4 border-neutral-300 items-center justify-center"
 		>
-			({person.name} not pictured)
+			{#if isSubmissionPreview}
+				(Using old headshot)
+			{:else}
+				({person.name} not pictured)
+			{/if}
 		</div>
 	{/if}
 
