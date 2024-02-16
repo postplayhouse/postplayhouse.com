@@ -37,30 +37,51 @@ Chadron, NE 69337
 
 Please make all checks payable to Post Playhouse and include your name, mailing address, and email address so we can contact you regarding your benefits.
 
-# Contributor Levels
+# Annual Fund Giving Societies
 
-### Sponsor: ${sponsorAmount} -- $99
+## Sponsor: ${sponsorAmount} – $99
 
-Invitations to exclusive donor events
+- Invitations to donor exclusive events
+- Primary access to next season’s show announcement
 
-### Sustainer: $100 -- $499
+## Sustainer: $100 – $249
 
-All Sponsor benefits plus name recognition in the theatre lobby and in our annual report
+_All of the above plus:_
 
-### Signature Supporter: $500 -- $999
+- Name recognition in Playhouse lobby’s donor listing
+- Digital Copy of Post Playhouse Annual Report
 
-All Sustainer benefits plus 2 complimentary tickets and invitations to an opening night performance and celebration of 1 show of your choice
+## Friends of the Post Playhouse: $250 – $499
 
-### Artistic Director’s Society: $1,000 -- $5,999
+_All of the above plus:_
 
-All Signature Supporter benefits plus 2 more tickets and invitations to an opening night celebration
+- 2 complimentary tickets for opening night of 1 show of your choice
 
-### Show Sponsor: $6,000 -- $9,999
+## Signature Supporter: $500 – $999
 
-All Artistic Director’s Society benefits plus 6 additional complimentary tickets (10 total) to the opening night performance and celebration of your sponsored show. Complimentary pre-show buffet for opening night for your 10 guests at the Fort Robinson Restaurant in the Lodge. Your name will receive recognition in the preshow announcement for each performance. Other perks include a behind the scenes tour, name recognition on our website, highway signs, and many other printed materials.
+_All of the above plus:_
 
-## Prefer to donate something else?
+- 4 complimentary tickets total for opening night of 1 show of your choice
+- Invitation to 1 post-show celebration of opening night show of your choice
 
-Contact us and we would be happy to let you know what our current needs are!
+## Artistic Director Society: $1,000 – $4,999
+
+_All of the above plus:_
+
+- 6 complimentary tickets total for opening night of 1 show of your choice
+- Invitation to 2 post-show celebrations of opening night shows of your choice
+
+## Show Sponsor: $6,000 – $9,999
+
+_All of the above plus:_
+
+- 10 complimentary tickets total for opening night of 1 show of your choice
+- Dinner for 6 at the Fort Robinson Restaurant prior to 1 performance of sponsored show -Name recognition in pre-show announcement prior to every performance
+- Name or Logo recognition in:
+  - Post Playhouse season brochure (7,000 copies)
+  - Program book — handed out at every performance (10,000 copies)
+  - Post Playhouse lobby
+- Exclusive backstage tour for 6 persons
+- Invitation for 2 persons to 1 open dress rehearsal
 
 <DonateBtn/>
