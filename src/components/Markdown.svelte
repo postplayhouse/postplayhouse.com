@@ -4,9 +4,10 @@
 </script>
 
 <script lang="ts">
-	export let source
+	export let source: string
 </script>
 
 <div class="via-markdown">
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html marked.parse(source)}
 </div>
