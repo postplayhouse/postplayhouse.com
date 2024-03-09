@@ -98,20 +98,17 @@
 # start __10__
 # end __10__
 # start __11__
-- last_name: asdf
-  first_name: asdf
-  image_year: 2022
-  location: "jkl;j;"
+- last_name: Denton
+  first_name: Don
+  image_year: 2024
+  location: "here"
   staff_positions:
-    - asdf
+
   production_positions:
   roles:
-    The SpongeBob Musical:
-      - lkjsdf
-    Jersey Boys:
-      - lkjkj
+
   bio: |
-    Hummmm
+    Ugh
 # end __11__
 # start __12__
 # end __12__
