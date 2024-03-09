@@ -14,13 +14,13 @@
   image_year: 2015
   location: "Here"
   staff_positions:
-    - Meh
-    - yeah
+
   production_positions:
   roles:
-
+    The Wizard of Oz:
+      - Oz
   bio: |
-    asdf
+    Hi
 # end __1__
 # start __2__
 - last_name: Galván
