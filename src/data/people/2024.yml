@@ -11,12 +11,15 @@
 # start __1__
 - last_name: Denton
   first_name: Don
-  image_year: 2019
-  location: "Chattanooga, TN"
+  image_year: 2024
+  location: "Here"
   staff_positions:
-    - General IT
+    - things
+  production_positions:
+  roles:
+
   bio: |
-    Don has stepped down from his position of designing all Post Playhouse's printed and digital materials and taking care of the bulk of the marketing related tasks. It was a fun 13 years, but he is very happy to have extra time with his family, now that his main responsibility to the Playhouse is making sure the website works and everyone gets their emails. Best of luck to all the new, talented folks who are stepping in to keep creating art in the Northwest corner of Nebraska!
+    asdf
 # end __1__
 # start __2__
 - last_name: Galván
