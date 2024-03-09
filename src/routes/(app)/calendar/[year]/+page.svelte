@@ -1,12 +1,18 @@
 <script lang="ts">
 	import Calendar from "$components/Calendar/Calendar.svelte"
+	import Markdown from "$components/Markdown.svelte"
 	import site from "$data/site"
 
 	export let data
 
-	const { productions, year } = data
+	const { productions, series, specialEvents, year } = data
 
 	const hasCalendar = !!productions?.find((prod) => prod.dates)
+
+	const allSpecialEvents = [
+		...series.map((s) => s.events).flat(),
+		...specialEvents,
+	].flat()
 </script>
 
 <h1 class="text-center font-uber text-4xl mb-2">{year} Season</h1>
@@ -25,7 +31,21 @@
 {/if}
 
 {#if hasCalendar}
-	<Calendar {productions} {year} />
+	{#if allSpecialEvents.length > 0}
+		<div class="text-lg">
+			There are <a class="link-green" href="/productions/{year}"
+				>{allSpecialEvents.length} special events</a
+			>
+			this year!
+
+			<ul>
+				{#each allSpecialEvents as event}
+					<li><Markdown source="{event.title}" /></li>
+				{/each}
+			</ul>
+		</div>
+	{/if}
+	<Calendar {productions} specialEvents="{allSpecialEvents}" {year} />
 {:else if year > new Date().getFullYear() && site.showsAnnounced}
 	<h2 class="text-center text-xl">Our {year} schedule will be up soon...</h2>
 {:else if year > new Date().getFullYear()}

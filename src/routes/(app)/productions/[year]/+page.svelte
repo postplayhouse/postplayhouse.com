@@ -6,7 +6,7 @@
 
 	export let data
 
-	const { productions, year } = data
+	const { productions, year, series } = data
 
 	const seasonImg = `/images/${year}/full-season.jpg`
 </script>
@@ -60,14 +60,20 @@
 	</div>
 {/if}
 
-{#if productions.length > 0}
-	{#each productions as production}
-		<Production {production} season="{year}" />
-	{/each}
-{:else if year > new Date().getFullYear() && site.showsAnnounced}
-	<h2 class="text-xl text-center">
-		Our shows for {year} have been announced, and this page will be updated soon...
-	</h2>
+{#if site.showsAnnounced}
+	{#if productions.length > 0}
+		{#each productions as production}
+			<Production {production} season="{year}" />
+		{/each}
+
+		{#each series as event}
+			<Production production="{event}" season="{year}" />
+		{/each}
+	{:else if year > new Date().getFullYear()}
+		<h2 class="text-xl text-center">
+			Our shows for {year} have been announced, and this page will be updated soon...
+		</h2>
+	{/if}
 {:else if year > new Date().getFullYear()}
 	<h2 class="text-xl text-center">
 		Our shows for {year} will be announced soon...

@@ -46,6 +46,8 @@ type ToNumber<
 
 type A = Lowercase<2010>
 
+type NoValues<T> = { [K in keyof T]?: undefined }
+
 type Equal<X, Y> =
 	(<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2
 		? true
@@ -55,21 +57,44 @@ type IsYear<X> = Equal<ToNumber<X>, Date.Year> extends true ? X : never
 type X = ToNumber<"45">
 type Y = IsYear<"2022">
 
-type Production = {
+type __BaseEvent = {
 	title: string
 	short_title?: string
+	special_event?: boolean
+	description: string
+	dates: { fort_rob?: string; lead?: string }
+	belongs_to_series?: string
+	is_series?: boolean
+	image?: string
+	sponsor?: { image?: string; link?: string; text?: string }
+}
+
+type __BaseProduction = {
 	pre_title?: string
 	rating?: string
 	rating_explanation?: string
 	color: string
-	image: string
 	/** ex: "2020-05-29" */
 	opening: string
 	writers: string
-	description: string
-	dates?: { fort_rob?: string; lead?: string }
 	roles_sorting?: string[]
-	sponsor?: { image?: string; link?: string; text?: string }
+}
+
+type Production = __BaseEvent &
+	__BaseProduction & {
+		/** Do not display at top of calendar */
+		image: string
+		special_event?: false
+	}
+
+type SpecialEvent = __BaseEvent & {
+	special_event: true
+	belongs_to_series?: string
+} & NoValues<__BaseProduction>
+
+type Series = SpecialEvent & {
+	is_series: true
+	events: SpecialEvent[]
 }
 
 type Business = {
@@ -111,6 +136,6 @@ type YamlPerson = {
 type YearlyData = {
 	businesses: Business[]
 	bio_check_emails: { submit_subject: string; submit_body: string }
-	productions: Record<Year, Production[]>
+	productions: Record<Year, Array<Production | SpecialEvent>>
 	people: Record<Year, YamlPerson[]>
 }

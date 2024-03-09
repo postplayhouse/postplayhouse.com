@@ -1,3 +1,5 @@
+import { asserted } from "$helpers"
+
 type Year = Date.Year
 type Month = Date.Month
 type Day = Date.Day
@@ -60,6 +62,7 @@ export const timeStrToMs = (militaryTime: string) =>
 export const TEN_AM = timeStrToMs("10:00")
 export const TWO_PM = timeStrToMs("14:00")
 export const SEVEN_THIRTY_PM = timeStrToMs("19:30")
+export const SIX_PM = timeStrToMs("18:00")
 export const EIGHT_PM = timeStrToMs("20:00")
 const DEFAULT_SHOW_TIME = EIGHT_PM
 
@@ -151,32 +154,36 @@ export function dslToData(
 export function combineShows(
 	...showSchedule: Array<ReturnType<typeof dslToData>>
 ) {
-	return showSchedule.reduce((acc, schedule) => {
-		Object.keys(schedule).forEach((year) => {
-			if (!acc[year]) {
-				acc[year] = {}
-			}
-			Object.keys(schedule[year]).forEach((month) => {
-				if (!acc[year][month]) {
-					acc[year][month] = {}
+	return showSchedule.reduce(
+		(acc, schedule) => {
+			Object.keys(schedule).forEach((year) => {
+				if (!acc[year]) {
+					acc[year] = {}
 				}
-				Object.keys(schedule[year][month]).forEach((day) => {
-					if (!acc[year][month][day]) {
-						acc[year][month][day] = []
+				Object.keys(schedule[year]).forEach((month) => {
+					if (!acc[year][month]) {
+						acc[year][month] = {}
 					}
-					acc[year][month][day].push(...schedule[year][month][day])
-					sortBy(acc[year][month][day], "msFromMidnight")
+					Object.keys(schedule[year][month]).forEach((day) => {
+						if (!acc[year][month][day]) {
+							acc[year][month][day] = []
+						}
+						acc[year][month][day].push(...schedule[year][month][day])
+						sortBy(acc[year][month][day], "msFromMidnight")
+					})
 				})
 			})
-		})
-		return acc
-	}, {})
+			return acc
+		},
+		{} as Record<Year, Record<Month, Record<Day, Showing>>>,
+	)
 }
 
 const ONLY_LEGEND = {
 	a: TWO_PM,
 	m: TEN_AM,
 	e: EIGHT_PM,
+	c: SIX_PM,
 }
 
 function addDay(date: SimpleDate | Date, days = 1): Date {
@@ -219,7 +226,7 @@ function dateMatches(
 }
 
 export function getWeeksFromProductions(
-	productions: Production[],
+	productions: Array<SpecialEvent | Production>,
 	year: Year,
 ): Array<
 	Array<{
@@ -228,7 +235,7 @@ export function getWeeksFromProductions(
 		showings: Showing[]
 	}>
 > {
-	const productionDates = productions.map((prodData, i) => {
+	const productionDates = productions.map((prodData) => {
 		const venueDates = Object.entries(prodData.dates).map(
 			([venue, dateString]) =>
 				dslToData(
@@ -237,7 +244,7 @@ export function getWeeksFromProductions(
 						venue,
 						legend: ONLY_LEGEND,
 						title: prodData.short_title || prodData.title,
-						color: prodData.color,
+						color: prodData.color || "",
 					},
 					dateString,
 				),
@@ -267,8 +274,8 @@ export function getWeeksFromProductions(
 	)
 
 	const [firstDt, lastDt] = [performanceDays[0], performanceDays.slice(-1)[0]]
-		.map((x) => x.date)
-		.map(makeDate)
+		.map((x) => asserted(x).date)
+		.map(makeDate) as [Date, Date]
 
 	const weeks: Array<Array<{ date: Date; schedule: Showing[] }>> = [[]]
 	let currentDt = firstDt
@@ -277,12 +284,12 @@ export function getWeeksFromProductions(
 		if (
 			// Sunday is 0
 			currentDt.getDay() === 0 &&
-			currentDt !== weeks[weeks.length - 1][0]?.date
+			currentDt !== asserted(weeks[weeks.length - 1])[0]?.date
 		) {
 			weeks.push([])
 		}
 
-		weeks[weeks.length - 1].push({
+		asserted(weeks[weeks.length - 1]).push({
 			date: currentDt,
 			schedule:
 				performanceDays.find((day) => dateMatches(day.date, currentDt))

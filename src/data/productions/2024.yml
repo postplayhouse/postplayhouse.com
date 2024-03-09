@@ -91,3 +91,56 @@
   sponsor:
     image: footprints.png
     link: https://footprints.com
+
+- title: Movie Musical Series
+  short_title: Movie Nights
+  special_event: true
+  is_series: true
+  image: movie-night.jpg
+  color: x
+  description: |
+    For the first time ever in Post Playhouse history we are having a movie series! The movie series will help us bring even more musical theatre entertainment to the Post by screening classic movie musicals! For three Sundays in July we will be showing, The Rocky Horror Picture Show (July 14th @ 6pm), Singing in the Rain (July 21st @ 6pm), and Little Shop of Horrors (July 21st @ 6pm). Admission to the movie series is free but seating will be first come first serve. We could have not done this without the sponsorship of Footprints, Your Birkenstock Store!
+  dates:
+    fort_rob: |
+      July 14c, 21c, 28c
+  sponsor:
+    image: footprints.png
+    link: https://footprints.com
+
+- title: "Movie Night: Rocky Horror Picture Show"
+  short_title: Rocky Horror
+  special_event: true
+  belongs_to_series: Movie Musical Series
+  color: x
+  description: |
+    Probably the oddest, most off-the-wall cult film ever made, this rock'n'roll science fiction horror satire is everybody's favourite midnight show. A young couple stumbles into a castle inhabited by weirdos from the planet Transylvania including Dr. Frank N. Furter (Tim Curry). A marvelous musical spoof which urges. Provided through Criterion Pictures.
+
+    Rated R
+  dates:
+    fort_rob: |
+      July 14c
+
+- title: "Movie Night: Singin' in the Rain"
+  short_title: Singin'
+  special_event: true
+  belongs_to_series: Movie Musical Series
+  color: x
+  description: |
+    Gene Kelly, Debbie Reynolds and Donald O'Connor star in one of the greatest musicals ever filmed. Musician Don Lockwood (Kelly) rises to stardom during Hollywood's silent-movie era--paired with the beautiful, jealous and dumb Lina Lamont (Jean Hagen). When Lockwood becomes attracted to young studio singer Kathy Selden (Reynolds), Lamont has her fired. But with the introduction of talking pictures, audiences laugh when they hear Lockwood speak for the first time--and the studio uses Selden to dub her voice. Set during the advent of "talkies," this film's classic song-and-dance numbers celebrate the beginning of movie musicals. Provided through Swank Motion Pictures, Inc.
+
+    Rated G
+  dates:
+    fort_rob: |
+      July 21c
+
+- title: "Movie Night: Little Shop of Horrors"
+  short_title: Little Shop
+  special_event: true
+  belongs_to_series: Movie Musical Series
+  description: |
+    A nerdy florist finds his chance for success and romance with the help of a giant man-eating plant who demands to be fed. Provided through Swank Motion Pictures, Inc.
+
+    Rated PG-13
+  dates:
+    fort_rob: |
+      July 28c,

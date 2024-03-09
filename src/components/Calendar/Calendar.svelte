@@ -2,9 +2,13 @@
 	import Week from "./Week.svelte"
 	import { getWeeksFromProductions } from "./calendarHelpers"
 	export let productions: Production[]
+	export let specialEvents: SpecialEvent[]
 	export let year: Date.Year
 
-	const weekData = getWeeksFromProductions(productions, year)
+	const weekData = getWeeksFromProductions(
+		[...productions, ...specialEvents],
+		year,
+	)
 </script>
 
 <svelte:head>
@@ -25,7 +29,7 @@
 						<Week days="{week}" padStartCount="{i === 0 ? 5 : 0}">
 							{#if i === 0}
 								<div class="calendar-filters">
-									{#each productions as prod, i}
+									{#each productions as prod}
 										<div class="filter selected show-{prod.color}">
 											{prod.title}
 										</div>

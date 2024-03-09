@@ -4,20 +4,28 @@
 	import Markdown from "./Markdown.svelte"
 	import MaybeImage from "./MaybeImage.svelte"
 	import MaybeLink from "./MaybeLink.svelte"
-	export let production: Production
-	export let season
+	export let production: Production | SpecialEvent | Series
+	export let season: Date.Year
 
 	const imagePath = `/g/images/${season}/${production.image}`
 	const fallbackImagePath = `/images/${season}/${production.image}`
+
+	function isSeries(
+		production: Production | SpecialEvent | Series,
+	): production is Series {
+		return "events" in production
+	}
 </script>
 
 <article class="mt-16 flow-root">
 	<header>
-		<MaybeImage
-			class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl"
-			src="{[imagePath, fallbackImagePath]}"
-			alt="Show Logo for {production.title}"
-		/>
+		{#if production.image}
+			<MaybeImage
+				class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl"
+				src="{[imagePath, fallbackImagePath]}"
+				alt="Show Logo for {production.title}"
+			/>
+		{/if}
 		<h2 class="text-4xl leading-none mb-2">
 			{#if production.pre_title}
 				<div class="text-lg leading-none">{production.pre_title}</div>
@@ -49,7 +57,7 @@
 		</div>
 	{/if}
 
-	<div class="">
+	<div>
 		<Markdown source="{production.description}" />
 
 		{#if production.sponsor}
@@ -62,12 +70,21 @@
 						src="/images/sponsors/{production.sponsor.image}"
 					/>
 				{:else if production.sponsor.text}
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					<span class="text-3xl font-bold">{@html production.sponsor.text}</span
 					>
 				{/if}
 			</MaybeLink>
 		{/if}
 	</div>
+
+	{#if isSeries(production)}
+		<div class="pl-8 border-l-8">
+			{#each production.events as event}
+				<svelte:self production="{event}" {season} />
+			{/each}
+		</div>
+	{/if}
 </article>
 
 <style>
