@@ -98,6 +98,19 @@
 # start __10__
 # end __10__
 # start __11__
+- last_name: Denton
+  first_name: Don
+  image_year: 2015
+  location: "here"
+  staff_positions:
+
+  production_positions:
+  roles:
+
+  bio: |
+    asdf
+
+
 # end __11__
 # start __12__
 # end __12__
