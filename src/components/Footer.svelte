@@ -1,4 +1,4 @@
-<footer class="bg-green-100 p-6 flex flex-col items-center">
+<footer class="bg-green-100 dark:bg-[#020] p-6 flex flex-col items-center">
 	<div
 		class="flex flex-col items-center sm:flex-row sm:items-start mb-4 max-w-4xl"
 	>
@@ -16,15 +16,14 @@
 				productions at the theatre in Fort Robinson State Park.
 			</p>
 			<p class="mt-4">
-				<a class="underline text-green-700" href="/about">Contact information</a
-				>
+				<a class="link-green" href="/about">Contact information</a>
 			</p>
 		</div>
 	</div>
 
 	<div class="flex items-start my-4 max-w-2xl">
 		<img
-			class="flex-none w-24 sm:w-32 mr-4 mb-4"
+			class="flex-none w-24 sm:w-32 mr-4 mb-4 bg-white/80 p-2 rounded"
 			src="/images/nac.png"
 			alt="Nebraska Arts Council logo"
 		/>
@@ -33,17 +32,12 @@
 			this organization through its matching grants program funded by the
 			Nebraska Legislature, the National Endowment for the Arts and the Nebraska
 			Cultural Endowment. Visit
-			<a
-				class="underline text-green-700"
-				href="http://www.nebraskaartscouncil.org"
-			>
+			<a class="link-green" href="http://www.nebraskaartscouncil.org">
 				www.nebraskaartscouncil.org
 			</a>
 			for information on how the Nebraska Arts Council can assist your organization,
 			or how you can support the Nebraska Cultural Endowment, at
-			<a
-				class="underline text-green-700"
-				href="http://www.nebraskaculturalendowment.org"
+			<a class="link-green" href="http://www.nebraskaculturalendowment.org"
 				>www.nebraskaculturalendowment.org</a
 			>.
 		</p>
@@ -51,14 +45,12 @@
 
 	<div class="flex items-start my-4 max-w-2xl">
 		<img
-			class="flex-none w-24 sm:w-32 mr-4 mb-4"
+			class="flex-none w-24 sm:w-32 mr-4 mb-4 bg-white/80 p-2 rounded"
 			src="/images/csc.png"
 			alt="Chadron State College logo"
 		/>
 		<p class="text-xs">
-			<a class="underline text-green-700" href="https://csc.edu">
-				Chadron State College
-			</a>
+			<a class="link-green" href="https://csc.edu"> Chadron State College </a>
 			is a proud sponsor of the Post Playhouse. CSC routinely donates lighting equipment,
 			sound equipment, and costumes to the theatre to help Post Playhouse bring you
 			the very best looking and sounding shows you'll see in Western Nebraska.
@@ -67,7 +59,7 @@
 
 	<div class="flex items-start my-4 max-w-2xl">
 		<img
-			class="flex-none w-24 sm:w-32 mr-4 mb-4"
+			class="flex-none w-24 sm:w-32 mr-4 mb-4 bg-white/80 p-2 rounded"
 			src="/images/ngpc.png"
 			alt="Nebraska Game and Parks logo"
 		/>
@@ -80,8 +72,6 @@
 
 	<div class="mt-4 text-center">
 		This site is the result of a
-		<a class="underline text-green-700" href="http://happycollision.com">
-			Happy Collision
-		</a>
+		<a class="link-green" href="http://happycollision.com"> Happy Collision </a>
 	</div>
 </footer>

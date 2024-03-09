@@ -52,7 +52,9 @@
 	</div>
 {/if}
 
-<div class="bg-green-50 p-8 -mx-8 border-green-800 border rounded">
+<div
+	class="bg-green-50 dark:bg-green-900 p-8 -mx-8 border-green-800 border rounded"
+>
 	<Raffle2024 />
 </div>
 
@@ -69,7 +71,9 @@
 			<div class="text-center mb-4 font-bold">
 				Special thanks to our Season Sponsors:
 			</div>
-			<div class="grid grid-cols-2 gap-8 items-center max-w-[24rem] m-auto">
+			<div
+				class="grid grid-cols-2 gap-8 items-center max-w-[24rem] m-auto dark:bg-white/80 rounded p-4"
+			>
 				<img
 					alt="Logo for Chadron State College"
 					src="/images/sponsors/csc.png"
@@ -100,7 +104,7 @@
 
 	<div class="md:flex flex-col md:mr-2">
 		<section
-			class="bg-green-200 p-3 flex-initial
+			class="bg-green-200 dark:bg-green-900 p-3 flex-initial
       mb-2"
 		>
 			<header class="text-xl">Join our mailing list</header>
@@ -110,7 +114,9 @@
 			>
 		</section>
 
-		<section class="bg-green-200 p-3 flex-1 mb-2 flex flex-col">
+		<section
+			class="bg-green-200 dark:bg-green-900 p-3 flex-1 mb-2 flex flex-col"
+		>
 			<header class="text-xl">Stay connected with Post</header>
 			<div class="flex flex-wrap justify-around items-center flex-1">
 				<a

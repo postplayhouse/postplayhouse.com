@@ -63,6 +63,12 @@
 		padding: 0 1em;
 	}
 
+	@media (prefers-color-scheme: dark) {
+		nav {
+			border-color: rgba(62, 155, 50, 0.3);
+		}
+	}
+
 	ul {
 		padding: 0;
 	}

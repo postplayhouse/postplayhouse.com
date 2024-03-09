@@ -132,7 +132,7 @@
 		{/each}
 	</ol>
 
-	<p class="bg-gray-200 border p-4 my-4">
+	<p class="bg-gray-200 dark:bg-gray-200/20 border p-4 my-4">
 		<strong>Subscribers:</strong> After purchasing your subscription, you can
 		reserve seats to any 4 or 5 <em>different</em> productions by emailing us at
 		<a href="mailto:tickets@postplayhouse.com">tickets@postplayhouse.com</a>,

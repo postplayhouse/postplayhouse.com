@@ -3,13 +3,15 @@
 	export let dispatch: (evtName: string) => void
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	class="fixed shadow-md my-bg overflow-y-auto xs:p-4
-    {transitionedOut ? 'disappear' : 'inset-0'}"
+{transitionedOut ? 'disappear' : 'inset-0'}"
 	on:click|self="{() => dispatch('close')}"
 >
 	<section
-		class="absolute bg-white border-green-600 border-solid block px-4 py-6
+		class="absolute bg-white dark:bg-[#0f110f] dark:text-white border-green-600 border-solid block px-4 py-6
       border-6 inset-0 bottom-auto min-h-full
       xs:relative xs:mx-auto xs:border-4 xs:inset-auto xs:min-h-0 xs:max-w-lg
       "

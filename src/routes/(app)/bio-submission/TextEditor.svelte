@@ -157,7 +157,7 @@
 	{/if}
 	<div
 		bind:this="{editorEl}"
-		class="editor bg-white rounded border-2 border-black/20 py-[5px] relative"
+		class="editor bg-white dark:bg-white/20 rounded border-2 border-black/20 py-[5px] relative"
 	></div>
 </div>
 

@@ -15,7 +15,7 @@
 	].flat()
 </script>
 
-<h1 class="text-center font-uber text-4xl mb-2">{year} Season</h1>
+<h1 class="h1 mb-2">{year} Season</h1>
 
 {#if year === 2020}
 	<h3 class="h3 text-center">
