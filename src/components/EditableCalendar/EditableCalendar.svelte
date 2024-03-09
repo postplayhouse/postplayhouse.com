@@ -104,7 +104,7 @@
 		slots on the calendar itself.
 	</p>
 
-	<div class="mt-8 bg-gray-200 rounded p-4 space-y-6">
+	<div class="mt-8 bg-gray-200 dark:bg-gray-200/20 rounded p-4 space-y-6">
 		<p>
 			<strong>When you are done</strong>, you can share your new calendar by
 			copying and sharing the URL below.
@@ -149,7 +149,7 @@
 						)(e.currentTarget.value.slice(1))}"
 				/>
 				<input
-					class="inline-block p-2 border border-gray-500 rounded shadow-inner bg-gray-100"
+					class="inline-block p-2 border border-gray-500 rounded shadow-inner bg-gray-100 dark:bg-gray-100/10"
 					type="text"
 					value="{production.longTitle}"
 					on:input="{(e) =>
@@ -189,7 +189,9 @@
 	{dates[0]?.year}
 </div>
 
-<div class="grid grid-cols-7 bg-gray-300 gap-1 border-4 border-gray-300">
+<div
+	class="grid grid-cols-7 bg-gray-300 dark:bg-[#0f110f] gap-1 border-4 border-gray-300"
+>
 	<div class="text-center">Sun</div>
 	<div class="text-center">Mon</div>
 	<div class="text-center">Tue</div>
@@ -200,7 +202,7 @@
 
 	{#each dates as day, i}
 		<div
-			class="bg-white p-1"
+			class="bg-white dark:bg-white/20 p-1"
 			class:bg-opacity-50="{day.month % 2 === 0}"
 			class:bg-opacity-20="{day.weekday === 2}"
 			style="{i === 0 ? 'grid-column-start: ' + day.weekday : ''}"

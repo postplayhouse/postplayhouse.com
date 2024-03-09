@@ -5,14 +5,16 @@
 	import Footer from "$components/Footer.svelte"
 </script>
 
-<Header />
-<Nav activePath="{$page.url.pathname}" />
+<div class="dark:bg-[#0f110f] dark:text-white/90">
+	<Header />
+	<Nav activePath="{$page.url.pathname}" />
 
-<main class="relative m-auto py-8 px-2 sm:px-8">
-	<slot />
-</main>
+	<main class="relative m-auto py-8 px-2 sm:px-8">
+		<slot />
+	</main>
 
-<Footer />
+	<Footer />
+</div>
 
 <style>
 	main {

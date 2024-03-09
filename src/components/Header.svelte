@@ -11,6 +11,11 @@
 			<img
 				src="{site.baseurl}/images/post-nameplate-colors.svg"
 				alt="Post Playhouse Title Logo"
+				class="dark:hidden"
+			/><img
+				src="{site.baseurl}/images/post-nameplate-colors_dark.svg"
+				alt="Post Playhouse Title Logo"
+				class="hidden dark:block"
 			/>
 			<h1 class="hidden">{site.title}</h1>
 		</a>
@@ -23,10 +28,7 @@
 	<div class="flex-initial text-center mt-8 ml-2 min-w-md">
 		<TicketsButton />
 
-		<a
-			class="text-green-700 underline sm:block sm:mt-4"
-			href="{site.baseurl}/ticket-info/"
-		>
+		<a class="link-green sm:block sm:mt-4" href="{site.baseurl}/ticket-info/">
 			Ticket Information
 		</a>
 		<a class="mt-2 text-lg block" href="{site.boxOfficePhoneLink}">

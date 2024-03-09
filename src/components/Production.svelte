@@ -21,7 +21,7 @@
 	<header>
 		{#if production.image}
 			<MaybeImage
-				class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl"
+				class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl bg-white/70"
 				src="{[imagePath, fallbackImagePath]}"
 				alt="Show Logo for {production.title}"
 			/>
@@ -47,10 +47,12 @@
 		</div>
 	{/if}
 	{#if production.rating}
-		<div class="">
+		<div>
 			<a class="link-green" href="/ratings">Rating: {production.rating}</a>
 			{#if production.rating_explanation}
-				<div class="p-4 my-2 bg-grey-200 text-grey-600">
+				<div
+					class="p-4 my-2 bg-grey-200 dark:bg-grey-200/40 text-grey-600 dark:text-white"
+				>
 					{production.rating_explanation}
 				</div>
 			{/if}
@@ -61,7 +63,10 @@
 		<Markdown source="{production.description}" />
 
 		{#if production.sponsor}
-			<MaybeLink class="float-right" href="{production.sponsor.link}">
+			<MaybeLink
+				class="float-right dark:bg-white/50 p-2"
+				href="{production.sponsor.link}"
+			>
 				<p>Sponsored By</p>
 				{#if production.sponsor.image}
 					<img

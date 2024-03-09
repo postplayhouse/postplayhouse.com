@@ -14,6 +14,10 @@
 		list-style-type: disc;
 	}
 
+	input {
+		@apply border border-grey-500 dark:bg-white/20 dark:border-white/40 rounded;
+	}
+
 	.btn {
 		@apply bg-green-700 text-white font-bold tracking-wide
       rounded-sm border-solid border-green-900 
@@ -36,11 +40,7 @@
 	}
 
 	.link-green {
-		@apply underline text-green-600;
-	}
-
-	.link-green:hover {
-		@apply text-green-700;
+		@apply underline text-green-600 dark:text-green-300;
 	}
 
 	.r-16x9 {
@@ -56,7 +56,7 @@
 	}
 
 	._h1 {
-		@apply text-3xl font-uber text-center;
+		@apply text-3xl font-uber text-center dark:text-green-500/80;
 	}
 
 	._h2 {

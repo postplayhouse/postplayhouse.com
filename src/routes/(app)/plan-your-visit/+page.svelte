@@ -18,17 +18,17 @@
 {#each businesses as item}
 	<div class="relative" class:supporter="{item.supporter}">
 		<div class="flex flex-row-reverse mb-8">
-			<div class="flex-grow bg-green-200 p-4">
+			<div class="flex-grow bg-green-200 dark:bg-green-900/60 p-4">
 				<div>
 					{#if item.site}
 						<a href="{item.site}">
 							<div class="text-2xl">{item.name}</div>
 							{#if item.prettyURL}
-								<div class="underline text-green-800" style="max-width: 100%">
+								<div class="link-green" style="max-width: 100%">
 									{item.prettyURL}
 								</div>
 							{:else}
-								<div class="underline text-green-800" style="max-width: 100%">
+								<div class="link-green" style="max-width: 100%">
 									{item.site}
 								</div>
 							{/if}
@@ -71,7 +71,7 @@
 				{/if}
 			</div>
 
-			<ul class="flex-none w-32 list-none bg-green-400 p-4">
+			<ul class="flex-none w-32 list-none bg-green-400 dark:bg-black p-4">
 				{#each item.type as type}
 					<li class="mb-2">{type}</li>
 				{/each}

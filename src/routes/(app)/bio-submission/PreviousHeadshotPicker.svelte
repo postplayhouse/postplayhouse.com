@@ -42,8 +42,9 @@ Use this filter and list to find and select your old headshot.
 		{#each filteredOptions as option}
 			<li>
 				<button
-					class="hover:bg-slate-200 px-2 {option === selectedOption
-						? 'bg-emerald-300'
+					class="hover:bg-slate-200 dark:hover:bg-slate-500 px-2 {option ===
+					selectedOption
+						? 'bg-emerald-300 dark:bg-emerald-700'
 						: ''}"
 					on:click="{() => selectOption(option)}"
 					>{option.replace("/images/people/", "").replace("/", " - ")}</button

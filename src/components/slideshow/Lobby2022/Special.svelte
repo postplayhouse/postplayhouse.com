@@ -99,7 +99,7 @@
 					“Special Campaign” gifts provide a financial foundation that allows
 					for a bright future for the Post Playhouse.
 				</p>
-				<div class="bg-green-100 text-black">
+				<div class="bg-green-100 dark:bg-green-900 text-black">
 					{slide.title}
 				</div>
 			</header>

@@ -28,7 +28,9 @@
 
 <h1 class="h1">{title}</h1>
 
-<div class="flex items-center my-4 border border-green-600 bg-green-200 p-2">
+<div
+	class="flex items-center my-4 border border-green-600 bg-green-200 dark:bg-green-900 p-2"
+>
 	<button class="btn btn-p mr-4" on:click="{toggleFeedsLinks}">
 		Subscribe to jobs updates
 	</button>

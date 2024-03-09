@@ -225,7 +225,7 @@
 
 	let state = disabled ? states.submissionsDisabled : states.unauthenticated
 	// uncomment below to develop faster
-	// state = states.incompleteForm
+	state = states.incompleteForm
 
 	$: showCredsForm = [states.unauthenticated, states.requestingAuth].includes(
 		state,
@@ -614,7 +614,7 @@ ${email}
 		if you'd like some context.
 	</p>
 
-	<div class="bg-green-100 rounded p-4">
+	<div class="bg-green-100 dark:bg-green-900 rounded p-4">
 		<p>Please have the following ready to go before you start:</p>
 		<ul>
 			<li>
@@ -661,7 +661,7 @@ ${email}
 			Done reading above?<br />Enter the passphrase to get started!
 
 			<input
-				class="border border-grey-500 block"
+				class="block"
 				bind:value="{passphrase}"
 				name="passphrase"
 				type="text"
@@ -681,7 +681,7 @@ ${email}
 
 {#if showMain}
 	<div bind:this="{topOfMainEl}" class="mt-4 mb-24 max-w-lg">
-		<p class="mt-4 bg-amber-100 border border-amber-800 p-4">
+		<p class="mt-4 bg-amber-100 border border-amber-800 p-4 dark:bg-amber-800">
 			If you have trouble with this form please compose an email with all the
 			information we ask you for below and send it to
 			<a class="underline" href="{emailLink}">don@postplayhouse.com</a>
@@ -699,12 +699,7 @@ ${email}
 					(So our program designer can contact you if necessary. It is not
 					shared with the public.)
 				</div>
-				<input
-					class="border border-grey-500 block"
-					bind:value="{email}"
-					name="email"
-					type="email"
-				/>
+				<input class="block" bind:value="{email}" name="email" type="email" />
 			</label>
 
 			<div class="my-32">
@@ -756,7 +751,7 @@ ${email}
 					First Name<i>*</i>
 					<div class="text-sm">(optionally with middle name/initial)</div>
 					<input
-						class="border border-grey-500 block"
+						class="block"
 						bind:value="{firstName}"
 						name="firstName"
 						type="text"
@@ -765,7 +760,7 @@ ${email}
 				<label class="text-2xl mt-8 block">
 					Last Name<i>*</i>
 					<input
-						class="border border-grey-500 block"
+						class="block"
 						bind:value="{lastName}"
 						name="lastName"
 						type="text"
@@ -778,7 +773,7 @@ ${email}
 						"Crawford, NE")
 					</div>
 					<input
-						class="border border-grey-500 block"
+						class="block"
 						bind:value="{location}"
 						name="location"
 						type="text"
@@ -797,7 +792,7 @@ ${email}
 					<label class="text-xl mt-4 block {i === 0 ? 'mb-8' : ''}">
 						{production}
 						<input
-							class="border border-grey-500 block"
+							class="block"
 							type="text"
 							on:input="{(e) => mutateRoles(production, e.currentTarget.value)}"
 						/>
@@ -805,10 +800,12 @@ ${email}
 							<div class="text-sm mt-1">
 								(Actors will most likely leave this one blank.)<br />
 								Examples:<br />
-								<code class="text-xs bg-grey-300 rounded py-px px-1"
+								<code
+									class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
 									>Box Office Staff</code
 								><br />
-								<code class="text-xs bg-grey-300 rounded py-px px-1"
+								<code
+									class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
 									>Season Sound Engineer</code
 								>
 							</div>
@@ -816,10 +813,12 @@ ${email}
 						{#if i === 1}
 							<div class="text-sm mt-1">
 								Examples: <br />
-								<code class="text-xs bg-grey-300 rounded py-px px-1"
+								<code
+									class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
 									>Franz, Ensemble</code
 								><br />
-								<code class="text-xs bg-grey-300 rounded py-px px-1"
+								<code
+									class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
 									>Assistant Stage Manager</code
 								>
 							</div>
@@ -871,9 +870,9 @@ ${email}
 		</form>
 
 		<div>
-			<div class="p-4 bg-grey-200 sticky top-0">
+			<div class="p-4 bg-grey-200 dark:bg-green-200/20 sticky top-0">
 				<h3>Preview (your answers change this preview):</h3>
-				<div class="bg-white rounded p-4 shadow-lg">
+				<div class="bg-white dark:bg-black rounded p-4 shadow-lg">
 					<Bio {person} isSubmissionPreview />
 				</div>
 
@@ -888,7 +887,7 @@ ${email}
 							{/if}
 							{#if validation.warn}
 								<li
-									class="mt-4 border border-yellow-500 bg-yellow-100 p-2 rounded prose"
+									class="mt-4 border border-yellow-500 bg-yellow-100 dark:bg-yellow-800/30 p-2 rounded prose"
 								>
 									<header class="font-bold text-yellow-600">Warning:</header>
 									<p>{@html warningMessages[validation.name]}</p>

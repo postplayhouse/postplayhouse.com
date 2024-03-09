@@ -16,7 +16,9 @@
 <h1 class="h1">{title}</h1>
 
 {#if is_holidays && certificatesAreAvailable}
-	<div class="p-4 border-2 border-green-800 bg-green-100 my-4">
+	<div
+		class="p-4 border-2 border-green-800 bg-green-100 dark:bg-green-900 my-4"
+	>
 		<h2 class="h2">Holiday Gift Extras</h2>
 
 		<p>
