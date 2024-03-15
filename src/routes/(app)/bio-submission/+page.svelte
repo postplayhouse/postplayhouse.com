@@ -9,8 +9,13 @@
 	import billMurray from "./bill-murray.jpg"
 	import TextEditor from "./TextEditor.svelte"
 	import PreviousHeadshotPicker from "./PreviousHeadshotPicker.svelte"
+	import type { FormEventHandler } from "svelte/elements"
+	import { dev } from "$app/environment"
 
 	export let data
+
+	const devFormFeedback = dev && true
+	const startOnFormScreen = dev && true
 
 	const { disabled, productions: productions_, imageFiles } = data
 
@@ -47,19 +52,18 @@
 		}
 	}
 
-	const ENTIRE_SEASON = "Entire Season"
-
-	let productions = [ENTIRE_SEASON, ...productions_.map((p) => p.title)]
+	let productions = productions_.map((p) => p.title)
 	let roles: Person["roles"] = []
 	let staffPositions: Person["staffPositions"] = []
 	let productionPositions: Person["productionPositions"] = []
 	let positions: Person["positions"] = []
 
-	function updateRole(
+	function updateProductionJob(
 		productionName: string,
 		position: string,
-		localRoles: Person["roles"],
+		roles: Person["roles"] | Person["productionPositions"],
 	) {
+		let localRoles = JSON.parse(JSON.stringify(roles)) as typeof roles
 		const updatedRole = {
 			productionName,
 			positions: position
@@ -93,7 +97,25 @@
 		productionName: string,
 		position: Person["positions"][0],
 	) {
-		roles = updateRole(productionName, position, roles)
+		roles = updateProductionJob(productionName, position, roles)
+	}
+
+	function mutateProductionPositions(
+		productionName: string,
+		position: Person["positions"][0],
+	) {
+		productionPositions = updateProductionJob(
+			productionName,
+			position,
+			productionPositions,
+		)
+	}
+
+	function mutateStaffPositions(positions: string) {
+		staffPositions = positions
+			.split(",")
+			.map((x) => x.trim())
+			.filter(Boolean)
 	}
 
 	$: name = firstName ? `${firstName} ${lastName}` : ""
@@ -228,8 +250,7 @@
 		? states.submissionsDisabled
 		: states.unauthenticated
 
-	// uncomment below for development
-	// startingState = states.incompleteForm
+	startingState = startOnFormScreen ? states.incompleteForm : startingState
 
 	let state = startingState
 
@@ -346,7 +367,7 @@
 	}
 
 	function handleFilePick(
-		e: Parameters<svelte.JSX.FormEventHandler<HTMLInputElement>>[0],
+		e: Parameters<FormEventHandler<HTMLInputElement>>[0],
 	) {
 		const pickedFile = e.currentTarget.files?.[0]
 		if (!pickedFile || !pickedFile.type.match("image.*"))
@@ -409,27 +430,38 @@
 	const onSubmit = () => dispatch(events.postBio)
 
 	$: yamlBody = ({
-		includeEmptyRoles: fillRoles,
-		includeGroups,
-	}: { includeEmptyRoles?: boolean; includeGroups?: boolean } = {}) => {
+		includeEmptyProductions: fillRoles,
+	}: { includeEmptyProductions?: boolean } = {}) => {
 		let localRoles: typeof roles = JSON.parse(JSON.stringify(roles))
+		let localProductionPositions: typeof productionPositions = JSON.parse(
+			JSON.stringify(productionPositions),
+		)
 
 		if (fillRoles) {
 			productions.forEach((prod) => {
 				const role = localRoles.find((r) => r.productionName === prod)
 				if (!role) {
-					localRoles = updateRole(prod, " ", localRoles)
+					localRoles = updateProductionJob(prod, " ", localRoles)
+				}
+
+				const position = localProductionPositions.find(
+					(r) => r.productionName === prod,
+				)
+				if (!position) {
+					localProductionPositions = updateProductionJob(
+						prod,
+						" ",
+						localProductionPositions,
+					)
 				}
 			})
 		}
 
-		const entireSeasonRolesAsYaml = localRoles
-			.filter((r) => r.productionName === ENTIRE_SEASON)
-			.map((r) => r.positions.map((p) => `    - ${p.trim()}`).join("\n"))
+		const yamlStaffPositions = staffPositions
+			.map((p) => `    - ${p.trim()}`)
 			.join("\n")
 
 		const yamlRoles = localRoles
-			.filter((r) => r.productionName !== ENTIRE_SEASON)
 			.map(
 				(r) =>
 					`    ${r.productionName}:\n${r.positions
@@ -438,8 +470,13 @@
 			)
 			.join("\n")
 
-		const allGroups = ["cast", "creative", "crew", "staff", "musicians"]
-			.map((x) => `    - ${x}`)
+		const yamlProductionPositions = localProductionPositions
+			.map(
+				(r) =>
+					`    ${r.productionName}:\n${r.positions
+						.map((p) => `      - ${p.trim()}`)
+						.join("\n")}`,
+			)
 			.join("\n")
 
 		function bioTrim(text: string) {
@@ -451,10 +488,10 @@
 			`  first_name: ${firstName.trim()}`,
 			`  image_year: ${useOldHeadshot ? oldImage.split("/")[3] : site.season}`,
 			`  location: "${location.trim()}"`,
-			includeGroups && `  groups:\n${allGroups}`,
-			`  staff_positions:\n${entireSeasonRolesAsYaml}`,
-			`  production_positions:`,
-			`  roles:\n${yamlRoles}`,
+			yamlStaffPositions && `  staff_positions:\n${yamlStaffPositions}`,
+			yamlProductionPositions &&
+				`  production_positions:\n${yamlProductionPositions}`,
+			yamlRoles && `  roles:\n${yamlRoles}`,
 			!addLongerBio && `  bio: |\n    ${bioTrim(bio)}`,
 			addLongerBio && `  program_bio: |\n    ${bioTrim(bio)}`,
 			addLongerBio && `  bio: |\n    ${bioTrim(longerBio)}`,
@@ -473,7 +510,7 @@ I'll email you when I have added your information to the website, so you can che
 ~Don Denton
 ----------------------------------------
 
-${yamlBody({ includeEmptyRoles: true })}
+${yamlBody({ includeEmptyProductions: true })}
 `
 
 	$: emailLink = `mailto:don@postplayhouse.com?subject=${encodeURIComponent(
@@ -580,20 +617,12 @@ ${yamlBody({ includeEmptyRoles: true })}
 bio words:        ${bioWordCount}
 longer bio words: ${addLongerBio ? longerBioWordCount : "n/a"}
 
-Don't forget:
-
-1. delete either \`roles:\` (for non-cast members) or \`production_positions:\` (for cast members)
-2. double check everything in \`staff_positions\`
-3. delete all incorrect group memberships for each person
-
 ${email}
 `
 
 		const doBioUpload = async (): Promise<true> =>
 			uploadText(
-				`${yamlBody({
-					includeGroups: true,
-				})}\n\n\n${messageToMyself}`,
+				`${yamlBody()}\n\n\n${messageToMyself}`,
 				basename,
 				(await getCreds(1))[0],
 			).then((resp) => {
@@ -743,6 +772,13 @@ ${email}
 {/if}
 
 {#if showMain}
+	{#if devFormFeedback}
+		<div
+			class="fixed top-0 right-0 bottom-0 overflow-scroll w-1/4 pre whitespace-pre-wrap dark:bg-blue-900 bg-blue-200 z-10 p-2"
+		>
+			{yamlBody()}
+		</div>
+	{/if}
 	<div bind:this="{topOfMainEl}" class="mt-4 mb-24 max-w-lg">
 		<p class="mt-4 bg-amber-100 border border-amber-800 p-4 dark:bg-amber-800">
 			If you have trouble with this form please compose an email with all the
@@ -845,47 +881,83 @@ ${email}
 			</div>
 
 			<div class="my-48">
-				<span class="text-2xl mt-24 block">Production Roles/Positions</span>
+				<span class="text-2xl mt-24 block">Acting Roles</span>
 				<div class="text-sm">
-					Please indicate what role you are playing or what your positions are
-					for each production. Leave any blank that do not apply. Use commas to
-					separate multiple positions/roles.
+					If you are acting this season, please fill out your roles below. Leave
+					any blank that do not apply. Use commas to separate multiple roles.
 				</div>
-				{#each productions as production, i}
-					<label class="text-xl mt-4 block {i === 0 ? 'mb-8' : ''}">
+				<div class="text-sm mt-1">
+					Examples: <br />
+					<code
+						class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
+						>Franz, Ensemble</code
+					>
+				</div>
+				{#each productions as production}
+					<label class="text-xl mt-4 block">
 						{production}
 						<input
 							class="block"
 							type="text"
 							on:input="{(e) => mutateRoles(production, e.currentTarget.value)}"
 						/>
-						{#if i === 0}
-							<div class="text-sm mt-1">
-								(Actors will most likely leave this one blank.)<br />
-								Examples:<br />
-								<code
-									class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
-									>Box Office Staff</code
-								><br />
-								<code
-									class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
-									>Season Sound Engineer</code
-								>
-							</div>
-						{/if}
-						{#if i === 1}
-							<div class="text-sm mt-1">
-								Examples: <br />
-								<code
-									class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
-									>Franz, Ensemble</code
-								><br />
-								<code
-									class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
-									>Assistant Stage Manager</code
-								>
-							</div>
-						{/if}
+					</label>
+				{/each}
+			</div>
+
+			<div class="my-48">
+				<span class="text-2xl mt-24 block"
+					>Production Positions (non-acting)</span
+				>
+				<div class="text-sm">
+					Please fill out what you are doing for each production aside from
+					acting. Leave any blank that do not apply and use the Entire Season
+					field for anything that isn't specific to a given show (Stitcher, Box
+					Office Staff, etc.). Use commas to separate multiple positions/roles.
+				</div>
+				<label class="text-xl mt-4 block mb-12">
+					Entire Season
+					<div class="text-sm mt-1">
+						Examples:<br />
+						<code
+							class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
+							>Box Office Staff</code
+						><br />
+						<code
+							class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
+							>Season Sound Engineer</code
+						>
+					</div>
+					<input
+						class="block"
+						type="text"
+						on:input="{(e) => mutateStaffPositions(e.currentTarget.value)}"
+					/>
+				</label>
+				<div class="text-xl mt-4 block">
+					Specific Productions
+					<div class="text-sm mt-1">
+						Examples: <br />
+						<code
+							class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
+							>Assistant Stage Manager</code
+						><br />
+						<code
+							class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
+							>Director, Choreographer</code
+						>
+					</div>
+				</div>
+				{#each productions as production, i}
+					<label class="text-xl mt-4 block {i === 0 ? 'mb-12' : ''}">
+						{production}
+
+						<input
+							class="block"
+							type="text"
+							on:input="{(e) =>
+								mutateProductionPositions(production, e.currentTarget.value)}"
+						/>
 					</label>
 				{/each}
 			</div>
