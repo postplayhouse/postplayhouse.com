@@ -62,43 +62,22 @@
 	<li>
 		<a
 			class="link-green"
-			href="http://www.bing.com/maps/?v=2&amp;cp=r3b57g6cb5p3&amp;lvl=18&amp;dir=0&amp;sty=b&amp;sp=Point.r3b4xz6cb5sc_Post%20Playhouse_Post%20Playhouse%20is%20located%20in%20Historic%20Fort%20Robinson%20State%20Park%2C%20and%20is%20Northwestern%20Nebraska's%20Premiere%20venue%20for%20live%20theatre._http%3A%2F%2Fwww.postplayhouse.com_http%3A%2F%2Fwww.postplayhouse.com%2Fwordpress%2Fwp-content%2Fthemes%2Fpostplayhouse2.1%2Fimages%2Fplayhouse%255fpic.jpg_"
+			href="https://duckduckgo.com/?va=e&t=hq&q=Post+Playhouse&ia=web&iaxm=directions&end=what%3APost%2520Playhouse%2Cwhere%3A3200%2520Highway%252020%252C%2520Crawford%252C%2520NE%252069339%252C%2520United%2520States&transport=drive"
 			target="_blank"
 		>
-			Bing Maps
+			Apple Maps (via DuckDuckGo)
 		</a>
 		— to the theatre
 	</li>
 	<li>
 		<a
 			class="link-green"
-			href="http://maps.google.com/maps/ms?f=q&amp;hl=en&amp;geocode=&amp;ie=UTF8&amp;msa=0&amp;ll=42.668963,-103.464013&amp;spn=0.003826,0.009656&amp;z=17&amp;iwstate1=dir&amp;msid=113724959975087314194.00045338a29dc15cb2d92"
+			href="https://www.google.com/maps/dir//42.6675597,-103.4641791/@42.6675302,-103.5465798,12z?entry=ttu"
 			target="_blank"
 		>
 			Google Maps
 		</a>
 		— to the theatre
-	</li>
-	<li>
-		<a
-			class="link-green"
-			href="http://www.mapquest.com/maps?state=NE&amp;cat=fort+robinson+state+park"
-			target="_blank"
-		>
-			MapQuest
-		</a>
-		— to Fort Robinson
-	</li>
-	<li>
-		<a
-			class="link-green"
-			href="http://maps.yahoo.com/#mvt=m&amp;lat=42.66546&amp;lon=-103.460484&amp;zoom=16&amp;tt=fort
-      robinson state park&amp;tp=1"
-			target="_blank"
-		>
-			Yahoo Maps
-		</a>
-		— to Fort Robinson
 	</li>
 </ul>
 
@@ -116,16 +95,6 @@
 			src="https://maps.google.com/maps/ms?f=q&amp;hl=en&amp;geocode=&amp;ie=UTF8&amp;msa=0&amp;msid=215815128770604665825.00045338a29dc15cb2d92&amp;ll=42.668963,-103.464013&amp;spn=0.003826,0.009656&amp;t=m&amp;output=embed"
 		></iframe>
 	</div>
-	<small>
-		View
-		<a
-			href="https://maps.google.com/maps/ms?f=q&amp;hl=en&amp;geocode=&amp;ie=UTF8&amp;msa=0&amp;msid=215815128770604665825.00045338a29dc15cb2d92&amp;ll=42.668963,-103.464013&amp;spn=0.003826,0.009656&amp;t=m&amp;source=embed"
-			class="link-green"
-		>
-			the theatre
-		</a>
-		in a larger map
-	</small>
 </div>
 
 <ParkingNotice />
