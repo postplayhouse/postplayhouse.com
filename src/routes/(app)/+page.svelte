@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { isBefore, startOfToday } from "date-fns"
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
@@ -33,11 +34,13 @@
 	/>
 </svelte:head>
 
-<div
-	class="bg-green-50 dark:bg-green-900 p-8 -mx-8 border-green-800 border rounded"
->
-	<Raffle2024 />
-</div>
+{#if isBefore(startOfToday(), new Date("2024-03-17T00:00:00.000"))}
+	<div
+		class="bg-green-50 dark:bg-green-900 p-8 -mx-8 border-green-800 border rounded"
+	>
+		<Raffle2024 />
+	</div>
+{/if}
 
 <div class="mb-16 p-2 max-w-2xl mx-auto">
 	<Openings {productions} closingDate="2024-08-11">
