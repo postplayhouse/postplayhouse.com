@@ -14,12 +14,12 @@
   image_year: 2015
   location: "Here"
   staff_positions:
-
+    - meh
   production_positions:
   roles:
 
   bio: |
-    sadly
+    Meh
 # end __1__
 # start __2__
 - last_name: Galván
