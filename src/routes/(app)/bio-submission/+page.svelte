@@ -185,7 +185,10 @@
 			name: "longerBioIsShort",
 			invalid: addLongerBio && longerBioWordCount <= MAX_WORDS,
 		},
-	]
+	] satisfies Array<
+		| { name: keyof typeof validationMessages; invalid: boolean }
+		| { name: keyof typeof warningMessages; warn: boolean }
+	>
 
 	const validationMessages = {
 		firstName: "You must supply a first name.",
