@@ -1,6 +1,7 @@
 import * as fs from "fs"
 import * as path from "path"
 import frontmatter from "frontmatter"
+import { asserted } from "$helpers"
 
 const STARTS_WITH_DATE = /^\d{4}-\d{2}-\d{2}-/
 
@@ -52,13 +53,15 @@ function titleFromBasename(fileBasename: string) {
 	return titleCase(fileBasename.slice(10).replace(/-/g, " ").trim())
 }
 
-const prepFiles =
-	(
-		extensions: string[],
-		mapFn: (details: Details) => any = (x) => x,
-	): ((dirPath: string, fileNames: string[]) => any) =>
-	(dirPath, fileNames) =>
-		fileNames.reduce(getDetails(dirPath, extensions), []).map(mapFn)
+function prepFiles<MapFn extends (details: Details) => Details>(
+	extensions: string[],
+	mapFn: MapFn,
+) {
+	return (dirPath: string, fileNames: string[]) =>
+		fileNames
+			.reduce(getDetails(dirPath, extensions), [])
+			.map(mapFn) as ReturnType<MapFn>[]
+}
 
 const prepMdsvexFiles = prepFiles(["md"], (details) => {
 	const fm = frontmatter(details.content)
@@ -77,10 +80,17 @@ const prepSvelteFiles = prepFiles(["svelte"], (details) => {
 	)
 	// We only need the year and title, because the actual svelte component
 	// will take over the content when it is routed.
+
+	const title = match
+		? asserted(match[4], "matched without an actual title")
+		: titleFromBasename(details.basename)
 	return {
 		...details,
 		year: details.basename,
-		title: match ? match[4] : titleFromBasename(details.basename),
+		title: asserted(
+			title,
+			"title could not be derived for file " + details.basename,
+		),
 	}
 })
 
@@ -105,7 +115,7 @@ function loadLegitFiles(dirPath: string) {
 		})
 }
 
-type ArticleDetails = { year: string; title: string }
+type ArticleDetails = { year: string; title: string; updatedDate?: string }
 
 /**
  * This will return an array of articles' metadata. Frontmatter data in md files

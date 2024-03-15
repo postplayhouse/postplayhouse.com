@@ -13,7 +13,7 @@
 
 <ul class="week">
 	{#if padStartCount}
-		<li class="day padding" colspan="{padStartCount}">
+		<li class="day padding">
 			<slot />
 		</li>
 	{/if}

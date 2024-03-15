@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 
+import { objectKeys } from "$helpers"
 import {
 	showingsStringToData,
 	showingsDataToString,
@@ -84,7 +85,7 @@ describe("showings data from and back to string", () => {
 			expect(
 				performances.find(
 					(x) =>
-						!Object.keys(exPerf).reduce(
+						!objectKeys(exPerf).reduce(
 							(acc, key) => acc || exPerf[key] !== x[key],
 							false,
 						),
@@ -137,7 +138,7 @@ describe("edge cases", () => {
 
 		const toData = showingsStringToData(scheduleString, unimportantDetails)
 
-		expect(toData.productions[0].shortTitle).toEqual("Win/Lose")
+		expect(toData.productions[0]!.shortTitle).toEqual("Win/Lose")
 
 		expect(showingsDataToString(toData).scheduleString).toEqual(scheduleString)
 	})
@@ -147,7 +148,7 @@ describe("edge cases", () => {
 
 		const toData = showingsStringToData(scheduleString, unimportantDetails)
 
-		expect(toData.productions[0].shortTitle).toEqual("[Title of Show]")
+		expect(toData.productions[0]!.shortTitle).toEqual("[Title of Show]")
 
 		expect(showingsDataToString(toData).scheduleString).toEqual(scheduleString)
 	})

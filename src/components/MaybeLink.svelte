@@ -7,5 +7,5 @@
 {#if href}
 	<a {href} class="{className}"><slot /></a>
 {:else}
-	<span {href} class="{className}"><slot /></span>
+	<span class="{className}"><slot /></span>
 {/if}

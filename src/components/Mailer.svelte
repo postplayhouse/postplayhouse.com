@@ -114,6 +114,7 @@
 	#mc_embed_signup input {
 		border: 1px solid #999;
 		-webkit-appearance: none;
+		appearance: none;
 	}
 	/* #mc_embed_signup input[type="checkbox"] {
     -webkit-appearance: checkbox;

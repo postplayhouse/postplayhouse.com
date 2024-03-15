@@ -50,7 +50,6 @@ describe("performance manipulation", () => {
 			month: 1,
 			day: 1,
 			slot: 1,
-			id: "Title",
 		})
 
 		const { scheduleString, details } = showingsDataToString(newData)
@@ -66,7 +65,6 @@ describe("performance manipulation", () => {
 			month: 2,
 			day: 1,
 			slot: 1,
-			id: "Title",
 		})
 
 		const { scheduleString, details } = showingsDataToString(newData)
@@ -146,7 +144,7 @@ describe("production manipulation", () => {
 		it("can change the color", () => {
 			const newData = editProduction(schedule, "Title", { color: "911" })
 
-			expect(newData.productions[0].color).toBe("911")
+			expect(newData.productions[0]!.color).toBe("911")
 		})
 
 		it("can change the longTitle", () => {
@@ -154,7 +152,7 @@ describe("production manipulation", () => {
 				longTitle: "The-Long-Title",
 			})
 
-			expect(newData.productions[0].longTitle).toBe("The-Long-Title")
+			expect(newData.productions[0]!.longTitle).toBe("The-Long-Title")
 
 			const { scheduleString } = showingsDataToString(newData)
 
@@ -168,7 +166,7 @@ describe("production manipulation", () => {
 				shortTitle: "T",
 			})
 
-			expect(newData.productions[0].shortTitle).toBe("T")
+			expect(newData.productions[0]!.shortTitle).toBe("T")
 
 			const { scheduleString } = showingsDataToString(newData)
 

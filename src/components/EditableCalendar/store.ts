@@ -31,7 +31,7 @@ function updateUrl(newSchedule: typeof schedule) {
 	)) {
 		url.searchParams.set(param, String(val))
 	}
-	goto(url, { noscroll: true, keepfocus: true })
+	goto(url, { noScroll: true, keepFocus: true })
 }
 
 scheduleStore.subscribe((newSchedule) => {

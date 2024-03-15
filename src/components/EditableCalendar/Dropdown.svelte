@@ -3,6 +3,7 @@
 	import { createPopper } from "@popperjs/core"
 	import { createEventDispatcher } from "svelte"
 	import type { ProductionDetails } from "./showingsData"
+	import type { MouseEventHandler } from "svelte/elements"
 
 	// core components
 
@@ -35,7 +36,7 @@
 
 	function doNothing() {}
 
-	let action: svelte.JSX.MouseEventHandler<Window> = doNothing
+	let action: MouseEventHandler<Window> = doNothing
 
 	function toggleDropdown() {
 		if (dropdownPopoverShow) {

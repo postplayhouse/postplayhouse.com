@@ -1,4 +1,5 @@
 <script lang="ts" context="module">
+	import { asserted } from "$helpers"
 	import type { Showing, SimpleDate } from "./calendarHelpers"
 	import {
 		makeDate,
@@ -28,15 +29,15 @@
 	export let daySchedule: Showing[] = []
 	export let date: SimpleDate
 
-	const { year: yearNum, month: monthNum, day: dayNum } = date
+	const { month: monthNum, day: dayNum } = date
 	const dt = makeDate(date)
-	const monthShort = shortMonths[monthNum - 1]
-	const dayLong = weekdays[dt.getDay()]
+	const monthShort = asserted(shortMonths[monthNum - 1])
+	const dayLong = asserted(weekdays[dt.getDay()])
 	const dayShort = dayLong.slice(0, 3)
 
 	const includeSpacer =
 		daySchedule.length === 1 &&
-		daySchedule[0].msFromMidnight > ARBITRARY_SPACER_CUT_OFF
+		asserted(daySchedule[0]).msFromMidnight > ARBITRARY_SPACER_CUT_OFF
 </script>
 
 <li

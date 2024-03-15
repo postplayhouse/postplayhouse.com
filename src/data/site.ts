@@ -27,7 +27,7 @@ export const site = {
 	twitter: "postplayhouse",
 	facebook: "post.playhouse",
 	castingComplete: prod ? castingComplete : true,
-	season: 2024,
+	season: 2024 as Date.Year,
 	description:
 		"Post Playhouse, Inc. is Northwestern Nebraska's favorite live theatre company, producing several musicals running in a repertory schedule every summer by bringing together highly skilled creative professionals from across the country and nearby. Post Playhouse, Inc. performs its productions at the theatre in Fort Robinson State Park.",
 	boxOfficePhone,

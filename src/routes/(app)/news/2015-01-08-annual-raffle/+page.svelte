@@ -49,7 +49,7 @@
 
 <style>
 	.group {
-		*zoom: 1;
+		zoom: 1;
 	}
 	.group:after {
 		content: "";

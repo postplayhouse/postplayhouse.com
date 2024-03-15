@@ -6,11 +6,8 @@ const dir = "src/data"
 
 const YML_FILE = /\.yml$/
 
-// Object.assign passes an index as well. We won't want that.
-const simpleAssign = (acc, current) => ({ ...acc, ...current })
-
-function dataFromDirectory(directoryPath) {
-	const fullPath = (name) => `${directoryPath}/${name}`
+function dataFromDirectory(directoryPath: string): Record<string, unknown> {
+	const fullPath = (name: string) => `${directoryPath}/${name}`
 	const dirname = path.basename(directoryPath)
 	const data = fs
 		.readdirSync(directoryPath)
@@ -34,8 +31,8 @@ function dataFromDirectory(directoryPath) {
 				}
 			}
 		})
-		.reduce(simpleAssign, {})
-	return { [dirname]: data }
+
+	return { [dirname]: Object.assign({}, ...data) }
 }
 
-export default dataFromDirectory(dir).data as YearlyData
+export default dataFromDirectory(dir)["data"] as YearlyData
