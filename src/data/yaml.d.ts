@@ -119,7 +119,7 @@ type YamlPerson = {
 	/** Sort by this value first, if it appears. Then last, first. */
 	sort_name?: string
 	location: string
-	groups: string[]
+	groups?: string[]
 	positions?: string[]
 	staff_positions: string[]
 	/** Ex: `{"Damn Yankees": ["Director", "Choreographer"]}` */

@@ -9,7 +9,7 @@ export function personIsInGroup(person: PersonLike, groupName: string) {
 }
 
 export function personIsOnlyInGroup(person: PersonLike, groupName: string) {
-	return personIsInGroup(person, groupName) && person.groups.length === 1
+	return personIsInGroup(person, groupName) && person.groups?.length === 1
 }
 
 /**
