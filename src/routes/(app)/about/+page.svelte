@@ -26,6 +26,23 @@
 	Please visit <a class="link-green" href="/jobs">the jobs page</a> for more information
 </p>
 
+<h3 class="h3 mt-4">Artistic Director</h3>
+<p>
+	Dewayne Barrett: <a
+		class="link-green"
+		href="mailto:dewaynebarrett@postplayhouse.com"
+		>dewaynebarrett@postplayhouse.com</a
+	>
+</p>
+
+<h3 class="h3 mt-4">Managing Director</h3>
+<p>
+	Ken Phillips: <a
+		class="link-green"
+		href="mailto:kenphillips@postplayhouse.com">kenphillips@postplayhouse.com</a
+	>
+</p>
+
 <h3 class="h3 mt-4">Mailing address</h3>
 <p>
 	Post Playhouse<br />
