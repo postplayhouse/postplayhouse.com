@@ -2,6 +2,7 @@ import { error, json } from "@sveltejs/kit"
 import { individualPassphraseDetails } from "../passphraseHelpers"
 import { updateAndPr } from "../githubHelpers"
 import site from "$data/site"
+import { captureMessage } from "@sentry/sveltekit"
 
 function toKebabCase(str: string) {
 	return str
@@ -100,5 +101,10 @@ export const POST = async ({ request }) => {
 		prBranch: `bio-update/position-${position}`,
 	})
 
-	return result.success ? json(result) : error(502, { message: result.error })
+	if (!result.success) {
+		captureMessage(result.error)
+		return error(502, { message: result.error })
+	}
+
+	return json(result)
 }
