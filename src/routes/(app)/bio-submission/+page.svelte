@@ -19,8 +19,6 @@
 
 	const { disabled, productions: productions_, imageFiles } = data
 
-	console.log(data)
-
 	onMount(() => {
 		if (!window.fetch) dispatch(events.foundNoFetch)
 	})
