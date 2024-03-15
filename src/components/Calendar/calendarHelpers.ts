@@ -1,4 +1,4 @@
-import { asserted } from "$helpers"
+import { assert, asserted, exists, objectKeys, objectValues } from "$helpers"
 
 type Year = Date.Year
 type Month = Date.Month
@@ -116,32 +116,37 @@ export function dslToData(
 	function datesToDateTimeObj(datesStr: string) {
 		const obj: MonthDetails = {}
 		const dayAndDetailsTuple: Array<
-			[number, { msFromMidnight: number; color: string; venue: string }]
+			[Date.Day, { msFromMidnight: number; color: string; venue: string }]
 		> = datesStr
 			.split(/[, ]+/)
 			.filter(Boolean)
-			.map((token) => token.match(/(\d+)(.*)/).slice(1, 3))
-			.map(([day, legendKey]) => [
-				parseInt(day, 10),
-				{
-					msFromMidnight: legend[legendKey || "default"] || DEFAULT_SHOW_TIME,
-					color,
-					venue,
-					...rest,
-				},
-			])
+			.map((token) => asserted(token.match(/(\d+)(.*)/)).slice(1, 3))
+			.map(([day, legendKey]) => {
+				assert(day)
+				return [
+					parseInt(day, 10) as Date.Day,
+					{
+						msFromMidnight: legend[legendKey || "default"] || DEFAULT_SHOW_TIME,
+						color,
+						venue,
+						...rest,
+					},
+				]
+			})
 
 		dayAndDetailsTuple.forEach(
 			([day, details]) => (obj[day] = ensureArray(obj[day]).concat(details)),
 		)
 
-		Object.keys(obj).forEach((day) => sortBy(obj[day], "msFromMidnight"))
+		objectValues(obj)
+			.filter(exists)
+			.forEach((day) => sortBy(day, "msFromMidnight"))
 
 		return obj
 	}
 
 	return {
-		[year]: Object.keys(monthRegexp).reduce<CalendarData>((acc, month, i) => {
+		[year]: objectKeys(monthRegexp).reduce<CalendarData>((acc, month, i) => {
 			acc[i + 1] = monthRegexp[month].test(dslString)
 				? datesToDateTimeObj(dslString.match(monthRegexp[month])[1])
 				: {}
@@ -156,15 +161,15 @@ export function combineShows(
 ) {
 	return showSchedule.reduce(
 		(acc, schedule) => {
-			Object.keys(schedule).forEach((year) => {
+			objectKeys(schedule).forEach((year) => {
 				if (!acc[year]) {
 					acc[year] = {}
 				}
-				Object.keys(schedule[year]).forEach((month) => {
+				objectKeys(schedule[year]).forEach((month) => {
 					if (!acc[year][month]) {
 						acc[year][month] = {}
 					}
-					Object.keys(schedule[year][month]).forEach((day) => {
+					objectKeys(schedule[year][month]).forEach((day) => {
 						if (!acc[year][month][day]) {
 							acc[year][month][day] = []
 						}

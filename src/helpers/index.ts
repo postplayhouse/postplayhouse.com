@@ -226,3 +226,15 @@ export function sanitizedPassphrase(str: string | undefined | null) {
 export function objectKeys<T extends object>(object: T): (keyof T)[] {
 	return Object.keys(object) as (keyof T)[]
 }
+
+export function objectValues<T extends object>(object: T): T[keyof T][] {
+	return Object.values(object) as T[keyof T][]
+}
+
+export function objectEntries<T extends object>(object: T) {
+	return Object.entries(object) as [keyof T, T[keyof T]][]
+}
+
+export function exists<T>(x: T): x is NonNullable<typeof x> {
+	return x !== undefined && x !== null
+}
