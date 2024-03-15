@@ -24,6 +24,7 @@
 		]
 	},
 	"dependencies": {
+		"@sentry/sveltekit": "^7.107.0",
 		"compression": "^1.7.4",
 		"js-yaml": "^4.1.0",
 		"lodash-es": "^4.17.21",

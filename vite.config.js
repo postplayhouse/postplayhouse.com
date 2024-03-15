@@ -1,3 +1,4 @@
+import { sentrySvelteKit } from "@sentry/sveltekit"
 import path from "path"
 import { sveltekit } from "@sveltejs/kit/vite"
 import { watchAndRun } from "vite-plugin-watch-and-run"
@@ -8,6 +9,12 @@ import { replacements } from "./svelte.config"
 /** @type {import('vite').UserConfig} */
 const config = {
 	plugins: [
+		sentrySvelteKit({
+			sourceMapsUploadOptions: {
+				org: "post-playhouse",
+				project: "javascript-sveltekit",
+			},
+		}),
 		replace({
 			values: replacements.reduce(
 				(acc, [key, value]) => ({ ...acc, [key]: value }),

@@ -16,3 +16,6 @@ node_modules
 # local, temp files only
 /working files/
 *.ignore/
+
+# Sentry Config File
+.sentryclirc
