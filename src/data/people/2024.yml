@@ -184,6 +184,22 @@
 # start __32__
 # end __32__
 # start __33__
+- last_name: Glaser
+  first_name: Kate
+  image_year: 2024
+  location: "Columbus, OH"
+  roles:
+    The SpongeBob Musical:
+      - Mayor of Bikini Bottom
+    The Wizard of Oz:
+      - Aunt Em
+      - Ensemble
+    Honky Tonk Laundry:
+      - Lana Mae Hopkins
+    Kiss Me Kate:
+      - Hattie
+  bio: |
+    Kate is thrilled to be making her Post Playhouse debut this summer! Kate is a New York based performer who recently graduated from Indiana University with her BFA in Musical Theatre and minor in Arts Management. Her most recent professional work includes Busch Gardens Entertainment’s *Scrooge No More!* (Mrs.Cratchit), Columbus Children’s Theatre’s *Ragtime* (Ensemble/Understudy Mother), Constellation Stage and Screen’s *Elf* (Swing), and serving as the Associate Producer for The Southeastern Summer Theatre Institute. She would like to extend a big thank you to the Post team for this opportunity and to her friends and family for their constant support! Instagram: @krglaser
 # end __33__
 # start __34__
 - last_name: Hall
