@@ -3,6 +3,7 @@ import { individualPassphraseDetails } from "../passphraseHelpers"
 import { updateAndPr } from "../githubHelpers"
 import site from "$data/site"
 import { captureMessage } from "@sentry/sveltekit"
+import { dev } from "$app/environment"
 
 function toKebabCase(str: string) {
 	return str
@@ -11,7 +12,16 @@ function toKebabCase(str: string) {
 		.replace(/[^a-z]+/gi, "-")
 }
 
+const skipWhileDev = dev && false
+
 export const POST = async ({ request }) => {
+	if (skipWhileDev) {
+		return json({
+			success: true,
+			pullRequest: "https://github.com/postplayhouse/postplayhouse.com/pull/76",
+		})
+	}
+
 	const { correct, position } = individualPassphraseDetails(request)
 
 	if (!correct) {
