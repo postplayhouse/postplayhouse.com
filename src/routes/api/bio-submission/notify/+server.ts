@@ -4,6 +4,7 @@ import { json } from "@sveltejs/kit"
 import { individualPassphraseDetails } from "../passphraseHelpers"
 
 const slackUrl = env["SLACK_WEBHOOK_URL"]
+const basecampUrl = env["BASECAMP_ADMIN_CHATBOT_WEBHOOK_URL"]
 
 export const POST = async ({ request }) => {
 	assert(slackUrl, "no slackUrl from ENV")
@@ -16,20 +17,28 @@ export const POST = async ({ request }) => {
 		pullRequest?: string
 	}
 
-	const resp = await fetch(slackUrl, {
+	const content = [
+		name ? `${name} submitted a new bio.` : "A new bio has been submitted.",
+		pullRequest,
+	]
+		.filter(Boolean)
+		.join("\n")
+
+	fetch(slackUrl, {
 		method: "POST",
 		headers: new Headers({ "Content-type": "application/json" }),
 		body: JSON.stringify({
-			text: [
-				name ? `${name} submitted a new bio.` : "A new bio has been submitted.",
-				pullRequest,
-			]
-				.filter(Boolean)
-				.join("\n"),
+			text: content,
 		}),
 	})
 
-	const result = await resp.text()
+	assert(basecampUrl, "no basecampUrl from ENV")
 
-	return json({ result })
+	fetch(basecampUrl, {
+		method: "POST",
+		headers: new Headers({ "Content-type": "application/json" }),
+		body: JSON.stringify({ content }),
+	})
+
+	return json({ ok: "ok" })
 }
