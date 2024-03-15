@@ -15,7 +15,7 @@
 	export let data
 
 	const devFormFeedback = dev && true
-	const startOnFormScreen = dev && true
+	const startOnFormScreen = dev && false
 
 	const { disabled, productions: productions_, imageFiles } = data
 
@@ -595,7 +595,9 @@ ${yamlBody({ includeEmptyProductions: true })}
 						}
 					} else if (ghTries < 3) {
 						ghTries++
-						return doGhUpload()
+						return new Promise<ReturnType<typeof doGhUpload>>((res) => {
+							setTimeout(() => res(doGhUpload()), 1000 * ghTries)
+						})
 					} else {
 						throw new Error("Could not upload Bio to GitHub")
 					}
