@@ -1,9 +1,7 @@
 <script lang="ts">
-	import DonateBtn from "$components/DonateBtn.svelte"
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
-	import { isToday } from "date-fns"
 	import Raffle2024 from "./news/2024-02-06-annual-raffle/+page.svelte"
 
 	export let data
@@ -34,23 +32,6 @@
 		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
 	/>
 </svelte:head>
-
-{#if isToday(new Date("2023-11-28T00:00:00.000"))}
-	<div class="block mb-16 p-6 max-w-2xl mx-auto">
-		<img
-			src="/images/2024/giving-tuesday.jpg"
-			alt="Giving Tuesday logo above a moment from Post's production of The Music Man."
-		/>
-
-		<p class="mt-4">
-			It’s Giving Tuesday! On this international day of giving, join us and the
-			millions of others worldwide by donating! You can make a gift to Post
-			Playhouse today! #celebrategenerosity
-		</p>
-
-		<DonateBtn />
-	</div>
-{/if}
 
 <div
 	class="bg-green-50 dark:bg-green-900 p-8 -mx-8 border-green-800 border rounded"
