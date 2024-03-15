@@ -43,7 +43,8 @@ module.exports = {
 				argsIgnorePattern: "^_",
 			},
 		],
-
 		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"no-undef": "off",
+		"svelte/no-at-html-tags": "off",
 	},
 }
