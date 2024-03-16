@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
-import frontmatter from "frontmatter"
+import matter from "gray-matter"
 import { asserted } from "$helpers"
 
 const STARTS_WITH_DATE = /^\d{4}-\d{2}-\d{2}-/
@@ -64,13 +64,13 @@ function prepFiles<MapFn extends (details: Details) => Details>(
 }
 
 const prepMdsvexFiles = prepFiles(["md"], (details) => {
-	const fm = frontmatter(details.content)
+	const frontmatter = matter(details.content)
 	return {
 		...details,
-		...fm.data,
-		content: fm.content,
+		...frontmatter.data,
+		content: frontmatter.content,
 		year: details.basename,
-		title: fm.data.title || titleFromBasename(details.basename),
+		title: frontmatter.data["title"] || titleFromBasename(details.basename),
 	}
 })
 
