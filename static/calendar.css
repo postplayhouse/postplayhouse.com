@@ -2,6 +2,13 @@
 	background: #d1dcc4;
 	font-size: 1.5rem;
 }
+
+@media (prefers-color-scheme: dark) {
+	.calendar-component-wrapper {
+		background: #343;
+	}
+}
+
 .calendar-component-wrapper ul {
 	padding: 0;
 	margin: 0;
@@ -156,6 +163,20 @@
 	bottom: -1px;
 }
 
+@media (prefers-color-scheme: dark) {
+	.day {
+		border-color: rgba(255, 255, 255, 0.5);
+	}
+
+	.week {
+		border-color: rgba(255, 255, 255, 0.5);
+	}
+
+	.week:last-child .day:after {
+		border-color: rgba(255, 255, 255, 0.5);
+	}
+}
+
 @media (min-width: 91424px) {
 	.day {
 		border-left-width: 2px;
@@ -208,6 +229,13 @@
 	padding: 0.75%;
 	background: white;
 }
+
+@media (prefers-color-scheme: dark) {
+	.day {
+		background: #333;
+	}
+}
+
 .day .month-holder {
 	position: relative;
 }
@@ -224,6 +252,12 @@
 	transform: rotate(-15deg);
 	top: -0.8em;
 }
+@media (prefers-color-scheme: dark) {
+	.day .month-name {
+		color: white;
+	}
+}
+
 @media (min-width: 901px) {
 	.day .month-name {
 		font-size: 2.625rem;
@@ -261,6 +295,13 @@
 	line-height: 1;
 	color: black;
 }
+
+@media (prefers-color-scheme: dark) {
+	.day-name {
+		color: white;
+	}
+}
+
 .day-name .short {
 	display: none;
 }
@@ -268,6 +309,13 @@
 .day.dark {
 	background: rgba(0, 0, 0, 0.4);
 }
+
+@media (prefers-color-scheme: dark) {
+	.day.dark {
+		background: black;
+	}
+}
+
 .day.dark .mday,
 .day.dark .day-name {
 	color: white;
@@ -330,6 +378,12 @@
 	text-align: right;
 	margin-bottom: 6px;
 	line-height: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+	.mday {
+		color: white;
+	}
 }
 
 .day-wrapper {
