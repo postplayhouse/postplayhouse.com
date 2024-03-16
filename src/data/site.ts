@@ -3,7 +3,7 @@ const live = process.env.CONTEXT === "production"
 const liveUrl = "https://postplayhouse.com"
 
 // Actual values. If dev, these may change below.
-const castingComplete = false
+const castingComplete = true
 const ticketsAvailableDate = "2023-11-17T00:00:00"
 const showsAnnounced = true
 
