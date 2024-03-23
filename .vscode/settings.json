@@ -1,6 +1,6 @@
 {
 	"files.associations": {
-		"*.md": "mdx"
+		"*.md": "markdown"
 	},
 	"cSpell.words": [
 		"Arvada",
