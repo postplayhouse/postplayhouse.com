@@ -1,4 +1,11 @@
-import { assert, asserted, exists, objectKeys, objectValues } from "$helpers"
+import {
+	assert,
+	asserted,
+	exists,
+	objectEntries,
+	objectKeys,
+	objectValues,
+} from "$helpers"
 
 type Year = Date.Year
 type Month = Date.Month
@@ -66,7 +73,12 @@ export const SIX_PM = timeStrToMs("18:00")
 export const EIGHT_PM = timeStrToMs("20:00")
 const DEFAULT_SHOW_TIME = EIGHT_PM
 
-function ensureArray<T>(value: T): T extends any[] ? T : T[] {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+function ensureArray<T>(
+	value: T,
+): T extends any[] | undefined
+	? Exclude<T, undefined>
+	: Array<Exclude<T, undefined>> {
 	if (value === undefined) return [] as any
 	if (Array.isArray(value)) return value as any
 	return [value] as any
@@ -81,6 +93,7 @@ function sortBy<T extends Record<any, any>, A extends T[]>(
 		return a - b
 	})
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 export type Showing = {
 	msFromMidnight: number
@@ -97,27 +110,18 @@ export type CalendarData = Partial<Record<Year, YearDetails>>
 
 export type SimpleDate = { year: Year; month: Month; day: Day }
 
-export function dslToData(
-	{
-		year,
-		color,
-		legend,
-		venue,
-		...rest
-	}: {
+export function dslToData<
+	T extends {
 		year: number
 		color: string
 		venue: string
+		title: string
 		legend: IHash<number>
-		[x: string]: any
 	},
-	dslString: string,
-): CalendarData {
+>({ year, color, legend, venue, ...rest }: T, dslString: string): CalendarData {
 	function datesToDateTimeObj(datesStr: string) {
 		const obj: MonthDetails = {}
-		const dayAndDetailsTuple: Array<
-			[Date.Day, { msFromMidnight: number; color: string; venue: string }]
-		> = datesStr
+		const dayAndDetailsTuple: Array<[Date.Day, Showing]> = datesStr
 			.split(/[, ]+/)
 			.filter(Boolean)
 			.map((token) => asserted(token.match(/(\d+)(.*)/)).slice(1, 3))
@@ -146,9 +150,9 @@ export function dslToData(
 	}
 
 	return {
-		[year]: objectKeys(monthRegexp).reduce<CalendarData>((acc, month, i) => {
-			acc[i + 1] = monthRegexp[month].test(dslString)
-				? datesToDateTimeObj(dslString.match(monthRegexp[month])[1])
+		[year]: objectKeys(monthRegexp).reduce<YearDetails>((acc, month, i) => {
+			acc[(i + 1) as Date.Month] = monthRegexp[month].test(dslString)
+				? datesToDateTimeObj(asserted(dslString.match(monthRegexp[month])?.[1]))
 				: {}
 
 			return acc
@@ -161,26 +165,29 @@ export function combineShows(
 ) {
 	return showSchedule.reduce(
 		(acc, schedule) => {
-			objectKeys(schedule).forEach((year) => {
+			objectEntries(schedule).forEach(([year, months]) => {
+				if (!months) return
 				if (!acc[year]) {
 					acc[year] = {}
 				}
-				objectKeys(schedule[year]).forEach((month) => {
-					if (!acc[year][month]) {
-						acc[year][month] = {}
+				objectEntries(months).forEach(([month, days]) => {
+					if (!days) return
+					if (!acc[year]![month]) {
+						acc[year]![month] = {}
 					}
-					objectKeys(schedule[year][month]).forEach((day) => {
-						if (!acc[year][month][day]) {
-							acc[year][month][day] = []
+					objectEntries(days).forEach(([day, showings]) => {
+						if (!showings) return
+						if (!acc[year]![month]![day]) {
+							acc[year]![month]![day] = []
 						}
-						acc[year][month][day].push(...schedule[year][month][day])
-						sortBy(acc[year][month][day], "msFromMidnight")
+						acc[year]![month]![day]!.push(...showings)
+						sortBy(acc[year]![month]![day]!, "msFromMidnight")
 					})
 				})
 			})
 			return acc
 		},
-		{} as Record<Year, Record<Month, Record<Day, Showing>>>,
+		{} as Record<Year, Record<Month, Record<Day, Showing[]>>>,
 	)
 }
 
