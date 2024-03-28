@@ -2,7 +2,7 @@
 	import Week from "./Week.svelte"
 	import { getWeeksFromProductions } from "./calendarHelpers"
 	export let productions: Production[]
-	export let specialEvents: SpecialEvent[]
+	export let specialEvents: SpecialEvent[] = []
 	export let year: Date.Year
 
 	const weekData = getWeeksFromProductions(

@@ -3,11 +3,12 @@ import "@testing-library/jest-dom"
 import { render } from "@testing-library/svelte"
 import Calendar from "./Calendar.svelte"
 import data from "../../data/_yaml"
+import { asserted } from "$helpers"
 
 describe("<Calendar>", () => {
 	test("shows proper date details", () => {
 		const { container } = render(Calendar, {
-			productions: data.productions[2020],
+			productions: asserted(data.productions[2020]) as Production[],
 			year: 2020,
 		})
 
