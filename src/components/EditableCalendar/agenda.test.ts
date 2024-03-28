@@ -1,4 +1,4 @@
-import { Agenda, createAgenda } from "./agenda"
+import { type Agenda, createAgenda } from "./agenda"
 import { showingsStringToData } from "./showingsData"
 
 describe("showings data, merged with show info produces performance dates", () => {
@@ -54,22 +54,22 @@ describe("showings data, merged with show info produces performance dates", () =
 	})
 
 	it("correctly places shows in December and January", () => {
-		expect(Object.keys(agenda[2021]).length).toEqual(1)
-		expect(agenda[2021][12]).toBeTruthy()
+		expect(Object.keys(agenda[2021]!).length).toEqual(1)
+		expect(agenda[2021]![12]).toBeTruthy()
 
-		expect(Object.keys(agenda[2022]).length).toEqual(1)
-		expect(agenda[2022][1]).toBeTruthy()
+		expect(Object.keys(agenda[2022]!).length).toEqual(1)
+		expect(agenda[2022]![1]).toBeTruthy()
 	})
 
 	it("correctly identifies the performance dates in each month", () => {
-		expect(agenda[2021][12][29]).toBeTruthy()
-		expect(Object.keys(agenda[2021][12]).length).toEqual(1)
+		expect(agenda[2021]![12]![29]).toBeTruthy()
+		expect(Object.keys(agenda[2021]![12]!).length).toEqual(1)
 
-		expect(agenda[2022][1][1]).toBeTruthy()
-		expect(agenda[2022][1][2]).toBeTruthy()
-		expect(agenda[2022][1][4]).toBeTruthy()
-		expect(agenda[2022][1][5]).toBeTruthy()
-		expect(agenda[2022][1][6]).toBeTruthy()
-		expect(Object.keys(agenda[2022][1]).length).toEqual(5)
+		expect(agenda[2022]![1]![1]).toBeTruthy()
+		expect(agenda[2022]![1]![2]).toBeTruthy()
+		expect(agenda[2022]![1]![4]).toBeTruthy()
+		expect(agenda[2022]![1]![5]).toBeTruthy()
+		expect(agenda[2022]![1]![6]).toBeTruthy()
+		expect(Object.keys(agenda[2022]![1]!).length).toEqual(5)
 	})
 })
