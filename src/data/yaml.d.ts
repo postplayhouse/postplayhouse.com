@@ -118,6 +118,8 @@ type YamlPerson = {
 	staff_positions: string[]
 	/** Ex: `{"Damn Yankees": ["Director", "Choreographer"]}` */
 	production_positions: IHash<string[]>
+	/** Ex: `{"Damn Yankees": ["Devil", "Ensemble"]}` */
+	roles: IHash<string[]>
 	bio_approved?: boolean
 	bio: string
 	program_bio?: string

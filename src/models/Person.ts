@@ -1,11 +1,11 @@
-import { toCamel } from "$helpers"
+import { objectKeys, toCamel } from "$helpers"
 
 class Person {
 	firstName: string
 	lastName: string
-	sortName: string
+	sortName?: string
 	imageYear: number
-	imageFile: string
+	imageFile?: string
 	location: string
 	lobbyDisplay?: boolean
 	bio: string
@@ -40,12 +40,15 @@ class Person {
 			: undefined
 	}
 
-	constructor(personLike: YamlPerson | Person) {
+	constructor(personLike: YamlPerson) {
 		this.imageFile = undefined
 		this.imageYear = 0
+		// @ts-expect-error // Will be set below.
 		this.firstName = undefined
+		// @ts-expect-error // Will be set below.
 		this.lastName = undefined
 		this.sortName = undefined
+		// @ts-expect-error // Will be set below.
 		this.location = undefined
 		this.lobbyDisplay = undefined
 		this.programBio = undefined
@@ -62,26 +65,30 @@ class Person {
 		this.roles = []
 
 		if (personLike) {
-			const thisKeys = Object.keys(this)
-			Object.keys(personLike).forEach((key) => {
-				const camelKey = toCamel(key)
+			const thisKeys = objectKeys(this)
+			objectKeys(personLike).forEach((key) => {
+				const camelKey = toCamel(key) as keyof Person
 				if (thisKeys.includes(camelKey)) {
 					if (["productionPositions", "roles"].includes(camelKey)) {
+						const value = personLike[key as "production_positions" | "roles"]
 						// these are objects that need some adjustment. The properties are actually show names
-						this[camelKey] = Object.keys(personLike[key]).reduce(
+						this[camelKey as "productionPositions" | "roles"] = Object.keys(
+							value,
+						).reduce(
 							(acc, currentKey) => {
 								return [
 									...acc,
 									{
 										productionName: currentKey,
-										positions: [].concat(personLike[key][currentKey]),
+										positions: value[currentKey] || [],
 									},
 								]
 							},
-							[],
+							[] as (typeof this)["roles" | "productionPositions"],
 						)
 					} else {
-						if (personLike[key] != null) this[camelKey] = personLike[key]
+						if (personLike[key] != null)
+							this[camelKey as "firstName"] = personLike[key] as string
 					}
 				}
 			})
@@ -90,7 +97,7 @@ class Person {
 }
 
 export function toPerson(personLike: YamlPerson | Person) {
-	return new Person(personLike)
+	return personLike instanceof Person ? personLike : new Person(personLike)
 }
 
 type Person_ = Person
