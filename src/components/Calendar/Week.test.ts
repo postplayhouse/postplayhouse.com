@@ -1,27 +1,33 @@
 // NOTE: jest-dom adds handy assertions to Jest and it is recommended, but not required.
 import "@testing-library/jest-dom"
 import { render } from "@testing-library/svelte"
-import { TWO_PM, EIGHT_PM, TEN_AM } from "./calendarHelpers"
+import {
+	TWO_PM,
+	EIGHT_PM,
+	TEN_AM,
+	type SimpleDate,
+	type Showing,
+} from "./calendarHelpers"
 import Week from "./Week.svelte"
 
-const SUNDAY = { year: 2021, month: 5, day: 30 }
-const MONDAY = { year: 2021, month: 5, day: 31 }
-const TUESDAY = { year: 2021, month: 6, day: 1 }
-const WEDNESDAY = { year: 2021, month: 6, day: 2 }
-const THURSDAY = { year: 2021, month: 6, day: 3 }
-const FRIDAY = { year: 2021, month: 6, day: 4 }
-const SATURDAY = { year: 2021, month: 6, day: 5 }
+const SUNDAY: SimpleDate = { year: 2021, month: 5, day: 30 }
+const MONDAY: SimpleDate = { year: 2021, month: 5, day: 31 }
+const TUESDAY: SimpleDate = { year: 2021, month: 6, day: 1 }
+const WEDNESDAY: SimpleDate = { year: 2021, month: 6, day: 2 }
+const THURSDAY: SimpleDate = { year: 2021, month: 6, day: 3 }
+const FRIDAY: SimpleDate = { year: 2021, month: 6, day: 4 }
+const SATURDAY: SimpleDate = { year: 2021, month: 6, day: 5 }
 
 // For now, venue is not used, but still included
-const annie = (ms: number) => ({
+const annie = (ms: number): Showing => ({
 	msFromMidnight: ms,
-	showId: 1,
+	color: "red",
 	title: "Annie",
 	venue: "fort_rob",
 })
-const guys = (ms: number) => ({
+const guys = (ms: number): Showing => ({
 	msFromMidnight: ms,
-	showId: 2,
+	color: "blue",
 	title: "Guys & Dolls",
 	venue: "fort_rob",
 })
