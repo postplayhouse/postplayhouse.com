@@ -1,5 +1,4 @@
 import {
-	getWeeksFromProductions,
 	dslToData,
 	timeStrToMs,
 	combineShows,
@@ -8,7 +7,6 @@ import {
 	SEVEN_THIRTY_PM,
 	EIGHT_PM,
 } from "./calendarHelpers"
-import productions from "../../testing/data/productions"
 
 describe("<time>ToMs", () => {
 	test("they convert durations properly", () => {
@@ -535,64 +533,5 @@ describe("combineShows", () => {
 				12: {},
 			},
 		})
-	})
-})
-
-describe("getWeeksFromProductions", () => {
-	test("it renders data for calendar", () => {
-		expect(
-			getWeeksFromProductions(
-				productions[2020] as unknown as Production[],
-				2020,
-			)[10],
-		).toMatchObject([
-			// All show weekend
-			{},
-			{},
-			{},
-			{},
-			{},
-
-			{
-				date: { year: 2020, month: 8, day: 7 },
-				showings: [
-					{
-						msFromMidnight: TWO_PM,
-						color: "green",
-						venue: "fort_rob",
-						title: "Yankees",
-					},
-					{
-						msFromMidnight: EIGHT_PM,
-						color: "yellow",
-						venue: "fort_rob",
-						title: "Cats",
-					},
-				],
-			},
-			{
-				date: { year: 2020, month: 8, day: 8 },
-				showings: [
-					{
-						msFromMidnight: TEN_AM,
-						color: "red",
-						venue: "fort_rob",
-						title: "Annie",
-					},
-					{
-						msFromMidnight: TWO_PM,
-						color: "blue",
-						venue: "fort_rob",
-						title: "Catch Me",
-					},
-					{
-						msFromMidnight: EIGHT_PM,
-						color: "purple",
-						venue: "fort_rob",
-						title: "Ladies",
-					},
-				],
-			},
-		])
 	})
 })
