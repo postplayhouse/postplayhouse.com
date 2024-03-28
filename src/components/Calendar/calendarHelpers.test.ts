@@ -22,6 +22,7 @@ describe("<time>ToMs", () => {
 describe("dslToData", () => {
 	const givens = {
 		year: 2020,
+		title: "Annie",
 		color: "red",
 		venue: "fort_rob",
 		legend: {
@@ -371,6 +372,7 @@ describe("combineShows", () => {
 		const givens1 = {
 			year: 2020,
 			venue: "fort_rob",
+			title: "Annie",
 			color: "red",
 			legend: {
 				a: TWO_PM,
@@ -382,6 +384,7 @@ describe("combineShows", () => {
 		const givens2 = {
 			year: 2019,
 			color: "red",
+			title: "Music Man",
 			venue: "fort_rob",
 			legend: {
 				a: TWO_PM,
@@ -469,6 +472,7 @@ describe("combineShows", () => {
 		const givens1 = {
 			year: 2020,
 			color: "red",
+			title: "Annie",
 			venue: "fort_rob",
 			legend: {
 				a: TWO_PM,
@@ -480,6 +484,7 @@ describe("combineShows", () => {
 		const givens2 = {
 			year: 2020,
 			color: "blue",
+			title: "Catch Me If You Can",
 			venue: "fort_rob",
 			legend: {
 				a: TWO_PM,
