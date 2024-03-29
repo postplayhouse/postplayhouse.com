@@ -27,20 +27,20 @@
 {/if}
 
 {#if year === 2023 || year === 2024}
-	<h3 class="h3 text-center">This season is sponsored by:</h3>
+	<h3 class="h3 text-center">Special thanks to our Season Sponsors:</h3>
 	<ul
-		class="grid grid-cols-2 gap-4 justify-between list-none max-w-lg m-auto my-8 dark:bg-white/70 rounded p-4"
+		class="grid grid-cols-2 max-w-[30rem] lg:max-w-full lg:grid-cols-4 gap-8 grid-flow-dense items-center m-auto dark:bg-white/80 rounded p-4 list-none"
 	>
 		<li>
 			<img src="/images/sponsors/csc.png" alt="Chadron State College" />
 		</li>
-		<li>
+		<li class="lg:col-start-4">
 			<img
 				src="/images/sponsors/security-first-bank.png"
 				alt="Security First Bank"
 			/>
 		</li>
-		<li class="col-span-2">
+		<li class="col-span-2 lg:col-start-2">
 			<img
 				src="/images/sponsors/casey-peterson-financial.png"
 				alt="Casey Peterson Financial"

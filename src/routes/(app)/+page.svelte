@@ -42,9 +42,12 @@
 	</div>
 {/if}
 
-<div class="mb-16 p-2 max-w-2xl mx-auto">
+<div class="mb-16 p-2 max-w-3xl mx-auto">
 	<Openings {productions} closingDate="2024-08-11">
-		<div slot="seasonArtworkImage" class="w-full max-w-2xl m-auto">
+		<div
+			slot="seasonArtworkImage"
+			class="w-full m-auto rounded-lg overflow-clip"
+		>
 			<img
 				src="/images/2024/full-season.jpg"
 				alt="2024 season logos: The Wizard of Oz, Honky Tonk Laundry, Kiss Me Kate, The SpongeBob Musical, Jersey Boys"
@@ -52,26 +55,26 @@
 		</div>
 
 		<div slot="seasonSponsors">
-			<div class="text-center mb-4 font-bold">
-				Special thanks to our Season Sponsors:
-			</div>
-			<div
-				class="grid grid-cols-2 gap-8 items-center max-w-[24rem] m-auto dark:bg-white/80 rounded p-4"
+			<h3 class="h3 text-center">Special thanks to our Season Sponsors:</h3>
+			<ul
+				class="grid grid-cols-2 max-w-[30rem] lg:max-w-full lg:grid-cols-4 gap-8 grid-flow-dense items-center m-auto dark:bg-white/80 rounded p-4 list-none"
 			>
-				<img
-					alt="Logo for Chadron State College"
-					src="/images/sponsors/csc.png"
-				/>
-				<img
-					alt="Logo for Security First Bank"
-					src="/images/sponsors/security-first-bank.png"
-				/>
-				<img
-					alt="Logo for Casey Peterson Financial"
-					src="/images/sponsors/casey-peterson-financial.png"
-					class="col-span-2"
-				/>
-			</div>
+				<li>
+					<img src="/images/sponsors/csc.png" alt="Chadron State College" />
+				</li>
+				<li class="lg:col-start-4">
+					<img
+						src="/images/sponsors/security-first-bank.png"
+						alt="Security First Bank"
+					/>
+				</li>
+				<li class="col-span-2 lg:col-start-2">
+					<img
+						src="/images/sponsors/casey-peterson-financial.png"
+						alt="Casey Peterson Financial"
+					/>
+				</li>
+			</ul>
 		</div>
 	</Openings>
 </div>
