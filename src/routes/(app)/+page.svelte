@@ -4,6 +4,7 @@
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
 	import Raffle2024 from "./news/2024-02-06-annual-raffle/+page.svelte"
+	import CurrentSeasonSponsors from "$components/SponsorPlate/CurrentSeasonSponsors.svelte"
 
 	export let data
 
@@ -55,26 +56,11 @@
 		</div>
 
 		<div slot="seasonSponsors">
-			<h3 class="h3 text-center">Special thanks to our Season Sponsors:</h3>
-			<ul
-				class="grid grid-cols-2 max-w-[30rem] lg:max-w-full lg:grid-cols-4 gap-8 grid-flow-dense items-center m-auto dark:bg-white/80 rounded p-4 list-none"
-			>
-				<li>
-					<img src="/images/sponsors/csc.png" alt="Chadron State College" />
-				</li>
-				<li class="lg:col-start-4">
-					<img
-						src="/images/sponsors/security-first-bank.png"
-						alt="Security First Bank"
-					/>
-				</li>
-				<li class="col-span-2 lg:col-start-2">
-					<img
-						src="/images/sponsors/casey-peterson-financial.png"
-						alt="Casey Peterson Financial"
-					/>
-				</li>
-			</ul>
+			<CurrentSeasonSponsors>
+				<h3 slot="beforeSponsors" class="h3 text-center mb-4">
+					Special thanks to our Season Sponsors:
+				</h3>
+			</CurrentSeasonSponsors>
 		</div>
 	</Openings>
 </div>
