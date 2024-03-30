@@ -3,7 +3,7 @@
 	import MaybeImage from "$components/MaybeImage.svelte"
 	import TicketsButton from "$components/TicketsButton.svelte"
 	import site, { ticketsAvailable } from "$data/site"
-	import CurrentSeasonSponsors from "$components/SponsorPlate/CurrentSeasonSponsors.svelte"
+	import SponsorPlate from "$components/SponsorPlate.svelte"
 
 	export let data
 
@@ -28,11 +28,11 @@
 {/if}
 
 <div class="my-8">
-	<CurrentSeasonSponsors>
+	<SponsorPlate {year}>
 		<h3 slot="beforeSponsors" class="h3 text-center my-4">
 			Special thanks to our Season Sponsors:
 		</h3>
-	</CurrentSeasonSponsors>
+	</SponsorPlate>
 </div>
 
 <MaybeImage src="{[seasonImg]}" alt="All {year} productions" />
