@@ -4,7 +4,6 @@
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
 	import Raffle2024 from "./news/2024-02-06-annual-raffle/+page.svelte"
-	import SponsorPlate from "$components/SponsorPlate.svelte"
 
 	export let data
 
@@ -53,14 +52,6 @@
 				src="/images/2024/full-season.jpg"
 				alt="2024 season logos: The Wizard of Oz, Honky Tonk Laundry, Kiss Me Kate, The SpongeBob Musical, Jersey Boys"
 			/>
-		</div>
-
-		<div slot="seasonSponsors">
-			<SponsorPlate>
-				<h3 slot="beforeSponsors" class="h3 text-center mb-4">
-					Special thanks to our Season Sponsors:
-				</h3>
-			</SponsorPlate>
 		</div>
 	</Openings>
 </div>

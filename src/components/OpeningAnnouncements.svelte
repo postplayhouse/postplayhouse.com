@@ -10,6 +10,7 @@
 
 	import Markdown from "./Markdown.svelte"
 	import MaybeImage from "./MaybeImage.svelte"
+	import SponsorPlate from "./SponsorPlate.svelte"
 	import TicketsButton from "./TicketsButton.svelte"
 
 	export let productions: Production[] = []
@@ -112,6 +113,14 @@
 			Our {nonValueToEmptyStr(enhancedProductions.at(0)?.season)} Summer Season
 		</h3>
 
+		<div class="mb-12">
+			<SponsorPlate>
+				<h3 slot="beforeSponsors" class="h3 text-center mb-4">
+					Special thanks to our Season Sponsors:
+				</h3>
+			</SponsorPlate>
+		</div>
+
 		{#if allShowsAreRunning}
 			<div class="text-3xl text-center my-8">All shows are now running!</div>
 		{/if}
@@ -121,8 +130,6 @@
 		<div class="flex justify-center my-12">
 			<TicketsButton />
 		</div>
-
-		<slot name="seasonSponsors" />
 
 		{#if !allShowsAreRunning && nowRunning.length > 0}
 			<div>
