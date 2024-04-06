@@ -29,6 +29,7 @@
 	let lastYearBios = `/who/${site.season - 1}`
 
 	let passphrase = ""
+	let position = ""
 	let firstName = ""
 	let lastName = ""
 	let image = ""
@@ -392,6 +393,7 @@
 			}),
 		})
 		if (res.ok) {
+			position = (await res.json()).position as string
 			dispatch(events.confirmedPassphrase)
 		} else if (res.status === 403) {
 			dispatch(events.badPassphrase)
@@ -617,6 +619,7 @@ ${yamlBody({ includeEmptyProductions: true })}
 		let headshotTries = 0
 
 		const messageToMyself = `
+bio position:     ${position}
 bio words:        ${bioWordCount}
 longer bio words: ${addLongerBio ? longerBioWordCount : "n/a"}
 

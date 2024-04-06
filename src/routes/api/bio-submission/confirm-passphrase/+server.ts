@@ -2,8 +2,11 @@ import { json } from "@sveltejs/kit"
 import { individualPassphraseDetails } from "../passphraseHelpers"
 
 export const GET = async ({ request }) => {
-	return individualPassphraseDetails(request).correct
-		? new Response("", { status: 201 })
+	const result = individualPassphraseDetails(request)
+	return result.correct
+		? new Response(JSON.stringify({ position: result.position }), {
+				status: 201,
+			})
 		: json(
 				{
 					error: "Invalid Passphrase",
