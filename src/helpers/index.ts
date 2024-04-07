@@ -214,11 +214,11 @@ export function asserted<T>(x: T, message = "") {
 	return x
 }
 
-/** only lowercase words allowed */
+/** only lowercase letters allowed */
 export function sanitizedPassphrase(str: string | undefined | null) {
 	assert(str)
 	return str
-		.replace(/[^A-z ]/g, "")
+		.replace(/[^A-Za-z]/g, "")
 		.toLowerCase()
 		.trim()
 }
