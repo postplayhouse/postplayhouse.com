@@ -61,7 +61,7 @@ _All of the above plus:_
 - Name recognition in Playhouse lobby’s donor listing
 - Digital Copy of Post Playhouse Annual Report
 
-## Friends of the Post Playhouse: $250 – $499
+## Actor's Circle: $250 – $499
 
 _All of the above plus:_
 
