@@ -1,11 +1,5 @@
-.DS_Store
-node_modules
-/build
-/.svelte-kit
-/package
-.env
-.env.*
-!.env.example
+# Speed up by ignoring folders that will never need prettier
+static/images/
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml

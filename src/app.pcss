@@ -1,5 +1,5 @@
-@tailwind base;
 /* Write your global styles here, in PostCSS syntax */
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -15,32 +15,32 @@
 	}
 
 	input {
-		@apply border border-grey-500 dark:bg-white/20 dark:border-white/40 rounded;
+		@apply border-grey-500 rounded border dark:border-white/40 dark:bg-white/20;
 	}
 
 	.btn {
-		@apply bg-green-700 text-white font-bold tracking-wide
-      rounded-sm border-solid border-green-900 
-      border-0 border-b-2;
+		@apply rounded-sm border-0 border-b-2 border-solid
+      border-green-900 bg-green-700 font-bold 
+      tracking-wide text-white;
 	}
 
 	.btn:hover {
-		@apply bg-green-500 border-green-700;
+		@apply border-green-700 bg-green-500;
 	}
 
 	.btn:disabled,
 	.btn:disabled:hover {
-		@apply bg-green-700 border-green-900;
+		@apply border-green-900 bg-green-700;
 		opacity: 0.4;
 		cursor: not-allowed;
 	}
 
 	.btn-p {
-		@apply btn py-2 px-4;
+		@apply btn px-4 py-2;
 	}
 
 	.link-green {
-		@apply underline text-green-600 dark:text-green-300;
+		@apply text-green-600 underline dark:text-green-300;
 	}
 
 	.r-16x9 {
@@ -56,11 +56,11 @@
 	}
 
 	._h1 {
-		@apply text-3xl font-uber text-center dark:text-green-500/80;
+		@apply font-uber text-center text-3xl dark:text-green-500/80;
 	}
 
 	._h2 {
-		@apply text-green-700 text-2xl;
+		@apply text-2xl text-green-700;
 	}
 
 	._h3 {
@@ -72,7 +72,7 @@
 	}
 
 	._blockquote {
-		@apply pl-4 border-l-4 border-gray-300;
+		@apply border-l-4 border-gray-300 pl-4;
 	}
 
 	.h1 {
@@ -121,15 +121,15 @@ been given an explicit class */
 	}
 
 	.via-markdown h1:not([class]) {
-		@apply _h1 mt-3 mb-1;
+		@apply _h1 mb-1 mt-3;
 	}
 
 	.via-markdown h1:not([class]):first-child {
-		@apply _h1 mt-0 mb-1;
+		@apply _h1 mb-1 mt-0;
 	}
 
 	.via-markdown h2:not([class]) {
-		@apply _h2 mt-3 mb-1;
+		@apply _h2 mb-1 mt-3;
 	}
 
 	.via-markdown h3:not([class]) {
@@ -137,7 +137,7 @@ been given an explicit class */
 	}
 
 	.via-markdown h4:not([class]) {
-		@apply _h4 mt-3 mb-2;
+		@apply _h4 mb-2 mt-3;
 	}
 
 	.via-markdown p:not([class]) {
@@ -149,7 +149,7 @@ been given an explicit class */
 	}
 
 	.via-markdown img:not([class]) {
-		@apply block my-4 mx-auto;
+		@apply mx-auto my-4 block;
 	}
 
 	@media screen and (min-width: 640) {
