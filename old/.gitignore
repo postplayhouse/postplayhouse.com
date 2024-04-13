@@ -7,8 +7,15 @@ node_modules
 .env.*
 !.env.example
 
+.metadata_never_index
+/static/g/
+/static/index.css
+
+.netlify/
+
 # local, temp files only
+/working files/
 *.ignore/
 
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+# Sentry Config File
+.sentryclirc
