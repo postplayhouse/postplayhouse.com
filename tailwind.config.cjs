@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const typography = require("@tailwindcss/typography")
 const plugin = require("tailwindcss/plugin")
 const defaultTheme = require("tailwindcss/defaultTheme")
 
+/** @type {import('tailwindcss').Config}*/
 const config = {
 	content: ["./src/**/*.{html,js,svelte,ts,md}"],
+
 	theme: {
 		extend: {
 			borderWidth: { 6: "6px" },
@@ -60,7 +64,9 @@ const config = {
 			},
 		},
 	},
+
 	plugins: [
+		typography,
 		plugin(function ({ addUtilities, theme, e }) {
 			const spacing = theme("spacing")
 
