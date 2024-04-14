@@ -2,6 +2,7 @@ import { mdsvex } from "mdsvex"
 import mdsvexConfig from "./mdsvex.config.js"
 import adapter from "@sveltejs/adapter-netlify"
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte"
+import imagePreprocessor from "./images.config.js"
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -9,7 +10,7 @@ const config = {
 
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
-	preprocess: [vitePreprocess(), mdsvex(mdsvexConfig)],
+	preprocess: [vitePreprocess(), mdsvex(mdsvexConfig), imagePreprocessor],
 
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.

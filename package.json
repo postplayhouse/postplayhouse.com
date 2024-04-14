@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"clean": "rm -rf ./static/g",
+		"optimizeImages": "node ./images.config.js",
 		"copyFolder": "./scripts/copy_folder.cjs",
 		"useCache": "npm run copyFolder -- --merge /opt/build/cache/hc_my_cache/static/g --to static/g",
 		"fillCache": "npm run copyFolder -- --save static/g --to /opt/build/cache/hc_my_cache/static/g",
@@ -66,6 +67,7 @@
 		"prettier-plugin-tailwindcss": "^0.5.9",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
+		"svelte-image": "happycollision/svelte-image#6ba341afddbc3a34059d447e38f608e7dd29f1d3",
 		"tailwindcss": "^3.3.6",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
