@@ -8,7 +8,6 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
-	declare const BUILD_TIME: string
 }
 
 export {}
