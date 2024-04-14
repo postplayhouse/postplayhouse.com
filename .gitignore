@@ -17,3 +17,6 @@ vite.config.ts.timestamp-*
 
 # local, temp files only
 *.ignore/
+
+# Sentry Config File
+.sentryclirc
