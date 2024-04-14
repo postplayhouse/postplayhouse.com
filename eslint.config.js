@@ -4,13 +4,18 @@ import svelte from "eslint-plugin-svelte"
 import prettier from "eslint-config-prettier"
 import globals from "globals"
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
+// The bullshit type casting in this file is because the type definitions for
+// the imported configs are not correct.
+
+/** @typedef {import('eslint').Linter.FlatConfig} FlatConfig */
+
+/** @type {FlatConfig[]} */
 export default [
 	js.configs.recommended,
-	...ts.configs.recommended,
-	...svelte.configs["flat/recommended"],
+	.../** @type {FlatConfig[]} */ (ts.configs.recommended),
+	.../** @type {FlatConfig[]} */ (svelte.configs["flat/recommended"]),
 	prettier,
-	...svelte.configs["flat/prettier"],
+	.../** @type {FlatConfig[]} */ (svelte.configs["flat/prettier"]),
 	{
 		languageOptions: {
 			globals: {
@@ -28,6 +33,21 @@ export default [
 		},
 	},
 	{
-		ignores: ["build/", ".svelte-kit/", "package/"],
+		ignores: ["build/", ".svelte-kit/", "package/", ".old/"],
+	},
+	{
+		rules: {
+			"@typescript-eslint/no-unused-vars": [
+				"error",
+				{
+					ignoreRestSiblings: true,
+					varsIgnorePattern: "^_",
+					argsIgnorePattern: "^_",
+				},
+			],
+			"@typescript-eslint/explicit-module-boundary-types": "off",
+			"no-undef": "off",
+			"svelte/no-at-html-tags": "off",
+		},
 	},
 ]
