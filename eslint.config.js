@@ -16,7 +16,6 @@ export default [
 			globals: {
 				...globals.browser,
 				...globals.node,
-				BUILD_TIME: true,
 			},
 		},
 	},
