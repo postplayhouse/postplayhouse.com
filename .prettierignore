@@ -1,5 +1,8 @@
 .old/
 
+# Speed up by ignoring folders that will never need prettier
+static/images/
+
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
 package-lock.json
