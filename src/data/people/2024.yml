@@ -536,6 +536,15 @@
 # start __60__
 # end __60__
 # start __61__
+- last_name: Huntington
+  first_name: Bill
+  image_year: 2024
+  location: "Hay Springs"
+  roles:
+    The SpongeBob Musical:
+      - Old Man Jenkins
+  bio: |
+    Bill is excited to join the cast and crew of the Post Playhouse. This will be Bill’s fourth summer on stage. You may have seen Bill before in *Music Man*, *Damn Yankees*, *Something Rotten* and *Joseph and the Amazing Technicolor Dreamcoat*. Bill wishes to thank Dewayne and Ken for this amazing opportunity.
 # end __61__
 # start __62__
 # end __62__
