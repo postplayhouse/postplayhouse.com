@@ -32,6 +32,21 @@
 	/>
 </svelte:head>
 
+<div
+	class="bg-green-50 dark:bg-green-900 p-8 -mx-8 border-green-800 border rounded"
+>
+	<p>
+		Rehearsals will begin soon out here at the playhouse! There are many new
+		faces joining us this year. Here are a few of them, and you can see the rest
+		on our <a href="/who/2024" class="link-green">Who's Who</a> page.
+	</p>
+	<img
+		src="/images/2024/new-faces.jpg"
+		alt="new faces for 2024"
+		class="border mt-2"
+	/>
+</div>
+
 <div class="mb-16 p-2 max-w-3xl mx-auto">
 	<Openings {productions} closingDate="2024-08-11">
 		<div
