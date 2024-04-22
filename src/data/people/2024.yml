@@ -138,6 +138,14 @@
 # start __11__
 # end __11__
 # start __12__
+- last_name: Wallace
+  first_name: Sheri
+  image_year: 2024
+  location: "Goodyear, AZ"
+  staff_positions:
+    - Box Office Staff
+  bio: |
+    After retiring from teaching in 2023, Sheri and her husband Rod moved to Arizona where you will find her on the tennis courts most days. She is also the proud grandma of her grandbabies, Cassian(husky), and Momo(cat). She loves visiting the Post and watching many of the musicals that are performed every summer. Her daughter, Alexandra and her husband Ken asked her and her husband, Rod to join them this summer at the Post. She is excited to experience a full summer in Crawford.
 # end __12__
 # start __13__
 - last_name: Sloan
