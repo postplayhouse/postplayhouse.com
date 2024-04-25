@@ -277,6 +277,21 @@
 # start __25__
 # end __25__
 # start __26__
+- last_name: Hopper
+  first_name: Jackson
+  image_year: 2024
+  location: "Henderson, NC"
+  production_positions:
+    The SpongeBob Musical:
+      - Bassist
+    Jersey Boys:
+      - Bassist
+    Honky Tonk Laundry:
+      - Bassist
+    Kiss Me Kate:
+      - Bassist
+  bio: |
+    Jack is a freelance bassist from Henderson, North Carolina. An active pit musician, Jack plays electric/upright bass for musical theater productions all around the state. Some recent credits include *The Four Phantoms* national tour (Wilkesboro, NC), UNC School of the Arts’ production of Shaina Taub’s *As You Like it*, and McGregor Hall’s production of *Ragtime*. Outside of music, he enjoys specialty coffee, fly fishing, and his Great Pyrenees named Winston. Jack is majoring in Bass Performance at UNC Greensboro, and this is his first summer at Post Playhouse.
 # end __26__
 # start __27__
 - last_name: Baker
