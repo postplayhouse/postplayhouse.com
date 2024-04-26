@@ -67,7 +67,7 @@
 		<div class="text-lg text-green-700">{person.location}</div>
 	{/if}
 
-	<div class="flow-root float-left font-thin mb-2">
+	<div class="flow-root font-thin mb-2">
 		<ul class="list-none pl-0">
 			{#if person.positions.length}
 				<!-- Always use localPerson.positions by itself if it exists -->
@@ -103,7 +103,6 @@
 			{/if}
 		</ul>
 	</div>
-	<br />
 
 	<Markdown source="{person.bio}" />
 </div>
