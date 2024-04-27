@@ -84,12 +84,21 @@
   first_name: Dewayne
   image_year: 2022
   location: "Sarasota, FL"
-  groups:
-    - staff
   staff_positions:
     - Artistic Director
+  production_positions:
+    The SpongeBob Musical:
+      - Choreographer
+    The Wizard of Oz:
+      - Choreographer
+    Honky Tonk Laundry:
+      - Choreographer
+    Kiss Me Kate:
+      - Director/Choreographer
+  program_bio: |
+    Dewayne had his first season in 2016 and immediately feel in in love with the theatre, the region, and the people. In 2017, he became associate artistic director, as well as directing and choreographing several productions. Now he is excited to be the Artistic Director. Originally from Atlanta, he then moved to New York City to pursue his career. He has performed leading roles around the country, appearing in Cats, Crazy for you, Annie, West Side Story, Singing in the Rain, and A Chorus Line. He has directed and choreographed for national tours, regional theatres, cruise ships, dinner theatres, community theaters, movies, high schools, parades, and internationally at the Central Academy of Drama in Beijing.
   bio: |
-    Barrett had his first season in 2016 and immediately fell in love with the theatre, the region, and the people. In 2017, he became associate artistic director as well as directing and choreographing several productions. Originally from Atlanta, he moved to New York City to begin his career. He has performed in leading roles around the country, appearing in Cats, Crazy for You, West Side Story, and A Chorus Line. He has directed and choreographed for national tours, regional theatres, dinner theatres, community theatres, cruise ships, movies, high schools, music videos, parades, dance companies, and internationally at The Central Academy of Drama in Beijing, China. He said he is excited to continue bringing professional talent from across the country. Barrett added he is looking forward to working with Phillips and he knows together they will bring the best entertainment to northwest Nebraska.
+    Dewayne had his first season in 2016 and immediately feel in in love with the theatre, the region, and the people. In 2017, he became associate artistic director, as well as directing and choreographing several productions. Now he is excited to be the Artistic Director. Originally from Atlanta, where he danced with the Atlanta Jazz Theatre and the Georgia Ballet Company, he then moved to New York City to continue his career. He has performed leading roles around the country, appearing in Cats, Crazy for you, Annie, West Side Story, Singing in the Rain, and A Chorus Line. He has directed and choreographed for national tours, regional theatres, cruise ships, dinner theatres, community theaters, movies, high schools, parades, and internationally at the Central Academy of Drama in Beijing. He is also a  choreographer for Rand Productions where he recently choreographed Finding Christmas at the MGM Beau Rivage and currently working on Footloose at the Beau. Dewayne is very excited to be working aside managing director Ken Phillips.
 # end __7__
 # start __8__
 - last_name: Fern
