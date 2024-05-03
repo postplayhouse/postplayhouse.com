@@ -31,15 +31,12 @@
 			The Nebraska Arts Council, a state agency, has supported the programs of
 			this organization through its matching grants program funded by the
 			Nebraska Legislature, the National Endowment for the Arts and the Nebraska
-			Cultural Endowment. Visit
-			<a class="link-green" href="http://www.nebraskaartscouncil.org">
+			Cultural Endowment. Visit <a
+				class="link-green"
+				href="http://www.nebraskaartscouncil.org"
+			>
 				www.nebraskaartscouncil.org
-			</a>
-			for information on how the Nebraska Arts Council can assist your organization,
-			or how you can support the Nebraska Cultural Endowment, at
-			<a class="link-green" href="http://www.nebraskaculturalendowment.org"
-				>www.nebraskaculturalendowment.org</a
-			>.
+			</a> for information on how the Nebraska Arts Council can assist your organization.
 		</p>
 	</div>
 
