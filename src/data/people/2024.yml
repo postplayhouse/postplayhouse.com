@@ -646,6 +646,15 @@
 # start __42__
 # end __42__
 # start __43__
+- last_name: Burks
+  first_name: Grey
+  image_year: 2024
+  location: "Chadron, NE"
+  roles:
+    The SpongeBob Musical:
+      - Ensemble
+  bio: |
+    Grey is excited to join the production team for this years season!
 # end __43__
 # start __44__
 - last_name: Topil
