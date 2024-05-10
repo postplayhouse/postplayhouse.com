@@ -2,10 +2,6 @@
 	let srcIn: string
 	export { srcIn as src }
 	export let alt: undefined | string = undefined
-	/**
-	 * set to true to prevent default corner rounding
-	 */
-	export let noround = false
 
 	function getSources(src: string): string[] {
 		if (!src.startsWith("/images")) return [src]
@@ -29,10 +25,4 @@
 	}
 </script>
 
-<img
-	{src}
-	on:error="{nextSrc}"
-	{alt}
-	class:rounded-lg="{!noround}"
-	{...$$restProps}
-/>
+<img {src} on:error="{nextSrc}" {alt} {...$$restProps} />
