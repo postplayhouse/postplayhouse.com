@@ -3,14 +3,14 @@
 
 	<div class="seats">
 		<div data-row="b" class="row b">
-			{#each [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4] as i}
+			{#each [14, 13, 12, 11, 10, 9, 8, 7, 6, 5] as i}
 				<div class="seat">
 					<div class="outer">
 						<div class="seat-number">{i}</div>
 					</div>
 				</div>
 			{/each}
-			{#each [3, 2, 1] as _na}
+			{#each [4, 3, 2, 1] as _na}
 				<div class="seat placeholder">
 					<div class="outer">
 						<div class="seat-number">()</div>
