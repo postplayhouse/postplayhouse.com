@@ -54,6 +54,7 @@
 		<li><a use:active="{activePath}" href="/jobs">Jobs</a></li>
 		<li><a use:active="{activePath}" href="/support">Support</a></li>
 		<li><a use:active="{activePath}" href="/about">About</a></li>
+		<li><a use:active="{activePath}" href="/media">Image Gallery</a></li>
 	</ul>
 </nav>
 
