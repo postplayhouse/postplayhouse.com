@@ -38,7 +38,7 @@
 		{#each photoData as photo}
 			<div class="min-w-[fit-content] m-2 text-center">
 				<Img
-					class="object-contain sm:h-80"
+					class="object-contain sm:max-h-80 rounded-lg"
 					src="/images/gallery/{photo.file}"
 					alt="{photo.description || photo.file}"
 				/>
