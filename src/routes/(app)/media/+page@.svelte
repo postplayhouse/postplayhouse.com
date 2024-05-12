@@ -1,0 +1,32 @@
+<script lang="ts">
+	import Main from "$components/layouts/MainLayout.svelte"
+	import Img from "./Img.svelte"
+
+	export let data
+
+	const { images } = data
+
+	const processed = images.map(({ src, description }) => {
+		return {
+			src,
+			description: /\.\w{3,4}$/.test(description) ? "" : description,
+		}
+	})
+</script>
+
+<Main unconstrainedWidth>
+	<div class="flex flex-wrap justify-center">
+		{#each processed as photo}
+			<div class="min-w-[fit-content] m-2 text-center">
+				<Img
+					class="object-contain sm:max-h-80 rounded-lg"
+					src="{photo.src}"
+					alt="{photo.description || photo.src}"
+				/>
+				{#if photo.description}
+					{@html photo.description}<br />
+				{/if}
+			</div>
+		{/each}
+	</div>
+</Main>

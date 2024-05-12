@@ -12,6 +12,7 @@ const imagePreprocessor = svelteImage({
 		// build. Referencing them here forces the entire folder to be processed,
 		// even if the reference to a given image is eventually removed. Probably
 		// not a big deal, since there will be few, if any cases where that happens.
+		"images/gallery",
 		"images/people",
 		"images/perennials",
 		"images/2014",
