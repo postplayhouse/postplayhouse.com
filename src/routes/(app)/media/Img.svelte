@@ -1,7 +1,11 @@
 <script lang="ts">
+	import { onMount } from "svelte"
+
 	let srcIn: string
 	export { srcIn as src }
 	export let alt: undefined | string = undefined
+
+	let loading = true
 
 	function getSources(src: string): string[] {
 		if (!src.startsWith("/images")) return [src]
@@ -23,6 +27,36 @@
 		// prevent an infinite loop of errors
 		if (nextIndex > 0) currentIndex = nextIndex
 	}
+
+	let isMounted = false
+
+	$: {
+		if (isMounted) {
+			const img = new Image()
+			img.src = src
+			loading = true
+
+			img.onload = () => {
+				loading = false
+			}
+			img.onerror = () => {
+				loading = false
+				nextSrc()
+			}
+		}
+	}
+
+	onMount(() => {
+		isMounted = true
+	})
 </script>
 
-<img {src} on:error="{nextSrc}" {alt} {...$$restProps} />
+{#if loading}
+	<div class="flex justify-center items-center h-32">
+		<div
+			class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900 dark:border-gray-100"
+		></div>
+	</div>
+{:else}
+	<img {src} {alt} {...$$restProps} />
+{/if}
