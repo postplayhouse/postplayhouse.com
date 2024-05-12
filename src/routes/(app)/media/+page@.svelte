@@ -4,43 +4,24 @@
 
 	export let data
 
-	const { imagePaths } = data
+	const { images } = data
 
-	function dropExtension(file: string | undefined) {
-		// there could be multiple dots in the filename
-		return file?.slice(0, file.lastIndexOf("."))
-	}
-
-	/**
-	 * This function is used to find the description of the image within the file name itself.
-	 *
-	 *     someUsefulGrouping,Description+with+spaces.jpg
-	 */
-	function getDescriptionFromFileName(file: string) {
-		const desc = dropExtension(file.split(",")[1])
-		return desc ? decodeURI(desc).replaceAll("+", " ") : undefined
-	}
-
-	const photoData: Array<{
-		file: string
-		featured?: boolean
-		description?: string
-		ignore?: boolean
-		with?: string
-	}> = imagePaths.map((file) => ({
-		file,
-		description: getDescriptionFromFileName(file),
-	}))
+	const processed = images.map(({ src, description }) => {
+		return {
+			src,
+			description: /\.\w{3,4}$/.test(description) ? "" : description,
+		}
+	})
 </script>
 
 <Main unconstrainedWidth>
 	<div class="flex flex-wrap justify-center">
-		{#each photoData as photo}
+		{#each processed as photo}
 			<div class="min-w-[fit-content] m-2 text-center">
 				<Img
 					class="object-contain sm:max-h-80 rounded-lg"
-					src="/images/gallery/{photo.file}"
-					alt="{photo.description || photo.file}"
+					src="{photo.src}"
+					alt="{photo.description || photo.src}"
 				/>
 				{#if photo.description}
 					{@html photo.description}<br />
