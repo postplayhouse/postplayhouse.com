@@ -3,23 +3,27 @@
 	import type { PerformanceDetails, ProductionDetails } from "./showingsData"
 	import { dateOfPerformance, getDateDetails, makeDateIterator } from "./dates"
 	import { addPerformance, removePerformanceBySlot } from "./changeset"
-	import schedule, { replaceAfterMount } from "./store"
+	import schedule, { replaceAfterMount } from "./store.svelte"
 	import { page } from "$app/stores"
 	import { add } from "date-fns"
-	import { onMount } from "svelte"
 	import { browser } from "$app/environment"
-	import Annual1 from "$components/slideshow/Lobby2022/Annual1.svelte"
 
-	onMount(replaceAfterMount)
+	// Bare reference to page just to keep eslint happy
+	// https://github.com/sveltejs/eslint-plugin-svelte/issues/652
+	page
 
-	$: dates = Array.from(makeDateIterator($schedule))
+	$effect(replaceAfterMount)
 
-	$: perfsByProd = $schedule.productions
-		.map((x) => ({ ...x, id: x.shortTitle }))
-		.map((x) => ({
-			...x,
-			performances: $schedule.performances.filter((y) => y.id === x.id),
-		}))
+	let dates = $derived(Array.from(makeDateIterator($schedule)))
+
+	const perfsByProd = $derived(
+		$schedule.productions
+			.map((x) => ({ ...x, id: x.shortTitle }))
+			.map((x) => ({
+				...x,
+				performances: $schedule.performances.filter((y) => y.id === x.id),
+			})),
+	)
 
 	function handleChoice(
 		choice: Omit<PerformanceDetails, "id"> & {
@@ -119,7 +123,7 @@
 				{/if}
 			</code>
 		</div>
-		<button class="btn-p" on:click="{handleCopyUrl}"
+		<button class="btn-p" onclick="{handleCopyUrl}"
 			>Copy URL to clipboard</button
 		>
 		<p>
@@ -129,7 +133,7 @@
 	</div>
 </div>
 
-<form on:submit|preventDefault class="my-12">
+<form onsubmit="{(e) => e.preventDefault()}" class="my-12">
 	<div class="text-xl">Productions</div>
 	<div class="opacity-50">
 		You can change the title and color. (Probably just pick an abbreviated
@@ -142,7 +146,7 @@
 					class="inline-block h-full border border-gray-500 rounded cursor-pointer"
 					type="color"
 					value="#{production.color}"
-					on:input="{(e) =>
+					oninput="{(e) =>
 						handleProductionDetailChange(
 							i,
 							'color',
@@ -152,7 +156,7 @@
 					class="inline-block p-2 border border-gray-500 rounded shadow-inner bg-gray-100 dark:bg-gray-100/10"
 					type="text"
 					value="{production.longTitle}"
-					on:input="{(e) =>
+					oninput="{(e) =>
 						handleProductionDetailChange(
 							i,
 							'longTitle',
@@ -171,16 +175,15 @@
 		adjustments to realign)
 	</div>
 </div>
-<button class="btn-p" on:click="{() => moveShows('days', -1)}"
-	>Back 1 Day</button
+<button class="btn-p" onclick="{() => moveShows('days', -1)}">Back 1 Day</button
 >
-<button class="btn-p" on:click="{() => moveShows('days', 1)}"
+<button class="btn-p" onclick="{() => moveShows('days', 1)}"
 	>Forward 1 Day</button
 >
-<button class="btn-p ml-8" on:click="{() => moveShows('years', -1)}"
+<button class="btn-p ml-8" onclick="{() => moveShows('years', -1)}"
 	>Back 1 Year</button
 >
-<button class="btn-p" on:click="{() => moveShows('years', 1)}"
+<button class="btn-p" onclick="{() => moveShows('years', 1)}"
 	>Forward 1 Year</button
 >
 
@@ -222,11 +225,11 @@
 						<Dropdown
 							color="#{performance.color}"
 							choices="{$schedule.productions}"
-							on:choice="{(e) =>
+							onChoice="{(production) =>
 								handleChoice({
 									...day,
 									slot: performanceSlot,
-									production: e.detail,
+									production,
 								})}"
 						>
 							{performance.longTitle}
@@ -236,11 +239,11 @@
 							class="text-transparent hover:text-black"
 							color="transparent"
 							choices="{$schedule.productions}"
-							on:choice="{(e) =>
+							onChoice="{(production) =>
 								handleChoice({
 									...day,
 									slot: performanceSlot,
-									production: e.detail,
+									production,
 								})}"
 						>
 							Nothing

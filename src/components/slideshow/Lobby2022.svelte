@@ -34,14 +34,20 @@
 			transition:fade="{{ duration: 1000 }}"
 			class="absolute inset-0 bg-white"
 		>
-			<svelte:component this="{shows[current]}" on:done="{() => nextShow()}" />
+			<svelte:component
+				this="{shows[current]}"
+				onEventDone="{() => nextShow()}"
+			/>
 		</div>
 	{:else}
 		<div
 			transition:fade="{{ duration: 1000 }}"
 			class="absolute inset-0 bg-white"
 		>
-			<svelte:component this="{shows[current]}" on:done="{() => nextShow()}" />
+			<svelte:component
+				this="{shows[current]}"
+				onEventDone="{() => nextShow()}"
+			/>
 		</div>
 	{/if}
 </div>

@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { fade } from "svelte/transition"
-	import { createEventDispatcher, onDestroy } from "svelte"
+	import { onDestroy } from "svelte"
 	import { browser } from "$app/environment"
 
-	export let durationMultiplier: number
+	type Props = {
+		durationMultiplier: number
+		onEventDone: () => void
+	}
+
+	let { durationMultiplier, onEventDone: eventDone }: Props = $props()
 	const INT = durationMultiplier * 500
 
-	const dispatch = createEventDispatcher()
-
-	function eventDone() {
-		dispatch("done")
-	}
 	const sections = [
 		{
 			title: "$10,000+",
@@ -62,7 +62,7 @@
 		s.names.map((t) => ({ title: s.title, content: t })),
 	)
 
-	let current = 0
+	let current = $state(0)
 
 	function getNextIndex() {
 		return (current + 1) % slides.length

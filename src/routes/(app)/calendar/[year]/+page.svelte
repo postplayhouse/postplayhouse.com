@@ -3,7 +3,7 @@
 	import Markdown from "$components/Markdown.svelte"
 	import site from "$data/site"
 
-	export let data
+	let { data } = $props()
 
 	const { productions, series, specialEvents, year } = data
 

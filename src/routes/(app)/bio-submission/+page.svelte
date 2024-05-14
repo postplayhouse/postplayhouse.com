@@ -12,12 +12,13 @@
 	import type { FormEventHandler } from "svelte/elements"
 	import { dev } from "$app/environment"
 
-	export let data
+	let { data } = $props()
 
 	const devFormFeedback = dev && true
 	const startOnFormScreen = dev && false
 
 	const { disabled, productions: productions_, imageFiles } = data
+	const productions = productions_.map((p) => p.title)
 
 	onMount(() => {
 		if (!window.fetch) dispatch(events.foundNoFetch)
@@ -28,20 +29,20 @@
 
 	let lastYearBios = `/who/${site.season - 1}`
 
-	let passphrase = ""
-	let position = ""
-	let firstName = ""
-	let lastName = ""
-	let image = ""
-	let oldImage = ""
-	let imageFile: null | File = null
-	let location = ""
-	let bio = ""
-	let addLongerBio = false
-	let longerBio = ""
-	let email = ""
-	let useOldHeadshot = false
-	let pullRequest = ""
+	let passphrase = $state("")
+	let position = $state("")
+	let firstName = $state("")
+	let lastName = $state("")
+	let image = $state("")
+	let oldImage = $state("")
+	let imageFile: null | File = $state(null)
+	let location = $state("")
+	let bio = $state("")
+	let addLongerBio = $state(false)
+	let longerBio = $state("")
+	let email = $state("")
+	let useOldHeadshot = $state(false)
+	let pullRequest = $state("")
 
 	function handleUseOldHeadshotChange(e: Event) {
 		const unchecked = !(e.target as HTMLInputElement).checked
@@ -51,11 +52,10 @@
 		}
 	}
 
-	let productions = productions_.map((p) => p.title)
-	let roles: Person["roles"] = []
-	let staffPositions: Person["staffPositions"] = []
-	let productionPositions: Person["productionPositions"] = []
-	let positions: Person["positions"] = []
+	let roles: Person["roles"] = $state([])
+	let staffPositions: Person["staffPositions"] = $state([])
+	let productionPositions: Person["productionPositions"] = $state([])
+	let positions: Person["positions"] = $state([])
 
 	function updateProductionJob(
 		productionName: string,
@@ -117,9 +117,9 @@
 			.filter(Boolean)
 	}
 
-	$: name = firstName ? `${firstName} ${lastName}` : ""
+	let name = $derived(firstName ? `${firstName} ${lastName}` : "")
 
-	$: person = {
+	let person = $derived({
 		name: name || "Bill Murray",
 		image: useOldHeadshot ? oldImage : image || PLACEHOLDER_IMAGE,
 		location: location || "Chicago, IL",
@@ -131,7 +131,7 @@
 			bio ||
 			`Bill is thrilled (everyone says thrilled) to be making his Post Playhouse debut! Previous credits include _Ghostbusters_, _Groundhog Day_, and many more.`,
 		longerBio: addLongerBio ? longerBio : "",
-	}
+	})
 
 	let wordCount = (s: string) =>
 		s
@@ -140,8 +140,8 @@
 			.split(/\s+/)
 			.filter(Boolean).length
 
-	$: bioWordCount = wordCount(bio)
-	$: bioWordCountClass = (function () {
+	let bioWordCount = $derived(wordCount(bio))
+	let bioWordCountClass = $derived.by(function () {
 		if (bioWordCount > MAX_WORDS) {
 			return "text-red-500"
 		}
@@ -149,17 +149,17 @@
 			return "text-orange-500"
 		}
 		return "text-black"
-	})()
+	})
 
-	$: longerBioWordCount = wordCount(longerBio)
-	$: longerBioWordCountClass = (function () {
+	let longerBioWordCount = $derived(wordCount(longerBio))
+	let longerBioWordCountClass = $derived.by(function () {
 		if (longerBioWordCount <= MAX_WORDS) {
 			return "text-red-500"
 		}
 		return "text-black"
-	})()
+	})
 
-	$: validations = [
+	let validations = $derived([
 		{
 			name: "noShowsPresent",
 			warn:
@@ -189,7 +189,7 @@
 	] satisfies Array<
 		| { name: keyof typeof validationMessages; invalid: boolean }
 		| { name: keyof typeof warningMessages; warn: boolean }
-	>
+	>)
 
 	const validationMessages = {
 		firstName: "You must supply a first name.",
@@ -213,12 +213,12 @@
 			"It looks like <strong>your longer bio for the website doesn't include the titles of any productions</strong> you've been involved with. That's fine. But if you did include production titles, you forgot to <em>italicize them</em>.",
 	}
 
-	$: invalidForm = validations.some((v) => v.invalid === true)
+	let invalidForm = $derived(validations.some((v) => v.invalid === true))
 
-	$: {
+	$effect(() => {
 		if (invalidForm) dispatch(events.invalidatedForm)
 		if (!invalidForm) dispatch(events.validatedForm)
-	}
+	})
 
 	const states = {
 		submissionsDisabled: "submissionsDisabled",
@@ -246,7 +246,7 @@
 		serverError: "serverError",
 	}
 
-	let badPassphrase = false
+	let badPassphrase = $state(false)
 
 	let startingState = disabled
 		? states.submissionsDisabled
@@ -254,25 +254,29 @@
 
 	startingState = startOnFormScreen ? states.incompleteForm : startingState
 
-	let state = startingState
+	let pageState = $state(startingState)
 
-	$: showCredsForm = [states.unauthenticated, states.requestingAuth].includes(
-		state,
+	let showCredsForm = $derived(
+		[states.unauthenticated, states.requestingAuth].includes(pageState),
 	)
-	$: showMain = [
-		states.incompleteForm,
-		states.completeForm,
-		states.sendingHeadshotBio,
-	].includes(state)
-	$: submitting = [states.requestingAuth, states.sendingHeadshotBio].includes(
-		state,
-	)
-	$: finalSubmission = state === states.sendingHeadshotBio
-	$: showSuccess = state === states.success
-	$: showError = state === states.error
 
-	let topOfMainEl: HTMLElement | null = null
-	$: {
+	let showMain = $derived(
+		[
+			states.incompleteForm,
+			states.completeForm,
+			states.sendingHeadshotBio,
+		].includes(pageState),
+	)
+	let submitting = $derived(
+		[states.requestingAuth, states.sendingHeadshotBio].includes(pageState),
+	)
+	let finalSubmission = $derived(pageState === states.sendingHeadshotBio)
+	let showSuccess = $derived(pageState === states.success)
+	let showError = $derived(pageState === states.error)
+
+	let topOfMainEl: HTMLElement | null = $state(null)
+
+	$effect(() => {
 		if (showMain && topOfMainEl) {
 			topOfMainEl.scrollIntoView({
 				behavior: "smooth",
@@ -280,18 +284,18 @@
 				inline: "nearest",
 			})
 		}
-	}
+	})
 
 	function dispatch(event: string) {
 		if (event === events.foundNoFetch) {
-			return (state = states.noFetch)
+			return (pageState = states.noFetch)
 		}
 
 		if (event === events.serverError) {
-			return (state = states.error)
+			return (pageState = states.error)
 		}
 
-		switch (state) {
+		switch (pageState) {
 			case states.submissionsDisabled: {
 				// You can checkout any time you like, but you can never leave
 				return
@@ -300,7 +304,7 @@
 				switch (event) {
 					case events.requestAuth:
 						confirmPassphrase()
-						return (state = states.requestingAuth)
+						return (pageState = states.requestingAuth)
 					default:
 						return
 				}
@@ -308,14 +312,14 @@
 			case states.requestingAuth: {
 				switch (event) {
 					case events.confirmedPassphrase: {
-						return (state = states.incompleteForm)
+						return (pageState = states.incompleteForm)
 					}
 					case events.badPassphrase: {
 						badPassphrase = true
-						return (state = states.unauthenticated)
+						return (pageState = states.unauthenticated)
 					}
 					case events.getCredsFailed: {
-						return (state = states.error)
+						return (pageState = states.error)
 					}
 					default:
 						return
@@ -324,7 +328,7 @@
 			case states.incompleteForm: {
 				switch (event) {
 					case events.validatedForm:
-						return (state = states.completeForm)
+						return (pageState = states.completeForm)
 					default:
 						return
 				}
@@ -332,10 +336,10 @@
 			case states.completeForm: {
 				switch (event) {
 					case events.invalidatedForm:
-						return (state = states.incompleteForm)
+						return (pageState = states.incompleteForm)
 					case events.postBio:
 						handleSubmit()
-						return (state = states.sendingHeadshotBio)
+						return (pageState = states.sendingHeadshotBio)
 					default:
 						return
 				}
@@ -343,11 +347,11 @@
 			case states.sendingHeadshotBio: {
 				switch (event) {
 					case events.sendHeadshotBioFailure: {
-						return (state = states.error)
+						return (pageState = states.error)
 					}
 					case events.sendHeadshotBioSuccess: {
 						handleNotify()
-						return (state = states.success)
+						return (pageState = states.success)
 					}
 					default:
 						return
@@ -430,11 +434,11 @@
 			.toLowerCase()
 			.replace(/[^a-z]+/gi, "-")
 
-	const onSubmit = () => dispatch(events.postBio)
+	const submitBio = () => dispatch(events.postBio)
 
-	$: yamlBody = ({
+	function getYamlBody({
 		includeEmptyProductions: fillRoles,
-	}: { includeEmptyProductions?: boolean } = {}) => {
+	}: { includeEmptyProductions?: boolean } = {}) {
 		let localRoles: typeof roles = JSON.parse(JSON.stringify(roles))
 		let localProductionPositions: typeof productionPositions = JSON.parse(
 			JSON.stringify(productionPositions),
@@ -503,7 +507,8 @@
 			.join("\n")
 	}
 
-	$: emailBody = `Please fill/double check the form below, including copy/pasting your bio directly into this email (no attachments for bios, please). Remember that you must submit either one bio that is 125 words or less (show titles count for a maximum of two words), or two bios where one is 125 words or less for the printed program and the other is longer for the website.
+	let emailBody =
+		$derived(`Please fill/double check the form below, including copy/pasting your bio directly into this email (no attachments for bios, please). Remember that you must submit either one bio that is 125 words or less (show titles count for a maximum of two words), or two bios where one is 125 words or less for the printed program and the other is longer for the website.
 
 Additionally, attach a headshot to this email. Thanks!
 
@@ -513,12 +518,14 @@ I'll email you when I have added your information to the website, so you can che
 ~Don Denton
 ----------------------------------------
 
-${yamlBody({ includeEmptyProductions: true })}
-`
+${getYamlBody({ includeEmptyProductions: true })}
+`)
 
-	$: emailLink = `mailto:don@postplayhouse.com?subject=${encodeURIComponent(
-		`Bio Submission: ${name || "YOUR NAME"}`,
-	)}&body=${encodeURIComponent(emailBody)}`
+	let emailLink = $derived(
+		`mailto:don@postplayhouse.com?subject=${encodeURIComponent(
+			`Bio Submission: ${name || "YOUR NAME"}`,
+		)}&body=${encodeURIComponent(emailBody)}`,
+	)
 
 	function uploadText(payload: string, basename: string, creds: Creds) {
 		return window.fetch(creds.uploadUrl, {
@@ -587,7 +594,7 @@ ${yamlBody({ includeEmptyProductions: true })}
 			uploadBioToGh(
 				`${firstName} ${lastName}`,
 				email,
-				yamlBody(),
+				getYamlBody(),
 				imageFile ?? undefined,
 			)
 				.then(async (resp) => {
@@ -628,7 +635,7 @@ ${email}
 
 		const doBioUpload = async (): Promise<true> =>
 			uploadText(
-				`${yamlBody()}\n\n\n${messageToMyself}`,
+				`${getYamlBody()}\n\n\n${messageToMyself}`,
 				basename,
 				(await getCreds(1))[0],
 			).then((resp) => {
@@ -679,8 +686,10 @@ ${email}
 		})
 	}
 
-	const submitCreds = () => dispatch(events.requestAuth)
-	const noop = () => {}
+	const submitCreds = (e: Event) => {
+		e.preventDefault()
+		dispatch(events.requestAuth)
+	}
 </script>
 
 <svelte:head>
@@ -689,7 +698,7 @@ ${email}
 
 <h2 class="h2">Bio Submission</h2>
 
-{#if state === states.submissionsDisabled}
+{#if pageState === states.submissionsDisabled}
 	<article>
 		<header><h3 class="h3">Bio submissions are unavailable</h3></header>
 		<p class="my-8">
@@ -698,7 +707,7 @@ ${email}
 	</article>
 {/if}
 
-{#if state === states.noFetch}
+{#if pageState === states.noFetch}
 	<div class="bg-red-200 text-red-900 p-4 rounded my-4">
 		This submission form will not work from your device. Please send an email to
 		<a class="link-green" href="{emailLink}">don@postplayhouse.com</a>
@@ -754,7 +763,7 @@ ${email}
 		</ul>
 	</div>
 
-	<form class="mt-12" on:submit|preventDefault="{submitCreds}">
+	<form class="mt-12" onsubmit="{submitCreds}">
 		<label class="text-2xl block">
 			Done reading above?<br />Enter the passphrase to get started!
 
@@ -765,7 +774,7 @@ ${email}
 				type="text"
 			/>
 		</label>
-		{#if state === states.requestingAuth}
+		{#if pageState === states.requestingAuth}
 			<button class="btn btn-p mt-4" disabled>Checking...</button>
 		{:else}<button class="btn btn-p mt-4">Continue</button>{/if}
 
@@ -782,7 +791,7 @@ ${email}
 		<div
 			class="fixed top-0 right-0 bottom-0 overflow-scroll w-1/4 pre whitespace-pre-wrap dark:bg-blue-900 bg-blue-200 z-10 p-2"
 		>
-			{yamlBody()}
+			{getYamlBody()}
 		</div>
 	{/if}
 	<div bind:this="{topOfMainEl}" class="mt-4 mb-24 max-w-lg">
@@ -796,7 +805,7 @@ ${email}
 	<div class="lg:flex mt-8 mb-24">
 		<form
 			class="m-auto max-w-lg p-2 lg:w-1/2 flex-none"
-			on:submit|preventDefault="{noop}"
+			onsubmit="{(e) => e.preventDefault()}"
 		>
 			<label class="text-2xl block">
 				Email address<i>*</i>
@@ -813,7 +822,7 @@ ${email}
 					<input
 						tabindex="0"
 						type="checkbox"
-						on:change="{handleUseOldHeadshotChange}"
+						onchange="{handleUseOldHeadshotChange}"
 						bind:checked="{useOldHeadshot}"
 					/>
 					I've worked at Post before, and I'd like to use my old headshot.
@@ -834,7 +843,7 @@ ${email}
 						{#if !imageFile}Choose a file{:else}Change file{/if}
 						<input
 							class="hidden"
-							on:change="{handleFilePick}"
+							onchange="{handleFilePick}"
 							name="headshot"
 							accept=".jpg,.jpeg,.heif"
 							type="file"
@@ -905,7 +914,9 @@ ${email}
 						<input
 							class="block"
 							type="text"
-							on:input="{(e) => mutateRoles(production, e.currentTarget.value)}"
+							oninput="{(e) => {
+								mutateRoles(production, e.currentTarget.value)
+							}}"
 						/>
 					</label>
 				{/each}
@@ -937,7 +948,7 @@ ${email}
 					<input
 						class="block"
 						type="text"
-						on:input="{(e) => mutateStaffPositions(e.currentTarget.value)}"
+						oninput="{(e) => mutateStaffPositions(e.currentTarget.value)}"
 					/>
 				</label>
 				<div class="text-xl mt-4 block">
@@ -961,7 +972,7 @@ ${email}
 						<input
 							class="block"
 							type="text"
-							on:input="{(e) =>
+							oninput="{(e) =>
 								mutateProductionPositions(production, e.currentTarget.value)}"
 						/>
 					</label>
@@ -1038,10 +1049,11 @@ ${email}
 					</ul>
 				{/if}
 				<button
+					type="button"
 					tabindex="0"
 					class="btn btn-p mt-8"
 					disabled="{invalidForm || submitting}"
-					on:click="{onSubmit}"
+					onclick="{submitBio}"
 				>
 					{#if submitting}Submitting{:else}Submit Bio{/if}
 				</button>

@@ -5,13 +5,18 @@
 	 * This allows forms to not lose data after closing, etc.
 	 */
 	import debounce from "lodash-es/debounce.js"
-	import { createEventDispatcher } from "svelte"
+	import { createEventDispatcher, type Snippet } from "svelte"
 
 	import Freeze from "../Freeze.svelte"
 	import { mountInPortal, type LifecycleRef } from "./modal"
 	import ModalBase from "./ModalBase.svelte"
 
-	export let show = true
+	interface Props {
+		show?: boolean
+		children: Snippet
+	}
+
+	let { show = true, children }: Props = $props()
 
 	const dispatch = createEventDispatcher()
 
@@ -19,16 +24,16 @@
 
 	mountInPortal(ref, "persistent-modal")
 
-	let transitionedOut = false
+	let transitionedOut = $state(false)
 	const delayedTransition = debounce(() => (transitionedOut = !show), 200)
 
-	$: {
+	$effect(() => {
 		if (show) {
 			transitionedOut = false
 		} else {
 			delayedTransition()
 		}
-	}
+	})
 </script>
 
 {#if show}
@@ -44,7 +49,7 @@ elsehwere in the DOM via `onMount` -->
 		bind:this="{ref.current}"
 	>
 		<ModalBase {transitionedOut} {dispatch}>
-			<slot />
+			{@render children()}
 		</ModalBase>
 	</div>
 </div>

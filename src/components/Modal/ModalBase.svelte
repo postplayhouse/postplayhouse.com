@@ -1,14 +1,22 @@
 <script lang="ts">
-	export let transitionedOut = false
-	export let dispatch: (evtName: string) => void
+	import { self } from "$helpers/event-modifiers"
+	import type { Snippet } from "svelte"
+
+	type Props = {
+		transitionedOut?: boolean
+		dispatch: (evtName: string) => void
+		children: Snippet
+	}
+
+	let { transitionedOut = false, dispatch, children }: Props = $props()
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
 	class="fixed shadow-md my-bg overflow-y-auto xs:p-4
 {transitionedOut ? 'disappear' : 'inset-0'}"
-	on:click|self="{() => dispatch('close')}"
+	onclick="{self(() => dispatch('close'))}"
 >
 	<section
 		class="absolute bg-white dark:bg-[#0f110f] dark:text-white border-green-600 border-solid block px-4 py-6
@@ -20,12 +28,12 @@
 			class="btn py-1 px-2 leading-none top-0 right-0 z-10
         fixed mt-4 mr-4
         xs:absolute xs:mt-2 xs:mr-2"
-			on:click="{() => dispatch('close')}"
+			onclick="{() => dispatch('close')}"
 		>
 			Close
 		</button>
 
-		<slot />
+		{@render children()}
 	</section>
 </div>
 

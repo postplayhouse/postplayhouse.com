@@ -4,8 +4,13 @@
 	import Markdown from "./Markdown.svelte"
 	import MaybeImage from "./MaybeImage.svelte"
 	import MaybeLink from "./MaybeLink.svelte"
-	export let production: Production | SpecialEvent | Series
-	export let season: Date.Year
+
+	type Props = {
+		production: Production | SpecialEvent | Series
+		season: Date.Year
+	}
+
+	let { production, season }: Props = $props()
 
 	const imagePath = `/g/images/${season}/${production.image}`
 	const fallbackImagePath = `/images/${season}/${production.image}`

@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { onMount } from "svelte"
+	import type { HTMLImgAttributes } from "svelte/elements"
 
-	let srcIn: string
-	export { srcIn as src }
-	export let alt: undefined | string = undefined
+	let {
+		src: srcIn,
+		...rest
+	}: Omit<HTMLImgAttributes, "src"> & { src: string } = $props()
 
-	let loading = true
+	let loading = $state(true)
 
 	function getSources(src: string): string[] {
 		if (!src.startsWith("/images")) return [src]
@@ -17,8 +18,8 @@
 
 	const potentialSources = getSources(srcIn)
 
-	let currentIndex = 0
-	$: src = potentialSources[currentIndex]
+	let currentIndex = $state(0)
+	let src = $derived(potentialSources[currentIndex])
 
 	function nextSrc() {
 		if (potentialSources.length < 2) return
@@ -28,26 +29,18 @@
 		if (nextIndex > 0) currentIndex = nextIndex
 	}
 
-	let isMounted = false
+	$effect(() => {
+		const img = new Image()
+		img.src = src
+		loading = true
 
-	$: {
-		if (isMounted) {
-			const img = new Image()
-			img.src = src
-			loading = true
-
-			img.onload = () => {
-				loading = false
-			}
-			img.onerror = () => {
-				loading = false
-				nextSrc()
-			}
+		img.onload = () => {
+			loading = false
 		}
-	}
-
-	onMount(() => {
-		isMounted = true
+		img.onerror = () => {
+			loading = false
+			nextSrc()
+		}
 	})
 </script>
 
@@ -58,5 +51,5 @@
 		></div>
 	</div>
 {:else}
-	<img {src} {alt} {...$$restProps} />
+	<img {src} {...rest} />
 {/if}

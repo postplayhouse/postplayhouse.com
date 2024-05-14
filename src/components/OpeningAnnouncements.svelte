@@ -6,6 +6,7 @@
 		getToday,
 		nonValueToEmptyStr,
 	} from "$helpers"
+	import type { Snippet } from "svelte"
 	import { weekdays } from "./Calendar/calendarHelpers"
 
 	import Markdown from "./Markdown.svelte"
@@ -13,8 +14,19 @@
 	import SponsorPlate from "./SponsorPlate.svelte"
 	import TicketsButton from "./TicketsButton.svelte"
 
-	export let productions: Production[] = []
-	export let closingDate: string
+	type Props = {
+		productions?: Production[]
+		closingDate: string
+		ticketAvailability?: Snippet
+		seasonArtworkImage?: Snippet
+	}
+
+	let {
+		productions = [],
+		closingDate,
+		seasonArtworkImage,
+		ticketAvailability,
+	}: Props = $props()
 
 	const today = getToday()
 
@@ -104,7 +116,7 @@
 					Today is your last chance to see us this summer!
 				</p>
 			{/if}
-			<slot name="ticketAvailability" />
+			{@render ticketAvailability?.()}
 		</div>
 	{/if}
 
@@ -115,9 +127,11 @@
 
 		<div class="mb-12">
 			<SponsorPlate>
-				<h3 slot="beforeSponsors" class="h3 text-center mb-4">
-					Special thanks to our Season Sponsors:
-				</h3>
+				{#snippet beforeSponsors()}
+					<h3 class="h3 text-center mb-4">
+						Special thanks to our Season Sponsors:
+					</h3>
+				{/snippet}
 			</SponsorPlate>
 		</div>
 
@@ -125,7 +139,7 @@
 			<div class="text-3xl text-center my-8">All shows are now running!</div>
 		{/if}
 
-		<slot name="seasonArtworkImage" />
+		{@render seasonArtworkImage?.()}
 
 		<div class="flex justify-center my-12">
 			<TicketsButton />

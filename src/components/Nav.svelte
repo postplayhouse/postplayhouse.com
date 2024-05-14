@@ -1,6 +1,10 @@
 <script lang="ts">
-	export let activePath: string
 	import site from "$data/site"
+
+	type Props = {
+		activePath: string
+	}
+	let { activePath }: Props = $props()
 
 	function trimTrailingSlash(str: string) {
 		return str.replace(/\/$/, "")

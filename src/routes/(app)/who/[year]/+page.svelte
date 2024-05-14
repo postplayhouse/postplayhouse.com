@@ -8,7 +8,7 @@
 		sortBoardMembers,
 	} from "$helpers"
 
-	export let data
+	let { data } = $props()
 	const { site, year, people: people_ } = data
 
 	const shouldFilterActors =

@@ -5,8 +5,12 @@
 </script>
 
 <script lang="ts">
-	export let people: Person[]
-	export let production: Production
+	type Props = {
+		people: Person[]
+		production: Production
+	}
+
+	let { people, production }: Props = $props()
 
 	const peopleRoles = people.flatMap((x) =>
 		x.roles.filter(roleIsForProduction).flatMap((r) => r.positions),

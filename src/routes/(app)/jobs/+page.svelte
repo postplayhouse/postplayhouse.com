@@ -3,7 +3,7 @@
 	import Markdown from "$components/Markdown.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 
-	export let data
+	let { data } = $props()
 	const { posts } = data
 
 	const title = "Work at Post Playhouse"
@@ -15,7 +15,7 @@
 	const isAfterCurrentSeason = today > midAugustOfCurrentSeason
 	const isBeforeMarchOfCurrentSeason = today < marchOfCurrentSeason
 
-	let showFeedsLinks = false
+	let showFeedsLinks = $state(false)
 	const toggleFeedsLinks = () => (showFeedsLinks = !showFeedsLinks)
 	function slugify(str: string) {
 		return str.replace(/\W+/g, "-")
@@ -31,7 +31,7 @@
 <div
 	class="flex items-center my-4 border border-green-600 bg-green-200 dark:bg-green-900 p-2"
 >
-	<button class="btn btn-p mr-4" on:click="{toggleFeedsLinks}">
+	<button class="btn btn-p mr-4" onclick="{toggleFeedsLinks}">
 		Subscribe to jobs updates
 	</button>
 	Never miss an employment opportunity announcement

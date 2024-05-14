@@ -1,12 +1,19 @@
 <script lang="ts">
 	import { site } from "$data/site"
+	import type { Snippet } from "svelte"
 
-	export let year: number | string = site.season
+	type Props = {
+		year?: number | string
+		beforeSponsors?: Snippet
+		afterSponsors?: Snippet
+	}
+
+	let { year = site.season, afterSponsors, beforeSponsors }: Props = $props()
 
 	const year_ = Number(year)
 </script>
 
-<slot name="beforeSponsors" />
+{@render beforeSponsors?.()}
 
 {#if year_ === 2023 || year_ === 2024}
 	<ul
@@ -30,4 +37,4 @@
 	</ul>
 {/if}
 
-<slot name="afterSponsors" />
+{@render afterSponsors?.()}

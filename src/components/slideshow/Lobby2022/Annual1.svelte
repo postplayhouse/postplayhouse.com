@@ -2,16 +2,15 @@
 	import { crossfade } from "svelte/transition"
 
 	import { linear } from "svelte/easing"
-	import { createEventDispatcher } from "svelte"
 	import { fast } from "./helpers"
 
 	const SLOWNESS = fast ? 1 : 8
 
-	const dispatch = createEventDispatcher()
-
-	function eventDone() {
-		dispatch("done")
+	type Props = {
+		onEventDone: () => void
 	}
+
+	let { onEventDone: eventDone }: Props = $props()
 
 	const sections = [
 		{
@@ -275,9 +274,9 @@
 		},
 	]
 
-	const slides = sections.map((x) => ({ ...x, position: "bottom" }))
+	const slides = $state(sections.map((x) => ({ ...x, position: "bottom" })))
 
-	let current = 0
+	let current = $state(0)
 
 	function getNextIndex() {
 		return (current + 1) % sections.length
@@ -331,7 +330,7 @@
 							<div
 								in:receive="{{ key: slide.title }}"
 								out:send="{{ key: slide.title }}"
-								on:introend="{nextOrDone}"
+								onintroend="{nextOrDone}"
 							>
 								{#each slide.names as name}
 									<div>{name}</div>

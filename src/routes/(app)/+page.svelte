@@ -3,11 +3,11 @@
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
 
-	export let data
+	let { data } = $props()
 
 	const { productions } = data
 
-	$: showMailingList = false
+	let showMailingList = $state(false)
 
 	function toggleMailingList() {
 		showMailingList = !showMailingList
@@ -49,15 +49,14 @@
 
 <div class="mb-16 p-2 max-w-3xl mx-auto">
 	<Openings {productions} closingDate="2024-08-11">
-		<div
-			slot="seasonArtworkImage"
-			class="w-full m-auto rounded-lg overflow-clip"
-		>
-			<img
-				src="/images/2024/full-season.jpg"
-				alt="2024 season logos: The Wizard of Oz, Honky Tonk Laundry, Kiss Me Kate, The SpongeBob Musical, Jersey Boys"
-			/>
-		</div>
+		{#snippet seasonArtworkImage()}
+			<div class="w-full m-auto rounded-lg overflow-clip">
+				<img
+					src="/images/2024/full-season.jpg"
+					alt="2024 season logos: The Wizard of Oz, Honky Tonk Laundry, Kiss Me Kate, The SpongeBob Musical, Jersey Boys"
+				/>
+			</div>
+		{/snippet}
 	</Openings>
 </div>
 
@@ -78,7 +77,7 @@
 		>
 			<header class="text-xl">Join our mailing list</header>
 			<p>Stay informed about what’s happening at Post Playhouse</p>
-			<button on:click="{toggleMailingList}" class="btn px-4 py-2"
+			<button onclick="{toggleMailingList}" class="btn px-4 py-2"
 				>Join now!</button
 			>
 		</section>

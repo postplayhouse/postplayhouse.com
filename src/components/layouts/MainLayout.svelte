@@ -3,8 +3,17 @@
 	import Nav from "$components/Nav.svelte"
 	import Header from "$components/Header.svelte"
 	import Footer from "$components/Footer.svelte"
+	import type { Snippet } from "svelte"
 
-	export let unconstrainedWidth = false
+	// Bare reference to page just to keep eslint happy
+	// https://github.com/sveltejs/eslint-plugin-svelte/issues/652
+	page
+
+	type Props = {
+		unconstrainedWidth?: boolean
+		children: Snippet
+	}
+	let { unconstrainedWidth = false, children }: Props = $props()
 </script>
 
 <div class="dark:bg-[#0f110f] dark:text-white/90">
@@ -13,10 +22,10 @@
 
 	<main class="relative m-auto py-8 px-2 sm:px-8">
 		{#if unconstrainedWidth}
-			<slot />
+			{@render children()}
 		{:else}
 			<div class="max-w-[56em] mx-auto">
-				<slot />
+				{@render children()}
 			</div>
 		{/if}
 	</main>

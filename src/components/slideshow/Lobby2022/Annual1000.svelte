@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { fade } from "svelte/transition"
-	import { createEventDispatcher } from "svelte"
 	import { fast } from "./helpers"
 
 	const INT = fast ? 500 : 5000
 
-	const dispatch = createEventDispatcher()
-
-	function eventDone() {
-		dispatch("done")
+	type Props = {
+		onEventDone: () => void
 	}
+
+	let { onEventDone: eventDone }: Props = $props()
+
 	const sections = [
 		{ title: "$200,000+", names: ["Shuttered Venue Operators Grant"] },
 		{
@@ -55,7 +55,7 @@
 		s.names.map((t) => ({ title: s.title, content: t })),
 	)
 
-	let current = 0
+	let current = $state(0)
 
 	function getNextIndex() {
 		return (current + 1) % slides.length

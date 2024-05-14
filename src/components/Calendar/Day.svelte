@@ -26,8 +26,12 @@
 </script>
 
 <script lang="ts">
-	export let daySchedule: Showing[] = []
-	export let date: SimpleDate
+	type Props = {
+		daySchedule?: Showing[]
+		date: SimpleDate
+	}
+
+	let { date, daySchedule = [] }: Props = $props()
 
 	const { month: monthNum, day: dayNum } = date
 	const dt = makeDate(date)

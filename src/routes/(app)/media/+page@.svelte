@@ -2,7 +2,7 @@
 	import Main from "$components/layouts/MainLayout.svelte"
 	import Img from "./Img.svelte"
 
-	export let data
+	let { data } = $props()
 
 	const { images } = data
 </script>

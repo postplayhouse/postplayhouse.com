@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let data
+	let { data } = $props()
 
 	const { seasons } = data
 	const years = Object.keys(seasons)

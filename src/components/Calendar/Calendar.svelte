@@ -1,9 +1,14 @@
 <script lang="ts">
 	import Week from "./Week.svelte"
 	import { getWeeksFromProductions } from "./calendarHelpers"
-	export let productions: Production[]
-	export let specialEvents: SpecialEvent[] = []
-	export let year: Date.Year
+
+	type Props = {
+		productions: Production[]
+		specialEvents?: SpecialEvent[]
+		year: Date.Year
+	}
+
+	let { productions, specialEvents = [], year }: Props = $props()
 
 	const weekData = getWeeksFromProductions(
 		[...productions, ...specialEvents],

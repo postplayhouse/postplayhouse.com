@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Markdown from "$components/Markdown.svelte"
 
-	export let data
+	let { data } = $props()
 	const { posts } = data
 
 	const title = "Archive of Job Postings"

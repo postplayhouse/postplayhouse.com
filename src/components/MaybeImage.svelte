@@ -1,12 +1,9 @@
 <script lang="ts">
 	import { onMount } from "svelte"
-	export let src: string[] = []
+	import type { HTMLImgAttributes } from "svelte/elements"
 
-	const { src: _, alt, ...rest } = $$props
-
-	if (!Array.isArray(src)) {
-		src = [src]
-	}
+	type Props = Omit<HTMLImgAttributes, "src"> & { src: string | string[] }
+	const { src, ...rest }: Props = $props()
 
 	function checkImageExists(imageSrc: string) {
 		return new Promise((res) => {
@@ -18,12 +15,14 @@
 	}
 
 	// The lowest index for src wins
-	$: winningSrc = undefined as string | undefined
+	let winningSrc = $state(undefined as string | undefined)
 
 	// We render nothing unless mounted in the client. SSR will result in lots of
 	// thrown error noise
 	onMount(async () => {
-		for (const path of src) {
+		const sources = Array.isArray(src) ? src : [src]
+
+		for (const path of sources) {
 			if (path.startsWith("data:")) {
 				winningSrc = path
 				break
@@ -35,9 +34,9 @@
 		}
 
 		if (!winningSrc) {
-			console.warn(`No image found for ${src.join()}`)
+			console.warn(`No image found for ${sources.join()}`)
 		}
 	})
 </script>
 
-{#if winningSrc}<img src="{winningSrc}" {alt} {...rest} />{/if}
+{#if winningSrc}<img src="{winningSrc}" {...rest} />{/if}

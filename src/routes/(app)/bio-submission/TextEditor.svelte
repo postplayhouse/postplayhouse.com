@@ -10,18 +10,23 @@
 	import { buildMenuItems, exampleSetup } from "prosemirror-example-setup"
 	import { onMount } from "svelte"
 
-	export let modeSwitch = false
-
-	export let content =
-		"This is a comment written in [Markdown](http://commonmark.org). *You* may know the syntax for inserting a link, but does your whole audience?\n\nSo you can give people the **choice** to use a more familiar, discoverable interface."
-
 	function updateContent(newContent: string) {
 		content = newContent
 	}
 
-	export let onChange = updateContent
+	type Props = {
+		content: string
+		onChange: (newContent: string) => void
+		markdown?: boolean
+		modeSwitch?: boolean
+	}
 
-	export let markdown = false
+	let {
+		content = "This is a comment written in [Markdown](http://commonmark.org). *You* may know the syntax for inserting a link, but does your whole audience?\n\nSo you can give people the **choice** to use a more familiar, discoverable interface.",
+		onChange = updateContent,
+		markdown = false,
+		modeSwitch = false,
+	}: Props = $props()
 
 	let editorEl: HTMLDivElement | undefined
 
@@ -119,7 +124,7 @@
 			<label class="p-2 pb-3 has-[:checked]:bg-emerald-300 inline-block"
 				><input
 					class="invisible h-0 w-0"
-					on:change="{handleToggle}"
+					onchange="{handleToggle}"
 					type="radio"
 					name="inputformat"
 					value="markdown"
@@ -132,7 +137,7 @@
 				Regular Editor
 				<input
 					class="invisible h-0 w-0"
-					on:change="{handleToggle}"
+					onchange="{handleToggle}"
 					type="radio"
 					name="inputformat"
 					value="prosemirror"

@@ -5,24 +5,27 @@
 	import MaybeImage from "./MaybeImage.svelte"
 	import type { Person } from "$models/Person"
 
-	export let hideProductionRoles: boolean = false
-	export let isSubmissionPreview = false
+	type Props = {
+		hideProductionRoles?: boolean
+		isSubmissionPreview?: boolean
+		person: Pick<
+			Person,
+			| "productionPositions"
+			| "image"
+			| "name"
+			| "location"
+			| "positions"
+			| "staffPositions"
+			| "roles"
+			| "bio"
+		> &
+			Partial<Pick<Person, "slug">>
+	}
 
-	export let person: Pick<
-		Person,
-		| "productionPositions"
-		| "image"
-		| "name"
-		| "location"
-		| "positions"
-		| "staffPositions"
-		| "roles"
-		| "bio"
-	> &
-		Partial<Pick<Person, "slug">>
+	let { hideProductionRoles, isSubmissionPreview, person }: Props = $props()
 
-	// Pivot prductionName and positions for localPerson.productionPositions
-	let productionPositions: Array<{
+	// Pivot productionName and positions for localPerson.productionPositions
+	const productionPositions: Array<{
 		position: string
 		productionNames: string[]
 	}> = uniq(flatten(person.productionPositions.map((x) => x.positions))).map(
@@ -41,7 +44,6 @@
 	{#if person.image}
 		{#key person.image}
 			<MaybeImage
-				key="{person.image}"
 				class="block w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2 border"
 				src="{person.image.startsWith('data:')
 					? [person.image]

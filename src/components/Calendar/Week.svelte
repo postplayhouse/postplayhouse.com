@@ -1,20 +1,25 @@
 <script lang="ts">
+	import type { Snippet } from "svelte"
 	import type { Showing, SimpleDate } from "./calendarHelpers"
 
 	import Day from "./Day.svelte"
 
-	export let days: Array<{
-		date: SimpleDate
-		showings: Showing[]
-	}>
+	type Props = {
+		days: Array<{
+			date: SimpleDate
+			showings: Showing[]
+		}>
+		padStartCount?: number
+		children: Snippet
+	}
 
-	export let padStartCount = 0
+	let { days, padStartCount = 0, children }: Props = $props()
 </script>
 
 <ul class="week">
 	{#if padStartCount}
 		<li class="day padding">
-			<slot />
+			{@render children()}
 		</li>
 	{/if}
 	{#each days as day}

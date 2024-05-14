@@ -1,20 +1,29 @@
 <script lang="ts">
 	// library for creating dropdown menu appear on click
 	import { createPopper } from "@popperjs/core"
-	import { createEventDispatcher } from "svelte"
 	import type { ProductionDetails } from "./showingsData"
 	import type { MouseEventHandler } from "svelte/elements"
+	import type { Snippet } from "svelte"
 
 	// core components
 
-	let className: string = ""
-	export { className as class }
+	interface Props {
+		color?: string
+		choices?: ProductionDetails[]
+		class?: string
+		onChoice?: (choice: ProductionDetails | null) => void
+		children: Snippet
+	}
 
-	export let color: string = "gray"
+	let {
+		color = "gray",
+		class: className = "",
+		choices = [],
+		onChoice = () => {},
+		children,
+	}: Props = $props()
 
-	export let choices: ProductionDetails[] = []
-
-	let dropdownPopoverShow = false
+	let dropdownPopoverShow = $state(false)
 
 	let btnRef: HTMLElement
 	let popoverRef: HTMLElement
@@ -36,7 +45,7 @@
 
 	function doNothing() {}
 
-	let action: MouseEventHandler<Window> = doNothing
+	let action: MouseEventHandler<Window> = $state(doNothing)
 
 	function toggleDropdown() {
 		if (dropdownPopoverShow) {
@@ -49,10 +58,9 @@
 		}
 	}
 
-	const dispatch = createEventDispatcher()
 	function choose(choice: ProductionDetails | null) {
 		toggleDropdown()
-		dispatch("choice", choice)
+		onChoice(choice)
 	}
 </script>
 
@@ -63,9 +71,9 @@
 	type="button"
 	style="background-color: {color}"
 	bind:this="{btnRef}"
-	on:click="{toggleDropdown}"
+	onclick="{toggleDropdown}"
 >
-	<slot />
+	{@render children()}
 </button>
 
 <div
@@ -80,7 +88,7 @@
 		{#each [...choices, null] as choice}
 			<button
 				type="button"
-				on:click="{() => choose(choice)}"
+				onclick="{() => choose(choice)}"
 				class="block w-full whitespace-no-wrap border-4 border-transparent hover:border-black shadow py-2 px-4"
 				style="background-color: #{choice?.color ?? 'fff'}"
 			>

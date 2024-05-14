@@ -2,25 +2,32 @@
 	import { fade } from "svelte/transition"
 	import Donors1000 from "./Lobby2023/Annual1000.svelte"
 	import Donors1 from "./Lobby2023/Annual1.svelte"
-	import { afterUpdate, onMount } from "svelte"
+	import { onMount } from "svelte"
 	import {
 		initLocalAppVersion,
 		refreshIfAppVersionOutdated,
 	} from "$helpers/app-version"
-	import { positiveIntStore } from "./Lobby2023/helpers"
+	import { createIntStore } from "$helpers/stores.svelte"
 
 	onMount(initLocalAppVersion)
 
+	function createPositiveIntStore(initialValue = 1, localStorageName?: string) {
+		return createIntStore(initialValue, {
+			localStorageName,
+			min: 1,
+		})
+	}
+
 	const showsAndTimers = [
-		[Donors1000, positiveIntStore(8, "2023 ld"), "Large Donations"],
-		[Donors1, positiveIntStore(10, "2023 rd"), "Regular Donations"],
+		[Donors1000, createPositiveIntStore(8, "2023 ld"), "Large Donations"],
+		[Donors1, createPositiveIntStore(10, "2023 rd"), "Regular Donations"],
 	] as const
 
 	const shows = showsAndTimers.map(([show]) => show)
 	const timers = showsAndTimers.map(([_, timer]) => timer)
 	const showNames = showsAndTimers.map(([_, __, name]) => name)
 
-	let inc = 0
+	let inc = $state(0)
 
 	function nextShow() {
 		inc += 1
@@ -32,11 +39,11 @@
 		}
 	}
 
-	let resetCount = 0
+	let resetCount = $state(0)
 
-	$: currentDurationMultiplier = timers[
-		inc % timers.length
-	] as (typeof timers)[number]
+	let currentDurationMultiplier = $derived(
+		timers[inc % timers.length] as (typeof timers)[number],
+	)
 
 	function onKeyDown(event: KeyboardEvent) {
 		if (event.repeat) return
@@ -69,9 +76,11 @@
 		}
 	}
 
-	let visible = true
+	let visible = $state(true)
 
-	afterUpdate(() => (visible = false))
+	$effect(() => {
+		visible = visible && false
+	})
 </script>
 
 <svelte:window on:keydown="{onKeyDown}" />
@@ -85,8 +94,8 @@
 			>
 				<svelte:component
 					this="{shows[inc % shows.length]}"
-					durationMultiplier="{$currentDurationMultiplier}"
-					on:done="{() => nextShow()}"
+					durationMultiplier="{currentDurationMultiplier.value}"
+					onEventDone="{() => nextShow()}"
 				/>
 			</div>
 		{:else}
@@ -96,22 +105,22 @@
 			>
 				<svelte:component
 					this="{shows[inc % shows.length]}"
-					durationMultiplier="{$currentDurationMultiplier}"
-					on:done="{() => nextShow()}"
+					durationMultiplier="{currentDurationMultiplier.value}"
+					onEventDone="{() => nextShow()}"
 				/>
 			</div>
 		{/if}
 	</div>
 	{#if visible}
 		<div
-			out:fade="{{ duration: 1000 }}"
+			out:fade="{{ duration: 1000, delay: 1000 }}"
 			class="fixed inset-0 flex justify-center items-center"
 		>
 			<span
 				class="bg-black/50 text-white font-bold rounded-lg px-2 py-1 text-[6vw]"
 			>
 				{showNames[inc % showNames.length]} Speed: {20 -
-					($currentDurationMultiplier - 1)}
+					(currentDurationMultiplier.value - 1)}
 			</span>
 		</div>
 	{/if}

@@ -40,8 +40,12 @@
 </script>
 
 <script lang="ts">
-	export let people: Person[]
-	export let production: Production
+	type Props = {
+		people: Person[]
+		production: Production
+	}
+
+	let { people, production }: Props = $props()
 
 	function positionIsForProduction(position: Person["productionPositions"][1]) {
 		// At the time of writing this, I am not sure whether productionName

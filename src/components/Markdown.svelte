@@ -4,7 +4,7 @@
 </script>
 
 <script lang="ts">
-	export let source: string
+	let { source }: { source: string } = $props()
 </script>
 
 <div class="via-markdown">

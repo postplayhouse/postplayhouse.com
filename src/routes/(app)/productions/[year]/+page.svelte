@@ -5,7 +5,7 @@
 	import site, { ticketsAvailable } from "$data/site"
 	import SponsorPlate from "$components/SponsorPlate.svelte"
 
-	export let data
+	let { data } = $props()
 
 	const { productions, year, series } = data
 
@@ -29,9 +29,11 @@
 
 <div class="my-8">
 	<SponsorPlate {year}>
-		<h3 slot="beforeSponsors" class="h3 text-center my-4">
-			Special thanks to our Season Sponsors:
-		</h3>
+		{#snippet beforeSponsors()}
+			<h3 class="h3 text-center my-4">
+				Special thanks to our Season Sponsors:
+			</h3>
+		{/snippet}
 	</SponsorPlate>
 </div>
 

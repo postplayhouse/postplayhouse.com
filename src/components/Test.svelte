@@ -1,7 +1,7 @@
 <script lang="ts">
-	export let name: string
+	let { name }: { name: string } = $props()
 
-	let buttonText = "Button"
+	let buttonText = $state("Button")
 
 	function handleClick() {
 		buttonText = "Button Clicked"
@@ -10,4 +10,4 @@
 
 <h1>Hello {name}!</h1>
 
-<button on:click="{handleClick}">{buttonText}</button>
+<button onclick="{handleClick}">{buttonText}</button>

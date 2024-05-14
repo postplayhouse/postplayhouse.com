@@ -10,7 +10,7 @@
 	import ProductionList from "$components/program/ProductionList.svelte"
 	import { sortPeople, personIsInGroup, slugify } from "$helpers"
 
-	export let data
+	let { data } = $props()
 
 	const { people, productions } = data
 
@@ -37,7 +37,7 @@
 		return !personIsInGroup(person, "additional")
 	}
 
-	let showShortBio: Set<string> = new Set()
+	let showShortBio: Set<string> = $state(new Set())
 
 	function toggleShortBio(person: Person) {
 		showShortBio.has(person.id)
@@ -47,7 +47,7 @@
 		showShortBio = showShortBio
 	}
 
-	let showUi = true
+	let showUi = $state(true)
 </script>
 
 <div id="TheTop"></div>
@@ -56,7 +56,7 @@
 	><input
 		type="checkbox"
 		checked="{showUi}"
-		on:change="{() => (showUi = !showUi)}"
+		onchange="{() => (showUi = !showUi)}"
 	/> Show non-program UI in Bios (buttons/anchors)</label
 >
 
@@ -137,7 +137,7 @@
 					<button
 						class="btn py-1 px-2"
 						type="button"
-						on:click="{() => toggleShortBio(person)}"
+						onclick="{() => toggleShortBio(person)}"
 					>
 						{#if showShortBio.has(person.id)}Show Long Bio{:else}Show Short Bio{/if}
 					</button>

@@ -6,11 +6,11 @@
 	import site, { ticketsAvailable } from "$data/site"
 	import ParkingNotice from "$components/ParkingNotice.svelte"
 
-	export let data
+	let { data } = $props()
 
 	const { productions } = data
 
-	$: showMailingList = false
+	let showMailingList = $state(false)
 
 	function toggleMailingList() {
 		showMailingList = !showMailingList
@@ -23,7 +23,7 @@
 		on-sale date announcements, or <button
 			type="button"
 			class="link-green"
-			on:click="{toggleMailingList}">subscribe to our newsletter</button
+			onclick="{toggleMailingList}">subscribe to our newsletter</button
 		>.
 	</p>
 
