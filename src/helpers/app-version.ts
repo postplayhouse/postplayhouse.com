@@ -1,9 +1,10 @@
 import { browser } from "$app/environment"
+import { captureException } from "@sentry/sveltekit"
 
 const MAX_DAILY_REFRESHES = 5
 
 const VERSION_KEY = "post_app_version"
-const noVersion = Date.now().toString()
+const noVersion = `LOCAL_VERSION ${Date.now().toString()}`
 
 function getTodayString() {
 	const today = new Date()
@@ -18,6 +19,7 @@ async function getRemoteVersion() {
 		const data = await resp.json()
 		return data.version as string
 	} catch {
+		captureException(new Error("Failed to fetch deployment version"))
 		return noVersion
 	}
 }
