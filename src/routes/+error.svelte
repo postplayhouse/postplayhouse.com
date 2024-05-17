@@ -1,19 +1,50 @@
 <script lang="ts">
 	import { onMount } from "svelte"
 	import { page } from "$app/stores"
+	import { goto } from "$app/navigation"
+	import MainLayout from "$components/layouts/MainLayout.svelte"
 
-	$: matchesOldRoutes = false
-	$: tryLocation = ""
-	const MATCHES_OLD_ROUTES = /^(\/?news\/\d{4})(\/)(\d{2})(\/)(\d{2})(\/)(.*)/g
+	// Bare reference to page just to keep eslint happy
+	// https://github.com/sveltejs/eslint-plugin-svelte/issues/652
+	page
 
-	onMount(() => {
-		matchesOldRoutes = MATCHES_OLD_ROUTES.test(window.location.pathname)
-		tryLocation = window.location.pathname.replace(
-			MATCHES_OLD_ROUTES,
-			function (_full, _1, _2, _3, _4, _5, _6, _7) {
-				return `${_1}-${_3}-${_5}-${_7}`
+	function redirectIfPathMatchesOldNewsRoute() {
+		if ($page.status !== 404) return
+
+		// The old routes looked like this:
+		//
+		//     /news/2021/01/01/this-is-a-news-title
+		//
+		// The new routes look like this:
+		//
+		//     /news/2021-01-01-this-is-a-news-title
+		const OLD_NEWS_PATH = /^(\/news\/\d{4})(\/)(\d{2})(\/)(\d{2})(\/)(.*)/g
+
+		const matchesOldRoutes = OLD_NEWS_PATH.test(window.location.pathname)
+
+		if (!matchesOldRoutes) return
+
+		const tryLocation = window.location.pathname.replace(
+			OLD_NEWS_PATH,
+			function (
+				_full,
+				newsSlashYear,
+				_slash1,
+				month,
+				_slash2,
+				day,
+				_slash3,
+				remainingTitle,
+			) {
+				return `${newsSlashYear}-${month}-${day}-${remainingTitle}`
 			},
 		)
+
+		goto(tryLocation)
+	}
+
+	onMount(() => {
+		redirectIfPathMatchesOldNewsRoute()
 	})
 </script>
 
@@ -21,11 +52,17 @@
 	<title>{$page.status}</title>
 </svelte:head>
 
-{#if $page.status === 404 && matchesOldRoutes}{(window.location.href =
-		tryLocation)}{/if}
+<MainLayout>
+	<h1>{$page.status}</h1>
+	<p>{$page.error?.message}</p>
 
-<h1>{$page.status}</h1>
-<p>{$page.error?.message}</p>
+	{#if $page.status === 404}
+		<p>
+			You can try to find what you're looking for by going to the{" "}
+			<a href="/">home page</a>.
+		</p>
+	{/if}
+</MainLayout>
 
 <style>
 	h1,
