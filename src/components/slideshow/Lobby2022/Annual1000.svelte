@@ -81,7 +81,7 @@
 				class="font-uber [font-size:5vw] text-center bg-green-700 text-white"
 			>
 				Annual Fund Donations
-				<div class="bg-green-100 dark:bg-green-900 text-black">
+				<div class="bg-green-100 dark:bg-green-900 text-black dark:text-white">
 					{slide.title}
 				</div>
 			</header>

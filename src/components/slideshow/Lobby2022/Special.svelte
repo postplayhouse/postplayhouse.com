@@ -91,7 +91,7 @@
 				Special Campaign Donations
 
 				<p
-					class="bg-green-300 text-left text-black p-4 font-sans [font-size:3vw]"
+					class="bg-green-300 text-left text-black dark:text-white dark:bg-green-950 p-4 font-sans [font-size:3vw]"
 				>
 					Post Playhouse is especially grateful for the donors who have
 					supported us during the pandemic years for special programs which
@@ -99,7 +99,7 @@
 					“Special Campaign” gifts provide a financial foundation that allows
 					for a bright future for the Post Playhouse.
 				</p>
-				<div class="bg-green-100 dark:bg-green-900 text-black">
+				<div class="bg-green-100 dark:bg-green-900 text-black dark:text-white">
 					{slide.title}
 				</div>
 			</header>

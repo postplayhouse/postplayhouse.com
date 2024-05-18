@@ -28,22 +28,16 @@
 	}
 </script>
 
-<div class="fixed inset-0 bg-white">
+<div class="fixed inset-0 dark:bg-black dark:text-white">
 	{#if inc % 2 === 0}
-		<div
-			transition:fade="{{ duration: 1000 }}"
-			class="absolute inset-0 bg-white"
-		>
+		<div transition:fade="{{ duration: 1000 }}" class="absolute inset-0">
 			<svelte:component
 				this="{shows[current]}"
 				onEventDone="{() => nextShow()}"
 			/>
 		</div>
 	{:else}
-		<div
-			transition:fade="{{ duration: 1000 }}"
-			class="absolute inset-0 bg-white"
-		>
+		<div transition:fade="{{ duration: 1000 }}" class="absolute inset-0">
 			<svelte:component
 				this="{shows[current]}"
 				onEventDone="{() => nextShow()}"

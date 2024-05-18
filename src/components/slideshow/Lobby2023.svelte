@@ -86,12 +86,9 @@
 <svelte:window on:keydown="{onKeyDown}" />
 
 {#key resetCount}
-	<div class="fixed inset-0 bg-white">
+	<div class="fixed inset-0 dark:bg-black dark:text-white">
 		{#if inc % 2 === 0}
-			<div
-				transition:fade="{{ duration: 1000 }}"
-				class="absolute inset-0 bg-white"
-			>
+			<div transition:fade="{{ duration: 1000 }}" class="absolute inset-0">
 				<svelte:component
 					this="{shows[inc % shows.length]}"
 					durationMultiplier="{currentDurationMultiplier.value}"
@@ -99,10 +96,7 @@
 				/>
 			</div>
 		{:else}
-			<div
-				transition:fade="{{ duration: 1000 }}"
-				class="absolute inset-0 bg-white"
-			>
+			<div transition:fade="{{ duration: 1000 }}" class="absolute inset-0">
 				<svelte:component
 					this="{shows[inc % shows.length]}"
 					durationMultiplier="{currentDurationMultiplier.value}"
@@ -117,7 +111,7 @@
 			class="fixed inset-0 flex justify-center items-center"
 		>
 			<span
-				class="bg-black/50 text-white font-bold rounded-lg px-2 py-1 text-[6vw]"
+				class="bg-black/50 text-white dark:bg-white/50 dark:text-black font-bold rounded-lg px-2 py-1 text-[6vw]"
 			>
 				{showNames[inc % showNames.length]} Speed: {20 -
 					(currentDurationMultiplier.value - 1)}
