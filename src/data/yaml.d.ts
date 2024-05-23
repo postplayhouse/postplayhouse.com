@@ -86,7 +86,7 @@ type __BaseProduction = {
 	color: string
 	/** ex: "2020-05-29" */
 	opening: string
-	writers: string
+	writers?: string
 	roles_sorting?: string[]
 }
 
