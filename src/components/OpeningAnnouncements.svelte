@@ -86,7 +86,7 @@
 				/>
 			</div>
 			<div class="text-center md:text-left shrink-0">
-				<Markdown source="{openingSoon.writers || ''}" />
+				<Markdown source="{openingSoon.writers}" />
 			</div>
 		</div>
 

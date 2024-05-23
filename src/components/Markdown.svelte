@@ -4,10 +4,10 @@
 </script>
 
 <script lang="ts">
-	let { source }: { source: string } = $props()
+	let { source }: { source?: string } = $props()
 </script>
 
 <div class="via-markdown">
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html marked.parse(source)}
+	{@html marked.parse(source || "")}
 </div>
