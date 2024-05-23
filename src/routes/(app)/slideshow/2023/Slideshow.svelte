@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade } from "svelte/transition"
-	import Donors1000 from "./Lobby2023/Annual1000.svelte"
-	import Donors1 from "./Lobby2023/Annual1.svelte"
+	import Donors1000 from "./Donors1000.svelte"
+	import Donors1 from "./Donors1.svelte"
 	import { onMount } from "svelte"
 	import {
 		initLocalAppVersion,

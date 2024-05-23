@@ -5,7 +5,7 @@
 </script>
 
 <script lang="ts">
-	import Slideshow from "$components/slideshow/Lobby2023.svelte"
+	import Slideshow from "./Slideshow.svelte"
 </script>
 
 <Slideshow />
