@@ -10,7 +10,7 @@ image: /images/2015/lori-giving-notes.jpg
 ---
 
 <div class="captioned-image right">
-  <img src="/images/people/2015/lori-berg.jpg" alt="Lori Berg">
+  <enhanced:img src="/src/images/people/2015/lori-berg.jpg" alt="Lori Berg">
   <div class="caption">Lori Berg, co-director of our first production this summer.</div>
 </div>
 
