@@ -50,13 +50,13 @@
 			fallbackImagePath: `/images/${p.season}/${image}`,
 		}))
 
-	const openingSoon = enhancedProductions
-		// Nothing that is already open
-		.filter((p) => p.daysUntilOpening > -1)
-		// Things that open in the next 4 days. Historically, this has always been a
-		// Monday (4 days before Friday).
-		.filter((p) => p.daysUntilOpening <= 4)
-		.at(0)
+	const openingSoon: (typeof enhancedProductions)[0] | undefined =
+		enhancedProductions
+			// Nothing that is already open
+			.filter((p) => p.daysUntilOpening > -1)
+			// Things that open in the next 4 days. Historically, this has always been a
+			// Monday (4 days before Friday).
+			.filter((p) => p.daysUntilOpening <= 4)[0]
 
 	const nowRunning = enhancedProductions.filter((p) => p.daysUntilOpening <= 0)
 
