@@ -6,11 +6,11 @@ image: /images/2017/mamma-mia-fb.png
 ---
 
 <script lang="ts">
-  export let data
   import Markdown from "$components/Markdown.svelte"
-  let imagePath = `/images/2017/${data.yaml.productions["2017"][1].image}`
+  import yaml from "$data/_yaml"
+  let imagePath = `/images/2017/${yaml.productions["2017"][1].image}`
 </script>
 
 ![Mamma Mia logo]({imagePath})
 
-<Markdown source={data.yaml.productions["2017"][1].description} />
+<Markdown source={yaml.productions["2017"][1].description} />

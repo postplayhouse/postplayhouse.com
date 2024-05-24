@@ -6,10 +6,10 @@ image: /images/2016/opening-beauty.jpg
 ---
 
 <script lang="ts">
-  export let data
   import Markdown from "$components/Markdown.svelte"
+  import yaml from "$data/_yaml"
 </script>
 
-<Markdown source={data.yaml.productions["2016"][1].description} />
+<Markdown source={yaml.productions["2016"][1].description} />
 
 ![](/images/2016/opening-beauty.jpg)
