@@ -74,7 +74,7 @@ export const POST = async ({ request }) => {
 		imageDetails = ext
 			? {
 					imageFile: renamedImageFile,
-					imagePath: `static/images/people/${site.season}/${toKebabCase(name)}.${ext}`,
+					imagePath: `src/images/people/${site.season}/${toKebabCase(name)}.${ext}`,
 				}
 			: undefined
 	}

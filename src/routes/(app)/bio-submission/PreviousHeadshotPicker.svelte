@@ -44,7 +44,9 @@ Use this filter and list to find and select your old headshot.
 						? 'bg-emerald-300 dark:bg-emerald-700'
 						: ''}"
 					onclick="{() => selectOption(option)}"
-					>{option.replace("/images/people/", "").replace("/", " - ")}</button
+					>{option
+						.replace("src/images/people/", "")
+						.replace("/", " - ")}</button
 				>
 			</li>
 		{/each}

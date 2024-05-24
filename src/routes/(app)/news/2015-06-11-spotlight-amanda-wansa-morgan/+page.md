@@ -10,7 +10,7 @@ image: /images/2015/amanda-at-piano.jpg
 ---
 
 <div class="captioned-image right">
- <img src="/images/people/2015/amanda-morgan.jpg" alt="Amanda Wansa-Morgan">
+ <enhanced:img src="/src/images/people/2015/amanda-morgan.jpg" alt="Amanda Wansa-Morgan">
  <div class="caption">Amanda Wansa Morgan, Music Director for three of our five shows this summer.</div>
 </div>
 

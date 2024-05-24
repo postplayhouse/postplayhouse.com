@@ -10,7 +10,7 @@ image: /images/2015/sam-cinderella.jpg
 ---
 
 <div class="captioned-image right">
- <img src="/images/people/2015/samantha-matthews.jpg" alt="Samantha Matthews">
+ <enhanced:img src="/src/images/people/2015/samantha-matthews.jpg" alt="Samantha Matthews">
  <div class="caption">Samantha Matthews</div>
 </div>
 

@@ -10,7 +10,7 @@ image: /images/2015/don-fox-wiring.jpg
 ---
 
 <div class="captioned-image right">
-  <img src="/images/people/2015/don-fox.jpg" alt="Don Fox">
+  <enhanced:img src="/src/images/people/2015/don-fox.jpg" alt="Don Fox">
   <div class="caption">Don Fox, lighting and set designer 2015</div>
 </div>
 

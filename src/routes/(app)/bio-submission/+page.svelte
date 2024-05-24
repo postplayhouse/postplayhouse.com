@@ -6,7 +6,6 @@
 	import type { Person } from "$models/Person"
 	import { sanitizedPassphrase } from "$helpers"
 
-	import billMurray from "./bill-murray.jpg"
 	import TextEditor from "./TextEditor.svelte"
 	import PreviousHeadshotPicker from "./PreviousHeadshotPicker.svelte"
 	import type { FormEventHandler } from "svelte/elements"
@@ -15,7 +14,7 @@
 	let { data } = $props()
 
 	const devFormFeedback = dev && true
-	const startOnFormScreen = dev && false
+	const startOnFormScreen = dev && true
 
 	const { disabled, productions: productions_, imageFiles } = data
 	const productions = productions_.map((p) => p.title)
@@ -25,7 +24,7 @@
 	})
 
 	const MAX_WORDS = 125
-	const PLACEHOLDER_IMAGE = billMurray
+	const PLACEHOLDER_IMAGE = "/src/images/people/bill-murray.jpg"
 
 	let lastYearBios = `/who/${site.season - 1}`
 
@@ -34,7 +33,7 @@
 	let firstName = $state("")
 	let lastName = $state("")
 	let image = $state("")
-	let oldImage = $state("")
+	let oldImageSrcPath = $state("")
 	let imageFile: null | File = $state(null)
 	let location = $state("")
 	let bio = $state("")
@@ -121,7 +120,7 @@
 
 	let person = $derived({
 		name: name || "Bill Murray",
-		image: useOldHeadshot ? oldImage : image || PLACEHOLDER_IMAGE,
+		image: useOldHeadshot ? oldImageSrcPath : image || PLACEHOLDER_IMAGE,
 		location: location || "Chicago, IL",
 		roles,
 		staffPositions,
@@ -181,7 +180,7 @@
 		{ name: "emptyBio", invalid: !bio },
 		{ name: "email", invalid: !email },
 		{ name: "image", invalid: !(imageFile || useOldHeadshot) },
-		{ name: "oldImage", invalid: useOldHeadshot && !oldImage },
+		{ name: "oldImage", invalid: useOldHeadshot && !oldImageSrcPath },
 		{
 			name: "longerBioIsShort",
 			invalid: addLongerBio && longerBioWordCount <= MAX_WORDS,
@@ -493,7 +492,7 @@
 		return [
 			`- last_name: ${lastName.trim()}`,
 			`  first_name: ${firstName.trim()}`,
-			`  image_year: ${useOldHeadshot ? oldImage.split("/")[3] : site.season}`,
+			`  image_year: ${useOldHeadshot ? oldImageSrcPath.split("/")[3] : site.season}`,
 			`  location: "${location.trim()}"`,
 			yamlStaffPositions && `  staff_positions:\n${yamlStaffPositions}`,
 			yamlProductionPositions &&
@@ -831,7 +830,7 @@ ${email}
 					<div class="my-4">
 						<PreviousHeadshotPicker
 							options="{imageFiles}"
-							on:optionSelected="{(x) => (oldImage = x.detail)}"
+							on:optionSelected="{(x) => (oldImageSrcPath = x.detail)}"
 						/>
 					</div>
 				{:else}
@@ -1025,7 +1024,7 @@ ${email}
 			<div class="p-4 bg-grey-200 dark:bg-green-200/20 sticky top-0">
 				<h3>Preview (your answers change this preview):</h3>
 				<div class="bg-white dark:bg-black rounded p-4 shadow-lg">
-					<Bio {person} isSubmissionPreview />
+					<Bio {person} />
 				</div>
 
 				{#if validations.length > 0}
