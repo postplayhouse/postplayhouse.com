@@ -1,25 +1,21 @@
----
-# layout: post
-title: Our 2018 Season
-image: /images/2018/2018-season.jpg
-featured: false
----
+<script lang="ts">
+	import SeasonImage from "$components/SeasonImage.svelte"
 
-<img src="/images/2018/2018-season.jpg" alt="" />
-<div>
-  <form
-    style="text-align:center"
-    action="https://postplayhousetickets.universitytickets.com/user_pages/event_listings.asp"
-    method="link"
-  >
-    <button class="online">Get Tickets Now!</button><br />
-  </form>
+	export const title = "Our 2018 Season"
+	export const image = "/images/2018/2018-season.jpg"
+</script>
 
-  <div class="featured-pictures">
-    <div class="picture height-is-300">
-      <img
-        data-switch-image
-        data-switch-image-list="
+<SeasonImage season="2018" imageFile="2018-season.jpg" alt="2017 season ad" />
+
+{#if false}
+	This stuff is not configured as a slideshow anymore...
+
+	<div>
+		<div class="featured-pictures">
+			<div class="picture height-is-300">
+				<img
+					data-switch-image
+					data-switch-image-list="
           Broadway.jpg,
           Dorothy.jpg,
           IMG_0144.JPG,
@@ -49,15 +45,15 @@ featured: false
           IMG_9981.JPG,
           Opening.jpg,
         "
-        src="/images/2018/slideshow/42nd/Broadway.jpg"
-        alt="rotating image from 42nd Street"
-      />
-      <div class="caption">Images from 42nd Street</div>
-    </div>
-    <div class="picture height-is-300">
-      <img
-        data-switch-image
-        data-switch-image-list="
+					src="/images/2018/slideshow/42nd/Broadway.jpg"
+					alt="rotating images from 42nd Street"
+				/>
+				<div class="caption">Images from 42nd Street</div>
+			</div>
+			<div class="picture height-is-300">
+				<img
+					data-switch-image
+					data-switch-image-list="
           IMG_0609.JPG,
           IMG_0800.JPG,
           IMG_1034.JPG,
@@ -90,15 +86,15 @@ featured: false
           IMG_3411.JPG,
           IMG_3822.JPG,
         "
-        src="/images/2018/slideshow/Chitty/IMG_0609.JPG"
-        alt="rotating image from 42nd Street"
-      />
-      <div class="caption">Images from Chitty Chitty Bang Bang</div>
-    </div>
-    <div class="picture height-is-300">
-      <img
-        data-switch-image
-        data-switch-image-list="
+					src="/images/2018/slideshow/Chitty/IMG_0609.JPG"
+					alt="rotating images from 42nd Street"
+				/>
+				<div class="caption">Images from Chitty Chitty Bang Bang</div>
+			</div>
+			<div class="picture height-is-300">
+				<img
+					data-switch-image
+					data-switch-image-list="
           Footloose2.jpg,
           IMG_0089.JPG,
           IMG_6510.JPG,
@@ -147,15 +143,15 @@ featured: false
           IMG_8198.JPG,
           IMG_8794.JPG,
         "
-        src="/images/2018/slideshow/Footloose/Footloose2.jpg"
-        alt="rotating image from 42nd Street"
-      />
-      <div class="caption">Images from Footloose</div>
-    </div>
-    <div class="picture height-is-300">
-      <img
-        data-switch-image
-        data-switch-image-list="
+					src="/images/2018/slideshow/Footloose/Footloose2.jpg"
+					alt="rotating images from 42nd Street"
+				/>
+				<div class="caption">Images from Footloose</div>
+			</div>
+			<div class="picture height-is-300">
+				<img
+					data-switch-image
+					data-switch-image-list="
           IMG_2155.JPG,
           IMG_2482.JPG,
           IMG_2663.JPG,
@@ -169,15 +165,15 @@ featured: false
           IMG_3321.JPG,
           IMG_6212.JPG,
         "
-        src="/images/2018/slideshow/Mermaid/IMG_2155.JPG"
-        alt="rotating image from 42nd Street"
-      />
-      <div class="caption">Images from The Little Mermaid</div>
-    </div>
-    <div class="picture height-is-300">
-      <img
-        data-switch-image
-        data-switch-image-list="
+					src="/images/2018/slideshow/Mermaid/IMG_2155.JPG"
+					alt="rotating images from 42nd Street"
+				/>
+				<div class="caption">Images from The Little Mermaid</div>
+			</div>
+			<div class="picture height-is-300">
+				<img
+					data-switch-image
+					data-switch-image-list="
           Bobby.jpg,
           Catherine.jpg,
           End.jpg,
@@ -192,10 +188,11 @@ featured: false
           Pee.jpg,
           TaylorChuckie.jpg,
         "
-        src="/images/2018/slideshow/Urinetown/Bobby.jpg"
-        alt="rotating image from 42nd Street"
-      />
-      <div class="caption">Images from Urinetown</div>
-    </div>
-  </div>
-</div>
+					src="/images/2018/slideshow/Urinetown/Bobby.jpg"
+					alt="rotating images from 42nd Street"
+				/>
+				<div class="caption">Images from Urinetown</div>
+			</div>
+		</div>
+	</div>
+{/if}

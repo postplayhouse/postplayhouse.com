@@ -7,10 +7,12 @@ image: /images/2017/young-frankenstein-fb.png
 
 <script lang="ts">
   import Markdown from "$components/Markdown.svelte"
+  import SeasonImage from "$components/SeasonImage.svelte"
   import yaml from "$data/_yaml"
-  let imagePath = `/images/2017/${yaml.productions["2017"][4].image}`
+
+  let production = yaml.productions["2017"][4]
 </script>
 
-![Young Frankenstein logo]({imagePath})
+<SeasonImage season="2017" imageFile={production.image} alt="{production.title} logo" />
 
-<Markdown source={yaml.productions["2017"][4].description} />
+<Markdown source={production.description} />

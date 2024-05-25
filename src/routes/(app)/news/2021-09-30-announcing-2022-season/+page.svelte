@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SeasonImage from "$components/SeasonImage.svelte"
 	export const title = "Announcing our 2022 season!"
 </script>
 
@@ -8,8 +9,9 @@
 </p>
 
 <div class="w-2/3 m-auto">
-	<img
-		src="/images/2022/full-season.jpg"
+	<SeasonImage
+		season="2022"
+		imageFile="full-season.jpg"
 		alt="2022 season logos: The Sound of Music, Damn Yankees, Chuch Basement Ladies, Desperate Measures, and Something Rotten!"
 	/>
 </div>

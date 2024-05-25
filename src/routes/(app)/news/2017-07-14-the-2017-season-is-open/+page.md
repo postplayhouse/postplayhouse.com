@@ -5,8 +5,8 @@ featured: false
 image: /images/2017/chadrad-ad.png
 ---
 
-<form action="https://postplayhousetickets.universitytickets.com/user_pages/event_listings.asp" method="link" style="text-align: center;">
-  <button class="online">Get Your Tickets Now!</button>
-</form>
+<script lang="ts">
+  import SeasonImage from "$components/SeasonImage.svelte"
+</script>
 
-<img src="/images/2017/chadrad-ad.png" style="display: block; margin: auto;" />
+<SeasonImage season="2017" imageFile="chadrad-ad.png" alt="2017 season ad" />

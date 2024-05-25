@@ -5,12 +5,17 @@ excerpt: "Returning from last year, Don Fox lights up our lives. And this year, 
 image: /images/2015/don-fox-wiring.jpg
 ---
 
+<script>
+  import PersonImage from "$components/PersonImage.svelte"
+  import SeasonImage from "$components/SeasonImage.svelte"
+</script>
+
 <div class="preface">Don Fox is returning to the Post Playhouse for his second season in a row. Last year, Don created some amazing and moving lighting designs for our entire summer season. This year, he is taking on an even bigger set of responsibilities by designing <em>both</em> our lights and sets for the whole season. He has got a ton of work ahead of him, but still was able to take the time to answer some questions.</div>
 
 ---
 
 <div class="captioned-image right">
-  <enhanced:img src="/src/images/people/2015/don-fox.jpg" alt="Don Fox">
+  <PersonImage partialPath="2015/don-fox.jpg" alt="Don Fox"/>
   <div class="caption">Don Fox, lighting and set designer 2015</div>
 </div>
 
@@ -43,7 +48,7 @@ China, Europe. Some in Canada but it was with the Moscow Ballet’s _Nutcracker_
 Cycling, camping, music, playing board and card games, hiking, skiing, good wine and cheese, and hanging out with my awesome cat, Amarillo.
 
 <div class="captioned-image six left">
-  <img src="/images/2014/my-way-lighting.jpg" alt="Don Fox">
+  <SeasonImage season="2014" imageFile="my-way-lighting.jpg" alt="Don Fox"/>
   <div class="caption">2014's <em>My Way</em>&mdash;Don Fox's first design for Post Playhouse</div>
 </div>
 
@@ -60,7 +65,7 @@ Yes, in one fashion or another. I am mostly a freelance lighting designer, altho
 I’ve always been a lighting geek. When I was a little kid I remember going to the Colosseum in Denver to see the Ice Capades. I spent nearly the entire performance riveted on the follow spots smoothly swooping along with the skaters and other lighting effects. When I got older I was the awkward guy at the disco in the corner staring at the computerized lighting...I did sound and lighting for music and dance events in Austin, at first, but after 9-11 I moved all of my gear into a theatre in San Antonio and really started working as a theatre person then, doing whatever needed doing at the old Woodlawn and Cameo Theatre spaces.
 
 <div class="captioned-image right six">
-  <img src="/images/2015/don-fox-wiring.jpg" alt="Don Fox">
+  <SeasonImage season="2015" imageFile="don-fox-wiring.jpg" alt="Don Fox"/>
   <div class="caption">A Fox in his natural habitat. <br>(Don wires up the light board for the season)</div>
 </div>
 
