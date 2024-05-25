@@ -9,6 +9,7 @@
 	import CastList from "$components/program/CastList.svelte"
 	import ProductionList from "$components/program/ProductionList.svelte"
 	import { sortPeople, personIsInGroup, slugify } from "$helpers"
+	import PersonImage from "$components/PersonImage.svelte"
 
 	let { data } = $props()
 
@@ -95,10 +96,10 @@
 	{#each sortedPeople.filter(notInBoard) as person}
 		<div class="my-8" id="{personSlug(person)}">
 			{#if notInAdditional(person)}
-				<img
-					src="{person.image}"
+				<PersonImage
+					partialPath="{person.image}"
 					alt="{person.image ? '' : 'missing '}picture of {person.name}"
-					class="max-w-sm max-h-96 m-auto min-h-64 block"
+					class="max-w-sm object-contain max-h-96 m-auto min-h-64 block"
 				/>
 			{/if}
 
@@ -163,8 +164,8 @@
 
 	{#each sortedPeople.filter(inBoard) as person}
 		<div class="helvetica">
-			<img
-				src="{person.image}"
+			<PersonImage
+				partialPath="{person.image}"
 				alt="{person.image ? '' : 'missing '}picture of {person.name}"
 				class="max-w-sm max-h-96 m-auto min-h-64 block"
 			/>
