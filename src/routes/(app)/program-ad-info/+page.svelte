@@ -35,7 +35,7 @@ We will refer to the following terminology in the rest of this article:
 Your ad is purchased at one of four sizes: Full Page, Half Page, 1/4 Page, or
 1/8 Page. The dimensions are explained in the following image:
 
-![chart of ad dimensions](/g/images/perennials/ad-dimensions.2.png)
+![chart of ad dimensions](/images/perennials/ad-dimensions.2.png)
 
 > Page Dimensions:  
 > 8.375” x 10.875”
