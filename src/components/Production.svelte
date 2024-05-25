@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { formatDate } from "$helpers"
+	import { findEnhancedSeasonImage, type Picture } from "$helpers/enhancedImg"
 
 	import Markdown from "./Markdown.svelte"
 	import MaybeImage from "./MaybeImage.svelte"
 	import MaybeLink from "./MaybeLink.svelte"
+	import ProductionImage from "./SeasonImage.svelte"
 
 	type Props = {
 		production: Production | SpecialEvent | Series
@@ -12,8 +14,13 @@
 
 	let { production, season }: Props = $props()
 
-	const imagePath = `/g/images/${season}/${production.image}`
-	const fallbackImagePath = `/images/${season}/${production.image}`
+	const enhancedImage = $derived(
+		production &&
+			(findEnhancedSeasonImage(production.image) as
+				| (string & Picture)
+				| undefined),
+	)
+	const image = $derived(production && production.image)
 
 	function isSeries(
 		production: Production | SpecialEvent | Series,
@@ -24,10 +31,17 @@
 
 <article class="mt-16 flow-root">
 	<header>
-		{#if production.image}
+		{#if enhancedImage}
+			<ProductionImage
+				class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl bg-white/70"
+				imageFile="{production.image}"
+				{season}
+				alt="Show Logo for {production.title}"
+			></ProductionImage>
+		{:else if image}
 			<MaybeImage
 				class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl bg-white/70"
-				src="{[imagePath, fallbackImagePath]}"
+				src="{[image]}"
 				alt="Show Logo for {production.title}"
 			/>
 		{/if}

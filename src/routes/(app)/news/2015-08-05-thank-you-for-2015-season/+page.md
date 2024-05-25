@@ -4,6 +4,11 @@ title: Thank you for an amazing 2015 season!
 excerpt: Thanks to everyone for our __best season ever__! Really. View this article and have a look.
 ---
 
+<script>
+  import PersonImage from "$components/PersonImage.svelte"
+  import SeasonImage from "$components/SeasonImage.svelte"
+</script>
+
 <link rel="stylesheet" type="text/css" href="/css/thank-you-2015.css">
 <div class="full thank-you-2015">
   <h2 class="font-uber">Thank You!</h2>
@@ -17,7 +22,7 @@ excerpt: Thanks to everyone for our __best season ever__! Really. View this arti
       </p>
 
       <div class="captioned-image">
-        <img src="/images/2015/sizes/small/moni-rainy-dublin-morning.jpg" alt="" />
+        <SeasonImage season="2015" imageFile="sizes/small/moni-rainy-dublin-morning.jpg" alt="" />
         <div class="caption">It's a rainy Dublin Mornin' during <em>A Man of No Importance</em></div>
       </div>
 
@@ -25,7 +30,7 @@ excerpt: Thanks to everyone for our __best season ever__! Really. View this arti
 
     <div class="right six">
       <div class="captioned-image">
-        <img src="/images/2015/sizes/small/all-shook-up-garage.jpg" alt="" />
+        <SeasonImage season="2015" imageFile="sizes/small/all-shook-up-garage.jpg" alt="" />
         <div class="caption">Chad and Natalie dreaming big in <em>All Shook Up</em></div>
       </div>
 
@@ -43,7 +48,7 @@ excerpt: Thanks to everyone for our __best season ever__! Really. View this arti
       </p>
 
       <div class="captioned-image">
-        <img src="/images/2015/sizes/small/cinderella-end-of-ball.jpg" alt="" />
+        <SeasonImage season="2015" imageFile="sizes/small/cinderella-end-of-ball.jpg" alt="" />
         <div class="caption">The prince's parents watch fondly as he falls in love during <em>Rodgers and Hammerstein's Cinderella</em></div>
       </div>
 
@@ -52,7 +57,7 @@ excerpt: Thanks to everyone for our __best season ever__! Really. View this arti
 
     <div class="right six">
       <h4>Staying on budget is tough, but we nailed it</h4>
-      <img src="/images/2015/budget-expenses.png" alt="" />
+      <SeasonImage season="2015" imageFile="budget-expenses.png" alt="" />
       <p>
         We set budgetary goals each year for all areas of both income and spending. This year, all areas of payroll, production costs, royalties and administrative spending met our budget. On the income side of things, we met our estimated budget for grants, donations and contributions.
       </p>
@@ -65,7 +70,7 @@ excerpt: Thanks to everyone for our __best season ever__! Really. View this arti
     <h3>But we are most proud of the <em>Art</em>.</h3>
 
     <div class="captioned-image left six">
-      <img src="/images/2015/sizes/small/texas-gutter-talk.jpg" alt="" />
+      <SeasonImage season="2015" imageFile="sizes/small/texas-gutter-talk.jpg" alt="" />
       <div class="caption">The mayor scolds the sheriff in <em>The Best Little Whorehouse in Texas</em></div>
     </div>
 
@@ -84,7 +89,7 @@ excerpt: Thanks to everyone for our __best season ever__! Really. View this arti
     <h2>Thank you for a great summer!</h2>
 
     <div class="captioned-image">
-      <img src="/images/2015/grease-bows.jpg" alt="" />
+      <SeasonImage season="2015" imageFile="grease-bows.jpg" alt="" />
       <div class="caption">The cast of <em>Grease</em></div>
     </div>
 

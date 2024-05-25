@@ -7,19 +7,16 @@ excerpt: "Post Playhouse will be partnering with The Regional Program for the De
 excerpt_image: https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Deafness_and_hard_of_hearing_symbol.png/300px-Deafness_and_hard_of_hearing_symbol.png
 ---
 
-<style>
+<script>
+  import SeasonImage from "$components/SeasonImage.svelte"
+  import yaml from "$data/_yaml"
 
-  .hearing-impaired-images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  let production = yaml.productions["2017"][0]
+</script>
 
-</style>
-
-<div class="hearing-impaired-images">
+<div class="flex gap-8 justify-center items-center">
   <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Deafness_and_hard_of_hearing_symbol.png/300px-Deafness_and_hard_of_hearing_symbol.png" /></div>
-  <!-- <div><img src="/images/2017/{site.data.productions['2017'][0].image}" /></div> -->
+  <div><SeasonImage season="2017" imageFile={production.image}/></div>
 </div>
 
 Post Playhouse will be partnering with The Regional Program for the Deaf and Hard-of-Hearing to present a signed performance of _Shrek: The Musical_ on Wednesday July 12, 2017 at 2:00pm. Eighty-one of the people who will be attending will be either deaf or extremely hard-of-hearing and, for the most part, they will be young students. The group will be accompanied by two signers who will stand on the side of the stage and sign the dialogue and songs for those in attendance.

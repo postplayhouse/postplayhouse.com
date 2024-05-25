@@ -5,12 +5,17 @@ excerpt: "Returning for a second year, Samantha is becoming our regular Rogers a
 image: /images/2015/sam-cinderella.jpg
 ---
 
+<script>
+  import PersonImage from "$components/PersonImage.svelte"
+  import SeasonImage from "$components/SeasonImage.svelte"
+</script>
+
 <div class="preface">Many of our patrons will recognize Samantha from last year's <em>The Sound of Music</em>. This year, she leads the cast of <em>Cinderella</em> into a magical tale of love and dreaming big dreams. </div>
 
 ---
 
 <div class="captioned-image right">
- <enhanced:img src="/src/images/people/2015/samantha-matthews.jpg" alt="Samantha Matthews">
+ <PersonImage partialPath="2015/samantha-matthews.jpg" alt="Samantha Matthews" />
  <div class="caption">Samantha Matthews</div>
 </div>
 
@@ -37,7 +42,7 @@ If you ask anyone who was here when I got here, YES. But it was the best kind of
 I feel like I'm cheating saying this because I still haven't gotten used to it, but snakes. I hate snakes. Last year I was lucky enough to mostly avoid them and just see photos of other people's run ins, but I fear this year I may not have the same luck. If I even hear a rustle in the grass that could have any possibility of being a snake, I'm probably half a mile down the road running.
 
 <div class="captioned-image">
- <img src="/images/2015/jorie-and-sam-cinderella.jpg" alt="Sam and jorie rehearsing">
+ <SeasonImage season="2015" imageFile="jorie-and-sam-cinderella.jpg" alt="Sam and jorie rehearsing" />
  <div class="caption">Samantha rehearses a scene with Jorie Janeway in <em>Cinderella</em>.</div>
 </div>
 
@@ -55,7 +60,7 @@ NYC, all over Connecticut, Massachusetts, Western Illinois, Chicago, and NEBRASK
 I also spent a semester in college studying theater in London, England.
 
 <div class="captioned-image four right">
- <img src="/images/2015/sam-cinderella.jpg" alt="Sam rehearsing A Lovely Night">
+ <SeasonImage season="2015" imageFile="sam-cinderella.jpg" alt="Sam rehearsing A Lovely Night" />
  <div class="caption">Samantha rehearses "A Lovely Night" in <em>Cinderella</em>.</div>
 </div>
 
@@ -76,7 +81,7 @@ I love changing it up!!!! While most of my dream roles fall into my type, there'
 I'm excited for all the shows for different reasons, but I'd be lying if I didn't say Cinderella. What girl doesn't secretly dream of playing a princess all summer?
 
 <div class="captioned-image six left">
- <img src="/images/2014/sound-of-music-maria-children.jpg" alt="Sam as Maria in The Sound of Music">
+ <SeasonImage season="2014" imageFile="sound-of-music-maria-children.jpg" alt="Sam as Maria in The Sound of Music" />
  <div class="caption">Samantha with the Von Trapp children as Maria in last year's <em>The Sound of Music</em>.</div>
 </div>
 

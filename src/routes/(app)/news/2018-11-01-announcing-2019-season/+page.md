@@ -5,13 +5,8 @@ image: /images/2019/2019-season.jpg
 single_featured: true
 ---
 
-<img src="/images/2019/2019-season.jpg" alt="" />
-<div>
-  <form
-    style="text-align:center"
-    action="https://postplayhousetickets.universitytickets.com/user_pages/event_listings.asp"
-    method="link"
-  >
-    <button class="online">Get Tickets Now!</button><br />
-  </form>
-</div>
+<script lang="ts">
+	import SeasonImage from "$components/SeasonImage.svelte"
+</script>
+
+<SeasonImage season="2019" imageFile="2019-season.jpg" alt="2019 season ad" />

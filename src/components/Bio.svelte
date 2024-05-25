@@ -1,20 +1,9 @@
-<script context="module" lang="ts">
+<script lang="ts">
+	import uniq from "lodash-es/uniq.js"
+	import flatten from "lodash-es/flatten.js"
+	import Markdown from "./Markdown.svelte"
 	import type { Person } from "$models/Person"
-
-	/**
-	 * Grabbed this from imagetools-core/dist/types.d.ts
-	 */
-	interface Picture {
-		/**
-		 * Key is format. Value is srcset.
-		 */
-		sources: Record<string, string>
-		img: {
-			src: string
-			w: number
-			h: number
-		}
-	}
+	import PersonImage from "./PersonImage.svelte"
 
 	type Props = {
 		hideProductionRoles?: boolean
@@ -32,36 +21,6 @@
 			Partial<Pick<Person, "slug">>
 	}
 
-	const imageModules = import.meta.glob<{ default: Picture }>(
-		`/src/images/people/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: "450;900",
-				withoutEnlargement: true,
-			},
-		},
-	)
-
-	const dict = Object.entries(imageModules)
-
-	function findImageInBio(partialImagePath: string | undefined) {
-		if (!partialImagePath) return
-
-		const possibleModule = dict.find(([path]) =>
-			path.includes(partialImagePath),
-		)?.[1]
-
-		return possibleModule?.default
-	}
-</script>
-
-<script lang="ts">
-	import uniq from "lodash-es/uniq.js"
-	import flatten from "lodash-es/flatten.js"
-	import Markdown from "./Markdown.svelte"
-
 	let { hideProductionRoles, person }: Props = $props()
 
 	// Pivot productionName and positions for localPerson.productionPositions
@@ -76,24 +35,13 @@
 				.map((po) => po.productionName),
 		}),
 	)
-
-	const enhancedImage = $derived(
-		person && (findImageInBio(person.image) as (string & Picture) | undefined),
-	)
-	const image = $derived(person && person.image)
 </script>
 
 <div class="flow-root mb-8" id="{person.slug}">
-	{#if enhancedImage}
-		<enhanced:img
+	{#if person && person.image}
+		<PersonImage
 			class="block w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2 border"
-			src="{enhancedImage}"
-			alt="portrait of {person.name}"
-		></enhanced:img>
-	{:else if image}
-		<img
-			class="block w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2 border"
-			src="{image}"
+			partialPath="{person.image}"
 			alt="portrait of {person.name}"
 		/>
 	{:else}
