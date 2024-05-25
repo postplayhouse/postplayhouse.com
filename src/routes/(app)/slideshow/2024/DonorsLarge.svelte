@@ -46,7 +46,7 @@
 				"H&R Block of Chadron",
 				"Harris Sales Company",
 				"Jack Isaacs",
-				"Kelley Bean Compnay",
+				"Kelley Bean Company",
 				"Jim and Nancy Kerr",
 				"Martin Drug & Mercantile",
 				"Phillips F & T Inc.",
