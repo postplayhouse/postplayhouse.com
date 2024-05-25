@@ -5,9 +5,15 @@ image: /images/2018/2018-season.jpg
 featured: false
 ---
 
-<p style="text-align: center">Thank you to all our amazing patrons and supporters for making our 2018 season truly magical!</p>
+<script>
+  import SeasonImage from "$components/SeasonImage.svelte"
+</script>
 
-<img style="max-width: 100%; width: 400px; margin: auto; display: block" src="/images/2018/2018-season.jpg" alt="all season artwork combined">
+Thank you to all our amazing patrons and supporters for making our 2018 season truly magical!
+
+<SeasonImage style="max-width: 100%; width: 400px; margin: auto; display: block" season="2018" imageFile="2018-season.jpg" alt="all season artwork combined" />
+
+{#if false}
 
 <div class="featured-pictures" style="clear: both">
   <div class="picture height-is-300">
@@ -42,7 +48,7 @@ featured: false
         IMG_9981.JPG,
         Opening.jpg,
       "
-      src="/images/2018/slideshow/42nd/Broadway.jpg" alt="rotating image from 42nd Street"/>
+      src="/images/2018/slideshow/42nd/Broadway.jpg" alt="rotating images from 42nd Street"/>
     <div class="caption">Images from 42nd Street</div>
   </div>
   <div class="picture height-is-300">
@@ -80,7 +86,7 @@ featured: false
         IMG_3411.JPG,
         IMG_3822.JPG,
       "
-      src="/images/2018/slideshow/Chitty/IMG_0609.JPG" alt="rotating image from 42nd Street"/>
+      src="/images/2018/slideshow/Chitty/IMG_0609.JPG" alt="rotating images from 42nd Street"/>
     <div class="caption">Images from Chitty Chitty Bang Bang</div>
   </div>
   <div class="picture height-is-300">
@@ -134,7 +140,7 @@ featured: false
         IMG_8198.JPG,
         IMG_8794.JPG,
       "
-  src="/images/2018/slideshow/Footloose/Footloose2.jpg" alt="rotating image from 42nd Street"/>
+  src="/images/2018/slideshow/Footloose/Footloose2.jpg" alt="rotating images from 42nd Street"/>
     <div class="caption">Images from Footloose</div>
   </div>
   <div class="picture height-is-300">
@@ -153,7 +159,7 @@ featured: false
         IMG_3321.JPG,
         IMG_6212.JPG,
       "
-      src="/images/2018/slideshow/Mermaid/IMG_2155.JPG" alt="rotating image from 42nd Street"/>
+      src="/images/2018/slideshow/Mermaid/IMG_2155.JPG" alt="rotating images from 42nd Street"/>
     <div class="caption">Images from The Little Mermaid</div>
   </div>
   <div class="picture height-is-300">
@@ -173,7 +179,8 @@ featured: false
         Pee.jpg,
         TaylorChuckie.jpg,
       "
-      src="/images/2018/slideshow/Urinetown/Bobby.jpg" alt="rotating image from 42nd Street"/>
+      src="/images/2018/slideshow/Urinetown/Bobby.jpg" alt="rotating images from 42nd Street"/>
     <div class="caption">Images from Urinetown</div>
   </div>
 </div>
+{/if}

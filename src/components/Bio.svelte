@@ -2,12 +2,11 @@
 	import uniq from "lodash-es/uniq.js"
 	import flatten from "lodash-es/flatten.js"
 	import Markdown from "./Markdown.svelte"
-	import MaybeImage from "./MaybeImage.svelte"
 	import type { Person } from "$models/Person"
+	import PersonImage from "./PersonImage.svelte"
 
 	type Props = {
 		hideProductionRoles?: boolean
-		isSubmissionPreview?: boolean
 		person: Pick<
 			Person,
 			| "productionPositions"
@@ -22,7 +21,7 @@
 			Partial<Pick<Person, "slug">>
 	}
 
-	let { hideProductionRoles, isSubmissionPreview, person }: Props = $props()
+	let { hideProductionRoles, person }: Props = $props()
 
 	// Pivot productionName and positions for localPerson.productionPositions
 	const productionPositions: Array<{
@@ -36,30 +35,20 @@
 				.map((po) => po.productionName),
 		}),
 	)
-
-	const optimizedVersion = (str: string) => "/g" + str.split(".").join("-800.")
 </script>
 
 <div class="flow-root mb-8" id="{person.slug}">
-	{#if person.image}
-		{#key person.image}
-			<MaybeImage
-				class="block w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2 border"
-				src="{person.image.startsWith('data:')
-					? [person.image]
-					: [optimizedVersion(person.image), person.image]}"
-				alt="portrait of {person.name}"
-			/>
-		{/key}
+	{#if person && person.image}
+		<PersonImage
+			class="block w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2 border"
+			partialPath="{person.image}"
+			alt="portrait of {person.name}"
+		/>
 	{:else}
 		<div
 			class="flex w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2 min-h-64 border-4 border-neutral-300 items-center justify-center"
 		>
-			{#if isSubmissionPreview}
-				(Using old headshot)
-			{:else}
-				({person.name} not pictured)
-			{/if}
+			({person.name} not pictured)
 		</div>
 	{/if}
 

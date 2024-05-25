@@ -29,8 +29,6 @@ function getImagesFromDirectory(directoryPath: string): string[] {
 
 export async function load() {
 	return {
-		imageFiles: getImagesFromDirectory("static/images/people").map((path) =>
-			path.replace("static", ""),
-		),
+		imageFiles: getImagesFromDirectory("src/images/people"),
 	}
 }

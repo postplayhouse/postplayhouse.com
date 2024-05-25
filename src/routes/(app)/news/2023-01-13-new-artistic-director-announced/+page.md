@@ -4,12 +4,16 @@ title: New Producing Artistic Director, Andy Meyers
 featured: false
 ---
 
+<script>
+  import SeasonImage from "$components/SeasonImage.svelte"
+</script>
+
 Post Playhouse is pleased to announce the hiring of a new Producing Artistic
 Director, Andy Meyers, who will begin his tenure working with us to present our
 2023 season.
 
 <div class="m-auto max-w-sm md:mr-4 md:mb-2 md:float-left">
-  <img src="/images/2023/andy-meyers.jpg" alt="Andy Meyers" class="m-auto">
+  <SeasonImage season="2023" imageFile="andy-meyers.jpg" alt="Andy Meyers" class="m-auto" />
 </div>
 
 Andy Meyers is an award-winning actor, director, playwright, and arts

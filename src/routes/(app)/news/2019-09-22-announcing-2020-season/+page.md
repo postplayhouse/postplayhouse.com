@@ -6,9 +6,7 @@ single_featured: true
 ---
 
 <script lang="ts">
-  import site from "$data/site"
+  import SeasonImage from "$components/SeasonImage.svelte"
 </script>
 
-![2020 Season Production logos](/images/2020/full-season.jpg)
-
-<p class="text-center m-4">Tickets are on sale now!</p>
+<SeasonImage season="2020" imageFile="full-season.jpg" alt="2020 Season Production logos" />

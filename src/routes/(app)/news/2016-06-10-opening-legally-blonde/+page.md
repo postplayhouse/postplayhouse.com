@@ -7,13 +7,16 @@ image: /images/2016/opening-blonde.jpg
 
 <script lang="ts">
   import Markdown from "$components/Markdown.svelte"
+  import SeasonImage from "$components/SeasonImage.svelte"
   import yaml from "$data/_yaml"
+
+  let production = yaml.productions["2016"][3]
 </script>
 
-<Markdown source={yaml.productions["2016"][3].description} />
+<Markdown source={production.description} />
 
-![](/images/2016/opening-blonde.jpg)
+<SeasonImage season="2016" imageFile={production.image} alt="{production.title} logo" />
 
 ## Playing this summer:
 
-![](/images/2016/seasonslide2016.jpg)
+<SeasonImage season="2016" imageFile="seasonslide2016.jpg" alt="2016 season ad" />
