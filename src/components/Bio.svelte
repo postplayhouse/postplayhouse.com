@@ -98,7 +98,13 @@
 						<li class="pl-4 -text-indent-4">
 							{positionObj.productionName}
 							&mdash;
-							{positionObj.positions.join(", ")}
+							{#if typeof positionObj.positions === "string"}
+								<!-- 2019 and earlier -->
+								{positionObj.positions}
+							{:else}
+								<!-- 2020 and later -->
+								{positionObj.positions.join(", ")}
+							{/if}
 						</li>
 					{/each}
 				{/if}
