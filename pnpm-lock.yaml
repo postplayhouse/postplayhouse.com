@@ -41,6 +41,9 @@ importers:
       prosemirror-view:
         specifier: ^1.32.7
         version: 1.33.4
+      vite-imagetools:
+        specifier: ^7.0.2
+        version: 7.0.2(rollup@4.14.2)
     devDependencies:
       '@octokit/rest':
         specifier: ^20.0.2
@@ -99,6 +102,9 @@ importers:
       eslint-plugin-svelte:
         specifier: ^2.36.0
         version: 2.37.0(eslint@9.0.0)(svelte@5.0.0-next.136)
+      estree-walker:
+        specifier: ^3.0.3
+        version: 3.0.3
       globals:
         specifier: ^15.0.0
         version: 15.0.0
@@ -111,6 +117,9 @@ importers:
       lint-staged:
         specifier: ^15.2.1
         version: 15.2.2
+      magic-string:
+        specifier: ^0.30.10
+        version: 0.30.10
       mdsvex:
         specifier: ^0.11.0
         version: 0.11.0(svelte@5.0.0-next.136)
@@ -138,6 +147,9 @@ importers:
       svelte-check:
         specifier: ^3.6.0
         version: 3.6.9(@babel/core@7.18.5)(postcss-load-config@5.0.3(jiti@1.21.0)(postcss@8.4.38))(postcss@8.4.38)(svelte@5.0.0-next.136)
+      svelte-parse-markup:
+        specifier: ^0.1.4
+        version: 0.1.4(svelte@5.0.0-next.136)
       tailwindcss:
         specifier: ^3.3.6
         version: 3.4.3
@@ -2418,12 +2430,11 @@ packages:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
     engines: {node: '>=12'}
 
+  magic-string@0.30.10:
+    resolution: {integrity: sha512-iIRwTIf0QKV3UAnYK4PU8uiEc4SRh5jX0mwpIwETPpHdhVM4f53RSwS/vXvN1JhGX+Cs7B8qIq3d6AH49O5fAQ==}
+
   magic-string@0.30.7:
     resolution: {integrity: sha512-8vBuFF/I/+OSLRmdf2wwFCJCz+nSn0m6DPvGH1fS/KiQoSaR+sETbov0eIk9KhEKy8CYqIkIAnbohxT/4H0kuA==}
-    engines: {node: '>=12'}
-
-  magic-string@0.30.9:
-    resolution: {integrity: sha512-S1+hd+dIrC8EZqKyT9DstTH/0Z+f76kmmvZnkfQVmOpDEF9iVgdYif3Q/pIWHmCoo59bQVGW0kVL3e2nl+9+Sw==}
     engines: {node: '>=12'}
 
   magicast@0.2.8:
@@ -4527,7 +4538,7 @@ snapshots:
   '@rollup/plugin-replace@5.0.5(rollup@4.14.2)':
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.14.2)
-      magic-string: 0.30.9
+      magic-string: 0.30.10
     optionalDependencies:
       rollup: 4.14.2
 
@@ -4731,7 +4742,7 @@ snapshots:
       '@sentry/core': 8.0.0
       '@sentry/types': 8.0.0
       '@sentry/utils': 8.0.0
-      magic-string: 0.30.9
+      magic-string: 0.30.10
       svelte: 5.0.0-next.136
 
   '@sentry/sveltekit@8.0.0(@opentelemetry/api@1.8.0)(@opentelemetry/core@1.24.1(@opentelemetry/api@1.8.0))(@opentelemetry/instrumentation@0.51.1(@opentelemetry/api@1.8.0))(@opentelemetry/sdk-trace-base@1.24.1(@opentelemetry/api@1.8.0))(@opentelemetry/semantic-conventions@1.24.1)(@sveltejs/kit@2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@5.0.0-next.136)(vite@5.2.8(@types/node@16.9.1)))(svelte@5.0.0-next.136)(vite@5.2.8(@types/node@16.9.1)))(svelte@5.0.0-next.136)':
@@ -4782,7 +4793,7 @@ snapshots:
 
   '@sveltejs/enhanced-img@0.2.0(rollup@4.14.2)(svelte@5.0.0-next.136)':
     dependencies:
-      magic-string: 0.30.9
+      magic-string: 0.30.10
       svelte-parse-markup: 0.1.4(svelte@5.0.0-next.136)
       vite-imagetools: 7.0.2(rollup@4.14.2)
     transitivePeerDependencies:
@@ -4798,7 +4809,7 @@ snapshots:
       esm-env: 1.0.0
       import-meta-resolve: 4.0.0
       kleur: 4.1.5
-      magic-string: 0.30.9
+      magic-string: 0.30.10
       mrmime: 2.0.0
       sade: 1.8.1
       set-cookie-parser: 2.6.0
@@ -4822,7 +4833,7 @@ snapshots:
       debug: 4.3.4
       deepmerge: 4.3.1
       kleur: 4.1.5
-      magic-string: 0.30.9
+      magic-string: 0.30.10
       svelte: 5.0.0-next.136
       svelte-hmr: 0.16.0(svelte@5.0.0-next.136)
       vite: 5.2.8(@types/node@16.9.1)
@@ -5081,7 +5092,7 @@ snapshots:
 
   '@vitest/snapshot@1.5.0':
     dependencies:
-      magic-string: 0.30.9
+      magic-string: 0.30.10
       pathe: 1.1.2
       pretty-format: 29.7.0
 
@@ -6150,11 +6161,11 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  magic-string@0.30.7:
+  magic-string@0.30.10:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  magic-string@0.30.9:
+  magic-string@0.30.7:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
 
@@ -7054,7 +7065,7 @@ snapshots:
     dependencies:
       '@types/pug': 2.0.10
       detect-indent: 6.1.0
-      magic-string: 0.30.9
+      magic-string: 0.30.10
       sorcery: 0.11.0
       strip-indent: 3.0.0
       svelte: 5.0.0-next.136
@@ -7077,7 +7088,7 @@ snapshots:
       esrap: 1.2.2
       is-reference: 3.0.2
       locate-character: 3.0.0
-      magic-string: 0.30.9
+      magic-string: 0.30.10
       zimmerframe: 1.1.2
 
   svgo@3.2.0:
@@ -7302,7 +7313,7 @@ snapshots:
       debug: 4.3.4
       execa: 8.0.1
       local-pkg: 0.5.0
-      magic-string: 0.30.9
+      magic-string: 0.30.10
       pathe: 1.1.2
       picocolors: 1.0.0
       std-env: 3.7.0

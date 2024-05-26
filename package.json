@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"clean": "rm -rf ./node_modules/.cache",
+		"clean": "rm -rf ./node_modules/.cache/imagetools",
 		"copyFolder": "./scripts/copy_folder.cjs",
 		"useCache": "npm run copyFolder -- --merge /opt/build/cache/hc_my_cache/node_modules/.cache --to node_modules/.cache",
 		"fillCache": "npm run copyFolder -- --save node_modules/.cache --to /opt/build/cache/hc_my_cache/node_modules/.cache",
@@ -36,7 +36,8 @@
 		"prosemirror-example-setup": "^1.2.2",
 		"prosemirror-markdown": "^1.12.0",
 		"prosemirror-state": "^1.4.3",
-		"prosemirror-view": "^1.32.7"
+		"prosemirror-view": "^1.32.7",
+		"vite-imagetools": "^7.0.2"
 	},
 	"devDependencies": {
 		"@octokit/rest": "^20.0.2",
@@ -58,10 +59,12 @@
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.36.0",
+		"estree-walker": "^3.0.3",
 		"globals": "^15.0.0",
 		"gray-matter": "^4.0.3",
 		"husky": "^9.0.10",
 		"lint-staged": "^15.2.1",
+		"magic-string": "^0.30.10",
 		"mdsvex": "^0.11.0",
 		"postcss": "^8.4.32",
 		"postcss-load-config": "^5.0.2",
@@ -71,6 +74,7 @@
 		"rehype-slug": "^6.0.0",
 		"svelte": "5.0.0-next.136",
 		"svelte-check": "^3.6.0",
+		"svelte-parse-markup": "^0.1.4",
 		"tailwindcss": "^3.3.6",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",

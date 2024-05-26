@@ -3,7 +3,7 @@ import { defineConfig } from "vitest/config"
 import replacePlugin from "@rollup/plugin-replace"
 import { watchAndRun } from "vite-plugin-watch-and-run"
 import { sentrySvelteKit } from "@sentry/sveltekit"
-import { enhancedImages } from "@sveltejs/enhanced-img"
+import { enhancedImages } from "./scripts/enhancedImg"
 
 export default defineConfig({
 	plugins: [
