@@ -27,17 +27,17 @@
 	groupedPeople["Board"] = sortBoardMembers(groupedPeople["Board"])
 </script>
 
-{#each groupNames as groupName}
-	{#if year === "2020"}
-		<p>
-			<a href="/news/2020-03-25-season-cancelled" class="link-green">
-				Our 2020 Season was sadly cancelled.
-			</a>
-			Preserved here are the bios of the people we were really looking forward to
-			working with.
-		</p>
-	{/if}
+{#if year === "2020"}
+	<p>
+		<a href="/news/2020-03-25-season-cancelled" class="link-green">
+			Our 2020 Season was sadly cancelled.
+		</a>
+		Preserved here are the bios of the people we were really looking forward to working
+		with.
+	</p>
+{/if}
 
+{#each groupNames as groupName}
 	{#if groupedPeople[groupName].length}
 		<h2
 			id="{groupName.toLowerCase().replace(/[^a-z]/g, '-')}"
