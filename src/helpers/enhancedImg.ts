@@ -19,6 +19,7 @@ const peopleImageModules = import.meta.glob<{ default: Picture }>(
 		eager: true,
 		query: {
 			enhanced: true,
+			noRotate: true, // workaround via my fork of enhanced:img
 			w: "400;800",
 			withoutEnlargement: true,
 		},
@@ -43,6 +44,7 @@ const seasonImageModules = import.meta.glob<{ default: Picture }>(
 		eager: true,
 		query: {
 			enhanced: true,
+			noRotate: true, // workaround via my fork of enhanced:img
 			w: "500;1000;1500",
 			withoutEnlargement: true,
 		},
