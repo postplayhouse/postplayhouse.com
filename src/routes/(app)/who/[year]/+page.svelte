@@ -37,6 +37,16 @@
 	</p>
 {/if}
 
+{#if year === "2021"}
+	<p>
+		<a href="/news/2021-03-15-cancelling-2021-season/" class="link-green">
+			Our 2021 Season was sadly cancelled.
+		</a>
+		These few bios reflect the team that were on board and ready, but we cancelled
+		before auditions, so no actors were cast.
+	</p>
+{/if}
+
 {#each groupNames as groupName}
 	{#if groupedPeople[groupName].length}
 		<h2
