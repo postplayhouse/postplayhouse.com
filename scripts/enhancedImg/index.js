@@ -1,5 +1,5 @@
 import path from "node:path"
-import { imagetools } from "vite-imagetools"
+import { imagetools, rotate } from "vite-imagetools"
 import { image } from "./preprocessor.js"
 
 /**
@@ -63,6 +63,20 @@ const fallback = {
 async function imagetools_plugin() {
 	/** @type {Partial<import('vite-imagetools').VitePluginOptions>} */
 	const imagetools_opts = {
+		extendTransforms: () => {
+			return [
+				function noRotate(config, ctx) {
+					const rotateNone = rotate({ rotate: "0" }, ctx)
+					if (!rotateNone) {
+						return
+					}
+
+					return function customTransform(image) {
+						return rotateNone(image)
+					}
+				},
+			]
+		},
 		defaultDirectives: async ({ pathname, searchParams: qs }, metadata) => {
 			if (!qs.has("enhanced")) return new URLSearchParams()
 
@@ -83,6 +97,7 @@ async function imagetools_plugin() {
 			})
 		},
 		namedExports: false,
+		removeMetadata: false,
 	}
 
 	// TODO: should we make formats or sizes configurable besides just letting people override defaultDirectives?
