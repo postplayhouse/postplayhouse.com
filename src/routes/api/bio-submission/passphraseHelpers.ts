@@ -1,15 +1,6 @@
 import { env } from "$env/dynamic/private"
 import { assert, sanitizedPassphrase } from "$helpers"
 
-export function passphraseIsCorrect(request: Request) {
-	const passphrase = request.headers.get("Authorization")
-
-	return (
-		sanitizedPassphrase(passphrase) ===
-		sanitizedPassphrase(env["POST_BIO_SUBMISSION_PASSPHRASE"])
-	)
-}
-
 const passphraseListEnv = env["INDIVIDUAL_PASSPHRASES_LIST"]
 
 export function individualPassphraseDetails(request: Request) {
