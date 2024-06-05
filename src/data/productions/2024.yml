@@ -2,7 +2,7 @@
   short_title: SpongeBob
   rating: G
   color: yellow
-  image: spongebob.png
+  image: sb_w_sponsor.png
   opening: 2024-05-24
   writers:
   description: |
@@ -23,7 +23,7 @@
   rating: H
   rating_explanation: This production contains strong adult language and mature subject matter.
   color: red
-  image: jersey-boys.png
+  image: jb_w_sponsor.png
   opening: 2024-05-31
   writers:
   description: |
@@ -42,7 +42,7 @@
   short_title: Oz
   rating: G
   color: green
-  image: wizard-of-oz.png
+  image: w_w_sponsor.png
   opening: 2024-06-14
   writers:
   description: |
@@ -60,7 +60,7 @@
   short_title: Honky Tonk
   rating: H
   color: purple
-  image: honky-tonk-laundry.png
+  image: htl_w_sponsor.png
   opening: 2024-06-28
   writers:
   description: |
@@ -78,7 +78,7 @@
   short_title: Kate
   rating: H
   color: blue
-  image: kiss-me-kate.png
+  image: kmk_w_sponsor.png
   opening: 2024-07-05
   writers:
   description: |
