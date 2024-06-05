@@ -1,5 +1,5 @@
 import path from "node:path"
-import { imagetools, rotate } from "vite-imagetools"
+import { getBackground, imagetools, rotate } from "vite-imagetools"
 import { image } from "./preprocessor.js"
 
 /**
@@ -63,22 +63,31 @@ const fallback = {
 async function imagetools_plugin() {
 	/** @type {Partial<import('vite-imagetools').VitePluginOptions>} */
 	const imagetools_opts = {
-		extendTransforms: () => {
+		extendTransforms: (builtIns) => {
 			return [
 				function noRotate(config, ctx) {
-					const rotateNone = rotate({ rotate: "0" }, ctx)
-					if (!rotateNone) {
+					console.log("prepping noRotate transform")
+
+					console.log(config, ctx)
+
+					if (!config.noRotate && !ctx.manualSearchParams.has("noRotate")) {
+						console.log("SKIPPPINGGNGNG")
 						return
 					}
 
 					return function customTransform(image) {
-						return rotateNone(image)
+						return image.rotate(undefined, {
+							background: getBackground(config, image),
+						})
 					}
 				},
+				...builtIns,
 			]
 		},
 		defaultDirectives: async ({ pathname, searchParams: qs }, metadata) => {
+			console.log("DEFAULT DIRECTIVES", pathname, qs.toString())
 			if (!qs.has("enhanced")) return new URLSearchParams()
+			console.log("HAS enhanced")
 
 			const img_width = qs.get("imgWidth")
 			const width = img_width ? parseInt(img_width) : (await metadata()).width
@@ -86,9 +95,11 @@ async function imagetools_plugin() {
 				console.warn(`Could not determine width of image ${pathname}`)
 				return new URLSearchParams()
 			}
+			console.log("HAS a width")
 
 			const { widths, kind } = get_widths(width, qs.get("imgSizes"))
 			return new URLSearchParams({
+				// noRotate: "true",
 				as: "picture",
 				format: `avif;webp;${fallback[path.extname(pathname)] ?? "png"}`,
 				w: widths.join(";"),
@@ -96,8 +107,9 @@ async function imagetools_plugin() {
 					!qs.has("w") && { basePixels: widths[0].toString() }),
 			})
 		},
+		cache: { enabled: false },
 		namedExports: false,
-		removeMetadata: false,
+		// removeMetadata: false,
 	}
 
 	// TODO: should we make formats or sizes configurable besides just letting people override defaultDirectives?
