@@ -1,4 +1,4 @@
-import { objectKeys, toCamel } from "$helpers"
+import { ensureArray, objectKeys, toCamel } from "$helpers"
 
 class Person {
 	firstName: string
@@ -80,7 +80,11 @@ class Person {
 									...acc,
 									{
 										productionName: currentKey,
-										positions: value[currentKey] || [],
+										// ensureArray because 2019 and prior have strings as the
+										// roles[n].positions type. After 2019, it's an array.
+										//
+										// Shoulda used Zod or something when going from Yaml to TS.
+										positions: ensureArray(value[currentKey]) || [],
 									},
 								]
 							},
