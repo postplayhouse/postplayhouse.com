@@ -238,3 +238,15 @@ export function objectEntries<T extends object>(object: T) {
 export function exists<T>(x: T): x is NonNullable<typeof x> {
 	return x !== undefined && x !== null
 }
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export function ensureArray<T>(
+	value: T,
+): T extends any[] | undefined
+	? Exclude<T, undefined>
+	: Array<Exclude<T, undefined>> {
+	if (value === undefined) return [] as any
+	if (Array.isArray(value)) return value as any
+	return [value] as any
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */

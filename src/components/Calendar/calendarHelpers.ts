@@ -1,6 +1,7 @@
 import {
 	assert,
 	asserted,
+	ensureArray,
 	exists,
 	objectEntries,
 	objectKeys,
@@ -74,16 +75,6 @@ export const EIGHT_PM = timeStrToMs("20:00")
 const DEFAULT_SHOW_TIME = EIGHT_PM
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-function ensureArray<T>(
-	value: T,
-): T extends any[] | undefined
-	? Exclude<T, undefined>
-	: Array<Exclude<T, undefined>> {
-	if (value === undefined) return [] as any
-	if (Array.isArray(value)) return value as any
-	return [value] as any
-}
-
 function sortBy<T extends Record<any, any>, A extends T[]>(
 	arr: A,
 	key: keyof T,
