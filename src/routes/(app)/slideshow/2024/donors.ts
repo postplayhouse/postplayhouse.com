@@ -83,7 +83,7 @@ export const small = [
 	{
 		title: "$250+",
 		names: [
-			"Benguin Propane",
+			"Beguin Propane",
 			"Gary and Dixie Blundell",
 			"Buchheit Precision",
 			"Delsing Farms",
@@ -94,7 +94,7 @@ export const small = [
 			"Hemingford Community Federal Credit Union",
 			"Dennis and Kathie King",
 			"Steve and Kathy Klaes",
-			"Glen Kotschwar",
+			"Glen and Vicky Kotschwar",
 			"Curt and Mary Lou Lecher",
 			"Patrick McMahon",
 			"Kathy Orloski",
@@ -130,7 +130,7 @@ export const small = [
 			"Ann Hencey",
 			"Rick and Misty Hickstein",
 			"Cindi Jacobsen-Brinton",
-			"JAV Enterpirses LLC",
+			"JAV Enterprises LLC",
 			"Joni and Donald Jespersen",
 			"Randy Kane",
 			"Barb Kendle",
