@@ -9,6 +9,7 @@
 		refreshIfAppVersionOutdated,
 	} from "$helpers/app-version"
 	import { createIntStore } from "$helpers/stores.svelte"
+	import { large, small, special } from "./donors"
 
 	onMount(initLocalAppVersion)
 
@@ -47,10 +48,18 @@
 		timers[inc % timers.length] as (typeof timers)[number],
 	)
 
+	let showInfo = $state(false)
+
+	const info = { special, large, small }
+
 	function onKeyDown(event: KeyboardEvent) {
 		if (event.repeat) return
 
 		switch (event.key) {
+			case "i":
+				event.preventDefault()
+				showInfo = !showInfo
+				break
 			case "ArrowDown":
 				event.preventDefault()
 				currentDurationMultiplier.increment()
@@ -87,37 +96,64 @@
 
 <svelte:window on:keydown="{onKeyDown}" />
 
-{#key resetCount}
-	<div class="fixed inset-0 dark:bg-black dark:text-white">
-		{#if inc % 2 === 0}
-			<div transition:fade="{{ duration: 1000 }}" class="absolute inset-0">
-				<svelte:component
-					this="{shows[inc % shows.length]}"
-					durationMultiplier="{currentDurationMultiplier.value}"
-					onEventDone="{() => nextShow()}"
-				/>
+{#if showInfo}
+	{#each Object.entries(info) as [section, subsection]}
+		<div class="mt-8 text-xl">
+			<div>
+				<strong>
+					{section.toUpperCase()}
+				</strong>
 			</div>
-		{:else}
-			<div transition:fade="{{ duration: 1000 }}" class="absolute inset-0">
-				<svelte:component
-					this="{shows[inc % shows.length]}"
-					durationMultiplier="{currentDurationMultiplier.value}"
-					onEventDone="{() => nextShow()}"
-				/>
+		</div>
+		{#each subsection as { title, names }}
+			<div class="mb-6">
+				<div>
+					<strong>
+						{title}
+					</strong>
+				</div>
+
+				{#each names as name}
+					<div>
+						{name}
+					</div>
+				{/each}
+			</div>
+		{/each}
+	{/each}
+{:else}
+	{#key resetCount}
+		<div class="fixed inset-0 dark:bg-black dark:text-white">
+			{#if inc % 2 === 0}
+				<div transition:fade="{{ duration: 1000 }}" class="absolute inset-0">
+					<svelte:component
+						this="{shows[inc % shows.length]}"
+						durationMultiplier="{currentDurationMultiplier.value}"
+						onEventDone="{() => nextShow()}"
+					/>
+				</div>
+			{:else}
+				<div transition:fade="{{ duration: 1000 }}" class="absolute inset-0">
+					<svelte:component
+						this="{shows[inc % shows.length]}"
+						durationMultiplier="{currentDurationMultiplier.value}"
+						onEventDone="{() => nextShow()}"
+					/>
+				</div>
+			{/if}
+		</div>
+		{#if visible}
+			<div
+				out:fade="{{ duration: 1000, delay: 1000 }}"
+				class="fixed inset-0 flex justify-center items-center"
+			>
+				<span
+					class="bg-black/50 text-white dark:bg-white/50 dark:text-black font-bold rounded-lg px-2 py-1 text-[6vw]"
+				>
+					{showNames[inc % showNames.length]} Speed: {20 -
+						(currentDurationMultiplier.value - 1)}
+				</span>
 			</div>
 		{/if}
-	</div>
-	{#if visible}
-		<div
-			out:fade="{{ duration: 1000, delay: 1000 }}"
-			class="fixed inset-0 flex justify-center items-center"
-		>
-			<span
-				class="bg-black/50 text-white dark:bg-white/50 dark:text-black font-bold rounded-lg px-2 py-1 text-[6vw]"
-			>
-				{showNames[inc % showNames.length]} Speed: {20 -
-					(currentDurationMultiplier.value - 1)}
-			</span>
-		</div>
-	{/if}
-{/key}
+	{/key}
+{/if}

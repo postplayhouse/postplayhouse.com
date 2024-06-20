@@ -2,6 +2,7 @@
 	import { fade } from "svelte/transition"
 	import { onDestroy } from "svelte"
 	import { browser } from "$app/environment"
+	import { special } from "./donors"
 
 	type Props = {
 		durationMultiplier: number
@@ -11,23 +12,7 @@
 	let { durationMultiplier, onEventDone: eventDone }: Props = $props()
 	const INT = durationMultiplier * 500
 
-	const sections = [
-		{
-			title: "$25,000+",
-			names: ["Dawes County Travel Board"],
-		},
-		{
-			title: "$10,000+",
-			names: ["Oregon Trail Community Foundation"],
-		},
-		{
-			title: "$2,500+",
-			names: [
-				"Bill and Virginia Coffee Family Foundation",
-				"Security First Bank",
-			],
-		},
-	]
+	const sections = special
 	const slides = sections.flatMap((s) =>
 		s.names.map((t) => ({ title: s.title, content: t })),
 	)
