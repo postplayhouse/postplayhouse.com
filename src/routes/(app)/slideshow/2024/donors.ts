@@ -109,7 +109,7 @@ export const small = [
 		title: "$100+",
 		names: [
 			"Von Bartlett",
-			"David Batchelor",
+			"David and Laura Batchelor",
 			"Mark Berge",
 			"Jo Buccheit",
 			"Doris Burton",
@@ -130,7 +130,6 @@ export const small = [
 			"Ann Hencey",
 			"Rick and Misty Hickstein",
 			"Cindi Jacobsen-Brinton",
-			"JAV Enterprises LLC",
 			"Joni and Donald Jespersen",
 			"Randy Kane",
 			"Barb Kendle",
