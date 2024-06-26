@@ -250,3 +250,10 @@ export function ensureArray<T>(
 	return [value] as any
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
+
+export function fullSeasonImageUrl(season: string | number) {
+	const year = season.toString().trim()
+	let file = "full-season.jpg"
+
+	return `/images/${year}/${file}`
+}

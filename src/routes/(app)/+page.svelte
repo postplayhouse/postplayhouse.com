@@ -2,6 +2,7 @@
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
+	import { fullSeasonImageUrl } from "$helpers"
 
 	let { data } = $props()
 
@@ -37,7 +38,7 @@
 		{#snippet seasonArtworkImage()}
 			<div class="w-full m-auto rounded-lg overflow-clip">
 				<img
-					src="/images/2024/full-season.jpg"
+					src="{fullSeasonImageUrl(2024)}"
 					alt="2024 season logos: The Wizard of Oz, Honky Tonk Laundry, Kiss Me Kate, The SpongeBob Musical, Jersey Boys"
 				/>
 			</div>

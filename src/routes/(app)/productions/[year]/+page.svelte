@@ -4,12 +4,13 @@
 	import TicketsButton from "$components/TicketsButton.svelte"
 	import site, { ticketsAvailable } from "$data/site"
 	import SponsorPlate from "$components/SponsorPlate.svelte"
+	import { fullSeasonImageUrl } from "$helpers"
 
 	let { data } = $props()
 
 	const { productions, year, series } = data
 
-	const seasonImg = `/images/${year}/full-season.jpg`
+	const seasonImg = fullSeasonImageUrl(year)
 </script>
 
 <h1 class="h1">Summer {year} Productions</h1>
