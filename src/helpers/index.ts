@@ -255,5 +255,9 @@ export function fullSeasonImageUrl(season: string | number) {
 	const year = season.toString().trim()
 	let file = "full-season.jpg"
 
+	if (year === "2024") {
+		file = "full-season-1.jpg"
+	}
+
 	return `/images/${year}/${file}`
 }
