@@ -9,5 +9,11 @@
 
 <div class="via-markdown">
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html marked.parse(source || "")}
+	{#key source}
+		{@html marked.parse(source || "")}
+	{/key}
+	{source}
+	<br />
+	<br />
+	{marked.parse(source || "")}
 </div>

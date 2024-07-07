@@ -90,6 +90,7 @@
 			</div>
 		</div>
 
+		{openingSoon.title}
 		<Markdown source="{openingSoon.description}" />
 
 		<div class="flex justify-center m-4">
