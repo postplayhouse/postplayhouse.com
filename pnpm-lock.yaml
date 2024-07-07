@@ -111,6 +111,9 @@ importers:
       mdsvex:
         specifier: ^0.11.0
         version: 0.11.0(svelte@5.0.0-next.154)
+      mockdate:
+        specifier: ^3.0.5
+        version: 3.0.5
       postcss:
         specifier: ^8.4.32
         version: 8.4.38
@@ -2945,6 +2948,9 @@ packages:
 
   mlly@1.6.1:
     resolution: {integrity: sha512-vLgaHvaeunuOXHSmEbZ9izxPx3USsk8KCQ8iC+aTlp5sKRSoZvwhHh5L9VbKSaVC6sJDqbyohIS76E2VmHIPAA==}
+
+  mockdate@3.0.5:
+    resolution: {integrity: sha512-iniQP4rj1FhBdBYS/+eQv7j1tadJ9lJtdzgOpvsOHng/GbcDh2Fhdeq+ZRldrPYdXvCyfFUmFeEwEGXZB5I/AQ==}
 
   module-details-from-path@1.0.3:
     resolution: {integrity: sha512-ySViT69/76t8VhE1xXHK6Ch4NcDd26gx0MzKXLO+F7NOtnqH68d9zF94nT8ZWSxXh8ELOERsnJO/sWt1xZYw5A==}
@@ -7439,6 +7445,8 @@ snapshots:
       pathe: 1.1.2
       pkg-types: 1.0.3
       ufo: 1.5.3
+
+  mockdate@3.0.5: {}
 
   module-details-from-path@1.0.3: {}
 

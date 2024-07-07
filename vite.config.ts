@@ -4,6 +4,10 @@ import replacePlugin from "@rollup/plugin-replace"
 import { watchAndRun } from "vite-plugin-watch-and-run"
 import { sentrySvelteKit } from "@sentry/sveltekit"
 
+import mockdate from "mockdate"
+
+mockdate.set("2024-06-26")
+
 export default defineConfig({
 	plugins: [
 		sentrySvelteKit({
