@@ -1,13 +1,23 @@
 <script lang="ts" context="module">
 	import { marked } from "marked"
+	import { onMount } from "svelte"
 	marked.setOptions({ smartypants: true })
 </script>
 
 <script lang="ts">
 	let { source }: { source?: string } = $props()
+	let markdown = $derived(marked.parse(source || ""))
+	let hydrated = $state(false)
+
+	onMount(() => {
+		hydrated = true
+	})
 </script>
 
 <div class="via-markdown">
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html marked.parse(source || "")}
+	{#if hydrated}
+		{@html markdown}
+	{:else}
+		{@html markdown}
+	{/if}
 </div>
