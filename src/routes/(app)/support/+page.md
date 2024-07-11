@@ -74,7 +74,7 @@ _All of the above plus:_
 - 4 complimentary tickets total for opening night of 1 show of your choice
 - Invitation to 1 post-show celebration of opening night show of your choice
 
-## Artistic Director Society: $1,000 – $4,999
+## Artistic Director Society: $1,000 – $5,999
 
 _All of the above plus:_
 
