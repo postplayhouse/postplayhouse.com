@@ -111,7 +111,7 @@ Friends of Post Playhouse is a volunteer group with a mission to support the Pos
 
 ## Volunteer Roles
 
-1. Theatre Preparation and Season Ending - Help to clean theater and various housing units first weekend in May and second/third weekend in August). Load In Weekend - Transport any equipment from CSC at the beginning of the season (not expected to install anything, just need equipment transported from CSC to Post. Load Out Weekend - Assist staff with strike and/or load out any equipment from CSC after the end of the season.
+1. Theatre Preparation and Season Ending - Help to clean theater and various housing units the first weekend in May and second/third weekend in August. Load In Weekend - Transport any equipment from CSC at the beginning of the season. Load Out Weekend - Assist staff with strike and/or load out any equipment from CSC after the end of the season.
 2. Food - Help with providing meals to 40+ staff members for 3 show Saturdays, Strike, Opening Night Receptions, Tech Weeks, baked goods for concessions, etc.
 3. Scene and Costume Building - Assist in the scene shop and/or costume shop to build sets and costumes under the direction of artistic staff.
 4. Usher and Box Office - Usher for performances, volunteer in box office under supervision of and training by box office manager, assist box office in managing usher volunteer program to ensure ushers are available for all performances, etc.
