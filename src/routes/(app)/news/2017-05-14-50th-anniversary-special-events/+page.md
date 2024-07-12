@@ -42,7 +42,7 @@ Mix and mingle with folks who have played a role in the success of the Post Play
 
 ### 4:30 – 7:30 p.m.| 50th Anniversary Celebration Dinner | Buffalo Soldier Barracks at Fort Robinson State Park
 
-Experience cuisine prepared by Chadron State College Dining Services-Creative Dining and an enjoy an evening of revelry and reminiscing. Cocktail hour begins at 4:30, followed by dinner at 5:30 p.m. [See the menu below](#th-anniversary-dinner-menu).
+Experience cuisine prepared by Chadron State College Dining Services-Creative Dining and an enjoy an evening of revelry and reminiscing. Cocktail hour begins at 4:30, followed by dinner at 5:30 p.m. [See the menu below](#50th-anniversary-dinner-menu).
 
 This is an exclusive event and tickets are _limited_. Tickets must be purchased in advance either [through our online box office](https://postplayhousetickets.universitytickets.com/user_pages/event.asp?id=757&cid=74) or by calling { site.boxOfficePhone }.
 
