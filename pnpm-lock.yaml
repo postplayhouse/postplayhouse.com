@@ -4,6 +4,14 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  imagetools-core@7.0.1:
+    hash: mro5mtfplpdqngkvw43csvihvq
+    path: patches/imagetools-core@7.0.1.patch
+  sharp@0.33.4:
+    hash: lepcy6twugctekpilzuifrspwa
+    path: patches/sharp@0.33.4.patch
+
 importers:
 
   .:
@@ -5907,7 +5915,7 @@ snapshots:
 
   ignore@5.3.1: {}
 
-  imagetools-core@7.0.1: {}
+  imagetools-core@7.0.1(patch_hash=mro5mtfplpdqngkvw43csvihvq): {}
 
   import-fresh@3.3.0:
     dependencies:
@@ -6861,7 +6869,7 @@ snapshots:
 
   set-cookie-parser@2.6.0: {}
 
-  sharp@0.33.4:
+  sharp@0.33.4(patch_hash=lepcy6twugctekpilzuifrspwa):
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.3
@@ -7249,8 +7257,8 @@ snapshots:
   vite-imagetools@7.0.4(rollup@4.14.2):
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.14.2)
-      imagetools-core: 7.0.1
-      sharp: 0.33.4
+      imagetools-core: 7.0.1(patch_hash=mro5mtfplpdqngkvw43csvihvq)
+      sharp: 0.33.4(patch_hash=lepcy6twugctekpilzuifrspwa)
     transitivePeerDependencies:
       - rollup
 

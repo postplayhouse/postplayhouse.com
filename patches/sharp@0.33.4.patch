@@ -1,0 +1,13 @@
+diff --git a/lib/constructor.js b/lib/constructor.js
+index f6741509bd0005bf57ea466482f43ff67e88277b..d822c24b9fbbe7dd606244eabae5d34c3c12bc91 100644
+--- a/lib/constructor.js
++++ b/lib/constructor.js
+@@ -193,7 +193,7 @@ const Sharp = function (input, options) {
+     canvas: 'crop',
+     position: 0,
+     resizeBackground: [0, 0, 0, 255],
+-    useExifOrientation: false,
++    useExifOrientation: true,
+     angle: 0,
+     rotationAngle: 0,
+     rotationBackground: [0, 0, 0, 255],
