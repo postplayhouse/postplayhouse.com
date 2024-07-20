@@ -44,14 +44,12 @@
 		return !personIsInGroup(person, "additional")
 	}
 
-	let showShortBio: Set<string> = $state(new Set())
+	let showShortBio: Record<string, boolean> = $state({})
 
 	function toggleShortBio(person: Person) {
-		showShortBio.has(person.id)
-			? showShortBio.delete(person.id)
-			: showShortBio.add(person.id)
-
-		showShortBio = showShortBio
+		showShortBio[person.id]
+			? (showShortBio[person.id] = false)
+			: (showShortBio[person.id] = true)
 	}
 
 	let showUi = $state(true)
@@ -215,11 +213,11 @@
 						type="button"
 						onclick="{() => toggleShortBio(person)}"
 					>
-						{#if showShortBio.has(person.id)}Show Long Bio{:else}Show Short Bio{/if}
+						{#if showShortBio[person.id]}Show Long Bio{:else}Show Short Bio{/if}
 					</button>
 				{/if}
 
-				{#if showShortBio.has(person.id)}
+				{#if showShortBio[person.id]}
 					{@html marked(
 						person.programBio || "(no program bio actually exists)",
 					)}
