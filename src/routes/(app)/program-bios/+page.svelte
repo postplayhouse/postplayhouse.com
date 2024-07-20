@@ -55,6 +55,38 @@
 	}
 
 	let showUi = $state(true)
+
+	let isDownloadingImages = $state(false)
+
+	async function downloadAllPeopleImages() {
+		if (isDownloadingImages) return
+		isDownloadingImages = true
+		const JsZip = (await import("jszip")).default
+		const zip = new JsZip()
+
+		for (const person of sortedPeople) {
+			const originalImg = findOriginalPersonImage(person.image)
+			if (originalImg) {
+				const response = await fetch(originalImg)
+				const blob = await response.blob()
+				zip.file(renameImgFile(originalImg, personSlug(person)), blob)
+			}
+		}
+
+		const content = await zip.generateAsync({ type: "blob" })
+
+		const date = new Date().toISOString().split("T")[0]
+
+		const url = URL.createObjectURL(content)
+		const a = document.createElement("a")
+		a.href = url
+		a.download = `post_playhouse_program_bio_images_${date}.zip`
+		a.click()
+		URL.revokeObjectURL(url)
+		a.remove()
+
+		isDownloadingImages = false
+	}
 </script>
 
 <div id="TheTop"></div>
@@ -89,6 +121,21 @@
 </div>
 
 <a href="#TheBoard" class="block link-green my-4">Jump to the Board</a>
+
+<div class="max-w-lg mx-auto my-8 text-center space-y-3 rounded shadow-xl p-8">
+	<button class="btn-p" onclick="{downloadAllPeopleImages}">
+		{#if isDownloadingImages}
+			Downloading...
+		{:else}
+			Download All Bio Images
+		{/if}
+	</button>
+
+	<div>
+		Downloads a ZIP of {sortedPeople.length} files. This will take time, so please
+		be patient after you click the button!
+	</div>
+</div>
 
 <div>
 	{#each productions as production}
