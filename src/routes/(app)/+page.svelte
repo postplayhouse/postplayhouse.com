@@ -39,7 +39,7 @@
 			<div class="w-full m-auto rounded-lg overflow-clip">
 				<SeasonImage
 					season="2024"
-					imageFile="full-season.jpg"
+					imageFile="full-season-1.jpg"
 					alt="2024 season logos: The Wizard of Oz, Honky Tonk Laundry, Kiss Me Kate, The SpongeBob Musical, Jersey Boys"
 				/>
 			</div>
