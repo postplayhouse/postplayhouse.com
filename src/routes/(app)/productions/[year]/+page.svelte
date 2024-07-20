@@ -37,7 +37,7 @@
 
 <SeasonImage
 	season="{year}"
-	imageFile="{year === 2024 ? 'full-season-1.jpg' : 'full-season.jpg'}"
+	imageFile="full-season.jpg"
 	alt="All {year} productions"
 />
 

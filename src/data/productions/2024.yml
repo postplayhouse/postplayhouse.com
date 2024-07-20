@@ -35,6 +35,8 @@
       July 9e, 12a, 17e, 20a, 25e, 28a,
       August 1e, 3m, 8a, 10a,
   roles_sorting:
+  sponsor:
+    text: Anne Armstrong Sellman
 
 - title: The Wizard of Oz
   short_title: Oz
