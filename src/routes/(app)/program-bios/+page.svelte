@@ -10,6 +10,12 @@
 	import ProductionList from "$components/program/ProductionList.svelte"
 	import { sortPeople, personIsInGroup, slugify } from "$helpers"
 	import PersonImage from "$components/PersonImage.svelte"
+	import { findOriginalPersonImage } from "$helpers/enhancedImg"
+
+	function renameImgFile(imgPath: string, newBaseNameWithoutExt: string) {
+		const ext = imgPath.split(".").pop()
+		return newBaseNameWithoutExt + "." + ext
+	}
 
 	let { data } = $props()
 
@@ -92,15 +98,37 @@
 	{/each}
 </div>
 
+{#snippet downloadableImage(originalImg, person)}
+	<div class="text-center mb-4">
+		<a
+			class="inline-block group max-w-full hover:bg-gray-200"
+			href="{originalImg}"
+			download="{renameImgFile(originalImg, personSlug(person))}"
+		>
+			<PersonImage
+				partialPath="{person.image}"
+				alt="{person.image ? '' : 'missing '}picture of {person.name}"
+				class="max-w-full w-96 object-contain max-h-96 m-auto min-h-64 block"
+			/>
+			{#if showUi}
+				<div class="text-center">
+					<span
+						class="btn-p group-hover:bg-green-500 group-hover:border-green-700"
+						>Download Orignal Image</span
+					>
+				</div>
+			{/if}</a
+		>
+	</div>
+{/snippet}
+
 <div class="helvetica my-8">
 	{#each sortedPeople.filter(notInBoard) as person}
+		{@const originalImg = findOriginalPersonImage(person.image)}
+
 		<div class="my-8" id="{personSlug(person)}">
-			{#if notInAdditional(person)}
-				<PersonImage
-					partialPath="{person.image}"
-					alt="{person.image ? '' : 'missing '}picture of {person.name}"
-					class="max-w-sm object-contain max-h-96 m-auto min-h-64 block"
-				/>
+			{#if notInAdditional(person) && originalImg}
+				{@render downloadableImage(originalImg, person)}
 			{/if}
 
 			<div class="m-auto max-w-2xl">
@@ -163,12 +191,12 @@
 	<h1 id="TheBoard" class="text-4xl">Board Headshots and Names</h1>
 
 	{#each sortedPeople.filter(inBoard) as person}
+		{@const originalImg = findOriginalPersonImage(person.image)}
+
 		<div class="helvetica">
-			<PersonImage
-				partialPath="{person.image}"
-				alt="{person.image ? '' : 'missing '}picture of {person.name}"
-				class="max-w-sm max-h-96 m-auto min-h-64 block"
-			/>
+			{#if originalImg}
+				{@render downloadableImage(originalImg, person)}
+			{/if}
 
 			<div class="text-center">
 				<div>{person.name}</div>

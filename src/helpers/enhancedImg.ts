@@ -13,8 +13,8 @@ export interface Picture {
 	}
 }
 
-function makeFindImage(
-	importedImageModules: Record<string, { default: Picture }>,
+function makeFindImage<T = Picture>(
+	importedImageModules: Record<string, { default: T }>,
 ) {
 	return function findImage(partialImagePath: string | undefined) {
 		if (!partialImagePath) return
@@ -37,6 +37,15 @@ export const findEnhancedPersonImage = makeFindImage(
 				w: "400;800",
 				withoutEnlargement: true,
 			},
+		},
+	),
+)
+
+export const findOriginalPersonImage = makeFindImage<string>(
+	import.meta.glob(
+		`/src/images/people/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
+		{
+			eager: true,
 		},
 	),
 )
