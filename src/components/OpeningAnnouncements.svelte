@@ -10,9 +10,9 @@
 	import { weekdays } from "./Calendar/calendarHelpers"
 
 	import Markdown from "./Markdown.svelte"
-	import MaybeImage from "./MaybeImage.svelte"
 	import SponsorPlate from "./SponsorPlate.svelte"
 	import TicketsButton from "./TicketsButton.svelte"
+	import SeasonImage from "./SeasonImage.svelte"
 
 	type Props = {
 		productions?: Production[]
@@ -44,11 +44,6 @@
 			season: getDateFor(p.opening).getFullYear(),
 		}))
 		.sort((a, b) => a.daysUntilOpening - b.daysUntilOpening)
-		.map(({ image, ...p }) => ({
-			...p,
-			imagePath: `/g/images/${p.season}/${image}`,
-			fallbackImagePath: `/images/${p.season}/${image}`,
-		}))
 
 	const openingSoon: (typeof enhancedProductions)[0] | undefined =
 		enhancedProductions
@@ -80,8 +75,9 @@
 
 		<div class="md:flex items-center my-8">
 			<div class="shrink">
-				<MaybeImage
-					src="{[openingSoon.imagePath, openingSoon.fallbackImagePath]}"
+				<SeasonImage
+					season="{openingSoon.season}"
+					imageFile="{openingSoon.image}"
 					alt="Show Logo for {openingSoon.title}"
 				/>
 			</div>
@@ -152,9 +148,10 @@
 				<ul class="list-none p-0 m-auto flex flex-wrap">
 					{#each nowRunning as production}
 						<li class="max-w-full md:w-1/2 p-2">
-							<MaybeImage
-								src="{[production.imagePath, production.fallbackImagePath]}"
-								alt="{production.title}"
+							<SeasonImage
+								season="{production.season}"
+								imageFile="{production.image}"
+								alt="Show Logo for {production.title}"
 							/>
 						</li>
 					{/each}

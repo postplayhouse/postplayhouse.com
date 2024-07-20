@@ -5,12 +5,17 @@ excerpt: "A veteran music director, Amanda brings her new musical sensibilities 
 image: /images/2015/amanda-at-piano.jpg
 ---
 
+<script>
+  import PersonImage from "$components/PersonImage.svelte"
+  import SeasonImage from "$components/SeasonImage.svelte"
+</script>
+
 <div class="preface">Amanda is enjoying her first summer at Post Playhouse, getting to create amazing art "against a beautiful backdrop" as she puts it. A college professor during the year, she joins the ranks of folks like Scott Cavin, Tom Ossowski, and Don Fox to influence the world of theatre on the professional circuit as well as the academic scene.</div>
 
 ---
 
 <div class="captioned-image right">
- <img src="/images/people/2015/amanda-morgan.jpg" alt="Amanda Wansa-Morgan">
+ <PersonImage partialPath="2015/amanda-morgan.jpg" alt="Amanda Wansa-Morgan" />
  <div class="caption">Amanda Wansa Morgan, Music Director for three of our five shows this summer.</div>
 </div>
 
@@ -54,7 +59,7 @@ I've worked in Florida, Charleston, Mississippi, Memphis TN, The Berkshires (Mas
 Outside of theatre, I love cooking, learning new instruments, and traveling. My husband and I love road trips! I also love animals and children --- specifically _my_ animals and _my_ nieces and nephews! I also have a strange affinity for organizing things.
 
 <div class="captioned-image six right">
- <img src="/images/2015/amanda-at-piano.jpg" alt="Amanda at the piano">
+ <SeasonImage season="2015" imageFile="amanda-at-piano.jpg" alt="Amanda at the piano" />
  <div class="caption">Amanda brings in the band during rehearsal for <em>Grease</em>.</div>
 </div>
 

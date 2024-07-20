@@ -1,6 +1,4 @@
 <script lang="ts">
-	import MaybeImage from "$components/MaybeImage.svelte"
-
 	export const title = "Annual Raffle"
 	export const excerpt =
 		"Join us on March 16, 2024 for our annual raffle. You could win $5,000!"
@@ -13,10 +11,6 @@ YOUR INFO HERE
 	const emailLink = `mailto:tickets@postplayhouse.com?subject=${encodeURIComponent(
 		"Annual Raffle Ticket Request",
 	)}&body=${encodeURIComponent(emailBody)}`
-
-	function optimizedPath(path: string) {
-		return ["/g" + path, path]
-	}
 </script>
 
 <h3 class="big-pop title">Get Lucky!</h3>
@@ -89,19 +83,19 @@ YOUR INFO HERE
 
 <div class="flex max-w-[40rem] p-4">
 	<div class="grow">
-		<MaybeImage
-			src="{optimizedPath('/images/people/2018/ken-phillips-800.jpg')}"
+		<enhanced:img
+			src="/src/images/people/2018/ken-phillips.jpg"
 			alt="Raffle 2019"
 			class="object-cover aspect-[3/4] shadow-lg rounded-lg -rotate-6"
-		/>
+		></enhanced:img>
 	</div>
 
 	<div class="grow">
-		<MaybeImage
-			src="{optimizedPath('/images/people/2016/dewayne-barrett-800.jpg')}"
+		<enhanced:img
+			src="/src/images/people/2016/dewayne-barrett.jpg"
 			alt="Raffle 2019"
 			class="object-cover object-[20%_top] aspect-[3/4] shadow-lg rounded-lg rotate-6"
-		/>
+		></enhanced:img>
 	</div>
 </div>
 

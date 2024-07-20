@@ -9,6 +9,13 @@
 	import CastList from "$components/program/CastList.svelte"
 	import ProductionList from "$components/program/ProductionList.svelte"
 	import { sortPeople, personIsInGroup, slugify } from "$helpers"
+	import PersonImage from "$components/PersonImage.svelte"
+	import { findOriginalPersonImage } from "$helpers/enhancedImg"
+
+	function renameImgFile(imgPath: string, newBaseNameWithoutExt: string) {
+		const ext = imgPath.split(".").pop()
+		return newBaseNameWithoutExt + "." + ext
+	}
 
 	let { data } = $props()
 
@@ -37,17 +44,47 @@
 		return !personIsInGroup(person, "additional")
 	}
 
-	let showShortBio: Set<string> = $state(new Set())
+	let showShortBio: Record<string, boolean> = $state({})
 
 	function toggleShortBio(person: Person) {
-		showShortBio.has(person.id)
-			? showShortBio.delete(person.id)
-			: showShortBio.add(person.id)
-
-		showShortBio = showShortBio
+		showShortBio[person.id]
+			? (showShortBio[person.id] = false)
+			: (showShortBio[person.id] = true)
 	}
 
 	let showUi = $state(true)
+
+	let isDownloadingImages = $state(false)
+
+	async function downloadAllPeopleImages() {
+		if (isDownloadingImages) return
+		isDownloadingImages = true
+		const JsZip = (await import("jszip")).default
+		const zip = new JsZip()
+
+		for (const person of sortedPeople) {
+			const originalImg = findOriginalPersonImage(person.image)
+			if (originalImg) {
+				const response = await fetch(originalImg)
+				const blob = await response.blob()
+				zip.file(renameImgFile(originalImg, personSlug(person)), blob)
+			}
+		}
+
+		const content = await zip.generateAsync({ type: "blob" })
+
+		const date = new Date().toISOString().split("T")[0]
+
+		const url = URL.createObjectURL(content)
+		const a = document.createElement("a")
+		a.href = url
+		a.download = `post_playhouse_program_bio_images_${date}.zip`
+		a.click()
+		URL.revokeObjectURL(url)
+		a.remove()
+
+		isDownloadingImages = false
+	}
 </script>
 
 <div id="TheTop"></div>
@@ -83,6 +120,21 @@
 
 <a href="#TheBoard" class="block link-green my-4">Jump to the Board</a>
 
+<div class="max-w-lg mx-auto my-8 text-center space-y-3 rounded shadow-xl p-8">
+	<button class="btn-p" onclick="{downloadAllPeopleImages}">
+		{#if isDownloadingImages}
+			Downloading...
+		{:else}
+			Download All Bio Images
+		{/if}
+	</button>
+
+	<div>
+		Downloads a ZIP of {sortedPeople.length} files. This will take time, so please
+		be patient after you click the button!
+	</div>
+</div>
+
 <div>
 	{#each productions as production}
 		<h3 class="h3">{production.title}</h3>
@@ -91,15 +143,37 @@
 	{/each}
 </div>
 
+{#snippet downloadableImage(originalImg, person)}
+	<div class="text-center mb-4">
+		<a
+			class="inline-block group max-w-full hover:bg-gray-200"
+			href="{originalImg}"
+			download="{renameImgFile(originalImg, personSlug(person))}"
+		>
+			<PersonImage
+				partialPath="{person.image}"
+				alt="{person.image ? '' : 'missing '}picture of {person.name}"
+				class="max-w-full w-96 object-contain max-h-96 m-auto min-h-64 block"
+			/>
+			{#if showUi}
+				<div class="text-center">
+					<span
+						class="btn-p group-hover:bg-green-500 group-hover:border-green-700"
+						>Download Orignal Image</span
+					>
+				</div>
+			{/if}</a
+		>
+	</div>
+{/snippet}
+
 <div class="helvetica my-8">
 	{#each sortedPeople.filter(notInBoard) as person}
+		{@const originalImg = findOriginalPersonImage(person.image)}
+
 		<div class="my-8" id="{personSlug(person)}">
-			{#if notInAdditional(person)}
-				<img
-					src="{person.image}"
-					alt="{person.image ? '' : 'missing '}picture of {person.name}"
-					class="max-w-sm max-h-96 m-auto min-h-64 block"
-				/>
+			{#if notInAdditional(person) && originalImg}
+				{@render downloadableImage(originalImg, person)}
 			{/if}
 
 			<div class="m-auto max-w-2xl">
@@ -139,11 +213,11 @@
 						type="button"
 						onclick="{() => toggleShortBio(person)}"
 					>
-						{#if showShortBio.has(person.id)}Show Long Bio{:else}Show Short Bio{/if}
+						{#if showShortBio[person.id]}Show Long Bio{:else}Show Short Bio{/if}
 					</button>
 				{/if}
 
-				{#if showShortBio.has(person.id)}
+				{#if showShortBio[person.id]}
 					{@html marked(
 						person.programBio || "(no program bio actually exists)",
 					)}
@@ -162,12 +236,12 @@
 	<h1 id="TheBoard" class="text-4xl">Board Headshots and Names</h1>
 
 	{#each sortedPeople.filter(inBoard) as person}
+		{@const originalImg = findOriginalPersonImage(person.image)}
+
 		<div class="helvetica">
-			<img
-				src="{person.image}"
-				alt="{person.image ? '' : 'missing '}picture of {person.name}"
-				class="max-w-sm max-h-96 m-auto min-h-64 block"
-			/>
+			{#if originalImg}
+				{@render downloadableImage(originalImg, person)}
+			{/if}
 
 			<div class="text-center">
 				<div>{person.name}</div>

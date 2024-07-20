@@ -5,12 +5,17 @@ excerpt: "Enjoying her first season at Post, Lori tells us a bit about creativit
 image: /images/2015/lori-giving-notes.jpg
 ---
 
+<script>
+  import PersonImage from "$components/PersonImage.svelte"
+  import SeasonImage from "$components/SeasonImage.svelte"
+</script>
+
 <div class="preface">Lori Berg is the co-director for our first production of the summer, <em>The Best Little Whorehouse in Texas</em>. In honor of the opening of the show tomorrow, she is our featured company member for the Spotlight Series today. She is thoroughly enjoying her first Post Playhouse experience and tells us a little bit about it and about herself as well.</div>
 
 ---
 
 <div class="captioned-image right">
-  <img src="/images/people/2015/lori-berg.jpg" alt="Lori Berg">
+  <PersonImage partialPath="2015/lori-berg.jpg" alt="Lori Berg" />
   <div class="caption">Lori Berg, co-director of our first production this summer.</div>
 </div>
 
@@ -39,7 +44,7 @@ Over the years since graduate performance studies, I have returned to a theatre 
 When I was in high school or early college, a favorite aunt, Dot Fletcher, lived in Scotts Bluff. Also, while I was in high school, my family took a vacation to neighboring parts of Wyoming and the Dakotas.
 
 <div class="captioned-image right">
-  <img src="/images/2015/lori-giving-notes.jpg" alt="Lori Berg">
+  <SeasonImage season="2015" imageFile="lori-giving-notes.jpg" alt="Lori Berg" />
   <div class="caption">Lori gives notes to the cast after a rehearsal for <em>The Best Little Whorehouse in Texas</em>.</div>
 </div>
 

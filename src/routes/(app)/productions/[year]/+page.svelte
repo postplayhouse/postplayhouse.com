@@ -1,16 +1,13 @@
 <script lang="ts">
 	import Production from "$components/Production.svelte"
-	import MaybeImage from "$components/MaybeImage.svelte"
 	import TicketsButton from "$components/TicketsButton.svelte"
 	import site, { ticketsAvailable } from "$data/site"
 	import SponsorPlate from "$components/SponsorPlate.svelte"
-	import { fullSeasonImageUrl } from "$helpers"
+	import SeasonImage from "$components/SeasonImage.svelte"
 
 	let { data } = $props()
 
 	const { productions, year, series } = data
-
-	const seasonImg = fullSeasonImageUrl(year)
 </script>
 
 <h1 class="h1">Summer {year} Productions</h1>
@@ -38,7 +35,11 @@
 	</SponsorPlate>
 </div>
 
-<MaybeImage src="{[seasonImg]}" alt="All {year} productions" />
+<SeasonImage
+	season="{year}"
+	imageFile="{year === 2024 ? 'full-season-1.jpg' : 'full-season.jpg'}"
+	alt="All {year} productions"
+/>
 
 {#if ticketsAvailable() && site.season === year}
 	<div class="my-4 text-center">
