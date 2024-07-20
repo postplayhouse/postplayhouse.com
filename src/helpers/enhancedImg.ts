@@ -13,50 +13,44 @@ export interface Picture {
 	}
 }
 
-const peopleImageModules = import.meta.glob<{ default: Picture }>(
-	`/src/images/people/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
-	{
-		eager: true,
-		query: {
-			enhanced: true,
-			w: "400;800",
-			withoutEnlargement: true,
-		},
-	},
-)
+function makeFindImage(
+	importedImageModules: Record<string, { default: Picture }>,
+) {
+	return function findImage(partialImagePath: string | undefined) {
+		if (!partialImagePath) return
 
-const peopleDict = Object.entries(peopleImageModules)
+		const possibleModule = Object.entries(importedImageModules).find(([path]) =>
+			path.includes(partialImagePath),
+		)?.[1]
 
-export function findEnhancedPersonImage(partialImagePath: string | undefined) {
-	if (!partialImagePath) return
-
-	const possibleModule = peopleDict.find(([path]) =>
-		path.includes(partialImagePath),
-	)?.[1]
-
-	return possibleModule?.default
+		return possibleModule?.default
+	}
 }
 
-const seasonImageModules = import.meta.glob<{ default: Picture }>(
-	`/src/images/seasons/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
-	{
-		eager: true,
-		query: {
-			enhanced: true,
-			w: "500;1000;1500",
-			withoutEnlargement: true,
+export const findEnhancedPersonImage = makeFindImage(
+	import.meta.glob(
+		`/src/images/people/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
+		{
+			eager: true,
+			query: {
+				enhanced: true,
+				w: "400;800",
+				withoutEnlargement: true,
+			},
 		},
-	},
+	),
 )
 
-const seasonDict = Object.entries(seasonImageModules)
-
-export function findEnhancedSeasonImage(partialImagePath: string | undefined) {
-	if (!partialImagePath) return
-
-	const possibleModule = seasonDict.find(([path]) =>
-		path.includes(partialImagePath),
-	)?.[1]
-
-	return possibleModule?.default
-}
+export const findEnhancedSeasonImage = makeFindImage(
+	import.meta.glob(
+		`/src/images/seasons/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
+		{
+			eager: true,
+			query: {
+				enhanced: true,
+				w: "500;1000;1500",
+				withoutEnlargement: true,
+			},
+		},
+	),
+)
