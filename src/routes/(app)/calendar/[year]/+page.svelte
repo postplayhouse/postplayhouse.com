@@ -30,6 +30,14 @@
 	<h3 class="h3 text-center">The 2021 Season was cancelled due to COVID-19.</h3>
 {/if}
 
+{#if year === 2024}
+	<h3 class="h3 text-center bg-red-400 border border-red-800 p-4">
+		NOTICE: We have unfortunately had to cancel the final 4 performances of this
+		season. Our closing performance will be Honky Tonk Laundry at 2pm on Friday,
+		August 9th.
+	</h3>
+{/if}
+
 {#if hasCalendar}
 	{#if allSpecialEvents.length > 0}
 		<div class="text-lg">
@@ -56,4 +64,12 @@
 	<h2 class="text-center text-xl">
 		There is no historical calendar for {year}
 	</h2>
+{/if}
+
+{#if year === 2024}
+	<h3 class="h3 text-center bg-red-400 border border-red-800 p-4">
+		NOTICE: We have unfortunately had to cancel the final 4 performances of this
+		season. Our closing performance will be Honky Tonk Laundry at 2pm on Friday,
+		August 9th.
+	</h3>
 {/if}
