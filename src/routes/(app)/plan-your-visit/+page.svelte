@@ -10,7 +10,7 @@
 
 <p class="my-8">
 	If you&rsquo;d like to see your business listed here, please contact us at
-	<a href="mailto:webmaster@postplayhouse.com">webmaster@postplayhouse.com</a>.
+	<a href="mailto:elaudeman@postplayhouse.com">elaudeman@postplayhouse.com</a>.
 	If you'd like to donate to the playhouse, visit our
 	<a href="/donate/">donations page</a>.
 </p>
