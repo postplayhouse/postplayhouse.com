@@ -102,7 +102,7 @@
   about: |
     The Museum of the Fur Trade is dedicated to preserving the rich history of the North American fur trade. Located three miles east of Chadron, the museum stands on the site of James Bordeaux’s trading post which was established for the American Fur Company in 1837.
 
-- name: "Staab's Drive Inn"
+- name: "C's Drive-In"
   type:
     - restaurant
     - ice cream
@@ -113,7 +113,7 @@
     state: NE
     zip: 69339
   about: |
-    Delicious ice cream and Broasted Chicken and Fries. You'll often see quite a gathering of people waiting outside Staab's on warm summer nights.
+    Delicious ice cream and Broasted Chicken and Fries. You'll often see quite a gathering of people waiting outside on warm summer nights.
 
 - name: Toadstool Geological Park and Campground
   site: http://www.fs.usda.gov/recarea/nebraska/recreation/recarea/?recid=10616
