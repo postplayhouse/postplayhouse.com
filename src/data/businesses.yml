@@ -18,7 +18,7 @@
     - restaurant
     - coffee
     - bar
-  supporter: true
+  supporter: false
   address:
     street: 202 West 2nd Street
     city: Chadron
@@ -64,7 +64,7 @@
   site: https://hilltopmotelcrawfordnebraska.com
   type:
     - lodging
-  supporter: true
+  supporter: false
   address:
     street: 304 Mc Pherson St
     city: Crawford
@@ -106,7 +106,7 @@
   type:
     - restaurant
     - ice cream
-  supporter: true
+  supporter: false
   address:
     street: 110 Mc Pherson St
     city: Crawford
