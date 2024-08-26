@@ -107,6 +107,22 @@ type Series = SpecialEvent & {
 	events: SpecialEvent[]
 }
 
+type Business = {
+	name: string
+	site?: string
+	type: string[]
+	supporter?: boolean
+	address?: {
+		street?: string
+		city?: string
+		state?: string
+		zip?: number
+	}
+	prettyURL?: string
+	phone?: string
+	about?: string
+}
+
 type YamlPerson = {
 	last_name: string
 	first_name: string
@@ -130,6 +146,7 @@ type YamlPerson = {
 }
 
 type YearlyData = {
+	businesses: Business[]
 	bio_check_emails: { submit_subject: string; submit_body: string }
 	productions: Record<Year, Array<Production | SpecialEvent>>
 	people: Record<Year, YamlPerson[]>
