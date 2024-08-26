@@ -63,6 +63,11 @@
 			We generally hold professional auditions and start looking for summer
 			staff in the first quarter of the year.
 		</p>
+		<p>
+			As soon as we know the details for our auditions, we will announce them
+			here. Subscribe above if you want to be notified, or check back again
+			soon.
+		</p>
 	{/if}
 {/if}
 
