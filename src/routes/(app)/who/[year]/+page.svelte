@@ -27,6 +27,8 @@
 	groupedPeople["Board"] = sortBoardMembers(groupedPeople["Board"])
 </script>
 
+<h1 class="h1 mb-8">Summer {year} Biographies</h1>
+
 {#if year === "2020"}
 	<p>
 		<a href="/news/2020-03-25-season-cancelled" class="link-green">
