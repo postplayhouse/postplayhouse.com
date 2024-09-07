@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Main from "$components/layouts/MainLayout.svelte"
-	import Img from "./Img.svelte"
 
 	let { data } = $props()
 
@@ -11,7 +10,7 @@
 	<div class="flex flex-wrap justify-center">
 		{#each images as photo}
 			<div class="min-w-[fit-content] m-2 text-center">
-				<Img
+				<img
 					class="object-contain sm:max-h-80 rounded-lg"
 					src="{photo.src}"
 					alt="{photo.description || photo.src}"
