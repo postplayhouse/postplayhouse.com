@@ -4,6 +4,8 @@
 	import Openings from "$components/OpeningAnnouncements.svelte"
 	import SeasonImage from "$components/SeasonImage.svelte"
 
+	import Announcement2025 from "./news/2024-09-12-announcing-2025-season/+page.md"
+
 	let { data } = $props()
 
 	const { productions } = data
@@ -32,6 +34,10 @@
 		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
 	/>
 </svelte:head>
+
+<div class="mb-12 max-w-3xl mx-auto">
+	<Announcement2025 />
+</div>
 
 <div class="mb-16 p-2 max-w-3xl mx-auto">
 	<Openings {productions} closingDate="2024-08-09">
