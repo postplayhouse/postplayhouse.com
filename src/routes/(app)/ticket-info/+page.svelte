@@ -67,31 +67,31 @@
 		<tbody>
 			<tr class="border-b">
 				<th class="text-left w-[9.5rem]">Adult</th>
-				<td class="text-center">$30</td>
-				<td class="text-center">$96</td>
-				<td class="text-center">$120</td>
+				<td class="text-center">$33</td>
+				<td class="text-center">$106</td>
+				<td class="text-center">$132</td>
 			</tr>
 			<tr class="border-b">
 				<th class="text-left w-[9.5rem]"
 					>Senior <span class="text-xs">(65+)</span></th
 				>
-				<td class="text-center">$25</td>
-				<td class="text-center">$80</td>
-				<td class="text-center">$100</td>
+				<td class="text-center">$28</td>
+				<td class="text-center">$88</td>
+				<td class="text-center">$110</td>
 			</tr>
 			<tr class="border-b">
 				<th class="text-left w-[9.5rem]"
 					>Youth <span class="text-xs">(12-)</span></th
 				>
-				<td class="text-center">$20</td>
-				<td class="text-center">$64</td>
-				<td class="text-center">$80</td>
+				<td class="text-center">$22</td>
+				<td class="text-center">$71</td>
+				<td class="text-center">$88</td>
 			</tr>
 			<tr>
 				<th class="text-left w-[9.5rem]"
 					>Group <span class="text-xs">(25 or more)</span></th
 				>
-				<td class="text-center">$25</td>
+				<td class="text-center">$28</td>
 			</tr>
 		</tbody>
 	</table>
