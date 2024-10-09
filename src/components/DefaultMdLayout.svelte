@@ -3,13 +3,14 @@
 
 	type Props = {
 		title?: string
+		css_class?: string
 		children: Snippet
 	}
 
-	let { title = "", children }: Props = $props()
+	let { title = "", css_class = "", children }: Props = $props()
 </script>
 
-<article class="via-markdown">
+<article class="via-markdown {css_class}">
 	{#if title}
 		<h1 class="h1">{title}</h1>
 	{/if}

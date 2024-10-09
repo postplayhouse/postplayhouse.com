@@ -6,9 +6,13 @@ css_class: "raffle-winners-2018"
 ---
 
 <style>
-  .raffle-winners-2018 li {
-    display: inline-block;
-    margin: 12px;
+  :global(.raffle-winners-2018) ul {
+    display: grid;
+    gap: 4em;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  :global(.raffle-winners-2018) ul li {
+    list-style: none;
   }
 </style>
 
