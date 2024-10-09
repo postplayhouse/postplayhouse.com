@@ -1,18 +1,9 @@
 const prod = process.env.NODE_ENV === "production"
-const live = process.env.CONTEXT === "production"
-const liveUrl = "https://postplayhouse.com"
 
 // Actual values. If dev, these may change below.
 const castingComplete = true
 const ticketsAvailableDate = "2023-11-17T00:00:00"
 const showsAnnounced = true
-
-// When doing a Netlify PR Deploy, use the provided url
-const url = live
-	? liveUrl
-	: prod
-		? process.env.DEPLOY_PRIME_URL || liveUrl
-		: "http://localhost:3000"
 
 const boxOfficePhone = "1-888-665-1976"
 
@@ -20,7 +11,7 @@ const boxOfficePhone = "1-888-665-1976"
 // Sapper. For now, for backward compatibility, it is all just here.
 export const site = {
 	baseurl: "",
-	url,
+	url: "__URL__", // replaced by vite.config.ts
 	maintainerEmail: "don@postplayhouse.com",
 	icon: "/images/post-playhouse-logo.png",
 	title: "Post Playhouse",
