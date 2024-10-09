@@ -15,7 +15,7 @@ excerpt_image: https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Deafnes
 </script>
 
 <div class="flex gap-8 justify-center items-center">
-  <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Deafness_and_hard_of_hearing_symbol.png/300px-Deafness_and_hard_of_hearing_symbol.png" /></div>
+  <div><img alt="deafness and hard of hearing symbol" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Deafness_and_hard_of_hearing_symbol.png/300px-Deafness_and_hard_of_hearing_symbol.png" /></div>
   <div><SeasonImage season="2017" imageFile={production.image}/></div>
 </div>
 

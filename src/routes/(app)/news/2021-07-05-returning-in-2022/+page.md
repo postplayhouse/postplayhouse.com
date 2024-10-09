@@ -8,16 +8,9 @@ sticky: false
   import DonateBtn from "$components/DonateBtn.svelte"
 </script>
 
-<style>
-  p,
-  ul {
-    margin-bottom: 1em;
-  }
-</style>
-
 We asked a few folks from years past to rewrite a few lyrics to celebrate the return of Post Playhouse next summer.
 
-<iframe class="my-4" src="https://player.vimeo.com/video/571099583" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+<iframe title="Back in 2022 video" class="my-4" src="https://player.vimeo.com/video/571099583" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 
 While we know this cannot replace the joy of watching a performance on the Post Playhouse stage, we hope you still enjoyed this fun video. We all miss you dearly and cannot wait to be back in person together again next season!
 
