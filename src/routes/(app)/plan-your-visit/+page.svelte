@@ -9,9 +9,11 @@
 <h2 class="h2">Nearby Activities, Attractions, Food, and Lodging</h2>
 
 <p class="my-8">
-	If you&rsquo;d like to see your business listed here, please contact us at
-	<a href="mailto:elaudeman@postplayhouse.com">elaudeman@postplayhouse.com</a>.
-	If you'd like to donate to the playhouse, visit our
+	If you‘d like to see your business listed here, please <a
+		class="link-green"
+		href="mailto:elaudeman@postplayhouse.com"
+		>email our development director, Em Laudeman</a
+	>. If you‘d like to donate to the playhouse, visit our
 	<a href="/donate/">donations page</a>.
 </p>
 
