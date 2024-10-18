@@ -102,7 +102,7 @@
 	}
 </script>
 
-<div class="prose mb-8 space-y-8">
+<div class="prose dark:prose-invert mb-8 space-y-8">
 	<p class="text-xl bold">
 		You can edit the calendar below by changing inputs and clicking on the show
 		slots on the calendar itself.
@@ -114,7 +114,7 @@
 			copying and sharing the URL below.
 		</p>
 
-		<div class="not-prose bg-white/50 p-2">
+		<div class="not-prose bg-white/50 dark:bg-black/50 p-2">
 			<code class="break-words font-bold">
 				{#if browser}
 					{$page.url.origin}{$page.url.pathname}{decodeURIComponent(
