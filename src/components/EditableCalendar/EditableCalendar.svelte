@@ -193,7 +193,7 @@
 </div>
 
 <div
-	class="grid grid-cols-7 bg-gray-300 dark:bg-[#0f110f] gap-1 border-4 border-gray-300"
+	class="grid grid-cols-[1fr_auto_1fr_1fr_1fr_1fr_1fr] bg-gray-300 dark:bg-[#0f110f] gap-1 border-4 border-gray-300"
 >
 	<div class="text-center">Sun</div>
 	<div class="text-center">Mon</div>
