@@ -252,12 +252,14 @@
 			</div>
 
 			{#each [1, 2, 3] as performanceSlot}
+				{@const time =
+					performanceSlot === 1 ? "10a" : performanceSlot === 2 ? "2p" : "8p"}
 				<div class="h-7">
 					{#each day.performances.filter((p) => p.slot === performanceSlot) as performance}
 						<Dropdown
-							class="bg-(--show-color)
-							text-white
-							[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]"
+							class="
+								h-full w-full bg-(--show-color) transition-opacity duration-300
+								hover:opacity-25"
 							style="--show-color:#{performance.color}"
 							choices={$schedule.productions}
 							onChoice={(production) =>
@@ -267,12 +269,21 @@
 									production,
 								})}
 						>
-							<span class="hidden sm:inline">{performance.longTitle}</span>
-							<span class="sm:hidden">{performance.shortTitle}</span>
+							<span class="inline-block rounded bg-white/50 px-1 text-black"
+								>{time}</span
+							>
+							<span
+								class="text-white
+									[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]"
+							>
+								<span class="hidden md:inline">{performance.longTitle}</span>
+								<span class="md:hidden">{performance.shortTitle}</span>
+							</span>
 						</Dropdown>
 					{:else}
 						<Dropdown
-							class="text-transparent bg-transparent hover:text-black"
+							class="text-center
+								transition-opacity duration-300 h-full w-full opacity-0 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted"
 							choices={$schedule.productions}
 							onChoice={(production) =>
 								handleChoice({
@@ -281,7 +292,7 @@
 									production,
 								})}
 						>
-							Nothing
+							Add {time}
 						</Dropdown>
 					{/each}
 				</div>
