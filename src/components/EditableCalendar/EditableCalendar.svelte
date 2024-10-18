@@ -20,6 +20,8 @@
 
 	let dates = $derived(Array.from(makeDateIterator($schedule)))
 
+	let isEditing = $state(true)
+
 	const perfsByProd = $derived(
 		$schedule.productions
 			.map((x) => ({ ...x, id: x.shortTitle }))
@@ -219,8 +221,12 @@
 	{dates[0]?.year}
 </div>
 
+<button class="btn-p" onclick="{() => (isEditing = !isEditing)}">
+	{isEditing ? "Stop Editing" : "Start Editing"}
+</button>
+
 <div
-	class="grid grid-cols-[1fr_auto_1fr_1fr_1fr_1fr_1fr] bg-gray-300 dark:bg-neutral-800 gap-1 border-4 border-gray-300 dark:border-neutral-800"
+	class="grid grid-cols-[1fr_minmax(3em,max-content)_1fr_1fr_1fr_1fr_1fr] bg-gray-300 dark:bg-neutral-800 gap-1 border-4 border-gray-300 dark:border-neutral-800"
 >
 	<div class="text-center">Sun</div>
 	<div class="text-center">Mon</div>
@@ -258,39 +264,39 @@
 			{#each [1, 2, 3] as performanceSlot}
 				{@const time =
 					performanceSlot === 1 ? "10a" : performanceSlot === 2 ? "2p" : "8p"}
-				<div class="h-8">
-					{#each day.performances.filter((p) => p.slot === performanceSlot) as performance}
-						<Dropdown
-							class="
-								transition-opacity duration-300 h-full w-full hover:opacity-25
+				{#each day.performances.filter((p) => p.slot === performanceSlot) as performance}
+					<Dropdown
+						class="
+								transition-opacity duration-300 h-8 w-full hover:opacity-25
 								bg-opacity-100
 								bg-[color-mix(in_srgb,transparent,var(--show-color)_calc(var(--tw-bg-opacity)*100%))] ring-inset data-[open]:ring-white data-[open]:ring data-[open]:bg-opacity-50 data-[open]:hover:opacity-100"
-							style="--show-color:#{performance.color}"
-							choices="{$schedule.productions}"
-							current="{performance}"
-							onChoice="{(production) =>
-								handleChoice({
-									...day,
-									slot: performanceSlot,
-									production,
-								})}"
-						>
-							<div class="m-1 grid grid-cols-[2.2em_auto] gap-1">
-								<div class="rounded px-1 bg-white/50 text-black text-right">
-									{time}
-								</div>
-								<span
-									class="text-white truncate
-										[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]"
-								>
-									{performance.shortTitle}
-								</span>
+						style="--show-color:#{performance.color}"
+						choices="{$schedule.productions}"
+						current="{performance}"
+						onChoice="{(production) =>
+							handleChoice({
+								...day,
+								slot: performanceSlot,
+								production,
+							})}"
+					>
+						<div class="m-1 grid grid-cols-[2.2em_auto] gap-1">
+							<div class="rounded px-1 bg-white/50 text-black text-right">
+								{time}
 							</div>
-						</Dropdown>
-					{:else}
+							<span
+								class="text-white truncate
+										[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]"
+							>
+								{performance.shortTitle}
+							</span>
+						</div>
+					</Dropdown>
+				{:else}
+					{#if isEditing}
 						<Dropdown
 							class="text-center
-								transition-opacity duration-300 h-full w-full opacity-0 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted
+								transition-opacity duration-300 h-8 w-full opacity-0 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted
 								data-[open]:opacity-75"
 							choices="{$schedule.productions}"
 							onChoice="{(production) =>
@@ -302,8 +308,8 @@
 						>
 							Add {time}
 						</Dropdown>
-					{/each}
-				</div>
+					{/if}
+				{/each}
 			{/each}
 		</div>
 	{/each}
