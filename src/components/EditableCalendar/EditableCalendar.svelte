@@ -254,14 +254,16 @@
 			{#each [1, 2, 3] as performanceSlot}
 				{@const time =
 					performanceSlot === 1 ? "10a" : performanceSlot === 2 ? "2p" : "8p"}
-				<div class="h-7">
+				<div class="h-8">
 					{#each day.performances.filter((p) => p.slot === performanceSlot) as performance}
 						<Dropdown
 							class="
-								h-full w-full bg-(--show-color) transition-opacity duration-300
-								hover:opacity-25"
+								bg-opacity-100 data-[open]:bg-opacity-50 h-full w-full bg-[color-mix(in_srgb,transparent,var(--show-color)_calc(var(--tw-bg-opacity,1)*100%))]
+								transition-opacity
+								duration-300 ring-inset hover:opacity-25 data-[open]:ring data-[open]:ring-white data-[open]:hover:opacity-100"
 							style="--show-color:#{performance.color}"
 							choices={$schedule.productions}
+							current={performance}
 							onChoice={(production) =>
 								handleChoice({
 									...day,
@@ -269,21 +271,23 @@
 									production,
 								})}
 						>
-							<span class="inline-block rounded bg-white/50 px-1 text-black"
-								>{time}</span
-							>
-							<span
-								class="text-white
-									[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]"
-							>
-								<span class="hidden md:inline">{performance.longTitle}</span>
-								<span class="md:hidden">{performance.shortTitle}</span>
-							</span>
+							<div class="m-1 grid grid-cols-[2.2em_auto] gap-1">
+								<div class="rounded bg-white/50 px-1 text-right text-black">
+									{time}
+								</div>
+								<span
+									class="truncate text-white
+										[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]"
+								>
+									{performance.shortTitle}
+								</span>
+							</div>
 						</Dropdown>
 					{:else}
 						<Dropdown
 							class="text-center
-								transition-opacity duration-300 h-full w-full opacity-0 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted"
+								transition-opacity duration-300 h-full w-full opacity-0 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted
+								data-[open]:opacity-75"
 							choices={$schedule.productions}
 							onChoice={(production) =>
 								handleChoice({
