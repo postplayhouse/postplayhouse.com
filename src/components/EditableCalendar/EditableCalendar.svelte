@@ -110,7 +110,7 @@
 	}
 </script>
 
-<div class="prose mb-8 space-y-8">
+<div class="prose dark:prose-invert mb-8 space-y-8">
 	<p class="bold text-xl">
 		You can edit the calendar below by changing inputs and clicking on the show
 		slots on the calendar itself.
@@ -122,7 +122,7 @@
 			copying and sharing the URL below.
 		</p>
 
-		<div class="not-prose bg-white/50 p-2">
+		<div class="not-prose bg-white/50 p-2 dark:bg-black/50">
 			<code class="font-bold break-words!">
 				{#if browser}
 					{$page.url.origin}{$page.url.pathname}{decodeURIComponent(
@@ -216,7 +216,7 @@
 </div>
 
 <div
-	class="grid grid-cols-[1fr_auto_1fr_1fr_1fr_1fr_1fr] gap-1 border-4 border-gray-300 bg-gray-300 dark:bg-[#0f110f]"
+	class="grid grid-cols-[1fr_auto_1fr_1fr_1fr_1fr_1fr] gap-1 border-4 border-gray-300 bg-gray-300 dark:border-neutral-800 dark:bg-neutral-800"
 >
 	<div class="text-center">Sun</div>
 	<div class="text-center">Mon</div>
@@ -227,16 +227,25 @@
 	<div class="text-center">Sat</div>
 
 	{#each dates as day, i}
+		{@const evenMonth = day.month % 2 === 0}
+		{@const isDark = day.performances.length === 0}
 		<div
-			class="bg-white p-1 dark:bg-white/20"
-			class:bg-opacity-50={day.month % 2 === 0}
-			class:bg-opacity-20={day.weekday === 2}
+			class="bg-white p-1 dark:bg-neutral-500"
+			class:bg-opacity-60={evenMonth && !isDark}
+			class:bg-opacity-20={isDark}
+			class:dark:bg-opacity-60={evenMonth && !isDark}
+			class:dark:bg-opacity-20={isDark}
 			style={i === 0 ? "grid-column-start: " + day.weekday : ""}
 		>
-			<div class="flex justify-end">
-				{#if day.day === 1 || i === 0}<span class="font-bold">
-						{day.monthName}
-					</span>
+			<div class="relative flex justify-end">
+				{#if day.day === 1 || i === 0}
+					<div
+						class="origin-left scale-125 -rotate-12 font-bold [text-shadow:0.035em_0.035em_0px_rgba(0,0,0,.5),0.035em_0.07em_0px_rgba(0,0,0,.5),0_0_4px_rgba(0,0,0,.5)] md:-translate-x-2
+						md:scale-[2]"
+					>
+						<div class="hidden md:block">{day.monthName}</div>
+						<div class="md:hidden">{day.monthName.slice(0, 3)}</div>
+					</div>
 				{/if}
 				<div class="grow"></div>
 				{day.day}
