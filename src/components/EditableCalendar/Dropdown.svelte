@@ -8,7 +8,7 @@
 	// core components
 
 	interface Props {
-		color?: string
+		style?: string
 		choices?: ProductionDetails[]
 		class?: string
 		onChoice?: (choice: ProductionDetails | null) => void
@@ -16,7 +16,7 @@
 	}
 
 	let {
-		color = "gray",
+		style = "",
 		class: className = "",
 		choices = [],
 		onChoice = () => {},
@@ -69,7 +69,7 @@
 <button
 	class="ease-linear transition-all duration-75 h-full w-full hover:opacity-25 border border-transparent hover:border-gray-500 border-dotted {className}"
 	type="button"
-	style="background-color: {color}"
+	{style}
 	bind:this="{btnRef}"
 	onclick="{toggleDropdown}"
 >
