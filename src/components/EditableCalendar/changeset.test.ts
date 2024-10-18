@@ -7,6 +7,8 @@ import {
 	removeProduction,
 } from "./changeset"
 
+import { describe, it, expect } from "vitest"
+
 describe("performance manipulation", () => {
 	const startingScheduleString = "[fff/Title]a1b2c3^a1b2c3"
 	const startingDetails = { startingMonth: 12, startingYear: 2021 }
@@ -171,6 +173,47 @@ describe("production manipulation", () => {
 			const { scheduleString } = showingsDataToString(newData)
 
 			expect(scheduleString.startsWith("[fff/Title/T]")).toBeTruthy()
+		})
+
+		it("short title will not change if it matches another short title", () => {
+			const startingScheduleString = `
+				[fff/TitleA]a1b2c3^a1b2c3
+				[fff/TitleB]a1b2c3^a1b2c3
+			`
+				.trim()
+				.replace(/\s+/g, "")
+			const startingDetails = { startingMonth: 12, startingYear: 2021 }
+			const schedule = showingsStringToData(
+				startingScheduleString,
+				startingDetails,
+			)
+
+			const newData = editProduction(schedule, "TitleA", {
+				shortTitle: "TitleB",
+			})
+
+			const { scheduleString } = showingsDataToString(newData)
+
+			expect(scheduleString).toEqual(startingScheduleString)
+		})
+
+		it("short title will not change if it becomes blank", () => {
+			const startingScheduleString = "[fff/TitleA]a1b2c3^a1b2c3"
+				.trim()
+				.replace(/\s+/g, "")
+			const startingDetails = { startingMonth: 12, startingYear: 2021 }
+			const schedule = showingsStringToData(
+				startingScheduleString,
+				startingDetails,
+			)
+
+			const newData = editProduction(schedule, "TitleA", {
+				shortTitle: "",
+			})
+
+			const { scheduleString } = showingsDataToString(newData)
+
+			expect(scheduleString).toEqual(startingScheduleString)
 		})
 	})
 })

@@ -103,14 +103,26 @@ export function editProduction(
 			? { shortTitle: originalOrShortTitle }
 			: originalOrShortTitle
 
+	const invalidChange = (function () {
+		if (edited.shortTitle === "") return true
+
+		if (
+			edited.shortTitle &&
+			schedule.productions.some((p) => p.shortTitle === edited.shortTitle)
+		)
+			return true
+	})()
+
+	if (invalidChange) return schedule
+
 	const newProductions = schedule.productions.map((p) =>
 		p.shortTitle === prod.shortTitle ? { ...p, ...edited } : p,
 	)
 
-	const newPerformances = schedule.performances
+	let newPerformances = schedule.performances
 	if (edited.shortTitle && edited.shortTitle !== prod.shortTitle) {
-		newPerformances.map((p) =>
-			p.id === prod.shortTitle ? { ...p, id: edited.shortTitle } : p,
+		newPerformances = newPerformances.map((p) =>
+			p.id === prod.shortTitle ? { ...p, id: edited.shortTitle! } : p,
 		)
 	}
 
