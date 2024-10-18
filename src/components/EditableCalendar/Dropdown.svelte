@@ -93,7 +93,7 @@
 				onclick="{() => choose(choice)}"
 				style="--show-color:#{choice?.color || '444'};"
 				data-chosen="{chosen || null}"
-				class="block w-full whitespace-no-wrap ring-white hover:ring-4 shadow py-2 px-4
+				class="block text-white w-full whitespace-no-wrap ring-white hover:ring-4 shadow py-2 px-4
 					[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]
 					bg-[color-mix(in_srgb,transparent,var(--show-color)_calc(var(--tw-bg-opacity)*100%))]
 					data-[chosen]:cursor-not-allowed data-[chosen]:ring-white data-[chosen]:ring data-[chosen]:bg-opacity-50"

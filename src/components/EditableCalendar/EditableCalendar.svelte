@@ -258,7 +258,7 @@
 			{#each [1, 2, 3] as performanceSlot}
 				{@const time =
 					performanceSlot === 1 ? "10a" : performanceSlot === 2 ? "2p" : "8p"}
-				<div class="h-7">
+				<div class="h-8">
 					{#each day.performances.filter((p) => p.slot === performanceSlot) as performance}
 						<Dropdown
 							class="
@@ -275,16 +275,17 @@
 									production,
 								})}"
 						>
-							<span class="inline-block rounded px-1 bg-white/50 text-black"
-								>{time}</span
-							>
-							<span
-								class="text-white
-									[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]"
-							>
-								<span class="hidden md:inline">{performance.longTitle}</span>
-								<span class="md:hidden">{performance.shortTitle}</span>
-							</span>
+							<div class="m-1 grid grid-cols-[2.2em_auto] gap-1">
+								<div class="rounded px-1 bg-white/50 text-black text-right">
+									{time}
+								</div>
+								<span
+									class="text-white truncate
+										[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]"
+								>
+									{performance.shortTitle}
+								</span>
+							</div>
 						</Dropdown>
 					{:else}
 						<Dropdown
