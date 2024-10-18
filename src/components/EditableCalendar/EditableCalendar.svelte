@@ -114,8 +114,8 @@
 			copying and sharing the URL below.
 		</p>
 
-		<div>
-			<code class="!break-words">
+		<div class="not-prose bg-white/50 p-2">
+			<code class="break-words font-bold">
 				{#if browser}
 					{$page.url.origin}{$page.url.pathname}{decodeURIComponent(
 						$page.url.search,
