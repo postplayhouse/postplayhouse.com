@@ -240,11 +240,11 @@
 			<div class="relative flex justify-end">
 				{#if day.day === 1 || i === 0}
 					<div
-						class="origin-left scale-125 -rotate-12 font-bold [text-shadow:0.035em_0.035em_0px_rgba(0,0,0,.5),0.035em_0.07em_0px_rgba(0,0,0,.5),0_0_4px_rgba(0,0,0,.5)] md:-translate-x-2
-						md:scale-[2]"
+						class="font-uber origin-top-left scale-125 -rotate-12 md:-translate-x-2 md:scale-[2]
+						dark:[text-shadow:0.035em_0.035em_0px_rgba(0,0,0,.5),0.035em_0.07em_0px_rgba(0,0,0,.5),0_0_4px_rgba(0,0,0,.5)]"
 					>
-						<div class="hidden md:block">{day.monthName}</div>
-						<div class="md:hidden">{day.monthName.slice(0, 3)}</div>
+						<div class="hidden lg:block">{day.monthName}</div>
+						<div class="lg:hidden">{day.monthName.slice(0, 3)}</div>
 					</div>
 				{/if}
 				<div class="grow"></div>
