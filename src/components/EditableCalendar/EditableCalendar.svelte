@@ -266,6 +266,7 @@
 								bg-[--show-color]"
 							style="--show-color:#{performance.color}"
 							choices="{$schedule.productions}"
+							current="{performance}"
 							onChoice="{(production) =>
 								handleChoice({
 									...day,

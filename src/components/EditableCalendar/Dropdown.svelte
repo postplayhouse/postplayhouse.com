@@ -8,6 +8,7 @@
 	// core components
 
 	interface Props {
+		current?: { shortTitle: string }
 		style?: string
 		choices?: ProductionDetails[]
 		class?: string
@@ -16,6 +17,7 @@
 	}
 
 	let {
+		current,
 		style = "",
 		class: className = "",
 		choices = [],
@@ -86,12 +88,16 @@
 		class="bg-grey-400 p-4 rounded shadow-lg w-full border border-grey-500 space-y-4"
 	>
 		{#each [...choices, null] as choice}
+			{@const chosen = choice?.shortTitle === current?.shortTitle}
 			<button
 				type="button"
 				onclick="{() => choose(choice)}"
-				style="--show-color:#{choice?.color || '444'}"
-				class="block w-full whitespace-no-wrap ring-black hover:ring-4 shadow py-2 px-4 [text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]
-							bg-[--show-color]"
+				style="--show-color:#{choice?.color || '444'};"
+				data-chosen="{chosen || null}"
+				class="block w-full whitespace-no-wrap ring-white hover:ring-4 shadow py-2 px-4
+					[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]
+					bg-[--show-color]
+					data-[chosen]:cursor-not-allowed data-[chosen]:ring-white data-[chosen]:ring"
 			>
 				{choice?.longTitle ?? "None"}
 			</button>
