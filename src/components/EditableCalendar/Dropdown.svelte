@@ -89,8 +89,9 @@
 			<button
 				type="button"
 				onclick="{() => choose(choice)}"
-				class="block w-full whitespace-no-wrap border-4 border-transparent hover:border-black shadow py-2 px-4"
-				style="background-color: #{choice?.color ?? 'fff'}"
+				style="--show-color:#{choice?.color || '444'}"
+				class="block w-full whitespace-no-wrap border-4 border-transparent hover:border-black shadow py-2 px-4 [text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]
+							bg-[--show-color]"
 			>
 				{choice?.longTitle ?? "None"}
 			</button>
