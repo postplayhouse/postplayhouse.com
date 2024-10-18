@@ -67,7 +67,7 @@
 <svelte:window on:click="{action}" />
 
 <button
-	class="ease-linear transition-all duration-75 h-full w-full hover:opacity-25 border border-transparent hover:border-gray-500 border-dotted {className}"
+	class="{className}"
 	type="button"
 	{style}
 	bind:this="{btnRef}"
@@ -90,7 +90,7 @@
 				type="button"
 				onclick="{() => choose(choice)}"
 				style="--show-color:#{choice?.color || '444'}"
-				class="block w-full whitespace-no-wrap border-4 border-transparent hover:border-black shadow py-2 px-4 [text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]
+				class="block w-full whitespace-no-wrap ring-black hover:ring-4 shadow py-2 px-4 [text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]
 							bg-[--show-color]"
 			>
 				{choice?.longTitle ?? "None"}
