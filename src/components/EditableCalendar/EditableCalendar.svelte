@@ -2,7 +2,11 @@
 	import Dropdown from "./Dropdown.svelte"
 	import type { PerformanceDetails, ProductionDetails } from "./showingsData"
 	import { dateOfPerformance, getDateDetails, makeDateIterator } from "./dates"
-	import { addPerformance, removePerformanceBySlot } from "./changeset"
+	import {
+		addPerformance,
+		editProduction,
+		removePerformanceBySlot,
+	} from "./changeset"
 	import schedule, { replaceAfterMount } from "./store.svelte"
 	import { page } from "$app/stores"
 	import { add } from "date-fns"
@@ -67,10 +71,14 @@
 		property: keyof ProductionDetails,
 	) {
 		return (newValue: string) => {
-			const { performances, productions } = $schedule
-			productions[i]![property] = newValue
+			const { performances, productions } = editProduction(
+				$schedule,
+				$schedule.productions[i],
+				{
+					[property]: newValue,
+				},
+			)
 
-			console.log(productions[i]![property])
 			schedule.set({ performances, productions })
 		}
 	}
@@ -141,27 +149,46 @@
 	</div>
 	<div class="flex flex-wrap gap-4 my-4">
 		{#each $schedule.productions as production, i}
-			<div class="flex gap-1">
-				<input
-					class="inline-block h-full border border-gray-500 rounded cursor-pointer"
-					type="color"
-					value="#{production.color}"
-					oninput="{(e) =>
-						handleProductionDetailChange(
-							i,
-							'color',
-						)(e.currentTarget.value.slice(1))}"
-				/>
-				<input
-					class="inline-block p-2 border border-gray-500 rounded shadow-inner bg-gray-100 dark:bg-gray-100/10"
-					type="text"
-					value="{production.longTitle}"
-					oninput="{(e) =>
-						handleProductionDetailChange(
-							i,
-							'longTitle',
-						)(e.currentTarget.value)}"
-				/>
+			<div class="flex gap-1 flex-wrap">
+				<label>
+					<div class="opacity-50">Color</div>
+					<input
+						class="inline-block size-12 border border-gray-500 rounded cursor-pointer"
+						type="color"
+						value="#{production.color}"
+						oninput="{(e) =>
+							handleProductionDetailChange(
+								i,
+								'color',
+							)(e.currentTarget.value.slice(1))}"
+					/>
+				</label>
+				<label>
+					<div class="opacity-50">Full Title</div>
+					<input
+						class="inline-block p-2 border border-gray-500 rounded shadow-inner bg-gray-100 dark:bg-gray-100/10"
+						type="text"
+						value="{production.longTitle}"
+						oninput="{(e) =>
+							handleProductionDetailChange(
+								i,
+								'longTitle',
+							)(e.currentTarget.value)}"
+					/>
+				</label>
+				<label>
+					<div class="opacity-50">Short Title</div>
+					<input
+						class="inline-block p-2 border border-gray-500 rounded shadow-inner bg-gray-100 dark:bg-gray-100/10"
+						type="text"
+						value="{production.shortTitle}"
+						oninput="{(e) =>
+							handleProductionDetailChange(
+								i,
+								'shortTitle',
+							)(e.currentTarget.value)}"
+					/>
+				</label>
 			</div>
 		{/each}
 	</div>
@@ -244,7 +271,8 @@
 									production,
 								})}"
 						>
-							{performance.longTitle}
+							<span class="hidden sm:inline">{performance.longTitle}</span>
+							<span class="sm:hidden">{performance.shortTitle}</span>
 						</Dropdown>
 					{:else}
 						<Dropdown
