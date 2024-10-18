@@ -69,6 +69,7 @@
 <svelte:window on:click="{action}" />
 
 <button
+	data-open="{dropdownPopoverShow || null}"
 	class="{className}"
 	type="button"
 	{style}
@@ -80,9 +81,7 @@
 
 <div
 	bind:this="{popoverRef}"
-	class="pt-2 z-50 float-left w-52 {dropdownPopoverShow
-		? 'block'
-		: 'hidden'} shadow-lg"
+	class="py-2 z-50 w-52 {dropdownPopoverShow ? 'block' : 'hidden'}"
 >
 	<div
 		class="bg-grey-400 p-4 rounded shadow-lg w-full border border-grey-500 space-y-4"
@@ -96,8 +95,8 @@
 				data-chosen="{chosen || null}"
 				class="block w-full whitespace-no-wrap ring-white hover:ring-4 shadow py-2 px-4
 					[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]
-					bg-[--show-color]
-					data-[chosen]:cursor-not-allowed data-[chosen]:ring-white data-[chosen]:ring"
+					bg-[color-mix(in_srgb,transparent,var(--show-color)_calc(var(--tw-bg-opacity)*100%))]
+					data-[chosen]:cursor-not-allowed data-[chosen]:ring-white data-[chosen]:ring data-[chosen]:bg-opacity-50"
 			>
 				{choice?.longTitle ?? "None"}
 			</button>

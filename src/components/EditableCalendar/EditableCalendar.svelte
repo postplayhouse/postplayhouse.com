@@ -263,7 +263,8 @@
 						<Dropdown
 							class="
 								transition-opacity duration-300 h-full w-full hover:opacity-25
-								bg-[--show-color]"
+								bg-opacity-100
+								bg-[color-mix(in_srgb,transparent,var(--show-color)_calc(var(--tw-bg-opacity)*100%))] ring-inset data-[open]:ring-white data-[open]:ring data-[open]:bg-opacity-50 data-[open]:hover:opacity-100"
 							style="--show-color:#{performance.color}"
 							choices="{$schedule.productions}"
 							current="{performance}"
@@ -288,7 +289,8 @@
 					{:else}
 						<Dropdown
 							class="text-center
-								transition-opacity duration-300 h-full w-full opacity-0 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted"
+								transition-opacity duration-300 h-full w-full opacity-0 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted
+								data-[open]:opacity-75"
 							choices="{$schedule.productions}"
 							onChoice="{(production) =>
 								handleChoice({
