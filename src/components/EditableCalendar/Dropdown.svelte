@@ -8,7 +8,7 @@
 	// core components
 
 	interface Props {
-		color?: string
+		style?: string
 		choices?: ProductionDetails[]
 		class?: string
 		onChoice?: (choice: ProductionDetails | null) => void
@@ -16,7 +16,7 @@
 	}
 
 	let {
-		color = "gray",
+		style = "",
 		class: className = "",
 		choices = [],
 		onChoice = () => {},
@@ -69,7 +69,7 @@
 <button
 	class="h-full w-full border border-dotted border-transparent transition-all duration-75 ease-linear hover:border-gray-500 hover:opacity-25 {className}"
 	type="button"
-	style="background-color: {color}"
+	{style}
 	bind:this={btnRef}
 	onclick={toggleDropdown}
 >
@@ -89,8 +89,9 @@
 			<button
 				type="button"
 				onclick={() => choose(choice)}
-				class="whitespace-no-wrap block w-full border-4 border-transparent px-4 py-2 shadow-sm hover:border-black"
-				style="background-color: #{choice?.color ?? 'fff'}"
+				style="--show-color:#{choice?.color || '444'}"
+				class="whitespace-no-wrap block w-full border-4 border-transparent bg-(--show-color) px-4 py-2 shadow [text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]
+							hover:border-black"
 			>
 				{choice?.longTitle ?? "None"}
 			</button>

@@ -255,7 +255,10 @@
 				<div class="h-7">
 					{#each day.performances.filter((p) => p.slot === performanceSlot) as performance}
 						<Dropdown
-							color="#{performance.color}"
+							class="bg-(--show-color)
+							text-white
+							[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]"
+							style="--show-color:#{performance.color}"
 							choices={$schedule.productions}
 							onChoice={(production) =>
 								handleChoice({
@@ -269,8 +272,7 @@
 						</Dropdown>
 					{:else}
 						<Dropdown
-							class="text-transparent hover:text-black"
-							color="transparent"
+							class="text-transparent bg-transparent hover:text-black"
 							choices={$schedule.productions}
 							onChoice={(production) =>
 								handleChoice({
