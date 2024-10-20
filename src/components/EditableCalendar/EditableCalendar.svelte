@@ -9,8 +9,9 @@
 	} from "./changeset"
 	import schedule, { replaceAfterMount } from "./store.svelte"
 	import { page } from "$app/stores"
-	import { add } from "date-fns"
+	import { add, getWeekYear } from "date-fns"
 	import { browser } from "$app/environment"
+	import { combine } from "$helpers"
 
 	// Bare reference to page just to keep eslint happy
 	// https://github.com/sveltejs/eslint-plugin-svelte/issues/652
@@ -219,6 +220,7 @@
 <div class="text-2xl bold mt-12 text-center mb-6">
 	Summer
 	{dates[0]?.year}
+	{dates[0]?.month}: {dates[0]?.monthName}
 </div>
 
 <button class="btn-p" onclick="{() => (isEditing = !isEditing)}">
@@ -238,16 +240,25 @@
 
 	{#each dates as day, i}
 		{@const evenMonth = day.month % 2 === 0}
+		{@const numPerfs = day.performances.length}
+		{@const rowSpan = numPerfs === 3 || isEditing ? "row-span-4" : "row-span-5"}
+		{@const getPerfRow = (performanceSlot: number) => (numPerfs === 3 || isEditing? (performanceSlot - 1) * 4 : ((performanceSlot-1)*5)+2)+2}
 		{@const isDark = day.performances.length === 0}
+		{@const weekInt =
+			getWeekYear(new Date(day.year, day.month - 1, day.day)) -
+			getWeekYear(new Date(dates[0].year, dates[0].month - 1, dates[0].day))}
 		<div
-			class="bg-white dark:bg-neutral-500 p-1"
+			class="bg-white dark:bg-neutral-500 p-1 grid-rows-subgrid"
 			class:bg-opacity-60="{evenMonth && !isDark}"
 			class:bg-opacity-20="{isDark}"
 			class:dark:bg-opacity-60="{evenMonth && !isDark}"
 			class:dark:bg-opacity-20="{isDark}"
-			style="{i === 0 ? 'grid-column-start: ' + day.weekday : ''}"
+			style="{combine(
+				i === 0 && `grid-column-start:  ${day.weekday};`,
+				`grid-row-start: ${weekInt * 14};`,
+			)}"
 		>
-			<div class="relative flex justify-end">
+			<div class="relative flex justify-end row-span-2">
 				{#if day.day === 1 || i === 0}
 					<div
 						class="font-uber -rotate-12 scale-125 md:scale-[2] md:-translate-x-2 origin-top-left
@@ -267,10 +278,15 @@
 				{#each day.performances.filter((p) => p.slot === performanceSlot) as performance}
 					<Dropdown
 						class="
-								transition-opacity duration-300 h-8 w-full hover:opacity-25
-								bg-opacity-100
-								bg-[color-mix(in_srgb,transparent,var(--show-color)_calc(var(--tw-bg-opacity)*100%))] ring-inset data-[open]:ring-white data-[open]:ring data-[open]:bg-opacity-50 data-[open]:hover:opacity-100"
-						style="--show-color:#{performance.color}"
+								{combine(
+							'transition-opacity duration-300 h-8 w-full hover:opacity-25',
+							'bg-opacity-100',
+							rowSpan,
+							'bg-[color-mix(in_srgb,transparent,var(--show-color)_calc(var(--tw-bg-opacity)*100%))] ring-inset data-[open]:ring-white data-[open]:ring data-[open]:bg-opacity-50 data-[open]:hover:opacity-100',
+						)}"
+						style="--show-color:#{performance.color}; grid-row-start: {getPerfRow(
+							performanceSlot,
+						)};"
 						choices="{$schedule.productions}"
 						current="{performance}"
 						onChoice="{(production) =>
