@@ -261,3 +261,9 @@ export function fullSeasonImageUrl(season: string | number) {
 
 	return `/images/${year}/${file}`
 }
+
+export function combine(
+	...classNames: (string | undefined | false | null)[]
+): string {
+	return classNames.filter(Boolean).join(" ")
+}
