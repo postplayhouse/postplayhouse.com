@@ -9,7 +9,7 @@
 	} from "./changeset"
 	import schedule, { replaceAfterMount } from "./store.svelte"
 	import { page } from "$app/stores"
-	import { add, getWeekYear } from "date-fns"
+	import { add, getWeek } from "date-fns"
 	import { browser } from "$app/environment"
 	import { combine } from "$helpers"
 
@@ -21,7 +21,7 @@
 
 	let dates = $derived(Array.from(makeDateIterator($schedule)))
 
-	let isEditing = $state(true)
+	let isEditing = $state(false)
 
 	const perfsByProd = $derived(
 		$schedule.productions
@@ -111,6 +111,12 @@
 				return "WTF"
 		}
 	}
+
+	const getPerfRow =
+		(numPerfs: number, isEditing: boolean) => (performanceSlot: number) =>
+			numPerfs === 3 || isEditing
+				? (performanceSlot - 1) * 4 + 2
+				: (performanceSlot - 2) * 5 + 2 + 2
 </script>
 
 <div class="prose dark:prose-invert mb-8 space-y-8">
@@ -242,23 +248,23 @@
 		{@const evenMonth = day.month % 2 === 0}
 		{@const numPerfs = day.performances.length}
 		{@const rowSpan = numPerfs === 3 || isEditing ? "row-span-4" : "row-span-5"}
-		{@const getPerfRow = (performanceSlot: number) => (numPerfs === 3 || isEditing? (performanceSlot - 1) * 4 : ((performanceSlot-1)*5)+2)+2}
 		{@const isDark = day.performances.length === 0}
 		{@const weekInt =
-			getWeekYear(new Date(day.year, day.month - 1, day.day)) -
-			getWeekYear(new Date(dates[0].year, dates[0].month - 1, dates[0].day))}
+			getWeek(new Date(day.year, day.month - 1, day.day)) -
+			getWeek(new Date(dates[0].year, dates[0].month - 1, dates[0].day))}
+		{@const startRow = weekInt * 14 + 2}
 		<div
-			class="bg-white dark:bg-neutral-500 p-1 grid-rows-subgrid"
+			class="bg-white dark:bg-neutral-500 p-1 grid grid-rows-subgrid row-[span_14_/_span_14]"
 			class:bg-opacity-60="{evenMonth && !isDark}"
 			class:bg-opacity-20="{isDark}"
 			class:dark:bg-opacity-60="{evenMonth && !isDark}"
 			class:dark:bg-opacity-20="{isDark}"
 			style="{combine(
-				i === 0 && `grid-column-start:  ${day.weekday};`,
-				`grid-row-start: ${weekInt * 14};`,
+				`grid-column-start: ${day.weekday};`,
+				`grid-row-start: ${startRow};`,
 			)}"
 		>
-			<div class="relative flex justify-end row-span-2">
+			<div class="relative flex justify-end row-span-2 row-start-1 col-start-1">
 				{#if day.day === 1 || i === 0}
 					<div
 						class="font-uber -rotate-12 scale-125 md:scale-[2] md:-translate-x-2 origin-top-left
@@ -279,14 +285,15 @@
 					<Dropdown
 						class="
 								{combine(
-							'transition-opacity duration-300 h-8 w-full hover:opacity-25',
+							'transition-opacity duration-300 w-full hover:opacity-25 col-start-1',
 							'bg-opacity-100',
 							rowSpan,
 							'bg-[color-mix(in_srgb,transparent,var(--show-color)_calc(var(--tw-bg-opacity)*100%))] ring-inset data-[open]:ring-white data-[open]:ring data-[open]:bg-opacity-50 data-[open]:hover:opacity-100',
 						)}"
 						style="--show-color:#{performance.color}; grid-row-start: {getPerfRow(
-							performanceSlot,
-						)};"
+							numPerfs,
+							isEditing,
+						)(performanceSlot)};"
 						choices="{$schedule.productions}"
 						current="{performance}"
 						onChoice="{(production) =>
@@ -312,7 +319,7 @@
 					{#if isEditing}
 						<Dropdown
 							class="text-center
-								transition-opacity duration-300 h-8 w-full opacity-0 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted
+								transition-opacity duration-300 w-full opacity-0 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted
 								data-[open]:opacity-75"
 							choices="{$schedule.productions}"
 							onChoice="{(production) =>
