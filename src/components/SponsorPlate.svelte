@@ -15,7 +15,7 @@
 
 {@render beforeSponsors?.()}
 
-{#if year_ === 2023 || year_ === 2024}
+{#if year_ === 2023 || year_ === 2024 || year_ === 2025}
 	<ul
 		class="grid grid-cols-2 max-w-[30rem] lg:max-w-full lg:grid-cols-4 gap-8 grid-flow-dense items-center m-auto dark:bg-white/80 rounded list-none"
 	>
