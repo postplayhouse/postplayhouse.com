@@ -37,56 +37,59 @@
 	<Openings {productions} closingDate="2025-08-10">
 		{#snippet seasonArtworkImage()}
 			<ul
-				class="border-t-4 grid grid-cols-1 max-w-[30rem] lg:max-w-full lg:grid-cols-2 gap-2 items-center dark:bg-white/80 rounded list-none"
+				class="p-6 -m-6 bg-green-200 dark:bg-transparent flex justify-center flex-wrap gap-2 items-center rounded list-none [&>*]:max-w-96 sm:[&>*]:max-w-60"
 			>
-				<li>
+				<li
+					class="dark:bg-neutral-300 block rounded overflow-clip shadow-lg shadow-green-800/50 dark:shadow-black/20 -rotate-2 md:scale-105 dark:scale-100"
+				>
 					<SeasonImage
-						class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl bg-white/70"
+						class="max-w-full mix-blend-multiply"
 						imageFile="guys-n-dolls.jpg"
 						season="2025"
 						alt="Show Logo for guys-n-dolls"
 					></SeasonImage>
 				</li>
-				<li>
+				<li
+					class="dark:bg-neutral-300 block rounded overflow-clip shadow-lg shadow-green-800/50 dark:shadow-black/20 rotate-3 md:scale-105 dark:scale-100"
+				>
 					<SeasonImage
-						class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl bg-white/70"
+						class="max-w-full mix-blend-multiply"
 						imageFile="nunsense-jamboree.jpg"
 						season="2025"
 						alt="Show Logo for nunsense-jamboree"
 					></SeasonImage>
 				</li>
-				<li>
+				<li
+					class="dark:bg-neutral-300 block rounded overflow-clip shadow-lg shadow-green-800/50 dark:shadow-black/20 rotate-2 md:rotate dark:scale-100-0 md:scale-105"
+				>
 					<SeasonImage
-						class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl bg-white/70"
+						class="max-w-full mix-blend-multiply"
 						imageFile="newsies.jpg"
 						season="2025"
 						alt="Show Logo for newsies"
 					></SeasonImage>
 				</li>
-				<li>
+				<li
+					class="dark:bg-neutral-300 block rounded overflow-clip shadow-lg shadow-green-800/50 dark:shadow-black/20 -rotate-2 md:scale-105 dark:scale-100"
+				>
 					<SeasonImage
-						class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl bg-white/70"
+						class="max-w-full mix-blend-multiply"
 						imageFile="lucky-stiff.jpg"
 						season="2025"
 						alt="Show Logo for lucky-stiff"
 					></SeasonImage>
 				</li>
-				<li>
+				<li
+					class="dark:bg-neutral-300 block rounded overflow-clip shadow-lg shadow-green-800/50 dark:shadow-black/20 rotate-2 md:scale-105 dark:scale-100"
+				>
 					<SeasonImage
-						class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl bg-white/70"
+						class="max-w-full mix-blend-multiply"
 						imageFile="into-the-woods.jpg"
 						season="2025"
 						alt="Show Logo for into-the-woods"
 					></SeasonImage>
 				</li>
 			</ul>
-			<!-- <div class="w-full m-auto rounded-lg overflow-clip">
-				<SeasonImage
-					season="2025"
-					imageFile="full-season.jpg"
-					alt="2024 season logos: Guys & Dolls, Nunsense Jamboree, Disney's Newsies, Lucky Stiff, and Into The Woods"
-				/>
-			</div> -->
 		{/snippet}
 	</Openings>
 </div>
