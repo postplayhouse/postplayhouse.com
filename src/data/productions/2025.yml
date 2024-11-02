@@ -14,6 +14,8 @@
       July 9a, 11a, 13a, 16e, 18a, 25e,
       August 1a, 9m, 10a,
   roles_sorting:
+  sponsor:
+    text: Anne Armstrong Sellman
 
 - title: Nunsense Jamboree
   short_title: Nunsense
@@ -31,6 +33,8 @@
       July 10e, 12m, 15e, 19e, 23a, 27a,
       August 1e, 2a, 6e, 8a,
   roles_sorting:
+  sponsor:
+    image: big-bats.png
 
 - title: Disney's Newsies
   short_title: Newsies
@@ -47,6 +51,9 @@
       July 8e, 12a, 16a, 20a, 25a, 26m, 30a, 31e,
       August 3a, 6a, 9e,
   roles_sorting:
+  sponsor:
+    image: westco.png
+    link: https://www.westco.coop
 
 - title: Lucky Stiff
   short_title: Lucky
@@ -64,10 +71,13 @@
       July 5e, 9e, 12e, 18e, 19a, 23e, 26e, 30e,
       August 2e, 5e, 8e,
   roles_sorting:
+  sponsor:
+    image: stuart-trust.png
 
 - title: Into the Woods
   short_title: Woods
   rating: H
+  rating_explanation: This musical contains darker themes and moral complexities that may not be suitable for young children. Parents should review its content before bringing kids.
   color: red
   image: into-the-woods.jpg
   opening: 2025-07-03
@@ -79,3 +89,5 @@
       July 3e, 5a, 6a, 11e, 17e, 19m, 22e, 24e, 26a, 29e,
       August 2m, 7e, 9a,
   roles_sorting:
+  sponsor:
+    text: Jeanine Mohr and Gary Mohr
