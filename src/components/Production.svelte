@@ -33,19 +33,19 @@
 	<header>
 		{#if enhancedImage}
 			<ProductionImage
-				class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl bg-white/70"
+				class="block max-w-full bg-white/70 md:float-left md:mr-4 md:w-3/5 md:max-w-4xl"
 				imageFile="{production.image}"
 				{season}
 				alt="Show Logo for {production.title}"
 			></ProductionImage>
 		{:else if image}
 			<MaybeImage
-				class="max-w-full block md:float-left md:w-3/5 md:mr-4 md:max-w-4xl bg-white/70"
+				class="block max-w-full bg-white/70 md:float-left md:mr-4 md:w-3/5 md:max-w-4xl"
 				src="{[image]}"
 				alt="Show Logo for {production.title}"
 			/>
 		{/if}
-		<h2 class="text-4xl leading-none mb-2">
+		<h2 class="mb-2 text-4xl leading-none">
 			{#if production.pre_title}
 				<div class="text-lg leading-none">{production.pre_title}</div>
 			{/if}
@@ -61,7 +61,7 @@
 	{#if production.writers}
 		<!-- Making every paragraph a flex box ensures that the position and name of
   the person will not flow differently around the floated show logo -->
-		<div class="mb-8 writers [&_p]:flex">
+		<div class="writers mb-8 [&_p]:flex">
 			<Markdown source="{production.writers}" />
 		</div>
 	{/if}
@@ -70,7 +70,7 @@
 			<a class="link-green" href="/ratings">Rating: {production.rating}</a>
 			{#if production.rating_explanation}
 				<div
-					class="p-4 my-2 bg-grey-200 dark:bg-grey-200/40 text-grey-600 dark:text-white"
+					class="my-2 bg-grey-200 p-4 text-grey-600 dark:bg-grey-200/40 dark:text-white"
 				>
 					{production.rating_explanation}
 				</div>
@@ -83,13 +83,13 @@
 
 		{#if production.sponsor}
 			<MaybeLink
-				class="float-right dark:bg-white/50 p-2"
+				class="float-right p-2 dark:bg-white/50"
 				href="{production.sponsor.link}"
 			>
 				<p>Sponsored By</p>
 				{#if production.sponsor.image}
 					<img
-						class="w-48 max-w-full block"
+						class="block w-48 max-w-full"
 						alt="sponsor logo"
 						src="/images/sponsors/{production.sponsor.image}"
 					/>
@@ -103,7 +103,7 @@
 	</div>
 
 	{#if isSeries(production)}
-		<div class="pl-8 border-l-8">
+		<div class="border-l-8 pl-8">
 			{#each production.events as event}
 				<svelte:self production="{event}" {season} />
 			{/each}

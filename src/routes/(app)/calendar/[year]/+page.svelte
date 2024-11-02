@@ -21,7 +21,7 @@
 	<h3 class="h3 text-center">
 		The 2020 Season was cancelled before it began due to COVID-19.
 	</h3>
-	<p class="text-xl text-center mb-4">
+	<p class="mb-4 text-center text-xl">
 		The calendar is reproduced below as the season was originally scheduled.
 	</p>
 {/if}
@@ -31,7 +31,7 @@
 {/if}
 
 {#if year === 2024}
-	<h3 class="h3 text-center bg-red-400 border border-red-800 p-4">
+	<h3 class="h3 border border-red-800 bg-red-400 p-4 text-center">
 		NOTICE: We have unfortunately had to cancel the final 4 performances of this
 		season. Our closing performance will be Honky Tonk Laundry at 2pm on Friday,
 		August 9th.
@@ -67,7 +67,7 @@
 {/if}
 
 {#if year === 2024}
-	<h3 class="h3 text-center bg-red-400 border border-red-800 p-4">
+	<h3 class="h3 border border-red-800 bg-red-400 p-4 text-center">
 		NOTICE: We have unfortunately had to cancel the final 4 performances of this
 		season. Our closing performance will be Honky Tonk Laundry at 2pm on Friday,
 		August 9th.

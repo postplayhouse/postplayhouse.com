@@ -35,7 +35,7 @@
 							{#if i === 0}
 								<div class="calendar-filters">
 									{#each productions as prod}
-										<div class="filter selected show-{prod.color}">
+										<div class="selected filter show-{prod.color}">
 											{prod.title}
 										</div>
 									{/each}

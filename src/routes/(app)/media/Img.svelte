@@ -45,9 +45,9 @@
 </script>
 
 {#if loading}
-	<div class="flex justify-center items-center h-32">
+	<div class="flex h-32 items-center justify-center">
 		<div
-			class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900 dark:border-gray-100"
+			class="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-gray-900 dark:border-gray-100"
 		></div>
 	</div>
 {:else}

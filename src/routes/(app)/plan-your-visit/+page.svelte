@@ -19,8 +19,8 @@
 
 {#each businesses as item}
 	<div class="relative" class:supporter="{item.supporter}">
-		<div class="flex flex-row-reverse mb-8">
-			<div class="flex-grow bg-green-200 dark:bg-green-900/60 p-4">
+		<div class="mb-8 flex flex-row-reverse">
+			<div class="flex-grow bg-green-200 p-4 dark:bg-green-900/60">
 				<div>
 					{#if item.site}
 						<a href="{item.site}">
@@ -73,7 +73,7 @@
 				{/if}
 			</div>
 
-			<ul class="flex-none w-32 list-none bg-green-400 dark:bg-black p-4">
+			<ul class="w-32 flex-none list-none bg-green-400 p-4 dark:bg-black">
 				{#each item.type as type}
 					<li class="mb-2">{type}</li>
 				{/each}

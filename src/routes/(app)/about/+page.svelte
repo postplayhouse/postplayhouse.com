@@ -73,7 +73,7 @@
 	</li>
 </ul>
 
-<div class="w-full max-w-2xl my-4">
+<div class="my-4 w-full max-w-2xl">
 	<div class="r-16x9">
 		<iframe
 			class="r-child"

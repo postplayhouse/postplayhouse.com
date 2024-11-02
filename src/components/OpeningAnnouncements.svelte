@@ -62,7 +62,7 @@
 {#if isAfterClosing}
 	<h3 class="h1 my-8">Thank you for a wonderful season!</h3>
 
-	<p class="text-3xl my-8">
+	<p class="my-8 text-3xl">
 		We were delighted to bring you a summer season full of entertainment!
 	</p>
 {:else}
@@ -73,7 +73,7 @@
 				: "today"}!
 		</h3>
 
-		<div class="md:flex items-center my-8">
+		<div class="my-8 items-center md:flex">
 			<div class="shrink">
 				<SeasonImage
 					season="{openingSoon.season}"
@@ -81,14 +81,14 @@
 					alt="Show Logo for {openingSoon.title}"
 				/>
 			</div>
-			<div class="text-center md:text-left shrink-0">
+			<div class="shrink-0 text-center md:text-left">
 				<Markdown source="{openingSoon.writers}" />
 			</div>
 		</div>
 
 		<Markdown source="{openingSoon.description}" />
 
-		<div class="flex justify-center m-4">
+		<div class="m-4 flex justify-center">
 			<TicketsButton />
 		</div>
 	{/if}
@@ -124,7 +124,7 @@
 		<div class="mb-12">
 			<SponsorPlate>
 				{#snippet beforeSponsors()}
-					<h3 class="h3 text-center mb-4">
+					<h3 class="h3 mb-4 text-center">
 						Special thanks to our Season Sponsors:
 					</h3>
 				{/snippet}
@@ -132,22 +132,22 @@
 		</div>
 
 		{#if allShowsAreRunning}
-			<div class="text-3xl text-center my-8">All shows are now running!</div>
+			<div class="my-8 text-center text-3xl">All shows are now running!</div>
 		{/if}
 
 		{@render seasonArtworkImage?.()}
 
-		<div class="flex justify-center my-12">
+		<div class="my-12 flex justify-center">
 			<TicketsButton />
 		</div>
 
 		{#if !allShowsAreRunning && nowRunning.length > 0}
 			<div>
-				<h4 class="h1 mt-24 mb-12">Now running:</h4>
+				<h4 class="h1 mb-12 mt-24">Now running:</h4>
 
-				<ul class="list-none p-0 m-auto flex flex-wrap">
+				<ul class="m-auto flex list-none flex-wrap p-0">
 					{#each nowRunning as production}
-						<li class="max-w-full md:w-1/2 p-2">
+						<li class="max-w-full p-2 md:w-1/2">
 							<SeasonImage
 								season="{production.season}"
 								imageFile="{production.image}"
@@ -156,7 +156,7 @@
 						</li>
 					{/each}
 				</ul>
-				<div class="flex justify-center my-12">
+				<div class="my-12 flex justify-center">
 					<TicketsButton />
 				</div>
 			</div>

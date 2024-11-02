@@ -4,9 +4,9 @@
 </script>
 
 <header
-	class="flex flex-col justify-around sm:flex-row items-center max-w-4xl mx-auto"
+	class="mx-auto flex max-w-4xl flex-col items-center justify-around sm:flex-row"
 >
-	<div class="flex-auto max-w-xl">
+	<div class="max-w-xl flex-auto">
 		<a href="{site.baseurl}/" title="Post Playhouse" rel="home">
 			<img
 				src="{site.baseurl}/images/post-nameplate-colors.svg"
@@ -19,19 +19,19 @@
 			/>
 			<h1 class="hidden">{site.title}</h1>
 		</a>
-		<h2 class="font-thin text-center text-xl tracking-wide">
+		<h2 class="text-center text-xl font-thin tracking-wide">
 			Professional talent from across the country...
 			<span style="white-space:nowrap">So close to home</span>
 		</h2>
 	</div>
 
-	<div class="flex-initial text-center mt-8 ml-2 min-w-md">
+	<div class="ml-2 mt-8 min-w-md flex-initial text-center">
 		<TicketsButton />
 
-		<a class="link-green sm:block sm:mt-4" href="{site.baseurl}/ticket-info/">
+		<a class="link-green sm:mt-4 sm:block" href="{site.baseurl}/ticket-info/">
 			Ticket Information
 		</a>
-		<a class="mt-2 text-lg block" href="{site.boxOfficePhoneLink}">
+		<a class="mt-2 block text-lg" href="{site.boxOfficePhoneLink}">
 			{site.boxOfficePhone}
 		</a>
 	</div>

@@ -120,8 +120,8 @@
 
 {#if modeSwitch}
 	<div class="flex justify-end">
-		<div class="border border-b-0 relative top-1 rounded-t-md overflow-clip">
-			<label class="p-2 pb-3 has-[:checked]:bg-emerald-300 inline-block"
+		<div class="relative top-1 overflow-clip rounded-t-md border border-b-0">
+			<label class="inline-block p-2 pb-3 has-[:checked]:bg-emerald-300"
 				><input
 					class="invisible h-0 w-0"
 					onchange="{handleToggle}"
@@ -132,7 +132,7 @@
 				/>
 				Nerd town (Markdown)
 			</label><label
-				class="border-r border-black/30 p-2 pb-3 has-[:checked]:bg-emerald-300 inline-block"
+				class="inline-block border-r border-black/30 p-2 pb-3 has-[:checked]:bg-emerald-300"
 			>
 				Regular Editor
 				<input
@@ -151,7 +151,7 @@
 <div class="editor-thing relative">
 	{#if markdown}
 		<div
-			class="absolute left-0 right-0 px-4 py-2 text-sm top-0 z-10 text-slate-200 bg-slate-600 rounded-t"
+			class="absolute left-0 right-0 top-0 z-10 rounded-t bg-slate-600 px-4 py-2 text-sm text-slate-200"
 		>
 			If you don't know <a
 				href="https://commonmark.org/help/"
@@ -162,7 +162,7 @@
 	{/if}
 	<div
 		bind:this="{editorEl}"
-		class="editor bg-white dark:bg-white/20 rounded border-2 border-black/20 py-[5px] relative"
+		class="editor relative rounded border-2 border-black/20 bg-white py-[5px] dark:bg-white/20"
 	></div>
 </div>
 

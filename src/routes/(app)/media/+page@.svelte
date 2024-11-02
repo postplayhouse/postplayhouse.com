@@ -9,9 +9,9 @@
 <Main unconstrainedWidth>
 	<div class="flex flex-wrap justify-center">
 		{#each images as photo}
-			<div class="min-w-[fit-content] m-2 text-center">
+			<div class="m-2 min-w-[fit-content] text-center">
 				<img
-					class="object-contain sm:max-h-80 rounded-lg"
+					class="rounded-lg object-contain sm:max-h-80"
 					src="{photo.src}"
 					alt="{photo.description || photo.src}"
 				/>

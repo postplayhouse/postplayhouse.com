@@ -65,17 +65,17 @@
 	{#if i === current}
 		<article class="absolute inset-0 flex flex-col">
 			<header
-				class="font-uber [font-size:5vw] text-center bg-green-700 text-white"
+				class="bg-green-700 text-center font-uber text-white [font-size:5vw]"
 			>
 				Annual Fund Donations
-				<div class="bg-green-100 dark:bg-green-900 text-black dark:text-white">
+				<div class="bg-green-100 text-black dark:bg-green-900 dark:text-white">
 					{slide.title}
 				</div>
 			</header>
 
-			<div class="grow relative">
+			<div class="relative grow">
 				<div
-					class="absolute inset-0 [font-size:5vw] font-bold text-center overflow-hidden"
+					class="absolute inset-0 overflow-hidden text-center font-bold [font-size:5vw]"
 				>
 					<div class="absolute left-0 right-0 [bottom:100vh]">
 						{#if slide.position === "top"}

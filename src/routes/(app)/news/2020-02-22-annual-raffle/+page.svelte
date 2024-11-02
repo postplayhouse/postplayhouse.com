@@ -20,8 +20,8 @@
 	<span class="sm:whitespace-nowrap">Board of Directors</span>
 </h4>
 
-<h5 class="text-3xl mt-8 leading-none">Join us for our Annual Raffle!</h5>
-<p class="font-bold text-3xl mt-4 leading-none">
+<h5 class="mt-8 text-3xl leading-none">Join us for our Annual Raffle!</h5>
+<p class="mt-4 text-3xl font-bold leading-none">
 	Saturday, March 21, 2020 at 5:30pm
 </p>
 <p class="text-xl">
@@ -32,7 +32,7 @@
 	<span class="text-base">(Nebraska State Park Sticker Required)</span>
 </p>
 
-<h5 class="text-5xl font-bold mt-8 leading-none">Prize Pay Outs</h5>
+<h5 class="mt-8 text-5xl font-bold leading-none">Prize Pay Outs</h5>
 <ul class="prizes">
 	<li>
 		<span class="place">1st Prize (1 paid):</span>
@@ -52,10 +52,10 @@
 	</li>
 </ul>
 
-<h3 class="text-5xl font-bold leading-none mb-4">
+<h3 class="mb-4 text-5xl font-bold leading-none">
 	Get Your Raffle Ticket Now!
 </h3>
-<h4 class="text-3xl leading-none mb-2">It’s more than just a raffle</h4>
+<h4 class="mb-2 text-3xl leading-none">It’s more than just a raffle</h4>
 <p class="p mb-2">
 	The purchase of a raffle ticket also allows
 	<strong>you and a guest</strong>
@@ -67,7 +67,7 @@
 	other prizes!
 </p>
 
-<h4 class="text-3xl leading-none mt-4 mb-2">
+<h4 class="mb-2 mt-4 text-3xl leading-none">
 	Only 400 raffle tickets will be sold!
 </h4>
 
@@ -76,7 +76,7 @@
 	today!
 </p>
 
-<h5 class="text-xl mt-4">Board Member Contact Information</h5>
+<h5 class="mt-4 text-xl">Board Member Contact Information</h5>
 <p>
 	You can purchase from any Board Member you know personally, but here is the
 	contact information for those that are available at the moment:

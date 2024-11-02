@@ -5,7 +5,7 @@
 	export const title = "Announcing our 2023 Season!"
 </script>
 
-<div class="w-full max-w-2xl m-auto">
+<div class="m-auto w-full max-w-2xl">
 	<SeasonImage
 		season="2023"
 		imageFile="full-season.jpg"
@@ -13,7 +13,7 @@
 	/>
 </div>
 
-<section class="space-y-2 mt-6">
+<section class="mt-6 space-y-2">
 	<p>
 		Give the joy of live theatre this holiday season! Don't miss your
 		opportunity to purchase ticket packages for your friends and loved ones this
@@ -22,7 +22,7 @@
 </section>
 
 {#if site.season === 2023}
-	<div class="flex justify-center m-4">
+	<div class="m-4 flex justify-center">
 		<TicketsButton />
 	</div>
 {/if}

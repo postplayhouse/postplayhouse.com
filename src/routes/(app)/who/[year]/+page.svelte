@@ -53,7 +53,7 @@
 	{#if groupedPeople[groupName].length}
 		<h2
 			id="{groupName.toLowerCase().replace(/[^a-z]/g, '-')}"
-			class="h2 sm:sticky top-0 bg-white dark:bg-[#0f110f] mb-4"
+			class="h2 top-0 mb-4 bg-white sm:sticky dark:bg-[#0f110f]"
 		>
 			{groupName === "rest" ? generalGroupName : groupName}
 		</h2>

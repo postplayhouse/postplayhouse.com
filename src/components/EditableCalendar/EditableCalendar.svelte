@@ -103,12 +103,12 @@
 </script>
 
 <div class="prose mb-8 space-y-8">
-	<p class="text-xl bold">
+	<p class="bold text-xl">
 		You can edit the calendar below by changing inputs and clicking on the show
 		slots on the calendar itself.
 	</p>
 
-	<div class="mt-8 bg-gray-200 dark:bg-gray-200/20 rounded p-4 space-y-6">
+	<div class="mt-8 space-y-6 rounded bg-gray-200 p-4 dark:bg-gray-200/20">
 		<p>
 			<strong>When you are done</strong>, you can share your new calendar by
 			copying and sharing the URL below.
@@ -139,11 +139,11 @@
 		You can change the title and color. (Probably just pick an abbreviated
 		title.)
 	</div>
-	<div class="flex flex-wrap gap-4 my-4">
+	<div class="my-4 flex flex-wrap gap-4">
 		{#each $schedule.productions as production, i}
 			<div class="flex gap-1">
 				<input
-					class="inline-block h-full border border-gray-500 rounded cursor-pointer"
+					class="inline-block h-full cursor-pointer rounded border border-gray-500"
 					type="color"
 					value="#{production.color}"
 					oninput="{(e) =>
@@ -153,7 +153,7 @@
 						)(e.currentTarget.value.slice(1))}"
 				/>
 				<input
-					class="inline-block p-2 border border-gray-500 rounded shadow-inner bg-gray-100 dark:bg-gray-100/10"
+					class="inline-block rounded border border-gray-500 bg-gray-100 p-2 shadow-inner dark:bg-gray-100/10"
 					type="text"
 					value="{production.longTitle}"
 					oninput="{(e) =>
@@ -167,7 +167,7 @@
 	</div>
 </form>
 
-<div class="mt-12 mb-4">
+<div class="mb-4 mt-12">
 	Use these buttons to move dates to match the year you are working on. <div
 		class="opacity-50"
 	>
@@ -187,13 +187,13 @@
 	>Forward 1 Year</button
 >
 
-<div class="text-2xl bold mt-12 text-center mb-6">
+<div class="bold mb-6 mt-12 text-center text-2xl">
 	{dates[0]?.monthName}
 	{dates[0]?.year}
 </div>
 
 <div
-	class="grid grid-cols-7 bg-gray-300 dark:bg-[#0f110f] gap-1 border-4 border-gray-300"
+	class="grid grid-cols-7 gap-1 border-4 border-gray-300 bg-gray-300 dark:bg-[#0f110f]"
 >
 	<div class="text-center">Sun</div>
 	<div class="text-center">Mon</div>
@@ -205,7 +205,7 @@
 
 	{#each dates as day, i}
 		<div
-			class="bg-white dark:bg-white/20 p-1"
+			class="bg-white p-1 dark:bg-white/20"
 			class:bg-opacity-50="{day.month % 2 === 0}"
 			class:bg-opacity-20="{day.weekday === 2}"
 			style="{i === 0 ? 'grid-column-start: ' + day.weekday : ''}"
@@ -267,25 +267,25 @@
 
 				<div class="grid grid-cols-2 justify-end">
 					10am:
-					<div class="text-2xl font-bold opacity-70 justify-self-end">
+					<div class="justify-self-end text-2xl font-bold opacity-70">
 						{prod.performances.filter((x) => x.slot === 1).length}
 					</div>
 				</div>
-				<div class="grid grid-cols-2 gap-4 justify-end">
+				<div class="grid grid-cols-2 justify-end gap-4">
 					2pm:
-					<div class="text-2xl font-bold opacity-70 justify-self-end">
+					<div class="justify-self-end text-2xl font-bold opacity-70">
 						{prod.performances.filter((x) => x.slot === 2).length}
 					</div>
 				</div>
-				<div class="grid grid-cols-2 gap-4 justify-end">
+				<div class="grid grid-cols-2 justify-end gap-4">
 					8pm:
-					<div class="text-2xl font-bold opacity-70 justify-self-end">
+					<div class="justify-self-end text-2xl font-bold opacity-70">
 						{prod.performances.filter((x) => x.slot === 3).length}
 					</div>
 				</div>
-				<div class="mt-4 grid grid-cols-2 gap-4 justify-end">
+				<div class="mt-4 grid grid-cols-2 justify-end gap-4">
 					total
-					<div class="text-2xl font-bold opacity-70 justify-self-end">
+					<div class="justify-self-end text-2xl font-bold opacity-70">
 						{prod.performances.length}
 					</div>
 				</div>
@@ -295,7 +295,7 @@
 
 	<h3 class="h2 mt-8">Performance Dates as push card info</h3>
 	{#each perfsByProd as prod}
-		<div class="text-3xl font-bold mt-4">
+		<div class="mt-4 text-3xl font-bold">
 			{prod.longTitle}
 		</div>
 
@@ -338,7 +338,7 @@
 
 	<h3 class="h2 mt-8">Performance Dates as website data</h3>
 	{#each perfsByProd as prod}
-		<div class="text-3xl font-bold mt-4">
+		<div class="mt-4 text-3xl font-bold">
 			{prod.longTitle}
 		</div>
 

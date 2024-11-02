@@ -37,16 +37,16 @@
 	)
 </script>
 
-<div class="flow-root mb-8" id="{person.slug}">
+<div class="mb-8 flow-root" id="{person.slug}">
 	{#if person && person.image}
 		<PersonImage
-			class="block w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2 border"
+			class="mb-4 block w-full max-w-md border md:float-left md:mr-4 md:w-1/2"
 			partialPath="{person.image}"
 			alt="portrait of {person.name}"
 		/>
 	{:else}
 		<div
-			class="flex w-full max-w-md mb-4 md:mr-4 md:float-left md:w-1/2 min-h-64 border-4 border-neutral-300 items-center justify-center"
+			class="mb-4 flex min-h-64 w-full max-w-md items-center justify-center border-4 border-neutral-300 md:float-left md:mr-4 md:w-1/2"
 		>
 			({person.name} not pictured)
 		</div>
@@ -58,7 +58,7 @@
 		<div class="text-lg text-green-700">{person.location}</div>
 	{/if}
 
-	<div class="flow-root font-thin mb-2">
+	<div class="mb-2 flow-root font-thin">
 		<ul class="list-none pl-0">
 			{#if person.positions.length}
 				<!-- Always use localPerson.positions by itself if it exists -->

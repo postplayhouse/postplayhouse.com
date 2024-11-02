@@ -86,12 +86,12 @@
 	{#if i === current}
 		<article class="absolute inset-0 flex flex-col">
 			<header
-				class="font-uber [font-size:5vw] text-center bg-green-700 text-white"
+				class="bg-green-700 text-center font-uber text-white [font-size:5vw]"
 			>
 				Special Campaign Donations
 
 				<p
-					class="bg-green-300 text-left text-black dark:text-white dark:bg-green-950 p-4 font-sans [font-size:3vw]"
+					class="bg-green-300 p-4 text-left font-sans text-black [font-size:3vw] dark:bg-green-950 dark:text-white"
 				>
 					Post Playhouse is especially grateful for the donors who have
 					supported us during the pandemic years for special programs which
@@ -99,14 +99,14 @@
 					“Special Campaign” gifts provide a financial foundation that allows
 					for a bright future for the Post Playhouse.
 				</p>
-				<div class="bg-green-100 dark:bg-green-900 text-black dark:text-white">
+				<div class="bg-green-100 text-black dark:bg-green-900 dark:text-white">
 					{slide.title}
 				</div>
 			</header>
 
-			<div class="grow relative" transition:fade>
+			<div class="relative grow" transition:fade>
 				<div
-					class="absolute inset-0 flex justify-center items-center [font-size:5vw] font-bold text-center"
+					class="absolute inset-0 flex items-center justify-center text-center font-bold [font-size:5vw]"
 				>
 					{slide.content}
 				</div>

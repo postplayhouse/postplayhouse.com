@@ -14,20 +14,20 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
-	class="fixed shadow-md my-bg overflow-y-auto xs:p-4
+	class="my-bg fixed overflow-y-auto shadow-md xs:p-4
 {transitionedOut ? 'disappear' : 'inset-0'}"
 	onclick="{self(() => dispatch('close'))}"
 >
 	<section
-		class="absolute bg-white dark:bg-[#0f110f] dark:text-white border-green-600 border-solid block px-4 py-6
-      border-6 inset-0 bottom-auto min-h-full
-      xs:relative xs:mx-auto xs:border-4 xs:inset-auto xs:min-h-0 xs:max-w-lg
+		class="absolute inset-0 bottom-auto block min-h-full border-6 border-solid border-green-600 bg-white
+      px-4 py-6 xs:relative xs:inset-auto
+      xs:mx-auto xs:min-h-0 xs:max-w-lg xs:border-4 dark:bg-[#0f110f] dark:text-white
       "
 	>
 		<button
-			class="btn py-1 px-2 leading-none top-0 right-0 z-10
-        fixed mt-4 mr-4
-        xs:absolute xs:mt-2 xs:mr-2"
+			class="btn fixed right-0 top-0 z-10 mr-4 mt-4
+        px-2 py-1 leading-none
+        xs:absolute xs:mr-2 xs:mt-2"
 			onclick="{() => dispatch('close')}"
 		>
 			Close

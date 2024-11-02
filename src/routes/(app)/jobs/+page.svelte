@@ -29,7 +29,7 @@
 <h1 class="h1">{title}</h1>
 
 <div
-	class="flex items-center my-4 border border-green-600 bg-green-200 dark:bg-green-900 p-2"
+	class="my-4 flex items-center border border-green-600 bg-green-200 p-2 dark:bg-green-900"
 >
 	<button class="btn btn-p mr-4" onclick="{toggleFeedsLinks}">
 		Subscribe to jobs updates
@@ -51,13 +51,13 @@
 
 {#if posts.length}
 	{#each posts as post}
-		<h2 class="h2 font-bold mt-12 mb-4" id="{slugify(post.title)}">
+		<h2 class="h2 mb-4 mt-12 font-bold" id="{slugify(post.title)}">
 			{post.title}
 		</h2>
 		<Markdown source="{post.content}" />
 	{/each}
 {:else}
-	<h2 class="h2 font-bold mt-12 mb-4">There are currently no openings.</h2>
+	<h2 class="h2 mb-4 mt-12 font-bold">There are currently no openings.</h2>
 	{#if isAfterCurrentSeason || isBeforeMarchOfCurrentSeason}
 		<p>
 			We generally hold professional auditions and start looking for summer

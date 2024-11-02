@@ -108,10 +108,10 @@
 	{#if visible}
 		<div
 			out:fade="{{ duration: 1000, delay: 1000 }}"
-			class="fixed inset-0 flex justify-center items-center"
+			class="fixed inset-0 flex items-center justify-center"
 		>
 			<span
-				class="bg-black/50 text-white dark:bg-white/50 dark:text-black font-bold rounded-lg px-2 py-1 text-[6vw]"
+				class="rounded-lg bg-black/50 px-2 py-1 text-[6vw] font-bold text-white dark:bg-white/50 dark:text-black"
 			>
 				{showNames[inc % showNames.length]} Speed: {20 -
 					(currentDurationMultiplier.value - 1)}

@@ -707,7 +707,7 @@ ${email}
 {/if}
 
 {#if pageState === states.noFetch}
-	<div class="bg-red-200 text-red-900 p-4 rounded my-4">
+	<div class="my-4 rounded bg-red-200 p-4 text-red-900">
 		This submission form will not work from your device. Please send an email to
 		<a class="link-green" href="{emailLink}">don@postplayhouse.com</a>
 	</div>
@@ -720,7 +720,7 @@ ${email}
 		if you'd like some context.
 	</p>
 
-	<div class="bg-green-100 dark:bg-green-900 rounded p-4">
+	<div class="rounded bg-green-100 p-4 dark:bg-green-900">
 		<p>Please have the following ready to go before you start:</p>
 		<ul>
 			<li>
@@ -763,7 +763,7 @@ ${email}
 	</div>
 
 	<form class="mt-12" onsubmit="{submitCreds}">
-		<label class="text-2xl block">
+		<label class="block text-2xl">
 			Done reading above?<br />Enter the passphrase to get started!
 
 			<input
@@ -788,25 +788,25 @@ ${email}
 {#if showMain}
 	{#if devFormFeedback}
 		<div
-			class="fixed top-0 right-0 bottom-0 overflow-scroll w-1/4 pre whitespace-pre-wrap dark:bg-blue-900 bg-blue-200 z-10 p-2"
+			class="pre fixed bottom-0 right-0 top-0 z-10 w-1/4 overflow-scroll whitespace-pre-wrap bg-blue-200 p-2 dark:bg-blue-900"
 		>
 			{getYamlBody()}
 		</div>
 	{/if}
-	<div bind:this="{topOfMainEl}" class="mt-4 mb-24 max-w-lg">
-		<p class="mt-4 bg-amber-100 border border-amber-800 p-4 dark:bg-amber-800">
+	<div bind:this="{topOfMainEl}" class="mb-24 mt-4 max-w-lg">
+		<p class="mt-4 border border-amber-800 bg-amber-100 p-4 dark:bg-amber-800">
 			If you have trouble with this form please compose an email with all the
 			information we ask you for below and send it to
 			<a class="underline" href="{emailLink}">don@postplayhouse.com</a>
 		</p>
 	</div>
 
-	<div class="lg:flex mt-8 mb-24">
+	<div class="mb-24 mt-8 lg:flex">
 		<form
-			class="m-auto max-w-lg p-2 lg:w-1/2 flex-none"
+			class="m-auto max-w-lg flex-none p-2 lg:w-1/2"
 			onsubmit="{(e) => e.preventDefault()}"
 		>
-			<label class="text-2xl block">
+			<label class="block text-2xl">
 				Email address<i>*</i>
 				<div class="text-sm">
 					(So our program designer can contact you if necessary. It is not
@@ -816,8 +816,8 @@ ${email}
 			</label>
 
 			<div class="my-32">
-				<div class="text-2xl block">Headshot<i>*</i></div>
-				<label class="block mt-2">
+				<div class="block text-2xl">Headshot<i>*</i></div>
+				<label class="mt-2 block">
 					<input
 						tabindex="0"
 						type="checkbox"
@@ -835,7 +835,7 @@ ${email}
 					</div>
 				{:else}
 					<label
-						class="btn text-center btn-p w-[9em] inline-block cursor-pointer {useOldHeadshot
+						class="btn btn-p inline-block w-[9em] cursor-pointer text-center {useOldHeadshot
 							? 'opacity-50'
 							: ''}"
 					>
@@ -850,7 +850,7 @@ ${email}
 					</label>
 				{/if}
 				<img
-					class="inline-block w-[100px] h-[100px] object-contain {image &&
+					class="inline-block h-[100px] w-[100px] object-contain {image &&
 					!useOldHeadshot
 						? ''
 						: 'invisible'}"
@@ -860,7 +860,7 @@ ${email}
 			</div>
 
 			<div class="my-48">
-				<label class="text-2xl mt-8 block">
+				<label class="mt-8 block text-2xl">
 					First Name<i>*</i>
 					<div class="text-sm">(optionally with middle name/initial)</div>
 					<input
@@ -870,7 +870,7 @@ ${email}
 						type="text"
 					/>
 				</label>
-				<label class="text-2xl mt-8 block">
+				<label class="mt-8 block text-2xl">
 					Last Name<i>*</i>
 					<input
 						class="block"
@@ -879,7 +879,7 @@ ${email}
 						type="text"
 					/>
 				</label>
-				<label class="text-2xl mt-8 block">
+				<label class="mt-8 block text-2xl">
 					Location<i>*</i>
 					<div class="text-sm">
 						(where you'd like people to know you are from. City and state, eg:
@@ -895,20 +895,20 @@ ${email}
 			</div>
 
 			<div class="my-48">
-				<span class="text-2xl mt-24 block">Acting Roles</span>
+				<span class="mt-24 block text-2xl">Acting Roles</span>
 				<div class="text-sm">
 					If you are acting this season, please fill out your roles below. Leave
 					any blank that do not apply. Use commas to separate multiple roles.
 				</div>
-				<div class="text-sm mt-1">
+				<div class="mt-1 text-sm">
 					Examples: <br />
 					<code
-						class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
+						class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
 						>Franz, Ensemble</code
 					>
 				</div>
 				{#each productions as production}
-					<label class="text-xl mt-4 block">
+					<label class="mt-4 block text-xl">
 						{production}
 						<input
 							class="block"
@@ -922,7 +922,7 @@ ${email}
 			</div>
 
 			<div class="my-48">
-				<span class="text-2xl mt-24 block"
+				<span class="mt-24 block text-2xl"
 					>Production Positions (non-acting)</span
 				>
 				<div class="text-sm">
@@ -931,16 +931,16 @@ ${email}
 					field for anything that isn't specific to a given show (Stitcher, Box
 					Office Staff, etc.). Use commas to separate multiple positions/roles.
 				</div>
-				<label class="text-xl mt-4 block mb-12">
+				<label class="mb-12 mt-4 block text-xl">
 					Entire Season
-					<div class="text-sm mt-1">
+					<div class="mt-1 text-sm">
 						Examples:<br />
 						<code
-							class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
+							class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
 							>Box Office Staff</code
 						><br />
 						<code
-							class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
+							class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
 							>Season Sound Engineer</code
 						>
 					</div>
@@ -950,22 +950,22 @@ ${email}
 						oninput="{(e) => mutateStaffPositions(e.currentTarget.value)}"
 					/>
 				</label>
-				<div class="text-xl mt-4 block">
+				<div class="mt-4 block text-xl">
 					Specific Productions
-					<div class="text-sm mt-1">
+					<div class="mt-1 text-sm">
 						Examples: <br />
 						<code
-							class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
+							class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
 							>Assistant Stage Manager</code
 						><br />
 						<code
-							class="text-xs bg-grey-300 dark:bg-green-300/50 rounded py-px px-1"
+							class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
 							>Director, Choreographer</code
 						>
 					</div>
 				</div>
 				{#each productions as production, i}
-					<label class="text-xl mt-4 block {i === 0 ? 'mb-12' : ''}">
+					<label class="mt-4 block text-xl {i === 0 ? 'mb-12' : ''}">
 						{production}
 
 						<input
@@ -978,7 +978,7 @@ ${email}
 				{/each}
 			</div>
 
-			<label for="bio" class="text-2xl mt-24 block"
+			<label for="bio" class="mt-24 block text-2xl"
 				>Program {#if !addLongerBio}and Website{/if} Bio<i>*</i></label
 			>
 			<p class="my-2">
@@ -993,7 +993,7 @@ ${email}
 				{MAX_WORDS}
 			</div>
 
-			<label class="block my-2">
+			<label class="my-2 block">
 				<input tabindex="0" type="checkbox" bind:checked="{addLongerBio}" />
 				<span class="text-sm">
 					I'd like to submit an additional bio longer than {MAX_WORDS} words for
@@ -1006,7 +1006,7 @@ ${email}
 
 			{#if addLongerBio}
 				<div>
-					<label for="longerBio" class="text-2xl mt-8 block">Website Bio</label>
+					<label for="longerBio" class="mt-8 block text-2xl">Website Bio</label>
 					<TextEditor
 						content="{longerBio}"
 						onChange="{(x) => (longerBio = x)}"
@@ -1021,9 +1021,9 @@ ${email}
 		</form>
 
 		<div>
-			<div class="p-4 bg-grey-200 dark:bg-green-200/20 sticky top-0">
+			<div class="sticky top-0 bg-grey-200 p-4 dark:bg-green-200/20">
 				<h3>Preview (your answers change this preview):</h3>
-				<div class="bg-white dark:bg-black rounded p-4 shadow-lg">
+				<div class="rounded bg-white p-4 shadow-lg dark:bg-black">
 					<Bio {person} />
 				</div>
 
@@ -1032,13 +1032,13 @@ ${email}
 						{#each validations as validation (validation.name)}
 							{#if validation.invalid}
 								<li class="mt-4">
-									<span class="inline-block p-1 bg-red-500 rounded"></span>
+									<span class="inline-block rounded bg-red-500 p-1"></span>
 									{@html validationMessages[validation.name]}
 								</li>
 							{/if}
 							{#if validation.warn}
 								<li
-									class="mt-4 border border-yellow-500 bg-yellow-100 dark:bg-yellow-800/30 p-2 rounded prose"
+									class="prose mt-4 rounded border border-yellow-500 bg-yellow-100 p-2 dark:bg-yellow-800/30"
 								>
 									<header class="font-bold text-yellow-600">Warning:</header>
 									<p>{@html warningMessages[validation.name]}</p>
@@ -1087,7 +1087,7 @@ ${email}
 		fill out some of the information for you if you click this button:
 	</p>
 
-	<a href="{emailLink}" class="btn btn-p inline-block mt-8">Email Don Denton</a>
+	<a href="{emailLink}" class="btn btn-p mt-8 inline-block">Email Don Denton</a>
 {/if}
 
 <style>

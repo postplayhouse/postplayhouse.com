@@ -107,7 +107,7 @@
 					{person.name}
 					{#if !person.bio}
 						<span
-							class="bg-yellow-200 rounded-full p-1 px-2 text-black whitespace-nowrap !no-underline"
+							class="whitespace-nowrap rounded-full bg-yellow-200 p-1 px-2 text-black !no-underline"
 						>
 							no bio
 						</span>
@@ -118,9 +118,9 @@
 	</ol>
 </div>
 
-<a href="#TheBoard" class="block link-green my-4">Jump to the Board</a>
+<a href="#TheBoard" class="link-green my-4 block">Jump to the Board</a>
 
-<div class="max-w-lg mx-auto my-8 text-center space-y-3 rounded shadow-xl p-8">
+<div class="mx-auto my-8 max-w-lg space-y-3 rounded p-8 text-center shadow-xl">
 	<button class="btn-p" onclick="{downloadAllPeopleImages}">
 		{#if isDownloadingImages}
 			Downloading...
@@ -144,21 +144,21 @@
 </div>
 
 {#snippet downloadableImage(originalImg, person)}
-	<div class="text-center mb-4">
+	<div class="mb-4 text-center">
 		<a
-			class="inline-block group max-w-full hover:bg-gray-200"
+			class="group inline-block max-w-full hover:bg-gray-200"
 			href="{originalImg}"
 			download="{renameImgFile(originalImg, personSlug(person))}"
 		>
 			<PersonImage
 				partialPath="{person.image}"
 				alt="{person.image ? '' : 'missing '}picture of {person.name}"
-				class="max-w-full w-96 object-contain max-h-96 m-auto min-h-64 block"
+				class="m-auto block max-h-96 min-h-64 w-96 max-w-full object-contain"
 			/>
 			{#if showUi}
 				<div class="text-center">
 					<span
-						class="btn-p group-hover:bg-green-500 group-hover:border-green-700"
+						class="btn-p group-hover:border-green-700 group-hover:bg-green-500"
 						>Download Orignal Image</span
 					>
 				</div>
@@ -209,7 +209,7 @@
 
 				{#if person.programBio && showUi}
 					<button
-						class="btn py-1 px-2"
+						class="btn px-2 py-1"
 						type="button"
 						onclick="{() => toggleShortBio(person)}"
 					>

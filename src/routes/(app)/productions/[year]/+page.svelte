@@ -16,7 +16,7 @@
 	<h3 class="h3 text-center">
 		The 2020 Season was cancelled before it began due to COVID-19.
 	</h3>
-	<p class="text-xl text-center mb-4">
+	<p class="mb-4 text-center text-xl">
 		The calendar is reproduced below as the season was originally scheduled.
 	</p>
 {/if}
@@ -28,7 +28,7 @@
 <div class="my-8">
 	<SponsorPlate {year}>
 		{#snippet beforeSponsors()}
-			<h3 class="h3 text-center my-4">
+			<h3 class="h3 my-4 text-center">
 				Special thanks to our Season Sponsors:
 			</h3>
 		{/snippet}
@@ -60,16 +60,16 @@
 			<Production production="{event}" season="{year}" />
 		{/each}
 	{:else if year > new Date().getFullYear()}
-		<h2 class="text-xl text-center">
+		<h2 class="text-center text-xl">
 			Our shows for {year} have been announced, and this page will be updated soon...
 		</h2>
 	{/if}
 {:else if year > new Date().getFullYear()}
-	<h2 class="text-xl text-center">
+	<h2 class="text-center text-xl">
 		Our shows for {year} will be announced soon...
 	</h2>
 {:else}
-	<h2 class="text-xl text-center">
+	<h2 class="text-center text-xl">
 		There is no historical production info for {year}
 	</h2>
 {/if}

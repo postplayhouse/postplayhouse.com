@@ -45,25 +45,25 @@
 	{#if i === current}
 		<article class="absolute inset-0 flex flex-col">
 			<header
-				class="font-uber [font-size:5vw] text-center bg-green-700 text-white"
+				class="bg-green-700 text-center font-uber text-white [font-size:5vw]"
 			>
 				Special Campaign Donations
 
 				<p
-					class="bg-green-300 text-left text-black dark:text-white dark:bg-green-950 p-4 font-sans [font-size:3vw]"
+					class="bg-green-300 p-4 text-left font-sans text-black [font-size:3vw] dark:bg-green-950 dark:text-white"
 				>
 					Special thanks to to the following donors for their special support
 					this year to help us enhance our technological capabilities of
 					lighting, sound, and visual effects.
 				</p>
-				<div class="bg-green-100 dark:bg-green-900 text-black dark:text-white">
+				<div class="bg-green-100 text-black dark:bg-green-900 dark:text-white">
 					{slide.title}
 				</div>
 			</header>
 
-			<div class="grow relative" transition:fade>
+			<div class="relative grow" transition:fade>
 				<div
-					class="absolute inset-0 flex justify-center items-center [font-size:5vw] font-bold text-center"
+					class="absolute inset-0 flex items-center justify-center text-center font-bold [font-size:5vw]"
 				>
 					{slide.content}
 				</div>

@@ -20,11 +20,11 @@
 	<Header />
 	<Nav activePath="{$page.url.pathname}" />
 
-	<main class="relative m-auto py-8 px-2 sm:px-8">
+	<main class="relative m-auto px-2 py-8 sm:px-8">
 		{#if unconstrainedWidth}
 			{@render children()}
 		{:else}
-			<div class="max-w-[56em] mx-auto">
+			<div class="mx-auto max-w-[56em]">
 				{@render children()}
 			</div>
 		{/if}

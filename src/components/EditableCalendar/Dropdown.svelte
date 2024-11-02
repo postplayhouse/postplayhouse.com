@@ -67,7 +67,7 @@
 <svelte:window on:click="{action}" />
 
 <button
-	class="ease-linear transition-all duration-75 h-full w-full hover:opacity-25 border border-transparent hover:border-gray-500 border-dotted {className}"
+	class="h-full w-full border border-dotted border-transparent transition-all duration-75 ease-linear hover:border-gray-500 hover:opacity-25 {className}"
 	type="button"
 	style="background-color: {color}"
 	bind:this="{btnRef}"
@@ -78,18 +78,18 @@
 
 <div
 	bind:this="{popoverRef}"
-	class="pt-2 z-50 float-left w-52 {dropdownPopoverShow
+	class="z-50 float-left w-52 pt-2 {dropdownPopoverShow
 		? 'block'
 		: 'hidden'} shadow-lg"
 >
 	<div
-		class="bg-grey-400 p-4 rounded shadow-lg w-full border border-grey-500 space-y-4"
+		class="w-full space-y-4 rounded border border-grey-500 bg-grey-400 p-4 shadow-lg"
 	>
 		{#each [...choices, null] as choice}
 			<button
 				type="button"
 				onclick="{() => choose(choice)}"
-				class="block w-full whitespace-no-wrap border-4 border-transparent hover:border-black shadow py-2 px-4"
+				class="whitespace-no-wrap block w-full border-4 border-transparent px-4 py-2 shadow hover:border-black"
 				style="background-color: #{choice?.color ?? 'fff'}"
 			>
 				{choice?.longTitle ?? "None"}

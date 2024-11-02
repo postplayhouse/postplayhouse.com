@@ -21,7 +21,7 @@
 </script>
 
 {#if dev && $page.url.pathname !== "/news/"}
-	<div class="inline-flex gap-8 mb-8 items-baseline">
+	<div class="mb-8 inline-flex items-baseline gap-8">
 		Dev stuff:
 		<a class="btn-p" href="/news">Back to News</a>
 

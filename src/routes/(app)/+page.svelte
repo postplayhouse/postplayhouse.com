@@ -33,14 +33,14 @@
 	/>
 </svelte:head>
 
-<div class="mb-16 p-2 max-w-3xl mx-auto">
+<div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings {productions} closingDate="2025-08-10">
 		{#snippet seasonArtworkImage()}
 			<ul
-				class="p-6 -m-6 bg-green-200 dark:bg-transparent flex justify-center flex-wrap gap-2 items-center rounded list-none [&>*]:max-w-96 sm:[&>*]:max-w-60"
+				class="-m-6 flex list-none flex-wrap items-center justify-center gap-2 rounded bg-green-200 p-6 dark:bg-transparent [&>*]:max-w-96 sm:[&>*]:max-w-60"
 			>
 				<li
-					class="dark:bg-neutral-300 block rounded overflow-clip shadow-lg shadow-green-800/50 dark:shadow-black/20 -rotate-2 md:scale-105 dark:scale-100"
+					class="block -rotate-2 overflow-clip rounded shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-neutral-300 dark:shadow-black/20"
 				>
 					<SeasonImage
 						class="max-w-full mix-blend-multiply"
@@ -50,7 +50,7 @@
 					></SeasonImage>
 				</li>
 				<li
-					class="dark:bg-neutral-300 block rounded overflow-clip shadow-lg shadow-green-800/50 dark:shadow-black/20 rotate-3 md:scale-105 dark:scale-100"
+					class="block rotate-3 overflow-clip rounded shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-neutral-300 dark:shadow-black/20"
 				>
 					<SeasonImage
 						class="max-w-full mix-blend-multiply"
@@ -60,7 +60,7 @@
 					></SeasonImage>
 				</li>
 				<li
-					class="dark:bg-neutral-300 block rounded overflow-clip shadow-lg shadow-green-800/50 dark:shadow-black/20 rotate-2 md:rotate dark:scale-100-0 md:scale-105"
+					class="md:rotate dark:scale-100-0 block rotate-2 overflow-clip rounded shadow-lg shadow-green-800/50 md:scale-105 dark:bg-neutral-300 dark:shadow-black/20"
 				>
 					<SeasonImage
 						class="max-w-full mix-blend-multiply"
@@ -70,7 +70,7 @@
 					></SeasonImage>
 				</li>
 				<li
-					class="dark:bg-neutral-300 block rounded overflow-clip shadow-lg shadow-green-800/50 dark:shadow-black/20 -rotate-2 md:scale-105 dark:scale-100"
+					class="block -rotate-2 overflow-clip rounded shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-neutral-300 dark:shadow-black/20"
 				>
 					<SeasonImage
 						class="max-w-full mix-blend-multiply"
@@ -80,7 +80,7 @@
 					></SeasonImage>
 				</li>
 				<li
-					class="dark:bg-neutral-300 block rounded overflow-clip shadow-lg shadow-green-800/50 dark:shadow-black/20 rotate-2 md:scale-105 dark:scale-100"
+					class="block rotate-2 overflow-clip rounded shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-neutral-300 dark:shadow-black/20"
 				>
 					<SeasonImage
 						class="max-w-full mix-blend-multiply"
@@ -94,7 +94,7 @@
 	</Openings>
 </div>
 
-<div class="md:flex flex-row-reverse items-stretch">
+<div class="flex-row-reverse items-stretch md:flex">
 	<section class=" mb-2">
 		<a href="/donate">
 			<img
@@ -104,10 +104,10 @@
 		</a>
 	</section>
 
-	<div class="md:flex flex-col md:mr-2">
+	<div class="flex-col md:mr-2 md:flex">
 		<section
-			class="bg-green-200 dark:bg-green-900 p-3 flex-initial
-      mb-2"
+			class="mb-2 flex-initial bg-green-200 p-3
+      dark:bg-green-900"
 		>
 			<header class="text-xl">Join our mailing list</header>
 			<p>Stay informed about what’s happening at Post Playhouse</p>
@@ -117,18 +117,18 @@
 		</section>
 
 		<section
-			class="bg-green-200 dark:bg-green-900 p-3 flex-1 mb-2 flex flex-col"
+			class="mb-2 flex flex-1 flex-col bg-green-200 p-3 dark:bg-green-900"
 		>
 			<header class="text-xl">Stay connected with Post</header>
-			<div class="flex flex-wrap justify-around items-center flex-1">
+			<div class="flex flex-1 flex-wrap items-center justify-around">
 				<a
-					class="block w-24 h-24 md:w-16 md:h-16 p-2 hover:bg-green-300"
+					class="block h-24 w-24 p-2 hover:bg-green-300 md:h-16 md:w-16"
 					href="http://facebook.com/post.playhouse"
 				>
 					<img src="/images/facebook-logo.svg" alt="Facebook logo" />
 				</a>
 				<a
-					class="block w-24 h-24 md:w-16 md:h-16 p-2 hover:bg-green-300"
+					class="block h-24 w-24 p-2 hover:bg-green-300 md:h-16 md:w-16"
 					href="http://twitter.com/postplayhouse"
 				>
 					<img src="/images/twitter-bird.svg" alt="Twitter logo" />

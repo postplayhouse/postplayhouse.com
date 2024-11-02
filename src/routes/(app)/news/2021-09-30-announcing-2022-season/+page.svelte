@@ -8,7 +8,7 @@
 	shows!
 </p>
 
-<div class="w-2/3 m-auto">
+<div class="m-auto w-2/3">
 	<SeasonImage
 		season="2022"
 		imageFile="full-season.jpg"

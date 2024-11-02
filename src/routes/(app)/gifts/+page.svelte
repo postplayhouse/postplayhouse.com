@@ -17,7 +17,7 @@
 
 {#if is_holidays && certificatesAreAvailable}
 	<div
-		class="p-4 border-2 border-green-800 bg-green-100 dark:bg-green-900 my-4"
+		class="my-4 border-2 border-green-800 bg-green-100 p-4 dark:bg-green-900"
 	>
 		<h2 class="h2">Holiday Gift Extras</h2>
 
@@ -62,7 +62,7 @@
 		<a
 			href="/documents/{site.season}/gift-certificate.pdf"
 			download
-			class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
+			class="mb-8 inline-block border-2 border-transparent hover:border-green-800"
 			><img
 				src="/documents/{site.season}/gift-certificate.jpg"
 				alt="Gift Certificate"
@@ -79,7 +79,7 @@
 		<a
 			href="/documents/{site.season}/subscription-card.pdf"
 			download
-			class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
+			class="mb-8 inline-block border-2 border-transparent hover:border-green-800"
 			><img
 				src="/documents/{site.season}/subscription-card.jpg"
 				alt="Subscription Card"
@@ -96,11 +96,11 @@
 		<a
 			href="/documents/subscription-presenter.pdf"
 			download
-			class="border-2 hover:border-green-800 border-transparent inline-block mb-8"
+			class="mb-8 inline-block border-2 border-transparent hover:border-green-800"
 			><img
 				src="/documents/subscription-presenter.png"
 				alt="Subscription Presentation Card"
-				class="border-2 border-gray-200 max-w-md"
+				class="max-w-md border-2 border-gray-200"
 			/></a
 		>
 	</p>

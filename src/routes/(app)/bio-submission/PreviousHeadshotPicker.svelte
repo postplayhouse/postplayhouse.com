@@ -27,19 +27,19 @@
 
 Use this filter and list to find and select your old headshot.
 
-<div class="border flex flex-col">
+<div class="flex flex-col border">
 	<input
-		class="border border-grey-500 block text-2xl pl-3"
+		class="block border border-grey-500 pl-3 text-2xl"
 		type="text"
 		placeholder="Type here to search this list..."
 		oninput="{filterOptions}"
 	/>
 
-	<ul class="h-96 overflow-auto list-none pl-2">
+	<ul class="h-96 list-none overflow-auto pl-2">
 		{#each filteredOptions as option}
 			<li>
 				<button
-					class="hover:bg-slate-200 dark:hover:bg-slate-500 px-2 {option ===
+					class="px-2 hover:bg-slate-200 dark:hover:bg-slate-500 {option ===
 					selectedOption
 						? 'bg-emerald-300 dark:bg-emerald-700'
 						: ''}"
