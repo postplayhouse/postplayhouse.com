@@ -4,9 +4,9 @@
 </script>
 
 <header
-	class="mx-auto flex max-w-4xl flex-col items-center justify-around sm:flex-row"
+	class="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-2 gap-y-8 p-2 sm:flex-nowrap"
 >
-	<div class="max-w-xl flex-auto">
+	<div class="max-w-xl">
 		<a href="{site.baseurl}/" title="Post Playhouse" rel="home">
 			<img
 				src="{site.baseurl}/images/post-nameplate-colors.svg"
@@ -25,13 +25,12 @@
 		</h2>
 	</div>
 
-	<div class="ml-2 mt-8 min-w-md flex-initial text-center">
-		<TicketsButton />
-
-		<a class="link-green sm:mt-4 sm:block" href="{site.baseurl}/ticket-info/">
-			Ticket Information
-		</a>
-		<a class="mt-2 block text-lg" href="{site.boxOfficePhoneLink}">
+	<div class="flex flex-wrap items-center justify-center gap-2 text-center">
+		<div class="w-full">
+			<TicketsButton />
+		</div>
+		<a class="link-green" href="{site.baseurl}/ticket-info/"> Ticket Info </a>
+		<a href="{site.boxOfficePhoneLink}">
 			{site.boxOfficePhone}
 		</a>
 	</div>

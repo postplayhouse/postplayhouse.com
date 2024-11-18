@@ -38,8 +38,8 @@
 	}
 </script>
 
-<nav class="main-nav">
-	<ul class="m-auto w-fit">
+<nav class="main-nav mx-auto max-w-4xl">
+	<ul class="w-fit">
 		<li>
 			<a use:active="{activePath}" href="/productions/{site.season}">
 				Our Productions
