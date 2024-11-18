@@ -1,7 +1,8 @@
 <script lang="ts">
 	import MainLayout from "$components/layouts/MainLayout.svelte"
+	let { children } = $props()
 </script>
 
 <MainLayout>
-	<slot />
+	{@render children?.()}
 </MainLayout>
