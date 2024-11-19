@@ -39,4 +39,4 @@
 	})
 </script>
 
-{#if winningSrc}<img src="{winningSrc}" {...rest} />{/if}
+{#if winningSrc}<img src={winningSrc} {...rest} />{/if}

@@ -7,7 +7,7 @@
 </svelte:head>
 
 <Markdown
-	source="{`
+	source={`
 # Program Ad Information
 
 Thank you so much for supporting Post Playhouse via an ad space purchase in our
@@ -116,5 +116,5 @@ send those as well. In the last 12 years, Don has received about 4 logos that
 were a large enough resolution that he didn't have to go back and ask for a
 better/bigger one. Most of the time, someone at the company could locate a
 better file.
-`}"
+`}
 />

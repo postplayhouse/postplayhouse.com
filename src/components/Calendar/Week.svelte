@@ -23,6 +23,6 @@
 		</li>
 	{/if}
 	{#each days as day}
-		<Day date="{day.date}" daySchedule="{day.showings}" />
+		<Day date={day.date} daySchedule={day.showings} />
 	{/each}
 </ul>

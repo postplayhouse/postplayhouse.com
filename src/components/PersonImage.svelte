@@ -14,7 +14,7 @@
 </script>
 
 {#if enhancedImage}
-	<enhanced:img src="{enhancedImage}" {...rest}></enhanced:img>
+	<enhanced:img src={enhancedImage} {...rest}></enhanced:img>
 {:else if partialPath}
-	<img src="{partialPath}" {...rest} />
+	<img src={partialPath} {...rest} />
 {/if}

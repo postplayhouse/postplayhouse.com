@@ -16,7 +16,7 @@
 <div
 	class="my-bg fixed overflow-y-auto shadow-md xs:p-4
 {transitionedOut ? 'disappear' : 'inset-0'}"
-	onclick="{self(() => dispatch('close'))}"
+	onclick={self(() => dispatch("close"))}
 >
 	<section
 		class="absolute inset-0 bottom-auto block min-h-full border-6 border-solid border-green-600 bg-white
@@ -28,7 +28,7 @@
 			class="btn fixed right-0 top-0 z-10 mr-4 mt-4
         px-2 py-1 leading-none
         xs:absolute xs:mr-2 xs:mt-2"
-			onclick="{() => dispatch('close')}"
+			onclick={() => dispatch("close")}
 		>
 			Close
 		</button>

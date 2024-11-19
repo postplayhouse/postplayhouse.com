@@ -18,7 +18,7 @@
 
 <div class="dark:bg-[#0f110f] dark:text-white/90">
 	<Header />
-	<Nav activePath="{$page.url.pathname}" />
+	<Nav activePath={$page.url.pathname} />
 
 	<main class="relative m-auto px-2 py-8 sm:px-8">
 		{#if unconstrainedWidth}

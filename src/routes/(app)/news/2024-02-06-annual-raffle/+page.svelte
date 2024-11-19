@@ -109,7 +109,7 @@ YOUR INFO HERE
 <p class="p">
 	Raffle tickets are $100 each. Get yours from a Post Playhouse Board Member
 	today! Don't know a Post Playhouse Board Member? No problem! Just email us at
-	<a class="link-green" href="{emailLink}">tickets@postplayhouse.com</a> and we'll
+	<a class="link-green" href={emailLink}>tickets@postplayhouse.com</a> and we'll
 	put you in contact with a Board Member.
 </p>
 

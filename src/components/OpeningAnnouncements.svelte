@@ -76,17 +76,17 @@
 		<div class="my-8 items-center md:flex">
 			<div class="shrink">
 				<SeasonImage
-					season="{openingSoon.season}"
-					imageFile="{openingSoon.image}"
+					season={openingSoon.season}
+					imageFile={openingSoon.image}
 					alt="Show Logo for {openingSoon.title}"
 				/>
 			</div>
 			<div class="shrink-0 text-center md:text-left">
-				<Markdown source="{openingSoon.writers}" />
+				<Markdown source={openingSoon.writers} />
 			</div>
 		</div>
 
-		<Markdown source="{openingSoon.description}" />
+		<Markdown source={openingSoon.description} />
 
 		<div class="m-4 flex justify-center">
 			<TicketsButton />
@@ -149,8 +149,8 @@
 					{#each nowRunning as production}
 						<li class="max-w-full p-2 md:w-1/2">
 							<SeasonImage
-								season="{production.season}"
-								imageFile="{production.image}"
+								season={production.season}
+								imageFile={production.image}
 								alt="Show Logo for {production.title}"
 							/>
 						</li>

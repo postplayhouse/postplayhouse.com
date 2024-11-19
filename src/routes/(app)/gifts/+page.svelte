@@ -29,7 +29,7 @@
 
 		<p>
 			If you've purchased a Season Subscription or a Gift Certificate prior to
-			December 15th through our <a class="link-green" href="{site.ticketsLink}"
+			December 15th through our <a class="link-green" href={site.ticketsLink}
 				>Online Box Office</a
 			>, we will contact you via email and ask if you would like us to send you
 			a Subscription Card or Gift Certificate to present as a gift. Just reply
@@ -47,9 +47,9 @@
 {:else}
 	<p class="my-4">
 		When you buy a gift via our
-		<a class="link-green" href="{site.ticketsLink}">Online Box Office</a>, you
-		can print off any of our certificates/subscription cards below and give them
-		to the recipient. Subscribers: even if it's not a gift, print off a
+		<a class="link-green" href={site.ticketsLink}>Online Box Office</a>, you can
+		print off any of our certificates/subscription cards below and give them to
+		the recipient. Subscribers: even if it's not a gift, print off a
 		subscription card for a convenient place to write down all the information
 		about your shows after you reserve them.
 	</p>

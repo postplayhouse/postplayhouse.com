@@ -23,18 +23,18 @@
 		on-sale date announcements, or <button
 			type="button"
 			class="link-green"
-			onclick="{toggleMailingList}">subscribe to our newsletter</button
+			onclick={toggleMailingList}>subscribe to our newsletter</button
 		>.
 	</p>
 
 	{#if showMailingList}
-		<Modal on:close="{toggleMailingList}">
+		<Modal on:close={toggleMailingList}>
 			<Mailer />
 		</Modal>
 	{/if}
 
 	{#if ticketsAvailable()}
-		<a class="link-green" href="{site.ticketsLink}">Buy yours now!</a><br />
+		<a class="link-green" href={site.ticketsLink}>Buy yours now!</a><br />
 	{/if}
 
 	<div class="mt-2">
@@ -44,7 +44,7 @@
 		><br />
 
 		Call our box office at
-		<a class="x" href="{site.boxOfficePhoneLink}">
+		<a class="x" href={site.boxOfficePhoneLink}>
 			{site.boxOfficePhone}
 		</a>
 	</div>
@@ -109,7 +109,7 @@
 			tickets@postplayhouse.com
 		</a>
 		or call our box office at
-		<a class="x" href="{site.boxOfficePhoneLink}">{site.boxOfficePhone}</a>.
+		<a class="x" href={site.boxOfficePhoneLink}>{site.boxOfficePhone}</a>.
 	</p>
 
 	<h2 id="subscriptions" class="h2 mb-2 mt-4">Season Subscriptions</h2>
@@ -137,7 +137,7 @@
 		reserve seats to any 4 or 5 <em>different</em> productions by emailing us at
 		<a href="mailto:tickets@postplayhouse.com">tickets@postplayhouse.com</a>,
 		calling our box office at
-		<a class="x" href="{site.boxOfficePhoneLink}">{site.boxOfficePhone}</a>, or
+		<a class="x" href={site.boxOfficePhoneLink}>{site.boxOfficePhone}</a>, or
 		using the online system.
 		<strong>
 			Though Season Subscriptions are very flexible, seats are still based on

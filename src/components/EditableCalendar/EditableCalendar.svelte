@@ -123,9 +123,7 @@
 				{/if}
 			</code>
 		</div>
-		<button class="btn-p" onclick="{handleCopyUrl}"
-			>Copy URL to clipboard</button
-		>
+		<button class="btn-p" onclick={handleCopyUrl}>Copy URL to clipboard</button>
 		<p>
 			(<strong> You HAVE to copy the URL to share. </strong> This thing does not
 			save your work.)
@@ -133,7 +131,7 @@
 	</div>
 </div>
 
-<form onsubmit="{(e) => e.preventDefault()}" class="my-12">
+<form onsubmit={(e) => e.preventDefault()} class="my-12">
 	<div class="text-xl">Productions</div>
 	<div class="opacity-50">
 		You can change the title and color. (Probably just pick an abbreviated
@@ -146,21 +144,18 @@
 					class="inline-block h-full cursor-pointer rounded border border-gray-500"
 					type="color"
 					value="#{production.color}"
-					oninput="{(e) =>
+					oninput={(e) =>
 						handleProductionDetailChange(
 							i,
-							'color',
-						)(e.currentTarget.value.slice(1))}"
+							"color",
+						)(e.currentTarget.value.slice(1))}
 				/>
 				<input
 					class="inline-block rounded border border-gray-500 bg-gray-100 p-2 shadow-inner dark:bg-gray-100/10"
 					type="text"
-					value="{production.longTitle}"
-					oninput="{(e) =>
-						handleProductionDetailChange(
-							i,
-							'longTitle',
-						)(e.currentTarget.value)}"
+					value={production.longTitle}
+					oninput={(e) =>
+						handleProductionDetailChange(i, "longTitle")(e.currentTarget.value)}
 				/>
 			</div>
 		{/each}
@@ -175,15 +170,13 @@
 		adjustments to realign)
 	</div>
 </div>
-<button class="btn-p" onclick="{() => moveShows('days', -1)}">Back 1 Day</button
+<button class="btn-p" onclick={() => moveShows("days", -1)}>Back 1 Day</button>
+<button class="btn-p" onclick={() => moveShows("days", 1)}>Forward 1 Day</button
 >
-<button class="btn-p" onclick="{() => moveShows('days', 1)}"
-	>Forward 1 Day</button
->
-<button class="btn-p ml-8" onclick="{() => moveShows('years', -1)}"
+<button class="btn-p ml-8" onclick={() => moveShows("years", -1)}
 	>Back 1 Year</button
 >
-<button class="btn-p" onclick="{() => moveShows('years', 1)}"
+<button class="btn-p" onclick={() => moveShows("years", 1)}
 	>Forward 1 Year</button
 >
 
@@ -206,9 +199,9 @@
 	{#each dates as day, i}
 		<div
 			class="bg-white p-1 dark:bg-white/20"
-			class:bg-opacity-50="{day.month % 2 === 0}"
-			class:bg-opacity-20="{day.weekday === 2}"
-			style="{i === 0 ? 'grid-column-start: ' + day.weekday : ''}"
+			class:bg-opacity-50={day.month % 2 === 0}
+			class:bg-opacity-20={day.weekday === 2}
+			style={i === 0 ? "grid-column-start: " + day.weekday : ""}
 		>
 			<div class="flex justify-end">
 				{#if day.day === 1 || i === 0}<span class="font-bold">
@@ -224,13 +217,13 @@
 					{#each day.performances.filter((p) => p.slot === performanceSlot) as performance}
 						<Dropdown
 							color="#{performance.color}"
-							choices="{$schedule.productions}"
-							onChoice="{(production) =>
+							choices={$schedule.productions}
+							onChoice={(production) =>
 								handleChoice({
 									...day,
 									slot: performanceSlot,
 									production,
-								})}"
+								})}
 						>
 							{performance.longTitle}
 						</Dropdown>
@@ -238,13 +231,13 @@
 						<Dropdown
 							class="text-transparent hover:text-black"
 							color="transparent"
-							choices="{$schedule.productions}"
-							onChoice="{(production) =>
+							choices={$schedule.productions}
+							onChoice={(production) =>
 								handleChoice({
 									...day,
 									slot: performanceSlot,
 									production,
-								})}"
+								})}
 						>
 							Nothing
 						</Dropdown>

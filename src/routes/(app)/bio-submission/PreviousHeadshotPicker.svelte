@@ -32,7 +32,7 @@ Use this filter and list to find and select your old headshot.
 		class="block border border-grey-500 pl-3 text-2xl"
 		type="text"
 		placeholder="Type here to search this list..."
-		oninput="{filterOptions}"
+		oninput={filterOptions}
 	/>
 
 	<ul class="h-96 list-none overflow-auto pl-2">
@@ -43,7 +43,7 @@ Use this filter and list to find and select your old headshot.
 					selectedOption
 						? 'bg-emerald-300 dark:bg-emerald-700'
 						: ''}"
-					onclick="{() => selectOption(option)}"
+					onclick={() => selectOption(option)}
 					>{option
 						.replace("src/images/people/", "")
 						.replace("/", " - ")}</button

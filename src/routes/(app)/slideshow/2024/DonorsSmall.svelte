@@ -80,9 +80,9 @@
 					<div class="absolute left-0 right-0 [bottom:100vh]">
 						{#if slide.position === "top"}
 							<div
-								in:receive="{{ key: slide.title }}"
-								out:send="{{ key: slide.title }}"
-								onintroend="{nextOrDone}"
+								in:receive={{ key: slide.title }}
+								out:send={{ key: slide.title }}
+								onintroend={nextOrDone}
 							>
 								{#each slide.names as name}
 									<div>{name}</div>
@@ -94,8 +94,8 @@
 					<div class="absolute left-0 right-0 [top:80vh]">
 						{#if slide.position === "bottom"}
 							<div
-								in:receive="{{ key: slide.title }}"
-								out:send="{{ key: slide.title }}"
+								in:receive={{ key: slide.title }}
+								out:send={{ key: slide.title }}
 							>
 								{#each slide.names as name}
 									<div>{name}</div>

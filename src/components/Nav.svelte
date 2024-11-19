@@ -41,24 +41,24 @@
 <nav class="main-nav mx-auto max-w-4xl">
 	<ul class="w-fit">
 		<li>
-			<a use:active="{activePath}" href="/productions/{site.season}">
+			<a use:active={activePath} href="/productions/{site.season}">
 				Our Productions
 			</a>
 		</li>
 		<li>
-			<a use:active="{activePath}" href="/calendar/{site.season}">Calendar</a>
+			<a use:active={activePath} href="/calendar/{site.season}">Calendar</a>
 		</li>
 		<li>
-			<a use:active="{activePath}" href="/plan-your-visit">Plan Your Visit</a>
+			<a use:active={activePath} href="/plan-your-visit">Plan Your Visit</a>
 		</li>
-		<li><a use:active="{activePath}" href="/gifts">Gifts</a></li>
+		<li><a use:active={activePath} href="/gifts">Gifts</a></li>
 		<li>
-			<a use:active="{activePath}" href="/who/{site.season}">Who's Who</a>
+			<a use:active={activePath} href="/who/{site.season}">Who's Who</a>
 		</li>
-		<li><a use:active="{activePath}" href="/jobs">Jobs</a></li>
-		<li><a use:active="{activePath}" href="/support">Support</a></li>
-		<li><a use:active="{activePath}" href="/about">About</a></li>
-		<li><a use:active="{activePath}" href="/media">Image Gallery</a></li>
+		<li><a use:active={activePath} href="/jobs">Jobs</a></li>
+		<li><a use:active={activePath} href="/support">Support</a></li>
+		<li><a use:active={activePath} href="/about">About</a></li>
+		<li><a use:active={activePath} href="/media">Image Gallery</a></li>
 	</ul>
 </nav>
 

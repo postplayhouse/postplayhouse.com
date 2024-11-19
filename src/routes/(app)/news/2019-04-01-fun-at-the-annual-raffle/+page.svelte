@@ -24,7 +24,7 @@
 </script>
 
 <Markdown
-	source="{`Thanks to all those who bought tickets and came out to support the playhouse! Congrats to the lucky winners:
+	source={`Thanks to all those who bought tickets and came out to support the playhouse! Congrats to the lucky winners:
 
 - $5,000 --- Judy Sample
 - $1,000 --- Kevin Kelso
@@ -59,7 +59,7 @@
 - $100 --- Randy Rhine and Grandchildren
 - $100 --- Frannie Roberts
 - $100 --- Mandy Plog
-- $100 --- Sharon Rickenbach`}"
+- $100 --- Sharon Rickenbach`}
 />
 
 <div class="flex flex-wrap gap-4">

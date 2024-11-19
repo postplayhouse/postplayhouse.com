@@ -30,7 +30,7 @@
 			<TicketsButton />
 		</div>
 		<a class="link-green" href="{site.baseurl}/ticket-info/"> Ticket Info </a>
-		<a href="{site.boxOfficePhoneLink}">
+		<a href={site.boxOfficePhoneLink}>
 			{site.boxOfficePhone}
 		</a>
 	</div>

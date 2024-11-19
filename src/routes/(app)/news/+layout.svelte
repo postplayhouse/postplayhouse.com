@@ -26,11 +26,11 @@
 		<a class="btn-p" href="/news">Back to News</a>
 
 		{#if prevPost}
-			<a class="btn-p" href="{`/news/${prevPost.year}`}">Previous Post</a>
+			<a class="btn-p" href={`/news/${prevPost.year}`}>Previous Post</a>
 		{/if}
 
 		{#if nextPost}
-			<a class="btn-p" href="{`/news/${nextPost.year}`}">Next Post</a>
+			<a class="btn-p" href={`/news/${nextPost.year}`}>Next Post</a>
 		{/if}
 	</div>
 {/if}

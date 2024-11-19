@@ -52,16 +52,13 @@
 {#each groupNames as groupName}
 	{#if groupedPeople[groupName].length}
 		<h2
-			id="{groupName.toLowerCase().replace(/[^a-z]/g, '-')}"
+			id={groupName.toLowerCase().replace(/[^a-z]/g, "-")}
 			class="h2 top-0 mb-4 bg-white sm:sticky dark:bg-[#0f110f]"
 		>
 			{groupName === "rest" ? generalGroupName : groupName}
 		</h2>
 		{#each groupedPeople[groupName] as person}
-			<Bio
-				person="{toPerson(person)}"
-				hideProductionRoles="{shouldFilterActors}"
-			/>
+			<Bio person={toPerson(person)} hideProductionRoles={shouldFilterActors} />
 		{/each}
 	{/if}
 {/each}

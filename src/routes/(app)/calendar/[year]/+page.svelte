@@ -48,12 +48,12 @@
 
 			<ul>
 				{#each allSpecialEvents as event}
-					<li><Markdown source="{event.title}" /></li>
+					<li><Markdown source={event.title} /></li>
 				{/each}
 			</ul>
 		</div>
 	{/if}
-	<Calendar {productions} specialEvents="{allSpecialEvents}" {year} />
+	<Calendar {productions} specialEvents={allSpecialEvents} {year} />
 {:else if year > new Date().getFullYear() && site.showsAnnounced}
 	<h2 class="text-center text-xl">Our {year} schedule will be up soon...</h2>
 {:else if year > new Date().getFullYear()}

@@ -34,14 +34,14 @@
 		{#if enhancedImage}
 			<ProductionImage
 				class="block max-w-full bg-white/70 md:float-left md:mr-4 md:w-3/5 md:max-w-4xl"
-				imageFile="{production.image}"
+				imageFile={production.image}
 				{season}
 				alt="Show Logo for {production.title}"
 			></ProductionImage>
 		{:else if image}
 			<MaybeImage
 				class="block max-w-full bg-white/70 md:float-left md:mr-4 md:w-3/5 md:max-w-4xl"
-				src="{[image]}"
+				src={[image]}
 				alt="Show Logo for {production.title}"
 			/>
 		{/if}
@@ -62,7 +62,7 @@
 		<!-- Making every paragraph a flex box ensures that the position and name of
   the person will not flow differently around the floated show logo -->
 		<div class="writers mb-8 [&_p]:flex">
-			<Markdown source="{production.writers}" />
+			<Markdown source={production.writers} />
 		</div>
 	{/if}
 	{#if production.rating}
@@ -79,12 +79,12 @@
 	{/if}
 
 	<div>
-		<Markdown source="{production.description}" />
+		<Markdown source={production.description} />
 
 		{#if production.sponsor}
 			<MaybeLink
 				class="float-right p-2 dark:bg-white/50"
-				href="{production.sponsor.link}"
+				href={production.sponsor.link}
 			>
 				<p>Sponsored By</p>
 				{#if production.sponsor.image}
@@ -105,7 +105,7 @@
 	{#if isSeries(production)}
 		<div class="border-l-8 pl-8">
 			{#each production.events as event}
-				<svelte:self production="{event}" {season} />
+				<svelte:self production={event} {season} />
 			{/each}
 		</div>
 	{/if}

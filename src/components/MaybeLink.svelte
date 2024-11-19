@@ -11,7 +11,7 @@
 </script>
 
 {#if href}
-	<a {href} class="{className}">{@render children()}</a>
+	<a {href} class={className}>{@render children()}</a>
 {:else}
-	<span class="{className}">{@render children()}</span>
+	<span class={className}>{@render children()}</span>
 {/if}

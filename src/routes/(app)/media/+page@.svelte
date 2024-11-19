@@ -12,8 +12,8 @@
 			<div class="m-2 min-w-[fit-content] text-center">
 				<img
 					class="rounded-lg object-contain sm:max-h-80"
-					src="{photo.src}"
-					alt="{photo.description || photo.src}"
+					src={photo.src}
+					alt={photo.description || photo.src}
 				/>
 				{#if photo.description}
 					{@html photo.description}<br />

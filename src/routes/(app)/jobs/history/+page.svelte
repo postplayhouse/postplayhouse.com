@@ -30,8 +30,8 @@
 {/if}
 
 {#each posts as post}
-	<h2 class="h2 mb-4 mt-12 font-bold" id="{slugify(post.title)}">
+	<h2 class="h2 mb-4 mt-12 font-bold" id={slugify(post.title)}>
 		{post.title}
 	</h2>
-	<Markdown source="{post.content}" />
+	<Markdown source={post.content} />
 {/each}

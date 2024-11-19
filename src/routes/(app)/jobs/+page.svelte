@@ -31,7 +31,7 @@
 <div
 	class="my-4 flex items-center border border-green-600 bg-green-200 p-2 dark:bg-green-900"
 >
-	<button class="btn btn-p mr-4" onclick="{toggleFeedsLinks}">
+	<button class="btn btn-p mr-4" onclick={toggleFeedsLinks}>
 		Subscribe to jobs updates
 	</button>
 	Never miss an employment opportunity announcement
@@ -51,10 +51,10 @@
 
 {#if posts.length}
 	{#each posts as post}
-		<h2 class="h2 mb-4 mt-12 font-bold" id="{slugify(post.title)}">
+		<h2 class="h2 mb-4 mt-12 font-bold" id={slugify(post.title)}>
 			{post.title}
 		</h2>
-		<Markdown source="{post.content}" />
+		<Markdown source={post.content} />
 	{/each}
 {:else}
 	<h2 class="h2 mb-4 mt-12 font-bold">There are currently no openings.</h2>
@@ -72,7 +72,7 @@
 {/if}
 
 {#if showFeedsLinks}
-	<Modal on:close="{toggleFeedsLinks}">
+	<Modal on:close={toggleFeedsLinks}>
 		<p class="my-4">
 			You can subscribe to our job notifications so you never miss when a new
 			job or audition notice goes live:

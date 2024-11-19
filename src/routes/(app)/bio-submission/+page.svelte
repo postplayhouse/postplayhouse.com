@@ -709,14 +709,14 @@ ${email}
 {#if pageState === states.noFetch}
 	<div class="my-4 rounded bg-red-200 p-4 text-red-900">
 		This submission form will not work from your device. Please send an email to
-		<a class="link-green" href="{emailLink}">don@postplayhouse.com</a>
+		<a class="link-green" href={emailLink}>don@postplayhouse.com</a>
 	</div>
 {/if}
 
 {#if showCredsForm}
 	<p class="my-4">
 		Have a look at
-		<a class="link-green" href="{lastYearBios}">last year's bios</a>
+		<a class="link-green" href={lastYearBios}>last year's bios</a>
 		if you'd like some context.
 	</p>
 
@@ -762,13 +762,13 @@ ${email}
 		</ul>
 	</div>
 
-	<form class="mt-12" onsubmit="{submitCreds}">
+	<form class="mt-12" onsubmit={submitCreds}>
 		<label class="block text-2xl">
 			Done reading above?<br />Enter the passphrase to get started!
 
 			<input
 				class="block"
-				bind:value="{passphrase}"
+				bind:value={passphrase}
 				name="passphrase"
 				type="text"
 			/>
@@ -793,18 +793,18 @@ ${email}
 			{getYamlBody()}
 		</div>
 	{/if}
-	<div bind:this="{topOfMainEl}" class="mb-24 mt-4 max-w-lg">
+	<div bind:this={topOfMainEl} class="mb-24 mt-4 max-w-lg">
 		<p class="mt-4 border border-amber-800 bg-amber-100 p-4 dark:bg-amber-800">
 			If you have trouble with this form please compose an email with all the
 			information we ask you for below and send it to
-			<a class="underline" href="{emailLink}">don@postplayhouse.com</a>
+			<a class="underline" href={emailLink}>don@postplayhouse.com</a>
 		</p>
 	</div>
 
 	<div class="mb-24 mt-8 lg:flex">
 		<form
 			class="m-auto max-w-lg flex-none p-2 lg:w-1/2"
-			onsubmit="{(e) => e.preventDefault()}"
+			onsubmit={(e) => e.preventDefault()}
 		>
 			<label class="block text-2xl">
 				Email address<i>*</i>
@@ -812,7 +812,7 @@ ${email}
 					(So our program designer can contact you if necessary. It is not
 					shared with the public.)
 				</div>
-				<input class="block" bind:value="{email}" name="email" type="email" />
+				<input class="block" bind:value={email} name="email" type="email" />
 			</label>
 
 			<div class="my-32">
@@ -821,16 +821,16 @@ ${email}
 					<input
 						tabindex="0"
 						type="checkbox"
-						onchange="{handleUseOldHeadshotChange}"
-						bind:checked="{useOldHeadshot}"
+						onchange={handleUseOldHeadshotChange}
+						bind:checked={useOldHeadshot}
 					/>
 					I've worked at Post before, and I'd like to use my old headshot.
 				</label>
 				{#if useOldHeadshot}
 					<div class="my-4">
 						<PreviousHeadshotPicker
-							options="{imageFiles}"
-							on:optionSelected="{(x) => (oldImageSrcPath = x.detail)}"
+							options={imageFiles}
+							on:optionSelected={(x) => (oldImageSrcPath = x.detail)}
 						/>
 					</div>
 				{:else}
@@ -842,7 +842,7 @@ ${email}
 						{#if !imageFile}Choose a file{:else}Change file{/if}
 						<input
 							class="hidden"
-							onchange="{handleFilePick}"
+							onchange={handleFilePick}
 							name="headshot"
 							accept=".jpg,.jpeg,.heif"
 							type="file"
@@ -854,8 +854,8 @@ ${email}
 					!useOldHeadshot
 						? ''
 						: 'invisible'}"
-					src="{image}"
-					alt="{imageFile?.name}"
+					src={image}
+					alt={imageFile?.name}
 				/>
 			</div>
 
@@ -865,7 +865,7 @@ ${email}
 					<div class="text-sm">(optionally with middle name/initial)</div>
 					<input
 						class="block"
-						bind:value="{firstName}"
+						bind:value={firstName}
 						name="firstName"
 						type="text"
 					/>
@@ -874,7 +874,7 @@ ${email}
 					Last Name<i>*</i>
 					<input
 						class="block"
-						bind:value="{lastName}"
+						bind:value={lastName}
 						name="lastName"
 						type="text"
 					/>
@@ -887,7 +887,7 @@ ${email}
 					</div>
 					<input
 						class="block"
-						bind:value="{location}"
+						bind:value={location}
 						name="location"
 						type="text"
 					/>
@@ -913,9 +913,9 @@ ${email}
 						<input
 							class="block"
 							type="text"
-							oninput="{(e) => {
+							oninput={(e) => {
 								mutateRoles(production, e.currentTarget.value)
-							}}"
+							}}
 						/>
 					</label>
 				{/each}
@@ -947,7 +947,7 @@ ${email}
 					<input
 						class="block"
 						type="text"
-						oninput="{(e) => mutateStaffPositions(e.currentTarget.value)}"
+						oninput={(e) => mutateStaffPositions(e.currentTarget.value)}
 					/>
 				</label>
 				<div class="mt-4 block text-xl">
@@ -971,8 +971,8 @@ ${email}
 						<input
 							class="block"
 							type="text"
-							oninput="{(e) =>
-								mutateProductionPositions(production, e.currentTarget.value)}"
+							oninput={(e) =>
+								mutateProductionPositions(production, e.currentTarget.value)}
 						/>
 					</label>
 				{/each}
@@ -985,8 +985,8 @@ ${email}
 				Please italicize production titles. Feel free to add links which will
 				appear in the website version.
 			</p>
-			<TextEditor content="{bio}" onChange="{(x) => (bio = x)}" />
-			<div class="{`text-right ${bioWordCountClass}`}">
+			<TextEditor content={bio} onChange={(x) => (bio = x)} />
+			<div class={`text-right ${bioWordCountClass}`}>
 				Word Count:
 				{bioWordCount}
 				out of a max of
@@ -994,7 +994,7 @@ ${email}
 			</div>
 
 			<label class="my-2 block">
-				<input tabindex="0" type="checkbox" bind:checked="{addLongerBio}" />
+				<input tabindex="0" type="checkbox" bind:checked={addLongerBio} />
 				<span class="text-sm">
 					I'd like to submit an additional bio longer than {MAX_WORDS} words for
 					the website. I understand that
@@ -1007,11 +1007,8 @@ ${email}
 			{#if addLongerBio}
 				<div>
 					<label for="longerBio" class="mt-8 block text-2xl">Website Bio</label>
-					<TextEditor
-						content="{longerBio}"
-						onChange="{(x) => (longerBio = x)}"
-					/>
-					<div class="{`text-right ${longerBioWordCountClass}`}">
+					<TextEditor content={longerBio} onChange={(x) => (longerBio = x)} />
+					<div class={`text-right ${longerBioWordCountClass}`}>
 						Word Count:
 						{longerBioWordCount} (must be <em>more than</em> 125 words, otherwise
 						only submit one bio please)
@@ -1051,8 +1048,8 @@ ${email}
 					type="button"
 					tabindex="0"
 					class="btn btn-p mt-8"
-					disabled="{invalidForm || submitting}"
-					onclick="{submitBio}"
+					disabled={invalidForm || submitting}
+					onclick={submitBio}
 				>
 					{#if submitting}Submitting{:else}Submit Bio{/if}
 				</button>
@@ -1087,7 +1084,7 @@ ${email}
 		fill out some of the information for you if you click this button:
 	</p>
 
-	<a href="{emailLink}" class="btn btn-p mt-8 inline-block">Email Don Denton</a>
+	<a href={emailLink} class="btn btn-p mt-8 inline-block">Email Don Denton</a>
 {/if}
 
 <style>

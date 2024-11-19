@@ -46,7 +46,7 @@ elsehwere in the DOM via `onMount` -->
 	<div
 		class="transition-opacity duration-200 {show ? 'opacity-100' : 'opacity-0'}
     "
-		bind:this="{ref.current}"
+		bind:this={ref.current}
 	>
 		<ModalBase {transitionedOut} {dispatch}>
 			{@render children()}

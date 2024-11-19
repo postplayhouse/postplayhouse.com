@@ -31,7 +31,7 @@
 			<div class="inner">
 				<div class="calendar calendar-{year}">
 					{#each weekData as week, i}
-						<Week days="{week}" padStartCount="{i === 0 ? 5 : 0}">
+						<Week days={week} padStartCount={i === 0 ? 5 : 0}>
 							{#if i === 0}
 								<div class="calendar-filters">
 									{#each productions as prod}

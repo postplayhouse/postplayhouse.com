@@ -43,17 +43,17 @@
 		<div class="flex gap-2 md:-mx-[60px] lg:-mx-[190px] xl:-mx-[300px]">
 			<enhanced:img
 				class="-rotate-2 shadow-md"
-				src="{givingTuesday1}"
+				src={givingTuesday1}
 				alt="Giving Tuesday logo next to a moment from Post's production of The Wizard of Oz."
 			></enhanced:img>
 			<enhanced:img
 				class="hidden rotate-3 shadow-md md:block"
-				src="{givingTuesday2}"
+				src={givingTuesday2}
 				alt="Giving Tuesday logo next to a moment from Post's production of The Wizard of Oz."
 			></enhanced:img>
 			<enhanced:img
 				class="hidden rotate-2 shadow-md md:block"
-				src="{givingTuesday3}"
+				src={givingTuesday3}
 				alt="Giving Tuesday logo next to a moment from Post's production of The Wizard of Oz."
 			></enhanced:img>
 		</div>
@@ -146,7 +146,7 @@
 		>
 			<header class="text-xl">Join our mailing list</header>
 			<p>Stay informed about what’s happening at Post Playhouse</p>
-			<button onclick="{toggleMailingList}" class="btn px-4 py-2"
+			<button onclick={toggleMailingList} class="btn px-4 py-2"
 				>Join now!</button
 			>
 		</section>
@@ -174,7 +174,7 @@
 </div>
 
 {#if showMailingList}
-	<Modal on:close="{toggleMailingList}">
+	<Modal on:close={toggleMailingList}>
 		<Mailer />
 	</Modal>
 {/if}

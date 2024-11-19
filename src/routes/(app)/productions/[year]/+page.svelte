@@ -36,7 +36,7 @@
 </div>
 
 <SeasonImage
-	season="{year}"
+	season={year}
 	imageFile="full-season.jpg"
 	alt="All {year} productions"
 />
@@ -53,11 +53,11 @@
 {#if site.showsAnnounced}
 	{#if productions.length > 0}
 		{#each productions as production}
-			<Production {production} season="{year}" />
+			<Production {production} season={year} />
 		{/each}
 
 		{#each series as event}
-			<Production production="{event}" season="{year}" />
+			<Production production={event} season={year} />
 		{/each}
 	{:else if year > new Date().getFullYear()}
 		<h2 class="text-center text-xl">

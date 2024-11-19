@@ -13,8 +13,7 @@
 
 <h3 class="h3 mt-4">Box Office</h3>
 <p>
-	<a class="link-green" href="{site.boxOfficePhoneLink}"
-		>{site.boxOfficePhone}</a
+	<a class="link-green" href={site.boxOfficePhoneLink}>{site.boxOfficePhone}</a
 	><br />
 	<a class="link-green" href="mailto:tickets@postplayhouse.com"
 		>tickets@postplayhouse.com</a

@@ -124,11 +124,11 @@
 			<label class="inline-block p-2 pb-3 has-[:checked]:bg-emerald-300"
 				><input
 					class="invisible h-0 w-0"
-					onchange="{handleToggle}"
+					onchange={handleToggle}
 					type="radio"
 					name="inputformat"
 					value="markdown"
-					checked="{markdown}"
+					checked={markdown}
 				/>
 				Nerd town (Markdown)
 			</label><label
@@ -137,11 +137,11 @@
 				Regular Editor
 				<input
 					class="invisible h-0 w-0"
-					onchange="{handleToggle}"
+					onchange={handleToggle}
 					type="radio"
 					name="inputformat"
 					value="prosemirror"
-					checked="{!markdown}"
+					checked={!markdown}
 				/></label
 			>
 		</div>
@@ -161,7 +161,7 @@
 		</div>
 	{/if}
 	<div
-		bind:this="{editorEl}"
+		bind:this={editorEl}
 		class="editor relative rounded border-2 border-black/20 bg-white py-[5px] dark:bg-white/20"
 	></div>
 </div>

@@ -92,8 +92,8 @@
 <label
 	><input
 		type="checkbox"
-		checked="{showUi}"
-		onchange="{() => (showUi = !showUi)}"
+		checked={showUi}
+		onchange={() => (showUi = !showUi)}
 	/> Show non-program UI in Bios (buttons/anchors)</label
 >
 
@@ -121,7 +121,7 @@
 <a href="#TheBoard" class="link-green my-4 block">Jump to the Board</a>
 
 <div class="mx-auto my-8 max-w-lg space-y-3 rounded p-8 text-center shadow-xl">
-	<button class="btn-p" onclick="{downloadAllPeopleImages}">
+	<button class="btn-p" onclick={downloadAllPeopleImages}>
 		{#if isDownloadingImages}
 			Downloading...
 		{:else}
@@ -138,8 +138,8 @@
 <div>
 	{#each productions as production}
 		<h3 class="h3">{production.title}</h3>
-		<ProductionList people="{sortedPeople}" {production} />
-		<CastList people="{sortedPeople}" {production} />
+		<ProductionList people={sortedPeople} {production} />
+		<CastList people={sortedPeople} {production} />
 	{/each}
 </div>
 
@@ -147,11 +147,11 @@
 	<div class="mb-4 text-center">
 		<a
 			class="group inline-block max-w-full hover:bg-gray-200"
-			href="{originalImg}"
-			download="{renameImgFile(originalImg, personSlug(person))}"
+			href={originalImg}
+			download={renameImgFile(originalImg, personSlug(person))}
 		>
 			<PersonImage
-				partialPath="{person.image}"
+				partialPath={person.image}
 				alt="{person.image ? '' : 'missing '}picture of {person.name}"
 				class="m-auto block max-h-96 min-h-64 w-96 max-w-full object-contain"
 			/>
@@ -171,7 +171,7 @@
 	{#each sortedPeople.filter(notInBoard) as person}
 		{@const originalImg = findOriginalPersonImage(person.image)}
 
-		<div class="my-8" id="{personSlug(person)}">
+		<div class="my-8" id={personSlug(person)}>
 			{#if notInAdditional(person) && originalImg}
 				{@render downloadableImage(originalImg, person)}
 			{/if}
@@ -211,7 +211,7 @@
 					<button
 						class="btn px-2 py-1"
 						type="button"
-						onclick="{() => toggleShortBio(person)}"
+						onclick={() => toggleShortBio(person)}
 					>
 						{#if showShortBio[person.id]}Show Long Bio{:else}Show Short Bio{/if}
 					</button>
