@@ -40,7 +40,7 @@ Feel free to delete this file and the entire sentry route.
 </p>
 
 <p>1. Send us a sample error:</p>
-<button type="button" on:click="{getSentryData}"> Throw error! </button>
+<button type="button" onclick={getSentryData}> Throw error! </button>
 
 <p>
 	2. Look for the error on the

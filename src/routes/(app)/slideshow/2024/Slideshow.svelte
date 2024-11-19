@@ -94,7 +94,7 @@
 	})
 </script>
 
-<svelte:window on:keydown="{onKeyDown}" />
+<svelte:window onkeydown={onKeyDown} />
 
 {#if showInfo}
 	{#each Object.entries(info) as [section, subsection]}
@@ -125,26 +125,26 @@
 	{#key resetCount}
 		<div class="fixed inset-0 dark:bg-black dark:text-white">
 			{#if inc % 2 === 0}
-				<div transition:fade="{{ duration: 1000 }}" class="absolute inset-0">
+				<div transition:fade={{ duration: 1000 }} class="absolute inset-0">
 					<svelte:component
-						this="{shows[inc % shows.length]}"
-						durationMultiplier="{currentDurationMultiplier.value}"
-						onEventDone="{() => nextShow()}"
+						this={shows[inc % shows.length]}
+						durationMultiplier={currentDurationMultiplier.value}
+						onEventDone={() => nextShow()}
 					/>
 				</div>
 			{:else}
-				<div transition:fade="{{ duration: 1000 }}" class="absolute inset-0">
+				<div transition:fade={{ duration: 1000 }} class="absolute inset-0">
 					<svelte:component
-						this="{shows[inc % shows.length]}"
-						durationMultiplier="{currentDurationMultiplier.value}"
-						onEventDone="{() => nextShow()}"
+						this={shows[inc % shows.length]}
+						durationMultiplier={currentDurationMultiplier.value}
+						onEventDone={() => nextShow()}
 					/>
 				</div>
 			{/if}
 		</div>
 		{#if visible}
 			<div
-				out:fade="{{ duration: 1000, delay: 1000 }}"
+				out:fade={{ duration: 1000, delay: 1000 }}
 				class="fixed inset-0 flex items-center justify-center"
 			>
 				<span

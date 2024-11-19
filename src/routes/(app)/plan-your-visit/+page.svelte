@@ -1,9 +1,12 @@
 <script lang="ts">
 	import Markdown from "$components/Markdown.svelte"
+	import type yamlData from "$data/_yaml"
 
-	export let data
+	type Props = { data: typeof yamlData }
 
-	const { businesses } = data
+	let { data }: Props = $props()
+
+	const { businesses } = $state(data)
 </script>
 
 <h2 class="h2">Nearby Activities, Attractions, Food, and Lodging</h2>
@@ -18,12 +21,12 @@
 </p>
 
 {#each businesses as item}
-	<div class="relative" class:supporter="{item.supporter}">
+	<div class="relative" class:supporter={item.supporter}>
 		<div class="mb-8 flex flex-row-reverse">
 			<div class="flex-grow bg-green-200 p-4 dark:bg-green-900/60">
 				<div>
 					{#if item.site}
-						<a href="{item.site}">
+						<a href={item.site}>
 							<div class="text-2xl">{item.name}</div>
 							{#if item.prettyURL}
 								<div class="link-green" style="max-width: 100%">
@@ -68,7 +71,7 @@
 
 				{#if item.about}
 					<div class="about">
-						<Markdown source="{item.about}" />
+						<Markdown source={item.about} />
 					</div>
 				{/if}
 			</div>

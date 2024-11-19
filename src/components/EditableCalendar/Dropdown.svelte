@@ -64,20 +64,20 @@
 	}
 </script>
 
-<svelte:window on:click="{action}" />
+<svelte:window onclick={action} />
 
 <button
 	class="h-full w-full border border-dotted border-transparent transition-all duration-75 ease-linear hover:border-gray-500 hover:opacity-25 {className}"
 	type="button"
 	style="background-color: {color}"
-	bind:this="{btnRef}"
-	onclick="{toggleDropdown}"
+	bind:this={btnRef}
+	onclick={toggleDropdown}
 >
 	{@render children()}
 </button>
 
 <div
-	bind:this="{popoverRef}"
+	bind:this={popoverRef}
 	class="z-50 float-left w-52 pt-2 {dropdownPopoverShow
 		? 'block'
 		: 'hidden'} shadow-lg"
@@ -88,7 +88,7 @@
 		{#each [...choices, null] as choice}
 			<button
 				type="button"
-				onclick="{() => choose(choice)}"
+				onclick={() => choose(choice)}
 				class="whitespace-no-wrap block w-full border-4 border-transparent px-4 py-2 shadow hover:border-black"
 				style="background-color: #{choice?.color ?? 'fff'}"
 			>

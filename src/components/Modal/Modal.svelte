@@ -1,4 +1,9 @@
 <script lang="ts">
+	interface Props {
+		children?: import("svelte").Snippet
+	}
+
+	let { children }: Props = $props()
 	import { createEventDispatcher } from "svelte"
 	import { fade } from "svelte/transition"
 
@@ -8,7 +13,7 @@
 
 	const dispatch = createEventDispatcher()
 
-	let ref: LifecycleRef<HTMLDivElement> = { current: null }
+	let ref: LifecycleRef<HTMLDivElement> = $state({ current: null })
 
 	mountInPortal(ref, "modal")
 </script>
@@ -18,9 +23,9 @@
 <!-- the parent is hidden, but the child with the `ref` will be appended
 elsehwere in the DOM via `onMount` -->
 <div class="hidden">
-	<div bind:this="{ref.current}" transition:fade="{{ duration: 200 }}">
+	<div bind:this={ref.current} transition:fade={{ duration: 200 }}>
 		<ModalBase {dispatch}>
-			<slot />
+			{@render children?.()}
 		</ModalBase>
 	</div>
 </div>
