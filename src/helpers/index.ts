@@ -73,15 +73,23 @@ export function sortPeople(arrayOfPeople: YamlPerson[]) {
 
 const boardPositions = ["President", "Vice President", "Secretary", "Treasurer"]
 
+function hasSortablePosition(person: YamlPerson) {
+	return (
+		!!person.positions &&
+		person.positions.some((x) => boardPositions.some((b) => x.startsWith(b)))
+	)
+}
+
 /**
  * Sorts board members who have positions to the front of the line, by position,
  * then by name.
  */
 export function sortBoardMembers(arrayOfPeople: YamlPerson[]) {
 	return arrayOfPeople.slice(0).sort((a, b) => {
-		if ((a.positions?.length || 0) === 0 && (b.positions?.length || 0) === 0) {
+		if (!hasSortablePosition(a) && !hasSortablePosition(b)) {
 			return peopleSortFn(a, b)
 		}
+
 		if ((a.positions?.length || 0) === 0) return 1
 		if ((b.positions?.length || 0) === 0) return -1
 
