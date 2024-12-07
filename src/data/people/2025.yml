@@ -249,7 +249,7 @@
   groups:
     - board
   positions:
-    - Vice President of the Board
+    - Chairman Emeritus
   image_year: 2015
   image_file: wally-seiler.jpg
 
@@ -290,7 +290,6 @@
   location: "Chadron, Nebraska"
   groups:
     - board
-  positions:
   image_year: 2024
 
 - last_name: Redden
@@ -313,5 +312,6 @@
   groups:
     - board
   positions:
+    - Vice President
   image_year: 2022
   image_file: matt-watson.jpg
