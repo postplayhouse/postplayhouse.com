@@ -2,6 +2,7 @@
 	import { formatDate } from "$helpers"
 	import { findEnhancedSeasonImage, type Picture } from "$helpers/enhancedImg"
 
+	import Self from "./Production.svelte"
 	import Markdown from "./Markdown.svelte"
 	import MaybeImage from "./MaybeImage.svelte"
 	import MaybeLink from "./MaybeLink.svelte"
@@ -105,7 +106,7 @@
 	{#if isSeries(production)}
 		<div class="border-l-8 pl-8">
 			{#each production.events as event}
-				<svelte:self production={event} {season} />
+				<Self production={event} {season} />
 			{/each}
 		</div>
 	{/if}

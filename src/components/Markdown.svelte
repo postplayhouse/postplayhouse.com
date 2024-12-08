@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { marked } from "marked"
 	import { onMount } from "svelte"
 	marked.setOptions({ smartypants: true })

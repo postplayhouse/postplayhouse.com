@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { asserted } from "$helpers"
 	import type { Showing, SimpleDate } from "./calendarHelpers"
 	import {
