@@ -50,7 +50,7 @@
 		</li>
 		<li class="col-span-6 lg:col-span-4">
 			<img
-				src="/images/sponsors/footprints.png"
+				src="/images/sponsors/footprints.png?v=0"
 				alt="Chadron State College"
 				class="scale-110"
 			/>
