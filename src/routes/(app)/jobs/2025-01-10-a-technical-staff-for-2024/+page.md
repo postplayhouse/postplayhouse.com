@@ -27,7 +27,7 @@ staff to help us mount our rep season of 5 productions:
 - **May 5**: First rehearsal
 - **May 23**: Guys & Dolls opening
 - **May 30**: Nunsense Jamboree opening
-- **June 13**: Disneys's Newsies opening
+- **June 13**: Disney's Newsies opening
 - **June 27**: Lucky Stiff opening
 - **July 3**: Into the Woods opening
 - **August 10**: Final performance (matinee) and strike
