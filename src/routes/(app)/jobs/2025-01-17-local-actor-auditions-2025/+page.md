@@ -1,5 +1,6 @@
 ---
 title: Auditions for local actors for our 2025 season
+updatedDate: 2025-01-20
 website: true
 feed: true
 ---
@@ -26,6 +27,6 @@ Post Playhouse is looking for local actors (children, teens, and adults) to perf
 
 ## What to Prepare
 
-Prepare an upbeat song. You may either sing acapella or bring a track to sing along with.
+Prepare an upbeat song. You may either sing acapella or bring a track to sing along with. You can bring your own speakers or use ours via Bluetooth.
 
-We will do a small dance routine, so bring comfortable clothes and shoes. No open toe shoes, sandals, or crocs. If you tap, you should bring your tap shoes!
+We will do a small dance routine, so bring comfortable clothes and shoes. No open toe shoes, sandals, or crocs. If you tap, you should bring your tap shoes!
