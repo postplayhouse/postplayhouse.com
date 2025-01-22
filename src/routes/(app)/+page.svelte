@@ -1,13 +1,8 @@
 <script lang="ts">
-	import DonateBtn from "$components/DonateBtn.svelte"
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
 	import SeasonImage from "$components/SeasonImage.svelte"
-	import { isToday } from "date-fns"
-	import givingTuesday1 from "../../images/seasons/2025/giving-tuesday-lion.png?enhanced"
-	import givingTuesday2 from "../../images/seasons/2025/giving-tuesday-cast.png?enhanced"
-	import givingTuesday3 from "../../images/seasons/2025/giving-tuesday-dorothy.png?enhanced"
 
 	let { data } = $props()
 
@@ -37,36 +32,6 @@
 		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
 	/>
 </svelte:head>
-
-{#if isToday(new Date("2024-12-03T00:00:00.000"))}
-	<div class="mx-auto mb-16 block max-w-2xl p-6">
-		<div class="flex gap-2 md:-mx-[60px] lg:-mx-[190px] xl:-mx-[300px]">
-			<enhanced:img
-				class="-rotate-2 shadow-md"
-				src={givingTuesday1}
-				alt="Giving Tuesday logo next to a moment from Post's production of The Wizard of Oz."
-			></enhanced:img>
-			<enhanced:img
-				class="hidden rotate-3 shadow-md md:block"
-				src={givingTuesday2}
-				alt="Giving Tuesday logo next to a moment from Post's production of The Wizard of Oz."
-			></enhanced:img>
-			<enhanced:img
-				class="hidden rotate-2 shadow-md md:block"
-				src={givingTuesday3}
-				alt="Giving Tuesday logo next to a moment from Post's production of The Wizard of Oz."
-			></enhanced:img>
-		</div>
-
-		<p class="mt-4">
-			It’s Giving Tuesday! On this international day of giving, join us and the
-			millions of others worldwide by donating! You can make a gift to Post
-			Playhouse today! #GenerosityInAction
-		</p>
-
-		<DonateBtn />
-	</div>
-{/if}
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings {productions} closingDate="2025-08-10">
