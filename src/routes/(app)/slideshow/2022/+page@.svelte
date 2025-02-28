@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { marked } from "marked"
 
 	marked.setOptions({ smartypants: true })

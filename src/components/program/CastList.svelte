@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import unique from "lodash-es/uniq.js"
 	import diff from "lodash-es/difference.js"
 	import type { Person } from "$models/Person"
