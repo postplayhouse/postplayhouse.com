@@ -125,17 +125,17 @@
 	{#key resetCount}
 		<div class="fixed inset-0 dark:bg-black dark:text-white">
 			{#if inc % 2 === 0}
+				{@const ShowComponent = shows[inc % shows.length]}
 				<div transition:fade={{ duration: 1000 }} class="absolute inset-0">
-					<svelte:component
-						this={shows[inc % shows.length]}
+					<ShowComponent
 						durationMultiplier={currentDurationMultiplier.value}
 						onEventDone={() => nextShow()}
 					/>
 				</div>
 			{:else}
+				{@const ShowComponent = shows[inc % shows.length]}
 				<div transition:fade={{ duration: 1000 }} class="absolute inset-0">
-					<svelte:component
-						this={shows[inc % shows.length]}
+					<ShowComponent
 						durationMultiplier={currentDurationMultiplier.value}
 						onEventDone={() => nextShow()}
 					/>
