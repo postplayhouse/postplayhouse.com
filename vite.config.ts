@@ -21,6 +21,12 @@ export default defineConfig({
 			sourceMapsUploadOptions: {
 				org: "post-playhouse",
 				project: "javascript-sveltekit",
+				// Future version of Don: This actually works on Netlify, just not
+				// locally. So it is fine when you see the "No auth token provided"
+				// error. I am guessing that the ENV variables from the .env file are
+				// not loaded for vite config, but are loaded for the app and the rest
+				// of the build. On Sentry, the ENV vars are always available, so it
+				// works there. Plus, we don't really want it to work here anyway.
 			},
 		}),
 
