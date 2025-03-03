@@ -46,7 +46,7 @@
 			/>
 		</li>
 		<li class="col-span-6 lg:col-span-4">
-			<img src="/images/sponsors/csc.png" alt="Chadron State College" />
+			<img src="/images/sponsors/csc_2024.png" alt="Chadron State College" />
 		</li>
 		<li class="col-span-6 lg:col-span-4">
 			<img

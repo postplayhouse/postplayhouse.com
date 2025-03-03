@@ -43,7 +43,7 @@
 	<div class="my-4 flex max-w-2xl items-start">
 		<img
 			class="mb-4 mr-4 w-24 flex-none rounded bg-white/80 p-2 sm:w-32"
-			src="/images/csc.png"
+			src="/images/sponsors/csc_2024.png"
 			alt="Chadron State College logo"
 		/>
 		<p class="text-xs">
