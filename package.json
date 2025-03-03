@@ -88,5 +88,6 @@
 			"sharp@0.33.4": "patches/sharp@0.33.4.patch",
 			"imagetools-core@7.0.1": "patches/imagetools-core@7.0.1.patch"
 		}
-	}
+	},
+	"packageManager": "pnpm@9.15.0+sha256.09a8fe31a34fda706354680619f4002f4ccef6dadff93240d24ef6c831f0fd28"
 }
