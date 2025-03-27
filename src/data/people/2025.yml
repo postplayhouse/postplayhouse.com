@@ -141,6 +141,25 @@
 # start __25__
 # end __25__
 # start __26__
+- last_name: Jones
+  first_name: Anika
+  image_year: 2025
+  location: "Silver Spring, MD"
+  staff_positions:
+    - Assistant Stage Manager
+  production_positions:
+    Guys & Dolls:
+      - Deck Stage Manager
+    Nunsense Jamboree:
+      - Calling Stage Manager
+    Disney's Newsies:
+      - Deck Stage Manager
+    Lucky Stiff:
+      - Deck Stage Manager
+    Into the Woods:
+      - Calling Stage Manager
+  bio: |
+    Anika Jones is excited to be making her Post Playhouse debut this summer! Her most recent stage management work includes *This Side of the Dirt, Jersey Boys, It’s A Wonderful Life,* and *Nevermore: The Imaginary Life and Mysterious Death of Edgar Allan Poe* at Cumberland Theatre. She was the production stage manager for the world debut of *Westphalia* at Luna Stage. Anika has also worked as an electrician at Buck’s Rock Performing and Creative Arts Camp and Two River Theater.
 # end __26__
 # start __27__
 - last_name: Hardiman
