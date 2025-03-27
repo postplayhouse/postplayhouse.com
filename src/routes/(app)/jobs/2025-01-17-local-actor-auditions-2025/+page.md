@@ -1,8 +1,8 @@
 ---
 title: Auditions for local actors for our 2025 season
 updatedDate: 2025-01-20
-website: true
-feed: true
+website: false
+feed: false
 ---
 
 Post Playhouse is hosting auditions for local actors on **Saturday, March 15th** at Chadron State College. The auditions and our summer season will be a ton of fun, so please join us!

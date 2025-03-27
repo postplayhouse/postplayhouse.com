@@ -1,7 +1,7 @@
 ---
 title: Professional Actor Auditions for our 2025 Season
-website: true
-feed: true
+website: false
+feed: false
 ---
 
 Post Playhouse is getting ready for the [Summer of 2025](__URL__/productions/2025)
