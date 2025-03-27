@@ -3,9 +3,9 @@
 	import Bio from "$components/Bio.svelte"
 	import {
 		sortPeople,
-		personIsOnlyInGroup,
 		groupPeople,
 		sortBoardMembers,
+		isOnlyActing,
 	} from "$helpers"
 
 	let { data } = $props()
@@ -15,8 +15,9 @@
 		site.season.toString() === year && site.castingComplete === false
 
 	const people = sortPeople(people_).filter((person) => {
-		return shouldFilterActors ? !personIsOnlyInGroup(person, "cast") : true
+		return shouldFilterActors ? !isOnlyActing(person) : true
 	})
+
 	const groupedPeople = groupPeople(people, "Board", "Additional")
 	const generalGroupName = shouldFilterActors
 		? "Crew and Staff"

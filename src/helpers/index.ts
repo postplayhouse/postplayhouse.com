@@ -8,8 +8,8 @@ export function personIsInGroup(person: PersonLike, groupName: string) {
 	)
 }
 
-export function personIsOnlyInGroup(person: PersonLike, groupName: string) {
-	return personIsInGroup(person, groupName) && person.groups?.length === 1
+export function isOnlyActing(person: YamlPerson) {
+	return person.roles && !person.positions && !person.staff_positions?.length
 }
 
 /**
