@@ -11,6 +11,7 @@
 	import { sortPeople, personIsInGroup, slugify } from "$helpers"
 	import PersonImage from "$components/PersonImage.svelte"
 	import { findOriginalPersonImage } from "$helpers/enhancedImg"
+	import Markdown from "$components/Markdown.svelte"
 
 	function renameImgFile(imgPath: string, newBaseNameWithoutExt: string) {
 		const ext = imgPath.split(".").pop()
@@ -218,11 +219,11 @@
 				{/if}
 
 				{#if showShortBio[person.id]}
-					{@html marked(
-						person.programBio || "(no program bio actually exists)",
-					)}
+					<Markdown
+						source={person.programBio || "(no program bio actually exists)"}
+					/>
 				{:else}
-					{@html marked(person.bio)}
+					<Markdown source={person.bio} />
 				{/if}
 			</div>
 		</div>
