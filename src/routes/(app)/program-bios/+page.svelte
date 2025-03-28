@@ -90,14 +90,6 @@
 
 <div id="TheTop"></div>
 
-<label
-	><input
-		type="checkbox"
-		checked={showUi}
-		onchange={() => (showUi = !showUi)}
-	/> Show non-program UI in Bios (buttons/anchors)</label
->
-
 <div class="my-4">
 	<header>Jump to Bio</header>
 
@@ -121,7 +113,9 @@
 
 <a href="#TheBoard" class="link-green my-4 block">Jump to the Board</a>
 
-<div class="mx-auto my-8 max-w-lg space-y-3 rounded p-8 text-center shadow-xl">
+<div
+	class="mx-auto my-8 max-w-lg space-y-3 rounded border p-8 text-center shadow-xl"
+>
 	<button class="btn-p" onclick={downloadAllPeopleImages}>
 		{#if isDownloadingImages}
 			Downloading...
@@ -169,6 +163,28 @@
 {/snippet}
 
 <div class="helvetica my-8">
+	<div class="sticky top-0 text-right">
+		<label
+			class="my-4 inline-flex cursor-pointer items-center gap-1 rounded-md border bg-white p-4 shadow"
+			>Show extra UI (buttons/anchors)
+			<button
+				onclick={() => (showUi = !showUi)}
+				data-enabled={showUi || undefined}
+				type="button"
+				class="focus:outline-hidden relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 data-[enabled]:bg-green-600"
+				role="switch"
+				aria-checked="false"
+			>
+				<span class="sr-only">Use setting</span>
+				<span
+					data-enabled={showUi || undefined}
+					aria-hidden="true"
+					class="pointer-events-none inline-block size-5 translate-x-0 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out data-[enabled]:translate-x-5"
+				></span>
+			</button>
+		</label>
+	</div>
+
 	{#each sortedPeople.filter(notInBoard) as person}
 		{@const originalImg = findOriginalPersonImage(person.image)}
 
