@@ -24,7 +24,7 @@ class Person {
 	}
 
 	get name() {
-		return `${this.firstName} ${this.lastName}`
+		return `${this.firstName} ${this.lastName}`.trim()
 	}
 
 	get slug() {
