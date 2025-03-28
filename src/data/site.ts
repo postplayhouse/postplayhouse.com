@@ -1,7 +1,7 @@
 const prod = process.env.NODE_ENV === "production"
 
 // Actual values. If dev, these may change below.
-const castingComplete = false
+const castingComplete = true
 const ticketsAvailableDate = "2024-11-15T00:00:00"
 const showsAnnounced = true
 
