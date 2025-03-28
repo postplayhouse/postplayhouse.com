@@ -75,8 +75,8 @@ const isNotFolder = (pathpart) =>
 	!(fs.existsSync(pathpart) && fs.statSync(pathpart).isDirectory())
 
 if (isNotFolder(from)) {
-	console.log(`The --${action} path is not pointing to a folder. Exiting.`)
-	process.exit(0)
+	console.log(`The --${action} path is not pointing to a folder.`)
+	process.exit(1)
 }
 
 try {
