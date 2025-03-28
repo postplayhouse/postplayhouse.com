@@ -1,3 +1,6 @@
+[[plugins]]
+package = "./scripts/netlify-plugin-cache"
+
 # Settings in the [build] context are global and are applied to all contexts
 # unless otherwise overridden by more specific contexts.
 [build]
