@@ -961,11 +961,15 @@ ${email}
 						<code
 							class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
 							>Director, Choreographer</code
+						><br />
+						<code
+							class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
+							>Music Director, Keys 1</code
 						>
 					</div>
 				</div>
 				{#each productions as production, i}
-					<label class="mt-4 block text-xl {i === 0 ? 'mb-12' : ''}">
+					<label class="mt-4 block text-xl {i === 0 ? 'mt-12' : ''}">
 						{production}
 
 						<input
