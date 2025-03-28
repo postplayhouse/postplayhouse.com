@@ -209,13 +209,48 @@
 				{/if}
 
 				{#if person.programBio && showUi}
-					<button
-						class="btn px-2 py-1"
-						type="button"
-						onclick={() => toggleShortBio(person)}
-					>
-						{#if showShortBio[person.id]}Show Long Bio{:else}Show Short Bio{/if}
-					</button>
+					<div class="mb-6 flex items-center gap-4">
+						<div
+							class="flex justify-center gap-1 overflow-clip rounded-lg border border-green-300 bg-green-200 p-1"
+						>
+							<button
+								class="rounded px-2 py-1 {!showShortBio[person.id]
+									? 'border border-green-600 bg-white text-black shadow'
+									: 'border border-transparent text-green-800 hover:bg-green-100'}"
+								type="button"
+								disabled={!showShortBio[person.id]}
+								onclick={() => toggleShortBio(person)}
+							>
+								Long Bio
+							</button>
+							<button
+								class="rounded px-2 py-1 {showShortBio[person.id]
+									? 'border border-green-600 bg-white text-black shadow'
+									: 'border border-transparent text-green-800 hover:bg-green-100'}"
+								type="button"
+								disabled={showShortBio[person.id]}
+								onclick={() => toggleShortBio(person)}
+							>
+								Short Bio
+							</button>
+						</div>
+						<div class="grid grid-cols-[auto,auto] gap-x-2 text-sm">
+							<div>Long bio word count:</div>
+							<div
+								class="text-right tabular-nums {!showShortBio[person.id] &&
+									'font-bold'}"
+							>
+								{person.bio.split(/\s/).length}
+							</div>
+							<div>Short bio word count:</div>
+							<div
+								class="text-right tabular-nums {showShortBio[person.id] &&
+									'font-bold'}"
+							>
+								{person.programBio.split(/\s/).length}
+							</div>
+						</div>
+					</div>
 				{/if}
 
 				{#if showShortBio[person.id]}
