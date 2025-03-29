@@ -73,7 +73,7 @@ export const onPreBuild = async () => {
 
 		console.log("Restoring cache from Backblaze B2...")
 		runCommand(
-			`${B2_CLI_PATH} sync --skip-newer ${B2_IMAGE_TOOLS_CACHE} ${LOCAL_IMAGE_TOOLS_CACHE}`,
+			`${B2_CLI_PATH} sync --compare-versions none ${B2_IMAGE_TOOLS_CACHE} ${LOCAL_IMAGE_TOOLS_CACHE}`,
 		)
 	} catch {
 		console.error(
@@ -93,7 +93,7 @@ export const onPostBuild = async () => {
 	try {
 		console.log("Storing imagetools cache in Backblaze B2...")
 		runCommand(
-			`${B2_CLI_PATH} sync --skip-newer ${LOCAL_IMAGE_TOOLS_CACHE} ${B2_IMAGE_TOOLS_CACHE}`,
+			`${B2_CLI_PATH} sync --compare-versions none ${LOCAL_IMAGE_TOOLS_CACHE} ${B2_IMAGE_TOOLS_CACHE}`,
 		)
 	} catch {
 		console.error(
