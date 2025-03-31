@@ -4,11 +4,7 @@
 	"private": true,
 	"scripts": {
 		"gen:phrases": "node ./scripts/generate_passphrases",
-		"clean": "rm -rf ./node_modules/.cache",
-		"copyFolder": "./scripts/copy_folder.cjs",
-		"useCache": "npm run copyFolder -- --merge /opt/build/cache/hc_my_cache/node_modules/.cache --to node_modules/.cache",
-		"fillCache": "npm run copyFolder -- --save node_modules/.cache --to /opt/build/cache/hc_my_cache/node_modules/.cache",
-		"netlify": "npm run useCache && npm run build && npm run fillCache",
+		"netlify": "npm run build",
 		"dev": "vite dev --port 3000",
 		"build": "vite build",
 		"preview": "vite preview --port 3000",
