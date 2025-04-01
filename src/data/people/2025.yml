@@ -173,6 +173,23 @@
 # start __14__
 # end __14__
 # start __15__
+- last_name: Frey
+  first_name: Riley
+  image_year: 2025
+  location: "Los Angeles, CA"
+  roles:
+    Guys & Dolls:
+      - Sarah Brown
+    Disney's Newsies:
+      - Ensemble
+    Lucky Stiff:
+      - Ensemble
+      - Understudy Dominique du Monaco
+    Into the Woods:
+      - Rapunzel
+      - Understudy Baker's Wife
+  bio: |
+    Riley is thrilled to be returning to Post Playhouse for her third summer! Originally from Los Angeles, Riley now calls New York City her home. She is also a proud graduate of Indiana University’s Musical Theatre Program. Post credits include Dorothy Gale in *The Wizard of Oz*, Francine Valli in *Jersey Boys,* and Liesel von Trapp in *The Sound of Music*. For Indiana University: Carrie White in *Carrie*, Rusty in *Footloose,* and Martha in *Spring Awakening.*  Riley would like to thank her family for their unwavering support, and her partner Noah, who is returning to Post with her. And thank you to Dewayne for the opportunity to perform at Post again!
 # end __15__
 # start __16__
 - last_name: Marcus
