@@ -67,7 +67,7 @@
 </script>
 
 {#if unknownPositions.length > 0}
-	<div class="my-4 border border-yellow-500 bg-yellow-200">
+	<div class="my-4 border border-yellow-500 bg-yellow-200 dark:text-black">
 		<p>Unknown positions exist. (Can't sort these without a website update.)</p>
 		<ul class="unknown-positions people-list">
 			{#each unknownPositions as position}

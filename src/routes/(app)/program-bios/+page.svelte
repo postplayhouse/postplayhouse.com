@@ -165,7 +165,7 @@
 <div class="helvetica my-8">
 	<div class="sticky top-0 text-right">
 		<label
-			class="my-4 inline-flex cursor-pointer items-center gap-1 rounded-md border bg-white p-4 shadow"
+			class="my-4 inline-flex cursor-pointer items-center gap-1 rounded-md border bg-white p-4 shadow dark:text-black"
 			>Show extra UI (buttons/anchors)
 			<button
 				onclick={() => (showUi = !showUi)}
