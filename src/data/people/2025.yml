@@ -532,6 +532,15 @@
 # start __42__
 # end __42__
 # start __43__
+- last_name: Cleveland
+  first_name: Echo
+  image_year: 2025
+  location: "Chadron"
+  roles:
+    Disney's Newsies:
+      - Ensemble
+  bio: |
+    Echo is excited to start her first year at post-Playhouse, wrapping up 2nd grade. She loves entertaining and has a passion for gymnastics, singing, and ice skating. With her fun and loving personality, she’s ready to take on the stage in the \*Newsies\* musical!
 # end __43__
 # start __44__
 # end __44__
