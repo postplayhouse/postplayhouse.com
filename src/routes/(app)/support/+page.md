@@ -18,8 +18,21 @@ title: "Support Post Playhouse"
 
 Jump to:
 
+- [Our Mission](#our-mission)
 - [Donation Levels](#donation-levels)
 - [Friends of Post Playhouse](#friends)
+
+<div class="bg-green-100 p-4 sm:p-8 relative rounded mt-12">
+
+<div class="sm:top-0 sm:-rotate-12 origin-top-left sm:-left-8 relative inline-block rounded sm:px-2 sm:text-white text-3xl sm:bg-green-800 text-green-800 font-bold">Did you know?</div>
+
+**You can make a meaningful contribution to Post Playhouse through your IRA**, and it may have significant tax benefits for you! If you're over the age of 70½, you can donate directly from your Traditional IRA to charity through a Qualified Charitable Distribution (QCD), without having to pay income tax on the amount donated. This allows you to support theatre in NW Nebraska while reducing your taxable income.
+
+Making a gift through your IRA is simple, and it could help you meet your required minimum distribution (RMD) while supporting a cause you care about!
+
+For more information on how to donate through your IRA, contact Em Laudeman, development director at [elaudeman@postplayhouse.com](mailto:elaudeman@postplayhouse.com).
+
+</div>
 
 <DonateBtn/>
 
