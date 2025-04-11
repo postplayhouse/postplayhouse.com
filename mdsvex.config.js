@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const config = defineConfig({
 	extensions: [".svelte.md", ".md", ".svx"],
 
-	smartypants: true,
+	smartypants: { dashes: "oldschool" },
 	layout: path.join(__dirname, "./src/components/DefaultMdLayout.svelte"),
 
 	remarkPlugins: [],
