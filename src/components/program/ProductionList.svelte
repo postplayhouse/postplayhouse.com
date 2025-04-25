@@ -14,6 +14,7 @@
 		"Sound Designer",
 		"Costume Designer",
 		"Scenic Designer",
+		"Fight Choreographer",
 		"Technical Director",
 		"Rehearsal Stage Manager",
 		"Assistant Stage Manager",
