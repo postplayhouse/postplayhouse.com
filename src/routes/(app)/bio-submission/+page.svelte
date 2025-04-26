@@ -28,25 +28,28 @@
 
 	let lastYearBios = `/who/${site.season - 1}`
 
+	let fields = $state({
+		firstName: "",
+		lastName: "",
+		imageUrlEncoded: "",
+		useOldHeadshot: false,
+		oldImageSrcPath: "",
+		location: "",
+		bio: "",
+		addLongerBio: false,
+		longerBio: "",
+		email: "",
+	})
+
 	let passphrase = $state("")
 	let position = $state("")
-	let firstName = $state("")
-	let lastName = $state("")
-	let image = $state("")
-	let oldImageSrcPath = $state("")
 	let imageFile: null | File = $state(null)
-	let location = $state("")
-	let bio = $state("")
-	let addLongerBio = $state(false)
-	let longerBio = $state("")
-	let email = $state("")
-	let useOldHeadshot = $state(false)
 	let pullRequest = $state("")
 
 	function handleUseOldHeadshotChange(e: Event) {
 		const unchecked = !(e.target as HTMLInputElement).checked
 		if (unchecked) {
-			image = ""
+			fields.imageUrlEncoded = ""
 			imageFile = null
 		}
 	}
@@ -116,20 +119,24 @@
 			.filter(Boolean)
 	}
 
-	let name = $derived(firstName ? `${firstName} ${lastName}` : "")
+	let name = $derived(
+		fields.firstName ? `${fields.firstName} ${fields.lastName}` : "",
+	)
 
-	let person = $derived({
+	let exampleBio = $derived({
 		name: name || "Bill Murray",
-		image: useOldHeadshot ? oldImageSrcPath : image || PLACEHOLDER_IMAGE,
-		location: location || "Chicago, IL",
+		image: fields.useOldHeadshot
+			? fields.oldImageSrcPath
+			: fields.imageUrlEncoded || PLACEHOLDER_IMAGE,
+		location: fields.location || "Chicago, IL",
 		roles,
 		staffPositions,
 		productionPositions,
 		positions,
 		bio:
-			bio ||
+			fields.bio ||
 			`Bill is thrilled (everyone says thrilled) to be making his Post Playhouse debut! Previous credits include _Ghostbusters_, _Groundhog Day_, and many more.`,
-		longerBio: addLongerBio ? longerBio : "",
+		longerBio: fields.addLongerBio ? fields.longerBio : "",
 	})
 
 	let wordCount = (s: string) =>
@@ -139,7 +146,7 @@
 			.split(/\s+/)
 			.filter(Boolean).length
 
-	let bioWordCount = $derived(wordCount(bio))
+	let bioWordCount = $derived(wordCount(fields.bio))
 	let bioWordCountClass = $derived.by(function () {
 		if (bioWordCount > MAX_WORDS) {
 			return "text-red-500"
@@ -150,7 +157,7 @@
 		return "text-black"
 	})
 
-	let longerBioWordCount = $derived(wordCount(longerBio))
+	let longerBioWordCount = $derived(wordCount(fields.longerBio))
 	let longerBioWordCountClass = $derived.by(function () {
 		if (longerBioWordCount <= MAX_WORDS) {
 			return "text-red-500"
@@ -162,28 +169,31 @@
 		{
 			name: "noShowsPresent",
 			warn:
-				bio.length > 0 &&
-				(bio.match(/_/g) || []).length === 0 &&
-				(bio.match(/\*/g) || []).length === 0,
+				fields.bio.length > 0 &&
+				(fields.bio.match(/_/g) || []).length === 0 &&
+				(fields.bio.match(/\*/g) || []).length === 0,
 		},
 		{
 			name: "noShowsPresentLongerBio",
 			warn:
-				addLongerBio &&
+				fields.addLongerBio &&
 				longerBioWordCount > MAX_WORDS &&
-				(longerBio.match(/_/g) || []).length === 0 &&
-				(longerBio.match(/\*/g) || []).length === 0,
+				(fields.longerBio.match(/_/g) || []).length === 0 &&
+				(fields.longerBio.match(/\*/g) || []).length === 0,
 		},
 		{ name: "wordCount", invalid: bioWordCount > MAX_WORDS },
-		{ name: "firstName", invalid: !firstName },
-		{ name: "location", invalid: !location },
-		{ name: "emptyBio", invalid: !bio },
-		{ name: "email", invalid: !email },
-		{ name: "image", invalid: !(imageFile || useOldHeadshot) },
-		{ name: "oldImage", invalid: useOldHeadshot && !oldImageSrcPath },
+		{ name: "firstName", invalid: !fields.firstName },
+		{ name: "location", invalid: !fields.location },
+		{ name: "emptyBio", invalid: !fields.bio },
+		{ name: "email", invalid: !fields.email },
+		{ name: "image", invalid: !(imageFile || fields.useOldHeadshot) },
+		{
+			name: "oldImage",
+			invalid: fields.useOldHeadshot && !fields.oldImageSrcPath,
+		},
 		{
 			name: "longerBioIsShort",
-			invalid: addLongerBio && longerBioWordCount <= MAX_WORDS,
+			invalid: fields.addLongerBio && longerBioWordCount <= MAX_WORDS,
 		},
 	] satisfies Array<
 		| { name: keyof typeof validationMessages; invalid: boolean }
@@ -376,12 +386,12 @@
 	) {
 		const pickedFile = e.currentTarget.files?.[0]
 		if (!pickedFile || !pickedFile.type.match("image.*"))
-			return (image = PLACEHOLDER_IMAGE)
+			return (fields.imageUrlEncoded = PLACEHOLDER_IMAGE)
 
 		var reader = new FileReader()
 
 		reader.onload = function (evt) {
-			image = evt.target?.result as string
+			fields.imageUrlEncoded = evt.target?.result as string
 			imageFile = pickedFile
 		}
 
@@ -490,17 +500,17 @@
 		}
 
 		return [
-			`- last_name: ${lastName.trim()}`,
-			`  first_name: ${firstName.trim()}`,
-			`  image_year: ${useOldHeadshot ? oldImageSrcPath.split("/")[3] : site.season}`,
-			`  location: "${location.trim()}"`,
+			`- last_name: ${fields.lastName.trim()}`,
+			`  first_name: ${fields.firstName.trim()}`,
+			`  image_year: ${fields.useOldHeadshot ? fields.oldImageSrcPath.split("/")[3] : site.season}`,
+			`  location: "${fields.location.trim()}"`,
 			yamlStaffPositions && `  staff_positions:\n${yamlStaffPositions}`,
 			yamlProductionPositions &&
 				`  production_positions:\n${yamlProductionPositions}`,
 			yamlRoles && `  roles:\n${yamlRoles}`,
-			!addLongerBio && `  bio: |\n    ${bioTrim(bio)}`,
-			addLongerBio && `  program_bio: |\n    ${bioTrim(bio)}`,
-			addLongerBio && `  bio: |\n    ${bioTrim(longerBio)}`,
+			!fields.addLongerBio && `  bio: |\n    ${bioTrim(fields.bio)}`,
+			fields.addLongerBio && `  program_bio: |\n    ${bioTrim(fields.bio)}`,
+			fields.addLongerBio && `  bio: |\n    ${bioTrim(fields.longerBio)}`,
 		]
 			.filter(Boolean)
 			.join("\n")
@@ -581,8 +591,8 @@ ${getYamlBody({ includeEmptyProductions: true })}
 	}
 
 	async function handleSubmit() {
-		const basename = `${Date.now()}-${safeName(firstName)}-${safeName(
-			lastName,
+		const basename = `${Date.now()}-${safeName(fields.firstName)}-${safeName(
+			fields.lastName,
 		)}`
 
 		let ghTries = 0
@@ -591,8 +601,8 @@ ${getYamlBody({ includeEmptyProductions: true })}
 			{ success: true; pullRequest: string } | { success: false }
 		> =>
 			uploadBioToGh(
-				`${firstName} ${lastName}`,
-				email,
+				`${fields.firstName} ${fields.lastName}`,
+				fields.email,
 				getYamlBody(),
 				imageFile ?? undefined,
 			)
@@ -627,9 +637,9 @@ ${getYamlBody({ includeEmptyProductions: true })}
 		const messageToMyself = `
 bio position:     ${position}
 bio words:        ${bioWordCount}
-longer bio words: ${addLongerBio ? longerBioWordCount : "n/a"}
+longer bio words: ${fields.addLongerBio ? longerBioWordCount : "n/a"}
 
-${email}
+${fields.email}
 `
 
 		const doBioUpload = async (): Promise<true> =>
@@ -662,9 +672,10 @@ ${email}
 				},
 			)
 
-		const jobs = [doBioUpload(), !useOldHeadshot && doHeadshotUpload()].filter(
-			Boolean,
-		)
+		const jobs = [
+			doBioUpload(),
+			!fields.useOldHeadshot && doHeadshotUpload(),
+		].filter(Boolean)
 
 		return Promise.all(jobs)
 			.then(() => {
@@ -681,7 +692,10 @@ ${email}
 			headers: new Headers({
 				Authorization: sanitizedPassphrase(passphrase),
 			}),
-			body: JSON.stringify({ name: `${firstName} ${lastName}`, pullRequest }),
+			body: JSON.stringify({
+				name: `${fields.firstName} ${fields.lastName}`,
+				pullRequest,
+			}),
 		})
 	}
 
@@ -791,6 +805,8 @@ ${email}
 			class="pre fixed bottom-0 right-0 top-0 z-10 w-1/4 overflow-scroll whitespace-pre-wrap bg-blue-200 p-2 dark:bg-blue-900"
 		>
 			{getYamlBody()}
+
+			{JSON.stringify(fields, null, 2)}
 		</div>
 	{/if}
 	<div bind:this={topOfMainEl} class="mb-24 mt-4 max-w-lg">
@@ -812,7 +828,12 @@ ${email}
 					(So our program designer can contact you if necessary. It is not
 					shared with the public.)
 				</div>
-				<input class="block" bind:value={email} name="email" type="email" />
+				<input
+					class="block"
+					bind:value={fields.email}
+					name="email"
+					type="email"
+				/>
 			</label>
 
 			<div class="my-32">
@@ -822,20 +843,20 @@ ${email}
 						tabindex="0"
 						type="checkbox"
 						onchange={handleUseOldHeadshotChange}
-						bind:checked={useOldHeadshot}
+						bind:checked={fields.useOldHeadshot}
 					/>
 					I've worked at Post before, and I'd like to use my old headshot.
 				</label>
-				{#if useOldHeadshot}
+				{#if fields.useOldHeadshot}
 					<div class="my-4">
 						<PreviousHeadshotPicker
 							options={imageFiles}
-							on:optionSelected={(x) => (oldImageSrcPath = x.detail)}
+							on:optionSelected={(x) => (fields.oldImageSrcPath = x.detail)}
 						/>
 					</div>
 				{:else}
 					<label
-						class="btn btn-p inline-block w-[9em] cursor-pointer text-center {useOldHeadshot
+						class="btn btn-p inline-block w-[9em] cursor-pointer text-center {fields.useOldHeadshot
 							? 'opacity-50'
 							: ''}"
 					>
@@ -850,11 +871,11 @@ ${email}
 					</label>
 				{/if}
 				<img
-					class="inline-block h-[100px] w-[100px] object-contain {image &&
-					!useOldHeadshot
+					class="inline-block h-[100px] w-[100px] object-contain {fields.imageUrlEncoded &&
+					!fields.useOldHeadshot
 						? ''
 						: 'invisible'}"
-					src={image}
+					src={fields.imageUrlEncoded}
 					alt={imageFile?.name}
 				/>
 			</div>
@@ -865,7 +886,7 @@ ${email}
 					<div class="text-sm">(optionally with middle name/initial)</div>
 					<input
 						class="block"
-						bind:value={firstName}
+						bind:value={fields.firstName}
 						name="firstName"
 						type="text"
 					/>
@@ -874,7 +895,7 @@ ${email}
 					Last Name<i>*</i>
 					<input
 						class="block"
-						bind:value={lastName}
+						bind:value={fields.lastName}
 						name="lastName"
 						type="text"
 					/>
@@ -887,7 +908,7 @@ ${email}
 					</div>
 					<input
 						class="block"
-						bind:value={location}
+						bind:value={fields.location}
 						name="location"
 						type="text"
 					/>
@@ -983,13 +1004,13 @@ ${email}
 			</div>
 
 			<label for="bio" class="mt-24 block text-2xl"
-				>Program {#if !addLongerBio}and Website{/if} Bio<i>*</i></label
+				>Program {#if !fields.addLongerBio}and Website{/if} Bio<i>*</i></label
 			>
 			<p class="my-2">
 				Please italicize production titles. Feel free to add links which will
 				appear in the website version.
 			</p>
-			<TextEditor content={bio} onChange={(x) => (bio = x)} />
+			<TextEditor content={fields.bio} onChange={(x) => (fields.bio = x)} />
 			<div class={`text-right ${bioWordCountClass}`}>
 				Word Count:
 				{bioWordCount}
@@ -998,7 +1019,11 @@ ${email}
 			</div>
 
 			<label class="my-2 block">
-				<input tabindex="0" type="checkbox" bind:checked={addLongerBio} />
+				<input
+					tabindex="0"
+					type="checkbox"
+					bind:checked={fields.addLongerBio}
+				/>
 				<span class="text-sm">
 					I'd like to submit an additional bio longer than {MAX_WORDS} words for
 					the website. I understand that
@@ -1008,10 +1033,13 @@ ${email}
 				</span>
 			</label>
 
-			{#if addLongerBio}
+			{#if fields.addLongerBio}
 				<div>
 					<label for="longerBio" class="mt-8 block text-2xl">Website Bio</label>
-					<TextEditor content={longerBio} onChange={(x) => (longerBio = x)} />
+					<TextEditor
+						content={fields.longerBio}
+						onChange={(x) => (fields.longerBio = x)}
+					/>
 					<div class={`text-right ${longerBioWordCountClass}`}>
 						Word Count:
 						{longerBioWordCount} (must be <em>more than</em> 125 words, otherwise
@@ -1025,7 +1053,7 @@ ${email}
 			<div class="sticky top-0 bg-grey-200 p-4 dark:bg-green-200/20">
 				<h3>Preview (your answers change this preview):</h3>
 				<div class="rounded bg-white p-4 shadow-lg dark:bg-black">
-					<Bio {person} />
+					<Bio person={exampleBio} />
 				</div>
 
 				{#if validations.length > 0}
