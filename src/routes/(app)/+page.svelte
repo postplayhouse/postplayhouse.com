@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Mailer from "$components/Mailer.svelte"
+	import Markdown from "$components/Markdown.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
 	import SeasonImage from "$components/SeasonImage.svelte"
@@ -33,6 +34,18 @@
 	/>
 </svelte:head>
 
+<a
+	class="group mx-auto mb-16 block max-w-2xl transform-gpu border border-green-400 bg-green-100 p-6 shadow-md transition-all hover:scale-105 hover:border-green-600 hover:shadow-lg"
+	href="/news/2025-05-02-housing"
+>
+	<h1 class="h2 mb-2 group-hover:underline">New Summer Company Housing</h1>
+	<Markdown
+		source={`Exciting news! We are thrilled to announce the purchase of a home in Crawford, Nebraska, to house professional company members during its annual summer season!
+		`}
+	/>
+
+	<div class="link-green mt-2 text-right">Read more</div>
+</a>
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings {productions} closingDate="2025-08-10">
 		{#snippet seasonArtworkImage()}
