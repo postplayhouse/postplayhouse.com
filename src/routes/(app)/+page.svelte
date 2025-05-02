@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { isBefore, startOfToday } from "date-fns"
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
 	import SeasonImage from "$components/SeasonImage.svelte"
-	import Raffle2024 from "./news/2025-01-21-annual-raffle/+page.svelte"
 
 	let { data } = $props()
 
@@ -34,14 +32,6 @@
 		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
 	/>
 </svelte:head>
-
-{#if isBefore(startOfToday(), new Date("2025-03-16T00:00:00.000"))}
-	<div
-		class="-mx-8 rounded border border-green-800 bg-green-50 p-8 dark:bg-green-900"
-	>
-		<Raffle2024 />
-	</div>
-{/if}
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings {productions} closingDate="2025-08-10">
