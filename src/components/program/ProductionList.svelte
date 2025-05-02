@@ -31,8 +31,11 @@
 
 	const sortedPit = [
 		"First Keys/Conductor",
+		"Keyboard I/Conductor",
 		"Second Keys",
+		"Keyboard II",
 		"Third Keys",
+		"Keyboard III",
 		"Pit Keys",
 		"Bassist",
 		"Bass",

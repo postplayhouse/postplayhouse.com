@@ -422,15 +422,15 @@
   production_positions:
     Guys & Dolls:
       - Music Director
-      - First Keys/Conductor
+      - Keyboard I/Conductor
     Disney's Newsies:
       - Music Director
-      - First Keys/Conductor
+      - Keyboard I/Conductor
     Lucky Stiff:
       - Music Director
-      - First Keys/Conductor
+      - Keyboard I/Conductor
     Into the Woods:
-      - Second Keys
+      - Keyboard II
   bio: |
     Dr. Jenna Lee Moore is excited to return for her second season at Post! Jenna currently holds the position of Associate Professor of Musical Theatre at Southeast Missouri State University and has earned a DMA in Vocal Pedagogy and Performance from the Frost School of Music. Jenna is active as an actor, singer, pianist, and music director. Favorite music directing credits include the world premiere of *Unlimited: The Music and Lyrics of Stephen Schwartz*, *Nine*, *Urinetown*, *Little Shop of Horrors*, *Avenue Q*, *Jesus Christ Superstar*, and the New York premiere of *An American Hero: A World War II Musical* at the New York Musical Festival. Jenna serves as the treasurer for Musical Theatre Educator’s Alliance. Special thanks to Spike and Spencer for their continued support.
 # end __24__
@@ -441,13 +441,15 @@
   location: "Los Angeles, CA"
   production_positions:
     Guys & Dolls:
-      - Second Keys
+      - Keyboard II
     Nunsense Jamboree:
       - Music Director
+      - Keyboard I/Conductor
     Disney's Newsies:
-      - Second Keys
+      - Keyboard II
     Into the Woods:
       - Music Director
+      - Keyboard I/Conductor
   bio: |
     Cheryl is excited to be back for the second time at Post Playhouse this summer! Cheryl is a music director, keyboardist, synthesizer programmer, and conductor based out of Los Angeles. Last year, Cheryl was the music director for Post’s productions of *Jersey Boys*, *The Spongebob Musical*, and *The Wizard of Oz*. Additional favorite music director credits include *Fun Home* (Kentwood Players), *The Wizard of Oz* (associate MD, Musical Theatre West), and *Newsies* (Westridge HS). Favorite keyboard credits include *Once On This Island* (Oregon Shakespeare Festival), *Cinderella* (Rocky Mountain Repertory Theatre), and *Beauty and the Beast* (Chance Theater). Enjoy the show!
 # end __25__
