@@ -66,7 +66,8 @@
 		if (event.repeat) return
 
 		switch (event.key) {
-			case "i":
+			case "/":
+			case "?":
 				event.preventDefault()
 				showInfo = !showInfo
 				break
@@ -74,13 +75,13 @@
 				event.preventDefault()
 				currentDurationMultiplier.increment()
 				resetCount = resetCount + 1
-				visible = true
+				speedInfoVisible = true
 				break
 			case "ArrowUp":
 				event.preventDefault()
 				currentDurationMultiplier.decrement()
 				resetCount = resetCount + 1
-				visible = true
+				speedInfoVisible = true
 				break
 			case "ArrowLeft":
 				event.preventDefault()
@@ -89,48 +90,107 @@
 				} else {
 					inc -= 1
 				}
+				speedInfoVisible = true
 				break
 			case "ArrowRight":
 				event.preventDefault()
 				inc += 1
+				speedInfoVisible = true
 				break
+			default:
+				speedInfoVisible = true
 		}
 	}
 
-	let visible = $state(true)
+	let speedInfoVisible = $state(true)
 
 	$effect(() => {
-		visible = visible && false
+		speedInfoVisible = speedInfoVisible && false
 	})
 </script>
 
 <svelte:window onkeydown={onKeyDown} />
 
 {#if showInfo}
-	{#each Object.entries(info) as [section, subsection]}
+	<div class="p-8 text-xl">
+		<div class="max-w-lg space-y-4">
+			<p>
+				This is the information screen about the slideshow. Press the <code
+					>?</code
+				> key to toggle this screen open and closed.
+			</p>
+			<p>The slideshow is comprised of multiple slide sets:</p>
+			<strong>
+				<ul>
+					{#each showNames as name}
+						<li>{name}</li>
+					{/each}
+				</ul>
+			</strong>
+			<p>
+				Getting the speed right for each show is not an exact science, so you
+				can adjust the speed of the show by pressing the arrow keys. Your
+				changes are automatically saved to this device.
+			</p>
+		</div>
+
+		<!-- Start of the keyboard shortcuts info pane -->
 		<div class="mt-8 text-xl">
 			<div>
-				<strong>
-					{section.toUpperCase()}
-				</strong>
+				<strong>Keyboard Shortcuts</strong>
+			</div>
+			<div class="mt-4">
+				<code>?</code>: Show/hide this information screen
+			</div>
+			<div class="mt-4">
+				<code>Arrow Down</code>: Speed up the current slide set
+			</div>
+			<div class="mt-4">
+				<code>Arrow Up</code>: Slow down the current slide set
+			</div>
+			<div class="mt-4">
+				<code>Arrow Left</code>: Go to the previous slide set
+			</div>
+			<div class="mt-4">
+				<code>Arrow Right</code>: Go to the next slide set
 			</div>
 		</div>
-		{#each subsection as { title, names }}
-			<div class="mb-6">
+
+		<div class="my-12 max-w-lg">
+			<p>
+				See below to check the information in the slideshow without having to
+				watch the whole thing. Email or message Don in Basecamp if you want to
+				make changes.
+			</p>
+		</div>
+
+		<hr class="border-8" />
+
+		{#each Object.entries(info) as [section, subsection]}
+			<div class="mt-8 text-xl">
 				<div>
 					<strong>
-						{title}
+						{section.toUpperCase()}
 					</strong>
 				</div>
-
-				{#each names as name}
-					<div>
-						{name}
-					</div>
-				{/each}
 			</div>
+			{#each subsection as { title, names }}
+				<div class="mb-6">
+					<div>
+						<strong>
+							{title}
+						</strong>
+					</div>
+
+					{#each names as name}
+						<div>
+							{name}
+						</div>
+					{/each}
+				</div>
+			{/each}
 		{/each}
-	{/each}
+	</div>
 {:else}
 	{#key resetCount}
 		<div class="fixed inset-0 dark:bg-black dark:text-white">
@@ -152,18 +212,31 @@
 				</div>
 			{/if}
 		</div>
-		{#if visible}
-			<div
-				out:fade={{ duration: 1000, delay: 1000 }}
-				class="fixed inset-0 flex items-center justify-center"
-			>
-				<span
-					class="rounded-lg bg-black/50 px-2 py-1 text-[6vw] font-bold text-white dark:bg-white/50 dark:text-black"
-				>
-					{showNames[inc % showNames.length]} Speed: {20 -
-						(currentDurationMultiplier.value - 1)}
-				</span>
-			</div>
-		{/if}
 	{/key}
 {/if}
+{#if speedInfoVisible}
+	<div
+		out:fade={{ duration: 1000, delay: 1500 }}
+		class="fixed inset-8 flex flex-col items-center justify-center"
+	>
+		<div
+			class="w-full rounded-lg bg-black/80 px-2 py-1 text-[6vw] font-bold text-white dark:bg-white/80 dark:text-black"
+		>
+			Set: {showNames[inc % showNames.length]} <br />Speed: {20 -
+				(currentDurationMultiplier.value - 1)}
+		</div>
+		{#if !showInfo}
+			<div
+				class="mt-3 rounded-lg bg-black/80 p-8 text-3xl text-white dark:bg-white/80 dark:text-black"
+			>
+				Press <code>?</code> for help.
+			</div>
+		{/if}
+	</div>
+{/if}
+
+<style>
+	code {
+		@apply rounded border border-gray-800 bg-gray-100 px-2 py-1 font-mono text-[smaller] text-gray-800;
+	}
+</style>
