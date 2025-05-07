@@ -54,7 +54,7 @@
 
 	let showInfo = $state(false)
 
-	const info = { large, small }
+	const info = { "Large Donations": large, "Regular Donations": small }
 
 	function onKeyDown(event: KeyboardEvent) {
 		if (event.repeat) return
@@ -161,12 +161,10 @@
 		<hr class="border-8" />
 
 		{#each Object.entries(info) as [section, subsection]}
-			<div class="mt-8 text-xl">
-				<div>
-					<strong>
-						{section.toUpperCase()}
-					</strong>
-				</div>
+			<div class="mb-4 mt-8 border-b-2 border-black text-xl dark:border-white">
+				<strong>
+					{section.toUpperCase()}
+				</strong>
 			</div>
 			{#each subsection as { title, names }}
 				<div class="mb-6">
