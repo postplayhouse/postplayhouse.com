@@ -11,6 +11,8 @@
 	import { createIntStore } from "$helpers/stores.svelte"
 	import { large, small, special } from "./donors"
 
+	const year = 2024
+
 	onMount(initLocalAppVersion)
 
 	function createPositiveIntStore(initialValue = 1, localStorageName?: string) {
@@ -21,9 +23,17 @@
 	}
 
 	const showsAndTimers = [
-		[DonorsSpecial, createPositiveIntStore(8, "2024 sd"), "Special Donations"],
-		[DonorsLarge, createPositiveIntStore(8, "2024 ld"), "Large Donations"],
-		[DonorsSmall, createPositiveIntStore(10, "2024 rd"), "Regular Donations"],
+		[
+			DonorsSpecial,
+			createPositiveIntStore(8, `${year} sd`),
+			"Special Donations",
+		],
+		[DonorsLarge, createPositiveIntStore(8, `${year} ld`), "Large Donations"],
+		[
+			DonorsSmall,
+			createPositiveIntStore(10, `${year} rd`),
+			"Regular Donations",
+		],
 	] as const
 
 	const shows = showsAndTimers.map(([show]) => show)
