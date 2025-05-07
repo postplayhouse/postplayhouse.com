@@ -2,14 +2,13 @@
 	import { fade } from "svelte/transition"
 	import DonorsLarge from "./DonorsLarge.svelte"
 	import DonorsSmall from "./DonorsSmall.svelte"
-	import DonorsSpecial from "./DonorsSpecial.svelte"
 	import { onMount } from "svelte"
 	import {
 		initLocalAppVersion,
 		refreshIfAppVersionOutdated,
 	} from "$helpers/app-version"
 	import { createIntStore } from "$helpers/stores.svelte"
-	import { large, small, special } from "./donors"
+	import { large, small } from "./donors"
 
 	const year = 2025
 
@@ -23,11 +22,6 @@
 	}
 
 	const showsAndTimers = [
-		[
-			DonorsSpecial,
-			createPositiveIntStore(8, `${year} sd`),
-			"Special Donations",
-		],
 		[DonorsLarge, createPositiveIntStore(8, `${year} ld`), "Large Donations"],
 		[
 			DonorsSmall,
@@ -60,7 +54,7 @@
 
 	let showInfo = $state(false)
 
-	const info = { special, large, small }
+	const info = { large, small }
 
 	function onKeyDown(event: KeyboardEvent) {
 		if (event.repeat) return
