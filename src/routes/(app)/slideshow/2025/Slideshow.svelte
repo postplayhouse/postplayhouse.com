@@ -132,6 +132,11 @@
 		<div class="mt-8 text-xl">
 			<div>
 				<strong>Keyboard Shortcuts</strong>
+				<p class="text-sm">
+					If you are on a mobile device, you can only show/hide this screen by
+					tapping the ? in the bottom right corner. Every other action requires
+					a computer with a keyboard.
+				</p>
 			</div>
 			<div class="mt-4">
 				<code>?</code>: Show/hide this information screen
@@ -221,14 +226,35 @@
 			<div
 				class="mt-3 rounded-lg bg-black/80 p-8 text-3xl text-white dark:bg-white/80 dark:text-black"
 			>
-				Press <code>?</code> for help.
+				Press <code>?</code> key for help.
 			</div>
 		{/if}
 	</div>
 {/if}
 
+<div class="touch:block z-10 md:hidden">
+	<div class="fixed bottom-4 right-4">
+		<button
+			data-active={showInfo || undefined}
+			onclick={() => {
+				showInfo = !showInfo
+			}}
+			class="flex size-8 cursor-pointer items-center justify-center rounded-full border border-gray-900 bg-gray-200 text-lg text-black shadow-md hover:bg-gray-300 data-[active]:invert"
+		>
+			?
+		</button>
+	</div>
+</div>
+
 <style>
 	code {
 		@apply rounded border border-gray-800 bg-gray-100 px-2 py-1 font-mono text-[smaller] text-gray-800;
+	}
+
+	/* Likely touch device */
+	@media (hover: none) and (pointer: coarse) {
+		.touch\:block {
+			display: block;
+		}
 	}
 </style>
