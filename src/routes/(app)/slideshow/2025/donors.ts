@@ -23,7 +23,7 @@ export const large = [
 		names: ["Richard P. Kimmel & Laurine Kimmel Charitable Foundation"],
 	},
 	{
-		title: "$5,000+",
+		title: "$5,000–$9,999",
 		names: [
 			"Nebraska Arts Council",
 			"Bill and Virginia Coffee Family Foundation",
@@ -31,7 +31,7 @@ export const large = [
 		],
 	},
 	{
-		title: "$2,500+",
+		title: "$2,500–$4,999",
 		names: [
 			"Darold Newblom Foundation",
 			"Mr. Karl Tegtemeyer",
@@ -39,7 +39,7 @@ export const large = [
 		],
 	},
 	{
-		title: "$1,000+",
+		title: "$1,000–$2,499",
 		names: [
 			"Bloom Flowers and Gifts",
 			"Mr. and Mrs. Tim and Kari Gaswick",
@@ -65,7 +65,7 @@ export const large = [
 
 export const small = [
 	{
-		title: "$500+",
+		title: "$500–$999",
 		names: [
 			"Mr. and Mrs. David and Diana Bauerkemper",
 			"Ms. Ann Burk",
@@ -77,7 +77,7 @@ export const small = [
 		],
 	},
 	{
-		title: "$250+",
+		title: "$250–$499",
 		names: [
 			"Mr. John Axtell",
 			"Buchheit Precision",
@@ -102,7 +102,7 @@ export const small = [
 		],
 	},
 	{
-		title: "$100+",
+		title: "$100–$249",
 		names: [
 			"Mr. and Mrs. David and Laura Batchelor",
 			"Ms. Stephanie Baumgarten",
