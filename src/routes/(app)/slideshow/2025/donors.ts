@@ -1,3 +1,26 @@
+export const special = [
+	{
+		title: "$50,000+",
+		names: ["Anonymous (2)"],
+	},
+	{
+		title: "$25,000+",
+		names: ["Peter Kiewit Foundation", "Dawes County Travel Board"],
+	},
+	{
+		title: "$10,000+",
+		names: ["Ms. Susan Sehnert Stuart"],
+	},
+	{
+		title: "$5,000+",
+		names: ["Security First Bank"],
+	},
+	{
+		title: "$2,500+",
+		names: ["Oregon Trail Community Foundation "],
+	},
+]
+
 export const large = [
 	{
 		title: "Season Sponsors",

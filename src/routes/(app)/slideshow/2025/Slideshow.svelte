@@ -2,6 +2,7 @@
 	import { fade } from "svelte/transition"
 	import DonorsLarge from "./DonorsLarge.svelte"
 	import DonorsSmall from "./DonorsSmall.svelte"
+	import DonorsSpecial from "./DonorsSpecial.svelte"
 	import { onMount } from "svelte"
 	import {
 		initLocalAppVersion,
@@ -22,6 +23,11 @@
 	}
 
 	const showsAndTimers = [
+		[
+			DonorsSpecial,
+			createPositiveIntStore(8, `${year} sd`),
+			"Special Donations",
+		],
 		[DonorsLarge, createPositiveIntStore(8, `${year} ld`), "Large Donations"],
 		[
 			DonorsSmall,
