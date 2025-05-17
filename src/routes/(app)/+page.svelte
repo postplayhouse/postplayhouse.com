@@ -152,7 +152,7 @@
 </div>
 
 {#if showMailingList}
-	<Modal on:close={toggleMailingList}>
+	<Modal onClose={toggleMailingList}>
 		<Mailer />
 	</Modal>
 {/if}

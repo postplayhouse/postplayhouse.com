@@ -1,17 +1,16 @@
 <script lang="ts">
-	interface Props {
-		children?: import("svelte").Snippet
-	}
-
-	let { children }: Props = $props()
-	import { createEventDispatcher } from "svelte"
 	import { fade } from "svelte/transition"
 
 	import Freeze from "../Freeze.svelte"
 	import { mountInPortal, type LifecycleRef } from "./modal"
 	import ModalBase from "./ModalBase.svelte"
 
-	const dispatch = createEventDispatcher()
+	interface Props {
+		onClose?: () => void
+		children?: import("svelte").Snippet
+	}
+
+	let { children, onClose }: Props = $props()
 
 	let ref: LifecycleRef<HTMLDivElement> = $state({ current: null })
 
@@ -21,10 +20,10 @@
 <Freeze />
 
 <!-- the parent is hidden, but the child with the `ref` will be appended
-elsehwere in the DOM via `onMount` -->
+elsewhere in the DOM via `onMount` -->
 <div class="hidden">
 	<div bind:this={ref.current} transition:fade={{ duration: 200 }}>
-		<ModalBase {dispatch}>
+		<ModalBase {onClose}>
 			{@render children?.()}
 		</ModalBase>
 	</div>
