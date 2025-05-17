@@ -67,32 +67,42 @@ _All of the above plus:_
 
 - 2 complimentary tickets for opening night of 1 show of your choice
 
-## Signature Supporter: $500 – $999
+## Signature Supporter: $500 – $1,999
 
 _All of the above plus:_
 
 - 4 complimentary tickets total for opening night of 1 show of your choice
 - Invitation to 1 post-show celebration of opening night show of your choice
 
-## Artistic Director Society: $1,000 – $5,999
+## Artistic Director Society: $2,000 – $6,999
 
 _All of the above plus:_
 
 - 6 complimentary tickets total for opening night of 1 show of your choice
 - Invitation to 2 post-show celebrations of opening night shows of your choice
 
-## Show Sponsor: $6,000 – $9,999
+## Show Sponsor: $7,000 – $11,999
 
 _All of the above plus:_
 
 - 10 complimentary tickets total for opening night of 1 show of your choice
-- Dinner for 6 at the Fort Robinson Restaurant prior to 1 performance of sponsored show -Name recognition in pre-show announcement prior to every performance
+- Dinner for 6 at the Fort Robinson Restaurant prior to 1 performance of sponsored show
+- Name recognition in pre-show announcement prior to every performance
 - Name or Logo recognition in:
   - Post Playhouse season brochure (7,000 copies)
   - Program book — handed out at every performance (10,000 copies)
   - Post Playhouse lobby
 - Exclusive backstage tour for 6 persons
 - Invitation for 2 persons to 1 open dress rehearsal
+
+<div class="text-sm p-4 mt-4 rounded bg-grey-200 dark:bg-grey-900 opacity-80">
+
+All donations, unless otherwise specified, go toward the Post Playhouse's
+**Annual Fund**, which supports all aspects of operation for the Playhouse's
+annual activities and performances. Thank you so much for supporting your
+local summer theatre!
+
+</div>
 
 <DonateBtn/>
 
