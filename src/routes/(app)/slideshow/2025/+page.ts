@@ -1,3 +1,4 @@
+import { toCamel } from "$helpers"
 import type { PageLoad } from "./$types"
 import papa from "papaparse"
 
@@ -11,54 +12,66 @@ export const load: PageLoad = async ({ fetch }) => {
 
 	// Simple CSV parsing (you might want to use a library like PapaParse for complex sheets)
 	const rows = papa.parse<{
-		"Group Name": string
-		"Amount Range": string
-		"Donor Name": string
-	}>(text, { header: true }).data
-
-	const data = rows.reduce(
-		(acc, row, i) => {
-			if (row["Group Name"] === "") row["Group Name"] = acc[i - 1]["Group Name"]
-			if (row["Amount Range"] === "")
-				row["Amount Range"] = acc[i - 1]["Amount Range"]
-			acc.push(row)
-			return acc
+		groupName: string
+		amountRange: string
+		donorName: string
+	}>(text, {
+		header: true,
+		skipEmptyLines: true,
+		transformHeader(header) {
+			return toCamel(header).trim()
 		},
-		[] as typeof rows,
-	)
+		transform(value) {
+			return value.trim()
+		},
+	}).data
 
-	const data2 = data.map((row) => {
-		let slideGroup: "special" | "large" | "small"
-		if (row["Group Name"].includes("Special")) {
-			slideGroup = "special"
-		} else if (
-			["100-249", "250-499", "500-999"].includes(
-				row["Amount Range"].replaceAll("$", "").replaceAll("–", "-").trim(),
-			)
-		) {
-			slideGroup = "small"
-		} else {
-			slideGroup = "large"
-		}
-		return { ...row, slideGroup }
-	})
+	const contributions = rows
+		.map(function addMissingValuesViaOlderSibling(row, i, arr) {
+			if (row.groupName === "") row.groupName = arr[i - 1].groupName
+			if (row.amountRange === "") row.amountRange = arr[i - 1].amountRange
+			return row
+		})
+		.map(function addRangeId(row) {
+			const amountRangeId = row.amountRange
+				.replaceAll("$", "")
+				.replaceAll("–", "-")
+				.replaceAll("+", "")
+				.replaceAll("-", "")
+				.toLowerCase()
+			const groupNameId = row.groupName.replaceAll(/\W/g, "").toLowerCase()
+			return { ...row, amountRangeId, groupNameId }
+		})
+		.map(function addSlideGroup(row) {
+			let slideGroup: "special" | "large" | "small"
+			if (row.groupNameId.startsWith("special")) {
+				slideGroup = "special"
+			} else if (
+				["100-249", "250-499", "500-999"].includes(row.amountRangeId)
+			) {
+				slideGroup = "small"
+			} else {
+				slideGroup = "large"
+			}
+			return { ...row, slideGroup }
+		})
 
 	type Group = { title: string; names: string[] }
-	const data3 = {
+	const slideData = {
 		special: [] as Group[],
 		large: [] as Group[],
 		small: [] as Group[],
 	}
 
 	let currentGroup: Group = { title: "", names: [] }
-	for (const person of data2) {
-		const slideGroup = data3[person.slideGroup]
-		if (person["Amount Range"] !== currentGroup.title) {
-			currentGroup = { title: person["Amount Range"], names: [] }
+	for (const item of contributions) {
+		const slideGroup = slideData[item.slideGroup]
+		if (item.amountRange !== currentGroup.title) {
+			currentGroup = { title: item.amountRange, names: [] }
 			slideGroup.push(currentGroup)
 		}
-		currentGroup?.names.push(person["Donor Name"])
+		currentGroup?.names.push(item.donorName)
 	}
 
-	return { donors: data3 }
+	return { slideData }
 }

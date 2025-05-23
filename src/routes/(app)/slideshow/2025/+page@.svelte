@@ -11,4 +11,4 @@
 	let { data }: PageProps = $props()
 </script>
 
-<Slideshow donors={data.donors} />
+<Slideshow slideData={data.slideData} />

@@ -13,14 +13,14 @@
 	import { invalidateAll } from "$app/navigation"
 
 	type Props = {
-		donors: {
+		slideData: {
 			large: typeof l
 			small: typeof sm
 			special: typeof sp
 		}
 	}
 
-	let { donors }: Props = $props()
+	let { slideData }: Props = $props()
 
 	const year = 2025
 
@@ -38,28 +38,28 @@
 			DonorsSpecial,
 			createPositiveIntStore(8, `${year} sd`),
 			"Special Donations",
-			donors.special,
+			slideData.special,
 		],
 		[
 			DonorsLarge,
 			createPositiveIntStore(8, `${year} ld`),
 			"Large Donations",
-			donors.large,
+			slideData.large,
 		],
 		[
 			DonorsSmall,
 			createPositiveIntStore(10, `${year} rd`),
 			"Regular Donations",
-			donors.small,
+			slideData.small,
 		],
 	] as const)
 
 	const shows = $derived(showsAndTimers.map(([show]) => show))
+	const timers = $derived(showsAndTimers.map(([_, timer]) => timer))
+	const showNames = $derived(showsAndTimers.map(([_, __, name]) => name))
 	const donorSections = $derived(
 		showsAndTimers.map(([_, __, ___, sections]) => sections),
 	)
-	const timers = $derived(showsAndTimers.map(([_, timer]) => timer))
-	const showNames = $derived(showsAndTimers.map(([_, __, name]) => name))
 
 	let inc = $state(0)
 
