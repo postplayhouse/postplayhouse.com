@@ -3,16 +3,17 @@
 	import { linear } from "svelte/easing"
 	import { onDestroy } from "svelte"
 	import { browser } from "$app/environment"
-	import { small } from "./donors"
 
 	type Props = {
 		durationMultiplier: number
 		onEventDone: () => void
+		sections: {
+			title: string
+			names: string[]
+		}[]
 	}
 
-	let { durationMultiplier, onEventDone: eventDone }: Props = $props()
-
-	const sections = small
+	let { durationMultiplier, onEventDone: eventDone, sections }: Props = $props()
 
 	const slides = $state(sections.map((x) => ({ ...x, position: "bottom" })))
 

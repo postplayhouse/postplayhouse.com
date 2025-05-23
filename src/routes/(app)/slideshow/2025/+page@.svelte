@@ -6,6 +6,9 @@
 
 <script lang="ts">
 	import Slideshow from "./Slideshow.svelte"
+	import type { PageProps } from "./$types"
+
+	let { data }: PageProps = $props()
 </script>
 
-<Slideshow />
+<Slideshow donors={data.donors} />

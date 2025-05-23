@@ -9,7 +9,18 @@
 		refreshIfAppVersionOutdated,
 	} from "$helpers/app-version"
 	import { createIntStore } from "$helpers/stores.svelte"
-	import { large, small } from "./donors"
+	import type { large as l, small as sm, special as sp } from "./donors"
+	import { invalidateAll } from "$app/navigation"
+
+	type Props = {
+		donors: {
+			large: typeof l
+			small: typeof sm
+			special: typeof sp
+		}
+	}
+
+	let { donors }: Props = $props()
 
 	const year = 2025
 
@@ -22,23 +33,33 @@
 		})
 	}
 
-	const showsAndTimers = [
+	const showsAndTimers = $derived([
 		[
 			DonorsSpecial,
 			createPositiveIntStore(8, `${year} sd`),
 			"Special Donations",
+			donors.special,
 		],
-		[DonorsLarge, createPositiveIntStore(8, `${year} ld`), "Large Donations"],
+		[
+			DonorsLarge,
+			createPositiveIntStore(8, `${year} ld`),
+			"Large Donations",
+			donors.large,
+		],
 		[
 			DonorsSmall,
 			createPositiveIntStore(10, `${year} rd`),
 			"Regular Donations",
+			donors.small,
 		],
-	] as const
+	] as const)
 
-	const shows = showsAndTimers.map(([show]) => show)
-	const timers = showsAndTimers.map(([_, timer]) => timer)
-	const showNames = showsAndTimers.map(([_, __, name]) => name)
+	const shows = $derived(showsAndTimers.map(([show]) => show))
+	const donorSections = $derived(
+		showsAndTimers.map(([_, __, ___, sections]) => sections),
+	)
+	const timers = $derived(showsAndTimers.map(([_, timer]) => timer))
+	const showNames = $derived(showsAndTimers.map(([_, __, name]) => name))
 
 	let inc = $state(0)
 
@@ -48,6 +69,7 @@
 		const isSixthFullRun = inc % (shows.length * 6) === 0
 
 		if (isSixthFullRun) {
+			invalidateAll() // refetch the google sheet data
 			refreshIfAppVersionOutdated()
 		}
 	}
@@ -59,8 +81,6 @@
 	)
 
 	let showInfo = $state(false)
-
-	const info = { "Large Donations": large, "Regular Donations": small }
 
 	function onKeyDown(event: KeyboardEvent) {
 		if (event.repeat) return
@@ -171,7 +191,7 @@
 
 		<hr class="border-8" />
 
-		{#each Object.entries(info) as [section, subsection]}
+		{#each showsAndTimers as [_, __, section, subsection]}
 			<div class="mb-4 mt-8 border-b-2 border-black text-xl dark:border-white">
 				<strong>
 					{section.toUpperCase()}
@@ -180,9 +200,13 @@
 			{#each subsection as { title, names }}
 				<div class="mb-6">
 					<div>
-						<strong>
+						<button
+							class="font-bold"
+							onclick={(el) =>
+								navigator.clipboard.writeText(el.currentTarget.innerHTML)}
+						>
 							{title}
-						</strong>
+						</button>
 					</div>
 
 					{#each names as name}
@@ -199,18 +223,22 @@
 		<div class="fixed inset-0 dark:bg-black dark:text-white">
 			{#if inc % 2 === 0}
 				{@const ShowComponent = shows[inc % shows.length]}
+				{@const sections = donorSections[inc % shows.length]}
 				<div transition:fade={{ duration: 1000 }} class="absolute inset-0">
 					<ShowComponent
 						durationMultiplier={currentDurationMultiplier.value}
 						onEventDone={() => nextShow()}
+						{sections}
 					/>
 				</div>
 			{:else}
 				{@const ShowComponent = shows[inc % shows.length]}
+				{@const sections = donorSections[inc % shows.length]}
 				<div transition:fade={{ duration: 1000 }} class="absolute inset-0">
 					<ShowComponent
 						durationMultiplier={currentDurationMultiplier.value}
 						onEventDone={() => nextShow()}
+						{sections}
 					/>
 				</div>
 			{/if}

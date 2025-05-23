@@ -2,17 +2,19 @@
 	import { fade } from "svelte/transition"
 	import { onDestroy } from "svelte"
 	import { browser } from "$app/environment"
-	import { large } from "./donors"
 
 	type Props = {
 		durationMultiplier: number
 		onEventDone: () => void
+		sections: {
+			title: string
+			names: string[]
+		}[]
 	}
 
-	let { durationMultiplier, onEventDone: eventDone }: Props = $props()
+	let { durationMultiplier, onEventDone: eventDone, sections }: Props = $props()
 	const INT = durationMultiplier * 500
 
-	const sections = large
 	const slides = sections.flatMap((s) =>
 		s.names.map((t) => ({ title: s.title, content: t })),
 	)
