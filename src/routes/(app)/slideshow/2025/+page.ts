@@ -1,6 +1,8 @@
 import type { PageLoad } from "./$types"
 import papa from "papaparse"
 
+export const ssr = false
+
 export const load: PageLoad = async ({ fetch }) => {
 	const csvUrl =
 		"https://docs.google.com/spreadsheets/d/1Y8jUgPY8ChSAjaFvKmvmu7-lddSfmA5kZC1Xza4vmw8/export?format=csv&id=1Y8jUgPY8ChSAjaFvKmvmu7-lddSfmA5kZC1Xza4vmw8&gid=0"
