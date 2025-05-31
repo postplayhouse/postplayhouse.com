@@ -1,12 +1,15 @@
+import { dev } from "$app/environment"
 import { toCamel } from "$helpers"
 import type { PageLoad } from "./$types"
+import { captureException } from "@sentry/sveltekit"
 import papa from "papaparse"
 
 export const ssr = false
 
 export const load: PageLoad = async ({ fetch }) => {
-	const csvUrl =
-		"https://docs.google.com/spreadsheets/d/1Y8jUgPY8ChSAjaFvKmvmu7-lddSfmA5kZC1Xza4vmw8/export?format=csv&id=1Y8jUgPY8ChSAjaFvKmvmu7-lddSfmA5kZC1Xza4vmw8&gid=0"
+	const sheet =
+		"https://docs.google.com/spreadsheets/d/1Y8jUgPY8ChSAjaFvKmvmu7-lddSfmA5kZC1Xza4vmw8"
+	const csvUrl = `${sheet}/export?format=csv&id=1Y8jUgPY8ChSAjaFvKmvmu7-lddSfmA5kZC1Xza4vmw8&gid=0`
 	const res = await fetch(csvUrl)
 	const text = await res.text()
 
@@ -71,6 +74,15 @@ export const load: PageLoad = async ({ fetch }) => {
 			slideGroup.push(currentGroup)
 		}
 		currentGroup?.names.push(item.donorName)
+	}
+
+	for (const [key, group] of Object.entries(slideData)) {
+		if (group.length === 0) {
+			const error = new Error(
+				`Slide data for "${key}" is empty, please check the CSV parsing logic and incoming data at ${sheet}`,
+			)
+			dev ? console.error(error) : captureException(error)
+		}
 	}
 
 	return { slideData }
