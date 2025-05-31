@@ -33,26 +33,30 @@
 		})
 	}
 
-	const showsAndTimers = $derived([
-		[
-			DonorsSpecial,
-			createPositiveIntStore(8, `${year} sd`),
-			"Special Donations",
-			slideData.special,
-		],
-		[
-			DonorsLarge,
-			createPositiveIntStore(8, `${year} ld`),
-			"Large Donations",
-			slideData.large,
-		],
-		[
-			DonorsSmall,
-			createPositiveIntStore(10, `${year} rd`),
-			"Regular Donations",
-			slideData.small,
-		],
-	] as const)
+	const showsAndTimers = $derived(
+		(
+			[
+				[
+					DonorsSpecial,
+					createPositiveIntStore(8, `${year} sd`),
+					"Special Donations",
+					slideData.special,
+				],
+				[
+					DonorsLarge,
+					createPositiveIntStore(8, `${year} ld`),
+					"Large Donations",
+					slideData.large,
+				],
+				[
+					DonorsSmall,
+					createPositiveIntStore(10, `${year} rd`),
+					"Regular Donations",
+					slideData.small,
+				],
+			] as const
+		).filter(([_, __, ___, sections]) => sections.length > 0),
+	)
 
 	const shows = $derived(showsAndTimers.map(([show]) => show))
 	const timers = $derived(showsAndTimers.map(([_, timer]) => timer))
