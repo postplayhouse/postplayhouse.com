@@ -40,7 +40,6 @@ export const load: PageLoad = async ({ fetch }) => {
 				.replaceAll("$", "")
 				.replaceAll("–", "-")
 				.replaceAll("+", "")
-				.replaceAll("-", "")
 				.toLowerCase()
 			const groupNameId = row.groupName.replaceAll(/\W/g, "").toLowerCase()
 			return { ...row, amountRangeId, groupNameId }
