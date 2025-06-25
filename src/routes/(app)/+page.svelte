@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Announcement from "$components/Announcement.svelte"
 	import Mailer from "$components/Mailer.svelte"
-	import Markdown from "$components/Markdown.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
 	import SeasonImage from "$components/SeasonImage.svelte"
@@ -34,16 +32,6 @@
 		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
 	/>
 </svelte:head>
-
-<Announcement
-	title="New Summer Company Housing"
-	readMoreLink="/news/2025-05-02-housing"
->
-	<Markdown
-		source={`Exciting news! We are thrilled to announce the purchase of a home in Crawford, Nebraska, to house professional company members during its annual summer season!
-		`}
-	/>
-</Announcement>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings {productions} closingDate="2025-08-10">
