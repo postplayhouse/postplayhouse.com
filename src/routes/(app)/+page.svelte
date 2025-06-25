@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Announcement from "$components/Announcement.svelte"
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/OpeningAnnouncements.svelte"
@@ -32,6 +33,21 @@
 		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
 	/>
 </svelte:head>
+
+<Announcement title="Kids 4 Theatre Camp">
+	<SeasonImage
+		class="border border-gray-300 shadow-lg"
+		imageFile="camp.jpg"
+		season="2025"
+		alt="Kids 4 Theatre Camp. July 14 thru 18"
+	></SeasonImage>
+	<div class="mt-4">
+		Register or request more information:
+		<a class="link-green" href="mailto:dewaynebarrett@postplayhouse.com"
+			>dewaynebarrett@postplayhouse.com</a
+		>
+	</div>
+</Announcement>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings {productions} closingDate="2025-08-10">
