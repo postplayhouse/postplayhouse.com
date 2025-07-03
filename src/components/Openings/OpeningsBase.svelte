@@ -7,15 +7,17 @@
 		nonValueToEmptyStr,
 	} from "$helpers"
 	import type { Snippet } from "svelte"
-	import { weekdays } from "./Calendar/calendarHelpers"
+	import { weekdays } from "../Calendar/calendarHelpers"
 
-	import Markdown from "./Markdown.svelte"
-	import SponsorPlate from "./SponsorPlate.svelte"
-	import TicketsButton from "./TicketsButton.svelte"
-	import DynamicCurrentSeasonImage from "./DynamicCurrentSeasonImage.svelte"
+	import Markdown from "../Markdown.svelte"
+	import SponsorPlate from "../SponsorPlate.svelte"
+	import TicketsButton from "../TicketsButton.svelte"
+	import DynamicCurrentSeasonImage from "../DynamicCurrentSeasonImage.svelte"
 
 	type Props = {
 		productions?: Production[]
+		/** YYYY-MM-DD : Use this to view the component's state on a given date*/
+		debugTodayString?: `${number}-${number}-${number}`
 		closingDate: string
 		ticketAvailability?: Snippet
 		seasonArtworkImage?: Snippet
@@ -24,40 +26,54 @@
 	let {
 		productions = [],
 		closingDate,
+		debugTodayString,
 		seasonArtworkImage,
 		ticketAvailability,
 	}: Props = $props()
 
-	const today = getToday()
+	let today = $derived(
+		debugTodayString ? getDateFor(debugTodayString) : getToday(),
+	)
+	let now = $derived(
+		debugTodayString ? getDateFor(debugTodayString) : new Date(),
+	)
 
-	const daysToClosing = diffDays(today, getDateFor(closingDate))
-	const isBeforeClosing = daysToClosing >= 0
-	const isAfterClosing =
+	let daysToClosing = $derived(diffDays(today, getDateFor(closingDate)))
+	let isBeforeClosing = $derived(daysToClosing >= 0)
+	let isAfterClosing =
 		// 4pm MDT
-		new Date() > new Date(`${closingDate}T16:00:00.000-06:00`)
+		$derived(now > new Date(`${closingDate}T16:00:00.000-06:00`))
 
-	const enhancedProductions = productions
-		.map((p) => ({
-			...p,
-			daysUntilOpening: diffDays(today, getDateFor(p.opening)),
-			dayOfWeek: weekdays[getDateFor(p.opening).getDay()],
-			season: getDateFor(p.opening).getFullYear(),
-		}))
-		.sort((a, b) => a.daysUntilOpening - b.daysUntilOpening)
+	let enhancedProductions = $derived(
+		productions
+			.map((p) => ({
+				...p,
+				daysUntilOpening: diffDays(today, getDateFor(p.opening)),
+				dayOfWeek: weekdays[getDateFor(p.opening).getDay()],
+				season: getDateFor(p.opening).getFullYear(),
+			}))
+			.sort((a, b) => a.daysUntilOpening - b.daysUntilOpening),
+	)
 
-	const openingSoon: (typeof enhancedProductions)[0] | undefined =
+	let openingSoon: (typeof enhancedProductions)[0] | undefined = $derived(
 		enhancedProductions
 			// Nothing that is already open
 			.filter((p) => p.daysUntilOpening > -1)
 			// Things that open in the next 4 days. Historically, this has always been a
 			// Monday (4 days before Friday).
-			.filter((p) => p.daysUntilOpening <= 4)[0]
+			.filter((p) => p.daysUntilOpening <= 4)[0],
+	)
 
-	const nowRunning = enhancedProductions.filter((p) => p.daysUntilOpening <= 0)
-	const notYetOpen = enhancedProductions.filter((p) => p.daysUntilOpening > 0)
+	let nowRunning = $derived(
+		enhancedProductions.filter((p) => p.daysUntilOpening <= 0),
+	)
+	let notYetOpen = $derived(
+		enhancedProductions.filter((p) => p.daysUntilOpening > 0),
+	)
 
-	const allShowsAreRunning =
-		isBeforeClosing && !enhancedProductions.find((p) => p.daysUntilOpening > 0)
+	let allShowsAreRunning = $derived(
+		isBeforeClosing && !enhancedProductions.find((p) => p.daysUntilOpening > 0),
+	)
 </script>
 
 <!-- Attempt to ensure that all Season Images are built, but all are hidden here. See commit message. -->

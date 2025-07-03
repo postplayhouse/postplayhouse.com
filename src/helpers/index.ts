@@ -186,17 +186,18 @@ export function getToday() {
 }
 
 /**
- * Get an actual Date for the string "MMMM-DD-YYYY". Midnight.
+ * Get an actual Date for the string "YYYY-MM-DD". Midnight.
  * @param str
  * @returns
  */
-export function getDateFor(str: string) {
+export function getDateFor(str: string, opts: { preserveTime?: boolean } = {}) {
 	const [y, m, d] = str.split("-").map(Number) as [number, number, number]
-	const showDay = new Date(getToday().getTime())
-	showDay.setFullYear(y)
-	showDay.setMonth(m - 1)
-	showDay.setDate(d)
-	return showDay
+	const today = opts.preserveTime ? new Date() : getToday()
+	const mutableDate = new Date(today.getTime())
+	mutableDate.setFullYear(y)
+	mutableDate.setMonth(m - 1)
+	mutableDate.setDate(d)
+	return mutableDate
 }
 
 /**

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { dev } from "$app/environment"
 	import site from "$data/site"
 
 	type Props = {
@@ -59,6 +60,9 @@
 		<li><a use:active={activePath} href="/support">Support</a></li>
 		<li><a use:active={activePath} href="/about">About</a></li>
 		<li><a use:active={activePath} href="/media">Image Gallery</a></li>
+		{#if dev}<li>
+				<a use:active={activePath} class="text-red-400" href="/debug">Debug</a>
+			</li>{/if}
 	</ul>
 </nav>
 
