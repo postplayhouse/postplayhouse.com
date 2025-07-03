@@ -54,6 +54,7 @@
 			.filter((p) => p.daysUntilOpening <= 4)[0]
 
 	const nowRunning = enhancedProductions.filter((p) => p.daysUntilOpening <= 0)
+	const notYetOpen = enhancedProductions.filter((p) => p.daysUntilOpening > 0)
 
 	const allShowsAreRunning =
 		isBeforeClosing && !enhancedProductions.find((p) => p.daysUntilOpening > 0)
@@ -143,21 +144,31 @@
 
 		{#if !allShowsAreRunning && nowRunning.length > 0}
 			<div>
-				<h4 class="h1 mb-12 mt-24">Now running:</h4>
-
-				<ul class="m-auto flex list-none flex-wrap p-0">
-					{#each nowRunning as production}
-						<li class="max-w-full p-2 md:w-1/2">
-							<SeasonImage
-								season={production.season}
-								imageFile={production.image}
-								alt="Show Logo for {production.title}"
-							/>
-						</li>
-					{/each}
-				</ul>
-				<div class="my-12 flex justify-center">
-					<TicketsButton />
+				<div
+					class="mb-8 flex flex-wrap justify-center gap-12 *:w-[fit-content] *:shrink-0"
+				>
+					<div>
+						<h4 class="h2">Now running:</h4>
+						<ul class="list-none pl-2">
+							{#each nowRunning as production}
+								<li class="">
+									✅ {production.title}
+								</li>
+							{/each}
+						</ul>
+					</div>
+					<div>
+						<h4 class="h2">Opening Soon:</h4>
+						<ul class="list-none pl-2">
+							{#each notYetOpen as production}
+								<li class="">
+									⏳ {production.title} - {formatDate(production.opening, {
+										skipYear: true,
+									})}
+								</li>
+							{/each}
+						</ul>
+					</div>
 				</div>
 			</div>
 		{/if}
