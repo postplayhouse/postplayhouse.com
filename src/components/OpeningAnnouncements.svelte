@@ -12,7 +12,7 @@
 	import Markdown from "./Markdown.svelte"
 	import SponsorPlate from "./SponsorPlate.svelte"
 	import TicketsButton from "./TicketsButton.svelte"
-	import SeasonImage from "./SeasonImage.svelte"
+	import DynamicCurrentSeasonImage from "./DynamicCurrentSeasonImage.svelte"
 
 	type Props = {
 		productions?: Production[]
@@ -60,6 +60,9 @@
 		isBeforeClosing && !enhancedProductions.find((p) => p.daysUntilOpening > 0)
 </script>
 
+<!-- Attempt to ensure that all Season Images are built, but all are hidden here. See commit message. -->
+<DynamicCurrentSeasonImage class="mb-8" imageFile={undefined} />
+
 {#if isAfterClosing}
 	<h3 class="h1 my-8">Thank you for a wonderful season!</h3>
 
@@ -76,8 +79,7 @@
 
 		<div class="my-8 items-center md:flex">
 			<div class="shrink">
-				<SeasonImage
-					season={openingSoon.season}
+				<DynamicCurrentSeasonImage
 					imageFile={openingSoon.image}
 					alt="Show Logo for {openingSoon.title}"
 				/>
