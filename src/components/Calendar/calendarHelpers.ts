@@ -107,9 +107,12 @@ export function dslToData<
 		color: string
 		venue: string
 		title: string
-		legend: IHash<number>
+		legend?: IHash<number>
 	},
->({ year, color, legend, venue, ...rest }: T, dslString: string): CalendarData {
+>(
+	{ year, color, legend = ONLY_LEGEND, venue, ...rest }: T,
+	dslString: string,
+): CalendarData {
 	function datesToDateTimeObj(datesStr: string) {
 		const obj: MonthDetails = {}
 		const dayAndDetailsTuple: Array<[Date.Day, Showing]> = datesStr

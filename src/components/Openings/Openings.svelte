@@ -1,10 +1,7 @@
-<script module lang="ts">
-	export const closingDate = "2025-08-10" as const
-</script>
-
 <script lang="ts">
 	import SeasonImage from "$components/SeasonImage.svelte"
 	import OpeningBase from "$components/Openings/OpeningsBase.svelte"
+	import { findClosingDate } from "./openings"
 
 	type Props = {
 		productions?: Production[]
@@ -12,7 +9,9 @@
 		debugTodayString?: `${number}-${number}-${number}`
 	}
 
-	let { productions, debugTodayString }: Props = $props()
+	let { productions = [], debugTodayString }: Props = $props()
+
+	let closingDate = $derived(findClosingDate(productions))
 </script>
 
 <OpeningBase {productions} {debugTodayString} {closingDate}>

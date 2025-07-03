@@ -1,8 +1,9 @@
 <script lang="ts">
-	import Openings, { closingDate } from "$components/Openings/Openings.svelte"
+	import Openings from "$components/Openings/Openings.svelte"
 	import site from "$data/site.js"
 	import { formatDate, getDateFor, getToday } from "$helpers"
 	import { addDays } from "date-fns"
+	import { findClosingDate } from "./openings"
 
 	type DateString = `${number}-${number}-${number}`
 
@@ -11,6 +12,7 @@
 	}
 
 	let { productions = [] }: Props = $props()
+	let closingDate = $derived(findClosingDate(productions))
 
 	let openings = $derived(productions.map((p) => p.opening as DateString))
 	let fourDaysBeforeEachOpenings = $derived(
