@@ -72,7 +72,7 @@ describe("<Week>", () => {
 		expect(getByText("5")).toBeInTheDocument()
 	})
 
-	describe("padding AKA colspans on starting dark days", () => {
+	describe("padding on starting dark days", () => {
 		test("it can pad the begining of a week", () => {
 			const { container } = render(Week, {
 				padStartCount: 5,
@@ -88,7 +88,6 @@ describe("<Week>", () => {
 			const listItems = container.querySelectorAll(".week > li")
 
 			expect(listItems[0]).toHaveClass("padding")
-			expect(listItems[0]).toHaveAttribute("colspan", "5")
 		})
 	})
 })
