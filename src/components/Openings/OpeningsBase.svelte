@@ -13,23 +13,24 @@
 	import SponsorPlate from "../SponsorPlate.svelte"
 	import TicketsButton from "../TicketsButton.svelte"
 	import DynamicCurrentSeasonImage from "../DynamicCurrentSeasonImage.svelte"
+	import { findClosingDate } from "./openings"
 
 	type Props = {
 		productions?: Production[]
 		/** YYYY-MM-DD : Use this to view the component's state on a given date*/
 		debugTodayString?: `${number}-${number}-${number}`
-		closingDate: string
 		ticketAvailability?: Snippet
 		seasonArtworkImage?: Snippet
 	}
 
 	let {
 		productions = [],
-		closingDate,
 		debugTodayString,
 		seasonArtworkImage,
 		ticketAvailability,
 	}: Props = $props()
+
+	let closingDate = $derived(findClosingDate(productions))
 
 	let today = $derived(
 		debugTodayString ? getDateFor(debugTodayString) : getToday(),

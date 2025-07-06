@@ -1,7 +1,6 @@
 <script lang="ts">
 	import SeasonImage from "$components/SeasonImage.svelte"
 	import OpeningBase from "$components/Openings/OpeningsBase.svelte"
-	import { findClosingDate } from "./openings"
 
 	type Props = {
 		productions?: Production[]
@@ -10,11 +9,9 @@
 	}
 
 	let { productions = [], debugTodayString }: Props = $props()
-
-	let closingDate = $derived(findClosingDate(productions))
 </script>
 
-<OpeningBase {productions} {debugTodayString} {closingDate}>
+<OpeningBase {productions} {debugTodayString}>
 	{#snippet seasonArtworkImage()}
 		<ul
 			class="-m-4 flex list-none flex-wrap items-center justify-center gap-2 bg-green-200 p-6 sm:rounded dark:bg-transparent [&>*]:max-w-96 sm:[&>*]:max-w-60"
