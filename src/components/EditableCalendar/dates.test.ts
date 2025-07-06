@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest"
 import { showingsStringToData } from "./showingsData"
 import { makeDateIterator } from "./dates"
 

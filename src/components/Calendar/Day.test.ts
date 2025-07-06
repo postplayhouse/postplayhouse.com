@@ -1,5 +1,4 @@
-// NOTE: jest-dom adds handy assertions to Jest and it is recommended, but not required.
-import "@testing-library/jest-dom"
+import { describe, test, expect } from "vitest"
 import { render } from "@testing-library/svelte"
 import { TWO_PM, EIGHT_PM, type SimpleDate } from "./calendarHelpers"
 import Day from "./Day.svelte"
