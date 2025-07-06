@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"gen:phrases": "node ./scripts/generate_passphrases",
-		"netlify": "npm run build",
+		"netlify": "pnpm run test:unit --run && pnpm run build",
 		"dev": "vite dev --port 3000",
 		"build": "vite build",
 		"preview": "vite preview --port 3000",
