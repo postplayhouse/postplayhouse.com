@@ -4,6 +4,7 @@ import replacePlugin from "@rollup/plugin-replace"
 import { watchAndRun } from "vite-plugin-watch-and-run"
 import { sentrySvelteKit } from "@sentry/sveltekit"
 import { enhancedImages } from "@sveltejs/enhanced-img"
+import { svelteTesting } from "@testing-library/svelte/vite"
 
 const prod = process.env.NODE_ENV === "production"
 const live = process.env.CONTEXT === "production"
@@ -57,9 +58,12 @@ export default defineConfig({
 		]),
 
 		sveltekit(),
+		svelteTesting(),
 	],
 	test: {
 		include: ["src/**/*.{test,spec}.{js,ts}"],
+		environment: "jsdom",
+		setupFiles: ["./vitest-setup.js"],
 	},
 	build: {
 		sourcemap: true,

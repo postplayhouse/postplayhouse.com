@@ -1,3 +1,4 @@
+import { describe, beforeEach, afterEach, test, expect, vi } from "vitest"
 import { dateIsBetween } from "./index"
 
 describe(dateIsBetween.name, () => {
@@ -18,19 +19,23 @@ describe(dateIsBetween.name, () => {
 	})
 
 	describe("checking the current date", () => {
-		beforeEach(() => jest.useFakeTimers())
-		afterEach(() => jest.useRealTimers())
+		beforeEach(() => {
+			vi.useFakeTimers()
+		})
+		afterEach(() => {
+			vi.useRealTimers()
+		})
 
 		test("less than is false", () => {
-			jest.setSystemTime(new Date("11/11/1983"))
+			vi.setSystemTime(new Date("11/11/1983"))
 			expect(dateIsBetween("12/01/1983", "12/03/1983")).toBeFalsy()
 		})
 		test("greater than is false", () => {
-			jest.setSystemTime(new Date("12/04/1983"))
+			vi.setSystemTime(new Date("12/04/1983"))
 			expect(dateIsBetween("12/01/1983", "12/03/1983")).toBeFalsy()
 		})
 		test("between is true", () => {
-			jest.setSystemTime(new Date("12/01/1983"))
+			vi.setSystemTime(new Date("12/01/1983"))
 			expect(dateIsBetween("12/01/1983", "12/03/1983")).toBeTruthy()
 		})
 	})

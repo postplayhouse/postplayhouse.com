@@ -10,7 +10,7 @@
 			showings: Showing[]
 		}>
 		padStartCount?: number
-		children: Snippet
+		children?: Snippet
 	}
 
 	let { days, padStartCount = 0, children }: Props = $props()
@@ -19,7 +19,7 @@
 <ul class="week">
 	{#if padStartCount}
 		<li class="day padding">
-			{@render children()}
+			{@render children?.()}
 		</li>
 	{/if}
 	{#each days as day}
