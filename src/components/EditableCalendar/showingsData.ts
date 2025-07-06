@@ -135,16 +135,17 @@ function getShowInfoAndShowings(
 		.filter(Boolean)
 
 	assert(showInfoString, "Missing show info. Was there an opening brace?")
-	assert(showingsString, "Missing show perfs. Was there a closing brace?")
 
 	const production = getShowInfo(showInfoString)
 
 	return {
 		production,
-		performances: getShowingsInfo(showingsString, {
-			id: production.shortTitle,
-			...details,
-		}),
+		performances: showingsString
+			? getShowingsInfo(showingsString, {
+					id: production.shortTitle,
+					...details,
+				})
+			: [],
 	}
 }
 
