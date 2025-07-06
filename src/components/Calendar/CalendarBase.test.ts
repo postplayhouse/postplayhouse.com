@@ -1,6 +1,6 @@
 import { describe, test, expect } from "vitest"
 import { render } from "@testing-library/svelte"
-import Calendar from "./Calendar.svelte"
+import Calendar from "./CalendarBase.svelte"
 import data from "../../data/_yaml"
 import { asserted } from "$helpers"
 
