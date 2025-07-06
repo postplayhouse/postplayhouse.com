@@ -62,7 +62,16 @@ describe("dslToData", () => {
 				3: {},
 				4: {},
 				5: {},
-				6: { 1: [{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" }] },
+				6: {
+					1: [
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
+				},
 				7: {},
 				8: {},
 				9: {},
@@ -83,7 +92,14 @@ describe("dslToData", () => {
 				4: {},
 				5: {},
 				6: {
-					1: [{ msFromMidnight: TWO_PM, color: "blue", venue: "fort_rob" }],
+					1: [
+						{
+							msFromMidnight: TWO_PM,
+							color: "blue",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
 				},
 				7: {},
 				8: {},
@@ -105,9 +121,30 @@ describe("dslToData", () => {
 				4: {},
 				5: {},
 				6: {
-					1: [{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" }],
-					2: [{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" }],
-					3: [{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" }],
+					1: [
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
+					2: [
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
+					3: [
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
 				},
 				7: {},
 				8: {},
@@ -130,9 +167,24 @@ describe("dslToData", () => {
 				5: {},
 				6: {
 					1: [
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 					],
 				},
 				7: {},
@@ -155,9 +207,30 @@ describe("dslToData", () => {
 				4: {},
 				5: {},
 				6: {
-					1: [{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" }],
-					2: [{ msFromMidnight: TEN_AM, color: "red", venue: "fort_rob" }],
-					3: [{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" }],
+					1: [
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
+					2: [
+						{
+							msFromMidnight: TEN_AM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
+					3: [
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
 				},
 				7: {},
 				8: {},
@@ -180,9 +253,24 @@ describe("dslToData", () => {
 				5: {},
 				6: {
 					1: [
-						{ msFromMidnight: TEN_AM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TEN_AM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 					],
 				},
 				7: {},
@@ -206,9 +294,24 @@ describe("dslToData", () => {
 				5: {},
 				6: {
 					1: [
-						{ msFromMidnight: TEN_AM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TEN_AM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 					],
 				},
 				7: {},
@@ -234,11 +337,22 @@ describe("dslToData", () => {
 				5: {},
 				6: {
 					1: [
-						{ msFromMidnight: TEN_AM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TEN_AM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 						{
 							msFromMidnight: SEVEN_THIRTY_PM,
 							color: "red",
+							title: "Annie",
 							venue: "fort_rob",
 						},
 					],
@@ -246,6 +360,7 @@ describe("dslToData", () => {
 						{
 							msFromMidnight: SEVEN_THIRTY_PM,
 							color: "red",
+							title: "Annie",
 							venue: "fort_rob",
 						},
 					],
@@ -253,6 +368,7 @@ describe("dslToData", () => {
 						{
 							msFromMidnight: SEVEN_THIRTY_PM,
 							color: "red",
+							title: "Annie",
 							venue: "fort_rob",
 						},
 					],
@@ -278,12 +394,41 @@ describe("dslToData", () => {
 				5: {},
 				6: {
 					1: [
-						{ msFromMidnight: TEN_AM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TEN_AM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 					],
-					2: [{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" }],
-					3: [{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" }],
+					2: [
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
+					3: [
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
 				},
 				7: {},
 				8: {},
@@ -309,19 +454,51 @@ describe("dslToData", () => {
 				5: {},
 				6: {
 					1: [
-						{ msFromMidnight: TEN_AM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TEN_AM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 					],
 				},
 				7: {
 					4: [
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 					],
 				},
 				8: {
-					23: [{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" }],
+					23: [
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
 				},
 				9: {},
 				10: {},
@@ -345,19 +522,51 @@ describe("dslToData", () => {
 				5: {},
 				6: {
 					1: [
-						{ msFromMidnight: TEN_AM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TEN_AM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 					],
 				},
 				7: {
 					4: [
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 					],
 				},
 				8: {
-					23: [{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" }],
+					23: [
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
 				},
 				9: {},
 				10: {},
@@ -420,19 +629,51 @@ describe("combineShows", () => {
 				5: {},
 				6: {
 					1: [
-						{ msFromMidnight: TEN_AM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TEN_AM,
+							color: "red",
+							title: "Music Man",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Music Man",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Music Man",
+							venue: "fort_rob",
+						},
 					],
 				},
 				7: {
 					4: [
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Music Man",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Music Man",
+							venue: "fort_rob",
+						},
 					],
 				},
 				8: {
-					23: [{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" }],
+					23: [
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Music Man",
+							venue: "fort_rob",
+						},
+					],
 				},
 				9: {},
 				10: {},
@@ -447,19 +688,51 @@ describe("combineShows", () => {
 				5: {},
 				6: {
 					1: [
-						{ msFromMidnight: TEN_AM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TEN_AM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 					],
 				},
 				7: {
 					4: [
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 					],
 				},
 				8: {
-					23: [{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" }],
+					23: [
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
 				},
 				9: {},
 				10: {},
@@ -519,18 +792,50 @@ describe("combineShows", () => {
 				5: {},
 				6: {
 					1: [
-						{ msFromMidnight: TEN_AM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: TWO_PM, color: "blue", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "red", venue: "fort_rob" },
+						{
+							msFromMidnight: TEN_AM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: TWO_PM,
+							color: "blue",
+							title: "Catch Me If You Can",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
 					],
 				},
 				7: {
-					4: [{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" }],
+					4: [
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+					],
 				},
 				8: {
 					23: [
-						{ msFromMidnight: TWO_PM, color: "red", venue: "fort_rob" },
-						{ msFromMidnight: EIGHT_PM, color: "blue", venue: "fort_rob" },
+						{
+							msFromMidnight: TWO_PM,
+							color: "red",
+							title: "Annie",
+							venue: "fort_rob",
+						},
+						{
+							msFromMidnight: EIGHT_PM,
+							color: "blue",
+							title: "Catch Me If You Can",
+							venue: "fort_rob",
+						},
 					],
 				},
 				9: {},
