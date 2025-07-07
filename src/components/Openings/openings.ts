@@ -1,16 +1,19 @@
 import { combineShows, dslToData } from "$components/Calendar/calendarHelpers"
-import site from "$data/site"
 import { asserted, objectEntries, objectKeys } from "$helpers"
+
+function dumbLeftPad(num: number): `${number}` {
+	return (String(num).length === 1 ? `0${num}` : num) as `${number}`
+}
 
 export function findClosingDate(
 	year: Date.Year,
-	productions: Production[],
+	productions: Array<Pick<Production, "dates">>,
 ): `${number}-${number}-${number}` {
 	const eachProductionDates = productions.map((prodData) => {
 		const venueDates = Object.entries(prodData.dates).map(([_, dateString]) =>
 			dslToData(
 				{
-					year: site.season,
+					year,
 					venue: "",
 					title: "",
 					color: "",
@@ -23,7 +26,7 @@ export function findClosingDate(
 	})
 	const allProductionsDates = combineShows(...eachProductionDates)
 	const monthsObj = asserted(
-		allProductionsDates[site.season],
+		allProductionsDates[year],
 		"This year was not present to find the closing date",
 	)
 
@@ -40,5 +43,5 @@ export function findClosingDate(
 
 	const day = Math.max(...objectKeys(daysObj).map((dk) => Number(dk)))
 
-	return `${site.season}-${month}-${day}`
+	return `${year}-${dumbLeftPad(month)}-${dumbLeftPad(day)}`
 }
