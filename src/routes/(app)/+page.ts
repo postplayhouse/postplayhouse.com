@@ -8,6 +8,7 @@ export async function load(obj) {
 	if (res.status === 200) {
 		return {
 			productions: data.productions,
+			season: site.season,
 		}
 	} else {
 		error(500, `could not fetch /data/productions/${site.season}.json`)

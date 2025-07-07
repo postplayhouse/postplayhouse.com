@@ -1,22 +1,22 @@
 import { combineShows, dslToData } from "$components/Calendar/calendarHelpers"
 import site from "$data/site"
-import { asserted, objectKeys } from "$helpers"
+import { asserted, objectEntries, objectKeys } from "$helpers"
 
 export function findClosingDate(
+	year: Date.Year,
 	productions: Production[],
 ): `${number}-${number}-${number}` {
 	const eachProductionDates = productions.map((prodData) => {
-		const venueDates = Object.entries(prodData.dates).map(
-			([venue, dateString]) =>
-				dslToData(
-					{
-						year: site.season,
-						venue,
-						title: prodData.short_title || prodData.title,
-						color: prodData.color || "",
-					},
-					dateString,
-				),
+		const venueDates = Object.entries(prodData.dates).map(([_, dateString]) =>
+			dslToData(
+				{
+					year: site.season,
+					venue: "",
+					title: "",
+					color: "",
+				},
+				dateString,
+			),
 		)
 
 		return combineShows(...venueDates)
@@ -28,7 +28,9 @@ export function findClosingDate(
 	)
 
 	const month = Math.max(
-		...objectKeys(monthsObj).map((monthkey) => Number(monthkey)),
+		...objectEntries(monthsObj)
+			.filter(([_, content]) => objectKeys(content || {}).length > 0)
+			.map(([monthkey]) => Number(monthkey)),
 	) as Date.Month
 
 	const daysObj = asserted(

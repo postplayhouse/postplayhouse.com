@@ -9,10 +9,11 @@
 
 	type Props = {
 		productions?: Production[]
+		season?: Date.Year
 	}
 
-	let { productions = [] }: Props = $props()
-	let closingDate = $derived(findClosingDate(productions))
+	let { productions = [], season = site.season }: Props = $props()
+	let closingDate = $derived(findClosingDate(season, productions))
 
 	let openings = $derived(productions.map((p) => p.opening as DateString))
 	let fourDaysBeforeEachOpenings = $derived(
@@ -43,7 +44,7 @@
 			.split("T")[0] as DateString
 		const tempDates = [
 			actualDate,
-			`${site.season}-01-01` as const,
+			`${season}-01-01` as const,
 			...openings,
 			...fourDaysBeforeEachOpenings,
 			oneDayAfterFinalOpening,
@@ -90,4 +91,4 @@
 	>
 </div>
 
-<Openings {productions} debugTodayString={date}></Openings>
+<Openings {season} {productions} debugTodayString={date}></Openings>

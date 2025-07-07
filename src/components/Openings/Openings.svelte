@@ -3,15 +3,16 @@
 	import OpeningBase from "$components/Openings/OpeningsBase.svelte"
 
 	type Props = {
+		season: Date.Year
 		productions?: Production[]
 		/** YYYY-MM-DD : Use this to view the component's state on a given date*/
 		debugTodayString?: `${number}-${number}-${number}`
 	}
 
-	let { productions = [], debugTodayString }: Props = $props()
+	let { productions = [], season, debugTodayString }: Props = $props()
 </script>
 
-<OpeningBase {productions} {debugTodayString}>
+<OpeningBase {season} {productions} {debugTodayString}>
 	{#snippet seasonArtworkImage()}
 		<ul
 			class="-m-4 flex list-none flex-wrap items-center justify-center gap-2 bg-green-200 p-6 sm:rounded dark:bg-transparent [&>*]:max-w-96 sm:[&>*]:max-w-60"

@@ -7,7 +7,7 @@
 
 	let { data } = $props()
 
-	const { productions } = data
+	const { productions, season } = data
 
 	let showMailingList = $state(false)
 
@@ -50,7 +50,7 @@
 </Announcement>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
-	<Openings {productions} />
+	<Openings {season} {productions} />
 </div>
 
 <div class="flex-row-reverse items-stretch md:flex">

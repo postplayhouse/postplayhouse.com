@@ -16,6 +16,7 @@
 	import { findClosingDate } from "./openings"
 
 	type Props = {
+		season: Date.Year
 		productions?: Production[]
 		/** YYYY-MM-DD : Use this to view the component's state on a given date*/
 		debugTodayString?: `${number}-${number}-${number}`
@@ -24,13 +25,14 @@
 	}
 
 	let {
+		season,
 		productions = [],
 		debugTodayString,
 		seasonArtworkImage,
 		ticketAvailability,
 	}: Props = $props()
 
-	let closingDate = $derived(findClosingDate(productions))
+	let closingDate = $derived(findClosingDate(season, productions))
 
 	let today = $derived(
 		debugTodayString ? getDateFor(debugTodayString) : getToday(),
