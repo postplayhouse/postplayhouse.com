@@ -71,7 +71,7 @@
 			<a class="link-green" href="/ratings">Rating: {production.rating}</a>
 			{#if production.rating_explanation}
 				<div
-					class="my-2 bg-grey-200 p-4 text-grey-600 dark:bg-grey-200/40 dark:text-white"
+					class="my-2 bg-gray-200 p-4 text-gray-600 dark:bg-gray-200/40 dark:text-white"
 				>
 					{production.rating_explanation}
 				</div>

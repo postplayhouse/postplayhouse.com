@@ -924,7 +924,7 @@ ${fields.email}
 				<div class="mt-1 text-sm">
 					Examples: <br />
 					<code
-						class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
+						class="rounded-sm bg-gray-300 px-1 py-px text-xs dark:bg-green-300/50"
 						>Franz, Ensemble</code
 					>
 				</div>
@@ -957,11 +957,11 @@ ${fields.email}
 					<div class="mt-1 text-sm">
 						Examples:<br />
 						<code
-							class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
+							class="rounded-sm bg-gray-300 px-1 py-px text-xs dark:bg-green-300/50"
 							>Box Office Staff</code
 						><br />
 						<code
-							class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
+							class="rounded-sm bg-gray-300 px-1 py-px text-xs dark:bg-green-300/50"
 							>Season Sound Engineer</code
 						>
 					</div>
@@ -976,15 +976,15 @@ ${fields.email}
 					<div class="mt-1 text-sm">
 						Examples: <br />
 						<code
-							class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
+							class="rounded-sm bg-gray-300 px-1 py-px text-xs dark:bg-green-300/50"
 							>Assistant Stage Manager</code
 						><br />
 						<code
-							class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
+							class="rounded-sm bg-gray-300 px-1 py-px text-xs dark:bg-green-300/50"
 							>Director, Choreographer</code
 						><br />
 						<code
-							class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
+							class="rounded-sm bg-gray-300 px-1 py-px text-xs dark:bg-green-300/50"
 							>Music Director, Keys 1</code
 						>
 					</div>
@@ -1050,7 +1050,7 @@ ${fields.email}
 		</form>
 
 		<div>
-			<div class="bg-grey-200 sticky top-0 p-4 dark:bg-green-200/20">
+			<div class="sticky top-0 bg-gray-200 p-4 dark:bg-green-200/20">
 				<h3>Preview (your answers change this preview):</h3>
 				<div class="rounded-sm bg-white p-4 shadow-lg dark:bg-black">
 					<Bio person={exampleBio} />

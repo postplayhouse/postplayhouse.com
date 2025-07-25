@@ -95,7 +95,7 @@ _All of the above plus:_
 - Exclusive backstage tour for 6 persons
 - Invitation for 2 persons to 1 open dress rehearsal
 
-<div class="text-sm p-4 mt-4 rounded-sm bg-grey-200 dark:bg-grey-900 opacity-80">
+<div class="text-sm p-4 mt-4 rounded-sm bg-gray-200 dark:bg-gray-900 opacity-80">
 
 All donations, unless otherwise specified, go toward the Post Playhouse's
 **Annual Fund**, which supports all aspects of operation for the Playhouse's

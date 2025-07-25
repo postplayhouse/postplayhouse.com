@@ -83,7 +83,7 @@
 		: 'hidden'} shadow-lg"
 >
 	<div
-		class="border-grey-500 bg-grey-400 w-full space-y-4 rounded-sm border p-4 shadow-lg"
+		class="w-full space-y-4 rounded-sm border border-gray-500 bg-gray-400 p-4 shadow-lg"
 	>
 		{#each [...choices, null] as choice}
 			<button
