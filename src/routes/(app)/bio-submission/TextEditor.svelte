@@ -153,7 +153,7 @@
 <div class="editor-thing relative">
 	{#if markdown}
 		<div
-			class="absolute top-0 right-0 left-0 z-10 rounded-t bg-slate-600 px-4 py-2 text-sm text-slate-200"
+			class="absolute top-0 right-0 left-0 z-10 rounded-t bg-gray-600 px-4 py-2 text-sm text-gray-200"
 		>
 			If you don't know <a
 				href="https://commonmark.org/help/"

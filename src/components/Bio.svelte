@@ -46,7 +46,7 @@
 		/>
 	{:else}
 		<div
-			class="mb-4 flex min-h-64 w-full max-w-md items-center justify-center border-4 border-neutral-300 md:float-left md:mr-4 md:w-1/2"
+			class="mb-4 flex min-h-64 w-full max-w-md items-center justify-center border-4 border-gray-300 md:float-left md:mr-4 md:w-1/2"
 		>
 			({person.name} not pictured)
 		</div>

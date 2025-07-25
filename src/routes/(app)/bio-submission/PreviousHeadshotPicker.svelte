@@ -39,7 +39,7 @@ Use this filter and list to find and select your old headshot.
 		{#each filteredOptions as option}
 			<li>
 				<button
-					class="px-2 hover:bg-slate-200 dark:hover:bg-slate-500 {option ===
+					class="px-2 hover:bg-gray-200 dark:hover:bg-gray-500 {option ===
 					selectedOption
 						? 'bg-emerald-300 dark:bg-emerald-700'
 						: ''}"

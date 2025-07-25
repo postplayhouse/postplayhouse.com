@@ -18,7 +18,7 @@
 			class="-m-4 flex list-none flex-wrap items-center justify-center gap-2 bg-green-200 p-6 *:max-w-96 sm:rounded-sm sm:*:max-w-60 dark:bg-transparent"
 		>
 			<li
-				class="block -rotate-2 overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-neutral-300 dark:shadow-black/20"
+				class="block -rotate-2 overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-gray-300 dark:shadow-black/20"
 			>
 				<SeasonImage
 					class="max-w-full mix-blend-multiply"
@@ -28,7 +28,7 @@
 				></SeasonImage>
 			</li>
 			<li
-				class="block rotate-3 overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-neutral-300 dark:shadow-black/20"
+				class="block rotate-3 overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-gray-300 dark:shadow-black/20"
 			>
 				<SeasonImage
 					class="max-w-full mix-blend-multiply"
@@ -38,7 +38,7 @@
 				></SeasonImage>
 			</li>
 			<li
-				class="md:rotate dark:scale-100-0 block rotate-2 overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:bg-neutral-300 dark:shadow-black/20"
+				class="md:rotate dark:scale-100-0 block rotate-2 overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:bg-gray-300 dark:shadow-black/20"
 			>
 				<SeasonImage
 					class="max-w-full mix-blend-multiply"
@@ -48,7 +48,7 @@
 				></SeasonImage>
 			</li>
 			<li
-				class="block -rotate-2 overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-neutral-300 dark:shadow-black/20"
+				class="block -rotate-2 overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-gray-300 dark:shadow-black/20"
 			>
 				<SeasonImage
 					class="max-w-full mix-blend-multiply"
@@ -58,7 +58,7 @@
 				></SeasonImage>
 			</li>
 			<li
-				class="block rotate-2 overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-neutral-300 dark:shadow-black/20"
+				class="block rotate-2 overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-gray-300 dark:shadow-black/20"
 			>
 				<SeasonImage
 					class="max-w-full mix-blend-multiply"
