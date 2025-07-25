@@ -21,7 +21,7 @@
 	</p>
 </section>
 
-{#if site.season === 2023}
+{#if (site.season as number) === 2023}
 	<div class="m-4 flex justify-center">
 		<TicketsButton />
 	</div>

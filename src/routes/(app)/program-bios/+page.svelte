@@ -147,7 +147,7 @@
 	{/each}
 </div>
 
-{#snippet downloadableImage(originalImg, person)}
+{#snippet downloadableImage(originalImg: string, person: Person)}
 	<div class="mb-4 text-center">
 		<a
 			class="group inline-block max-w-full hover:bg-gray-200"

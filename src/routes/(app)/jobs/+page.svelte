@@ -51,13 +51,13 @@
 
 {#if posts.length}
 	{#each posts as post}
-		<h2 class="h2 mb-4 mt-12 font-bold" id={slugify(post.title)}>
+		<h2 class="h2 mt-12 mb-4 font-bold" id={slugify(post.title)}>
 			{post.title}
 		</h2>
 		<Markdown source={post.content} />
 	{/each}
 {:else}
-	<h2 class="h2 mb-4 mt-12 font-bold">There are currently no openings.</h2>
+	<h2 class="h2 mt-12 mb-4 font-bold">There are currently no openings.</h2>
 	{#if isAfterCurrentSeason || isBeforeMarchOfCurrentSeason}
 		<p>
 			We generally hold professional auditions and start looking for summer
@@ -72,7 +72,7 @@
 {/if}
 
 {#if showFeedsLinks}
-	<Modal on:close={toggleFeedsLinks}>
+	<Modal onClose={toggleFeedsLinks}>
 		<p class="my-4">
 			You can subscribe to our job notifications so you never miss when a new
 			job or audition notice goes live:
