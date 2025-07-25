@@ -2,7 +2,7 @@
 	import type { Snippet } from "svelte"
 
 	type Props = {
-		title: string
+		title: string | Snippet
 		children: Snippet
 		readMoreText?: string
 		readMoreLink?: string
@@ -16,6 +16,14 @@
 	}: Props = $props()
 </script>
 
+{#snippet renderedTitle()}
+	{#if typeof title === "string"}
+		{title}
+	{:else}
+		{@render title()}
+	{/if}
+{/snippet}
+
 <div
 	class={[
 		"mx-auto mb-16 block max-w-2xl border border-green-400 bg-green-100 p-6 shadow-md dark:border-green-500 dark:bg-green-900/20",
@@ -27,10 +35,10 @@
 		{#if readMoreLink}
 			<a class="group-hover:underline" href={readMoreLink}>
 				<span class="absolute inset-0 z-10"></span>
-				{title}
+				{@render renderedTitle()}
 			</a>
 		{:else}
-			{title}
+			{@render renderedTitle()}
 		{/if}
 	</h1>
 	{@render children()}
