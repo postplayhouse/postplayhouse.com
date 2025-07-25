@@ -1,5 +1,6 @@
+/// <reference types="vitest/config" />
+import { defineConfig } from "vite"
 import { sveltekit } from "@sveltejs/kit/vite"
-import { defineConfig } from "vitest/config"
 import replacePlugin from "@rollup/plugin-replace"
 import { watchAndRun } from "vite-plugin-watch-and-run"
 import { sentrySvelteKit } from "@sentry/sveltekit"
