@@ -92,18 +92,6 @@
 	@apply text-green-600 underline dark:text-green-300;
 }
 
-@utility r-16x9 {
-	position: relative;
-	padding-bottom: 56.25%;
-	height: 0;
-}
-
-@utility r-child {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-}
-
 @utility h1-base {
 	@apply font-uber text-center text-3xl dark:text-green-500/80;
 }
@@ -128,7 +116,7 @@
 	@apply h1-base;
 
 	@media screen and (min-width: 640px) {
-		@apply h1-base text-4xl;
+		@apply text-4xl;
 	}
 }
 
@@ -136,7 +124,7 @@
 	@apply h2-base;
 
 	@media screen and (min-width: 640px) {
-		@apply h2-base text-3xl;
+		@apply text-3xl;
 	}
 }
 
@@ -144,16 +132,12 @@
 	@apply h3-base;
 
 	@media screen and (min-width: 640px) {
-		@apply h3-base text-xl;
+		@apply text-xl;
 	}
 }
 
 @utility h4 {
 	@apply h4-base;
-
-	@media screen and (min-width: 640px) {
-		@apply h4-base;
-	}
 }
 
 @utility blockquote {

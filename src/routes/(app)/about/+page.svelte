@@ -73,9 +73,8 @@
 </ul>
 
 <div class="my-4 w-full max-w-2xl">
-	<div class="r-16x9">
+	<div class="aspect-video">
 		<iframe
-			class="r-child"
 			width="604"
 			height="350"
 			title="Map showing Post Playhouse's location"
