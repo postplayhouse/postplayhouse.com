@@ -1,5 +1,7 @@
 <script lang="ts">
+	import Announcement from "$components/Announcement.svelte"
 	import Mailer from "$components/Mailer.svelte"
+	import Markdown from "$components/Markdown.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
 
@@ -31,6 +33,41 @@
 		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
 	/>
 </svelte:head>
+
+<Announcement expirationDate="2025-08-03">
+	{#snippet title()}
+		Post Playhouse's Annual Cabaret<br /> August 4th!
+	{/snippet}
+	<Markdown
+		source={`
+You're warmly invited to join the cast and company of Post Playhouse for our _annual Cabaret & Fundraiser_ on **Monday, August 4th at 7 PM** — an unforgettable evening of celebration, music, and community!
+
+This special night will shine a spotlight on our exciting **2025 season**, feature exclusive performances, and offer a sneak peek at what’s coming in our soon-to-be-announced **2026 season**!
+
+**Every dollar raised supports** our nonprofit mission and helps us continue to bring top-tier professional talent from across the country to our cherished corner of Nebraska.
+
+**Complimentary hors d’oeuvres and a selection of beverages** are included with your donation.
+
+**There are just a few seats left, and it's first come, first serve! So, RSVP today to secure your space!**
+
+Email us at [**tickets@postplayhouse.com**](mailto:tickets@postplayhouse.com) with your name, number of guests, and the donation amount you plan to contribute.
+
+**How to Donate:**
+- Bring a check with you that evening
+- Donate online at [postplayhouse.com/donate](https://postplayhouse.com/donate) and write “Cabaret” in the memo  
+- Or mail a check to:  
+  **Post Playhouse**  
+  ℅ Jim Gardner, Casey Peterson LTD  
+  PO Box 447  
+  Chadron, NE 69337
+    
+
+We kindly suggest a donation of **$25 or more per guest**.
+
+Let’s make this a night to remember. We can't wait to celebrate with you on **August 4th**!
+	`}
+	/>
+</Announcement>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings {season} {productions} />
