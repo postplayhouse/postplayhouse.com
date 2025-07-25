@@ -89,9 +89,7 @@
 {#each slides as slide, i}
 	{#if i === current}
 		<article class="absolute inset-0 flex flex-col">
-			<header
-				class="bg-green-700 text-center font-uber text-white [font-size:5vw]"
-			>
+			<header class="font-uber bg-green-700 text-center text-[5vw] text-white">
 				Annual Fund Donations
 				<div class="bg-green-100 text-black dark:bg-green-900 dark:text-white">
 					{slide.title}
@@ -100,7 +98,7 @@
 
 			<div class="relative grow" transition:fade>
 				<div
-					class="absolute inset-0 flex items-center justify-center text-center font-bold [font-size:5vw]"
+					class="absolute inset-0 flex items-center justify-center text-center text-[5vw] font-bold"
 				>
 					{slide.content}
 				</div>

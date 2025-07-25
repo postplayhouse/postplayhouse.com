@@ -46,13 +46,11 @@
 {#each slides as slide, i}
 	{#if i === current}
 		<article class="absolute inset-0 flex flex-col">
-			<header
-				class="bg-green-700 text-center font-uber text-white [font-size:5vw]"
-			>
+			<header class="font-uber bg-green-700 text-center text-[5vw] text-white">
 				Special Campaign Donations
 
 				<p
-					class="bg-green-300 p-4 text-left font-sans text-black [font-size:3vw] dark:bg-green-950 dark:text-white"
+					class="bg-green-300 p-4 text-left font-sans text-[3vw] text-black dark:bg-green-950 dark:text-white"
 				>
 					Special thanks to to the following donors for their special support
 					this year to help us expand our reach through capital campaign support
@@ -65,7 +63,7 @@
 
 			<div class="relative grow" transition:fade>
 				<div
-					class="absolute inset-0 flex items-center justify-center text-center font-bold [font-size:5vw]"
+					class="absolute inset-0 flex items-center justify-center text-center text-[5vw] font-bold"
 				>
 					{slide.content}
 				</div>

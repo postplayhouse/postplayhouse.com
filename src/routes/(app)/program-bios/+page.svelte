@@ -93,14 +93,14 @@
 <div class="my-4">
 	<header>Jump to Bio</header>
 
-	<ol class="md:[columns:3]">
+	<ol class="md:columns-3">
 		{#each sortedPeople.filter(notInBoard) as person}
 			<li>
 				<a class="link-green" href="#{personSlug(person)}">
 					{person.name}
 					{#if !person.bio}
 						<span
-							class="whitespace-nowrap rounded-full bg-yellow-200 p-1 px-2 text-black !no-underline"
+							class="rounded-full bg-yellow-200 p-1 px-2 whitespace-nowrap text-black no-underline!"
 						>
 							no bio
 						</span>
@@ -114,7 +114,7 @@
 <a href="#TheBoard" class="link-green my-4 block">Jump to the Board</a>
 
 <div
-	class="mx-auto my-8 max-w-lg space-y-3 rounded border p-8 text-center shadow-xl"
+	class="mx-auto my-8 max-w-lg space-y-3 rounded-sm border p-8 text-center shadow-xl"
 >
 	<button class="btn-p" onclick={downloadAllPeopleImages}>
 		{#if isDownloadingImages}
@@ -165,13 +165,13 @@
 <div class="helvetica my-8">
 	<div class="sticky top-0 text-right">
 		<label
-			class="my-4 inline-flex cursor-pointer items-center gap-1 rounded-md border bg-white p-4 shadow dark:text-black"
+			class="my-4 inline-flex cursor-pointer items-center gap-1 rounded-md border bg-white p-4 shadow-sm dark:text-black"
 			>Show extra UI (buttons/anchors)
 			<button
 				onclick={() => (showUi = !showUi)}
 				data-enabled={showUi || undefined}
 				type="button"
-				class="focus:outline-hidden relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 data-[enabled]:bg-green-600"
+				class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:outline-hidden data-enabled:bg-green-600"
 				role="switch"
 				aria-checked="false"
 			>
@@ -179,7 +179,7 @@
 				<span
 					data-enabled={showUi || undefined}
 					aria-hidden="true"
-					class="pointer-events-none inline-block size-5 translate-x-0 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out data-[enabled]:translate-x-5"
+					class="pointer-events-none inline-block size-5 translate-x-0 transform rounded-full bg-white shadow-xs ring-0 transition duration-200 ease-in-out data-enabled:translate-x-5"
 				></span>
 			</button>
 		</label>
@@ -231,7 +231,7 @@
 						>
 							<button
 								class="rounded px-2 py-1 {!showShortBio[person.id]
-									? 'border border-green-600 bg-white text-black shadow'
+									? 'border border-green-600 bg-white text-black shadow-sm'
 									: 'border border-transparent text-green-800 hover:bg-green-100'}"
 								type="button"
 								disabled={!showShortBio[person.id]}
@@ -241,7 +241,7 @@
 							</button>
 							<button
 								class="rounded px-2 py-1 {showShortBio[person.id]
-									? 'border border-green-600 bg-white text-black shadow'
+									? 'border border-green-600 bg-white text-black shadow-sm'
 									: 'border border-transparent text-green-800 hover:bg-green-100'}"
 								type="button"
 								disabled={showShortBio[person.id]}
@@ -250,7 +250,7 @@
 								Short Bio
 							</button>
 						</div>
-						<div class="grid grid-cols-[auto,auto] gap-x-2 text-sm">
+						<div class="grid grid-cols-[auto_auto] gap-x-2 text-sm">
 							<div>Long bio word count:</div>
 							<div
 								class="text-right tabular-nums {!showShortBio[person.id] &&

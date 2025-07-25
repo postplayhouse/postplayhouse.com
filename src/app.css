@@ -1,7 +1,219 @@
-/* Write your global styles here, in PostCSS syntax */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+	--border-width-6: 6px;
+
+	--font-sans: metropolis, ui-sans-serif, system-ui, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-uber: azo-sans-uber, Arial Black;
+
+	--breakpoint-xs: 460px;
+
+	--min-height-64: 16rem;
+	--min-height-96: 24rem;
+	--min-height-128: 32rem;
+
+	--min-width-xs: 4rem;
+	--min-width-sm: 8rem;
+	--min-width-md: 12rem;
+	--min-width-lg: 16rem;
+	--min-width-xl: 20rem;
+
+	--color-grey-100: #f7fafc;
+	--color-grey-200: #edf2f7;
+	--color-grey-300: #e2e8f0;
+	--color-grey-400: #cbd5e0;
+	--color-grey-500: #a0aec0;
+	--color-grey-600: #718096;
+	--color-grey-700: #4a5568;
+	--color-grey-800: #2d3748;
+	--color-grey-900: #1a202c;
+
+	--color-green-100: #e8f5e9;
+	--color-green-200: #c8e6c9;
+	--color-green-300: #a5d6a7;
+	--color-green-400: #81c784;
+	--color-green-500: #48bb78;
+	--color-green-600: #38a169;
+	--color-green-700: #2f855a;
+	--color-green-800: #276749;
+	--color-green-900: #22543d;
+
+	--inset-1: 0.25rem;
+	--inset-2: 0.5rem;
+	--inset-3: 0.75rem;
+	--inset-4: 1rem;
+	--inset-5: 1.25rem;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
+}
+
+@utility btn {
+	@apply rounded-xs border-0 border-b-2 border-solid border-green-900 bg-green-700 font-bold tracking-wide text-white;
+
+	&:hover {
+		@apply border-green-700 bg-green-500;
+	}
+
+	&:disabled {
+		@apply border-green-900 bg-green-700;
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+
+	&:disabled:hover {
+		@apply border-green-900 bg-green-700;
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+}
+
+@utility btn-p {
+	@apply btn inline-flex px-4 py-2;
+}
+
+@utility link-green {
+	@apply text-green-600 underline dark:text-green-300;
+}
+
+@utility r-16x9 {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+}
+
+@utility r-child {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+@utility h1-base {
+	@apply font-uber text-center text-3xl dark:text-green-500/80;
+}
+
+@utility h2-base {
+	@apply text-2xl text-green-700;
+}
+
+@utility h3-base {
+	@apply text-lg font-bold;
+}
+
+@utility h4-base {
+	@apply text-lg;
+}
+
+@utility blockquote-base {
+	@apply border-l-4 border-gray-300 pl-4;
+}
+
+@utility h1 {
+	@apply h1-base;
+
+	@media screen and (min-width: 640px) {
+		@apply h1-base text-4xl;
+	}
+}
+
+@utility h2 {
+	@apply h2-base;
+
+	@media screen and (min-width: 640px) {
+		@apply h2-base text-3xl;
+	}
+}
+
+@utility h3 {
+	@apply h3-base;
+
+	@media screen and (min-width: 640px) {
+		@apply h3-base text-xl;
+	}
+}
+
+@utility h4 {
+	@apply h4-base;
+
+	@media screen and (min-width: 640px) {
+		@apply h4-base;
+	}
+}
+
+@utility blockquote {
+	@apply blockquote-base;
+}
+
+@utility via-markdown {
+	/* We have to not only target markdown transpiled, but also things that have not
+been given an explicit class */
+
+	& a:not([class]) {
+		@apply link-green;
+	}
+
+	& h1:not([class]) {
+		@apply h1-base mt-3 mb-1;
+	}
+
+	& h1:not([class]):first-child {
+		@apply h1-base mt-0 mb-1;
+	}
+
+	& h2:not([class]) {
+		@apply h2-base mt-3 mb-1;
+	}
+
+	& h3:not([class]) {
+		@apply h3-base mt-2;
+	}
+
+	& h4:not([class]) {
+		@apply h4-base mt-3 mb-2;
+	}
+
+	& p:not([class]) {
+		@apply my-2;
+	}
+
+	& blockquote:not([class]) {
+		@apply blockquote-base;
+	}
+
+	& img:not([class]) {
+		@apply mx-auto my-4 block;
+	}
+
+	@media screen and (min-width: 640) {
+		& h2:not([class]) {
+			@apply text-3xl;
+		}
+
+		& h3:not([class]) {
+			@apply text-2xl;
+		}
+
+		& h4:not([class]) {
+			@apply text-xl;
+		}
+	}
+}
 
 @layer components {
 	ol,
@@ -15,152 +227,6 @@
 	}
 
 	input {
-		@apply rounded border border-grey-500 dark:border-white/40 dark:bg-white/20;
-	}
-
-	.btn {
-		@apply rounded-sm border-0 border-b-2 border-solid border-green-900 bg-green-700 font-bold tracking-wide text-white;
-	}
-
-	.btn:hover {
-		@apply border-green-700 bg-green-500;
-	}
-
-	.btn:disabled,
-	.btn:disabled:hover {
-		@apply border-green-900 bg-green-700;
-		opacity: 0.4;
-		cursor: not-allowed;
-	}
-
-	.btn-p {
-		@apply btn inline-flex px-4 py-2;
-	}
-
-	.link-green {
-		@apply text-green-600 underline dark:text-green-300;
-	}
-
-	.r-16x9 {
-		position: relative;
-		padding-bottom: 56.25%;
-		height: 0;
-	}
-
-	.r-child {
-		position: absolute;
-		height: 100%;
-		width: 100%;
-	}
-
-	.h1-base {
-		@apply text-center font-uber text-3xl dark:text-green-500/80;
-	}
-
-	.h2-base {
-		@apply text-2xl text-green-700;
-	}
-
-	.h3-base {
-		@apply text-lg font-bold;
-	}
-
-	.h4-base {
-		@apply text-lg;
-	}
-
-	.blockquote-base {
-		@apply border-l-4 border-gray-300 pl-4;
-	}
-
-	.h1 {
-		@apply h1-base;
-	}
-
-	.h2 {
-		@apply h2-base;
-	}
-
-	.h3 {
-		@apply h3-base;
-	}
-
-	.h4 {
-		@apply h4-base;
-	}
-
-	.blockquote {
-		@apply blockquote-base;
-	}
-
-	@media screen and (min-width: 640px) {
-		.h1 {
-			@apply h1-base text-4xl;
-		}
-
-		.h2 {
-			@apply h2-base text-3xl;
-		}
-
-		.h3 {
-			@apply h3-base text-xl;
-		}
-
-		.h4 {
-			@apply h4-base;
-		}
-	}
-
-	/* We have to not only target markdown transpiled, but also things that have not
-been given an explicit class */
-
-	.via-markdown a:not([class]) {
-		@apply link-green;
-	}
-
-	.via-markdown h1:not([class]) {
-		@apply h1-base mb-1 mt-3;
-	}
-
-	.via-markdown h1:not([class]):first-child {
-		@apply h1-base mb-1 mt-0;
-	}
-
-	.via-markdown h2:not([class]) {
-		@apply h2-base mb-1 mt-3;
-	}
-
-	.via-markdown h3:not([class]) {
-		@apply h3-base mt-2;
-	}
-
-	.via-markdown h4:not([class]) {
-		@apply h4-base mb-2 mt-3;
-	}
-
-	.via-markdown p:not([class]) {
-		@apply my-2;
-	}
-
-	.via-markdown blockquote:not([class]) {
-		@apply blockquote-base;
-	}
-
-	.via-markdown img:not([class]) {
-		@apply mx-auto my-4 block;
-	}
-
-	@media screen and (min-width: 640) {
-		.via-markdown h2:not([class]) {
-			@apply text-3xl;
-		}
-
-		.via-markdown h3:not([class]) {
-			@apply text-2xl;
-		}
-
-		.via-markdown h4:not([class]) {
-			@apply text-xl;
-		}
+		@apply border-grey-500 rounded-sm border dark:border-white/40 dark:bg-white/20;
 	}
 }

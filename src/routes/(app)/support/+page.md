@@ -95,7 +95,7 @@ _All of the above plus:_
 - Exclusive backstage tour for 6 persons
 - Invitation for 2 persons to 1 open dress rehearsal
 
-<div class="text-sm p-4 mt-4 rounded bg-grey-200 dark:bg-grey-900 opacity-80">
+<div class="text-sm p-4 mt-4 rounded-sm bg-grey-200 dark:bg-grey-900 opacity-80">
 
 All donations, unless otherwise specified, go toward the Post Playhouse's
 **Annual Fund**, which supports all aspects of operation for the Playhouse's
@@ -106,9 +106,9 @@ local summer theatre!
 
 <DonateBtn/>
 
-<div class="bg-green-100 dark:bg-green-900 p-4 sm:p-8 relative rounded mt-12">
+<div class="bg-green-100 dark:bg-green-900 p-4 sm:p-8 relative rounded-sm mt-12">
 
-<div class="sm:top-0 sm:-rotate-12 origin-top-left sm:-left-8 relative inline-block rounded sm:px-2 sm:text-white text-3xl sm:bg-green-800 dark:sm:bg-green-600 text-green-800 font-bold">Did you know?</div>
+<div class="sm:top-0 sm:-rotate-12 origin-top-left sm:-left-8 relative inline-block rounded-sm sm:px-2 sm:text-white text-3xl sm:bg-green-800 dark:sm:bg-green-600 text-green-800 font-bold">Did you know?</div>
 
 **You can make a meaningful contribution to Post Playhouse through your IRA**, and it may have significant tax benefits for you! If you're over the age of 70½, you can donate directly from your Traditional IRA to charity through a Qualified Charitable Distribution (QCD), without having to pay income tax on the amount donated. This allows you to support theatre in NW Nebraska while reducing your taxable income.
 

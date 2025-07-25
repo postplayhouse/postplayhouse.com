@@ -23,7 +23,7 @@
 {#each businesses as item}
 	<div class="relative" class:supporter={item.supporter}>
 		<div class="mb-8 flex flex-row-reverse">
-			<div class="flex-grow bg-green-200 p-4 dark:bg-green-900/60">
+			<div class="grow bg-green-200 p-4 dark:bg-green-900/60">
 				<div>
 					{#if item.site}
 						<a href={item.site}>

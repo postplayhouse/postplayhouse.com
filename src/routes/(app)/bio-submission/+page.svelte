@@ -721,7 +721,7 @@ ${fields.email}
 {/if}
 
 {#if pageState === states.noFetch}
-	<div class="my-4 rounded bg-red-200 p-4 text-red-900">
+	<div class="my-4 rounded-sm bg-red-200 p-4 text-red-900">
 		This submission form will not work from your device. Please send an email to
 		<a class="link-green" href={emailLink}>don@postplayhouse.com</a>
 	</div>
@@ -734,7 +734,7 @@ ${fields.email}
 		if you'd like some context.
 	</p>
 
-	<div class="rounded bg-green-100 p-4 dark:bg-green-900">
+	<div class="rounded-sm bg-green-100 p-4 dark:bg-green-900">
 		<p>Please have the following ready to go before you start:</p>
 		<ul>
 			<li>
@@ -802,14 +802,14 @@ ${fields.email}
 {#if showMain}
 	{#if devFormFeedback}
 		<div
-			class="pre fixed bottom-0 right-0 top-0 z-10 w-1/4 overflow-scroll whitespace-pre-wrap bg-blue-200 p-2 dark:bg-blue-900"
+			class="pre fixed top-0 right-0 bottom-0 z-10 w-1/4 overflow-scroll bg-blue-200 p-2 whitespace-pre-wrap dark:bg-blue-900"
 		>
 			{getYamlBody()}
 
 			{JSON.stringify(fields, null, 2)}
 		</div>
 	{/if}
-	<div bind:this={topOfMainEl} class="mb-24 mt-4 max-w-lg">
+	<div bind:this={topOfMainEl} class="mt-4 mb-24 max-w-lg">
 		<p class="mt-4 border border-amber-800 bg-amber-100 p-4 dark:bg-amber-800">
 			If you have trouble with this form please compose an email with all the
 			information we ask you for below and send it to
@@ -817,7 +817,7 @@ ${fields.email}
 		</p>
 	</div>
 
-	<div class="mb-24 mt-8 lg:flex">
+	<div class="mt-8 mb-24 lg:flex">
 		<form
 			class="m-auto max-w-lg flex-none p-2 lg:w-1/2"
 			onsubmit={(e) => e.preventDefault()}
@@ -924,7 +924,7 @@ ${fields.email}
 				<div class="mt-1 text-sm">
 					Examples: <br />
 					<code
-						class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
+						class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
 						>Franz, Ensemble</code
 					>
 				</div>
@@ -952,16 +952,16 @@ ${fields.email}
 					field for anything that isn't specific to a given show (Stitcher, Box
 					Office Staff, etc.). Use commas to separate multiple positions/roles.
 				</div>
-				<label class="mb-12 mt-4 block text-xl">
+				<label class="mt-4 mb-12 block text-xl">
 					Entire Season
 					<div class="mt-1 text-sm">
 						Examples:<br />
 						<code
-							class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
+							class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
 							>Box Office Staff</code
 						><br />
 						<code
-							class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
+							class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
 							>Season Sound Engineer</code
 						>
 					</div>
@@ -976,15 +976,15 @@ ${fields.email}
 					<div class="mt-1 text-sm">
 						Examples: <br />
 						<code
-							class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
+							class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
 							>Assistant Stage Manager</code
 						><br />
 						<code
-							class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
+							class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
 							>Director, Choreographer</code
 						><br />
 						<code
-							class="rounded bg-grey-300 px-1 py-px text-xs dark:bg-green-300/50"
+							class="bg-grey-300 rounded-sm px-1 py-px text-xs dark:bg-green-300/50"
 							>Music Director, Keys 1</code
 						>
 					</div>
@@ -1050,9 +1050,9 @@ ${fields.email}
 		</form>
 
 		<div>
-			<div class="sticky top-0 bg-grey-200 p-4 dark:bg-green-200/20">
+			<div class="bg-grey-200 sticky top-0 p-4 dark:bg-green-200/20">
 				<h3>Preview (your answers change this preview):</h3>
-				<div class="rounded bg-white p-4 shadow-lg dark:bg-black">
+				<div class="rounded-sm bg-white p-4 shadow-lg dark:bg-black">
 					<Bio person={exampleBio} />
 				</div>
 
@@ -1061,13 +1061,13 @@ ${fields.email}
 						{#each validations as validation (validation.name)}
 							{#if validation.invalid}
 								<li class="mt-4">
-									<span class="inline-block rounded bg-red-500 p-1"></span>
+									<span class="inline-block rounded-sm bg-red-500 p-1"></span>
 									{@html validationMessages[validation.name]}
 								</li>
 							{/if}
 							{#if validation.warn}
 								<li
-									class="prose mt-4 rounded border border-yellow-500 bg-yellow-100 p-2 dark:bg-yellow-800/30"
+									class="prose mt-4 rounded-sm border border-yellow-500 bg-yellow-100 p-2 dark:bg-yellow-800/30"
 								>
 									<header class="font-bold text-yellow-600">Warning:</header>
 									<p>{@html warningMessages[validation.name]}</p>

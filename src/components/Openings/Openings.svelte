@@ -15,7 +15,7 @@
 <OpeningBase {season} {productions} {debugTodayString}>
 	{#snippet seasonArtworkImage()}
 		<ul
-			class="-m-4 flex list-none flex-wrap items-center justify-center gap-2 bg-green-200 p-6 sm:rounded dark:bg-transparent [&>*]:max-w-96 sm:[&>*]:max-w-60"
+			class="-m-4 flex list-none flex-wrap items-center justify-center gap-2 bg-green-200 p-6 *:max-w-96 sm:rounded-sm sm:*:max-w-60 dark:bg-transparent"
 		>
 			<li
 				class="block -rotate-2 overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-neutral-300 dark:shadow-black/20"
