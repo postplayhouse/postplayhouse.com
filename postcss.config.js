@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const tailwindcss = require("tailwindcss")
-const autoprefixer = require("autoprefixer")
-const cssnano = require("cssnano")
+import tailwindcss from "tailwindcss"
+import autoprefixer from "autoprefixer"
+import cssnano from "cssnano"
 
 const dev = process.env.NODE_ENV === "development"
 
@@ -18,4 +17,4 @@ const config = {
 	],
 }
 
-module.exports = config
+export default config

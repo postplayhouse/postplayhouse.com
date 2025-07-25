@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const typography = require("@tailwindcss/typography")
-const plugin = require("tailwindcss/plugin")
-const defaultTheme = require("tailwindcss/defaultTheme")
+import typography from "@tailwindcss/typography"
+import plugin from "tailwindcss/plugin"
+import { fontFamily as _fontFamily } from "tailwindcss/defaultTheme"
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
@@ -11,7 +10,7 @@ const config = {
 		extend: {
 			borderWidth: { 6: "6px" },
 			fontFamily: {
-				sans: ["metropolis", ...defaultTheme.fontFamily.sans],
+				sans: ["metropolis", ..._fontFamily.sans],
 				uber: ["azo-sans-uber", "Arial Black"],
 			},
 			screens: {
@@ -86,4 +85,4 @@ const config = {
 	],
 }
 
-module.exports = config
+export default config

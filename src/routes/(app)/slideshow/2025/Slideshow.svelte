@@ -284,7 +284,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="postcss">
 	code {
 		@apply rounded border border-gray-800 bg-gray-100 px-2 py-1 font-mono text-[smaller] text-gray-800;
 	}
