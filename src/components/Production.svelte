@@ -1,6 +1,22 @@
+<script module lang="ts">
+	import { makeFindImage, type Picture } from "$helpers/enhancedImg"
+	const findEnhancedSeasonImage = makeFindImage(
+		import.meta.glob(
+			`/src/images/seasons/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
+			{
+				eager: true,
+				query: {
+					enhanced: true,
+					w: "500;1000;1500",
+					withoutEnlargement: true,
+				},
+			},
+		),
+	)
+</script>
+
 <script lang="ts">
 	import { formatDate } from "$helpers"
-	import { findEnhancedSeasonImage, type Picture } from "$helpers/enhancedImg"
 
 	import Self from "./Production.svelte"
 	import Markdown from "./Markdown.svelte"

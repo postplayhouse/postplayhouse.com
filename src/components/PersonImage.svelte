@@ -1,5 +1,21 @@
+<script module lang="ts">
+	import { makeFindImage, type Picture } from "$helpers/enhancedImg"
+	const findEnhancedPersonImage = makeFindImage(
+		import.meta.glob(
+			`/src/images/people/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
+			{
+				eager: true,
+				query: {
+					enhanced: true,
+					w: "400;800",
+					withoutEnlargement: true,
+				},
+			},
+		),
+	)
+</script>
+
 <script lang="ts">
-	import { findEnhancedPersonImage, type Picture } from "$helpers/enhancedImg"
 	import type { HTMLImgAttributes } from "svelte/elements"
 
 	type Props = Omit<HTMLImgAttributes, "src"> & {

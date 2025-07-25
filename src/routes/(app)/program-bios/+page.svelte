@@ -1,8 +1,18 @@
 <script lang="ts" module>
 	import { marked } from "marked"
 	import { type Person, toPerson } from "$models/Person"
+	import { makeFindImage } from "$helpers/enhancedImg"
 
 	marked.setOptions({ smartypants: true })
+
+	const findOriginalPersonImage = makeFindImage<string>(
+		import.meta.glob(
+			`/src/images/people/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
+			{
+				eager: true,
+			},
+		),
+	)
 </script>
 
 <script lang="ts">
@@ -10,7 +20,6 @@
 	import ProductionList from "$components/program/ProductionList.svelte"
 	import { sortPeople, personIsInGroup, slugify } from "$helpers"
 	import PersonImage from "$components/PersonImage.svelte"
-	import { findOriginalPersonImage } from "$helpers/enhancedImg"
 	import Markdown from "$components/Markdown.svelte"
 
 	function renameImgFile(imgPath: string, newBaseNameWithoutExt: string) {
