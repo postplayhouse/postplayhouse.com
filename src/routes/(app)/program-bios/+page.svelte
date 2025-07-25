@@ -114,7 +114,7 @@
 <a href="#TheBoard" class="link-green my-4 block">Jump to the Board</a>
 
 <div
-	class="mx-auto my-8 max-w-lg space-y-3 rounded-sm border p-8 text-center shadow-xl"
+	class="mx-auto my-8 max-w-lg space-y-3 rounded-sm border border-gray-200 p-8 text-center shadow-xl"
 >
 	<button class="btn-p" onclick={downloadAllPeopleImages}>
 		{#if isDownloadingImages}
@@ -165,7 +165,7 @@
 <div class="helvetica my-8">
 	<div class="sticky top-0 text-right">
 		<label
-			class="my-4 inline-flex cursor-pointer items-center gap-1 rounded-md border bg-white p-4 shadow-sm dark:text-black"
+			class="rounded-mdborder my-4 inline-flex cursor-pointer items-center gap-1 border-gray-200 bg-white p-4 shadow-sm dark:text-black"
 			>Show extra UI (buttons/anchors)
 			<button
 				onclick={() => (showUi = !showUi)}

@@ -40,7 +40,7 @@
 <div class="mb-8 flow-root" id={person.slug}>
 	{#if person && person.image}
 		<PersonImage
-			class="mb-4 block w-full max-w-md border md:float-left md:mr-4 md:w-1/2"
+			class="mb-4 block w-full max-w-md border border-gray-200 md:float-left md:mr-4 md:w-1/2"
 			partialPath={person.image}
 			alt="portrait of {person.name}"
 		/>

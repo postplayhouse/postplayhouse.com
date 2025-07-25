@@ -120,7 +120,9 @@
 
 {#if modeSwitch}
 	<div class="flex justify-end">
-		<div class="relative top-1 overflow-clip rounded-t-md border border-b-0">
+		<div
+			class="relative top-1 overflow-clip rounded-t-md border border-b-0 border-gray-200"
+		>
 			<label class="inline-block p-2 pb-3 has-checked:bg-emerald-300"
 				><input
 					class="invisible h-0 w-0"
