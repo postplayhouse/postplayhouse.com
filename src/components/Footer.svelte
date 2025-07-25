@@ -3,7 +3,7 @@
 		class="mb-4 flex max-w-4xl flex-col items-center sm:flex-row sm:items-start"
 	>
 		<img
-			class="mb-4 mr-4 flex-none"
+			class="mr-4 mb-4 flex-none"
 			src="/images/playhouse-pic.jpg"
 			alt="exterior of Post Playhouse"
 		/>
@@ -23,7 +23,7 @@
 
 	<div class="my-4 flex max-w-2xl items-start">
 		<img
-			class="mb-4 mr-4 w-24 flex-none rounded bg-white/80 p-2 sm:w-32"
+			class="mr-4 mb-4 w-24 flex-none rounded-sm bg-white/80 p-2 sm:w-32"
 			src="/images/nac.png"
 			alt="Nebraska Arts Council logo"
 		/>
@@ -42,7 +42,7 @@
 
 	<div class="my-4 flex max-w-2xl items-start">
 		<img
-			class="mb-4 mr-4 w-24 flex-none rounded bg-white/80 p-2 sm:w-32"
+			class="mr-4 mb-4 w-24 flex-none rounded-sm bg-white/80 p-2 sm:w-32"
 			src="/images/sponsors/csc_2024.png"
 			alt="Chadron State College logo"
 		/>
@@ -56,7 +56,7 @@
 
 	<div class="my-4 flex max-w-2xl items-start">
 		<img
-			class="mb-4 mr-4 w-24 flex-none rounded bg-white/80 p-2 sm:w-32"
+			class="mr-4 mb-4 w-24 flex-none rounded-sm bg-white/80 p-2 sm:w-32"
 			src="/images/ngpc.png"
 			alt="Nebraska Game and Parks logo"
 		/>

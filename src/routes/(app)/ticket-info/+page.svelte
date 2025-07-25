@@ -49,10 +49,10 @@
 		</a>
 	</div>
 
-	<h2 class="h2 mb-2 mt-4">Ticket Prices</h2>
+	<h2 class="h2 mt-4 mb-2">Ticket Prices</h2>
 
 	<table
-		class="[&_th,&_td]:h-10 [&_th]:font-normal"
+		class="[&_th]:font-normal [&_th,&_td]:h-10"
 		cellspacing="0"
 		cellpadding="0"
 	>
@@ -66,29 +66,26 @@
 		</thead>
 		<tbody>
 			<tr class="border-b">
-				<th class="w-[9.5rem] text-left">Adult</th>
+				<th class="w-38 text-left">Adult</th>
 				<td class="text-center">$33</td>
 				<td class="text-center">$106</td>
 				<td class="text-center">$132</td>
 			</tr>
 			<tr class="border-b">
-				<th class="w-[9.5rem] text-left"
-					>Senior <span class="text-xs">(65+)</span></th
+				<th class="w-38 text-left">Senior <span class="text-xs">(65+)</span></th
 				>
 				<td class="text-center">$28</td>
 				<td class="text-center">$88</td>
 				<td class="text-center">$110</td>
 			</tr>
 			<tr class="border-b">
-				<th class="w-[9.5rem] text-left"
-					>Youth <span class="text-xs">(12-)</span></th
-				>
+				<th class="w-38 text-left">Youth <span class="text-xs">(12-)</span></th>
 				<td class="text-center">$22</td>
 				<td class="text-center">$71</td>
 				<td class="text-center">$88</td>
 			</tr>
 			<tr>
-				<th class="w-[9.5rem] text-left"
+				<th class="w-38 text-left"
 					>Group <span class="text-xs">(25 or more)</span></th
 				>
 				<td class="text-center">$28</td>
@@ -96,7 +93,7 @@
 		</tbody>
 	</table>
 
-	<h3 class="h3 mb-2 mt-4">Group Rates</h3>
+	<h3 class="h3 mt-4 mb-2">Group Rates</h3>
 
 	<p>
 		Groups of 25 or more may purchase tickets at the rate noted above. Tickets
@@ -112,7 +109,7 @@
 		<a class="x" href={site.boxOfficePhoneLink}>{site.boxOfficePhone}</a>.
 	</p>
 
-	<h2 id="subscriptions" class="h2 mb-2 mt-4">Season Subscriptions</h2>
+	<h2 id="subscriptions" class="h2 mt-4 mb-2">Season Subscriptions</h2>
 
 	<p>
 		Subscriptions are the best way to see what Post Playhouse has to offer each
@@ -146,7 +143,7 @@
 		</strong>
 	</p>
 
-	<h2 class="h2 mb-2 mt-4">Seating Chart</h2>
+	<h2 class="h2 mt-4 mb-2">Seating Chart</h2>
 
 	<SeatingChart />
 

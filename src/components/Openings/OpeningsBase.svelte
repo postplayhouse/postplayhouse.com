@@ -166,7 +166,7 @@
 		{#if !allShowsAreRunning && nowRunning.length > 0}
 			<div>
 				<div
-					class="mb-8 flex flex-wrap justify-center gap-12 *:w-[fit-content] *:shrink-0"
+					class="mb-8 flex flex-wrap justify-center gap-12 *:w-fit *:shrink-0"
 				>
 					<div>
 						<h4 class="h2">Now running:</h4>

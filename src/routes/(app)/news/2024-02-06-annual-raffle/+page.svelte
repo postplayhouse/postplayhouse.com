@@ -15,7 +15,7 @@ YOUR INFO HERE
 
 <h3 class="big-pop title">Get Lucky!</h3>
 
-<h4 class="small-pop text-5xl font-bold leading-none">
+<h4 class="small-pop text-5xl leading-none font-bold">
 	with the
 	<span class="relative inline-block sm:whitespace-nowrap">
 		P
@@ -30,7 +30,7 @@ YOUR INFO HERE
 </h4>
 
 <h5 class="mt-8 text-3xl leading-none">Join us for our Annual Raffle!</h5>
-<p class="mt-4 text-3xl font-bold leading-none">
+<p class="mt-4 text-3xl leading-none font-bold">
 	Saturday, March 16, 2024 at 5:30pm
 </p>
 <p class="text-xl">
@@ -41,7 +41,7 @@ YOUR INFO HERE
 	<span class="text-base">(Nebraska State Park Sticker Required)</span>
 </p>
 
-<h5 class="mt-8 text-5xl font-bold leading-none">Prize Pay Outs</h5>
+<h5 class="mt-8 text-5xl leading-none font-bold">Prize Pay Outs</h5>
 <ul class="prizes">
 	<li>
 		<span class="place">1st Prize (1 paid):</span>
@@ -61,7 +61,7 @@ YOUR INFO HERE
 	</li>
 </ul>
 
-<h3 class="mb-4 text-5xl font-bold leading-none">Food, Friends, and Fun!</h3>
+<h3 class="mb-4 text-5xl leading-none font-bold">Food, Friends, and Fun!</h3>
 <h4 class="mb-2 text-3xl leading-none">It’s more than just a raffle</h4>
 <p class="p mb-2">
 	The purchase of a raffle ticket also allows
@@ -81,12 +81,12 @@ YOUR INFO HERE
 	>
 </p>
 
-<div class="flex max-w-[40rem] p-4">
+<div class="flex max-w-160 p-4">
 	<div class="grow">
 		<enhanced:img
 			src="/src/images/people/2018/ken-phillips.jpg"
 			alt="Raffle 2019"
-			class="aspect-[3/4] -rotate-6 rounded-lg object-cover shadow-lg"
+			class="aspect-3/4 -rotate-6 rounded-lg object-cover shadow-lg"
 		></enhanced:img>
 	</div>
 
@@ -94,15 +94,15 @@ YOUR INFO HERE
 		<enhanced:img
 			src="/src/images/people/2016/dewayne-barrett.jpg"
 			alt="Raffle 2019"
-			class="aspect-[3/4] rotate-6 rounded-lg object-cover object-[20%_top] shadow-lg"
+			class="aspect-3/4 rotate-6 rounded-lg object-cover object-[20%_top] shadow-lg"
 		></enhanced:img>
 	</div>
 </div>
 
-<h3 class="mb-4 mt-8 text-5xl font-bold leading-none">
+<h3 class="mt-8 mb-4 text-5xl leading-none font-bold">
 	Get Your Raffle Ticket Now!
 </h3>
-<h4 class="mb-2 mt-4 text-3xl leading-none">
+<h4 class="mt-4 mb-2 text-3xl leading-none">
 	Only 400 raffle tickets will be sold!
 </h4>
 

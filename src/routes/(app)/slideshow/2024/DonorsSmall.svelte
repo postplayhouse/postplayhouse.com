@@ -64,9 +64,7 @@
 {#each slides as slide, i}
 	{#if i === current}
 		<article class="absolute inset-0 flex flex-col">
-			<header
-				class="bg-green-700 text-center font-uber text-white [font-size:5vw]"
-			>
+			<header class="font-uber bg-green-700 text-center text-[5vw] text-white">
 				Annual Fund Donations
 				<div class="bg-green-100 text-black dark:bg-green-900 dark:text-white">
 					{slide.title}
@@ -75,9 +73,9 @@
 
 			<div class="relative grow">
 				<div
-					class="absolute inset-0 overflow-hidden text-center font-bold [font-size:5vw]"
+					class="absolute inset-0 overflow-hidden text-center text-[5vw] font-bold"
 				>
-					<div class="absolute left-0 right-0 [bottom:100vh]">
+					<div class="absolute right-0 bottom-[100vh] left-0">
 						{#if slide.position === "top"}
 							<div
 								in:receive={{ key: slide.title }}
@@ -91,7 +89,7 @@
 						{/if}
 					</div>
 
-					<div class="absolute left-0 right-0 [top:80vh]">
+					<div class="absolute top-[80vh] right-0 left-0">
 						{#if slide.position === "bottom"}
 							<div
 								in:receive={{ key: slide.title }}

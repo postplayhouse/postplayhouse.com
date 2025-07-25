@@ -83,13 +83,13 @@
 		: 'hidden'} shadow-lg"
 >
 	<div
-		class="w-full space-y-4 rounded border border-grey-500 bg-grey-400 p-4 shadow-lg"
+		class="w-full space-y-4 rounded-sm border border-gray-500 bg-gray-400 p-4 shadow-lg"
 	>
 		{#each [...choices, null] as choice}
 			<button
 				type="button"
 				onclick={() => choose(choice)}
-				class="whitespace-no-wrap block w-full border-4 border-transparent px-4 py-2 shadow hover:border-black"
+				class="whitespace-no-wrap block w-full border-4 border-transparent px-4 py-2 shadow-sm hover:border-black"
 				style="background-color: #{choice?.color ?? 'fff'}"
 			>
 				{choice?.longTitle ?? "None"}

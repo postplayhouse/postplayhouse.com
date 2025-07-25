@@ -40,7 +40,7 @@
 <div class="mb-8 flow-root" id={person.slug}>
 	{#if person && person.image}
 		<PersonImage
-			class="mb-4 block w-full max-w-md border md:float-left md:mr-4 md:w-1/2"
+			class="mb-4 block w-full max-w-md border border-gray-200 md:float-left md:mr-4 md:w-1/2"
 			partialPath={person.image}
 			alt="portrait of {person.name}"
 		/>
@@ -63,19 +63,19 @@
 			{#if person.positions.length}
 				<!-- Always use localPerson.positions by itself if it exists -->
 				{#each person.positions as position}
-					<li class="pl-4 -text-indent-4">
+					<li class="pl-4 [text-indent:calc(var(--spacing)*-4)]">
 						{@html position.replace("---", "&mdash;")}
 					</li>
 				{/each}
 			{:else}
 				{#each person.staffPositions as position}
-					<li class="pl-4 -text-indent-4">
+					<li class="pl-4 [text-indent:calc(var(--spacing)*-4)]">
 						{@html position.replace("---", "&mdash;")}
 					</li>
 				{/each}
 
 				{#each productionPositions as positionObj}
-					<li class="pl-4 -text-indent-4">
+					<li class="pl-4 [text-indent:calc(var(--spacing)*-4)]">
 						{positionObj.position}
 						&mdash;
 						{positionObj.productionNames.join(", ")}
@@ -84,7 +84,7 @@
 
 				{#if person.roles && !hideProductionRoles}
 					{#each person.roles as positionObj}
-						<li class="pl-4 -text-indent-4">
+						<li class="pl-4 [text-indent:calc(var(--spacing)*-4)]">
 							{positionObj.productionName}
 							&mdash;
 							{#if typeof positionObj.positions === "string"}

@@ -39,7 +39,7 @@
 					&mdash;
 					{production.rating}
 					{#if production.rating_explanation}
-						<div class="my-2 max-w-2xl bg-grey-200 p-2 text-grey-600">
+						<div class="my-2 max-w-2xl bg-gray-200 p-2 text-gray-600">
 							{production.rating_explanation}
 						</div>
 					{/if}

@@ -196,7 +196,7 @@
 		<hr class="border-8" />
 
 		{#each showsAndTimers as [_, __, section, subsection]}
-			<div class="mb-4 mt-8 border-b-2 border-black text-xl dark:border-white">
+			<div class="mt-8 mb-4 border-b-2 border-black text-xl dark:border-white">
 				<strong>
 					{section.toUpperCase()}
 				</strong>
@@ -271,20 +271,22 @@
 {/if}
 
 <div class="touch:block z-10 md:hidden">
-	<div class="fixed bottom-4 right-4">
+	<div class="fixed right-4 bottom-4">
 		<button
 			data-active={showInfo || undefined}
 			onclick={() => {
 				showInfo = !showInfo
 			}}
-			class="flex size-8 cursor-pointer items-center justify-center rounded-full border border-gray-900 bg-gray-200 text-lg text-black shadow-md hover:bg-gray-300 data-[active]:invert"
+			class="flex size-8 cursor-pointer items-center justify-center rounded-full border border-gray-900 bg-gray-200 text-lg text-black shadow-md hover:bg-gray-300 data-active:invert"
 		>
 			?
 		</button>
 	</div>
 </div>
 
-<style>
+<style lang="postcss">
+	@reference "../../../../app.css";
+
 	code {
 		@apply rounded border border-gray-800 bg-gray-100 px-2 py-1 font-mono text-[smaller] text-gray-800;
 	}

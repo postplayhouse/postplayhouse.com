@@ -108,14 +108,14 @@
 		slots on the calendar itself.
 	</p>
 
-	<div class="mt-8 space-y-6 rounded bg-gray-200 p-4 dark:bg-gray-200/20">
+	<div class="mt-8 space-y-6 rounded-sm bg-gray-200 p-4 dark:bg-gray-200/20">
 		<p>
 			<strong>When you are done</strong>, you can share your new calendar by
 			copying and sharing the URL below.
 		</p>
 
 		<div>
-			<code class="!break-words">
+			<code class="break-words!">
 				{#if browser}
 					{$page.url.origin}{$page.url.pathname}{decodeURIComponent(
 						$page.url.search,
@@ -141,7 +141,7 @@
 		{#each $schedule.productions as production, i}
 			<div class="flex gap-1">
 				<input
-					class="inline-block h-full cursor-pointer rounded border border-gray-500"
+					class="inline-block h-full cursor-pointer rounded-sm border border-gray-500"
 					type="color"
 					value="#{production.color}"
 					oninput={(e) =>
@@ -151,7 +151,7 @@
 						)(e.currentTarget.value.slice(1))}
 				/>
 				<input
-					class="inline-block rounded border border-gray-500 bg-gray-100 p-2 shadow-inner dark:bg-gray-100/10"
+					class="inline-block rounded-sm border border-gray-500 bg-gray-100 p-2 shadow-inner dark:bg-gray-100/10"
 					type="text"
 					value={production.longTitle}
 					oninput={(e) =>
@@ -162,7 +162,7 @@
 	</div>
 </form>
 
-<div class="mb-4 mt-12">
+<div class="mt-12 mb-4">
 	Use these buttons to move dates to match the year you are working on. <div
 		class="opacity-50"
 	>
@@ -180,7 +180,7 @@
 	>Forward 1 Year</button
 >
 
-<div class="bold mb-6 mt-12 text-center text-2xl">
+<div class="bold mt-12 mb-6 text-center text-2xl">
 	{dates[0]?.monthName}
 	{dates[0]?.year}
 </div>
@@ -208,7 +208,7 @@
 						{day.monthName}
 					</span>
 				{/if}
-				<div class="flex-grow"></div>
+				<div class="grow"></div>
 				{day.day}
 			</div>
 

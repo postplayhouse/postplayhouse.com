@@ -5,6 +5,7 @@ import { watchAndRun } from "vite-plugin-watch-and-run"
 import { sentrySvelteKit } from "@sentry/sveltekit"
 import { enhancedImages } from "@sveltejs/enhanced-img"
 import { svelteTesting } from "@testing-library/svelte/vite"
+import tailwindcss from "@tailwindcss/vite"
 
 const prod = process.env.NODE_ENV === "production"
 const live = process.env.CONTEXT === "production"
@@ -17,6 +18,7 @@ const buildUrl = live
 
 export default defineConfig({
 	plugins: [
+		tailwindcss(),
 		enhancedImages(),
 		sentrySvelteKit({
 			sourceMapsUploadOptions: {

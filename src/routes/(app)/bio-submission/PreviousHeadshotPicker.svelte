@@ -29,7 +29,7 @@ Use this filter and list to find and select your old headshot.
 
 <div class="flex flex-col border">
 	<input
-		class="block border border-grey-500 pl-3 text-2xl"
+		class="block border border-gray-500 pl-3 text-2xl"
 		type="text"
 		placeholder="Type here to search this list..."
 		oninput={filterOptions}
