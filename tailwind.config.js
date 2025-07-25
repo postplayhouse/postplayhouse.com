@@ -1,5 +1,4 @@
 import typography from "@tailwindcss/typography"
-import plugin from "tailwindcss/plugin"
 import { fontFamily as _fontFamily } from "tailwindcss/defaultTheme"
 
 /** @type {import('tailwindcss').Config}*/
@@ -64,25 +63,7 @@ const config = {
 		},
 	},
 
-	plugins: [
-		typography,
-		plugin(function ({ addUtilities, theme, e }) {
-			const spacing = theme("spacing")
-
-			if (!spacing) throw new Error("No spacing exists in the tailwind theme.")
-
-			const indents = Object.entries(spacing).map(([name, distance]) => ({
-				[`.${e(`text-indent-${name}`)}`]: {
-					textIndent: distance,
-				},
-				[`.${e(`-text-indent-${name}`)}`]: {
-					textIndent: `-${distance}`,
-				},
-			}))
-
-			addUtilities(indents)
-		}),
-	],
+	plugins: [typography],
 }
 
 export default config
