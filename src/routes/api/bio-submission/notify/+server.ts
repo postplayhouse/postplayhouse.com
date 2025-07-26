@@ -3,7 +3,7 @@ import { assert } from "$helpers"
 import { json } from "@sveltejs/kit"
 import { individualPassphraseDetails } from "../passphraseHelpers"
 import { dev } from "$app/environment"
-import { urlForChatRoom } from "../../basecamp.server"
+import { sendMessageToChatRoom } from "../../basecamp.server"
 
 const slackUrl = env["SLACK_WEBHOOK_URL"]
 
@@ -37,19 +37,7 @@ export const POST = async ({ request, fetch }) => {
 		}),
 	})
 
-	if (dev) {
-		fetch(urlForChatRoom("websiteUpdates"), {
-			method,
-			headers,
-			body: JSON.stringify({ content }),
-		})
-	} else {
-		fetch(urlForChatRoom("admin"), {
-			method,
-			headers,
-			body: JSON.stringify({ content }),
-		})
-	}
+	sendMessageToChatRoom(fetch, dev ? "websiteUpdates" : "admin", content)
 
 	return json({ ok: "ok" })
 }

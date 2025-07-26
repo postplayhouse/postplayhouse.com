@@ -1,7 +1,7 @@
 import crypto from "crypto"
 import jwt from "jsonwebtoken"
 import { text } from "@sveltejs/kit"
-import { urlForChatRoom } from "../basecamp.server"
+import { sendMessageToChatRoom } from "../basecamp.server"
 import { invertObject } from "$helpers"
 import { env } from "$env/dynamic/private"
 import { assert } from "$helpers"
@@ -44,23 +44,25 @@ export const POST = async ({ request: req, fetch }) => {
 	const body = await req.text()
 	const isValid = signature ? validateSignature(signature, body) : false
 
-	if (!isValid) return text("", { status: 400 })
+	if (!isValid) {
+		sendMessageToChatRoom(
+			fetch,
+			"websiteUpdates",
+			"Received invalid Netlify webhook signature",
+		)
+		console.log("Invalid Netlify webhook signature with body:", body)
+		return text("", { status: 400 })
+	}
 
 	const data = JSON.parse(body) as Payload
 
-	const headers = new Headers({ "Content-type": "application/json" })
-	const method = "POST"
 	const buildStatus = getStatus(data.state)
 	let content = `Website deployment ${buildStatus}. https://app.netlify.com/projects/postplayhouse-main-site/deploys`
 
 	if (buildStatus === "status unknown" || buildStatus === "failed") {
 		content += `\n\n${JSON.stringify(data, null, 2)}`
 
-		fetch(urlForChatRoom("websiteUpdates"), {
-			method,
-			headers,
-			body: JSON.stringify({ content }),
-		})
+		sendMessageToChatRoom(fetch, "websiteUpdates", content)
 	}
 
 	return text("", { status: 200 })

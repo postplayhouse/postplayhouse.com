@@ -9,8 +9,22 @@ const chatRooms = {
 	websiteUpdates: { bucket: "35764144", chat: "7169912985" },
 }
 
-export function urlForChatRoom(room: keyof typeof chatRooms) {
+function urlForChatRoom(room: keyof typeof chatRooms) {
 	assert(bioBotIntegrationKey, "no bio bot key from ENV")
 	const { bucket, chat } = chatRooms[room]
+	assert(bucket, `no bucket for room ${room}`)
+	assert(chat, `no chat for room ${room}`)
 	return `${basecampBioBotBase}/buckets/${bucket}/chats/${chat}/lines.json`
+}
+
+export function sendMessageToChatRoom(
+	fetch: typeof globalThis.fetch,
+	room: keyof typeof chatRooms,
+	content: string,
+) {
+	fetch(urlForChatRoom(room), {
+		method: "POST",
+		headers: new Headers({ "Content-type": "application/json" }),
+		body: JSON.stringify({ content }),
+	})
 }
