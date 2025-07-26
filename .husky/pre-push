@@ -2,6 +2,12 @@ while read local_ref local_sha remote_ref remote_sha
 do
 # Only run svelte-check when pushing to origin/master
   if [ "$remote_ref" = "refs/heads/master" ]; then
+    # Check if working directory is clean
+    if [ -n "$(git status --porcelain)" ]; then
+      echo "Working directory is not clean. Please commit or stash your changes before pushing to master."
+      exit 1
+    fi
+    
     if ! (pnpm run check && pnpm run test:unit --run); then
       echo "Pre-push checks failed. Push aborted."
       exit 1
