@@ -53,17 +53,15 @@ export const POST = async ({ request: req, fetch }) => {
 	const buildStatus = getStatus(data.state)
 	let content = `Website deployment ${buildStatus}. https://app.netlify.com/projects/postplayhouse-main-site/deploys`
 
-	if (buildStatus === "status unknown") {
+	if (buildStatus === "status unknown" || buildStatus === "failed") {
 		content += `\n\n${JSON.stringify(data, null, 2)}`
 
-		// Some kinda push thing here too soon.
+		fetch(urlForChatRoom("websiteUpdates"), {
+			method,
+			headers,
+			body: JSON.stringify({ content }),
+		})
 	}
-
-	fetch(urlForChatRoom("websiteUpdates"), {
-		method,
-		headers,
-		body: JSON.stringify({ content }),
-	})
 
 	return text("", { status: 200 })
 }
