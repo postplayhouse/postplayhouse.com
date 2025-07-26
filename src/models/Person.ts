@@ -65,7 +65,7 @@ class Person {
 		this.roles = []
 
 		if (personLike) {
-			const thisKeys = objectKeys(this)
+			const thisKeys = Object.keys(this)
 			objectKeys(personLike).forEach((key) => {
 				const camelKey = toCamel(key) as keyof Person
 				if (thisKeys.includes(camelKey)) {

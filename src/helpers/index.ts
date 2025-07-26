@@ -232,16 +232,160 @@ export function sanitizedPassphrase(str: string | undefined | null) {
 		.trim()
 }
 
-export function objectKeys<T extends object>(object: T): (keyof T)[] {
-	return Object.keys(object) as (keyof T)[]
+/**
+ * Like Object.keys, but unsound in exchange for more convenience.
+ *
+ * Casts the result of Object.keys to the known keys of an object type, even
+ * though JavaScript objects may contain additional keys.
+ *
+ * Only use this function when you know/control the provenance of the object
+ * you're iterating, and can verify it contains exactly the keys declared to the
+ * type system.
+ *
+ * NOTE: Objects also convert numbers to strings if they are keys, but TS
+ * doesn't do that, so this function returns a `never` type if your object has
+ * numerical keys.
+ *
+ * Example:
+ * ```
+ * const o = {x: "ok", y: 10}
+ * o["z"] = "UNTRACKED_KEY"
+ * const safeKeys = Object.keys(o)
+ * const convenientKeys = objectKeys(o)
+ * ```
+ * => const safeKeys: string[] => const convenientKeys: ("x" | "y")[] // Missing "z"
+ */
+export const objectKeys = Object.keys as <T>(
+	obj: T,
+) => Array<`${Exclude<keyof T, symbol>}`>
+
+/**
+ * Like Object.values, but unsound in exchange for more convenience.
+ *
+ * Casts the result of Object.values to the known values of an object type,
+ * even though JavaScript objects may contain additional values.
+ *
+ * Only use this function when you know/control the provenance of the object
+ * you're iterating, and can verify it contains exactly the values declared
+ * to the type system.
+ *
+ * Example:
+ * ```
+ * const o = {x: "ok", y: 10} as const
+ * o["z"] = "UNTRACKED_VALUE" // This is also a type error, but you get the idea
+ * const safeValues = Object.values(o)
+ * const convenientValues = objectValues(o)
+ * ```
+ * => const safeValues: (string | number)[]
+ * => const convenientValues: ("ok" | 10)[] // Actually contains "UNTRACKED_VALUE"!
+ */
+export const objectValues = Object.values as <T>(obj: T) => Array<T[keyof T]>
+
+/**
+ * The type of a single item in `Object.entries<T>(value: T)`.
+ *
+ * Example:
+ * ```
+ * interface T {x: string; y: number}
+ * type T2 = ObjectEntry<T>
+ * ```
+ * => type T2 = ["x", string] | ["y", number]
+ */
+export type ObjectEntry<T> = {
+	// Without Exclude<keyof T, undefined>, this type produces `ExpectedEntries | undefined`
+	// if T has any optional keys.
+	[K in Exclude<keyof T, undefined>]: [K, T[K]]
+}[Exclude<keyof T, undefined>]
+
+/**
+ * Like Object.entries, but returns a more specific type which can be less safe.
+ *
+ * @example
+ * ```
+ * const o = {x: "ok", y: 10}
+ * const safeEntries = Object.entries(o)
+ * const convenientEntries = objectEntries(o)
+ * ```
+ * => const safeEntries: [string, string | number][]
+ * => const convenientEntries: ObjectEntry<{
+ *   x: string;
+ *   y: number;
+ * }>[]
+ *
+ * See `ObjectEntry` above.
+ *
+ * Note that Object.entries collapses all possible values into a single union
+ * while objectEntries results in a union of 2-tuples.
+ */
+export const objectEntries = Object.entries as <T>(
+	o: T,
+) => Array<ObjectEntry<T>>
+
+type InvertedObjectEntry<T extends Record<string, string>> = {
+	[K in keyof T]-?: [T[K], K]
+}[keyof T]
+
+/**
+ * Inverts an object with string values.
+ *
+ * @example
+ * const obj = {x: "ok", y: "no"} as const
+ * const inverted = invertObject(obj)
+ * // {ok: "x"; no: "y"}
+ */
+export function invertObject<const T extends Record<string, string>>(obj: T) {
+	return fromEntries(
+		objectEntries(obj).map(([k, v]) => [v, k]) as Array<InvertedObjectEntry<T>>,
+	)
 }
 
-export function objectValues<T extends object>(object: T): T[keyof T][] {
-	return Object.values(object) as T[keyof T][]
-}
+/**
+ * Like Object.fromEntries, but with better type inference.
+ *
+ * @example
+ * ```
+ * const entries = [["x", "ok"], ["y", 10]] as const
+ * const puntOnTypes = Object.fromEntries(entries)
+ * const exactType = fromEntries(entries)
+ * ```
+ * => const puntOnTypes: any
+ * => const exactType: {x: "ok"; y: 10}
+ */
+export const fromEntries = <
+	const T extends ReadonlyArray<readonly [PropertyKey, unknown]>,
+>(
+	entries: T,
+): { [K in T[number] as K[0]]: K[1] } =>
+	Object.fromEntries(entries) as { [K in T[number] as K[0]]: K[1] }
 
-export function objectEntries<T extends object>(object: T) {
-	return Object.entries(object) as [keyof T, T[keyof T]][]
+/**
+ * Rebuilds an object by applying a function to each entry.
+ *
+ * This is not type safe, but it is close. You'll still want to carefully cast
+ * the result in most cases (if you care). The main reason to use this is to
+ * simplify the call site for readability.
+ *
+ * @example
+ * ```
+ * const obj = {x: "ok", y: 10}
+ * const newObj = rebuildObject(obj, ([k, v]) => [k+1, v + 1])
+ * // {x1: "ok1", y1: 11}
+ * ```
+ */
+export function rebuildObject<
+	T extends Record<string, unknown>,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	Fn extends (entry: ObjectEntry<T>) => [string | number | symbol, any],
+>(
+	obj: T,
+	fn: Fn,
+): Fn extends (entry: ObjectEntry<T>) => [infer K, infer V]
+	? K extends string | number | symbol
+		? Record<K, V>
+		: never
+	: never {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	return fromEntries(objectEntries(obj).map(fn)) as any
 }
 
 export function exists<T>(x: T): x is NonNullable<typeof x> {
