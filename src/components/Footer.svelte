@@ -9,11 +9,10 @@
 		/>
 		<div>
 			<p>
-				Post Playhouse, Inc. is Northwestern Nebraska's favorite live theatre
-				company, producing several musicals running in a repertory schedule
-				every summer by bringing together highly skilled creative professionals
-				from across the country and nearby. Post Playhouse, Inc. performs its
-				productions at the theatre in Fort Robinson State Park.
+				Post Playhouse is Northwestern Nebraska's favorite live theatre company,
+				producing several musicals running in a repertory schedule every summer
+				by bringing together highly skilled creative professionals from across
+				the country and nearby.
 			</p>
 			<p class="mt-4">
 				<a class="link-green" href="/about">Contact information</a>
@@ -61,9 +60,8 @@
 			alt="Nebraska Game and Parks logo"
 		/>
 		<p class="text-xs">
-			Post Playhouse Incorporated produces its summer season at the theatre on
-			Fort Robinson State Park. The fort is run by the Nebraska Game and Parks
-			Commission.
+			Post Playhouse is located in historic Fort Robinson State Park. The fort
+			is run by the Nebraska Game and Parks Commission.
 		</p>
 	</div>
 

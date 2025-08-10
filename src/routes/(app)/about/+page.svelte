@@ -44,9 +44,9 @@
 <h2 class="h2 mt-4">Location</h2>
 
 <p>
-	Post Playhouse, Inc. produces its summer season at the theatre located on Fort
-	Robinson State Park in northwestern Nebraska. To get driving directions to the
-	theatre follow one of the links below.
+	Post Playhouse is located in historic Fort Robinson State Park in northwestern
+	Nebraska. To get driving directions to the theatre follow one of the links
+	below.
 </p>
 
 <ul>

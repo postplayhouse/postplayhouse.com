@@ -19,7 +19,7 @@ image: /images/2020/homestake.jpg
 
 <SeasonImage season="2020" imageFile="homestake.jpg" alt="" style="max-width: 400px; float: left; margin: 0 12px 12px 0" />
 
-Post Playhouse has been producing fantastic live entertainment in the Northwest corner of Nebraska for over 50 years, with the last several years seeing an emphasis on bringing professional actors into the mix. One or our big goals at Post Playhouse is to bring professional talent, on stage and off, to your doorstep. The vast majority of the shows we have produced have been at the theatre on Fort Robinson.
+Post Playhouse has been producing fantastic live entertainment in the Northwest corner of Nebraska for over 50 years, with the last several years seeing an emphasis on bringing professional actors into the mix. One or our big goals at Post Playhouse is to bring professional talent, on stage and off, to your doorstep. The vast majority of the shows we have produced have been at the theatre in Fort Robinson.
 
 On occasion, however, we have brought shows to other venues for a small part of the summer. With that in mind, we are thrilled to announce an exciting new partnership for our 2020 season: Post Playhouse will be taking 2 productions on the road for four special performances at the [Homestake Opera House](https://www.homestakeoperahouse.org) in Lead, South Dakota!
 
