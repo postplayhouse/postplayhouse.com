@@ -34,37 +34,16 @@
 	/>
 </svelte:head>
 
-<Announcement expirationDate="2025-08-03">
+<Announcement readMoreLink="/news/2025-08-11-ann-stephens-award">
 	{#snippet title()}
-		Post Playhouse's Annual Cabaret<br /> August 4th!
+		Post Playhouse Honors Behind-the-Scenes Legacy and Community Support with
+		Two Major Announcements
 	{/snippet}
 	<Markdown
 		source={`
-You're warmly invited to join the cast and company of Post Playhouse for our _annual Cabaret & Fundraiser_ on **Monday, August 4th at 7 PM** — an unforgettable evening of celebration, music, and community!
+### The new Ann Stephens Award celebrates impact, while the Annual Cabaret raises Nearly $8,500 for the future of the Post Playhouse, Inc.
 
-This special night will shine a spotlight on our exciting **2025 season**, feature exclusive performances, and offer a sneak peek at what’s coming in our soon-to-be-announced **2026 season**!
-
-**Every dollar raised supports** our nonprofit mission and helps us continue to bring top-tier professional talent from across the country to our cherished corner of Nebraska.
-
-**Complimentary hors d’oeuvres and a selection of beverages** are included with your donation.
-
-**There are just a few seats left, and it's first come, first serve! So, RSVP today to secure your space!**
-
-Email us at [**tickets@postplayhouse.com**](mailto:tickets@postplayhouse.com) with your name, number of guests, and the donation amount you plan to contribute.
-
-**How to Donate:**
-- Bring a check with you that evening
-- Donate online at [postplayhouse.com/donate](https://postplayhouse.com/donate) and write “Cabaret” in the memo  
-- Or mail a check to:  
-  **Post Playhouse**  
-  ℅ Jim Gardner, Casey Peterson LTD  
-  PO Box 447  
-  Chadron, NE 69337
-    
-
-We kindly suggest a donation of **$25 or more per guest**.
-
-Let’s make this a night to remember. We can't wait to celebrate with you on **August 4th**!
+Post Playhouse is proud to announce two milestones that highlight its deep-rooted legacy and thriving community support. At the Annual Cabaret on Aug. 4, 2025, Artistic Director Dewayne Barrett announced the inaugural Ann Stephens Award, a new annual honor that recognizes the recipient’s extraordinary behind-the-scenes contributions to Post Playhouse. In addition, Post Playhouse patrons who attended the Annual Cabaret helped the Post Playhouse raise nearly $8,500 towards its 2026 season.
 	`}
 	/>
 </Announcement>
