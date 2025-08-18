@@ -41,7 +41,7 @@
 	{/snippet}
 	<Markdown
 		source={`
-### The new Ann Stephens Award celebrates impact, while the Annual Cabaret raises Nearly $10,000 for the future of the Post Playhouse, Inc.
+### The new Ann Stephens Award celebrates impact, while the Annual Cabaret raises nearly $10,000 for the future of the Post Playhouse, Inc.
 
 Post Playhouse is proud to announce two milestones that highlight its deep-rooted legacy and thriving community support. At the Annual Cabaret on Aug. 4, 2025, Artistic Director Dewayne Barrett announced the inaugural Ann Stephens Award, a new annual honor that recognizes the recipient’s extraordinary behind-the-scenes contributions to Post Playhouse. In addition, Post Playhouse patrons who attended the Annual Cabaret helped the Post Playhouse raise nearly $10,000 towards its 2026 season.
 	`}
