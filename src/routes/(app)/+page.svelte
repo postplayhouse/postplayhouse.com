@@ -34,17 +34,19 @@
 	/>
 </svelte:head>
 
-<Announcement readMoreLink="/news/2025-08-11-ann-stephens-award">
+<Announcement readMoreLink="/news/2025-09-13-free-kids-camp">
 	{#snippet title()}
-		Post Playhouse Honors Behind-the-Scenes Legacy and Community Support with
-		Two Major Announcements
+		Post Playhouse launches free Kids Camp; expands theatre education through
+		2026
 	{/snippet}
 	<Markdown
 		source={`
-### The new Ann Stephens Award celebrates impact, while the Annual Cabaret raises nearly $10,000 for the future of the Post Playhouse, Inc.
+### This summer, Post Playhouse launched its inaugural Kids Camp, a free five-day theatre program for children ages 3-18 at Fort Robinson State Park. 
 
-Post Playhouse is proud to announce two milestones that highlight its deep-rooted legacy and thriving community support. At the Annual Cabaret on Aug. 4, 2025, Artistic Director Dewayne Barrett announced the inaugural Ann Stephens Award, a new annual honor that recognizes the recipient’s extraordinary behind-the-scenes contributions to Post Playhouse. In addition, Post Playhouse patrons who attended the Annual Cabaret helped the Post Playhouse raise nearly $10,000 towards its 2026 season.
-	`}
+Twenty-five children from Crawford, Harrison, Chadron, and Omaha participated in the camp led by Camp Director Lindsey Nordby. Post Playhouse actors and technicians volunteered their time to teach, and the camp concluded with a live performance on the Post Playhouse stage.
+
+Looking ahead, Post Playhouse is excited to announce the Bill and Virginia Coffee Family Foundation has already committed to supporting the Kids Camp again in 2026, helping continue this vital work.
+`}
 	/>
 </Announcement>
 
