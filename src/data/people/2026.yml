@@ -231,8 +231,6 @@
   location: "Hemingford, NE"
   groups:
     - board
-  positions:
-    - President of the Board
   image_year: 2019
   image_file: janelle-visser.jpg
 
@@ -275,6 +273,8 @@
   first_name: Danielle
   image_year: 2023
   location: "Chadron, NE"
+  positions:
+    - Vice President
   groups:
     - board
 
@@ -305,6 +305,6 @@
   groups:
     - board
   positions:
-    - Vice President
+    - President of the Board
   image_year: 2022
   image_file: matt-watson.jpg
