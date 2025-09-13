@@ -1,7 +1,7 @@
 ---
 title: Seeking Technical Staff for our 2025 Season
-website: true
-feed: true
+website: false
+feed: false
 ---
 
 Post Playhouse is getting ready for the [Summer of
