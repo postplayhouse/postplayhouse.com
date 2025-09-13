@@ -2,6 +2,9 @@ import { error } from "@sveltejs/kit"
 import siteData from "$data/site"
 
 export async function load(obj) {
+	if (!siteData.showsAnnounced) {
+		return { productions: [] as Production[] }
+	}
 	const productionRes = await obj.fetch(
 		`/data/productions/${siteData.season}.json`,
 	)

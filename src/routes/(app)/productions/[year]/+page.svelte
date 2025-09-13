@@ -7,7 +7,7 @@
 
 	let { data } = $props()
 
-	const { productions, year, series } = data
+	let { productions, year, series } = $derived(data)
 </script>
 
 <h1 class="h1">Summer {year} Productions</h1>
@@ -25,21 +25,23 @@
 	<h3 class="h3 text-center">The 2021 Season was cancelled due to COVID-19.</h3>
 {/if}
 
-<div class="my-8">
-	<SponsorPlate {year}>
-		{#snippet beforeSponsors()}
-			<h3 class="h3 my-4 text-center">
-				Special thanks to our Season Sponsors:
-			</h3>
-		{/snippet}
-	</SponsorPlate>
-</div>
+{#if year !== site.season || site.showsAnnounced}
+	<div class="my-8">
+		<SponsorPlate {year}>
+			{#snippet beforeSponsors()}
+				<h3 class="h3 my-4 text-center">
+					Special thanks to our Season Sponsors:
+				</h3>
+			{/snippet}
+		</SponsorPlate>
+	</div>
 
-<SeasonImage
-	season={year}
-	imageFile="full-season.jpg"
-	alt="All {year} productions"
-/>
+	<SeasonImage
+		season={year}
+		imageFile="full-season.jpg"
+		alt="All {year} productions"
+	/>
+{/if}
 
 {#if ticketsAvailable() && site.season === year}
 	<div class="my-4 text-center">
@@ -50,7 +52,7 @@
 	</div>
 {/if}
 
-{#if site.showsAnnounced}
+{#if (site.showsAnnounced && year === site.season) || (year < site.season && productions.length > 0)}
 	{#if productions.length > 0}
 		{#each productions as production}
 			<Production {production} season={year} />
@@ -68,6 +70,12 @@
 	<h2 class="text-center text-xl">
 		Our shows for {year} will be announced soon...
 	</h2>
+
+	<p class="mt-4 text-center">
+		Want to <a class="link-green" href="../{site.season - 1}"
+			>see last season's productions</a
+		>?
+	</p>
 {:else}
 	<h2 class="text-center text-xl">
 		There is no historical production info for {year}

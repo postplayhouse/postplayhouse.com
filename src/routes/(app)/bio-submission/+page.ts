@@ -7,6 +7,14 @@ const disabled = false
 export const csr = !disabled
 
 export async function load(obj) {
+	if (disabled) {
+		return {
+			productions: [],
+			year: site.season,
+			disabled,
+			...obj.data,
+		}
+	}
 	const res = await obj.fetch(`/data/productions/${site.season}.json`)
 	const data = await res.json()
 

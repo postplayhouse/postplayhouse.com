@@ -118,16 +118,18 @@
 		to pick your dates or seats at the time of purchase, they make great gifts.
 	</p>
 
-	<p class="mt-2">
-		This year, you'll choose from the following shows to fill out your season
-		subscription:
-	</p>
+	{#if productions.length > 0}
+		<p class="mt-2">
+			This year, you'll choose from the following shows to fill out your season
+			subscription:
+		</p>
 
-	<ol class="my-2">
-		{#each productions as production}
-			<li>{production.title}</li>
-		{/each}
-	</ol>
+		<ol class="my-2">
+			{#each productions as production}
+				<li>{production.title}</li>
+			{/each}
+		</ol>
+	{/if}
 
 	<p class="my-4 border bg-gray-200 p-4 dark:bg-gray-200/20">
 		<strong>Subscribers:</strong> After purchasing your subscription, you can

@@ -5,14 +5,13 @@
 
 	let { data } = $props()
 
-	const { productions, series, specialEvents, year } = data
+	let { productions, series, specialEvents, year } = $derived(data)
 
-	const hasCalendar = !!productions?.find((prod) => prod.dates)
+	let hasCalendar = $derived(!!productions?.find((prod) => prod.dates))
 
-	const allSpecialEvents = [
-		...series.map((s) => s.events).flat(),
-		...specialEvents,
-	].flat()
+	const allSpecialEvents = $derived(
+		[...series.map((s) => s.events).flat(), ...specialEvents].flat(),
+	)
 </script>
 
 <h1 class="h1 mb-2">{year} Season</h1>
@@ -60,6 +59,12 @@
 	<h2 class="text-center text-xl">
 		Our {year} shows will be announced soon...
 	</h2>
+
+	<p class="mt-4 text-center">
+		Want to <a class="link-green" href="../{site.season - 1}"
+			>see last season's calendar</a
+		>?
+	</p>
 {:else}
 	<h2 class="text-center text-xl">
 		There is no historical calendar for {year}

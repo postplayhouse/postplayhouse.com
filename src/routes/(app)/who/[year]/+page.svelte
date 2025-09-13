@@ -9,26 +9,43 @@
 	} from "$helpers"
 
 	let { data } = $props()
-	const { site, year, people: people_ } = data
+	let { site, year, people: people_ } = $derived(data)
 
-	const shouldFilterActors =
-		site.season.toString() === year && site.castingComplete === false
+	let shouldFilterActors = $derived(
+		site.season.toString() === year && site.castingComplete === false,
+	)
 
-	const people = sortPeople(people_).filter((person) => {
-		return shouldFilterActors ? !isOnlyActing(person) : true
+	let people = $derived(
+		sortPeople(people_).filter((person) => {
+			return shouldFilterActors ? !isOnlyActing(person) : true
+		}),
+	)
+
+	let groupedPeople = $derived.by(() => {
+		const gp = groupPeople(people, "Board", "Additional")
+		gp["Board"] = sortBoardMembers(gp["Board"])
+		return gp
 	})
 
-	const groupedPeople = groupPeople(people, "Board", "Additional")
-	const generalGroupName = shouldFilterActors
-		? "Crew and Staff"
-		: "Cast, Musicians, Crew, and Staff"
+	let generalGroupName = $derived(
+		shouldFilterActors ? "Crew and Staff" : "Cast, Musicians, Crew, and Staff",
+	)
 
 	const groupNames = ["rest", "Additional", "Board"] as const
-
-	groupedPeople["Board"] = sortBoardMembers(groupedPeople["Board"])
 </script>
 
 <h1 class="h1 mb-8">Summer {year} Biographies</h1>
+
+{#if shouldFilterActors}
+	<p class="mb-4 text-xl">
+		<strong>Note:</strong> Casting for the {year} season is not yet complete.
+	</p>
+	<p class="mb-4 text-xl">
+		Want to <a class="link-green" href="../{site.season - 1}"
+			>see last season's bios</a
+		>?
+	</p>
+{/if}
 
 {#if year === "2020"}
 	<p>
