@@ -35,7 +35,7 @@
 			/>
 		</li>
 	</ul>
-{:else if year_ === 2025}
+{:else if year_ === 2025 || year_ === 2026}
 	<ul
 		class="m-auto grid max-w-120 list-none grid-flow-dense grid-cols-12 items-center gap-8 rounded-sm p-4 lg:max-w-full dark:bg-white/80"
 	>

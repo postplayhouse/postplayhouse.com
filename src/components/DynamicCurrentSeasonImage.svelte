@@ -19,7 +19,7 @@ better for now.
 	import { objectKeys } from "$helpers"
 	const importMeta: Parameters<typeof makeFindImages>[0] = import.meta.glob(
 		// This year portion of this string needs to be updated each year.
-		`/src/images/seasons/2025/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}` satisfies `/src/images/seasons/${(typeof site)["season"]}/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
+		`/src/images/seasons/2026/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}` satisfies `/src/images/seasons/${(typeof site)["season"]}/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
 		{
 			eager: true,
 			query: {

@@ -1,9 +1,9 @@
 const prod = process.env.NODE_ENV === "production"
 
 // Actual values. If dev, these may change below.
-const castingComplete = true
-const ticketsAvailableDate = "2024-11-15T00:00:00"
-const showsAnnounced = true
+const castingComplete = false
+const ticketsAvailableDate = "2025-11-15T00:00:00"
+const showsAnnounced = false
 
 const boxOfficePhone = "1-888-665-1976"
 
@@ -18,7 +18,7 @@ export const site = {
 	twitter: "postplayhouse",
 	facebook: "post.playhouse",
 	castingComplete: prod ? castingComplete : true,
-	season: 2025 satisfies Date.Year,
+	season: 2026 satisfies Date.Year,
 	description:
 		"Post Playhouse, Inc. is Northwestern Nebraska's favorite live theatre company, producing several musicals running in a repertory schedule every summer by bringing together highly skilled creative professionals from across the country and nearby. Post Playhouse is located in historic Fort Robinson State Park.",
 	boxOfficePhone,
@@ -32,8 +32,8 @@ export function ticketsAvailable() {
 	return new Date() >= new Date(ticketsAvailableDate)
 }
 
-export const yearsWithPages = [2019, 2020, 2021, 2022, 2023, 2024, 2025]
-export const yearsWithCalendars = [2020, 2021, 2022, 2023, 2024, 2025]
+export const yearsWithPages = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+export const yearsWithCalendars = [2020, 2021, 2022, 2023, 2024, 2025, 2026]
 
 if (!yearsWithCalendars.includes(site.season))
 	throw new Error(

@@ -13,6 +13,7 @@ namespace Date {
 		| 2023
 		| 2024
 		| 2025
+		| 2026
 	type Month = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 	type Day =
 		| 1
