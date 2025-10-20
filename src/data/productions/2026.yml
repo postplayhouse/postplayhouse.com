@@ -1,0 +1,89 @@
+- title: Seussical
+  short_title: Seuss
+  rating: G
+  color: green
+  image: seussical.jpg
+  opening: 2026-05-23
+  writers:
+  description: |
+    The Cat in the Hat tells the story of Horton, an elephant who discovers a speck of dust that contains the Whos, including Jojo, a Who child sent off to military school for thinking too many "thinks." Horton faces a double challenge: not only must he protect the Whos from a world of naysayers and dangers, but he must guard an abandoned egg, left in his care by the irresponsible Mayzie La Bird. Although Horton faces ridicule, danger, kidnapping and a trial, the intrepid Gertrude McFuzz never loses faith in him. Ultimately, the powers of friendship, loyalty, family and community are challenged and emerge triumphant. _Seussical_ is fun for the whole family!
+  dates:
+    fort_rob: |
+      May 23e, 24e, 25a, 31e,
+      June 3e, 5e, 7a, 8a, 17e, 20e, 22a,
+      July 9a, 11a, 13a, 16e, 18a, 25e,
+      August 1a, 9m, 10a,
+  roles_sorting:
+  sponsor:
+    image: westco.png
+    link: https://www.westco.coop
+
+- title: Always…Patsy Cline
+  short_title: Patsy
+  rating: G
+  color: blue
+  image: always-patsy-cline.jpg
+  opening: 2026-05-29
+  writers:
+  description: |
+    _Always…Patsy Cline_ is more than a tribute to Patsy who died tragically at age 30 in a plane crash in 1963. Based on true events, it gives you an inside look at her personal life through her enduring friendship with an adoring fan—a friendship that started in a Texas honky-tonk in l961 and continued until Patsy’s death. This musical play, complete with down-home country humor, true emotion and even some audience participation, includes many of Patsy’s unforgettable hits such as “Crazy”, “I Fall to Pieces”, “Sweet Dreams” and “Walking After Midnight”—27 songs in all. The show’s title was inspired by Patsy’s numerous letters, which she signed “Love ALWAYS…Patsy Cline.”
+  dates:
+    fort_rob: |
+      May 30e, 31a,
+      June 1a, 4e, 6e, 7e, 14e, 18e, 21a, 28e,
+      July 10e, 12m, 15e, 19e, 23a, 27a,
+      August 1e, 2a, 6e, 8a,
+  roles_sorting:
+
+- title: Oklahoma!
+  short_title: OK!
+  rating: G
+  color: yellow
+  image: oklahoma.jpg
+  opening: 2026-06-05
+  writers:
+  description: |
+    Rodgers & Hammerstein’s first collaboration remains, in many ways, their most innovative, setting the standards and rules of modern musical theatre. In a Western territory just after the turn of the 20th century, a high-spirited rivalry between local farmers and cowboys provides a colorful background for Curly, a charming cowboy, and Laurey, a feisty farm girl, to play out their love story. Their romantic journey, as bumpy as a surrey ride down a country road, contrasts with the comic exploits of brazen Ado Annie and hapless Will Parker in a musical adventure embracing hope, determination and the promise of a new land.
+  dates:
+    fort_rob: |
+      June 13e, 14a, 15a, 19e, 21e,
+      July 8e, 12a, 16a, 20a, 25a, 26m, 30a, 31e,
+      August 3a, 6a, 9e,
+  roles_sorting:
+  sponsor:
+    text: Annie Sellman
+
+- title: Grease
+  short_title: Grease
+  rating: G
+  color: purple
+  image: grease.jpg
+  opening: 2026-06-19
+  writers:
+  description: |
+    Here is Rydell High’s senior class of 1959: duck-tailed, hot-rodding “Burger Palace Boys’ and their gum-snapping, hip-shaking “Pink Ladies” in bobby sox and pedal pushers, evoking the look and sound of the 1950s in this rollicking musical. Head “greaser” Danny Zuko and new (good) girl Sandy Dumbrowski try to relive the high romance of their “Summer Nights” as the rest of the gang sings and dances its way through such songs as “Greased Lightnin’,” “It’s Raining on Prom Night” and “Alone at the Drive-In Movie,” recalling the music of Buddy Holly, Little Richard and Elvis Presley that became the soundtrack of a generation. An eight-year run on Broadway and two subsequent revivals, along with innumerable school and community productions, place _Grease_ among the world’s most popular musicals.
+  dates:
+    fort_rob: |
+      June 27e, 28a, 29a,
+      July 5e, 9e, 12e, 18e, 19a, 23e, 26e, 30e,
+      August 2e, 5e, 8e,
+  roles_sorting:
+  sponsor:
+    text: Jeanine Mohr and Gary Mohr
+
+- title: Dirty Rotten Scoundrels
+  short_title: Scoundrels
+  rating: G
+  color: red
+  image: dirty-rotten-scoundrels.jpg
+  opening: 2026-07-03
+  writers:
+  description: |
+    Lawrence Jameson makes his lavish living by talking rich ladies out of their money. Freddy Benson more humbly swindles women by waking their compassion with fabricated stories about his grandmother's failing health. After meeting on a train, they attempt to work together, only to find that this small French town isn't big enough for the two of them. They agree on a settlement: the first one to extract $50,000 from a young female target, heiress, Christine Colgate, wins, and the other must leave town. A hilarious battle of cons ensues that will keep audiences laughing, humming and guessing to the end!
+  dates:
+    fort_rob: |
+      July 3e, 5a, 6a, 11e, 17e, 19m, 22e, 24e, 26a, 29e,
+      August 2m, 7e, 9a,
+  roles_sorting:
+  sponsor:
+    text: The Sehnert Sisters
