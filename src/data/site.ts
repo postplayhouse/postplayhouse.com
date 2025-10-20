@@ -25,7 +25,7 @@ export const site = {
 	boxOfficePhoneLink: `tel:+${boxOfficePhone.replace(/-/g, "")}`,
 	ticketsLink: "https://postplayhouse.showare.com/",
 	ticketsAvailableDate,
-	showsAnnounced,
+	showsAnnounced: prod ? showsAnnounced : true,
 } as const
 
 export function ticketsAvailable() {
