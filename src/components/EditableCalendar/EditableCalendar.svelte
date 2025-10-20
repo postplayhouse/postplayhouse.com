@@ -286,7 +286,7 @@
 					{:else}
 						<Dropdown
 							class="text-center
-								transition-opacity duration-300 h-full w-full opacity-0 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted
+								transition-opacity duration-300 h-full w-full opacity-20 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted
 								data-[open]:opacity-75"
 							choices={$schedule.productions}
 							onChoice={(production) =>
