@@ -2,7 +2,11 @@
 	import Dropdown from "./Dropdown.svelte"
 	import type { PerformanceDetails, ProductionDetails } from "./showingsData"
 	import { dateOfPerformance, getDateDetails, makeDateIterator } from "./dates"
-	import { addPerformance, removePerformanceBySlot } from "./changeset"
+	import {
+		addPerformance,
+		editProduction,
+		removePerformanceBySlot,
+	} from "./changeset"
 	import schedule, { replaceAfterMount } from "./store.svelte"
 	import { page } from "$app/stores"
 	import { add } from "date-fns"
@@ -67,10 +71,14 @@
 		property: keyof ProductionDetails,
 	) {
 		return (newValue: string) => {
-			const { performances, productions } = $schedule
-			productions[i]![property] = newValue
+			const { performances, productions } = editProduction(
+				$schedule,
+				$schedule.productions[i],
+				{
+					[property]: newValue,
+				},
+			)
 
-			console.log(productions[i]![property])
 			schedule.set({ performances, productions })
 		}
 	}
@@ -102,7 +110,7 @@
 	}
 </script>
 
-<div class="prose mb-8 space-y-8">
+<div class="prose dark:prose-invert mb-8 space-y-8">
 	<p class="bold text-xl">
 		You can edit the calendar below by changing inputs and clicking on the show
 		slots on the calendar itself.
@@ -114,8 +122,8 @@
 			copying and sharing the URL below.
 		</p>
 
-		<div>
-			<code class="break-words!">
+		<div class="not-prose bg-white/50 p-2 dark:bg-black/50">
+			<code class="font-bold break-words!">
 				{#if browser}
 					{$page.url.origin}{$page.url.pathname}{decodeURIComponent(
 						$page.url.search,
@@ -139,24 +147,46 @@
 	</div>
 	<div class="my-4 flex flex-wrap gap-4">
 		{#each $schedule.productions as production, i}
-			<div class="flex gap-1">
-				<input
-					class="inline-block h-full cursor-pointer rounded-sm border border-gray-500"
-					type="color"
-					value="#{production.color}"
-					oninput={(e) =>
-						handleProductionDetailChange(
-							i,
-							"color",
-						)(e.currentTarget.value.slice(1))}
-				/>
-				<input
-					class="inline-block rounded-sm border border-gray-500 bg-gray-100 p-2 shadow-inner dark:bg-gray-100/10"
-					type="text"
-					value={production.longTitle}
-					oninput={(e) =>
-						handleProductionDetailChange(i, "longTitle")(e.currentTarget.value)}
-				/>
+			<div class="flex flex-wrap gap-1">
+				<label>
+					<div class="opacity-50">Color</div>
+					<input
+						class="inline-block size-12 cursor-pointer rounded border border-gray-500"
+						type="color"
+						value="#{production.color}"
+						oninput={(e) =>
+							handleProductionDetailChange(
+								i,
+								"color",
+							)(e.currentTarget.value.slice(1))}
+					/>
+				</label>
+				<label>
+					<div class="opacity-50">Full Title</div>
+					<input
+						class="inline-block rounded border border-gray-500 bg-gray-100 p-2 shadow-inner dark:bg-gray-100/10"
+						type="text"
+						value={production.longTitle}
+						oninput={(e) =>
+							handleProductionDetailChange(
+								i,
+								"longTitle",
+							)(e.currentTarget.value)}
+					/>
+				</label>
+				<label>
+					<div class="opacity-50">Short Title</div>
+					<input
+						class="inline-block rounded border border-gray-500 bg-gray-100 p-2 shadow-inner dark:bg-gray-100/10"
+						type="text"
+						value={production.shortTitle}
+						oninput={(e) =>
+							handleProductionDetailChange(
+								i,
+								"shortTitle",
+							)(e.currentTarget.value)}
+					/>
+				</label>
 			</div>
 		{/each}
 	</div>
@@ -181,12 +211,12 @@
 >
 
 <div class="bold mt-12 mb-6 text-center text-2xl">
-	{dates[0]?.monthName}
+	Summer
 	{dates[0]?.year}
 </div>
 
 <div
-	class="grid grid-cols-7 gap-1 border-4 border-gray-300 bg-gray-300 dark:bg-[#0f110f]"
+	class="grid grid-cols-[1fr_auto_1fr_1fr_1fr_1fr_1fr] gap-1 border-4 border-gray-300 bg-gray-300 dark:border-neutral-800 dark:bg-neutral-800"
 >
 	<div class="text-center">Sun</div>
 	<div class="text-center">Mon</div>
@@ -197,27 +227,43 @@
 	<div class="text-center">Sat</div>
 
 	{#each dates as day, i}
+		{@const evenMonth = day.month % 2 === 0}
+		{@const isDark = day.performances.length === 0}
 		<div
-			class="bg-white p-1 dark:bg-white/20"
-			class:bg-opacity-50={day.month % 2 === 0}
-			class:bg-opacity-20={day.weekday === 2}
+			class="bg-white p-1 dark:bg-neutral-500"
+			class:bg-opacity-60={evenMonth && !isDark}
+			class:bg-opacity-20={isDark}
+			class:dark:bg-opacity-60={evenMonth && !isDark}
+			class:dark:bg-opacity-20={isDark}
 			style={i === 0 ? "grid-column-start: " + day.weekday : ""}
 		>
-			<div class="flex justify-end">
-				{#if day.day === 1 || i === 0}<span class="font-bold">
-						{day.monthName}
-					</span>
+			<div class="relative flex justify-end">
+				{#if day.day === 1 || i === 0}
+					<div
+						class="font-uber origin-top-left scale-125 -rotate-12 md:-translate-x-2 md:scale-[2]
+						dark:[text-shadow:0.035em_0.035em_0px_rgba(0,0,0,.5),0.035em_0.07em_0px_rgba(0,0,0,.5),0_0_4px_rgba(0,0,0,.5)]"
+					>
+						<div class="hidden lg:block">{day.monthName}</div>
+						<div class="lg:hidden">{day.monthName.slice(0, 3)}</div>
+					</div>
 				{/if}
 				<div class="grow"></div>
 				{day.day}
 			</div>
 
 			{#each [1, 2, 3] as performanceSlot}
-				<div class="h-7">
+				{@const time =
+					performanceSlot === 1 ? "10a" : performanceSlot === 2 ? "2p" : "8p"}
+				<div class="h-8">
 					{#each day.performances.filter((p) => p.slot === performanceSlot) as performance}
 						<Dropdown
-							color="#{performance.color}"
+							class="
+								bg-opacity-100 data-[open]:bg-opacity-50 h-full w-full bg-[color-mix(in_srgb,transparent,var(--show-color)_calc(var(--tw-bg-opacity,1)*100%))]
+								transition-opacity
+								duration-300 ring-inset hover:opacity-25 data-[open]:ring data-[open]:ring-white data-[open]:hover:opacity-100"
+							style="--show-color:#{performance.color}"
 							choices={$schedule.productions}
+							current={performance}
 							onChoice={(production) =>
 								handleChoice({
 									...day,
@@ -225,12 +271,23 @@
 									production,
 								})}
 						>
-							{performance.longTitle}
+							<div class="m-1 grid grid-cols-[2.2em_auto] gap-1">
+								<div class="rounded bg-white/50 px-1 text-right text-black">
+									{time}
+								</div>
+								<span
+									class="truncate text-white
+										[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]"
+								>
+									{performance.shortTitle}
+								</span>
+							</div>
 						</Dropdown>
 					{:else}
 						<Dropdown
-							class="text-transparent hover:text-black"
-							color="transparent"
+							class="text-center
+								transition-opacity duration-300 h-full w-full opacity-20 hover:opacity-75 border border-gray-500 dark:border-white/50 border-dotted
+								data-[open]:opacity-75"
 							choices={$schedule.productions}
 							onChoice={(production) =>
 								handleChoice({
@@ -239,7 +296,7 @@
 									production,
 								})}
 						>
-							Nothing
+							Add {time}
 						</Dropdown>
 					{/each}
 				</div>

@@ -31,7 +31,17 @@ function updateUrl(newSchedule: typeof schedule) {
 	)) {
 		url.searchParams.set(param, String(val))
 	}
-	goto(url, { noScroll: true, keepFocus: true })
+	const lenientUrl =
+		url.origin +
+		url.pathname +
+		url.search
+			.replaceAll("%20", "+")
+			.replaceAll("%5B", "[")
+			.replaceAll("%5D", "]")
+			.replaceAll("%2F", "/")
+			.replaceAll("%5E", "^")
+
+	goto(lenientUrl, { noScroll: true, keepFocus: true })
 }
 
 scheduleStore.subscribe((newSchedule) => {

@@ -8,7 +8,8 @@
 	// core components
 
 	interface Props {
-		color?: string
+		current?: { shortTitle: string }
+		style?: string
 		choices?: ProductionDetails[]
 		class?: string
 		onChoice?: (choice: ProductionDetails | null) => void
@@ -16,7 +17,8 @@
 	}
 
 	let {
-		color = "gray",
+		current,
+		style = "",
 		class: className = "",
 		choices = [],
 		onChoice = () => {},
@@ -67,9 +69,10 @@
 <svelte:window onclick={action} />
 
 <button
-	class="h-full w-full border border-dotted border-transparent transition-all duration-75 ease-linear hover:border-gray-500 hover:opacity-25 {className}"
+	data-open={dropdownPopoverShow || null}
+	class={className}
 	type="button"
-	style="background-color: {color}"
+	{style}
 	bind:this={btnRef}
 	onclick={toggleDropdown}
 >
@@ -78,19 +81,22 @@
 
 <div
 	bind:this={popoverRef}
-	class="z-50 float-left w-52 pt-2 {dropdownPopoverShow
-		? 'block'
-		: 'hidden'} shadow-lg"
+	class="z-50 w-52 py-2 {dropdownPopoverShow ? 'block' : 'hidden'}"
 >
 	<div
 		class="w-full space-y-4 rounded-sm border border-gray-500 bg-gray-400 p-4 shadow-lg"
 	>
 		{#each [...choices, null] as choice}
+			{@const chosen = choice?.shortTitle === current?.shortTitle}
 			<button
 				type="button"
 				onclick={() => choose(choice)}
-				class="whitespace-no-wrap block w-full border-4 border-transparent px-4 py-2 shadow-sm hover:border-black"
-				style="background-color: #{choice?.color ?? 'fff'}"
+				style="--show-color:#{choice?.color || '444'};"
+				data-chosen={chosen || null}
+				class="whitespace-no-wrap data-[chosen]:bg-opacity-50 block w-full bg-[color-mix(in_srgb,transparent,var(--show-color)_calc(var(--tw-bg-opacity,1)*100%))] px-4 py-2 text-white shadow
+					ring-white
+					[text-shadow:0.035em_0.035em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0.035em_0.07em_0px_color-mix(in_srgb,black_50%,var(--show-color)),0_0_4px_color-mix(in_srgb,black_50%,var(--show-color))]
+					hover:ring-4 data-[chosen]:cursor-not-allowed data-[chosen]:ring data-[chosen]:ring-white"
 			>
 				{choice?.longTitle ?? "None"}
 			</button>
