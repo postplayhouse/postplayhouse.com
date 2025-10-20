@@ -4,6 +4,7 @@
 	import Markdown from "$components/Markdown.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
+	import SeasonAnnouncement from "./news/2025-10-19-announcing-2026-season/+page.md"
 
 	let { data } = $props()
 
@@ -48,6 +49,10 @@ Twenty-five children from Crawford, Harrison, Chadron, and Omaha participated in
 Looking ahead, Post Playhouse is excited to announce the Bill and Virginia Coffee Family Foundation has already committed to supporting the Kids Camp again in 2026, helping continue this vital work.
 `}
 	/>
+</Announcement>
+
+<Announcement title="">
+	<SeasonAnnouncement />
 </Announcement>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
