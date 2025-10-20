@@ -15,7 +15,7 @@ YOUR INFO HERE
 
 <h3 class="big-pop title">Get Lucky!</h3>
 
-<h4 class="small-pop text-5xl font-bold leading-none">
+<h4 class="small-pop text-5xl leading-none font-bold">
 	with the
 	<span class="relative inline-block sm:whitespace-nowrap">
 		P
@@ -30,7 +30,7 @@ YOUR INFO HERE
 </h4>
 
 <h5 class="mt-8 text-3xl leading-none">Join us for our Annual Raffle!</h5>
-<p class="mt-4 text-3xl font-bold leading-none">
+<p class="mt-4 text-3xl leading-none font-bold">
 	Saturday, March 15, 2025 starting at 5:00pm
 </p>
 <p class="text-xl">
@@ -41,7 +41,7 @@ YOUR INFO HERE
 	Crawford, NE
 </p>
 
-<h5 class="mt-8 text-5xl font-bold leading-none">Prize Pay Outs</h5>
+<h5 class="mt-8 text-5xl leading-none font-bold">Prize Pay Outs</h5>
 You need not be present to win.
 <ul class="prizes">
 	<li>
@@ -62,7 +62,7 @@ You need not be present to win.
 	</li>
 </ul>
 
-<h3 class="mb-4 text-5xl font-bold leading-none">Food, Friends, and Fun!</h3>
+<h3 class="mb-4 text-5xl leading-none font-bold">Food, Friends, and Fun!</h3>
 <h4 class="mb-2 text-3xl leading-none">It’s more than just a raffle</h4>
 <p class="p mb-2">
 	The purchase of a raffle ticket also allows
@@ -75,10 +75,10 @@ You need not be present to win.
 	other prizes!
 </p>
 
-<h3 class="mb-4 mt-8 text-5xl font-bold leading-none">
+<h3 class="mt-8 mb-4 text-5xl leading-none font-bold">
 	Get Your Raffle Ticket Now!
 </h3>
-<h4 class="mb-2 mt-4 text-3xl leading-none">
+<h4 class="mt-4 mb-2 text-3xl leading-none">
 	Only 400 raffle tickets will be sold!
 </h4>
 

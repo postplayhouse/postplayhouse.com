@@ -6,7 +6,7 @@
 
 <h3 class="big-pop title">Get Lucky!</h3>
 
-<h4 class="small-pop text-5xl font-bold leading-none">
+<h4 class="small-pop text-5xl leading-none font-bold">
 	with the
 	<span class="relative inline-block sm:whitespace-nowrap">
 		P
@@ -21,7 +21,7 @@
 </h4>
 
 <h5 class="mt-8 text-3xl leading-none">Join us for our Annual Raffle!</h5>
-<p class="mt-4 text-3xl font-bold leading-none">
+<p class="mt-4 text-3xl leading-none font-bold">
 	Saturday, March 21, 2020 at 5:30pm
 </p>
 <p class="text-xl">
@@ -32,7 +32,7 @@
 	<span class="text-base">(Nebraska State Park Sticker Required)</span>
 </p>
 
-<h5 class="mt-8 text-5xl font-bold leading-none">Prize Pay Outs</h5>
+<h5 class="mt-8 text-5xl leading-none font-bold">Prize Pay Outs</h5>
 <ul class="prizes">
 	<li>
 		<span class="place">1st Prize (1 paid):</span>
@@ -52,7 +52,7 @@
 	</li>
 </ul>
 
-<h3 class="mb-4 text-5xl font-bold leading-none">
+<h3 class="mb-4 text-5xl leading-none font-bold">
 	Get Your Raffle Ticket Now!
 </h3>
 <h4 class="mb-2 text-3xl leading-none">It’s more than just a raffle</h4>
@@ -67,7 +67,7 @@
 	other prizes!
 </p>
 
-<h4 class="mb-2 mt-4 text-3xl leading-none">
+<h4 class="mt-4 mb-2 text-3xl leading-none">
 	Only 400 raffle tickets will be sold!
 </h4>
 
