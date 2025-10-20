@@ -181,7 +181,7 @@
 >
 
 <div class="bold mt-12 mb-6 text-center text-2xl">
-	{dates[0]?.monthName}
+	Summer
 	{dates[0]?.year}
 </div>
 
