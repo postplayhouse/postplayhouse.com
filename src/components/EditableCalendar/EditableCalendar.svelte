@@ -332,40 +332,40 @@
 <div class="mt-12">
 	<h2 class="h1">Details</h2>
 	<h3 class="h2 mt-4">Performance Counts</h3>
-	<div class="mt-6 flex justify-between tabular-nums">
-		{#each perfsByProd as prod}
-			<div>
-				<div class="text-3xl font-bold">
-					{prod.longTitle}
-				</div>
 
-				<div class="grid grid-cols-2 justify-end">
-					10am:
-					<div class="justify-self-end text-2xl font-bold opacity-70">
+	<table class="table-auto border-collapse **:p-2">
+		<thead>
+			<tr>
+				<th></th>
+				<th>10am</th>
+				<th>2pm</th>
+				<th>8pm</th>
+				<th>total</th>
+			</tr>
+		</thead>
+		<tbody class="text-right text-lg tabular-nums">
+			{#each perfsByProd as prod}
+				<tr>
+					<td class="!text-left">
+						{prod.longTitle}
+					</td>
+
+					<td>
 						{prod.performances.filter((x) => x.slot === 1).length}
-					</div>
-				</div>
-				<div class="grid grid-cols-2 justify-end gap-4">
-					2pm:
-					<div class="justify-self-end text-2xl font-bold opacity-70">
+					</td>
+					<td>
 						{prod.performances.filter((x) => x.slot === 2).length}
-					</div>
-				</div>
-				<div class="grid grid-cols-2 justify-end gap-4">
-					8pm:
-					<div class="justify-self-end text-2xl font-bold opacity-70">
+					</td>
+					<td>
 						{prod.performances.filter((x) => x.slot === 3).length}
-					</div>
-				</div>
-				<div class="mt-4 grid grid-cols-2 justify-end gap-4">
-					total
-					<div class="justify-self-end text-2xl font-bold opacity-70">
+					</td>
+					<td>
 						{prod.performances.length}
-					</div>
-				</div>
-			</div>
-		{/each}
-	</div>
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
 
 	<h3 class="h2 mt-8">Performance Dates as push card info</h3>
 	{#each perfsByMonthByProd as [prod, perfsByMonth]}
