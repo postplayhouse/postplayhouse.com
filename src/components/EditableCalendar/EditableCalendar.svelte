@@ -11,10 +11,7 @@
 	import { page } from "$app/stores"
 	import { add } from "date-fns"
 	import { browser } from "$app/environment"
-
-	// Bare reference to page just to keep eslint happy
-	// https://github.com/sveltejs/eslint-plugin-svelte/issues/652
-	page
+	import { ExMap } from "$helpers/map"
 
 	$effect(replaceAfterMount)
 
@@ -27,6 +24,33 @@
 				...x,
 				performances: $schedule.performances.filter((y) => y.id === x.id),
 			})),
+	)
+
+	const months = {
+		5: "May",
+		6: "June",
+		7: "July",
+		8: "August",
+	} as const
+
+	const perfsByMonthByProd = $derived(
+		perfsByProd.map(
+			({ performances, ...prod }) =>
+				[
+					prod,
+
+					performances
+						.reduce((acc, perf) => {
+							acc.setOrGet(perf.month, []).push(perf)
+							return acc
+						}, new ExMap<number, PerformanceDetails[]>())
+						.toEntriesArray()
+						.map(
+							([monthNum, perfs]) =>
+								[months[monthNum as keyof typeof months], perfs] as const,
+						),
+				] as const,
+		),
 	)
 
 	function handleChoice(
@@ -344,88 +368,47 @@
 	</div>
 
 	<h3 class="h2 mt-8">Performance Dates as push card info</h3>
-	{#each perfsByProd as prod}
+	{#each perfsByMonthByProd as [prod, perfsByMonth]}
 		<div class="mt-4 text-3xl font-bold">
 			{prod.longTitle}
 		</div>
 
-		{#if prod.performances.filter((x) => x.month === 5).length > 0}
-			<div class="">
-				May
-				<span class="">
-					{#each prod.performances.filter((x) => x.month === 5) as perf}
-						{perf.day}{slotToPushCardSymbol(perf.slot)},{" "}
-					{/each}
+		{#each perfsByMonth as [month, perfs]}
+			<div>
+				{month}
+				<span>
+					{perfs
+						.map((x) => `${x.day}${slotToPushCardSymbol(x.slot)}`)
+						.join(", ")}
 				</span>
 			</div>
-		{/if}
-
-		<div class="">
-			June
-			<span class="">
-				{#each prod.performances.filter((x) => x.month === 6) as perf}
-					{perf.day}{slotToPushCardSymbol(perf.slot)},{" "}
-				{/each}
-			</span>
-		</div>
-		<div class="">
-			July
-			<span class="">
-				{#each prod.performances.filter((x) => x.month === 7) as perf}
-					{perf.day}{slotToPushCardSymbol(perf.slot)},{" "}
-				{/each}
-			</span>
-		</div>
-		<div class="">
-			August
-			<span class="">
-				{#each prod.performances.filter((x) => x.month === 8) as perf}
-					{perf.day}{slotToPushCardSymbol(perf.slot)},{" "}
-				{/each}
-			</span>
-		</div>
+		{/each}
 	{/each}
 
 	<h3 class="h2 mt-8">Performance Dates as website data</h3>
-	{#each perfsByProd as prod}
+	{#each perfsByMonthByProd as [prod, perfsByMonth]}
+		{@const perfMonthStrings = perfsByMonth.reduce((acc, [month, perfs]) => {
+			acc.push(
+				`${month} ${perfs.map((x) => `${x.day}${slotToWebCode(x.slot)}`).join(", ")}`,
+			)
+			return acc
+		}, [] as string[])}
+
 		<div class="mt-4 text-3xl font-bold">
 			{prod.longTitle}
 		</div>
 
-		{#if prod.performances.filter((x) => x.month === 5).length > 0}
-			<div class="">
-				May
-				<span class="">
-					{#each prod.performances.filter((x) => x.month === 5) as perf}
-						{perf.day}{slotToWebCode(perf.slot)},{" "}
-					{/each}
-				</span>
+		<button
+			class="btn-p mb-2"
+			onclick={() =>
+				navigator.clipboard.writeText(
+					perfMonthStrings.map((x) => `      ${x}`).join("\n") + "\n",
+				)}>Copy</button
+		>
+		{#each perfMonthStrings as details}
+			<div>
+				{details}
 			</div>
-		{/if}
-
-		<div class="">
-			June
-			<span class="">
-				{#each prod.performances.filter((x) => x.month === 6) as perf}
-					{perf.day}{slotToWebCode(perf.slot)},{" "}
-				{/each}
-			</span>
-		</div>
-		<div class="">
-			July
-			<span class="">
-				{#each prod.performances.filter((x) => x.month === 7) as perf}
-					{perf.day}{slotToWebCode(perf.slot)},{" "}
-				{/each}
-			</span>
-		</div>
-		<div class="">
-			August
-			<span class="">
-				{#each prod.performances.filter((x) => x.month === 8) as perf}
-					{perf.day}{slotToWebCode(perf.slot)},{" "}
-				{/each}
-			</span>
-		</div>
+		{/each}
 	{/each}
 </div>
