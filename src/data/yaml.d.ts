@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 namespace Date {
 	type Year =
 		| 2015

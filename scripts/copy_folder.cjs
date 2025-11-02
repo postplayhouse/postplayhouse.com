@@ -127,13 +127,12 @@ function recursiveCopyFiles(oldFolder, newFolder) {
 	)
 	const files = all.filter((x) => !folders.includes(x))
 
-	const copyingFiles = files.map(
-		(file) =>
-			copyFile(
-				path.join(oldFolder, file),
-				path.join(newFolder, file),
-				fs.constants.COPYFILE_EXCL,
-			).catch(() => {}), // eslint-disable-line @typescript-eslint/no-empty-function
+	const copyingFiles = files.map((file) =>
+		copyFile(
+			path.join(oldFolder, file),
+			path.join(newFolder, file),
+			fs.constants.COPYFILE_EXCL,
+		).catch(() => {}),
 	)
 	const copyingFolders = folders.map((subfolder) =>
 		recursiveCopyFiles(

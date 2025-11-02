@@ -1,4 +1,3 @@
-/* eslint-disable no-dupe-class-members */
 export class ExMap<K, V> extends Map<K, V> {
 	override get(key: K): V | undefined
 	override get<T>(key: K, fallback: T): V | T

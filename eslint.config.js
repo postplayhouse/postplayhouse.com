@@ -7,15 +7,15 @@ import globals from "globals"
 // The bullshit type casting in this file is because the type definitions for
 // the imported configs are not correct.
 
-/** @typedef {import('eslint').Linter.FlatConfig} FlatConfig */
+/** @typedef {import('eslint').Linter.Config} Config */
 
-/** @type {FlatConfig[]} */
+/** @type {Config[]} */
 export default [
 	js.configs.recommended,
-	.../** @type {FlatConfig[]} */ (ts.configs.recommended),
-	.../** @type {FlatConfig[]} */ (svelte.configs["flat/recommended"]),
+	.../** @type {Config[]} */ (ts.configs.recommended),
+	.../** @type {Config[]} */ (svelte.configs["flat/recommended"]),
 	prettier,
-	.../** @type {FlatConfig[]} */ (svelte.configs["flat/prettier"]),
+	.../** @type {Config[]} */ (svelte.configs["flat/prettier"]),
 	{
 		languageOptions: {
 			globals: {
@@ -43,6 +43,13 @@ export default [
 					ignoreRestSiblings: true,
 					varsIgnorePattern: "^_",
 					argsIgnorePattern: "^_",
+				},
+			],
+			"@typescript-eslint/no-unused-expression": [
+				"error",
+				{
+					allowShortCircuit: true,
+					allowTernary: true,
 				},
 			],
 			"@typescript-eslint/explicit-module-boundary-types": "off",
