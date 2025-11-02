@@ -23,7 +23,7 @@ package = "./scripts/netlify-plugin-cache"
   # or the root directory if a base has not been set.
   # functions = "functions/"
 
-  environment = { NODE_VERSION = "20.10.0", NPM_VERSION = "8.19.1" }
+  environment = { NODE_VERSION = "24.10.0" }
 
 # Production context: all deploys from the Production branch set in your site’s
 # deploy contexts will inherit these settings.
