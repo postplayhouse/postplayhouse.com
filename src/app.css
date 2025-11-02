@@ -3,8 +3,9 @@
 @theme {
 	--border-width-6: 6px;
 
-	--font-sans: metropolis, ui-sans-serif, system-ui, sans-serif,
-		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-sans:
+		metropolis, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	--font-uber: azo-sans-uber, Arial Black;
 
 	--breakpoint-xs: 460px;

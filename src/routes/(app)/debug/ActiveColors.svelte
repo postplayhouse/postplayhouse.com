@@ -42,7 +42,8 @@
 
 	.unused-bg {
 		@apply inset-ring inset-ring-gray-300;
-		background: linear-gradient(
+		background:
+			linear-gradient(
 				45deg,
 				transparent 49%,
 				var(--tw-inset-ring-color) 50%,
