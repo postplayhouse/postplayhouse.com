@@ -35,22 +35,6 @@
 	/>
 </svelte:head>
 
-<Announcement readMoreLink="/news/2025-09-13-free-kids-camp">
-	{#snippet title()}
-		Post Playhouse launches free Kids Camp; expands theatre education through
-		2026
-	{/snippet}
-	<Markdown
-		source={`
-### This summer, Post Playhouse launched its inaugural Kids Camp, a free five-day theatre program for children ages 3-18 at Fort Robinson State Park. 
-
-Twenty-five children from Crawford, Harrison, Chadron, and Omaha participated in the camp led by Camp Director Lindsey Nordby. Post Playhouse actors and technicians volunteered their time to teach, and the camp concluded with a live performance on the Post Playhouse stage.
-
-Looking ahead, Post Playhouse is excited to announce the Bill and Virginia Coffee Family Foundation has already committed to supporting the Kids Camp again in 2026, helping continue this vital work.
-`}
-	/>
-</Announcement>
-
 <Announcement title="">
 	<SeasonAnnouncement />
 </Announcement>
