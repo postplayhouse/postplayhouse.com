@@ -143,28 +143,6 @@
 		Our {nonValueToEmptyStr(enhancedProductions.at(0)?.season)} Summer Season
 	</h3>
 
-	<div class="mb-12">
-		<SponsorPlate>
-			{#snippet beforeSponsors()}
-				<h3 class="h3 mb-4 text-center">
-					Special thanks to our Season Sponsors:
-				</h3>
-			{/snippet}
-		</SponsorPlate>
-	</div>
-
-	{#if allShowsAreRunning}
-		<div class="my-8 text-center text-3xl">All shows are now running!</div>
-	{/if}
-
-	{@render seasonArtworkImage?.()}
-
-	{#if isBeforeClosing}
-		<div class="my-12 flex justify-center">
-			<TicketsButton />
-		</div>
-	{/if}
-
 	{#if !allShowsAreRunning && nowRunning.length > 0 && isBeforeClosing}
 		<div>
 			<div class="mb-8 flex flex-wrap justify-center gap-12 *:w-fit *:shrink-0">
@@ -191,6 +169,28 @@
 					</ul>
 				</div>
 			</div>
+		</div>
+	{/if}
+
+	<div class="mb-12">
+		<SponsorPlate>
+			{#snippet beforeSponsors()}
+				<h3 class="h3 mb-4 text-center">
+					Special thanks to our Season Sponsors:
+				</h3>
+			{/snippet}
+		</SponsorPlate>
+	</div>
+
+	{#if allShowsAreRunning}
+		<div class="my-8 text-center text-3xl">All shows are now running!</div>
+	{/if}
+
+	{@render seasonArtworkImage?.()}
+
+	{#if isBeforeClosing}
+		<div class="my-12 flex justify-center">
+			<TicketsButton />
 		</div>
 	{/if}
 {/if}
