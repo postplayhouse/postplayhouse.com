@@ -3,7 +3,7 @@ const prod = process.env.NODE_ENV === "production"
 // Actual values. If dev, these may change below.
 const castingComplete = false
 const ticketsAvailableDate = "2025-11-15T00:00:00"
-const showsAnnounced = false
+const showsAnnounced = true as boolean
 
 const boxOfficePhone = "1-888-665-1976"
 
