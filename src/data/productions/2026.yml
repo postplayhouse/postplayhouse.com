@@ -1,8 +1,7 @@
 - title: Seussical
   short_title: Seuss
-  rating: G
   color: green
-  image: seussical.jpg
+  image: seussical.png
   opening: 2026-05-23
   writers:
   description: |
@@ -14,15 +13,14 @@
       July 8a, 10e, 15e, 18m, 23e, 31a
       August 1m, 9a
   roles_sorting:
-  sponsor:
-    image: westco.png
-    link: https://www.westco.coop
+  # sponsor:
+  #   image: westco.png
+  #   link: https://www.westco.coop
 
 - title: Always…Patsy Cline
   short_title: Patsy
-  rating: G
   color: blue
-  image: always-patsy-cline.jpg
+  image: always-patsy-cline.png
   opening: 2026-05-29
   writers:
   description: |
@@ -37,9 +35,8 @@
 
 - title: Oklahoma!
   short_title: OK!
-  rating: G
   color: yellow
-  image: oklahoma.jpg
+  image: oklahoma.png
   opening: 2026-06-05
   writers:
   description: |
@@ -50,14 +47,13 @@
       July 8e, 10a, 12a, 17e, 25m, 26a, 31e
       August 1e, 4e, 6e
   roles_sorting:
-  sponsor:
-    text: Annie Sellman
+  # sponsor:
+  #   text: Annie Sellman
 
 - title: Grease
   short_title: Grease
-  rating: G
   color: purple
-  image: grease.jpg
+  image: grease.png
   opening: 2026-06-19
   writers:
   description: |
@@ -68,14 +64,13 @@
       July 9e, 11a, 15a, 17a, 18e, 21e, 24e, 25a, 29e
       August 5a, 7a, 8e
   roles_sorting:
-  sponsor:
-    text: Jeanine Mohr and Gary Mohr
+  # sponsor:
+  #   text: Jeanine Mohr and Gary Mohr
 
 - title: Dirty Rotten Scoundrels
   short_title: Scoundrels
-  rating: G
   color: red
-  image: dirty-rotten-scoundrels.jpg
+  image: dirty-rotten-scoundrels.png
   opening: 2026-07-03
   writers:
   description: |
@@ -85,5 +80,5 @@
       July 3e, 4e, 5a, 7e, 11e, 16e, 19a, 22a, 24a, 28e, 30e
       August 1a, 2a, 7e
   roles_sorting:
-  sponsor:
-    text: The Sehnert Sisters
+  # sponsor:
+  #   text: The Sehnert Sisters
