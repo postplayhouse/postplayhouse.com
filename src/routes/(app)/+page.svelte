@@ -1,10 +1,7 @@
 <script lang="ts">
-	import Announcement from "$components/Announcement.svelte"
 	import Mailer from "$components/Mailer.svelte"
-	import Markdown from "$components/Markdown.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
-	import SeasonAnnouncement from "./news/2025-10-19-announcing-2026-season/+page.md"
 
 	import DonateBtn from "$components/DonateBtn.svelte"
 	import { isToday } from "date-fns"
@@ -74,10 +71,6 @@
 		<DonateBtn />
 	</div>
 {/if}
-
-<Announcement title="">
-	<SeasonAnnouncement />
-</Announcement>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings {season} {productions} />
