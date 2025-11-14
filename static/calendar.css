@@ -249,7 +249,7 @@
 	background: transparent;
 	font-size: 3.75rem;
 	z-index: 2;
-	transform: rotate(-15deg);
+	transform: rotate(-12deg);
 	top: -0.8em;
 }
 @media (prefers-color-scheme: dark) {
@@ -275,7 +275,7 @@
 		transform: rotate(0);
 	}
 }
-.day.day-24 .month-name.may {
+.day.day-22 .month-name.may {
 	display: block;
 }
 .day.day-1 .month-name.jun {
@@ -283,7 +283,6 @@
 }
 .day.day-1 .month-name.jul {
 	display: block;
-	top: 0;
 }
 .day.day-1 .month-name.aug {
 	display: block;
