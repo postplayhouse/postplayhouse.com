@@ -8,7 +8,7 @@
 #
 #
 
-# start __1__
+# start __3__
 - last_name: Denton
   first_name: Don
   image_year: 2019
@@ -17,7 +17,7 @@
     - General IT
   bio: |
     Don has been working with Post Playhouse in some capacity since 2008. A lot has changed since that first season. He married the lovely actress who played opposite him in _South Pacific_, they had three crazy, adorable children, and they moved to Chattanooga. Lately, Don has been providing Post Playhouse with IT support, and he is happy to be able to continue to help the theatre in this way.
-# end __1__
+# end __3__
 # start __2__
 - last_name: Galvan
   first_name: Brooke
@@ -28,7 +28,7 @@
   bio: |
     Brooke loves creating alongside the incredibly talented folks at Post Playhouse. As she enters into her fourth season behind the computers and phones, she’s looking forward to supporting our team remotely from the sunny streets of Texas. When she isn’t designing marketing materials or spending time with the box office, she loves writing for children and enjoying time with her wonderful family.
 # end __2__
-# start __3__
+# start __1__
 - last_name: Laudeman
   first_name: Em
   image_year: 2022
@@ -39,7 +39,7 @@
     - Development Director
   bio: |
     Em is delighted to be part of the team at Post again this year. Em worked as an actress at Post Playhouse for four seasons spanning from 2009–2019 before joining the administrative team. She received her BFA in music theatre from Elon University and her MPA in nonprofit management from Indiana University. Em has worked in administration and advancement for arts organizations around the country since 2015, most notably The Cleveland Orchestra and the San Diego Symphony. You may remember Em on the Post Playhouse stage in _The Wizard of Oz_ ‘10 (Dorothy), _Oklahoma!_ ‘12 (Laurie), and _The Music Man_ ‘19 (Marian). She looks forward to visiting her home away from home in Nebraska again this year.
-# end __3__
+# end __1__
 # start __4__
 - last_name: Stephens
   first_name: Ann
