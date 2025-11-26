@@ -5,9 +5,8 @@
 
 	import DonateBtn from "$components/DonateBtn.svelte"
 	import { isToday } from "date-fns"
-	import givingTuesday1 from "../../images/seasons/2025/giving-tuesday-lion.png?enhanced"
-	import givingTuesday2 from "../../images/seasons/2025/giving-tuesday-cast.png?enhanced"
-	import givingTuesday3 from "../../images/seasons/2025/giving-tuesday-dorothy.png?enhanced"
+	import givingTuesday1 from "../../images/seasons/2026/giving-tuesday-guys-n-dolls.jpg?enhanced"
+	import givingTuesday2 from "../../images/seasons/2026/giving-tuesday-newsies.jpg?enhanced"
 	import { dev } from "$app/environment"
 
 	let { data } = $props()
@@ -55,14 +54,9 @@
 				src={givingTuesday2}
 				alt="Giving Tuesday logo next to a moment from Post's recent production of The Wizard of Oz. The entire cast stands together, smiling and waving at the audience."
 			></enhanced:img>
-			<enhanced:img
-				class="hidden rotate-2 shadow-md md:block"
-				src={givingTuesday3}
-				alt="Giving Tuesday logo next to a moment from Post's recent production of The Wizard of Oz. Dorothy stands center stage, singing Somewhere Over the Rainbow."
-			></enhanced:img>
 		</div>
 
-		<p class="mt-6">
+		<p class="mt-6 text-xl">
 			Today, the world unites to give, share, and uplift. Join millions
 			celebrating the power of generosity and help keep the magic of live
 			theater shining in rural Nebraska!
