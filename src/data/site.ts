@@ -15,8 +15,6 @@ export const site = {
 	maintainerEmail: "don@postplayhouse.com",
 	icon: "/images/post-playhouse-logo.png",
 	title: "Post Playhouse",
-	twitter: "postplayhouse",
-	facebook: "post.playhouse",
 	castingComplete: prod ? castingComplete : true,
 	season: 2026 satisfies Date.Year,
 	description:
