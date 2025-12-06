@@ -35,7 +35,8 @@
 		"prosemirror-example-setup": "^1.2.3",
 		"prosemirror-markdown": "^1.13.2",
 		"prosemirror-state": "^1.4.4",
-		"prosemirror-view": "^1.41.3"
+		"prosemirror-view": "^1.41.3",
+		"zod": "^4.1.13"
 	},
 	"devDependencies": {
 		"@octokit/rest": "^22.0.1",
