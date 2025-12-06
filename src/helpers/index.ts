@@ -58,8 +58,8 @@ export function personHasPositionStartingWith(
 }
 
 function peopleSortFn(a: YamlPerson, b: YamlPerson) {
-	const aName = (a.sort_name || "") + a.last_name + a.first_name
-	const bName = (b.sort_name || "") + b.last_name + b.first_name
+	const aName = a.last_name + a.first_name
+	const bName = b.last_name + b.first_name
 	return aName.localeCompare(bName)
 }
 
