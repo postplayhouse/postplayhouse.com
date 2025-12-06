@@ -151,10 +151,15 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Ms. Lark, Ensemble
-    Sister Act: Mary Lazarus
-    The Music Man: Maud Dunlop
-    Little Shop: Audrey
+    Mary Poppins:
+      - Ms. Lark
+      - Ensemble
+    Sister Act:
+      - Mary Lazarus
+    The Music Man:
+      - Maud Dunlop
+    Little Shop:
+      - Audrey
   bio_approved: true
   bio: >
     Katie Collins is a Delaware native and she is a BFA musical theatre student at Rider University, in New Jersey. She is so thrilled to be making her Post Playhouse debut and to be seeing Nebraska for the very first time. Since enrollment in Rider, Katie has been in _Assassins: The Musical_ as Squeaky Fromme, and _Oklahoma!_ as ensemble. She also has done many community productions throughout her training. She thanks all the cast and crew for their hard work and hopes that you enjoy the production.
@@ -270,11 +275,16 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Bert
-    Sister Act: Pablo
-    The Music Man: Harold Hill
-    Frog & Toad: Frog
-    Little Shop: Orin
+    Mary Poppins:
+      - Bert
+    Sister Act:
+      - Pablo
+    The Music Man:
+      - Harold Hill
+    Frog & Toad:
+      - Frog
+    Little Shop:
+      - Orin
   bio_approved: true
   bio: >
     Corey Fern is ecstatic to be leaving his home grounds of Shakopee, Minnesota to join the Post Playhouse team for his Nebraska debut! He is a recent graduate from the University of Wisconsin-River Falls with degrees in theatre and creative writing. Some recent credits include _Little Shop of Horrors_ (Seymour), _A Year With Frog and Toad_ (Snail), and _The Spitfire Grill_ (Joe Sutter). Corey has an extreme passion for performing, directing, and writing and is excited to spend the summer with the Post Playhouse crew!
@@ -286,8 +296,10 @@
   groups:
     - cast
   roles:
-    Sister Act: Delores
-    Little Shop: Crystal
+    Sister Act:
+      - Delores
+    Little Shop:
+      - Crystal
   bio_approved: true
   bio: >
     Simone is thrilled to make her Post Playhouse debut! Simone is a rising junior at Carnegie Mellon University studying musical theatre. Her favorite credits include: _The Miracle Worker_ on Broadway (2011) Singing for President Barack Obama in his inaugural ball (2012), _Aida_ as Aida (2017) _Pato Pato Maricón_ as Selena (2018) at Ars Nova. Simone wouldn’t be anywhere without her family’s unwavering support and love. Thank you Mom, Dad, Aunt Erica and aunt Stephanie, I love you! 
@@ -301,10 +313,15 @@
   groups:
     - cast
   roles:
-    Mary Poppins: George Banks
-    Sister Act: Monsignor O'Hara
-    The Music Man: Charlie Cowell, Olin Britt
-    Little Shop: Mr. Mushnik
+    Mary Poppins:
+      - George Banks
+    Sister Act:
+      - Monsignor O'Hara
+    The Music Man:
+      - Charlie Cowell
+      - Olin Britt
+    Little Shop:
+      - Mr. Mushnik
   bio_approved: true
   bio: >
     Sam is overjoyed to be performing in his first season with Post Playhouse! A New York City based actor who graduated from The Catholic University of America with a Bachelor in Music. Previous credits include _A Christmas Carol_ (Jacob Marley), _Jesus Christ Superstar_ (Simon), and _Shrek the Musical_ (Lord Farquaad). Shout out to his friends and family who support him in everything he does! [www.samdforgie.com](https://www.samdforgie.com)
@@ -456,10 +473,14 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Winifred Banks
-    Sister Act: Mary Robert
-    The Music Man: Marian Paroo
-    Little Shop: Ronnette
+    Mary Poppins:
+      - Winifred Banks
+    Sister Act:
+      - Mary Robert
+    The Music Man:
+      - Marian Paroo
+    Little Shop:
+      - Ronnette
   bio_approved: true
   bio: >
     Em is returning to Post Playhouse this season after 7 years. You may have seen her in past productions as Irene in _Hello Dolly!_ (2009), Dorothy in _The Wizard of Oz_ (2010), or Laurey in _Oklahoma!_ (2012). Em holds her BFA in music theatre from Elon University and her MPA in nonprofit management from Indiana University. She has worked in regional theatres around the country and in NYC for 15 years and most recently worked in development at The Cleveland Orchestra. Fort Robinson feels like home away from home, and she is thrilled to be back in western Nebraska! Gratitude to the production team, to her amazing husband Jake, mom, and Marie, and most of all to the memory of her dad who gave her the gift of music.
@@ -471,10 +492,16 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Park Keeper, Ensemble
-    Sister Act: Curtis Jackson
-    The Music Man: Oliver Hix
-    Little Shop: Audrey II Voice, Wino 1
+    Mary Poppins:
+      - Park Keeper
+      - Ensemble
+    Sister Act:
+      - Curtis Jackson
+    The Music Man:
+      - Oliver Hix
+    Little Shop:
+      - Audrey II Voice
+      - Wino 1
   bio_approved: true
   bio: >
     Micheal is so excited to be making his Post Playhouse debut! Originally from Lawton Oklahoma Micheal has made his way to Chicago IL where he has been seen in productions like _Caroline or Change_ and _Jesus Christ Superstar_. Micheal would like to thank Tom and Dewayne for this amazing opportunity and his family and friends for their love and support. Micheal is a member of the Illinois Theatre Association.
@@ -486,10 +513,16 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Robertson Ay, Ensemble
-    Sister Act: Lt. Eddie
-    The Music Man: Mayor Shinn
-    Little Shop: Audrey II Puppeteer, Wino 2
+    Mary Poppins:
+      - Robertson Ay
+      - Ensemble
+    Sister Act:
+      - Lt. Eddie
+    The Music Man:
+      - Mayor Shinn
+    Little Shop:
+      - Audrey II Puppeteer
+      - Wino 2
   bio_approved: true
   bio: >
     Marvin is so excited to be a part of the Post Playhouse 2019 summer Season! He recently graduated from Columbia College Chicago with his BFA in Musical Theatre! Marvin is Cleveland born and now, Chicago based. His favorite credits include Radames in _Aida_ (Playhouse Square), Yonkers in _Gypsy_ (Porchlight MT), Ensemble in _Something in the Game_, (American MT Project), Oscar in _Sweet Charity_ and Papa Ge in _Once on this Island_ (Columbia Chicago). Be sure to keep up with Marvin on Instagram & Twitter @MarvinMaloneii. For Mom & Dad! Amos 9:13-15 MSG. Proudly represented by DDO Artists Agency.
@@ -502,10 +535,16 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Mrs. Brill, Ensemble
-    Sister Act: Mother Superior
-    The Music Man: Alma Hix
-    Frog & Toad: Bird, Ensemble
+    Mary Poppins:
+      - Mrs. Brill
+      - Ensemble
+    Sister Act:
+      - Mother Superior
+    The Music Man:
+      - Alma Hix
+    Frog & Toad:
+      - Bird
+      - Ensemble
   bio_approved: true
   bio: >
     Corinne is excited to be making her Post Playhouse debut and wants to thank Tom, Julio, and the rest of the Post Playhouse creative team for this wonderful opportunity! Corinne graduated from Western Connecticut State University with a B.A. in Musical Theatre Performance in 2015. Some of her favorite credits include, Miss Hannigan (_Annie_), Tracy Turnblad (_Hairspray_), Matron Mama Morton (_Chicago_), B.J. (_Smokey Joe’s Café_), Lucia (_Mornings of April and May_) *National Tour, Martha Bessel (_Spring Awakening_), Maria (_Twelfth Night_), Alysha (_American Idiot_). Corinne considers herself very lucky to be joining the Post Playhouse family this summer! Follow her journey and see what’s next at [Corinne-Marshall.com](https://corinne-marshall.com).
@@ -544,10 +583,16 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Ms. Andrew, Ensemble
-    Sister Act: Mary Martin-of-Tours
-    The Music Man: Zaneeta Shinn
-    Frog & Toad: Squirrel, Ensemble
+    Mary Poppins:
+      - Ms. Andrew
+      - Ensemble
+    Sister Act:
+      - Mary Martin-of-Tours
+    The Music Man:
+      - Zaneeta Shinn
+    Frog & Toad:
+      - Squirrel
+      - Ensemble
   bio_approved: true
   bio: >
     Kelsey McCollaum is humbled to be making her Post Playhouse debut! Kelsey is a New York based actor and is a graduate of Marymount Manhattan College where she received her BA in Musical Theatre.  Some of her favorite credits include _Merrily We Roll Along_ (Mary Flynn), _Grease_ (Jan), _Beehive_ (Judy) and _42 Nd Street_ (Maggie Jones) in which she was a 2019 Broadway World Award Winner for best supporting actress in a musical.  Kelsey would like to thank the entire Post Playhouse team for this amazing opportunity!  Finally, she would like to thank her parents for their constant love, patience and support. Enjoy the show!  
@@ -560,10 +605,15 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Bank Chairman, Ensemble
-    Sister Act: Joey
-    The Music Man: Marcellus Washburn
-    Little Shop: Seymour
+    Mary Poppins:
+      - Bank Chairman
+      - Ensemble
+    Sister Act:
+      - Joey
+    The Music Man:
+      - Marcellus Washburn
+    Little Shop:
+      - Seymour
   bio_approved: true
   bio: >
     Trey Mendlik is beyond ecstatic to be making his Post Playhouse debut this summer.  He recently graduated from Midland University with a Bachelors in Arts Management and Theatre.  Trey previously toured with The Young Americans doing music outreach.  He has traveled all over Germany, Poland, Japan, and the U.S., using the arts to empower students and promote the importance of performing arts in schools.  Regional credits include: Ike Skidmore (u/s, Curly) in _Oklahoma_ at the Black Hills Playhouse.  Other theatre credits include: Don Quixote in _Man of LaMancha_, Trevor Graydon in _Thoroughly Modern Millie_, Mr. Green in _Clue_, Troy Bolton in _High School Musical_ and Seymour in _Little Shop of Horrors_.  He is incredibly grateful to Tom and Dewayne for seeing something special in him. Instagram: @trey.mendlik
@@ -574,10 +624,13 @@
   location: ""
   groups:
     - cast
+  staff_positions:
+    - Season Female Swing
   roles:
-    Season: Female Swing
-    Mary Poppins: Bird Woman
-    The Music Man: Mrs. Beatrice
+    Mary Poppins:
+      - Bird Woman
+    The Music Man:
+      - Mrs. Beatrice
   bio_approved: true
   bio: >
     Michelle is so excited to be joining the company at Post Playhouse this summer!  Originally from Oklahoma, Michelle has performed regionally in New York City, Chicago, Oklahoma City, and northern California.  She has also worked internationally in Milan and Oslo.  Favorite roles include Olive Ostrovsky (_25th Annual Putnam County Spelling Bee_); Mary Flynn (_Merrily We Roll Along_); Lucy (_A Charlie Brown Christmas_); Sue Snell (_Carrie: The Musical_); Emma Goldman (_Ragtime_); and Kate Monster (_Avenue Q_). Last year, Michelle originated the role of Jamie in a new play by Nicholas Pappas called The Place in Brooklyn.  Michelle has a BFA in Musical Theatre from the University of Oklahoma.
@@ -659,10 +712,15 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Admiral Boom, Ensemble
-    Sister Act: TJ
-    The Music Man: Jacey Squires
-    Frog & Toad: Toad
+    Mary Poppins:
+      - Admiral Boom
+      - Ensemble
+    Sister Act:
+      - TJ
+    The Music Man:
+      - Jacey Squires
+    Frog & Toad:
+      - Toad
   bio_approved: true
   bio: >
     Juwon Tyrel Perry is eager to be making his Post Playhouse debut! Juwon is a recent graduate of Columbia College Chicago where he received his BFA in  Musical Theatre. Some previous credits include: _Ragtime_ with Griffin Theater Company which won the 2018 Jeff Award for Best Ensemble, _The Gospel at Colonus Gala_ with Court Theater, _New Faces Sing 1941_ with Porchlight Music Theatre _The View Upstairs_ with Circle Theatre, _Tarzan_ with NightBlue Theater Company, _Once On This Island, Xanadu, Caroline, or Change, Sweet Charity_, and _High Fidelity_ with Columbia College Chicago. Learn more about Juwon at [www.juwontyrelperry.weebly.com](http://www.juwontyrelperry.weebly.com)
@@ -705,7 +763,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Mrs. Paroo
+    The Music Man:
+      - Mrs. Paroo
   bio_approved: true
   bio: |
     Jane is excited and pleased to be returning to the Post Playhouse for a third season. Two years ago she returned to the Playhouse for its 50th anniversary after a 35 year hiatus.  She has appeared in the ensemble for _Young Frankenstein_, a few performances as Lotti Child in _Crazy for You_ (filling in for Marge Rotherham), as Betty Buckley in _Footloose_, as Josephine Strong in _Urinetown_, and in the ensemble for _Chitty Chitty Bang Bang_.  Throughout high school and college (Chadron State College) Jane participated in many plays and a few musicals.  She later  acted in and directed a few communiy theater productions in Valentine and Scottsbluff, NE.  She is now a retired elementaty teacher substituting for Chadron Public Schools.  She would like to thank Tom Ossowski and Dewayne Barrett for inviting her back for another season.
@@ -718,10 +777,14 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Mary Poppins
-    Sister Act: Mary Patrick
-    The Music Man: Ethel Toffelmier
-    Little Shop: Chiffon
+    Mary Poppins:
+      - Mary Poppins
+    Sister Act:
+      - Mary Patrick
+    The Music Man:
+      - Ethel Toffelmier
+    Little Shop:
+      - Chiffon
   bio_approved: true
   bio: >
     Hope (EMC) is ecstatic to be making her Post Playhouse debut! Originally from Oklahoma, Hope has been a resident of Chicago for 5 years now. After receiving her BFA in musical theatre at The Chicago College of Performing Arts at Roosevelt University in May of 2018, Hope has hit the ground running in the Chicago theatre community. In this past year you may have seen Hope in Theo Ubique’s Jeff award winning production of _Sweeney Todd_, where she played the Soprano 1 and went on for the role of Johana throughout the run. Following this, she performed as Charity in Music Theatre Works’ production of _Anything Goes_, where she also understudied the role of Reno Sweeney. Most recently, she performed in Theatre at The Center’s production of _Miracle on 34th Street the Musical_. Some of Hope’s favorite roles include Liesl in _The Sound of Music_, Hope in _Urinetown_, Cobweb in _A Midsummer Night’s Dream_, and Yonah in _Children of Eden_. She would like to thank her teachers, family, and friends for all of the support and love over the years. She can’t wait to have a "practically perfect" summer in Nebraska!
@@ -733,12 +796,27 @@
   location: ""
   groups:
     - cast
+  staff_positions:
+    - Season Male Swing
   roles:
-    Season: Male Swing
-    Mary Poppins: Policeman, Ensemble
-    Sister Act: Ernie, Cab Driver, Homeless, Altar Boy, Drag Queen
-    The Music Man: Ewart Dunlop, Salesman
-    Little Shop: Patrick Martin, Skip Snip, Mrs. Luce, Bernstein, Customer
+    Mary Poppins:
+      - Policeman
+      - Ensemble
+    Sister Act:
+      - Ernie
+      - Cab Driver
+      - Homeless
+      - Altar Boy
+      - Drag Queen
+    The Music Man:
+      - Ewart Dunlop
+      - Salesman
+    Little Shop:
+      - Patrick Martin
+      - Skip Snip
+      - Mrs. Luce
+      - Bernstein
+      - Customer
   bio_approved: true
   bio: >
     Doug Schneider is stoked to be making his Post Playhouse debut this summer! Doug is a rising junior musical theatre major at Shenandoah Conservatory and a Syracuse, New York native. Some previous credits include Billy Crocker in _Anything Goes_, Brett Sampson in _13: The Musical_, Ernst in _Spring Awakening_, Leaf Coneybear in _The 25th... Spelling Bee_, and the male swing in _Nice Work If You Can Get It_. Huge shoutout to mom, dad, and everyone who has helped him to pursue his passion and follow his dreams.
@@ -750,7 +828,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Constable Locke
+    The Music Man:
+      - Constable Locke
   bio_approved: true
   bio: >
     Wally is returning to the Post Playhouse, Inc., for an eighth season and can't think of a better way to spend a summer.  Previously, he has appeared on the Playhouse stage as Andrew Carnes (_Oklahoma!_), Pawnee Bill (_Annie Get Your Gun_), Baron Elberfeld (_The Sound of Music_), Arvide Abernathy (_Guys and Dolls_), Russell Tinsworthy (_Nine to Five_), Ensemble (_Hollywood: a Cabaret_), Baldy (_A Man of No Importance_), the King (_Cinderella_), Mayor Rufus Poindexter and Senator Wingwoah (_The Best Little Whorehouse in Texas_), Sir Not Appearing and Monk (_Spamalot_) and Bookseller and Ensemble (_Beauty and the Beast_), Ziggy and Mr. Hilltop (_Young Frankenstein_), Everett Baker (_Crazy for You_), Father Alexandrios (_Mamma Mia!_), Principal/Ensemble (_Footloose_), Ensemble (_Chitty Chitty..._), and Abner (_42nd Street_).  Wally is grateful to be a part of the magic that is created on the stage of the Post Playhouse, Inc.
@@ -774,10 +853,16 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Mrs. Correy, Ensemble
-    Sister Act: Mary Theresa
-    The Music Man: Mrs. Squires
-    Frog & Toad: Bird, Ensemble
+    Mary Poppins:
+      - Mrs. Correy
+      - Ensemble
+    Sister Act:
+      - Mary Theresa
+    The Music Man:
+      - Mrs. Squires
+    Frog & Toad:
+      - Bird
+      - Ensemble
   bio_approved: true
   bio: >
     Brynn, originally from Muscatine, Iowa, is so happy to be back in the Midwest making her Post Playhouse debut! Regional credits include: Spotlight Repertory Theatre: _Mamma Mia!_ (Sophie), Weathervane Theatre: _Hairspray_ (Amber), _Anne of Green Gables_ (Anne), _West Side Story_ (Anybodys), _Gypsy_ (Thelma), Timbers Dinner Theatre: _Music In Time_ (Emma).  BFA in Musical Theatre: Shenandoah Conservatory. Endless thanks to this cast, crew, and creative team for 14 weeks of fun! [www.brynnsweere.com](https://www.brynnsweere.com)
@@ -810,8 +895,11 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Katie Nanna, Ensemble
-    The Music Man: Eulalie Shinn
+    Mary Poppins:
+      - Katie Nanna
+      - Ensemble
+    The Music Man:
+      - Eulalie Shinn
   bio_approved: true
   bio: >
     Tyler is thrilled to be a part of Post Playhouse's 2019 season. Tyler is a recent graduate of the BFA Musical Theatre Performance program at Columbia College Chicago. Previous credits include _Caroline Or Change_ and _9 to 5_ (Firebrand Theatre) _The Full Monty_ and _A New Brain_ (Theo Ubique), _High Fidelity_ (Refuge Theatre Project), _Tonya & Nancy: The Rock Opera_ (Underscore Theatre Company), _Little Me_ and _They’re Playing Our Song_ (Porchlight Music Theatre), _Annie_, _A Gentlemen’s Guide To Love and Murder_ and _The Full Monty_ (Rocky Mountain Repertory Theatre). Find out more about Tyler at [tylersymone.com](http://tylersymone.com). Tyler is proudly represented by the agents at Shirley Hamilton Inc.
@@ -823,10 +911,17 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Neleus, Ensemble
-    Sister Act: Ensemble
-    The Music Man: Tommy Djilas
-    Frog & Toad: Bird, Snail, Ensemble
+    Mary Poppins:
+      - Neleus
+      - Ensemble
+    Sister Act:
+      - Ensemble
+    The Music Man:
+      - Tommy Djilas
+    Frog & Toad:
+      - Bird
+      - Snail
+      - Ensemble
   bio_approved: true
   bio: >
     Jerod Turner is a native to St. Louis, Missouri, but currently resides in Chicago, Illinois. He is enrolled at Columbia College Chicago as a BFA musical theater performance major. Previous credits include work at The Muny in St. Louis, Navy Pier in Chicago, and productions at Columbia. He is absolutely thrilled to be making his Post Playhouse debut!
@@ -860,7 +955,8 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Jane
+    Mary Poppins:
+      - Jane
   bio_approved: true
   bio: >
     Keslyn May Vogel is supercalifragilisticexpialidociously thrilled to be back at Post Playhouse for her 5th season, performing the role as Jane Banks in Mary Poppins. She is 11 years old and will be entering the 6th grade in the fall of 2019 at Crawford Elementary. Keslyn’s previous roles at Post include Jemima in _Chitty Chitty Bang Bang_, Little Fiona in _Shrek The Musical_, being a mouse and carriage driver in _Roger and Hammerstein’s Cinderella_, and also performed as Marta von Trapp in _The Sound of Music_. Also, as Wendy in The Missoula Children’s Theater, _Peter and Wendy_. Her interests outside of acting are collecting rocks, playing basketball, drawing, playing the trumpet and violin, and singing in church. She loves to study anything science related and watching the National Georgraphic Channel! Thank you to Dwayne and Tom for allowing me this amazing opportunity to be a part of the “family” at the best Playhouse in Nebraska!  Also, thank you to my mom, dad, and my three siblings for all their support without which this would not be possible! What a magical season it is going to be!
@@ -872,8 +968,10 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Jane
-    The Music Man: Amaryllis
+    Mary Poppins:
+      - Jane
+    The Music Man:
+      - Amaryllis
   bio_approved: true
   bio: >
     Sara Rose Smith is 13 years old, homeschooled, and will be in the 9th grade. She lived in Colorado Springs, CO, for 7 years before moving to Chadron NE, in 2013 and is a current resident. She was introduced to acting at age 9 after performing Missoula Children’s Theater _The Jungle Book_ as --- Luna the Wise Wolf. Other Experiences include: Stars of Tomorrow Talent Show --- Gymnastics routine (1st Place). Missoula Children’s Theater _Peter and Wendy_ --- Shadow (Received an acting award). _Annie Jr._ Chadron High School Presentation --- Duffy the Orphan. Missoula Children’s Theater _Gulliver’s Travels in Space_ --- a Robot. Stars of Tomorrow Talent Show --- Gymnastics routine (3rd Place). Post Playhouse _Chitty Chitty Bang Bang_ --- Jemima. Missoula Children’s Theater _Snow White and the Seven Dwarfs_ --- Evil Queen. Stars of Tomorrow Talent Show --- 2 group square dances (1st and 2nd places). Felicity American Girl Doll Play --- Director. Ongoing self-directing YouTube videos. She is excited to return to the Post Playhouse for her second year. She would like to thank all her family for all their time and support for her. And thanks to Tom and Dwayne for another Supercalifragilisticexpialidocious opportunity!
@@ -885,8 +983,10 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Michael
-    The Music Man: Ensemble
+    Mary Poppins:
+      - Michael
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Hunter Owens is an 11 year old from Crawford, NE. This is his third year at the Post Playhouse. He played Young Shrek and Little Pig in _Shrek_, Jeremy in _Chitty Chitty Bang Bang_ and is Michael this year in _Mary Poppins_. He enjoys playing piano, any kind of art, and spending time with his family and animals. He welcomes you all to our beautiful area of Nebraska!
@@ -898,8 +998,10 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Michael
-    The Music Man: Winthrop Paroo
+    Mary Poppins:
+      - Michael
+    The Music Man:
+      - Winthrop Paroo
   bio_approved: true
   bio: >
     Joshua Smith is 11 years old, homeschooled, and will be in the 7th grade. Born in Colorado Springs, CO. Moved to Chadron NE at age 5. Acting experiences include Post Playhouse role as Jeremy in _Chitty Chitty Bang Bang_; Missoula Children’s Theater: Wolfie in _The Jungle Book_, Michael in _Peter and Wendy_, Yahoo in _Gulliver’s Travels in Space_, and Fernando in _Snow White And The Seven Dwarfs_; Stars of Tomorrow Talent Show: "Gregorian chant" (3rd Place), "Taps on Trumpet" (3rd Place), "Homeschool Line Dance" (1st place), "Homeschool Square Dance" (2nd place); _Annie Jr._ Chadron High School Presentation --- Sandy and Ensemble; Felicity American Girl Play performance at Pioneer Manor (Haysprings) --- Father; Ongoing self-directing YouTube videos. He is excited to return to the Post Playhouse for his second year. He would like to thank all his family for all their time and support for him. And thank Tom And Dwayne for fantasmagorical opportunity.
@@ -911,7 +1013,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Winthrop Paroo
+    The Music Man:
+      - Winthrop Paroo
   bio_approved: true
   bio: >
     Gunner Joseph Lemmon is 11 years old & from Crawford, NE. He attends Crawford Elementary and will be entering the 6th grade this fall. Gunner loves singing, playing the piano and playing video games. He is the youngest of 4 children. Gunner began singing and playing the piano at the age of 5. Last year was his first season here at the Post. He enjoyed his experience so much he had to return to the lights and sounds of the playhouse.
@@ -923,7 +1026,9 @@
   groups:
     - cast
   roles:
-    The Music Man: Amaryllis, Gracie Shinn (swing)
+    The Music Man:
+      - Amaryllis
+      - Gracie Shinn (swing)
   bio_approved: true
   bio: >
     Kendall Victory is honored to be returning to the Post Playhouse for her 3rd season! She is a 5th grade student at Crawford Elementary. Her past credits at the Post Playhouse include Young Fiona in _Shrek the Musical_ and one of the gutter kids (Ensemble) in _Chitty Chitty Bang Bang_. Kendall likes to read, draw, play volleyball and spend time with her family. But making music is what she loves to do the most!! She plays the piano and French Horn and loves to sing with her sister, dad and sing in church. This year she gets to sing and play both instruments in _The Music Man_ and is beyond ecstatic!! Kendall would like to thank Tom and Dewayne for giving her another awesome opportunity to learn and grow in music!!
@@ -935,7 +1040,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Gracie Shinn
+    The Music Man:
+      - Gracie Shinn
   bio_approved: true
   bio: >
     Grace Dreyer is extremely excited to be joining the Post Playhouse for her first season. She was born in Rochester, MN and moved to the Hay Springs, Nebraska area with her family when she was three years old. She is currently 10 years old, homeschooled, and will be a fifth grader next fall. Grace enjoys playing the piano, art, quilting, reading, riding bike, goofing around with her three brothers, and spending time with her friends and extended family. Grace was introduced to theatre through Missoula Children's Theatre and played the roles of cloud #1 in _Peter and Wendy_ and Dwarf #2 in _Snow White_. She is looking forward to learning, working, and being inspired by the professionals at the Post Playhouse this summer. She would like to thank Tom Ossowski and Dewayne Barrett for this amazing opportunity and everyone at the Post Playhouse for their kindness and encouragement!
@@ -948,7 +1054,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Ensemble
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Justus is a 7th Grader from Crawford NE. This is his second year at the Post Playhouse. Originally from Pierre, South Dakota, he is the youngest of 6 children Justus is an avid reader, he plays the trombone and taught himself how to play piano. Last year, He played Father Darling in the Missoula Children’s Theatre production of _Peter and Wendy_.  Justus would like to be a professional actor when he grows up and he is looking forward to another summer of hard work, fun and learning with the cast of _The Music Man_.
@@ -961,7 +1068,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Ensemble
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Inspired by his older brother, Boady Hunter is excited for the opportunity to join _The Music Man_ cast for the 2019 Post Playhouse season!  Boady is from Hemingford, Nebraska and will be a 7th grader at Hemingford Junior Highschool this fall.  Boady enjoys performing and has had the rolls of LeRoy in _The Best Christmas Pageant Ever_; Al in _On The Worst Day of Christmas_; Policeman/Ensemble in _Elf Jr. The Musical_; and an Oompa Loompa in _Willie Wonka and the Chocolate Factory_.
@@ -974,7 +1082,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Ensemble
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Taren Hunter is excited to be joining _The Music Man_ cast!  He will be a high school freshman this fall and calls Hemingford, Nebraska home. You may remember him as Tobi in _Chitty, Chitty, Bang, Bang_ from the 2018 Post Playhouse season.  Other past rolls include Charles Seabury in _Hollywood Hillbillies_; Jake Marley in _A Seussified Christmas Carol_; Rolf Rizzo in _Night at the Wax Museum_; Adam McCafee in _On The Worst Day of Christmas_; Michael Hobbs in _Elf Jr. The Musical_; and was tech crew for the one-act plays _At the Bottom of Lake Missoula_ and _Lagooned_.
@@ -987,7 +1096,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Ensemble
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Spencer is a Junior in high school, and has been in many different musicals, such as _Shrek_ and _Guys and Dolls_ at his high school. He has also been in one act performances at the local high school such as "John Lennon and Me" and "Rosie the Riveter". He was in 2 shows last year here at the Post Playhouse.
@@ -1000,7 +1110,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Ensemble
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Connor Butler is 100% Nebraska cowboy. When he’s not galloping across his family’s horse ranch on his trusty pony, Shaggy, or forging steel at their horseshoeing school, you can usually find him behind his little camera, directing Westerns starring his siblings and cousins --- or in front of the camera, filling roles left by his limited cast. He can often be heard practicing his yodeling or strumming on his ukulele and singing, and there is always evidence of his presence left wherever he’s been in the form of his funny and detailed sketches. Connor is smack dab in the middle of four siblings and will attend 4th grade at Hemingford Elementary this fall, where he is excited to participate in his fourth year of the Hemingford Holiday Play in December.
@@ -1013,7 +1124,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Ensemble
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Gabriel Frazee is ecstatic to join the Post Playhouse team this year in The Music Man. Gabriel is a 5th grader from Crawford NE. He enjoys riding horses, basketball, reading and playing his saxophone and xylophone. Gabriel performed for the first time in _Peter and Wendy_ as Micheal through the Missoula Children's Theatre. Gabriel would like to thank Tom, Dewayne and the Post Playhouse team for this exciting opportunity!
@@ -1026,7 +1138,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Ensemble
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Jaelyn Brown is the 11 year-old daughter of Tiffany Brown-Waldron and Jay Waldron and the late Rob Brown. She will be a 6th grader at Chadron Middle School this fall. Jaelyn began dancing for The Dance Boutique in Chadron when she was 3 years-old and enjoys attending dance conventions and competitions. Besides performing on stage, she also loves playing basketball, volleyball and softball. Jaelyn is excited to return to the Post Playhouse this summer after performing in last year’s _Chitty Chitty Bang Bang_. Thank you to Dewayne and Tom for giving her this opportunity!
@@ -1039,7 +1152,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Ensemble
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Jacee Rayne Bates was born and raised in Chadron, Nebraska. She is 14 years old and will be a freshman in high school in the fall of 2019. She played the lead role in _Annie Jr._ in 7th grade, is a member of Jr. Cardinal Singers, and she won 2nd place in the Stars of Tomorrow Contest singing the national anthem when she was in third grade. Jacee loves singing, acting, drawing and playing her many instruments. She competed at the State Spelling Bee in 2018 and has been a member of the Scholastics Team for 7th and 8th grade. Her favorite subject in school is science and her dream job is to be a voice actress. Something that most people don’t know about Jacee is that she loves to draw and write characters when she’s not learning how to play random instruments by ear. Currently, Jacee is enjoying her summer vacation and can be seen in _The Music Man_ production.
@@ -1052,7 +1166,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Ensemble
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Kember  Mittan was born in Fremont NE. She grew up in Mead NE, Maxwell NE and recently moved to Crawford where she will be entering the 6th grade in the fall. Kember loves to ride her horse, hunting with her family,  running, and volleyball . She has a profound love of animals and plans to become a veterinarian.
@@ -1065,7 +1180,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Ensemble
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Bill Huntington grew up on a farm near Hay Springs in Northwest Nebraska. He attended a rural grade school where he was in the usual Christmas productions and others. Bill attended High School at Rushville and college at Chadron State College and graduated with a BA degree in Business Administration. He worked for a newspaper for 9 years, at a Rural Power Company for 23 years and for Walmart for 16 1/2 years retiring in December 2017. He was involved with the Sheridan County Players at the Historic Plains Theater in Rushville doing 9 or 10 productions with them. He was the Jester in _Once Upon A Mattress_, a priest and apostle in _Jesus Christ Superstar_, Noodler in _Peter Pan_, Lord Montague in _Romeo and Juliet_ to name a few. Bill had to give up his time with the Sheridan County Players because of work, but since he is now retired, he is able to get back in to the theater. Bill has attended all 5 productions at Post Playhouse for the last several years and is now looking forward to working with cast and crew this year.
@@ -1078,7 +1194,8 @@
   groups:
     - cast
   roles:
-    The Music Man: Ensemble
+    The Music Man:
+      - Ensemble
   bio_approved: true
   bio: >
     Dara is very excited for her first year at the Post! A native of Nebraska, she recently graduated from Chadron State College with an Interdisciplinary degree. She plans to go on for a degree in vocal performance this fall. She would like to thank everyone at the Post for this amazing opportunity and hopes we all have an amazing summer!
@@ -1091,7 +1208,8 @@
   groups:
     - cast
   roles:
-    Mary Poppins: Willoughby
+    Mary Poppins:
+      - Willoughby
   bio_approved: true
   bio: >
     Jasper is wiggling with joy over his Post Playhouse debut! When Jasper is not onstage he enjoys long walks in the park, snuggles, and playing with his favorite stuffed animals. Jasper would like to thank his mom and dad for spoiling him rotten. Woof!
