@@ -284,6 +284,12 @@
   groups:
     - board
 
+- last_name: Sellman
+  first_name: Annie
+  location: "Chadron, NE"
+  groups:
+    - board
+
 - last_name: Taylor
   first_name: Sara
   image_year: 2024
