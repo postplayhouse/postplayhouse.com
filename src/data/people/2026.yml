@@ -226,14 +226,6 @@
 #
 #
 
-- last_name: Visser
-  first_name: Janelle
-  location: "Hemingford, NE"
-  groups:
-    - board
-  image_year: 2019
-  image_file: janelle-visser.jpg
-
 - last_name: Seiler
   first_name: Wally
   location: "Alliance, NE"
