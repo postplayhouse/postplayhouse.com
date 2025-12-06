@@ -111,6 +111,13 @@ const baseEventSchema = z.strictObject({
 			image: z.string().optional(),
 		})
 		.nullish(),
+
+	// Must be present for ease of use only (could also just be in Production Base, but would require more runtime changes)
+	pre_title: z.string().optional(),
+	opening: z.iso.date().optional(),
+	writers: z.string().nullish(),
+	rating: z.enum(["G", "H", "PG"]).optional(),
+	rating_explanation: z.string().optional(),
 })
 
 export type ActualBaseEvent = z.infer<typeof baseEventSchema>
@@ -118,11 +125,7 @@ export type ActualBaseEvent = z.infer<typeof baseEventSchema>
 const baseProductionSchema = z.strictObject({
 	...baseEventSchema.shape,
 	pre_title: z.string().optional(),
-	rating: z.enum(["G", "H", "PG"]).optional(),
-	rating_explanation: z.string().optional(),
 	color: z.enum(["red", "purple", "yellow", "blue", "green"]).optional(),
-	opening: z.iso.date().optional(),
-	writers: z.string().nullish(),
 	roles_sorting: z.array(z.string()).nullish(),
 	belongs_to_series: z.undefined(),
 	special_event: z.undefined(),

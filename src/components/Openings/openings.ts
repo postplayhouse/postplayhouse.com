@@ -10,16 +10,17 @@ export function findClosingDate(
 	productions: Array<Pick<Production, "dates">>,
 ): `${number}-${number}-${number}` {
 	const eachProductionDates = productions.map((prodData) => {
-		const venueDates = Object.entries(prodData.dates).map(([_, dateString]) =>
-			dslToData(
-				{
-					year,
-					venue: "",
-					title: "",
-					color: "",
-				},
-				dateString,
-			),
+		const venueDates = Object.entries(prodData.dates || {}).map(
+			([_, dateString]) =>
+				dslToData(
+					{
+						year,
+						venue: "",
+						title: "",
+						color: "",
+					},
+					dateString,
+				),
 		)
 
 		return combineShows(...venueDates)

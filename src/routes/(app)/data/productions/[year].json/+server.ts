@@ -6,15 +6,11 @@ import { assert, asserted } from "$helpers"
 
 export const prerender = true
 
-function isProduction(
-	x: (typeof data.productions)[string][number],
-): x is Production {
+function isProduction(x: __BaseEvent): x is Production {
 	return !x.special_event
 }
 
-function isSpecialEvent(
-	x: (typeof data.productions)[string][number],
-): x is SpecialEvent {
+function isSpecialEvent(x: __BaseEvent): x is SpecialEvent {
 	return !!x.special_event
 }
 
@@ -43,7 +39,10 @@ function isNotPartOfSeries(x: SpecialEvent) {
 }
 
 export const GET: RequestHandler = (req) => {
-	const events = asserted(data.productions[req.params["year"] as string])
+	const events = asserted(
+		data.productions[req.params["year"] as keyof typeof data.productions],
+		`No production data found for year ${req.params["year"]}`,
+	)
 	const productions: Production[] = events.filter(isProduction) || []
 
 	const specialEvents: SpecialEvent[] =

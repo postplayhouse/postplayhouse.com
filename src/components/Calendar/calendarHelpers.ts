@@ -242,7 +242,7 @@ export function getWeeksFromProductions(
 	}>
 > {
 	const productionDates = productions.map((prodData) => {
-		const venueDates = Object.entries(prodData.dates).map(
+		const venueDates = Object.entries(prodData.dates || {}).map(
 			([venue, dateString]) =>
 				dslToData(
 					{

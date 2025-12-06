@@ -14,6 +14,19 @@
 	import TicketsButton from "../TicketsButton.svelte"
 	import DynamicCurrentSeasonImage from "../DynamicCurrentSeasonImage.svelte"
 	import { findClosingDate } from "./openings"
+	import z from "zod"
+
+	const guaranteedOpeningSchema = z.array(
+		z.looseObject({
+			opening: z.iso.date(),
+		}),
+	)
+
+	function assertProdsHaveOpenings<P>(
+		productions: P[],
+	): asserts productions is (P & { opening: string })[] {
+		guaranteedOpeningSchema.parse(productions)
+	}
 
 	type Props = {
 		season: Date.Year
@@ -31,6 +44,8 @@
 		seasonArtworkImage,
 		ticketAvailability,
 	}: Props = $props()
+
+	assertProdsHaveOpenings(productions)
 
 	let closingDate = $derived(findClosingDate(season, productions))
 
@@ -104,7 +119,7 @@
 			/>
 		</div>
 		<div class="shrink-0 text-center md:text-left">
-			<Markdown source={openingSoon.writers} />
+			<Markdown source={openingSoon.writers || undefined} />
 		</div>
 	</div>
 
