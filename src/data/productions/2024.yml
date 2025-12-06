@@ -137,6 +137,7 @@
   short_title: Little Shop
   special_event: true
   belongs_to_series: Movie Musical Series
+  color: x
   description: |
     A nerdy florist finds his chance for success and romance with the help of a giant man-eating plant who demands to be fed. Provided through Swank Motion Pictures, Inc.
 
