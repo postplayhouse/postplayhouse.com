@@ -1,10 +1,5 @@
 import z from "zod"
 
-export const bioCheckEmailsSchema = z.strictObject({
-	submit_subject: z.string(),
-	submit_body: z.string(),
-})
-
 export const businessesSchema = z.array(
 	z.strictObject({
 		name: z.string(),
@@ -175,7 +170,6 @@ export const productionsSchema = z.record(
 export type ActualProductionsByYear = z.infer<typeof productionsSchema>
 
 export const yearlyDataSchema = z.strictObject({
-	bio_check_emails: bioCheckEmailsSchema,
 	businesses: businessesSchema,
 	people: peopleSchema,
 	productions: productionsSchema,
