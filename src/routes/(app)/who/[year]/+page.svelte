@@ -7,9 +7,10 @@
 		sortBoardMembers,
 		isOnlyActing,
 	} from "$helpers"
+	import site from "$data/site"
 
 	let { data } = $props()
-	let { site, year, people: people_ } = $derived(data)
+	let { year, people: people_ } = $derived(data)
 
 	let shouldFilterActors = $derived(
 		site.season.toString() === year && site.castingComplete === false,

@@ -18,7 +18,7 @@
 				alt="Post Playhouse Title Logo"
 				class="hidden dark:block"
 			/>
-			<h1 class="hidden">{site.title}</h1>
+			<h1 class="hidden">Post Playhouse</h1>
 		</a>
 		<h2 class="text-center text-xl font-thin tracking-wide">
 			Professional talent from across the country...

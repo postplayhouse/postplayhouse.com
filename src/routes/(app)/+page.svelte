@@ -2,6 +2,7 @@
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
+	import site from "$data/site"
 
 	let { data } = $props()
 
@@ -17,19 +18,13 @@
 <svelte:head>
 	<title>Post Playhouse</title>
 
-	<meta
-		name="description"
-		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
-	/>
+	<meta name="description" content={site.description} />
 	<link rel="canonical" href="https://postplayhouse.com" />
 
 	<!-- Facebook Meta Tags -->
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Post Playhouse" />
-	<meta
-		property="og:description"
-		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
-	/>
+	<meta property="og:description" content={site.description} />
 </svelte:head>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">

@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit"
-import site from "../../../../data/site"
+import site from "$data/site"
 
 type ResponseData =
 	| {
@@ -34,7 +34,6 @@ export async function load(obj) {
 		productions: Production[]
 		specialEvents: SpecialEvent[]
 		series: Series[]
-		site: typeof import("../../../../data/site").site
 	}
 
 	if (res.status === 200) {

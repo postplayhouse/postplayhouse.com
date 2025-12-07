@@ -6,7 +6,6 @@ export async function load(obj) {
 
 	if (res.status === 200) {
 		return {
-			site: data.site as typeof import("../../../../data/site").site,
 			people: data.people as YamlPerson[],
 			year: obj.params["year"],
 		}

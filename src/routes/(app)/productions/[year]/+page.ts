@@ -32,7 +32,6 @@ export async function load(obj) {
 		productions: Production[]
 		specialEvents: SpecialEvent[]
 		series: Series[]
-		site: typeof import("../../../../data/site").site
 	}
 
 	if (res.status === 200) {
