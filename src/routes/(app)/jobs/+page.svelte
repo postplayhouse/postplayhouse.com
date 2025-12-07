@@ -2,6 +2,7 @@
 	import * as site from "$data/site"
 	import Markdown from "$components/Markdown.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
+	import { PUBLIC_BUILD_URL } from "$env/static/public"
 
 	let { data } = $props()
 	const { posts } = data
@@ -81,14 +82,14 @@
 		<ul class="my-4 list-none p-0">
 			<li>
 				RSS:
-				<a class="link-green" href="{site.url}/jobs/feeds/rss"
-					>{site.url}/jobs/feeds/rss</a
+				<a class="link-green" href="{PUBLIC_BUILD_URL}/jobs/feeds/rss"
+					>{PUBLIC_BUILD_URL}/jobs/feeds/rss</a
 				>
 			</li>
 			<li class="mt-2">
 				JSON Feed:
-				<a class="link-green" href="{site.url}/jobs/feeds/json"
-					>{site.url}/jobs/feeds/json</a
+				<a class="link-green" href="{PUBLIC_BUILD_URL}/jobs/feeds/json"
+					>{PUBLIC_BUILD_URL}/jobs/feeds/json</a
 				>
 			</li>
 		</ul>

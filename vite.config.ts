@@ -17,7 +17,10 @@ const buildUrl = live
 		? process.env.DEPLOY_PRIME_URL || liveUrl
 		: "http://localhost:3000"
 
-export default defineConfig({
+/** Will be available via sveltekit's $env imports */
+process.env.PUBLIC_BUILD_URL = buildUrl
+
+export default defineConfig(() => ({
 	plugins: [
 		tailwindcss(),
 		enhancedImages(),
@@ -69,4 +72,4 @@ export default defineConfig({
 	build: {
 		sourcemap: true,
 	},
-})
+}))

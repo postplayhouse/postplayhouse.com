@@ -1,11 +1,10 @@
 import { marked } from "marked"
 
 import postsData from "../_posts-metadata"
-import * as site from "$data/site"
+import { PUBLIC_BUILD_URL } from "$env/static/public"
+import { asset } from "$app/paths"
 
-export const professionalsPage = `${site.url}/jobs`
-
-export const feedUpdatedDate = new Date().toISOString()
+const professionalsPage = `${PUBLIC_BUILD_URL}/jobs`
 
 export const feed = {
 	updatedDate: new Date().toISOString(),
@@ -14,7 +13,7 @@ export const feed = {
 	description:
 		"Though the latest information is available on the site, we update this feed when new job opportunities and auditions are announced.",
 	feedsUrlBase: `${professionalsPage}/feeds`,
-	icon: `${site.url}/${site.icon}`,
+	icon: `${PUBLIC_BUILD_URL}${asset("/images/post-playhouse-logo.png")}`,
 }
 
 const dateInNebraska = (dateArg: ConstructorParameters<typeof Date>[0]) =>
