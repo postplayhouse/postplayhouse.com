@@ -10,14 +10,17 @@
 	import PreviousHeadshotPicker from "./PreviousHeadshotPicker.svelte"
 	import type { FormEventHandler } from "svelte/elements"
 	import { dev } from "$app/environment"
+	import { getEvents } from "$data/events.remote"
 
 	let { data } = $props()
 
 	const devFormFeedback = dev && true
 	const startOnFormScreen = dev && true
 
-	const { disabled, productions: productions_, imageFiles } = data
-	const productions = productions_.map((p) => p.title)
+	let { productions: productions_ } = $derived(await getEvents(site.season))
+
+	const { disabled, imageFiles } = data
+	const productions = $derived(productions_.map((p) => p.title))
 
 	onMount(() => {
 		if (!window.fetch) dispatch(events.foundNoFetch)

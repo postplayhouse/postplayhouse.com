@@ -46,6 +46,11 @@ export const yearsAsNumbers = z.literal([
 	2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
 ])
 
+export const yearStringToNumber = z.codec(yearsAsString, yearsAsNumbers, {
+	encode: (val) => val.toString() as z.infer<typeof yearsAsString>,
+	decode: (val) => parseInt(val) as z.infer<typeof yearsAsNumbers>,
+})
+
 export type YearAsString = z.infer<typeof yearsAsString>
 export type YearAsNumber = z.infer<typeof yearsAsNumbers>
 

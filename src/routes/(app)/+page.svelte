@@ -3,9 +3,10 @@
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
 
-	let { data } = $props()
+	import site from "$data/site"
+	import { getEvents } from "$data/events.remote"
 
-	const { productions, season } = data
+	let { productions } = $derived(await getEvents(site.season))
 
 	let showMailingList = $state(false)
 
@@ -33,7 +34,7 @@
 </svelte:head>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
-	<Openings {season} {productions} />
+	<Openings season={site.season} {productions} />
 </div>
 
 <div class="flex-row-reverse items-stretch md:flex">

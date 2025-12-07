@@ -1,6 +1,8 @@
 <script lang="ts">
-	let { data } = $props()
-	const { productions } = data
+	import { getEvents } from "$data/events.remote.js"
+	import site from "$data/site.js"
+
+	let { productions } = $derived(await getEvents(site.season))
 </script>
 
 <div class="via-markdown">
