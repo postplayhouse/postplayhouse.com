@@ -23,6 +23,10 @@ const config = {
 			$helpers: "src/helpers",
 			$models: "src/models",
 		},
+		experimental: { remoteFunctions: true },
+	},
+	compilerOptions: {
+		experimental: { async: true },
 	},
 }
 
