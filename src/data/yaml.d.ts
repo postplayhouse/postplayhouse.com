@@ -12,7 +12,7 @@ import type {
 	ActualBaseEvent,
 	ActualBaseProduction,
 	YearAsString,
-} from "./_yaml"
+} from "./validation"
 
 declare global {
 	namespace Date {
