@@ -6,7 +6,7 @@ feed: false
 
 Producing Artistic Director Andy Meyers is now accepting auditions for the 2023
 Professional Company on a rolling basis. We are looking for professional actors
-to fill out multiple roles in [our Summer 2023 productions](__URL__/productions/2023):
+to fill out multiple roles in [our Summer 2023 productions](__PUBLIC_BUILD_URL__/productions/2023):
 
 - Leader of the Pack
 - Clue the Musical

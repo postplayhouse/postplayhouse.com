@@ -36,7 +36,7 @@ export default defineConfig(() => ({
 				// we are replacing content.) So in cases where we need to replace an
 				// actual string in our code, we just need to wrap it up like an actual
 				// string. See an example in the `data/site.ts` file.
-				__URL__: buildUrl,
+				__PUBLIC_BUILD_URL__: buildUrl,
 			},
 			preventAssignment: true,
 		}),
