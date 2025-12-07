@@ -1,27 +1,5 @@
 import z from "zod"
 
-export const businessesSchema = z.array(
-	z.strictObject({
-		name: z.string(),
-		site: z.string().optional(),
-		type: z.array(z.string()),
-		supporter: z.boolean().optional(),
-		address: z
-			.strictObject({
-				street: z.string().nullable(),
-				city: z.string(),
-				state: z.string(),
-				zip: z.number().nullable(),
-			})
-			.optional(),
-		prettyURL: z.string().optional(),
-		phone: z.string().nullish(),
-		about: z.string().optional(),
-	}),
-)
-
-export type ActualBusiness = z.infer<typeof businessesSchema>[number]
-
 export const yearsAsString = z.enum([
 	"2015",
 	"2016",
@@ -170,7 +148,6 @@ export const productionsSchema = z.record(
 export type ActualProductionsByYear = z.infer<typeof productionsSchema>
 
 export const yearlyDataSchema = z.strictObject({
-	businesses: businessesSchema,
 	people: peopleSchema,
 	productions: productionsSchema,
 })

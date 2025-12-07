@@ -1,12 +1,6 @@
 <script lang="ts">
 	import Markdown from "$components/Markdown.svelte"
-	import type yamlData from "$data/_yaml"
-
-	type Props = { data: typeof yamlData }
-
-	let { data }: Props = $props()
-
-	const { businesses } = $state(data)
+	import { businesses } from "./businesses"
 </script>
 
 <h2 class="h2">Nearby Activities, Attractions, Food, and Lodging</h2>
