@@ -13,9 +13,7 @@ const boxOfficePhone = "1-888-665-1976"
 // Sapper. For now, for backward compatibility, it is all just here.
 export const site = {
 	url: "__URL__", // replaced by vite.config.ts
-	maintainerEmail: "don@postplayhouse.com",
 	icon: "/images/post-playhouse-logo.png",
-	title: "Post Playhouse",
 	castingComplete: prod ? castingComplete : true,
 	season: 2026 satisfies Date.Year,
 	description:
