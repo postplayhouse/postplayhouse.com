@@ -1,7 +1,7 @@
 import { prerender } from "$app/server"
 import { assert } from "$helpers"
 import yamlData from "./_yaml"
-import site from "./site"
+import * as site from "./site"
 import { yearsAsNumbers } from "./validation"
 
 type EventsData =

@@ -1,6 +1,6 @@
 import { prerender } from "$app/server"
 import yamlData from "./_yaml"
-import site from "./site"
+import * as site from "./site"
 import { yearsAsNumbers, yearsAsString } from "./validation"
 
 export const getYearsWithPeople = prerender(() => {

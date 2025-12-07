@@ -10,7 +10,7 @@
 	import { getPeople } from "$data/people.remote.js"
 	import { page } from "$app/state"
 	import { yearStringToNumber } from "$data/validation.js"
-	import site from "$data/site.js"
+	import * as site from "$data/site.js"
 
 	let year = $derived(yearStringToNumber.parse(page.params.year))
 	let { people: people_ } = $derived(await getPeople(year))

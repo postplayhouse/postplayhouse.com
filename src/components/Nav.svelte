@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { dev } from "$app/environment"
-	import site from "$data/site"
+	import * as site from "$data/site"
 
 	type Props = {
 		activePath: string

@@ -15,7 +15,7 @@ there are some 200+ errors at the time of writing this. So a runtime check is
 better for now.
 -->
 <script module lang="ts">
-	import site from "$data/site"
+	import * as site from "$data/site"
 	import { objectKeys } from "$helpers"
 	const importMeta: Parameters<typeof makeFindImages>[0] = import.meta.glob(
 		// This year portion of this string needs to be updated each year.

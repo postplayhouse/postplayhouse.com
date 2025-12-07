@@ -22,7 +22,7 @@
 	import PersonImage from "$components/PersonImage.svelte"
 	import Markdown from "$components/Markdown.svelte"
 	import { getEvents } from "$data/events.remote.js"
-	import site from "$data/site.js"
+	import * as site from "$data/site.js"
 	import { getPeople } from "$data/people.remote.js"
 
 	function renameImgFile(imgPath: string, newBaseNameWithoutExt: string) {

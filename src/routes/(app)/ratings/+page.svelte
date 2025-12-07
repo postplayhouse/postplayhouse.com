@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getEvents } from "$data/events.remote.js"
-	import site from "$data/site.js"
+	import * as site from "$data/site.js"
 
 	let { productions } = $derived(await getEvents(site.season))
 </script>

@@ -3,7 +3,7 @@
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
 
-	import site from "$data/site"
+	import * as site from "$data/site"
 	import { getEvents } from "$data/events.remote"
 
 	let { productions } = $derived(await getEvents(site.season))

@@ -3,7 +3,7 @@
 	import Calendar from "$components/Calendar/Calendar.svelte"
 	import Markdown from "$components/Markdown.svelte"
 	import { getEvents } from "$data/events.remote.js"
-	import site from "$data/site"
+	import * as site from "$data/site"
 	import { yearStringToNumber } from "$data/validation.js"
 
 	let year = $derived(yearStringToNumber.parse(page.params.year))

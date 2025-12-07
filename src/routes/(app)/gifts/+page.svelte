@@ -1,5 +1,5 @@
 <script lang="ts">
-	import site from "$data/site"
+	import * as site from "$data/site"
 	import { dateIsBetween } from "$helpers"
 	const title = "Gifts"
 
