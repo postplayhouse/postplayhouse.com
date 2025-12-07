@@ -1,8 +1,6 @@
 <script lang="ts">
 	import Markdown from "$components/Markdown.svelte"
-	import { getBusinesses } from "$data/businesses.remote"
-
-	const { businesses } = $derived(await getBusinesses())
+	import { businesses } from "./businesses"
 </script>
 
 <h2 class="h2">Nearby Activities, Attractions, Food, and Lodging</h2>
