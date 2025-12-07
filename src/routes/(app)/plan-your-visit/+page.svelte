@@ -1,12 +1,8 @@
 <script lang="ts">
 	import Markdown from "$components/Markdown.svelte"
-	import type yamlData from "$data/_yaml"
+	import { getBusinesses } from "$data/businesses.remote"
 
-	type Props = { data: typeof yamlData }
-
-	let { data }: Props = $props()
-
-	const { businesses } = $state(data)
+	const { businesses } = $derived(await getBusinesses())
 </script>
 
 <h2 class="h2">Nearby Activities, Attractions, Food, and Lodging</h2>
