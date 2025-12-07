@@ -1,7 +1,7 @@
 import site from "$data/site.js"
 import { error } from "@sveltejs/kit"
 
-const disabled = true
+const disabled = false
 
 // When disabled, prevent hydration
 export const csr = !disabled
