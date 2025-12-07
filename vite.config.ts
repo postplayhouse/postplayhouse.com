@@ -36,8 +36,6 @@ export default defineConfig({
 
 		replacePlugin({
 			values: {
-				"process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-
 				// This one is not escaped because it is already used as a string where
 				// it is invoked. (The content of the Jobs listings are MD files, so
 				// everything inside them is one big string. We are not replacing code,
