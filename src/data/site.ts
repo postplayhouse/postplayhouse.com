@@ -1,4 +1,6 @@
-const prod = process.env.NODE_ENV === "production"
+import { dev } from "$app/environment"
+
+const prod = !dev
 
 // Actual values. If dev, these may change below.
 const castingComplete = false
