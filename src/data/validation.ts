@@ -1,23 +1,16 @@
 import z from "zod"
+import { allYears } from "./site"
 
-export const yearsAsString = z.enum([
-	"2015",
-	"2016",
-	"2017",
-	"2018",
-	"2019",
-	"2020",
-	"2021",
-	"2022",
-	"2023",
-	"2024",
-	"2025",
-	"2026",
-])
+type NumberArrayToStringArray<T extends readonly number[]> = {
+	[K in keyof T]: `${T[K]}`
+}
 
-export const yearsAsNumbers = z.literal([
-	2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
-])
+const yearsStrings = allYears.map(
+	String,
+) as unknown as NumberArrayToStringArray<typeof allYears>
+
+export const yearsAsNumbers = z.literal(allYears)
+export const yearsAsString = z.enum([...yearsStrings])
 
 export const yearStringToNumber = z.codec(yearsAsString, yearsAsNumbers, {
 	encode: (val) => val.toString() as z.infer<typeof yearsAsString>,

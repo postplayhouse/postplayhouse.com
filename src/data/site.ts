@@ -30,12 +30,14 @@ export function ticketsAvailable() {
 	return new Date() >= new Date(ticketsAvailableDate)
 }
 
-export const yearsWithPages = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
-export const yearsWithCalendars = [2020, 2021, 2022, 2023, 2024, 2025, 2026]
+export const allYears = [
+	2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
+] as const
 
-if (!yearsWithCalendars.includes(site.season))
+if (!allYears.includes(site.season)) {
 	throw new Error(
 		"Don't forget to add new seasons here so they appear after the next season rolls over",
 	)
+}
 
 export default site
