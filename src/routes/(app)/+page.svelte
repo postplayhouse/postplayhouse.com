@@ -2,7 +2,7 @@
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
-	import site from "$data/site"
+	import * as site from "$data/site"
 
 	let { data } = $props()
 

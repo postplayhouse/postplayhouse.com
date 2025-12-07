@@ -1,5 +1,5 @@
 <script lang="ts">
-	import site from "$data/site"
+	import * as site from "$data/site"
 	import Markdown from "$components/Markdown.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 

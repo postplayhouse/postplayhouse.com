@@ -1,4 +1,4 @@
-import site from "$data/site.js"
+import * as site from "$data/site.js"
 import { error } from "@sveltejs/kit"
 
 const disabled = false

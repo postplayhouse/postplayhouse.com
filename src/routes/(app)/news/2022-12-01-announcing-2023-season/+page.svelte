@@ -1,7 +1,7 @@
 <script lang="ts">
 	import TicketsButton from "$components/TicketsButton.svelte"
 	import SeasonImage from "$components/SeasonImage.svelte"
-	import site from "$data/site"
+	import * as site from "$data/site"
 	export const title = "Announcing our 2023 Season!"
 </script>
 

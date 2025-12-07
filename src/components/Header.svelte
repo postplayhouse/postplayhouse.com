@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { asset, resolve } from "$app/paths"
-	import site from "$data/site"
+	import * as site from "$data/site"
 	import TicketsButton from "./TicketsButton.svelte"
 </script>
 

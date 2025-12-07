@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Openings from "$components/Openings/Openings.svelte"
-	import site from "$data/site.js"
+	import * as site from "$data/site.js"
 	import { formatDate, getDateFor, getToday } from "$helpers"
 	import { addDays } from "date-fns"
 	import { findClosingDate } from "./openings"

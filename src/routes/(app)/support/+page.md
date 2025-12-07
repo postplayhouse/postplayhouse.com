@@ -6,7 +6,7 @@ title: "Support Post Playhouse"
   import DonateBtn from "$components/DonateBtn.svelte"
   import Mission from "$components/Mission.md"
 
-  import site from "$data/site"
+  import * as site from "$data/site"
 
   import formImg from "./FPP-thumb.png"
 

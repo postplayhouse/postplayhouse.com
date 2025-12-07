@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Production from "$components/Production.svelte"
 	import TicketsButton from "$components/TicketsButton.svelte"
-	import site, { ticketsAvailable } from "$data/site"
+	import * as site from "$data/site"
 	import SponsorPlate from "$components/SponsorPlate.svelte"
 	import SeasonImage from "$components/SeasonImage.svelte"
 
@@ -43,7 +43,7 @@
 	/>
 {/if}
 
-{#if ticketsAvailable() && site.season === year}
+{#if site.ticketsAvailable() && site.season === year}
 	<div class="my-4 text-center">
 		Tickets are on sale now!
 		<br />

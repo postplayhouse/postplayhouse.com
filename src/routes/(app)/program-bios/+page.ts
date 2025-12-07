@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit"
-import site from "$data/site"
+import * as site from "$data/site"
 import { marked } from "marked"
 
 marked.setOptions({ smartypants: true })

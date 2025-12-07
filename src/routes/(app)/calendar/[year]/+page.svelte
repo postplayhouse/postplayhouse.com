@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Calendar from "$components/Calendar/Calendar.svelte"
 	import Markdown from "$components/Markdown.svelte"
-	import site from "$data/site"
+	import * as site from "$data/site"
 
 	let { data } = $props()
 

@@ -1,7 +1,7 @@
 import { error, json } from "@sveltejs/kit"
 import { individualPassphraseDetails } from "../passphraseHelpers"
 import { updateAndPr } from "../githubHelpers"
-import site from "$data/site"
+import * as site from "$data/site"
 import { captureMessage } from "@sentry/sveltekit"
 import { dev } from "$app/environment"
 

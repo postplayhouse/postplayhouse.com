@@ -1,7 +1,7 @@
 import { marked } from "marked"
 
 import postsData from "../_posts-metadata"
-import site from "$data/site"
+import * as site from "$data/site"
 
 export const professionalsPage = `${site.url}/jobs`
 

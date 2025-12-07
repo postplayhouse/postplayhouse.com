@@ -7,7 +7,7 @@
 		sortBoardMembers,
 		isOnlyActing,
 	} from "$helpers"
-	import site from "$data/site"
+	import * as site from "$data/site"
 
 	let { data } = $props()
 	let { year, people: people_ } = $derived(data)
