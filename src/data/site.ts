@@ -7,7 +7,7 @@ const castingComplete_ = false
 const showsAnnounced_ = true as boolean
 
 export const ticketsAvailableDate = "2025-11-15T00:00:00"
-export const url = "__URL__" // replaced by vite.config.ts
+export const url = "__PUBLIC_BUILD_URL__" // replaced by vite.config.ts
 export const castingComplete = prod ? castingComplete_ : true
 export const season = 2026 satisfies Date.Year
 export const description =

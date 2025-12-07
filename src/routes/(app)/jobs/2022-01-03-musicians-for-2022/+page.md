@@ -4,7 +4,7 @@ website: false
 feed: false
 ---
 
-Post Playhouse is back for the [Summer of 2022](__URL__/productions/2022)
+Post Playhouse is back for the [Summer of 2022](__PUBLIC_BUILD_URL__/productions/2022)
 and we are **seeking musicians** for our 5 productions.
 
 ## Positions available
