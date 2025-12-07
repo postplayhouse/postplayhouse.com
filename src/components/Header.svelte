@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { asset, resolve } from "$app/paths"
 	import site from "$data/site"
 	import TicketsButton from "./TicketsButton.svelte"
 </script>
@@ -7,13 +8,13 @@
 	class="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-2 gap-y-8 p-2 sm:flex-nowrap"
 >
 	<div class="max-w-xl">
-		<a href="{site.baseurl}/" title="Post Playhouse" rel="home">
+		<a href={resolve("/")} title="Post Playhouse" rel="home">
 			<img
-				src="{site.baseurl}/images/post-nameplate-colors.svg"
+				src={asset("/images/post-nameplate-colors.svg")}
 				alt="Post Playhouse Title Logo"
 				class="dark:hidden"
 			/><img
-				src="{site.baseurl}/images/post-nameplate-colors_dark.svg"
+				src={asset("/images/post-nameplate-colors_dark.svg")}
 				alt="Post Playhouse Title Logo"
 				class="hidden dark:block"
 			/>
@@ -29,7 +30,7 @@
 		<div class="w-full">
 			<TicketsButton />
 		</div>
-		<a class="link-green" href="{site.baseurl}/ticket-info/"> Ticket Info </a>
+		<a class="link-green" href={resolve("/ticket-info/")}> Ticket Info </a>
 		<a href={site.boxOfficePhoneLink}>
 			{site.boxOfficePhone}
 		</a>

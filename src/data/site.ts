@@ -10,7 +10,6 @@ const boxOfficePhone = "1-888-665-1976"
 // All of this "site" data should eventually be moved to a better place for
 // Sapper. For now, for backward compatibility, it is all just here.
 export const site = {
-	baseurl: "",
 	url: "__URL__", // replaced by vite.config.ts
 	maintainerEmail: "don@postplayhouse.com",
 	icon: "/images/post-playhouse-logo.png",
