@@ -1,14 +1,11 @@
 <script lang="ts">
 	import Main from "$components/layouts/MainLayout.svelte"
-
-	let { data } = $props()
-
-	const { images } = data
+	import { getMediaImages } from "./mediaImages.remote.js"
 </script>
 
 <Main unconstrainedWidth>
 	<div class="flex flex-wrap justify-center">
-		{#each images as photo}
+		{#each await getMediaImages() as photo}
 			<div class="m-2 min-w-fit text-center">
 				<img
 					class="rounded-lg object-contain sm:max-h-80"
