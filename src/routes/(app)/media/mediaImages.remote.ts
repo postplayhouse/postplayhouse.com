@@ -1,11 +1,12 @@
-import { prerender } from "$app/server"
+import { getRequestEvent, prerender } from "$app/server"
+import sharp from "sharp"
 import jsdom from "jsdom"
 
 const pageUrl = "https://public.3.basecamp.com/p/6Ks7BYKuf2KhwH4kETrPsJRR"
 
 // fetch webpage content and parse it as HTML
 
-async function fetchPage(url: string) {
+async function fetchPage(url: string, fetch = globalThis.fetch) {
 	const response = await fetch(url)
 	return await response.text()
 }
@@ -45,10 +46,31 @@ function exists<T>(value: T | null | undefined): value is T {
 }
 
 export const getMediaImages = prerender(async () => {
-	const doc = await fetchPage(pageUrl)
+	const { fetch } = getRequestEvent()
+	const doc = await fetchPage(pageUrl, fetch)
 	const dom = new jsdom.JSDOM(doc)
 	const figures = Array.from(
 		dom.window.document.querySelectorAll<HTMLElement>("bc-attachment"),
 	)
-	return figures.map(getImgDetailsFromBasecampFigure).filter(exists)
+	const imageDetails = figures
+		.map(getImgDetailsFromBasecampFigure)
+		.filter(exists)
+
+	// loop through images and download each one to get its dimensions
+	const enhancedImages = await Promise.all(
+		imageDetails.map(async (image) => {
+			const response = await fetch(image.src)
+			const blob = await response.arrayBuffer()
+			const img = sharp(blob)
+			const {
+				autoOrient: { width, height },
+			} = await img.metadata()
+			return {
+				...image,
+				width,
+				height,
+			}
+		}),
+	)
+	return enhancedImages
 })

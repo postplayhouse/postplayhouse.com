@@ -11,6 +11,8 @@
 					class="rounded-lg object-contain sm:max-h-80"
 					src={photo.src}
 					alt={photo.description || photo.src}
+					width={photo.width}
+					height={photo.height}
 				/>
 				{#if photo.description}
 					{@html photo.description}<br />
