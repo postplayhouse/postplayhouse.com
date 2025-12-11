@@ -3,12 +3,6 @@
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
 
-	import DonateBtn from "$components/DonateBtn.svelte"
-	import { isToday } from "date-fns"
-	import givingTuesday1 from "../../images/seasons/2026/giving-tuesday-guys-n-dolls.jpg?enhanced"
-	import givingTuesday2 from "../../images/seasons/2026/giving-tuesday-newsies.jpg?enhanced"
-	import { dev } from "$app/environment"
-
 	let { data } = $props()
 
 	const { productions, season } = data
@@ -37,34 +31,6 @@
 		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
 	/>
 </svelte:head>
-
-{#if isToday(dev ? new Date() : new Date("2025-12-02T00:00:00.000"))}
-	<div class="mx-auto mb-16 block max-w-2xl p-6">
-		<p class="mb-6 text-xl font-bold">
-			It’s #GivingTuesday2025 — Celebrate Radical Generosity!
-		</p>
-		<div class="flex gap-2 md:-mx-[60px] lg:-mx-[190px] xl:-mx-[300px]">
-			<enhanced:img
-				class="-rotate-2 shadow-md"
-				src={givingTuesday1}
-				alt="Giving Tuesday logo next to a moment from Post's recent production of The Wizard of Oz. The cowardly lion waves his paw at his loyal subjects as he dreams of being king of the forest."
-			></enhanced:img>
-			<enhanced:img
-				class="hidden rotate-3 shadow-md md:block"
-				src={givingTuesday2}
-				alt="Giving Tuesday logo next to a moment from Post's recent production of The Wizard of Oz. The entire cast stands together, smiling and waving at the audience."
-			></enhanced:img>
-		</div>
-
-		<p class="mt-6 text-xl">
-			Today, the world unites to give, share, and uplift. Join millions
-			celebrating the power of generosity and help keep the magic of live
-			theater shining in rural Nebraska!
-		</p>
-
-		<DonateBtn />
-	</div>
-{/if}
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings {season} {productions} />
