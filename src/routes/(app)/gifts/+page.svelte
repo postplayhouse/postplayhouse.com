@@ -6,7 +6,7 @@
 	const now_year = new Date().getFullYear()
 	const is_holidays = dateIsBetween(`10/01/${now_year}`, `12/15/${now_year}`)
 
-	const certificatesAreAvailable = false
+	const certificatesAreAvailable = true
 </script>
 
 <svelte:head>
@@ -17,9 +17,9 @@
 
 {#if is_holidays && certificatesAreAvailable}
 	<div
-		class="my-4 border-2 border-green-800 bg-green-100 p-4 dark:bg-green-900"
+		class="my-4 space-y-1.5 border-2 border-green-800 bg-green-100 p-4 dark:bg-green-900"
 	>
-		<h2 class="h2">Holiday Gift Extras</h2>
+		<h2 class="h2 dark:text-green-300">Holiday Gift Extras</h2>
 
 		<p>
 			No matter when you purchase a Season Subscription or Gift Certificate, you
