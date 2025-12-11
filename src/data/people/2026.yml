@@ -286,6 +286,7 @@
 
 - last_name: Sellman
   first_name: Annie
+  image_year: 2026
   location: "Chadron, NE"
   groups:
     - board
