@@ -20,12 +20,12 @@
 		>
 			{#each productions as production, index}
 				<li
-					class="block overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 md:scale-105 dark:scale-100 dark:bg-gray-300 dark:shadow-black/20 {rotations[
+					class="block overflow-clip rounded-[10%] shadow-lg shadow-green-800/50 dark:bg-gray-300 dark:shadow-black/20 {rotations[
 						index % rotations.length
 					]}"
 				>
 					<SeasonImage
-						class="max-w-full bg-white p-2 mix-blend-multiply"
+						class="max-w-full rounded-[10%] bg-white p-2 mix-blend-multiply"
 						imageFile={production.image}
 						{season}
 						alt="Show Logo for {production.title}"
