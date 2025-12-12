@@ -8,17 +8,8 @@ import { enhancedImages } from "@sveltejs/enhanced-img"
 import { svelteTesting } from "@testing-library/svelte/vite"
 import tailwindcss from "@tailwindcss/vite"
 
-const prod = process.env.NODE_ENV === "production"
-const live = process.env.CONTEXT === "production"
-const liveUrl = "https://postplayhouse.com"
-const buildUrl = live
-	? liveUrl
-	: prod
-		? process.env.DEPLOY_PRIME_URL || liveUrl
-		: "http://localhost:3000"
-
-/** Will be available via sveltekit's $env imports */
-process.env.PUBLIC_BUILD_URL = buildUrl
+// Ensure the build URL is available
+import { buildUrl } from "./env.js"
 
 export default defineConfig(() => ({
 	plugins: [

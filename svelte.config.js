@@ -3,6 +3,8 @@ import mdsvexConfig from "./mdsvex.config.js"
 import adapter from "@sveltejs/adapter-netlify"
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte"
 
+import "./env.js" // Side effect: ensure PUBLIC_BUILD_URL is known to svelte-check
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	extensions: [".svelte", ...(mdsvexConfig.extensions || [])],
