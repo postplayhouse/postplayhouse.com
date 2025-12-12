@@ -1,4 +1,4 @@
-import { ensureArray, objectKeys, toCamel } from "$helpers"
+import { asserted, ensureArray, objectKeys, toCamel } from "$helpers"
 
 class Person {
 	firstName: string
@@ -70,7 +70,9 @@ class Person {
 				const camelKey = toCamel(key) as keyof Person
 				if (thisKeys.includes(camelKey)) {
 					if (["productionPositions", "roles"].includes(camelKey)) {
-						const value = personLike[key as "production_positions" | "roles"]
+						const value = asserted(
+							personLike[key as "production_positions" | "roles"],
+						)
 						// these are objects that need some adjustment. The properties are actually show names
 						this[camelKey as "productionPositions" | "roles"] = Object.keys(
 							value,

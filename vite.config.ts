@@ -7,18 +7,14 @@ import { sentrySvelteKit } from "@sentry/sveltekit"
 import { enhancedImages } from "@sveltejs/enhanced-img"
 import { svelteTesting } from "@testing-library/svelte/vite"
 import tailwindcss from "@tailwindcss/vite"
+import downloadMediaImages from "./src/routes/(app)/media/downloadMediaImagesVitePlugin"
 
-const prod = process.env.NODE_ENV === "production"
-const live = process.env.CONTEXT === "production"
-const liveUrl = "https://postplayhouse.com"
-const buildUrl = live
-	? liveUrl
-	: prod
-		? process.env.DEPLOY_PRIME_URL || liveUrl
-		: "http://localhost:3000"
+// Ensure the build URL is available
+import { buildUrl } from "./env.js"
 
-export default defineConfig({
+export default defineConfig(() => ({
 	plugins: [
+		downloadMediaImages,
 		tailwindcss(),
 		enhancedImages(),
 		sentrySvelteKit({
@@ -36,15 +32,13 @@ export default defineConfig({
 
 		replacePlugin({
 			values: {
-				"process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-
 				// This one is not escaped because it is already used as a string where
 				// it is invoked. (The content of the Jobs listings are MD files, so
 				// everything inside them is one big string. We are not replacing code,
 				// we are replacing content.) So in cases where we need to replace an
 				// actual string in our code, we just need to wrap it up like an actual
 				// string. See an example in the `data/site.ts` file.
-				__URL__: buildUrl,
+				__PUBLIC_BUILD_URL__: buildUrl,
 			},
 			preventAssignment: true,
 		}),
@@ -71,4 +65,4 @@ export default defineConfig({
 	build: {
 		sourcemap: true,
 	},
-})
+}))

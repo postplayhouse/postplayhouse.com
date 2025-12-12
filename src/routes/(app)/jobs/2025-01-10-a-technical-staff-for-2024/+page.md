@@ -5,7 +5,7 @@ feed: false
 ---
 
 Post Playhouse is getting ready for the [Summer of
-2025](__URL__/productions/2025) and we are looking for a fantastic technical
+2025](__PUBLIC_BUILD_URL__/productions/2025) and we are looking for a fantastic technical
 staff to help us mount our rep season of 5 productions:
 
 - Guys & Dolls

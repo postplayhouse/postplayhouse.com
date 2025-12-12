@@ -3,9 +3,10 @@
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
 
-	let { data } = $props()
+	import * as site from "$data/site"
+	import { getEvents } from "$data/events.remote"
 
-	const { productions, season } = data
+	let { productions } = $derived(await getEvents(site.season))
 
 	let showMailingList = $state(false)
 
@@ -17,23 +18,17 @@
 <svelte:head>
 	<title>Post Playhouse</title>
 
-	<meta
-		name="description"
-		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
-	/>
+	<meta name="description" content={site.description} />
 	<link rel="canonical" href="https://postplayhouse.com" />
 
 	<!-- Facebook Meta Tags -->
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Post Playhouse" />
-	<meta
-		property="og:description"
-		content="Post Playhouse is Northwestern Nebraska's favorite live theatre company"
-	/>
+	<meta property="og:description" content={site.description} />
 </svelte:head>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
-	<Openings {season} {productions} />
+	<Openings season={site.season} {productions} />
 </div>
 
 <div class="flex-row-reverse items-stretch md:flex">

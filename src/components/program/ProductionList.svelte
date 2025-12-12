@@ -60,14 +60,18 @@
 	}
 
 	const allSortedPositions = [...sortedPositions, ...sortedPit]
-	const positionNames = unique(
-		people.flatMap((x) =>
-			x.productionPositions
-				.filter(positionIsForProduction)
-				.flatMap((y) => y.positions),
+	const positionNames = $derived(
+		unique(
+			people.flatMap((x) =>
+				x.productionPositions
+					.filter(positionIsForProduction)
+					.flatMap((y) => y.positions),
+			),
 		),
 	)
-	const unknownPositions = diff(positionNames, unique(allSortedPositions))
+	const unknownPositions = $derived(
+		diff(positionNames, unique(allSortedPositions)),
+	)
 </script>
 
 {#if unknownPositions.length > 0}

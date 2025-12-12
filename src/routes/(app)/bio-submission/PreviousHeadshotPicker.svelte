@@ -1,28 +1,21 @@
 <script lang="ts">
-	import { createEventDispatcher } from "svelte"
-	import type { FormEventHandler } from "svelte/elements"
+	type Props = {
+		options: string[]
+		onOptionSelected?: (option: string) => void
+		selectedOption?: string
+	}
 
 	let {
 		options = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"],
-	}: { options: string[] } = $props()
+		onOptionSelected = () => {},
+		selectedOption = "",
+	}: Props = $props()
 
-	let filteredOptions = $state(options)
+	let searchText = $state("")
 
-	let selectedOption = $state("")
-
-	const dispatch = createEventDispatcher()
-
-	const filterOptions: FormEventHandler<HTMLInputElement> = (event) => {
-		const searchText = event.currentTarget.value.toLowerCase()
-		filteredOptions = options.filter((option) =>
-			option.toLowerCase().includes(searchText),
-		)
-	}
-
-	function selectOption(option: string) {
-		selectedOption = option
-		dispatch("optionSelected", option)
-	}
+	let filteredOptions = $derived(
+		options.filter((option) => option.toLowerCase().includes(searchText)),
+	)
 </script>
 
 Use this filter and list to find and select your old headshot.
@@ -32,7 +25,7 @@ Use this filter and list to find and select your old headshot.
 		class="block border border-gray-500 pl-3 text-2xl"
 		type="text"
 		placeholder="Type here to search this list..."
-		oninput={filterOptions}
+		bind:value={searchText}
 	/>
 
 	<ul class="h-96 list-none overflow-auto pl-2">
@@ -43,7 +36,7 @@ Use this filter and list to find and select your old headshot.
 					selectedOption
 						? 'bg-emerald-300 dark:bg-emerald-700'
 						: ''}"
-					onclick={() => selectOption(option)}
+					onclick={() => onOptionSelected(option)}
 					>{option
 						.replace("src/images/people/", "")
 						.replace("/", " - ")}</button

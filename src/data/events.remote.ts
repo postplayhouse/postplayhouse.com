@@ -1,20 +1,30 @@
-import { json } from "@sveltejs/kit"
-import site from "$data/site"
-import data from "$data/_yaml"
-import type { RequestHandler } from "@sveltejs/kit"
-import { assert, asserted } from "$helpers"
+import { prerender } from "$app/server"
+import { assert } from "$helpers"
+import yamlData from "./_yaml"
+import * as site from "./site"
+import { yearsAsNumbers } from "./validation"
 
-export const prerender = true
+type EventsData =
+	| {
+			productions: Production[]
+			specialEvents: SpecialEvent[]
+			series: Series[]
+			year: Date.Year
+			seasonAnnounced: true
+	  }
+	| {
+			productions: never[]
+			specialEvents: never[]
+			series: never[]
+			year: Date.Year
+			seasonAnnounced: false
+	  }
 
-function isProduction(
-	x: (typeof data.productions)[string][number],
-): x is Production {
+function isProduction(x: __BaseEvent): x is Production {
 	return !x.special_event
 }
 
-function isSpecialEvent(
-	x: (typeof data.productions)[string][number],
-): x is SpecialEvent {
+function isSpecialEvent(x: __BaseEvent): x is SpecialEvent {
 	return !!x.special_event
 }
 
@@ -42,14 +52,23 @@ function isNotPartOfSeries(x: SpecialEvent) {
 	return !isPartOfSeries(x)
 }
 
-export const GET: RequestHandler = (req) => {
-	const events = asserted(data.productions[req.params["year"] as string])
+export const getEvents = prerender(yearsAsNumbers, (year) => {
+	if (!site.showsAnnounced && year === site.season) {
+		return {
+			productions: [],
+			specialEvents: [],
+			series: [],
+			year,
+			seasonAnnounced: false,
+		} satisfies EventsData
+	}
+	const events = yamlData.productions[year]
 	const productions: Production[] = events.filter(isProduction) || []
 
 	const specialEvents: SpecialEvent[] =
 		events.filter(isSpecialEvent).filter(isNotPartOfSeries) || []
 
-	const seriesArr = Object.values(
+	const series = Object.values(
 		events
 			.filter(isSpecialEvent)
 			.filter(isPartOfSeries)
@@ -80,10 +99,11 @@ export const GET: RequestHandler = (req) => {
 			return acc
 		}, [])
 
-	return json({
-		site,
+	return {
 		productions,
 		specialEvents,
-		series: seriesArr,
-	})
-}
+		series,
+		year,
+		seasonAnnounced: true,
+	} satisfies EventsData
+})

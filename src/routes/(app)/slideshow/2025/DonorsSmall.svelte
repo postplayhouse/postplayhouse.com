@@ -15,7 +15,9 @@
 
 	let { durationMultiplier, onEventDone: eventDone, sections }: Props = $props()
 
-	const slides = $state(sections.map((x) => ({ ...x, position: "bottom" })))
+	const slides = $state(
+		(() => sections.map((x) => ({ ...x, position: "bottom" })))(),
+	)
 
 	let current = $state(0)
 

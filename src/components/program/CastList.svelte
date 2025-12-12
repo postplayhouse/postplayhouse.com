@@ -12,15 +12,17 @@
 
 	let { people, production }: Props = $props()
 
-	const peopleRoles = people.flatMap((x) =>
-		x.roles.filter(roleIsForProduction).flatMap((r) => r.positions),
+	const peopleRoles = $derived(
+		people.flatMap((x) =>
+			x.roles.filter(roleIsForProduction).flatMap((r) => r.positions),
+		),
 	)
 
-	const sortedRoles = unique(
-		(production.roles_sorting || []).concat(peopleRoles),
+	const sortedRoles = $derived(
+		unique((production.roles_sorting || []).concat(peopleRoles)),
 	)
 
-	const unusedSortedRoles = diff(sortedRoles, peopleRoles)
+	const unusedSortedRoles = $derived(diff(sortedRoles, peopleRoles))
 
 	function roleIsForProduction(role: Person["roles"][1]) {
 		// At the time of writing this, I am not sure whether productionName
@@ -30,20 +32,24 @@
 		)
 	}
 
-	let ensembleMembers: Person[] = []
-	let rolesToList: Array<{ role: string; person: Person }> = []
+	let { ensembleMembers, rolesToList } = $derived.by(() => {
+		let ensembleMembers: Person[] = []
+		let rolesToList: Array<{ role: string; person: Person }> = []
 
-	for (const role of sortedRoles) {
-		for (const person of people) {
-			for (const personRole of person.roles) {
-				if (!roleIsForProduction(personRole)) continue
-				if (!personRole.positions.includes(role)) continue
+		for (const role of sortedRoles) {
+			for (const person of people) {
+				for (const personRole of person.roles) {
+					if (!roleIsForProduction(personRole)) continue
+					if (!personRole.positions.includes(role)) continue
 
-				if (role === "Ensemble") ensembleMembers.push(person)
-				else rolesToList.push({ role, person })
+					if (role === "Ensemble") ensembleMembers.push(person)
+					else rolesToList.push({ role, person })
+				}
 			}
 		}
-	}
+
+		return { ensembleMembers, rolesToList }
+	})
 </script>
 
 {#if unusedSortedRoles.length > 0}

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte"
-	import site from "$data/site"
+	import * as site from "$data/site"
 	import Bio from "$components/Bio.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import type { Person } from "$models/Person"
@@ -10,14 +10,17 @@
 	import PreviousHeadshotPicker from "./PreviousHeadshotPicker.svelte"
 	import type { FormEventHandler } from "svelte/elements"
 	import { dev } from "$app/environment"
+	import { getEvents } from "$data/events.remote"
 
 	let { data } = $props()
 
 	const devFormFeedback = dev && true
 	const startOnFormScreen = dev && true
 
-	const { disabled, productions: productions_, imageFiles } = data
-	const productions = productions_.map((p) => p.title)
+	let { productions: productions_ } = $derived(await getEvents(site.season))
+
+	const { disabled, imageFiles } = $derived(data)
+	const productions = $derived(productions_.map((p) => p.title))
 
 	onMount(() => {
 		if (!window.fetch) dispatch(events.foundNoFetch)
@@ -257,13 +260,17 @@
 
 	let badPassphrase = $state(false)
 
-	let startingState = disabled
-		? states.submissionsDisabled
-		: states.unauthenticated
+	let pageState = $state(
+		(() => {
+			let startingState = disabled
+				? states.submissionsDisabled
+				: states.unauthenticated
 
-	startingState = startOnFormScreen ? states.incompleteForm : startingState
+			startingState = startOnFormScreen ? states.incompleteForm : startingState
 
-	let pageState = $state(startingState)
+			return startingState
+		})(),
+	)
 
 	let showCredsForm = $derived(
 		[states.unauthenticated, states.requestingAuth].includes(pageState),
@@ -851,7 +858,8 @@ ${fields.email}
 					<div class="my-4">
 						<PreviousHeadshotPicker
 							options={imageFiles}
-							on:optionSelected={(x) => (fields.oldImageSrcPath = x.detail)}
+							selectedOption={fields.oldImageSrcPath}
+							onOptionSelected={(x) => (fields.oldImageSrcPath = x)}
 						/>
 					</div>
 				{:else}

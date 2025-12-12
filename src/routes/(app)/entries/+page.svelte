@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { yearsWithCalendars, yearsWithPages } from "$data/site"
+	import { allYears } from "$data/site"
+
+	const yearsWithCalendars = allYears.filter((y) => y >= 2020)
 
 	const routes = [
 		"/",
@@ -9,8 +11,8 @@
 		"/jobs/feeds/rss",
 		"/jobs/feeds/json",
 	]
-		.concat(yearsWithPages.map((y) => `/productions/${y}`))
-		.concat(yearsWithPages.map((y) => `/who/${y}`))
+		.concat(allYears.map((y) => `/productions/${y}`))
+		.concat(allYears.map((y) => `/who/${y}`))
 		.concat(yearsWithCalendars.map((y) => `/calendar/${y}`))
 </script>
 

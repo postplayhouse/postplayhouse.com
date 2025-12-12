@@ -3,12 +3,11 @@
 	import TicketPolicy from "$components/TicketPolicy.md"
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
-	import site, { ticketsAvailable } from "$data/site"
+	import * as site from "$data/site"
 	import ParkingNotice from "$components/ParkingNotice.svelte"
+	import { getEvents } from "$data/events.remote.js"
 
-	let { data } = $props()
-
-	const { productions } = data
+	let { productions } = $derived(await getEvents(site.season))
 
 	let showMailingList = $state(false)
 
@@ -33,7 +32,7 @@
 		</Modal>
 	{/if}
 
-	{#if ticketsAvailable()}
+	{#if site.ticketsAvailable()}
 		<a class="link-green" href={site.ticketsLink}>Buy yours now!</a><br />
 	{/if}
 

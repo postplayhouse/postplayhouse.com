@@ -1,6 +1,7 @@
 import fs from "fs"
 import path from "path"
 import yaml from "js-yaml"
+import { yearlyDataSchema } from "./validation"
 
 const dir = "src/data"
 
@@ -35,4 +36,6 @@ function dataFromDirectory(directoryPath: string): Record<string, unknown> {
 	return { [dirname]: Object.assign({}, ...data) }
 }
 
-export default dataFromDirectory(dir)["data"] as YearlyData
+const output = dataFromDirectory(dir)["data"]
+
+export default yearlyDataSchema.parse(output)

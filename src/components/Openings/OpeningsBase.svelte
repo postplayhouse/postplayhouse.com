@@ -17,7 +17,7 @@
 
 	type Props = {
 		season: Date.Year
-		productions?: Production[]
+		productions?: (Production & { opening: string })[]
 		/** YYYY-MM-DD : Use this to view the component's state on a given date*/
 		debugTodayString?: `${number}-${number}-${number}`
 		ticketAvailability?: Snippet
@@ -104,7 +104,7 @@
 			/>
 		</div>
 		<div class="shrink-0 text-center md:text-left">
-			<Markdown source={openingSoon.writers} />
+			<Markdown source={openingSoon.writers || undefined} />
 		</div>
 	</div>
 

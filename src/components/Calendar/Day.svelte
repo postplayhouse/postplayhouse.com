@@ -33,15 +33,16 @@
 
 	let { date, daySchedule = [] }: Props = $props()
 
-	const { month: monthNum, day: dayNum } = date
-	const dt = makeDate(date)
-	const monthShort = asserted(shortMonths[monthNum - 1])
-	const dayLong = asserted(weekdays[dt.getDay()])
-	const dayShort = dayLong.slice(0, 3)
+	const { month: monthNum, day: dayNum } = $derived(date)
+	const dt = $derived(makeDate(date))
+	const monthShort = $derived(asserted(shortMonths[monthNum - 1]))
+	const dayLong = $derived(asserted(weekdays[dt.getDay()]))
+	const dayShort = $derived(dayLong.slice(0, 3))
 
-	const includeSpacer =
+	const includeSpacer = $derived(
 		daySchedule.length === 1 &&
-		asserted(daySchedule[0]).msFromMidnight > ARBITRARY_SPACER_CUT_OFF
+			asserted(daySchedule[0]).msFromMidnight > ARBITRARY_SPACER_CUT_OFF,
+	)
 </script>
 
 <li

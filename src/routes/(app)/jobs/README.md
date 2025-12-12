@@ -17,6 +17,6 @@ a markdown component to display (when "active" on the website.)
 ## Content
 
 Since these are regular .md files and cannot know what the live url of the site
-is (local, PR, production), we search and replace the string `__URL__` with the
+is (local, PR, production), we search and replace the string `__PUBLIC_BUILD_URL__` with the
 live url. This is done both in Vite (when processing actual pages) and via a
 regex (when processing feed info).

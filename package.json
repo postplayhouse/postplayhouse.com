@@ -35,7 +35,9 @@
 		"prosemirror-example-setup": "^1.2.3",
 		"prosemirror-markdown": "^1.13.2",
 		"prosemirror-state": "^1.4.4",
-		"prosemirror-view": "^1.41.3"
+		"prosemirror-view": "^1.41.3",
+		"sharp": "^0.34.5",
+		"zod": "^4.1.13"
 	},
 	"devDependencies": {
 		"@octokit/rest": "^22.0.1",
@@ -84,5 +86,5 @@
 		"vitest": "^4.0.6"
 	},
 	"type": "module",
-	"packageManager": "pnpm@9.15.0+sha256.09a8fe31a34fda706354680619f4002f4ccef6dadff93240d24ef6c831f0fd28"
+	"packageManager": "pnpm@10.24.0"
 }
