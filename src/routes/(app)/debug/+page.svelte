@@ -3,7 +3,7 @@
 	import ActiveColors from "./ActiveColors.svelte"
 
 	let { data } = $props()
-	const { productions } = data
+	const { productions } = $derived(data)
 </script>
 
 <details>

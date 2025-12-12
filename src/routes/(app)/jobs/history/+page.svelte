@@ -2,7 +2,7 @@
 	import Markdown from "$components/Markdown.svelte"
 
 	let { data } = $props()
-	const { posts } = data
+	const { posts } = $derived(data)
 
 	const title = "Archive of Job Postings"
 

@@ -27,13 +27,15 @@
 	const productionPositions: Array<{
 		position: string
 		productionNames: string[]
-	}> = uniq(flatten(person.productionPositions.map((x) => x.positions))).map(
-		(position) => ({
-			position,
-			productionNames: person.productionPositions
-				.filter((po) => po.positions.includes(position))
-				.map((po) => po.productionName),
-		}),
+	}> = $derived(
+		uniq(flatten(person.productionPositions.map((x) => x.positions))).map(
+			(position) => ({
+				position,
+				productionNames: person.productionPositions
+					.filter((po) => po.positions.includes(position))
+					.map((po) => po.productionName),
+			}),
+		),
 	)
 </script>
 

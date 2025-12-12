@@ -16,8 +16,8 @@
 	const devFormFeedback = dev && true
 	const startOnFormScreen = dev && true
 
-	const { disabled, productions: productions_, imageFiles } = data
-	const productions = productions_.map((p) => p.title)
+	const { disabled, productions: productions_, imageFiles } = $derived(data)
+	const productions = $derived(productions_.map((p) => p.title))
 
 	onMount(() => {
 		if (!window.fetch) dispatch(events.foundNoFetch)
@@ -257,13 +257,17 @@
 
 	let badPassphrase = $state(false)
 
-	let startingState = disabled
-		? states.submissionsDisabled
-		: states.unauthenticated
+	let pageState = $state(
+		(() => {
+			let startingState = disabled
+				? states.submissionsDisabled
+				: states.unauthenticated
 
-	startingState = startOnFormScreen ? states.incompleteForm : startingState
+			startingState = startOnFormScreen ? states.incompleteForm : startingState
 
-	let pageState = $state(startingState)
+			return startingState
+		})(),
+	)
 
 	let showCredsForm = $derived(
 		[states.unauthenticated, states.requestingAuth].includes(pageState),

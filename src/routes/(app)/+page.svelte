@@ -6,7 +6,7 @@
 
 	let { data } = $props()
 
-	const { productions, season } = data
+	const { productions, season } = $derived(data)
 
 	let showMailingList = $state(false)
 

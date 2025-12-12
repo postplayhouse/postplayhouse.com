@@ -29,16 +29,18 @@
 
 	let { data } = $props()
 
-	const { people, productions } = data
+	const { people, productions } = $derived(data)
 
-	const initialSort = sortPeople(people).map(toPerson)
-	const additional = initialSort.filter((x) => personIsInGroup(x, "additional"))
+	const initialSort = $derived(sortPeople(people).map(toPerson))
+	const additional = $derived(
+		initialSort.filter((x) => personIsInGroup(x, "additional")),
+	)
 
 	// Additional bios to the end
-	const sortedPeople = [
+	const sortedPeople = $derived([
 		...initialSort.filter((x) => !additional.includes(x)),
 		...additional,
-	]
+	])
 
 	function personSlug(person: Person) {
 		return slugify(person.firstName + person.lastName)

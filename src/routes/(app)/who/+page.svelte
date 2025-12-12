@@ -1,8 +1,8 @@
 <script lang="ts">
 	let { data } = $props()
 
-	const { seasons } = data
-	const years = Object.keys(seasons)
+	const { seasons } = $derived(data)
+	const years = $derived(Object.keys(seasons))
 </script>
 
 <ul>

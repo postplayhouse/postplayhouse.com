@@ -1,23 +1,19 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte"
-	import type { FormEventHandler } from "svelte/elements"
 
 	let {
 		options = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"],
 	}: { options: string[] } = $props()
 
-	let filteredOptions = $state(options)
+	let searchText = $state("")
 
 	let selectedOption = $state("")
 
 	const dispatch = createEventDispatcher()
 
-	const filterOptions: FormEventHandler<HTMLInputElement> = (event) => {
-		const searchText = event.currentTarget.value.toLowerCase()
-		filteredOptions = options.filter((option) =>
-			option.toLowerCase().includes(searchText),
-		)
-	}
+	let filteredOptions = $derived(
+		options.filter((option) => option.toLowerCase().includes(searchText)),
+	)
 
 	function selectOption(option: string) {
 		selectedOption = option
@@ -32,7 +28,7 @@ Use this filter and list to find and select your old headshot.
 		class="block border border-gray-500 pl-3 text-2xl"
 		type="text"
 		placeholder="Type here to search this list..."
-		oninput={filterOptions}
+		bind:value={searchText}
 	/>
 
 	<ul class="h-96 list-none overflow-auto pl-2">

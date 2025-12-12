@@ -8,7 +8,7 @@
 
 	let { data } = $props()
 
-	const { productions } = data
+	const { productions } = $derived(data)
 
 	let showMailingList = $state(false)
 

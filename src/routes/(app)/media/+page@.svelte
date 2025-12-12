@@ -3,7 +3,7 @@
 
 	let { data } = $props()
 
-	const { images } = data
+	const { images } = $derived(data)
 </script>
 
 <Main unconstrainedWidth>

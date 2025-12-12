@@ -1,6 +1,6 @@
 <script lang="ts">
 	let { data } = $props()
-	const { productions } = data
+	const { productions } = $derived(data)
 </script>
 
 <div class="via-markdown">
