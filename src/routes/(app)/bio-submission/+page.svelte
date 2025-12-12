@@ -19,7 +19,7 @@
 
 	let { productions: productions_ } = $derived(await getEvents(site.season))
 
-	const { disabled, imageFiles } = data
+	const { disabled, imageFiles } = $derived(data)
 	const productions = $derived(productions_.map((p) => p.title))
 
 	onMount(() => {
@@ -260,13 +260,17 @@
 
 	let badPassphrase = $state(false)
 
-	let startingState = disabled
-		? states.submissionsDisabled
-		: states.unauthenticated
+	let pageState = $state(
+		(() => {
+			let startingState = disabled
+				? states.submissionsDisabled
+				: states.unauthenticated
 
-	startingState = startOnFormScreen ? states.incompleteForm : startingState
+			startingState = startOnFormScreen ? states.incompleteForm : startingState
 
-	let pageState = $state(startingState)
+			return startingState
+		})(),
+	)
 
 	let showCredsForm = $derived(
 		[states.unauthenticated, states.requestingAuth].includes(pageState),

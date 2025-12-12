@@ -10,9 +10,8 @@
 
 	let { productions, specialEvents = [], year }: Props = $props()
 
-	const weekData = getWeeksFromProductions(
-		[...productions, ...specialEvents],
-		year,
+	const weekData = $derived(
+		getWeeksFromProductions([...productions, ...specialEvents], year),
 	)
 </script>
 
