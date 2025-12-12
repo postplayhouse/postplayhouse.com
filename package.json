@@ -36,6 +36,7 @@
 		"prosemirror-markdown": "^1.13.2",
 		"prosemirror-state": "^1.4.4",
 		"prosemirror-view": "^1.41.3",
+		"sharp": "^0.34.5",
 		"zod": "^4.1.13"
 	},
 	"devDependencies": {
