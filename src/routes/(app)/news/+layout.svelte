@@ -11,13 +11,14 @@
 	type Props = { children: Snippet; data: LayoutData }
 
 	let { children, data }: Props = $props()
-	const { posts } = data
+	const { posts } = $derived(data)
 	// get prev and next post
 	const currentSlug = $page.url.pathname.split("/").filter(Boolean).at(-1)
-	const currentPostIndex =
-		posts.findIndex((post) => post.year === currentSlug) ?? 0
-	const nextPost = posts.at(currentPostIndex - 1)
-	const prevPost = posts.at((currentPostIndex + 1) % posts.length)
+	const currentPostIndex = $derived(
+		posts.findIndex((post) => post.year === currentSlug) ?? 0,
+	)
+	const nextPost = $derived(posts.at(currentPostIndex - 1))
+	const prevPost = $derived(posts.at((currentPostIndex + 1) % posts.length))
 </script>
 
 {#if dev && $page.url.pathname !== "/news/"}

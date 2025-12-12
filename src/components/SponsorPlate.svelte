@@ -10,7 +10,7 @@
 
 	let { year = site.season, afterSponsors, beforeSponsors }: Props = $props()
 
-	const year_ = Number(year)
+	const year_ = $derived(Number(year))
 </script>
 
 {@render beforeSponsors?.()}

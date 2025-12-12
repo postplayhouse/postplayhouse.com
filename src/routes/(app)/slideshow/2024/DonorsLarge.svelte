@@ -10,7 +10,7 @@
 	}
 
 	let { durationMultiplier, onEventDone: eventDone }: Props = $props()
-	const INT = durationMultiplier * 500
+	const INT = $derived(durationMultiplier * 500)
 
 	const sections = large
 	const slides = sections.flatMap((s) =>
@@ -23,7 +23,9 @@
 		return (current + 1) % slides.length
 	}
 
-	let currentTimeout: number
+	let currentTimeout = $derived(
+		browser ? window.setTimeout(nextOrDone, INT) : 0,
+	)
 
 	function nextOrDone() {
 		if (!browser) return
@@ -35,8 +37,6 @@
 			eventDone()
 		}
 	}
-
-	currentTimeout = browser ? window.setTimeout(nextOrDone, INT) : 0
 
 	onDestroy(() => clearTimeout(currentTimeout))
 </script>

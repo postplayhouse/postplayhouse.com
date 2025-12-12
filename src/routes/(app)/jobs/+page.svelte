@@ -5,7 +5,7 @@
 	import { PUBLIC_BUILD_URL } from "$env/static/public"
 
 	let { data } = $props()
-	const { posts } = data
+	const { posts } = $derived(data)
 
 	const title = "Work at Post Playhouse"
 
