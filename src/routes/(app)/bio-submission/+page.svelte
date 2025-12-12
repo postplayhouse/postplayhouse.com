@@ -855,7 +855,8 @@ ${fields.email}
 					<div class="my-4">
 						<PreviousHeadshotPicker
 							options={imageFiles}
-							on:optionSelected={(x) => (fields.oldImageSrcPath = x.detail)}
+							selectedOption={fields.oldImageSrcPath}
+							onOptionSelected={(x) => (fields.oldImageSrcPath = x)}
 						/>
 					</div>
 				{:else}
