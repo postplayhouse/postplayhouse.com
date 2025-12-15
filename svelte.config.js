@@ -2,6 +2,7 @@ import { mdsvex } from "mdsvex"
 import mdsvexConfig from "./mdsvex.config.js"
 import adapter from "@sveltejs/adapter-netlify"
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte"
+import { entries } from "./src/data/seasons.ts"
 
 import "./env.js" // Side effect: ensure PUBLIC_BUILD_URL is known to svelte-check
 
@@ -18,7 +19,11 @@ const config = {
 		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter({ split: true }),
-		prerender: { handleHttpError: "fail", handleMissingId: "warn" },
+		prerender: {
+			handleHttpError: "fail",
+			handleMissingId: "warn",
+			entries: entries,
+		},
 		alias: {
 			$components: "src/components",
 			$data: "src/data",

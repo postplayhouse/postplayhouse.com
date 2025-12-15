@@ -9,3 +9,15 @@ if (!allYears.includes(season)) {
 		"Don't forget to add new seasons here so they appear after the next season rolls over",
 	)
 }
+
+const yearsWithCalendars = allYears.filter((y) => y >= 2020)
+
+export const entries: Exclude<
+	import("@sveltejs/kit").KitConfig["prerender"],
+	undefined
+>["entries"] = [
+	"*",
+	...allYears.map((y) => `/productions/${y}` as const),
+	...allYears.map((y) => `/who/${y}` as const),
+	...yearsWithCalendars.map((y) => `/calendar/${y}` as const),
+]
