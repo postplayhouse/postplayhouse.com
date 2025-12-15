@@ -4,10 +4,13 @@
 	import * as site from "$data/site"
 	import SponsorPlate from "$components/SponsorPlate.svelte"
 	import SeasonImage from "$components/SeasonImage.svelte"
+	import { page } from "$app/state"
+	import { yearStringToNumber } from "$data/validation.js"
+	import { getEvents } from "$data/events.remote.js"
 
-	let { data } = $props()
+	let year = $derived(yearStringToNumber.parse(page.params.year))
 
-	let { productions, year, series } = $derived(data)
+	let { productions, series } = $derived(await getEvents(year))
 </script>
 
 <h1 class="h1">Summer {year} Productions</h1>

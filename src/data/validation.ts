@@ -12,6 +12,11 @@ const yearsStrings = allYears.map(
 export const yearsAsNumbers = z.literal(allYears)
 export const yearsAsString = z.enum([...yearsStrings])
 
+export const yearStringToNumber = z.codec(yearsAsString, yearsAsNumbers, {
+	encode: (val) => val.toString() as z.infer<typeof yearsAsString>,
+	decode: (val) => parseInt(val) as z.infer<typeof yearsAsNumbers>,
+})
+
 export type YearAsString = z.infer<typeof yearsAsString>
 export type YearAsNumber = z.infer<typeof yearsAsNumbers>
 
