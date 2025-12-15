@@ -1,11 +1,14 @@
 <script lang="ts">
+	import { page } from "$app/state"
 	import Calendar from "$components/Calendar/Calendar.svelte"
 	import Markdown from "$components/Markdown.svelte"
 	import * as site from "$data/site"
+	import { getEvents } from "$data/events.remote.js"
+	import { yearStringToNumber } from "$data/validation.js"
 
-	let { data } = $props()
+	let year = $derived(yearStringToNumber.parse(page.params.year))
 
-	let { productions, series, specialEvents, year } = $derived(data)
+	let { productions, series, specialEvents } = $derived(await getEvents(year))
 
 	let hasCalendar = $derived(!!productions?.find((prod) => prod.dates))
 

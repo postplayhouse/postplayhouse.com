@@ -5,9 +5,9 @@
 	import Openings from "$components/Openings/Openings.svelte"
 	import * as site from "$data/site"
 
-	let { data } = $props()
+	import { getEvents } from "$data/events.remote"
 
-	const { productions, season } = $derived(data)
+	let { productions } = $derived(await getEvents(site.season))
 
 	let showMailingList = $state(false)
 
@@ -42,7 +42,7 @@
 </Announcement>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
-	<Openings {season} {productions} />
+	<Openings season={site.season} {productions} />
 </div>
 
 <div class="flex-row-reverse items-stretch md:flex">

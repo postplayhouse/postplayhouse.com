@@ -5,10 +5,9 @@
 	import Modal from "$components/Modal/Modal.svelte"
 	import * as site from "$data/site"
 	import ParkingNotice from "$components/ParkingNotice.svelte"
+	import { getEvents } from "$data/events.remote.js"
 
-	let { data } = $props()
-
-	const { productions } = $derived(data)
+	let { productions } = $derived(await getEvents(site.season))
 
 	let showMailingList = $state(false)
 
