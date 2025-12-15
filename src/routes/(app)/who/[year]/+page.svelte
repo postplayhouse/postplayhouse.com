@@ -7,13 +7,16 @@
 		sortBoardMembers,
 		isOnlyActing,
 	} from "$helpers"
+	import { getPeople } from "$data/people.remote.js"
+	import { page } from "$app/state"
+	import { yearStringToNumber } from "$data/validation.js"
 	import * as site from "$data/site"
 
-	let { data } = $props()
-	let { year, people: people_ } = $derived(data)
+	let year = $derived(yearStringToNumber.parse(page.params.year))
+	let { people: people_ } = $derived(await getPeople(year))
 
 	let shouldFilterActors = $derived(
-		site.season.toString() === year && site.castingComplete === false,
+		site.season === year && site.castingComplete === false,
 	)
 
 	let people = $derived(
@@ -48,7 +51,7 @@
 	</p>
 {/if}
 
-{#if year === "2020"}
+{#if year === 2020}
 	<p>
 		<a href="/news/2020-03-25-season-cancelled" class="link-green">
 			Our 2020 Season was sadly cancelled.
@@ -58,7 +61,7 @@
 	</p>
 {/if}
 
-{#if year === "2021"}
+{#if year === 2021}
 	<p>
 		<a href="/news/2021-03-15-cancelling-2021-season/" class="link-green">
 			Our 2021 Season was sadly cancelled.
