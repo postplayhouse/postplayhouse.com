@@ -7,12 +7,14 @@ import { sentrySvelteKit } from "@sentry/sveltekit"
 import { enhancedImages } from "@sveltejs/enhanced-img"
 import { svelteTesting } from "@testing-library/svelte/vite"
 import tailwindcss from "@tailwindcss/vite"
+import downloadMediaImages from "./src/routes/(app)/media/downloadMediaImagesVitePlugin"
 
 // Ensure the build URL is available
 import { buildUrl } from "./env.js"
 
 export default defineConfig(() => ({
 	plugins: [
+		downloadMediaImages,
 		tailwindcss(),
 		enhancedImages(),
 		sentrySvelteKit({
