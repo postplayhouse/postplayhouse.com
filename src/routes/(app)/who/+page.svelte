@@ -1,8 +1,7 @@
 <script lang="ts">
-	let { data } = $props()
+	import { getYearsWithPeople } from "$data/people.remote.js"
 
-	const { seasons } = $derived(data)
-	const years = $derived(Object.keys(seasons))
+	const years = $derived(await getYearsWithPeople())
 </script>
 
 <ul>

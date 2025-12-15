@@ -23,15 +23,14 @@
 	import Markdown from "$components/Markdown.svelte"
 	import { getEvents } from "$data/events.remote.js"
 	import * as site from "$data/site.js"
+	import { getPeople } from "$data/people.remote.js"
 
 	function renameImgFile(imgPath: string, newBaseNameWithoutExt: string) {
 		const ext = imgPath.split(".").pop()
 		return newBaseNameWithoutExt + "." + ext
 	}
 
-	let { data } = $props()
-
-	const { people } = $derived(data)
+	let { people } = $derived(await getPeople(site.season))
 
 	let { productions } = $derived(await getEvents(site.season))
 
