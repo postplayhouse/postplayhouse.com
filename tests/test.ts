@@ -3,6 +3,44 @@ import { createHash } from "node:crypto"
 import { readFile, readdir } from "node:fs/promises"
 import { join } from "node:path"
 
+test.describe("Bio submission", () => {
+	const testPassphrase = () =>
+		process.env.INDIVIDUAL_PASSPHRASES_LIST?.split(",")[0]
+
+	test("submission endpoint rejects GET", async ({ request }) => {
+		const response = await request.get("/api/bio-submission/submit")
+		expect(response.status()).toBe(405)
+	})
+
+	test("page shows the passphrase form", async ({ page }) => {
+		await page.goto("/bio-submission/")
+		await expect(page).toHaveTitle(/Bio Submission/)
+		await expect(page.getByText("Enter the passphrase")).toBeVisible()
+	})
+
+	test("confirm-passphrase rejects an invalid passphrase", async ({ request }) => {
+		const response = await request.get(
+			"/api/bio-submission/confirm-passphrase",
+			{ headers: { Authorization: "invalid_passphrase" } },
+		)
+		expect(response.status()).toBe(403)
+		expect((await response.json()).error).toBe("Invalid Passphrase")
+	})
+
+	test("confirm-passphrase accepts a configured passphrase", async ({
+		request,
+	}) => {
+		const passphrase = testPassphrase()
+		test.skip(!passphrase, "No test passphrase configured")
+		const response = await request.get(
+			"/api/bio-submission/confirm-passphrase",
+			{ headers: { Authorization: passphrase! } },
+		)
+		expect(response.status()).toBe(201)
+		expect((await response.json()).position).toBe(1)
+	})
+})
+
 test("index page identifies Post Playhouse", async ({ page }) => {
 	await page.goto("/")
 	await expect(page).toHaveTitle("Post Playhouse")
