@@ -11,42 +11,40 @@ export const GET: RequestHandler = async (req) => {
 	}
 
 	const yearNum = parseInt(year, 10)
+
+	// Only serve current season - historical years are statically generated
+	if (yearNum !== site.season) {
+		return error(
+			404,
+			`API only serves current season (${site.season}). Historical data is prerendered.`,
+		)
+	}
+
 	const people = data.people[year as keyof typeof data.people]
 
 	if (!people) {
 		return error(404, `No data found for year ${year}`)
 	}
 
-	// For current season, merge approved bios from Blobs
+	// Merge approved bios from Blobs
 	let mergedPeople = [...people]
-	if (yearNum === site.season) {
-		try {
-			const approvedBios = await listApprovedBios(yearNum)
-			mergedPeople = mergeBiosWithYaml(people, approvedBios)
-		} catch (e) {
-			// If Blobs fails, fall back to YAML data only
-			console.error("Failed to fetch approved bios:", e)
-		}
+	try {
+		const approvedBios = await listApprovedBios(yearNum)
+		mergedPeople = mergeBiosWithYaml(people, approvedBios)
+	} catch (e) {
+		// If Blobs fails, fall back to YAML data only
+		console.error("Failed to fetch approved bios:", e)
 	}
 
 	const response = json({ site, people: mergedPeople })
 
-	// Add cache headers for CDN
-	// For current season: allow CDN caching with tag-based purging
-	// For historical years: longer cache since data rarely changes
-	if (yearNum === site.season) {
-		response.headers.set("Cache-Control", "public, max-age=0")
-		response.headers.set(
-			"Netlify-CDN-Cache-Control",
-			"public, max-age=86400, stale-while-revalidate=3600",
-		)
-		response.headers.set("Cache-Tag", `people-${year},bios`)
-	} else {
-		// Historical years - cache for a week
-		response.headers.set("Cache-Control", "public, max-age=604800")
-		response.headers.set("Netlify-CDN-Cache-Control", "public, max-age=604800")
-		response.headers.set("Cache-Tag", `people-${year}`)
-	}
+	// Cache headers for CDN with tag-based purging
+	response.headers.set("Cache-Control", "public, max-age=0")
+	response.headers.set(
+		"Netlify-CDN-Cache-Control",
+		"public, max-age=86400, stale-while-revalidate=3600",
+	)
+	response.headers.set("Cache-Tag", `people-${year},bios`)
 
 	return response
 }
