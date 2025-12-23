@@ -176,3 +176,52 @@ test("prerender data contains only the route-selected historical pictures", asyn
 	expect(data).toContain("jo-arnold.B64bAtGj.avif")
 	expect(data).not.toContain("ken-phillips.CDNuwayB.avif")
 })
+
+test.describe("People pages", () => {
+	test("current season loads people data", async ({ page }) => {
+		await page.goto("/who/2027/")
+		await expect(page.getByText("Don Denton", { exact: true })).toBeVisible()
+	})
+
+	test("historical season loads people data", async ({ page }) => {
+		await page.goto("/who/2026/")
+		await expect(page.getByText("Don Denton", { exact: true })).toBeVisible()
+	})
+
+	test("program-bios loads current season data", async ({ page }) => {
+		await page.goto("/program-bios/")
+		await expect(page.locator("body")).toContainText("bio")
+	})
+})
+
+test.describe("SSR people API", () => {
+	test("returns current-season people data and cache headers", async ({
+		request,
+	}) => {
+		const response = await request.get("/api/people/2027.json")
+		expect(response.ok()).toBeTruthy()
+
+		const data = await response.json()
+		expect(data.people.length).toBeGreaterThan(0)
+		expect(data.site.season).toBe(2027)
+		expect(response.headers()["cache-control"]).toBe("public, max-age=0")
+		expect(response.headers()["cache-tag"]).toBe("people-2027,bios")
+		expect(response.headers()["netlify-cdn-cache-control"]).toBe(
+			"public, max-age=86400, stale-while-revalidate=3600",
+		)
+	})
+
+	test("returns historical cache headers", async ({ request }) => {
+		const response = await request.get("/api/people/2026.json")
+		expect(response.ok()).toBeTruthy()
+		expect(response.headers()["cache-control"]).toBe(
+			"public, max-age=604800",
+		)
+		expect(response.headers()["cache-tag"]).toBe("people-2026")
+	})
+
+	test("returns 404 for an invalid year", async ({ request }) => {
+		const response = await request.get("/api/people/9999.json")
+		expect(response.status()).toBe(404)
+	})
+})

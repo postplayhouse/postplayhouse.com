@@ -3,9 +3,9 @@ import type { PlaywrightTestConfig } from "@playwright/test"
 const config: PlaywrightTestConfig = {
 	webServer: {
 		command:
-			"pnpm build:low-memory && exec node node_modules/vite/bin/vite.js preview --port 3000",
+			"pnpm build:low-memory && exec pnpm run dev",
 		port: 3000,
-		// An uncached serial image build takes about 19 minutes.
+		// Build first for artifact assertions, then use Vite dev for Netlify Blobs emulation.
 		timeout: 1_500_000,
 	},
 	testDir: "tests",
