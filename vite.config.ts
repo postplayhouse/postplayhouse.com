@@ -7,6 +7,7 @@ import { sentrySvelteKit } from "@sentry/sveltekit"
 import { enhancedImages } from "@sveltejs/enhanced-img"
 import { svelteTesting } from "@testing-library/svelte/vite"
 import tailwindcss from "@tailwindcss/vite"
+import netlify from "@netlify/vite-plugin"
 import downloadMediaImages from "./src/routes/(app)/media/downloadMediaImagesVitePlugin"
 
 // Ensure the build URL is available
@@ -56,6 +57,7 @@ export default defineConfig(() => ({
 
 		sveltekit(),
 		svelteTesting(),
+		netlify(),
 	],
 	test: {
 		include: ["src/**/*.{test,spec}.{js,ts}"],
