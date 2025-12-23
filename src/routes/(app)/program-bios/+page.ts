@@ -11,7 +11,8 @@ export async function load(obj) {
 			productions: [],
 		}
 	}
-	const peopleRes = await obj.fetch(`/data/people/${site.season}.json`)
+	// Use SSR endpoint to get approved bios from Blobs
+	const peopleRes = await obj.fetch(`/api/people/${site.season}.json`)
 	const peopleData = await peopleRes.json()
 	if (peopleRes.status !== 200) error(500, peopleData.message)
 
