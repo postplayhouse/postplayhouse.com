@@ -4,13 +4,24 @@ import { personImageKey } from "$lib/historical-images"
 import { historicalImages } from "$lib/server/historical-images"
 import { toPerson } from "$models/Person"
 
-export async function load(obj) {
-	const year = obj.params["year"]
+export async function load({ params, fetch, setHeaders }) {
+	const year = params.year
+	const yearNum = parseInt(year, 10)
 	const endpoint =
-		parseInt(year, 10) === season
+		yearNum === season
 			? `/api/people/${year}.json`
 			: `/data/people/${year}.json`
-	const res = await obj.fetch(endpoint)
+
+	if (yearNum === season) {
+		setHeaders({
+			"Cache-Control": "public, max-age=0",
+			"Netlify-CDN-Cache-Control":
+				"public, max-age=86400, stale-while-revalidate=3600",
+			"Cache-Tag": `people-${year},bios`,
+		})
+	}
+
+	const res = await fetch(endpoint)
 	const data = await res.json()
 
 	if (res.status === 200) {

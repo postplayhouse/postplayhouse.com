@@ -194,6 +194,30 @@ test.describe("People pages", () => {
 	})
 })
 
+test.describe("SSR page cache headers", () => {
+	test("current-season people page has tagged cache headers", async ({
+		request,
+	}) => {
+		const response = await request.get("/who/2027/")
+		expect(response.ok()).toBeTruthy()
+		expect(response.headers()["cache-control"]).toBe("public, max-age=0")
+		expect(response.headers()["cache-tag"]).toBe("people-2027,bios")
+		expect(response.headers()["netlify-cdn-cache-control"]).toBe(
+			"public, max-age=86400, stale-while-revalidate=3600",
+		)
+	})
+
+	test("program-bios has tagged cache headers", async ({ request }) => {
+		const response = await request.get("/program-bios/")
+		expect(response.ok()).toBeTruthy()
+		expect(response.headers()["cache-control"]).toBe("public, max-age=0")
+		expect(response.headers()["cache-tag"]).toBe("people-2027,bios")
+		expect(response.headers()["netlify-cdn-cache-control"]).toBe(
+			"public, max-age=86400, stale-while-revalidate=3600",
+		)
+	})
+})
+
 test.describe("SSR people API", () => {
 	test("returns current-season people data and cache headers", async ({
 		request,
@@ -211,13 +235,9 @@ test.describe("SSR people API", () => {
 		)
 	})
 
-	test("returns historical cache headers", async ({ request }) => {
+	test("returns 404 for a historical season", async ({ request }) => {
 		const response = await request.get("/api/people/2026.json")
-		expect(response.ok()).toBeTruthy()
-		expect(response.headers()["cache-control"]).toBe(
-			"public, max-age=604800",
-		)
-		expect(response.headers()["cache-tag"]).toBe("people-2026")
+		expect(response.status()).toBe(404)
 	})
 
 	test("returns 404 for an invalid year", async ({ request }) => {
