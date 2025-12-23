@@ -21,5 +21,10 @@ vite.config.ts.timestamp-*
 # Sentry Config File
 .sentryclirc
 
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
 # Claude Code - ignore local settings, keep shared settings
 .claude/settings.local.json
