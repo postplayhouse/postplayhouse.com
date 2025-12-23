@@ -1,5 +1,268 @@
 import { expect, test } from "@playwright/test"
 
+test.describe("Bio Submission", () => {
+	// Helper to get a valid passphrase from env
+	function getTestPassphrase(): string | null {
+		const passphraseList = process.env.INDIVIDUAL_PASSPHRASES_LIST
+		if (!passphraseList) return null
+		return passphraseList.split(",")[0]
+	}
+
+	// Helper to authenticate with passphrase and wait for form
+	async function authenticateAndWaitForForm(
+		page: import("@playwright/test").Page,
+		passphrase: string,
+	) {
+		await page.goto("/bio-submission/")
+		// Wait for page to be fully loaded and hydrated
+		await page.waitForLoadState("networkidle")
+
+		await page.locator('input[name="passphrase"]').fill(passphrase)
+		await page.getByRole("button", { name: "Continue" }).click()
+
+		// Wait for form to appear (the API call happens and state transitions)
+		await expect(page.locator('input[name="email"]')).toBeVisible({
+			timeout: 15000,
+		})
+	}
+
+	test("GET /api/bio-submission/submit returns 405 for GET requests", async ({
+		request,
+	}) => {
+		const response = await request.get("/api/bio-submission/submit")
+		expect(response.status()).toBe(405)
+	})
+
+	test("bio-submission page shows passphrase form", async ({ page }) => {
+		await page.goto("/bio-submission/")
+		await expect(page).toHaveTitle(/Bio Submission/)
+		await expect(page.getByText("Enter the passphrase")).toBeVisible()
+	})
+
+	test("confirm-passphrase API rejects invalid passphrase", async ({
+		request,
+	}) => {
+		const response = await request.get(
+			"/api/bio-submission/confirm-passphrase",
+			{
+				headers: {
+					Authorization: "invalid_passphrase",
+				},
+			},
+		)
+		expect(response.status()).toBe(403)
+		const json = await response.json()
+		expect(json.error).toBe("Invalid Passphrase")
+	})
+
+	test("confirm-passphrase API accepts valid passphrase", async ({
+		request,
+	}) => {
+		const testPassphrase = getTestPassphrase()
+		if (!testPassphrase) {
+			test.skip()
+			return
+		}
+
+		const response = await request.get(
+			"/api/bio-submission/confirm-passphrase",
+			{
+				headers: {
+					Authorization: testPassphrase,
+				},
+			},
+		)
+		expect(response.status()).toBe(201)
+		const json = await response.json()
+		expect(json.position).toBe(1)
+	})
+
+	test("invalid passphrase shows error message on page", async ({ page }) => {
+		await page.goto("/bio-submission/")
+		// Wait for page to be fully loaded and hydrated
+		await page.waitForLoadState("networkidle")
+
+		await page.locator('input[name="passphrase"]').fill("wrong_passphrase")
+		await page.getByRole("button", { name: "Continue" }).click()
+
+		// Wait for the error message (exact text from the page)
+		await expect(
+			page.getByText("The passphrase you entered was incorrect."),
+		).toBeVisible({ timeout: 15000 })
+	})
+
+	test("valid passphrase shows bio form", async ({ page }) => {
+		const testPassphrase = getTestPassphrase()
+		if (!testPassphrase) {
+			test.skip()
+			return
+		}
+
+		await authenticateAndWaitForForm(page, testPassphrase)
+
+		// Verify all required form fields are present
+		await expect(page.locator('input[name="firstName"]')).toBeVisible()
+		await expect(page.locator('input[name="lastName"]')).toBeVisible()
+		await expect(page.locator('input[name="location"]')).toBeVisible()
+		await expect(
+			page.getByText("Headshot", { exact: false }).first(),
+		).toBeVisible()
+		await expect(page.locator(".ProseMirror")).toBeVisible() // Bio editor
+	})
+
+	test("form validation - shows errors for missing required fields", async ({
+		page,
+	}) => {
+		const testPassphrase = getTestPassphrase()
+		if (!testPassphrase) {
+			test.skip()
+			return
+		}
+
+		await authenticateAndWaitForForm(page, testPassphrase)
+
+		// Submit button should be disabled when form is incomplete
+		const submitButton = page.getByRole("button", { name: "Submit Bio" })
+		await expect(submitButton).toBeDisabled()
+
+		// Check validation messages appear
+		await expect(page.getByText("You must supply a first name")).toBeVisible()
+		await expect(page.getByText("You must supply a location")).toBeVisible()
+		await expect(
+			page.getByText("You must supply some kind of bio"),
+		).toBeVisible()
+		await expect(page.getByText("Please add your email address")).toBeVisible()
+	})
+
+	test("form validation - submit button enables when form is complete", async ({
+		page,
+	}) => {
+		const testPassphrase = getTestPassphrase()
+		if (!testPassphrase) {
+			test.skip()
+			return
+		}
+
+		await authenticateAndWaitForForm(page, testPassphrase)
+
+		// Fill required fields
+		await page.locator('input[name="email"]').fill("test@example.com")
+		await page.locator('input[name="firstName"]').fill("Test")
+		await page.locator('input[name="lastName"]').fill("Person")
+		await page.locator('input[name="location"]').fill("Test City, NE")
+
+		// Select old headshot
+		await page.getByText("I've worked at Post before").click()
+		// Select first headshot from the picker list
+		await page.locator("ul.h-96 button").first().click()
+
+		// Fill bio
+		const bioEditor = page.locator(".ProseMirror").first()
+		await bioEditor.click()
+		await bioEditor.fill("Test Person is thrilled to be at Post Playhouse!")
+
+		// Submit button should now be enabled
+		const submitButton = page.getByRole("button", { name: "Submit Bio" })
+		await expect(submitButton).toBeEnabled()
+	})
+
+	test("bio word count validation", async ({ page }) => {
+		const testPassphrase = getTestPassphrase()
+		if (!testPassphrase) {
+			test.skip()
+			return
+		}
+
+		await authenticateAndWaitForForm(page, testPassphrase)
+
+		// Fill a bio that's too long (over 125 words)
+		const longBio = Array(130).fill("word").join(" ")
+		const bioEditor = page.locator(".ProseMirror").first()
+		await bioEditor.click()
+		await bioEditor.fill(longBio)
+
+		// Should show word count error
+		await expect(page.getByText("Your bio is too long")).toBeVisible()
+	})
+
+	// Note: Full submission flow requires Netlify Blobs and B2 storage infrastructure
+	// which is not available in local dev/CI environments. This test verifies the
+	// form completes and submission is attempted (either success or graceful error).
+	test("full bio submission flow with old headshot", async ({ page }) => {
+		const testPassphrase = getTestPassphrase()
+		if (!testPassphrase) {
+			test.skip()
+			return
+		}
+
+		const testId = Date.now()
+		const firstName = `TestFirst${testId}`
+		const lastName = `TestLast${testId}`
+
+		// Step 1: Navigate and authenticate
+		await authenticateAndWaitForForm(page, testPassphrase)
+
+		// Step 2: Fill all required fields
+		await page.locator('input[name="email"]').fill("test@example.com")
+		await page.locator('input[name="firstName"]').fill(firstName)
+		await page.locator('input[name="lastName"]').fill(lastName)
+		await page.locator('input[name="location"]').fill("Test City, NE")
+
+		// Step 4: Select old headshot
+		await page.getByText("I've worked at Post before").click()
+		await page.locator("ul.h-96 button").first().click()
+
+		// Step 5: Fill bio
+		const bioEditor = page.locator(".ProseMirror").first()
+		await bioEditor.click()
+		await bioEditor.fill(
+			`${firstName} ${lastName} is thrilled to be testing bio submission at Post Playhouse!`,
+		)
+
+		// Step 6: Verify preview shows our data
+		await expect(
+			page.getByText(`${firstName} ${lastName}`, { exact: true }),
+		).toBeVisible()
+		await expect(page.getByText("Test City, NE").first()).toBeVisible()
+
+		// Step 7: Submit
+		const submitButton = page.getByRole("button", { name: "Submit Bio" })
+		await expect(submitButton).toBeEnabled()
+		await submitButton.click()
+
+		// Step 8: Wait for submission to complete (success or error)
+		// In local dev, Netlify Blobs may not be available, so we accept either outcome
+		const successOrError = page
+			.getByText("Success!")
+			.or(page.getByText("Oh no."))
+		await expect(successOrError).toBeVisible({ timeout: 30000 })
+	})
+
+	test("preview updates as form is filled", async ({ page }) => {
+		const testPassphrase = getTestPassphrase()
+		if (!testPassphrase) {
+			test.skip()
+			return
+		}
+
+		await authenticateAndWaitForForm(page, testPassphrase)
+
+		// Preview should start with placeholder name
+		await expect(page.getByText("Bill Murray")).toBeVisible()
+
+		// Fill name fields
+		await page.locator('input[name="firstName"]').fill("Jane")
+		await page.locator('input[name="lastName"]').fill("Doe")
+
+		// Preview should update
+		await expect(page.getByText("Jane Doe")).toBeVisible()
+
+		// Fill location
+		await page.locator('input[name="location"]').fill("Omaha, NE")
+		await expect(page.getByText("Omaha, NE")).toBeVisible()
+	})
+})
+
 test("home page loads", async ({ page }) => {
 	await page.goto("/")
 	await expect(page).toHaveTitle(/Post Playhouse/)

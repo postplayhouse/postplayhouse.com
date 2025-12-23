@@ -13,8 +13,8 @@
 
 	let { data } = $props()
 
-	const devFormFeedback = dev && true
-	const startOnFormScreen = dev && true
+	const devFormFeedback = dev && false
+	const startOnFormScreen = dev && false
 
 	const { disabled, productions: productions_, imageFiles } = $derived(data)
 	const productions = $derived(productions_.map((p) => p.title))
@@ -419,34 +419,6 @@
 		}
 	}
 
-	type Creds = { authorizationToken: string; uploadUrl: string }
-
-	/**
-	 * The count will determine how many sets of creds are returned in the array
-	 * (we need one set per file to upload)
-	 */
-	async function getCreds<T extends number>(
-		count: T,
-	): Promise<ConstructTuple<T, Creds>> {
-		const resp = await window.fetch(
-			`/api/bio-submission/upload-url?count=${count}`,
-			{
-				method: "GET",
-				headers: new Headers({
-					Authorization: sanitizedPassphrase(passphrase),
-				}),
-			},
-		)
-		if (resp.ok) return resp.json()
-		else throw new Error("could not get creds")
-	}
-
-	const safeName = (str: string) =>
-		str
-			.trim()
-			.toLowerCase()
-			.replace(/[^a-z]+/gi, "-")
-
 	const submitBio = () => dispatch(events.postBio)
 
 	function getYamlBody({
@@ -540,33 +512,53 @@ ${getYamlBody({ includeEmptyProductions: true })}
 		)}&body=${encodeURIComponent(emailBody)}`,
 	)
 
-	function uploadText(payload: string, basename: string, creds: Creds) {
-		return window.fetch(creds.uploadUrl, {
-			method: "POST",
-			headers: new Headers({
-				"Content-Type": "b2/x-auto",
-				Authorization: creds.authorizationToken,
-				"X-Bz-Content-Sha1": "do_not_verify",
-				"X-Bz-File-Name": `${basename}.txt`,
-				"Content-Length": payload.length + "",
-			}),
-			body: payload,
-		})
-	}
-
-	function uploadBioToGh(
-		name: string,
-		email: string,
-		bioYaml: string,
-		imageFile?: File,
-	) {
+	function submitBioToBlobs(bioData: {
+		firstName: string
+		lastName: string
+		location: string
+		email: string
+		bio: string
+		programBio?: string
+		staffPositions?: string[]
+		productionPositions?: Record<string, string[]>
+		roles?: Record<string, string[]>
+		imageFile?: File
+		useOldHeadshot: boolean
+		oldImageSrcPath?: string
+	}) {
 		const fd = new FormData()
-		imageFile && fd.append("imageFile", imageFile)
-		fd.append("bioYaml", bioYaml)
-		fd.append("name", name)
-		fd.append("email", email)
+		fd.append("firstName", bioData.firstName)
+		fd.append("lastName", bioData.lastName)
+		fd.append("location", bioData.location)
+		fd.append("email", bioData.email)
+		fd.append("bio", bioData.bio)
+		if (bioData.programBio) {
+			fd.append("programBio", bioData.programBio)
+		}
+		if (bioData.staffPositions && bioData.staffPositions.length > 0) {
+			fd.append("staffPositions", JSON.stringify(bioData.staffPositions))
+		}
+		if (
+			bioData.productionPositions &&
+			Object.keys(bioData.productionPositions).length > 0
+		) {
+			fd.append(
+				"productionPositions",
+				JSON.stringify(bioData.productionPositions),
+			)
+		}
+		if (bioData.roles && Object.keys(bioData.roles).length > 0) {
+			fd.append("roles", JSON.stringify(bioData.roles))
+		}
+		fd.append("useOldHeadshot", bioData.useOldHeadshot.toString())
+		if (bioData.useOldHeadshot && bioData.oldImageSrcPath) {
+			fd.append("oldImageSrcPath", bioData.oldImageSrcPath)
+		}
+		if (bioData.imageFile) {
+			fd.append("imageFile", bioData.imageFile)
+		}
 
-		return window.fetch("/api/bio-submission/bio-to-gh", {
+		return window.fetch("/api/bio-submission/submit", {
 			method: "POST",
 			headers: new Headers({
 				Authorization: sanitizedPassphrase(passphrase),
@@ -575,117 +567,72 @@ ${getYamlBody({ includeEmptyProductions: true })}
 		})
 	}
 
-	function uploadImage(imageFile: File, newFileBaseName: string, creds: Creds) {
-		if (!imageFile) return Promise.reject("no image file provided")
-
-		const { size, type, name } = imageFile
-		const ext = name.slice(name.lastIndexOf(".") + 1)
-
-		return window.fetch(creds.uploadUrl, {
-			method: "POST",
-			headers: new Headers({
-				"Content-Type": type,
-				Authorization: creds.authorizationToken,
-				"X-Bz-Content-Sha1": "do_not_verify",
-				"X-Bz-File-Name": `${newFileBaseName}.${ext}`,
-				"Content-Length": size + "",
-			}),
-			body: imageFile,
-		})
-	}
-
 	async function handleSubmit() {
-		const basename = `${Date.now()}-${safeName(fields.firstName)}-${safeName(
-			fields.lastName,
-		)}`
-
-		let ghTries = 0
-
-		const doGhUpload = (): Promise<
-			{ success: true; pullRequest: string } | { success: false }
-		> =>
-			uploadBioToGh(
-				`${fields.firstName} ${fields.lastName}`,
-				fields.email,
-				getYamlBody(),
-				imageFile ?? undefined,
-			)
-				.then(async (resp) => {
-					if (resp.ok) {
-						return {
-							success: true,
-							pullRequest: (await resp.json()).pullRequest,
-						}
-					} else if (ghTries < 3) {
-						ghTries++
-						return new Promise<ReturnType<typeof doGhUpload>>((res) => {
-							setTimeout(() => res(doGhUpload()), 1000 * ghTries)
-						})
-					} else {
-						throw new Error("Could not upload Bio to GitHub")
-					}
-				})
-				.catch(() => ({ success: false }))
-
-		const ghResult = await doGhUpload()
-
-		if (ghResult.success) {
-			pullRequest = ghResult.pullRequest
-			dispatch(events.sendHeadshotBioSuccess)
-			return
+		// Convert roles/productionPositions from array format to Record format
+		const rolesRecord: Record<string, string[]> = {}
+		for (const r of roles) {
+			rolesRecord[r.productionName] = r.positions
 		}
 
-		let bioTries = 0
-		let headshotTries = 0
+		const productionPositionsRecord: Record<string, string[]> = {}
+		for (const p of productionPositions) {
+			productionPositionsRecord[p.productionName] = p.positions
+		}
 
-		const messageToMyself = `
-bio position:     ${position}
-bio words:        ${bioWordCount}
-longer bio words: ${fields.addLongerBio ? longerBioWordCount : "n/a"}
+		let tries = 0
+		const maxTries = 3
 
-${fields.email}
-`
+		const doSubmit = async (): Promise<
+			{ success: true } | { success: false }
+		> => {
+			try {
+				const resp = await submitBioToBlobs({
+					firstName: fields.firstName,
+					lastName: fields.lastName,
+					location: fields.location,
+					email: fields.email,
+					bio: fields.bio,
+					programBio: fields.addLongerBio ? fields.longerBio : undefined,
+					staffPositions:
+						staffPositions.length > 0 ? staffPositions : undefined,
+					productionPositions:
+						Object.keys(productionPositionsRecord).length > 0
+							? productionPositionsRecord
+							: undefined,
+					roles: Object.keys(rolesRecord).length > 0 ? rolesRecord : undefined,
+					imageFile: imageFile ?? undefined,
+					useOldHeadshot: fields.useOldHeadshot,
+					oldImageSrcPath: fields.oldImageSrcPath || undefined,
+				})
 
-		const doBioUpload = async (): Promise<true> =>
-			uploadText(
-				`${getYamlBody()}\n\n\n${messageToMyself}`,
-				basename,
-				(await getCreds(1))[0],
-			).then((resp) => {
 				if (resp.ok) {
-					return true
-				} else if (bioTries < 3) {
-					bioTries++
-					return doBioUpload()
+					return { success: true }
+				} else if (tries < maxTries) {
+					tries++
+					return new Promise((resolve) => {
+						setTimeout(() => resolve(doSubmit()), 1000 * tries)
+					})
 				} else {
-					throw new Error("Could not upload Bio")
+					return { success: false }
 				}
-			})
+			} catch {
+				if (tries < maxTries) {
+					tries++
+					return new Promise((resolve) => {
+						setTimeout(() => resolve(doSubmit()), 1000 * tries)
+					})
+				}
+				return { success: false }
+			}
+		}
 
-		const doHeadshotUpload = async (): Promise<true> =>
-			uploadImage(imageFile as File, basename, (await getCreds(1))[0]).then(
-				(resp) => {
-					if (resp.ok) {
-						return true
-					} else if (headshotTries < 3) {
-						headshotTries++
-						return getCreds(1).then(doHeadshotUpload)
-					} else {
-						throw new Error("Could not upload Headshot")
-					}
-				},
-			)
+		const result = await doSubmit()
 
-		const jobs = [
-			doBioUpload(),
-			!fields.useOldHeadshot && doHeadshotUpload(),
-		].filter(Boolean)
-
-		return Promise.all(jobs)
-			.then(() => {
-				dispatch(events.sendHeadshotBioSuccess)
-			})
-			.catch(() => dispatch(events.sendHeadshotBioFailure))
+		if (result.success) {
+			dispatch(events.sendHeadshotBioSuccess)
+		} else {
+			dispatch(events.sendHeadshotBioFailure)
+		}
 	}
 
 	function handleNotify() {
