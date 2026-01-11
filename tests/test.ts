@@ -13,6 +13,83 @@ test.describe("Test Environment", () => {
 	})
 })
 
+test.describe("B2 Storage", () => {
+	function hasB2TestBucket(): boolean {
+		return !!(
+			process.env.B2_TEST_BUCKET_ID && process.env.B2_TEST_BUCKET_NAME
+		)
+	}
+
+	function getTestPassphrase(): string | null {
+		const passphraseList = process.env.INDIVIDUAL_PASSPHRASES_LIST
+		if (!passphraseList) return null
+		return passphraseList.split(",")[0]
+	}
+
+	test("bio submission with new image uploads to B2 test bucket", async ({
+		page,
+	}) => {
+		const testPassphrase = getTestPassphrase()
+		if (!testPassphrase) {
+			test.skip()
+			return
+		}
+
+		if (!hasB2TestBucket()) {
+			console.log(
+				"Skipping B2 test: B2_TEST_BUCKET_ID or B2_TEST_BUCKET_NAME not set",
+			)
+			test.skip()
+			return
+		}
+
+		// Navigate and authenticate
+		await page.goto("/bio-submission/")
+		await page.waitForLoadState("networkidle")
+		await page.locator('input[name="passphrase"]').fill(testPassphrase)
+		await page.getByRole("button", { name: "Continue" }).click()
+		await expect(page.locator('input[name="email"]')).toBeVisible({
+			timeout: 15000,
+		})
+
+		const testId = Date.now()
+
+		// Fill required fields
+		await page.locator('input[name="email"]').fill("b2test@example.com")
+		await page.locator('input[name="firstName"]').fill(`B2Test${testId}`)
+		await page.locator('input[name="lastName"]').fill("Upload")
+		await page.locator('input[name="location"]').fill("Test City, NE")
+
+		// Select "new headshot" option
+		await page.getByText("I have a new headshot").click()
+
+		// Create and upload a minimal test PNG image
+		// This is a 1x1 red pixel PNG
+		const testPngBase64 =
+			"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg=="
+		const testImageBuffer = Buffer.from(testPngBase64, "base64")
+
+		await page.locator('input[type="file"]').setInputFiles({
+			name: `test-b2-upload-${testId}.png`,
+			mimeType: "image/png",
+			buffer: testImageBuffer,
+		})
+
+		// Fill bio
+		const bioEditor = page.locator(".ProseMirror").first()
+		await bioEditor.click()
+		await bioEditor.fill(`B2Test${testId} Upload is testing B2 integration!`)
+
+		// Submit
+		const submitButton = page.getByRole("button", { name: "Submit Bio" })
+		await expect(submitButton).toBeEnabled({ timeout: 5000 })
+		await submitButton.click()
+
+		// Should succeed - B2 upload to test bucket should work
+		await expect(page.getByText("Success!")).toBeVisible({ timeout: 30000 })
+	})
+})
+
 test.describe("Bio Submission", () => {
 	// Helper to get a valid passphrase from env
 	function getTestPassphrase(): string | null {
