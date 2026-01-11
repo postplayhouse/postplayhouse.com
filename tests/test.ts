@@ -1,5 +1,18 @@
 import { expect, test } from "@playwright/test"
 
+test.describe("Test Environment", () => {
+	test("server detects PLAYWRIGHT_TEST environment variable", async ({
+		request,
+	}) => {
+		const response = await request.get("/api/test-env")
+		expect(response.ok()).toBeTruthy()
+
+		const data = await response.json()
+		expect(data.isTest).toBe(true)
+		expect(data.isProduction).toBe(false)
+	})
+})
+
 test.describe("Bio Submission", () => {
 	// Helper to get a valid passphrase from env
 	function getTestPassphrase(): string | null {
