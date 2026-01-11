@@ -3,6 +3,17 @@ import { createHash } from "node:crypto"
 import { readFile, readdir } from "node:fs/promises"
 import { join } from "node:path"
 
+test.describe("Test environment", () => {
+	test("server detects Playwright isolation", async ({ request }) => {
+		const response = await request.get("/api/test-env")
+		expect(response.ok()).toBeTruthy()
+		expect(await response.json()).toMatchObject({
+			isTest: true,
+			isProduction: false,
+		})
+	})
+})
+
 test.describe("Bio submission", () => {
 	const testPassphrase = () =>
 		process.env.INDIVIDUAL_PASSPHRASES_LIST?.split(",")[0]

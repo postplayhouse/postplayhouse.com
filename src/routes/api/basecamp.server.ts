@@ -1,5 +1,6 @@
 import { env } from "$env/dynamic/private"
 import { assert } from "$helpers"
+import { isProduction } from "$lib/server/env"
 
 const bioBotIntegrationKey = env["BASECAMP_BIO_BOT_INTEGRATION_KEY"]
 const basecampBioBotBase = `https://3.basecamp.com/5732828/integrations/${bioBotIntegrationKey}`
@@ -22,6 +23,13 @@ export function sendMessageToChatRoom(
 	room: keyof typeof chatRooms,
 	content: string,
 ) {
+	// Skip sending in non-production environments
+	if (!isProduction()) {
+		const preview = content.length > 100 ? content.substring(0, 100) + "..." : content
+		console.log(`[BASECAMP ${room}] Would send: ${preview}`)
+		return
+	}
+
 	fetch(urlForChatRoom(room), {
 		method: "POST",
 		headers: new Headers({ "Content-type": "application/json" }),

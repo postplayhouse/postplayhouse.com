@@ -4,6 +4,8 @@ import { config as dotenvConfig } from "dotenv"
 // Load .env file for tests
 dotenvConfig()
 
+process.env.PLAYWRIGHT_TEST = "true"
+
 const config: PlaywrightTestConfig = {
 	webServer: {
 		command:
@@ -11,6 +13,10 @@ const config: PlaywrightTestConfig = {
 		port: 3000,
 		// Build first for artifact assertions, then use Vite dev for Netlify Blobs emulation.
 		timeout: 1_500_000,
+		env: {
+			...process.env,
+			PLAYWRIGHT_TEST: "true",
+		},
 	},
 	testDir: "tests",
 	testMatch: /(.+\.)?(test|spec)\.[jt]s/,
