@@ -28,7 +28,9 @@ test.describe("B2 Storage", () => {
 
 	test("bio submission with new image uploads to B2 test bucket", async ({
 		page,
-	}) => {
+	}, testInfo) => {
+		// This test needs extra time for page load + B2 upload
+		testInfo.setTimeout(120000)
 		const testPassphrase = getTestPassphrase()
 		if (!testPassphrase) {
 			test.skip()
@@ -60,18 +62,16 @@ test.describe("B2 Storage", () => {
 		await page.locator('input[name="lastName"]').fill("Upload")
 		await page.locator('input[name="location"]').fill("Test City, NE")
 
-		// Select "new headshot" option
-		await page.getByText("I have a new headshot").click()
+		// New headshot is the default - just upload a file
+		// The file input accepts .jpg,.jpeg,.heif so use a JPEG
+		// This is a minimal 1x1 red JPEG
+		const testJpegBase64 =
+			"/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBEQCEAQA/AL+AAf/Z"
+		const testImageBuffer = Buffer.from(testJpegBase64, "base64")
 
-		// Create and upload a minimal test PNG image
-		// This is a 1x1 red pixel PNG
-		const testPngBase64 =
-			"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg=="
-		const testImageBuffer = Buffer.from(testPngBase64, "base64")
-
-		await page.locator('input[type="file"]').setInputFiles({
-			name: `test-b2-upload-${testId}.png`,
-			mimeType: "image/png",
+		await page.locator('input[name="headshot"]').setInputFiles({
+			name: `test-b2-upload-${testId}.jpg`,
+			mimeType: "image/jpeg",
 			buffer: testImageBuffer,
 		})
 
@@ -81,12 +81,34 @@ test.describe("B2 Storage", () => {
 		await bioEditor.fill(`B2Test${testId} Upload is testing B2 integration!`)
 
 		// Submit
+		// Intercept the submit response to see any error details
+		let submitResponse: { status: number; body: string } | null = null
+		page.on("response", async (response) => {
+			if (response.url().includes("/api/bio-submission/submit")) {
+				submitResponse = {
+					status: response.status(),
+					body: await response.text().catch(() => "Could not read body"),
+				}
+			}
+		})
+
 		const submitButton = page.getByRole("button", { name: "Submit Bio" })
 		await expect(submitButton).toBeEnabled({ timeout: 5000 })
 		await submitButton.click()
 
 		// Should succeed - B2 upload to test bucket should work
-		await expect(page.getByText("Success!")).toBeVisible({ timeout: 30000 })
+		// Wait for either success or error message
+		const successOrError = page.getByText("Success!").or(page.getByText("Oh no."))
+		await expect(successOrError).toBeVisible({ timeout: 30000 })
+
+		// If we got "Oh no.", fail the test with more info
+		const ohNo = page.getByText("Oh no.")
+		if (await ohNo.isVisible()) {
+			const errorInfo = submitResponse
+				? `Server response: ${submitResponse.status} - ${submitResponse.body}`
+				: "No submit response captured"
+			throw new Error(`B2 upload failed. ${errorInfo}`)
+		}
 	})
 })
 

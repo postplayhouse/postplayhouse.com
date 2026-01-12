@@ -13,23 +13,31 @@ import downloadMediaImages from "./src/routes/(app)/media/downloadMediaImagesVit
 // Ensure the build URL is available
 import { buildUrl } from "./env.js"
 
+// Only enable Sentry in production builds
+const isProduction = process.env.NODE_ENV === "production"
+
 export default defineConfig(() => ({
 	plugins: [
 		downloadMediaImages,
 		tailwindcss(),
 		enhancedImages(),
-		sentrySvelteKit({
-			sourceMapsUploadOptions: {
-				org: "post-playhouse",
-				project: "javascript-sveltekit",
-				// Future version of Don: This actually works on Netlify, just not
-				// locally. So it is fine when you see the "No auth token provided"
-				// error. I am guessing that the ENV variables from the .env file are
-				// not loaded for vite config, but are loaded for the app and the rest
-				// of the build. On Sentry, the ENV vars are always available, so it
-				// works there. Plus, we don't really want it to work here anyway.
-			},
-		}),
+		// Sentry plugin disabled in dev/test - not needed locally and reduces startup time
+		...(isProduction
+			? [
+					sentrySvelteKit({
+						sourceMapsUploadOptions: {
+							org: "post-playhouse",
+							project: "javascript-sveltekit",
+							// Future version of Don: This actually works on Netlify, just not
+							// locally. So it is fine when you see the "No auth token provided"
+							// error. I am guessing that the ENV variables from the .env file are
+							// not loaded for vite config, but are loaded for the app and the rest
+							// of the build. On Sentry, the ENV vars are always available, so it
+							// works there. Plus, we don't really want it to work here anyway.
+						},
+					}),
+				]
+			: []),
 
 		replacePlugin({
 			values: {
@@ -57,7 +65,12 @@ export default defineConfig(() => ({
 
 		sveltekit(),
 		svelteTesting(),
-		netlify(),
+		// Disable middleware and edge functions during tests - middleware causes
+		// "Response body object should not be disturbed or locked" errors with multipart form data
+		netlify({
+			middleware: process.env.PLAYWRIGHT_TEST !== "true",
+			edgeFunctions: process.env.PLAYWRIGHT_TEST !== "true",
+		}),
 	],
 	test: {
 		include: ["src/**/*.{test,spec}.{js,ts}"],
