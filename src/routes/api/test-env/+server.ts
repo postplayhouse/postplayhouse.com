@@ -1,4 +1,5 @@
 import { json } from "@sveltejs/kit"
+import { env } from "$env/dynamic/private"
 import { isProduction, isTest, isDev } from "$lib/server/env"
 
 /**
@@ -15,5 +16,8 @@ export const GET = async () => {
 		isProduction: isProduction(),
 		isTest: isTest(),
 		isDev: isDev(),
+		b2TestBucketConfigured: !!(env["B2_TEST_BUCKET_ID"] && env["B2_TEST_BUCKET_NAME"]),
+		b2TestBucketId: env["B2_TEST_BUCKET_ID"] ? "set" : "not set",
+		b2TestBucketName: env["B2_TEST_BUCKET_NAME"] ? "set" : "not set",
 	})
 }

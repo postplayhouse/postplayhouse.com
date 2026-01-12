@@ -23,7 +23,7 @@ interface AuthorizeAccountSuccessResponse {
  */
 function getB2Config() {
 	const useTestBucket = !isProduction()
-	return {
+	const config = {
 		keyId: env["B2_APPLICATION_KEY_ID"] ?? "",
 		key: env["B2_APPLICATION_KEY"] ?? "",
 		bucketId: useTestBucket
@@ -33,6 +33,8 @@ function getB2Config() {
 			? env["B2_TEST_BUCKET_NAME"] ?? ""
 			: env["B2_BUCKET_NAME"] ?? "",
 	}
+	console.log(`[B2] Using ${useTestBucket ? "test" : "production"} bucket: ${config.bucketName} (${config.bucketId})`)
+	return config
 }
 
 function base64Encode(str: string): string {
@@ -104,6 +106,9 @@ export async function uploadFileToB2(
 ): Promise<string> {
 	const { uploadUrl, authorizationToken } = await getB2UploadCreds()
 
+	// Convert File to ArrayBuffer for Node.js fetch compatibility
+	const arrayBuffer = await file.arrayBuffer()
+
 	const resp = await fetch(uploadUrl, {
 		method: "POST",
 		headers: {
@@ -113,15 +118,17 @@ export async function uploadFileToB2(
 			"X-Bz-File-Name": encodeURIComponent(fileName),
 			"Content-Length": file.size.toString(),
 		},
-		body: file,
+		body: arrayBuffer,
 	})
 
 	if (!resp.ok) {
 		const errorText = await resp.text()
+		console.error(`[B2] Upload failed: ${resp.status} - ${errorText}`)
 		throw new Error(`Could not upload file to B2: ${errorText}`)
 	}
 
 	const result = (await resp.json()) as { fileName: string }
+	console.log(`[B2] Upload successful: ${result.fileName}`)
 	return result.fileName
 }
 
