@@ -467,3 +467,112 @@ test.describe("SSR API endpoint", () => {
 		expect(response.status()).toBe(404)
 	})
 })
+
+test.describe("Admin Bio Approval API", () => {
+	function getNonAdminPassphrase(): string | null {
+		const passphraseList = process.env.INDIVIDUAL_PASSPHRASES_LIST
+		if (!passphraseList) return null
+		// Use position 6 or higher to ensure it's not an admin (admins are positions 1-5)
+		const passphrases = passphraseList.split(",")
+		return passphrases[5] || null // Position 6 (index 5)
+	}
+
+	function getAdminPassphrase(): string | null {
+		const passphraseList = process.env.INDIVIDUAL_PASSPHRASES_LIST
+		const adminPositions = process.env.ADMIN_PASSPHRASE_POSITIONS
+		if (!passphraseList || !adminPositions) return null
+
+		const passphrases = passphraseList.split(",")
+		const positions = adminPositions.split(",").map((p) => parseInt(p.trim(), 10))
+
+		if (positions.length === 0 || positions[0] > passphrases.length) {
+			return null
+		}
+
+		return passphrases[positions[0] - 1]
+	}
+
+	function hasB2TestBucket(): boolean {
+		return !!(
+			process.env.B2_TEST_BUCKET_ID && process.env.B2_TEST_BUCKET_NAME
+		)
+	}
+
+	test("POST /api/admin/bios/approve rejects request without passphrase", async ({
+		request,
+	}) => {
+		const response = await request.post("/api/admin/bios/approve", {
+			data: { position: 1 },
+		})
+		expect(response.status()).toBe(403)
+		const data = await response.json()
+		expect(data.message).toBe("Invalid passphrase")
+	})
+
+	test("POST /api/admin/bios/approve rejects non-admin passphrase", async ({
+		request,
+	}) => {
+		const nonAdminPassphrase = getNonAdminPassphrase()
+		if (!nonAdminPassphrase) {
+			test.skip()
+			return
+		}
+
+		const response = await request.post("/api/admin/bios/approve", {
+			headers: {
+				Authorization: nonAdminPassphrase,
+			},
+			data: { position: 1 },
+		})
+		expect(response.status()).toBe(403)
+		const data = await response.json()
+		expect(data.message).toBe("Admin access required")
+	})
+
+	test("POST /api/admin/bios/approve rejects request without position", async ({
+		request,
+	}) => {
+		const adminPassphrase = getAdminPassphrase()
+		if (!adminPassphrase) {
+			test.skip()
+			return
+		}
+
+		const response = await request.post("/api/admin/bios/approve", {
+			headers: {
+				Authorization: adminPassphrase,
+			},
+			data: {},
+		})
+		expect(response.status()).toBe(400)
+		const data = await response.json()
+		expect(data.message).toBe("Position is required")
+	})
+
+	test("POST /api/admin/bios/approve returns 404 for non-existent pending bio", async ({
+		request,
+	}) => {
+		const adminPassphrase = getAdminPassphrase()
+		if (!adminPassphrase) {
+			test.skip()
+			return
+		}
+
+		const response = await request.post("/api/admin/bios/approve", {
+			headers: {
+				Authorization: adminPassphrase,
+			},
+			data: { position: 99999 },
+		})
+		expect(response.status()).toBe(404)
+		const data = await response.json()
+		expect(data.message).toBe("Pending bio not found")
+	})
+
+	test("GET /api/admin/bios/approve returns 405 for GET requests", async ({
+		request,
+	}) => {
+		const response = await request.get("/api/admin/bios/approve")
+		expect(response.status()).toBe(405)
+	})
+})
