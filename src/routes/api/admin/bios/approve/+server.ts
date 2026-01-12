@@ -15,10 +15,14 @@ import * as path from "node:path"
 
 export const POST = async ({ request }) => {
 	// Validate admin access
-	const { correct, position: adminPosition } =
-		individualPassphraseDetails(request)
-
-	if (!correct) {
+	let adminPosition: number
+	try {
+		const { correct, position } = individualPassphraseDetails(request)
+		if (!correct) {
+			return error(403, { message: "Invalid passphrase" })
+		}
+		adminPosition = position
+	} catch (err) {
 		return error(403, { message: "Invalid passphrase" })
 	}
 
