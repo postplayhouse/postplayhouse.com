@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Announcement from "$components/Announcement.svelte"
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
@@ -26,6 +27,19 @@
 	<meta property="og:title" content="Post Playhouse" />
 	<meta property="og:description" content={site.description} />
 </svelte:head>
+
+<Announcement
+	title="Announcing local actor auditions for 2026!"
+	readMoreLink="/jobs"
+	expirationDate="2026-03-17"
+>
+	<p>
+		Post Playhouse is hosting local auditions on <strong
+			>Monday, March 16th</strong
+		> at Chadron State College. This is your chance to work alongside professionals
+		from across the United States!
+	</p>
+</Announcement>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings {season} {productions} />
