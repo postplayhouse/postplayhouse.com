@@ -23,7 +23,7 @@
 		]
 	},
 	"dependencies": {
-		"@sentry/sveltekit": "^10.22.0",
+		"@sentry/sveltekit": "^10.27.0",
 		"compression": "^1.8.1",
 		"date-fns": "^2.30.0",
 		"js-yaml": "^4.1.0",
