@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { isBefore, startOfToday } from "date-fns"
 	import type { Snippet } from "svelte"
+	import HideOnDate from "./HideOnDate.svelte"
 
 	type Props = {
 		title: string | Snippet
@@ -28,7 +28,7 @@
 	{/if}
 {/snippet}
 
-{#if isBefore(startOfToday(), new Date(`${expirationDate}T00:00:00.000`))}
+<HideOnDate date={expirationDate}>
 	<div
 		class={[
 			"mx-auto mb-16 block max-w-2xl border border-green-400 bg-green-100 p-6 shadow-md dark:border-green-500 dark:bg-green-900/20",
@@ -54,4 +54,4 @@
 			</div>
 		{/if}
 	</div>
-{/if}
+</HideOnDate>
