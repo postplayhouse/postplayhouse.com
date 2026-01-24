@@ -1,9 +1,11 @@
 <script lang="ts">
 	import Announcement from "$components/Announcement.svelte"
+	import HideOnDate from "$components/HideOnDate.svelte"
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
 	import * as site from "$data/site"
+	import Raffle2026 from "./news/2026-01-23-annual-raffle/+page.svelte"
 
 	let { data } = $props()
 
@@ -40,6 +42,14 @@
 		from across the United States!
 	</p>
 </Announcement>
+
+<HideOnDate date="2026-03-15">
+	<div
+		class="-mx-8 rounded border border-green-800 bg-green-50 p-8 dark:bg-green-900"
+	>
+		<Raffle2026 />
+	</div>
+</HideOnDate>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings {season} {productions} />
