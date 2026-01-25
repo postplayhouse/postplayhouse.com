@@ -3,10 +3,8 @@
 	font-size: 1.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-	.calendar-component-wrapper {
-		background: #343;
-	}
+.dark .calendar-component-wrapper {
+	background: #343;
 }
 
 .calendar-component-wrapper ul {
@@ -163,18 +161,16 @@
 	bottom: -1px;
 }
 
-@media (prefers-color-scheme: dark) {
-	.day {
-		border-color: rgba(255, 255, 255, 0.5);
-	}
+.dark .day {
+	border-color: rgba(255, 255, 255, 0.5);
+}
 
-	.week {
-		border-color: rgba(255, 255, 255, 0.5);
-	}
+.dark .week {
+	border-color: rgba(255, 255, 255, 0.5);
+}
 
-	.week:last-child .day:after {
-		border-color: rgba(255, 255, 255, 0.5);
-	}
+.dark .week:last-child .day:after {
+	border-color: rgba(255, 255, 255, 0.5);
 }
 
 @media (min-width: 91424px) {
@@ -230,10 +226,8 @@
 	background: white;
 }
 
-@media (prefers-color-scheme: dark) {
-	.day {
-		background: #333;
-	}
+.dark .day {
+	background: #333;
 }
 
 .day .month-holder {
@@ -252,10 +246,8 @@
 	transform: rotate(-12deg);
 	top: -0.8em;
 }
-@media (prefers-color-scheme: dark) {
-	.day .month-name {
-		color: white;
-	}
+.dark .day .month-name {
+	color: white;
 }
 
 @media (min-width: 901px) {
@@ -295,10 +287,8 @@
 	color: black;
 }
 
-@media (prefers-color-scheme: dark) {
-	.day-name {
-		color: white;
-	}
+.dark .day-name {
+	color: white;
 }
 
 .day-name .short {
@@ -309,10 +299,8 @@
 	background: rgba(0, 0, 0, 0.4);
 }
 
-@media (prefers-color-scheme: dark) {
-	.day.dark {
-		background: black;
-	}
+.dark .day.dark {
+	background: black;
 }
 
 .day.dark .mday,
@@ -379,10 +367,8 @@
 	line-height: 1;
 }
 
-@media (prefers-color-scheme: dark) {
-	.mday {
-		color: white;
-	}
+.dark .mday {
+	color: white;
 }
 
 .day-wrapper {

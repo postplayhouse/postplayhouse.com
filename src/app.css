@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode: .dark class on <html> activates dark: utilities */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
 	--border-width-6: 6px;
 

@@ -3,6 +3,7 @@
 	import Nav from "$components/Nav.svelte"
 	import Header from "$components/Header.svelte"
 	import Footer from "$components/Footer.svelte"
+	import ThemeToggle from "$components/ThemeToggle.svelte"
 	import type { Snippet } from "svelte"
 
 	// Bare reference to page just to keep eslint happy
@@ -17,6 +18,7 @@
 </script>
 
 <div class="dark:bg-[#0f110f] dark:text-white/90">
+	<ThemeToggle />
 	<Header />
 	<Nav activePath={$page.url.pathname} />
 

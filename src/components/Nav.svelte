@@ -39,7 +39,7 @@
 	}
 </script>
 
-<nav class="main-nav mx-auto max-w-4xl">
+<nav class="main-nav mx-auto max-w-4xl border-b border-green-500/10 px-4 dark:border-green-500/30">
 	<ul class="w-fit">
 		<li>
 			<a use:active={activePath} href="/productions/{site.season}">
@@ -67,17 +67,6 @@
 </nav>
 
 <style>
-	nav {
-		border-bottom: 1px solid rgba(62, 155, 50, 0.1);
-		padding: 0 1em;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		nav {
-			border-color: rgba(62, 155, 50, 0.3);
-		}
-	}
-
 	ul {
 		padding: 0;
 	}

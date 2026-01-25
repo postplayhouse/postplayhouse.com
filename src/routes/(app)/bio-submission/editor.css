@@ -196,10 +196,8 @@ img.ProseMirror-separator {
 	overflow: visible;
 }
 
-@media (prefers-color-scheme: dark) {
-	.ProseMirror-menubar {
-		color: #ddd;
-	}
+.dark .ProseMirror-menubar {
+	color: #ddd;
 }
 
 .ProseMirror-icon {
