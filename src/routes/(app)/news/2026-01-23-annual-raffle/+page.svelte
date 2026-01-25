@@ -39,7 +39,7 @@ YOUR INFO HERE
 <h3 class="mt-8 mb-4 text-5xl leading-none font-bold">
 	$100 Gets You All This:
 </h3>
-<ul class="text-xl list-disc ml-6 space-y-1">
+<ul class="ml-6 list-disc space-y-1 text-xl">
 	<li>Admission for <strong>you and a guest</strong></li>
 	<li>Dinner and drinks (5:00pm - 7:00pm)</li>
 	<li>Entry into the raffle drawing (7:00pm)</li>
@@ -47,7 +47,7 @@ YOUR INFO HERE
 </ul>
 
 <h5 class="mt-8 text-5xl leading-none font-bold">Prize Pay Outs</h5>
-<p class="text-lg mb-2">You need not be present to win.</p>
+<p class="mb-2 text-lg">You need not be present to win.</p>
 <ul class="prizes">
 	<li>
 		<span class="place">1st Prize (1 paid):</span>
@@ -67,13 +67,19 @@ YOUR INFO HERE
 	</li>
 </ul>
 
-<h3 class="mt-8 mb-4 text-5xl leading-none font-bold">
-	Get Your Ticket Now!
-</h3>
-<p class="p mb-2">
-	<strong>Only 400 tickets will be sold!</strong>
-	<a class="link-green" href="https://www.zeffy.com/en-US/ticketing/post-playhouses-get-lucky-raffle--2026">Purchase your ticket online</a>,
-	contact Danielle Lecher at 308-430-0939 to be put in touch with a Board Member, or email us at
+<h3 class="mt-8 mb-4 text-5xl leading-none font-bold">Don't Miss Out!</h3>
+<p class="mb-4 text-xl">
+	<strong>Only 400 tickets available!</strong>
+</p>
+<a
+	class="btn-p text-2xl transition-transform duration-200 hover:scale-105 hover:shadow-lg hover:shadow-green-500/40"
+	href="https://www.zeffy.com/en-US/ticketing/post-playhouses-get-lucky-raffle--2026"
+>
+	Get Your Raffle Ticket Now
+</a>
+<p class="p mt-4 text-lg">
+	You can also contact Danielle Lecher at 308-430-0939 to be put in touch with a
+	Board Member, or email us at
 	<a class="link-green" href={emailLink}>tickets@postplayhouse.com</a>.
 </p>
 
@@ -93,38 +99,39 @@ YOUR INFO HERE
 	@media (min-width: 850px) {
 		.title {
 			font-size: 160px;
+			letter-spacing: 0.05em;
 		}
 	}
 	.big-pop {
 		color: #94d788;
 		text-shadow:
-			-0.1em -0.1em 0 #033f0b,
-			-0.09em -0.09em 0 #033f0b,
-			-0.08em -0.08em 0 #033f0b,
-			-0.07em -0.07em 0 #033f0b,
-			-0.06em -0.06em 0 #033f0b,
-			-0.05em -0.05em 0 #033f0b,
-			-0.04em -0.04em 0 #033f0b,
-			-0.03em -0.03em 0 #033f0b,
-			-0.02em -0.02em 0 #033f0b,
-			-0.01em -0.01em 0 #033f0b,
-			-0.095em -0.095em 0 #033f0b,
-			-0.085em -0.085em 0 #033f0b,
-			-0.075em -0.075em 0 #033f0b,
-			-0.065em -0.065em 0 #033f0b,
-			-0.055em -0.055em 0 #033f0b,
-			-0.045em -0.045em 0 #033f0b,
-			-0.035em -0.035em 0 #033f0b,
-			-0.025em -0.025em 0 #033f0b,
-			-0.015em -0.015em 0 #033f0b,
-			-0.005em -0.005em 0 #033f0b;
+			-0.1em -0.1em 0 #0a6216,
+			-0.09em -0.09em 0 #0a6216,
+			-0.08em -0.08em 0 #0a6216,
+			-0.07em -0.07em 0 #0a6216,
+			-0.06em -0.06em 0 #0a6216,
+			-0.05em -0.05em 0 #0a6216,
+			-0.04em -0.04em 0 #0a6216,
+			-0.03em -0.03em 0 #0a6216,
+			-0.02em -0.02em 0 #0a6216,
+			-0.01em -0.01em 0 #0a6216,
+			-0.095em -0.095em 0 #0a6216,
+			-0.085em -0.085em 0 #0a6216,
+			-0.075em -0.075em 0 #0a6216,
+			-0.065em -0.065em 0 #0a6216,
+			-0.055em -0.055em 0 #0a6216,
+			-0.045em -0.045em 0 #0a6216,
+			-0.035em -0.035em 0 #0a6216,
+			-0.025em -0.025em 0 #0a6216,
+			-0.015em -0.015em 0 #0a6216,
+			-0.005em -0.005em 0 #0a6216;
 	}
 	.small-pop {
 		color: #94d788;
 		text-shadow:
-			-0.01em -0.01em 0 #033f0b,
-			-0.02em -0.02em 0 #033f0b,
-			-0.03em -0.03em 0 #033f0b;
+			-0.01em -0.01em 0 #0a6216,
+			-0.02em -0.02em 0 #0a6216,
+			-0.03em -0.03em 0 #0a6216;
 	}
 	.prizes {
 		margin: 1em 0 1em 1em;

@@ -45,7 +45,7 @@
 
 <HideOnDate date="2026-03-15">
 	<div
-		class="-mx-8 rounded border border-green-800 bg-green-50 p-8 dark:bg-green-900"
+		class="-mx-8 border border-green-400 bg-green-100 p-6 shadow-md dark:border-green-500 dark:bg-green-900/20"
 	>
 		<Raffle2026 />
 	</div>
