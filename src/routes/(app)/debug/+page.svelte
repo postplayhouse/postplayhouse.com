@@ -1,9 +1,10 @@
 <script lang="ts">
 	import OpeningsDebugger from "$components/Openings/OpeningsDebugger.svelte"
+	import { getEvents } from "$data/events.remote"
+	import * as site from "$data/site"
 	import ActiveColors from "./ActiveColors.svelte"
 
-	let { data } = $props()
-	const { productions } = $derived(data)
+	const { productions } = $derived(await getEvents(site.season))
 </script>
 
 <details>
