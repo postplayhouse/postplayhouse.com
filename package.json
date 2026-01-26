@@ -29,7 +29,7 @@
 		"js-yaml": "^4.1.0",
 		"jsonwebtoken": "^9.0.2",
 		"jszip": "^3.10.1",
-		"lodash-es": "^4.17.21",
+		"lodash-es": "^4.17.23",
 		"marked": "^4.3.0",
 		"papaparse": "^5.5.3",
 		"prosemirror-example-setup": "^1.2.3",
