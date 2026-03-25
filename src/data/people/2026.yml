@@ -266,6 +266,15 @@
 # start __24__
 # end __24__
 # start __25__
+- last_name: Johnson
+  first_name: Lily
+  image_year: 2026
+  location: "Melbourne, FL"
+  staff_positions:
+    - Carpenter
+  bio: |
+    This is Lily 'Blondie' Johnson's first season with Post Playhouse, and is thrilled to be working with all the talented creatives as carpenter. She is currently studying scenic and lighting design at FSU. She has built sets for *Bright Star*, *The Game's Afoot*, and *You on the Moors Now*, and cannot wait to continue with this season at Post Playhouse. She would like to give her deepest thanks to her siblings' cat, Patty Cake: she is an inspiration every day.
+
 # end __25__
 # start __26__
 # end __26__
