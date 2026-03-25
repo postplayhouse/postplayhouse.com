@@ -1,9 +1,8 @@
 <script lang="ts">
 	import Main from "$components/layouts/MainLayout.svelte"
+	import { getMediaImages } from "./mediaImages.remote.js"
 
-	let { data } = $props()
-
-	const { images } = $derived(data)
+	const images = $derived(await getMediaImages())
 </script>
 
 <Main unconstrainedWidth>

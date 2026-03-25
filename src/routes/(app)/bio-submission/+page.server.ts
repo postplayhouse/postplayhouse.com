@@ -1,7 +1,12 @@
 import fs from "node:fs"
 import path from "node:path"
 
+const disabled = false
+
 export const prerender = true
+
+// When disabled, prevent hydration
+export const csr = !disabled
 
 function getImagesFromDirectory(directoryPath: string): string[] {
 	let imageFiles: string[] = []
@@ -29,6 +34,7 @@ function getImagesFromDirectory(directoryPath: string): string[] {
 
 export async function load() {
 	return {
+		disabled,
 		imageFiles: getImagesFromDirectory("src/images/people"),
 	}
 }

@@ -21,15 +21,18 @@
 	import { sortPeople, personIsInGroup, slugify } from "$helpers"
 	import PersonImage from "$components/PersonImage.svelte"
 	import Markdown from "$components/Markdown.svelte"
+	import { getEvents } from "$data/events.remote.js"
+	import * as site from "$data/site.js"
+	import { getPeople } from "$data/people.remote.js"
 
 	function renameImgFile(imgPath: string, newBaseNameWithoutExt: string) {
 		const ext = imgPath.split(".").pop()
 		return newBaseNameWithoutExt + "." + ext
 	}
 
-	let { data } = $props()
+	let { people } = $derived(await getPeople(site.season))
 
-	const { people, productions } = $derived(data)
+	let { productions } = $derived(await getEvents(site.season))
 
 	const initialSort = $derived(sortPeople(people).map(toPerson))
 	const additional = $derived(
