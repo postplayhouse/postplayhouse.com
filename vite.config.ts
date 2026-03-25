@@ -58,7 +58,7 @@ export default defineConfig(() => ({
 		svelteTesting(),
 	],
 	test: {
-		include: ["src/**/*.{test,spec}.{js,ts}"],
+		include: ["src/**/*.{test,spec}.{js,ts}", "scripts/**/*.{test,spec}.{js,ts}"],
 		environment: "jsdom",
 		setupFiles: ["./vitest-setup.js"],
 	},

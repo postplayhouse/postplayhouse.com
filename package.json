@@ -15,7 +15,14 @@
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
-		"prepare": "husky"
+		"prepare": "husky",
+		"bio:fetch": "tsx scripts/bio-tool/fetch-b2-submissions.ts",
+		"bio:process": "tsx scripts/bio-tool/process-bios.ts",
+		"bio:merge": "tsx scripts/bio-tool/merge-bios.ts",
+		"bio:cleanup": "tsx scripts/bio-tool/cleanup-branches.ts",
+		"bio:review": "tsx scripts/bio-tool/review-bios.ts",
+		"bio:links": "tsx scripts/bio-tool/check-links.ts",
+		"bio:emails": "tsx scripts/bio-tool/collect-emails.ts"
 	},
 	"lint-staged": {
 		"*": [
@@ -40,6 +47,7 @@
 		"zod": "^4.1.13"
 	},
 	"devDependencies": {
+		"@inquirer/prompts": "^8.3.2",
 		"@octokit/rest": "^22.0.1",
 		"@playwright/test": "^1.56.1",
 		"@popperjs/core": "^2.11.8",
@@ -59,15 +67,19 @@
 		"@types/lodash-es": "^4.17.12",
 		"@types/marked": "^4.3.2",
 		"@types/papaparse": "^5.3.16",
+		"dotenv": "^17.3.1",
 		"eslint": "^9.39.0",
 		"eslint-config-prettier": "^9.1.2",
 		"eslint-plugin-svelte": "^2.46.1",
 		"globals": "^15.15.0",
 		"gray-matter": "^4.0.3",
 		"husky": "^9.1.7",
+		"imghash": "^1.1.2",
+		"jpeg-js": "^0.4.4",
 		"jsdom": "^26.1.0",
 		"lint-staged": "^15.5.2",
 		"mdsvex": "^0.12.6",
+		"pngjs": "^7.0.0",
 		"postcss": "^8.5.6",
 		"postcss-load-config": "^5.1.0",
 		"prettier": "^3.6.2",
@@ -79,6 +91,7 @@
 		"svelte-check": "^4.3.3",
 		"tailwindcss": "^4.1.16",
 		"tslib": "^2.8.1",
+		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.46.2",
 		"vite": "^7.1.12",
