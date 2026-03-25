@@ -22,7 +22,8 @@
 		"bio:cleanup": "tsx scripts/bio-tool/cleanup-branches.ts",
 		"bio:review": "tsx scripts/bio-tool/review-bios.ts",
 		"bio:links": "tsx scripts/bio-tool/check-links.ts",
-		"bio:emails": "tsx scripts/bio-tool/collect-emails.ts"
+		"bio:emails": "tsx scripts/bio-tool/collect-emails.ts",
+		"bio:optimize": "tsx scripts/bio-tool/optimize-image.ts"
 	},
 	"lint-staged": {
 		"*": [

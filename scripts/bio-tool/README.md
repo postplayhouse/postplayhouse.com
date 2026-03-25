@@ -77,6 +77,14 @@ pnpm bio:links
 
 Checks all URLs found in the current season's YAML file. Reports broken links.
 
+### Optimize a single image
+
+```sh
+pnpm bio:optimize path/to/image.jpg
+```
+
+Auto-orients, resizes to max 1200px, converts to JPEG (mozjpeg quality 82), and overwrites in place. Non-JPEG files are converted and the original deleted.
+
 ### 7. Clean up branches
 
 ```sh
@@ -98,6 +106,7 @@ scripts/bio-tool/
   collect-emails.ts         — email collection from B2 + PRs
   check-links.ts            — URL verification
   cleanup-branches.ts       — branch deletion
+  optimize-image.ts         — standalone image optimization
   lib/
     b2.ts                   — B2 API client
     bio-transforms.ts       — Instagram/URL linking, URL verification
