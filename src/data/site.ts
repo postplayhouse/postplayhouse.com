@@ -5,7 +5,7 @@ export { season, allYears } from "./seasons"
 const prod = !dev
 
 // Actual values. If dev, these may change below.
-const castingComplete_ = false
+const castingComplete_ = true as boolean
 const showsAnnounced_ = true as boolean
 
 export const ticketsAvailableDate = "2025-11-15T00:00:00"
