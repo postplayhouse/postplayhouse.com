@@ -1,4 +1,5 @@
 import { requireEnv } from "./env"
+import { fileHasImgExt } from "./image"
 
 interface B2AuthResponse {
   accountId: string
@@ -112,10 +113,11 @@ export function findMatchingImage(
   allFiles: B2File[],
   basename: string,
 ): B2File | null {
-  const imageExts = [".jpg", ".jpeg", ".png", ".webp"]
   return (
-    allFiles.find((f) =>
-      imageExts.some((ext) => f.fileName === `${basename}${ext}`),
-    ) ?? null
+    allFiles.find((f) => {
+      const lower = f.fileName.toLowerCase()
+      const baseLower = `${basename}.`
+      return lower.startsWith(baseLower) && fileHasImgExt(lower)
+    }) ?? null
   )
 }

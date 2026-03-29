@@ -21,7 +21,7 @@ import {
   currentBranch,
   getPositionBlameTimestamp,
 } from "./lib/git"
-import { hashImage, imagesSimilar, findPreviousImage } from "./lib/image"
+import { hashImage, imagesSimilar, findPreviousImage, fileHasImgExt } from "./lib/image"
 import {
   linkInstagramHandles,
   linkBareUrls,
@@ -277,7 +277,7 @@ async function optimizeImages(season: number) {
 
   const imageFiles = changedFiles
     .map((f) => f.split("/").pop()!)
-    .filter((f) => /\.(jpe?g|png|webp)$/i.test(f))
+    .filter((f) => fileHasImgExt(f))
     .filter((f) => existsSync(resolve(imgDir, f)))
   if (!imageFiles.length) return
 

@@ -127,7 +127,7 @@ async function main() {
     const imageFile = findMatchingImage(allFiles, basename)
 
     if (imageFile) {
-      const ext = imageFile.fileName.slice(imageFile.fileName.lastIndexOf("."))
+      const ext = imageFile.fileName.slice(imageFile.fileName.lastIndexOf(".")).toLowerCase()
       const imageName = `${parsed.firstName}-${parsed.lastName}${ext}`
       const imgDir = imagesDir(season)
       mkdirSync(imgDir, { recursive: true })

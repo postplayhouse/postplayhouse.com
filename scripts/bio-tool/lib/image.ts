@@ -6,6 +6,12 @@ import imghash from "imghash"
 
 const __dirname = import.meta.dirname ?? dirname(fileURLToPath(import.meta.url))
 
+export const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".heif", ".heic"]
+
+export function fileHasImgExt(filename: string): boolean {
+  return IMAGE_EXTENSIONS.some((ext) => filename.toLowerCase().endsWith(ext))
+}
+
 const SIMILARITY_THRESHOLD = 10 // Hamming distance — lower = more similar. 10 is very loose.
 
 /** Compute perceptual hash of an image file */
@@ -51,7 +57,7 @@ export function findPreviousImage(
 
 	for (let year = currentSeason - 1; year >= 2015; year--) {
 		const yearDir = resolve(imagesBase, String(year))
-		const extensions = [".jpg", ".jpeg", ".png", ".webp"]
+		const extensions = IMAGE_EXTENSIONS
 
 		for (const ext of extensions) {
 			const candidate = resolve(yearDir, `${kebabName}${ext}`)
