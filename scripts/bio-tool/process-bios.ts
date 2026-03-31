@@ -19,7 +19,7 @@ import {
   commitAll,
   branchHasCommit,
   currentBranch,
-  getPositionBlameTimestamp,
+  isPositionAlreadyMerged,
 } from "./lib/git"
 import { hashImage, imagesSimilar, findPreviousImage, fileHasImgExt } from "./lib/image"
 import {
@@ -51,7 +51,7 @@ async function main() {
   console.log(`Current season: ${season}`)
 
   console.log("Fetching remote bio-update branches...")
-  fetchRemoteBioUpdateBranches()
+  fetchRemoteBioUpdateBranches(yamlPath)
 
   const branches = listBioUpdateBranches()
   console.log(`Found ${branches.length} bio-update branches`)
@@ -77,10 +77,8 @@ async function main() {
     // Skip if master's blame for this position is newer than the branch's
     // latest commit — means the content was already merged (squash merges
     // don't share commit history, so rev-list can't detect this).
-    const masterBlame = getPositionBlameTimestamp(yamlPath, position, "master")
-    const branchLatest = new Date(parseInt(git(`log -1 --format=%ct ${branch}`).trim()) * 1000)
-    if (masterBlame && masterBlame >= branchLatest) {
-      console.log(`\n--- Skipping ${branch} (master blame ${masterBlame.toISOString()} >= branch tip ${branchLatest.toISOString()}) ---`)
+    if (isPositionAlreadyMerged(yamlPath, position, branch)) {
+      console.log(`\n--- Skipping ${branch} (already merged to master) ---`)
       continue
     }
 

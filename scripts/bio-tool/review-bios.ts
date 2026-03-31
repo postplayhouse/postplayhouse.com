@@ -5,7 +5,7 @@ import { fileURLToPath } from "url"
 import {
   git,
   ensureCleanWorkingDir,
-  getPositionBlameTimestamp,
+  isPositionAlreadyMerged,
   fetchRemoteBioUpdateBranches,
   listBioUpdateBranches,
   checkoutBranch,
@@ -89,7 +89,7 @@ async function main() {
   const yamlPath = seasonYamlPath(season)
 
   console.log("Fetching remote bio-update branches...")
-  fetchRemoteBioUpdateBranches()
+  fetchRemoteBioUpdateBranches(yamlPath)
 
   const cutoffYear = season - 1
   const cutoff = new Date(cutoffYear, 8, 1) // September 1st of prior year
@@ -103,9 +103,7 @@ async function main() {
   // Gather commit info per branch, skipping already-merged positions
   const branchInfos: BranchInfo[] = []
   for (const { branch, position } of branches) {
-    const masterBlame = getPositionBlameTimestamp(yamlPath, position, "master")
-    const branchLatest = new Date(parseInt(git(`log -1 --format=%ct ${branch}`).trim()) * 1000)
-    if (masterBlame && masterBlame >= branchLatest) {
+    if (isPositionAlreadyMerged(yamlPath, position, branch)) {
       continue
     }
     const commits = getCommitsAheadOfMaster(branch)

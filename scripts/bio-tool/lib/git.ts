@@ -91,8 +91,30 @@ export function getPositionBlameTimestamp(
   }
 }
 
-/** Fetch remote bio-update branches and create local tracking branches */
-export function fetchRemoteBioUpdateBranches(): void {
+/**
+ * Check if a position's content on master is already at least as new as
+ * the given branch ref's tip commit. Used to detect squash-merged branches
+ * where commit history doesn't overlap.
+ */
+export function isPositionAlreadyMerged(
+  yamlPath: string,
+  position: number,
+  branchRef: string,
+): boolean {
+  const masterBlame = getPositionBlameTimestamp(yamlPath, position, "master")
+  if (!masterBlame) return false
+  const branchLatest = new Date(
+    parseInt(git(`log -1 --format=%ct ${branchRef}`).trim()) * 1000,
+  )
+  return masterBlame >= branchLatest
+}
+
+/**
+ * Fetch remote bio-update branches and create local tracking branches.
+ * When yamlPath is provided, skip branches whose position is already
+ * merged to master (blame timestamp >= branch tip).
+ */
+export function fetchRemoteBioUpdateBranches(yamlPath?: string): void {
   try {
     git("fetch origin 'refs/heads/bio-update/*:refs/remotes/origin/bio-update/*'")
   } catch {
@@ -115,15 +137,25 @@ export function fetchRemoteBioUpdateBranches(): void {
     const local = remote.replace(/^origin\//, "")
     try {
       // Only create if local branch doesn't already exist
-      git(`rev-parse --verify ${local}`)
+      git(`rev-parse --verify refs/heads/${local}`)
+      continue
     } catch {
-      // Local branch doesn't exist — create it tracking the remote
-      try {
-        git(`branch ${local} ${remote}`)
-        console.log(`  Created local branch ${local} from remote`)
-      } catch {
-        // ignore if it fails
+      // Local branch doesn't exist — check if it's worth creating
+    }
+
+    // Skip branches whose position is already merged to master
+    if (yamlPath) {
+      const position = parseInt(local.split("-").pop()!)
+      if (!isNaN(position) && isPositionAlreadyMerged(yamlPath, position, remote)) {
+        continue
       }
+    }
+
+    try {
+      git(`branch ${local} ${remote}`)
+      console.log(`  Created local branch ${local} from remote`)
+    } catch {
+      // ignore if it fails
     }
   }
 }

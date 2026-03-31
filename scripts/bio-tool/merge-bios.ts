@@ -7,7 +7,7 @@ import { load as yamlLoad } from "js-yaml"
 import {
 	git,
 	ensureCleanWorkingDir,
-	getPositionBlameTimestamp,
+	isPositionAlreadyMerged,
 	fetchRemoteBioUpdateBranches,
 	listBioUpdateBranches,
 	checkoutMaster,
@@ -64,18 +64,15 @@ async function main() {
 	const season = getCurrentSeason()
 
 	console.log("Fetching remote bio-update branches...")
-	fetchRemoteBioUpdateBranches()
-
 	const yamlPath = seasonYamlPath(season)
+	fetchRemoteBioUpdateBranches(yamlPath)
 	const cutoffYear = season - 1
 	const cutoff = new Date(cutoffYear, 8, 1) // September 1st of prior year
 	const allBranches = listBioUpdateBranches().filter((b: { date: Date }) => b.date >= cutoff)
 
 	// Filter out branches whose position is already newer on master
 	const branches = allBranches.filter(({ branch, position }: { branch: string; position: number }) => {
-		const masterBlame = getPositionBlameTimestamp(yamlPath, position, "master")
-		const branchLatest = new Date(parseInt(git(`log -1 --format=%ct ${branch}`).trim()) * 1000)
-		return !(masterBlame && masterBlame >= branchLatest)
+		return !isPositionAlreadyMerged(yamlPath, position, branch)
 	})
 
 	if (!branches.length) {
