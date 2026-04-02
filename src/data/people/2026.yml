@@ -578,6 +578,14 @@
 
 # end __40__
 # start __41__
+- last_name: Jefferson
+  first_name: Lily
+  image_year: 2026
+  location: "Miami, FL"
+  staff_positions:
+    - Technician
+  bio: |
+    Lily is excited to be joining the Post Playhouse for her first season as a Technician. She is a senior BFA Lighting Design student at Florida International University, where she recently designed lighting for *The House of Ramón Iglesia,* and has previously stage managed FIU’s *Uncle Vanya* and *Much Ado About Nothing*. She would like to thank Dewayne for the wonderful opportunity, her Panther friends, and her family for their continued support.
 # end __41__
 # start __42__
 - last_name: Clayton
