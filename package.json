@@ -27,7 +27,8 @@
 		"bio:emails": "tsx scripts/bio-tool/collect-emails.ts",
 		"bio:optimize": "tsx scripts/bio-tool/optimize-image.ts",
 		"bio:audit-master": "tsx scripts/bio-tool/audit-master.ts",
-		"bio:audit-b2": "DOTENV_CONFIG_QUIET=true tsx scripts/bio-tool/audit-b2.ts"
+		"bio:audit-b2": "DOTENV_CONFIG_QUIET=true tsx scripts/bio-tool/audit-b2.ts",
+		"bio:basecamp": "tsx scripts/bio-tool/add-to-basecamp.ts"
 	},
 	"lint-staged": {
 		"*": [
