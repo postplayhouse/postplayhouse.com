@@ -95,8 +95,8 @@ async function main() {
     return p
   }
 
-  const callBoardProject = findProject("Virtual Call Board 2026")
-  const productionStaffProject = findProject("Production Staff 2026")
+  const callBoardProject = findProject(requireEnv("BASECAMP_CALL_BOARD_PROJECT"))
+  const productionStaffProject = findProject(requireEnv("BASECAMP_PRODUCTION_PROJECT"))
 
   // --- Build email manifest lookup ---
   const emails = getAllEmails()
