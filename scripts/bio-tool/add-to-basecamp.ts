@@ -106,63 +106,85 @@ async function main() {
   const callBoardPlan = partitionPeople(callBoardPeople, basecampPeople, emailManifest)
   const productionStaffPlan = partitionPeople(productionStaffPeople, basecampPeople, emailManifest)
 
-  // --- Print plan ---
-  function printPlan(label: string, plan: ReturnType<typeof partitionPeople>) {
-    console.log(`\n${"─".repeat(60)}`)
-    console.log(`  ${label}`)
-    console.log("─".repeat(60))
-    console.log(`  Grant access (existing accounts): ${plan.grant.length}`)
-    console.log(`  Invite by email (new):            ${plan.create.length}`)
-    console.log(`  Skipped (no account, no email):   ${plan.skip.length}`)
+  // --- Build checkbox TUI ---
+  type ChoiceValue =
+    | { projectId: number; type: "grant"; id: number; name: string }
+    | { projectId: number; type: "create"; name: string; email_address: string }
 
-    if (plan.create.length) {
-      console.log("\n  Invitations to send:")
-      for (const { name, email_address } of plan.create) {
-        console.log(`    • ${name} <${email_address}>`)
-      }
-    }
-    if (plan.skip.length) {
-      console.log("\n  ⚠ Cannot add (no Basecamp account and no email in manifest):")
-      for (const name of plan.skip) {
-        console.log(`    • ${name}`)
-      }
-    }
+  const basecampById = new Map(basecampPeople.map((p) => [p.id, p.name]))
+
+  const { checkbox, Separator } = await import("@inquirer/prompts")
+
+  function projectChoices(
+    projectId: number,
+    plan: ReturnType<typeof partitionPeople>,
+  ) {
+    const choices: (
+      | { value: ChoiceValue; name: string; checked: true }
+      | { value: null; name: string; disabled: string }
+    )[] = [
+      ...plan.grant.map((id) => ({
+        value: { projectId, type: "grant" as const, id, name: basecampById.get(id) ?? `ID ${id}` },
+        name: `${basecampById.get(id) ?? `ID ${id}`} (existing account)`,
+        checked: true as const,
+      })),
+      ...plan.create.map((entry) => ({
+        value: { projectId, type: "create" as const, ...entry },
+        name: `${entry.name} — invite <${entry.email_address}>`,
+        checked: true as const,
+      })),
+      ...plan.skip.map((name) => ({
+        value: null,
+        name: `${name} (no email in manifest)`,
+        disabled: "run bio:emails first",
+      })),
+    ]
+    return choices
   }
 
-  printPlan("Virtual Call Board 2026", callBoardPlan)
-  printPlan("Production Staff 2026", productionStaffPlan)
+  const selected = await checkbox<ChoiceValue>({
+    message: "Select people to add (deselect anyone to exclude them):",
+    pageSize: 30,
+    choices: [
+      new Separator(`─── Virtual Call Board 2026 ${"─".repeat(30)}`),
+      ...projectChoices(callBoardProject.id, callBoardPlan),
+      new Separator(`─── Production Staff 2026 ${"─".repeat(32)}`),
+      ...projectChoices(productionStaffProject.id, productionStaffPlan),
+    ],
+  })
 
-  // --- Confirmation ---
-  console.log("\n")
-  const { confirm } = await import("@inquirer/prompts")
-  const proceed = await confirm({ message: "Proceed with the above changes?", default: false })
-  if (!proceed) {
-    console.log("Aborted.")
+  if (selected.length === 0) {
+    console.log("Nothing selected. Aborted.")
     process.exit(0)
   }
+
+  type GrantValue = Extract<ChoiceValue, { type: "grant" }>
+  type CreateValue = Extract<ChoiceValue, { type: "create" }>
+
+  const forProject = (projectId: number) => selected.filter((v) => v.projectId === projectId)
+  const toGrant = (vals: ChoiceValue[]) =>
+    vals.filter((v): v is GrantValue => v.type === "grant").map((v) => v.id)
+  const toCreate = (vals: ChoiceValue[]) =>
+    vals.filter((v): v is CreateValue => v.type === "create").map(({ name, email_address }) => ({ name, email_address }))
+
+  const cbGrant = toGrant(forProject(callBoardProject.id))
+  const cbCreate = toCreate(forProject(callBoardProject.id))
+  const psGrant = toGrant(forProject(productionStaffProject.id))
+  const psCreate = toCreate(forProject(productionStaffProject.id))
 
   // --- Execute ---
   console.log("\nAdding people...")
 
-  const cbResult = await addPeopleToProject(
-    token,
-    callBoardProject.id,
-    callBoardPlan.grant,
-    callBoardPlan.create,
-  )
+  const cbResult = await addPeopleToProject(token, callBoardProject.id, cbGrant, cbCreate)
   console.log(`  Virtual Call Board 2026: ${cbResult.granted?.length ?? 0} granted, ${cbResult.created?.length ?? 0} invited`)
 
-  const psResult = await addPeopleToProject(
-    token,
-    productionStaffProject.id,
-    productionStaffPlan.grant,
-    productionStaffPlan.create,
-  )
+  const psResult = await addPeopleToProject(token, productionStaffProject.id, psGrant, psCreate)
   console.log(`  Production Staff 2026:   ${psResult.granted?.length ?? 0} granted, ${psResult.created?.length ?? 0} invited`)
 
-  if (callBoardPlan.skip.length || productionStaffPlan.skip.length) {
-    console.log("\n⚠ The following people were skipped (run bio:emails first to collect their emails):")
-    for (const name of [...new Set([...callBoardPlan.skip, ...productionStaffPlan.skip])]) {
+  const allSkipped = [...new Set([...callBoardPlan.skip, ...productionStaffPlan.skip])]
+  if (allSkipped.length) {
+    console.log("\nSkipped (run bio:emails to collect their addresses):")
+    for (const name of allSkipped) {
       console.log(`  • ${name}`)
     }
   }
