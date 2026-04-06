@@ -73,7 +73,106 @@ async function addPeopleToProject(
 }
 
 async function main() {
-  console.log("") // placeholder — filled in Task 5
+  const token = requireEnv("BASECAMP_TOKEN")
+
+  // --- Load and filter YAML ---
+  const yamlPath = resolve(__dirname, "../../../src/data/people/2026.yml")
+  const people = yamlLoad(readFileSync(yamlPath, "utf-8")) as YamlPerson[]
+
+  const callBoardPeople = people.filter((p) => !isOnlyBoardMember(p))
+  const productionStaffPeople = people.filter((p) => hasStaffPositions(p))
+
+  console.log(`Virtual Call Board candidates: ${callBoardPeople.length}`)
+  console.log(`Production Staff candidates:   ${productionStaffPeople.length}`)
+
+  // --- Fetch Basecamp data ---
+  console.log("\nFetching Basecamp account data...")
+  const [basecampPeople, projects] = await Promise.all([
+    fetchAllPeople(token),
+    fetchProjects(token),
+  ])
+  console.log(`  ${basecampPeople.length} people in Basecamp account`)
+  console.log(`  ${projects.length} projects found`)
+
+  const findProject = (name: string) => {
+    const p = projects.find((p) => p.name === name)
+    if (!p) throw new Error(`Project not found in Basecamp: "${name}"`)
+    return p
+  }
+
+  const callBoardProject = findProject("Virtual Call Board 2026")
+  const productionStaffProject = findProject("Production Staff 2026")
+
+  // --- Build email manifest lookup ---
+  const emails = getAllEmails()
+  const emailManifest = new Map(emails.map(({ name, email }) => [name, email]))
+
+  // --- Partition people ---
+  const callBoardPlan = partitionPeople(callBoardPeople, basecampPeople, emailManifest)
+  const productionStaffPlan = partitionPeople(productionStaffPeople, basecampPeople, emailManifest)
+
+  // --- Print plan ---
+  function printPlan(label: string, plan: ReturnType<typeof partitionPeople>) {
+    console.log(`\n${"─".repeat(60)}`)
+    console.log(`  ${label}`)
+    console.log("─".repeat(60))
+    console.log(`  Grant access (existing accounts): ${plan.grant.length}`)
+    console.log(`  Invite by email (new):            ${plan.create.length}`)
+    console.log(`  Skipped (no account, no email):   ${plan.skip.length}`)
+
+    if (plan.create.length) {
+      console.log("\n  Invitations to send:")
+      for (const { name, email_address } of plan.create) {
+        console.log(`    • ${name} <${email_address}>`)
+      }
+    }
+    if (plan.skip.length) {
+      console.log("\n  ⚠ Cannot add (no Basecamp account and no email in manifest):")
+      for (const name of plan.skip) {
+        console.log(`    • ${name}`)
+      }
+    }
+  }
+
+  printPlan("Virtual Call Board 2026", callBoardPlan)
+  printPlan("Production Staff 2026", productionStaffPlan)
+
+  // --- Confirmation ---
+  console.log("\n")
+  const { confirm } = await import("@inquirer/prompts")
+  const proceed = await confirm({ message: "Proceed with the above changes?", default: false })
+  if (!proceed) {
+    console.log("Aborted.")
+    process.exit(0)
+  }
+
+  // --- Execute ---
+  console.log("\nAdding people...")
+
+  const cbResult = await addPeopleToProject(
+    token,
+    callBoardProject.id,
+    callBoardPlan.grant,
+    callBoardPlan.create,
+  )
+  console.log(`  Virtual Call Board 2026: ${cbResult.granted?.length ?? 0} granted, ${cbResult.created?.length ?? 0} invited`)
+
+  const psResult = await addPeopleToProject(
+    token,
+    productionStaffProject.id,
+    productionStaffPlan.grant,
+    productionStaffPlan.create,
+  )
+  console.log(`  Production Staff 2026:   ${psResult.granted?.length ?? 0} granted, ${psResult.created?.length ?? 0} invited`)
+
+  if (callBoardPlan.skip.length || productionStaffPlan.skip.length) {
+    console.log("\n⚠ The following people were skipped (run bio:emails first to collect their emails):")
+    for (const name of [...new Set([...callBoardPlan.skip, ...productionStaffPlan.skip])]) {
+      console.log(`  • ${name}`)
+    }
+  }
+
+  console.log("\nDone.")
 }
 
 main().catch((err) => {
