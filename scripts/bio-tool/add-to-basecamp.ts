@@ -34,20 +34,15 @@ function basecampFetch(token: string, path: string, options?: RequestInit) {
 
 async function fetchAllPeople(token: string): Promise<BasecampPerson[]> {
   const all: BasecampPerson[] = []
-  let url: string | null = `${API_BASE}/people.json`
-  while (url) {
-    const res = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "User-Agent": "PostPlayhouse Bio Tool (don@postplayhouse.com)",
-      },
-    })
-    if (!res.ok) throw new Error(`GET /people.json failed: ${res.status} ${await res.text()}`)
+  let path: string | null = "/people.json"
+  while (path) {
+    const res = await basecampFetch(token, path)
+    if (!res.ok) throw new Error(`GET ${path} failed: ${res.status} ${await res.text()}`)
     const data = (await res.json()) as BasecampPerson[]
     all.push(...data)
     const link = res.headers.get("Link")
-    const next = link?.match(/<([^>]+)>;\s*rel="next"/)
-    url = next ? next[1] : null
+    const next = link?.match(/<https:\/\/3\.basecampapi\.com\/\d+([^>]+)>;\s*rel="next"/)
+    path = next ? next[1] : null
   }
   return all
 }
