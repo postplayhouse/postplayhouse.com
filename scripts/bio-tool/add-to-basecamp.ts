@@ -1,10 +1,9 @@
 import "./lib/env"
 import { load as yamlLoad } from "js-yaml"
 import { readFileSync } from "fs"
-import { resolve, dirname } from "path"
-import { fileURLToPath } from "url"
 import { requireEnv } from "./lib/env"
 import { getAllEmails } from "./lib/manifest"
+import { getCurrentSeason, seasonYamlPath } from "./lib/season"
 import {
   isOnlyBoardMember,
   hasStaffPositions,
@@ -13,9 +12,6 @@ import {
   type YamlPerson,
   type BasecampPerson,
 } from "./lib/basecamp-people"
-
-const __dirname =
-  import.meta.dirname ?? dirname(fileURLToPath(import.meta.url))
 
 const ACCOUNT_ID = "5732828"
 const API_BASE = `https://3.basecampapi.com/${ACCOUNT_ID}`
@@ -71,8 +67,8 @@ async function main() {
   const token = requireEnv("BASECAMP_TOKEN")
 
   // --- Load and filter YAML ---
-  const yamlPath = resolve(__dirname, "../../../src/data/people/2026.yml")
-  const people = yamlLoad(readFileSync(yamlPath, "utf-8")) as YamlPerson[]
+  const season = getCurrentSeason()
+  const people = yamlLoad(readFileSync(seasonYamlPath(season), "utf-8")) as YamlPerson[]
 
   const callBoardPeople = people.filter((p) => !isOnlyBoardMember(p))
   const productionStaffPeople = people.filter((p) => hasStaffPositions(p))
