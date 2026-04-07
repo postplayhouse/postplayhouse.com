@@ -205,6 +205,30 @@ async function commitMultipleFiles({
 	})
 }
 
+export async function fetchFileFromBranch({
+	owner,
+	repo,
+	filePath,
+	branchName,
+}: {
+	owner: string
+	repo: string
+	filePath: string
+	branchName: string
+}): Promise<{ found: true; content: string } | { found: false }> {
+	try {
+		await octokit.git.getRef({ owner, repo, ref: `heads/${branchName}` })
+	} catch {
+		return { found: false }
+	}
+
+	const result = await getPreviousFileContent({ owner, repo, filePath, branchName })
+	if (result.success) {
+		return { found: true, content: result.previousContent }
+	}
+	return { found: false }
+}
+
 export async function updateAndPr({
 	owner,
 	repo,
