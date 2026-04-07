@@ -3,6 +3,7 @@ export interface YamlPerson {
   last_name: string
   groups?: string[]
   staff_positions?: string[]
+  production_positions?: Record<string, string[]>
   [key: string]: unknown
 }
 
@@ -29,6 +30,11 @@ export function isOnlyBoardMember(person: Partial<YamlPerson>): boolean {
 
 export function hasStaffPositions(person: Partial<YamlPerson>): boolean {
   return Array.isArray(person.staff_positions) && person.staff_positions.length > 0
+}
+
+export function hasProductionPositions(person: Partial<YamlPerson>): boolean {
+  const pp = person.production_positions
+  return pp != null && typeof pp === "object" && Object.keys(pp).length > 0
 }
 
 export function fullName(person: Pick<YamlPerson, "first_name" | "last_name">): string {

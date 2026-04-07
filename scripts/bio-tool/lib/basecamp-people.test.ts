@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest"
 import {
   isOnlyBoardMember,
   hasStaffPositions,
+  hasProductionPositions,
   fullName,
   partitionPeople,
 } from "./basecamp-people"
@@ -35,6 +36,20 @@ describe("hasStaffPositions", () => {
 
   it("returns false when staff_positions is empty", () => {
     expect(hasStaffPositions({ staff_positions: [] })).toBe(false)
+  })
+})
+
+describe("hasProductionPositions", () => {
+  it("returns true when production_positions has entries", () => {
+    expect(hasProductionPositions({ production_positions: { "Oklahoma!": ["Director"] } })).toBe(true)
+  })
+
+  it("returns false when production_positions is absent", () => {
+    expect(hasProductionPositions({})).toBe(false)
+  })
+
+  it("returns false when production_positions is empty", () => {
+    expect(hasProductionPositions({ production_positions: {} })).toBe(false)
   })
 })
 

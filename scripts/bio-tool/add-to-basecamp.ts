@@ -7,6 +7,7 @@ import { getCurrentSeason, seasonYamlPath } from "./lib/season"
 import {
   isOnlyBoardMember,
   hasStaffPositions,
+  hasProductionPositions,
   fullName,
   partitionPeople,
   type YamlPerson,
@@ -78,7 +79,7 @@ async function main() {
   const people = yamlLoad(readFileSync(seasonYamlPath(season), "utf-8")) as YamlPerson[]
 
   const callBoardPeople = people.filter((p) => !isOnlyBoardMember(p))
-  const productionStaffPeople = people.filter((p) => hasStaffPositions(p))
+  const productionStaffPeople = people.filter((p) => hasStaffPositions(p) || hasProductionPositions(p))
 
   console.log(`Virtual Call Board candidates: ${callBoardPeople.length}`)
   console.log(`Production Staff candidates:   ${productionStaffPeople.length}`)
