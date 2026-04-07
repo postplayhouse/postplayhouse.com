@@ -235,6 +235,7 @@
 		requestingAuth: "requestingAuth",
 		incompleteForm: "incompleteForm",
 		completeForm: "completeForm",
+		loadingExistingBio: "loadingExistingBio",
 		sendingHeadshotBio: "sendingHeadshotBio",
 		success: "success",
 		error: "error",
@@ -251,6 +252,7 @@
 		postBio: "postBio",
 		sendHeadshotBioSuccess: "sendHeadshotBioSuccess",
 		sendHeadshotBioFailure: "sendHeadshotBioFailure",
+		existingBioLoaded: "existingBioLoaded",
 		foundNoFetch: "foundNoFetch",
 		serverError: "serverError",
 	}
@@ -281,7 +283,11 @@
 		].includes(pageState),
 	)
 	let submitting = $derived(
-		[states.requestingAuth, states.sendingHeadshotBio].includes(pageState),
+		[
+			states.requestingAuth,
+			states.loadingExistingBio,
+			states.sendingHeadshotBio,
+		].includes(pageState),
 	)
 	let finalSubmission = $derived(pageState === states.sendingHeadshotBio)
 	let showSuccess = $derived(pageState === states.success)
@@ -325,7 +331,8 @@
 			case states.requestingAuth: {
 				switch (event) {
 					case events.confirmedPassphrase: {
-						return (pageState = states.incompleteForm)
+						fetchAndPrefillExistingBio()
+						return (pageState = states.loadingExistingBio)
 					}
 					case events.badPassphrase: {
 						badPassphrase = true
@@ -333,6 +340,17 @@
 					}
 					case events.getCredsFailed: {
 						return (pageState = states.error)
+					}
+					default:
+						return
+				}
+			}
+			case states.loadingExistingBio: {
+				switch (event) {
+					case events.existingBioLoaded: {
+						return (pageState = invalidForm
+							? states.incompleteForm
+							: states.completeForm)
 					}
 					default:
 						return
@@ -417,6 +435,55 @@
 		} else {
 			dispatch(events.serverError)
 		}
+	}
+
+	let isReturningUser = $state(false)
+
+	async function fetchAndPrefillExistingBio() {
+		try {
+			const res = await window.fetch("/api/bio-submission/existing-bio", {
+				method: "GET",
+				headers: new Headers({
+					Authorization: sanitizedPassphrase(passphrase),
+				}),
+			})
+			if (res.ok) {
+				const { data, source } = await res.json()
+				if (data) {
+					isReturningUser = true
+					fields.firstName = data.firstName ?? ""
+					fields.lastName = data.lastName ?? ""
+					fields.location = data.location ?? ""
+					fields.email = "" // Not stored in YAML, user must re-enter
+					fields.bio = data.programBio || data.bio || ""
+					if (data.programBio && data.bio) {
+						fields.addLongerBio = true
+						fields.longerBio = data.bio
+					}
+					roles = data.roles ?? []
+					staffPositions = data.staffPositions ?? []
+					productionPositions = data.productionPositions ?? []
+					positions = data.positions ?? []
+
+					// Pre-select existing headshot
+					if (data.imageYear) {
+						const imageName =
+							data.imageFile ||
+							`${safeName(data.firstName)}-${safeName(data.lastName)}`
+						const matchingImage = imageFiles.find(
+							(f) => f.includes(`/${data.imageYear}/`) && f.includes(imageName),
+						)
+						if (matchingImage) {
+							fields.useOldHeadshot = true
+							fields.oldImageSrcPath = matchingImage
+						}
+					}
+				}
+			}
+		} catch {
+			// Non-fatal — proceed with empty form
+		}
+		dispatch(events.existingBioLoaded)
 	}
 
 	type Creds = { authorizationToken: string; uploadUrl: string }
@@ -803,6 +870,10 @@ ${fields.email}
 	</form>
 {/if}
 
+{#if pageState === states.loadingExistingBio}
+	<p class="my-8 text-xl">Loading your information...</p>
+{/if}
+
 {#if showMain}
 	{#if devFormFeedback}
 		<div
@@ -849,7 +920,11 @@ ${fields.email}
 						onchange={handleUseOldHeadshotChange}
 						bind:checked={fields.useOldHeadshot}
 					/>
-					I've worked at Post before, and I'd like to use my old headshot.
+					{#if isReturningUser}
+						Keep my current headshot.
+					{:else}
+						I've worked at Post before, and I'd like to use my old headshot.
+					{/if}
 				</label>
 				{#if fields.useOldHeadshot}
 					<div class="my-4">
@@ -939,6 +1014,9 @@ ${fields.email}
 						<input
 							class="block"
 							type="text"
+							value={roles
+								.find((r) => r.productionName === production)
+								?.positions.join(", ") ?? ""}
 							oninput={(e) => {
 								mutateRoles(production, e.currentTarget.value)
 							}}
@@ -973,6 +1051,7 @@ ${fields.email}
 					<input
 						class="block"
 						type="text"
+						value={staffPositions.join(", ")}
 						oninput={(e) => mutateStaffPositions(e.currentTarget.value)}
 					/>
 				</label>
@@ -1001,6 +1080,9 @@ ${fields.email}
 						<input
 							class="block"
 							type="text"
+							value={productionPositions
+								.find((r) => r.productionName === production)
+								?.positions.join(", ") ?? ""}
 							oninput={(e) =>
 								mutateProductionPositions(production, e.currentTarget.value)}
 						/>
