@@ -54,6 +54,7 @@ function extractBlock(yamlContent: string, position: number): string | null {
 
   const content = yamlContent
     .slice(startIdx + startTag.length + 1, endIdx)
+    .replace(/\r\n/g, "\n")
     .trimEnd()
 
   if (content.length === 0) return null
