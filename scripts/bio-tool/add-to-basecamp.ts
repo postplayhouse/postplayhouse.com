@@ -145,32 +145,49 @@ async function main() {
     projectId: number,
     plan: typeof callBoardPlan,
   ) {
-    const choices: (
+    type Choice =
       | { value: ChoiceValue; name: string; checked: true }
       | { value: null; name: string; disabled: string }
-    )[] = [
-      ...plan.existing.map((id) => ({
+
+    const sections: (Choice | InstanceType<typeof Separator>)[] = []
+
+    if (plan.existing.length) {
+      sections.push(new Separator("  · already members ·"))
+      sections.push(...plan.existing.map((id) => ({
         value: null,
         name: `${basecampById.get(id) ?? `ID ${id}`}`,
         disabled: "already a member",
-      })),
-      ...plan.grant.map((id) => ({
+      } satisfies Choice)))
+    }
+
+    if (plan.grant.length) {
+      sections.push(new Separator("  · existing Basecamp accounts ·"))
+      sections.push(...plan.grant.map((id) => ({
         value: { projectId, type: "grant" as const, id, name: basecampById.get(id) ?? `ID ${id}` },
-        name: `${basecampById.get(id) ?? `ID ${id}`} (existing account)`,
+        name: `${basecampById.get(id) ?? `ID ${id}`}`,
         checked: true as const,
-      })),
-      ...plan.create.map((entry) => ({
+      } satisfies Choice)))
+    }
+
+    if (plan.create.length) {
+      sections.push(new Separator("  · invite by email ·"))
+      sections.push(...plan.create.map((entry) => ({
         value: { projectId, type: "create" as const, ...entry },
-        name: `${entry.name} — invite <${entry.email_address}>`,
+        name: `${entry.name} <${entry.email_address}>`,
         checked: true as const,
-      })),
-      ...plan.skip.map((name) => ({
+      } satisfies Choice)))
+    }
+
+    if (plan.skip.length) {
+      sections.push(new Separator("  · no email found ·"))
+      sections.push(...plan.skip.map((name) => ({
         value: null,
-        name: `${name} (no email in manifest)`,
+        name,
         disabled: "run bio:emails first",
-      })),
-    ]
-    return choices
+      } satisfies Choice)))
+    }
+
+    return sections
   }
 
   const selected = await checkbox<ChoiceValue>({
