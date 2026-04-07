@@ -205,6 +205,137 @@ async function commitMultipleFiles({
 	})
 }
 
+export async function fetchBioWithSourceOfTruth({
+	owner,
+	repo,
+	filePath,
+	position,
+	prBranchName,
+}: {
+	owner: string
+	repo: string
+	filePath: string
+	position: number
+	prBranchName: string
+}): Promise<{ content: string; source: "pr" | "master" } | null> {
+	const query = `
+		query ($owner: String!, $repo: String!, $filePath: String!, $masterExpression: String!, $prBranchRef: String!, $prFileExpression: String!) {
+			repository(owner: $owner, name: $repo) {
+				masterFile: object(expression: $masterExpression) {
+					... on Blob { text }
+				}
+				masterBlame: object(expression: "master") {
+					... on Commit {
+						blame(path: $filePath) {
+							ranges {
+								startingLine
+								endingLine
+								commit { committedDate }
+							}
+						}
+					}
+				}
+				prBranch: ref(qualifiedName: $prBranchRef) {
+					target {
+						... on Commit { committedDate }
+					}
+				}
+				prFile: object(expression: $prFileExpression) {
+					... on Blob { text }
+				}
+			}
+		}
+	`
+
+	const variables = {
+		owner,
+		repo,
+		filePath,
+		masterExpression: `master:${filePath}`,
+		prBranchRef: `refs/heads/${prBranchName}`,
+		prFileExpression: `${prBranchName}:${filePath}`,
+	}
+
+	const result: {
+		repository: {
+			masterFile: { text: string } | null
+			masterBlame: {
+				blame: {
+					ranges: {
+						startingLine: number
+						endingLine: number
+						commit: { committedDate: string }
+					}[]
+				}
+			} | null
+			prBranch: { target: { committedDate: string } } | null
+			prFile: { text: string } | null
+		}
+	} = await octokit.graphql(query, variables)
+
+	const { masterFile, masterBlame, prBranch, prFile } = result.repository
+
+	if (!masterFile?.text) {
+		return null
+	}
+
+	const masterContent = masterFile.text
+	const lines = masterContent.split("\n")
+
+	const startMarker = `# start __${position}__`
+	const endMarker = `# end __${position}__`
+
+	const startIdx = lines.findIndex((line) => line.trim() === startMarker)
+	const endIdx = lines.findIndex((line) => line.trim() === endMarker)
+
+	if (startIdx === -1 || endIdx === -1) {
+		return null
+	}
+
+	// Convert to 1-indexed lines, content is between markers (exclusive)
+	const contentStart = startIdx + 1 + 1 // 0-based to 1-based, then +1 to skip marker line
+	const contentEnd = endIdx + 1 - 1 // 0-based to 1-based, then -1 to skip marker line
+
+	// If block is empty or PR doesn't exist, handle edge cases
+	if (contentStart > contentEnd) {
+		// Empty block on master — use PR if available
+		if (prBranch && prFile?.text) {
+			return { content: prFile.text, source: "pr" }
+		}
+		return { content: masterContent, source: "master" }
+	}
+
+	// Filter blame ranges to those overlapping with position content
+	const blameRanges = masterBlame?.blame?.ranges ?? []
+	const overlapping = blameRanges.filter(
+		(range) => range.startingLine <= contentEnd && range.endingLine >= contentStart,
+	)
+
+	if (overlapping.length === 0) {
+		// No blame ranges overlap — treat like empty block
+		if (prBranch && prFile?.text) {
+			return { content: prFile.text, source: "pr" }
+		}
+		return { content: masterContent, source: "master" }
+	}
+
+	const newestMasterDate = new Date(
+		Math.max(...overlapping.map((r) => new Date(r.commit.committedDate).getTime())),
+	)
+
+	if (prBranch?.target?.committedDate) {
+		const prTipDate = new Date(prBranch.target.committedDate)
+		if (newestMasterDate >= prTipDate) {
+			return { content: masterContent, source: "master" }
+		}
+		if (prFile?.text) {
+			return { content: prFile.text, source: "pr" }
+		}
+	}
+
+	return { content: masterContent, source: "master" }
+}
+
 export async function fetchFileFromBranch({
 	owner,
 	repo,
