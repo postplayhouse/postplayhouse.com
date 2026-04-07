@@ -190,7 +190,7 @@ async function main() {
     return sections
   }
 
-  const selected = await checkbox<ChoiceValue>({
+  const selected = (await checkbox<ChoiceValue | null>({
     message: "Select people to add (deselect anyone to exclude them):",
     pageSize: 30,
     choices: [
@@ -199,7 +199,7 @@ async function main() {
       new Separator(`─── ${productionStaffProject.name} ${"─".repeat(32)}`),
       ...projectChoices(productionStaffProject.id, productionStaffPlan),
     ],
-  })
+  })).filter((v): v is ChoiceValue => v !== null)
 
   if (selected.length === 0) {
     console.log("Nothing selected. Aborted.")
