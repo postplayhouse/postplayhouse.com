@@ -45,6 +45,7 @@
 	let position = $state("")
 	let imageFile: null | File = $state(null)
 	let pullRequest = $state("")
+	let isReturningUser = $state(false)
 
 	function handleUseOldHeadshotChange(e: Event) {
 		const unchecked = !(e.target as HTMLInputElement).checked
@@ -185,7 +186,7 @@
 		{ name: "firstName", invalid: !fields.firstName },
 		{ name: "location", invalid: !fields.location },
 		{ name: "emptyBio", invalid: !fields.bio },
-		{ name: "email", invalid: !fields.email },
+		{ name: "email", invalid: !isReturningUser && !fields.email },
 		{ name: "image", invalid: !(imageFile || fields.useOldHeadshot) },
 		{
 			name: "oldImage",
@@ -437,8 +438,6 @@
 		}
 	}
 
-	let isReturningUser = $state(false)
-
 	async function fetchAndPrefillExistingBio() {
 		try {
 			const res = await window.fetch("/api/bio-submission/existing-bio", {
@@ -454,7 +453,6 @@
 					fields.firstName = data.firstName ?? ""
 					fields.lastName = data.lastName ?? ""
 					fields.location = data.location ?? ""
-					fields.email = "" // Not stored in YAML, user must re-enter
 					fields.bio = data.programBio || data.bio || ""
 					if (data.programBio && data.bio) {
 						fields.addLongerBio = true
@@ -897,19 +895,21 @@ ${fields.email}
 			class="m-auto max-w-lg flex-none p-2 lg:w-1/2"
 			onsubmit={(e) => e.preventDefault()}
 		>
-			<label class="block text-2xl">
-				Email address<i>*</i>
-				<div class="text-sm">
-					(So our program designer can contact you if necessary. It is not
-					shared with the public.)
-				</div>
-				<input
-					class="block"
-					bind:value={fields.email}
-					name="email"
-					type="email"
-				/>
-			</label>
+			{#if !isReturningUser}
+				<label class="block text-2xl">
+					Email address<i>*</i>
+					<div class="text-sm">
+						(So our program designer can contact you if necessary. It is not
+						shared with the public.)
+					</div>
+					<input
+						class="block"
+						bind:value={fields.email}
+						name="email"
+						type="email"
+					/>
+				</label>
+			{/if}
 
 			<div class="my-32">
 				<div class="block text-2xl">Headshot<i>*</i></div>
