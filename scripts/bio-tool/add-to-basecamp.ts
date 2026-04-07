@@ -49,6 +49,13 @@ async function fetchProjects(token: string): Promise<{ id: number; name: string 
   return res.json()
 }
 
+async function fetchProjectMembers(token: string, projectId: number): Promise<Set<number>> {
+  const res = await basecampFetch(token, `/projects/${projectId}/people.json`)
+  if (!res.ok) throw new Error(`GET /projects/${projectId}/people.json failed: ${res.status} ${await res.text()}`)
+  const members = (await res.json()) as { id: number }[]
+  return new Set(members.map((m) => m.id))
+}
+
 async function addPeopleToProject(
   token: string,
   projectId: number,
@@ -94,13 +101,25 @@ async function main() {
   const callBoardProject = findProject(requireEnv("BASECAMP_CALL_BOARD_PROJECT"))
   const productionStaffProject = findProject(requireEnv("BASECAMP_PRODUCTION_PROJECT"))
 
+  // --- Fetch existing project members ---
+  console.log("\nFetching existing project members...")
+  const [callBoardMembers, productionStaffMembers] = await Promise.all([
+    fetchProjectMembers(token, callBoardProject.id),
+    fetchProjectMembers(token, productionStaffProject.id),
+  ])
+  console.log(`  Virtual Call Board 2026: ${callBoardMembers.size} existing members`)
+  console.log(`  Production Staff 2026:   ${productionStaffMembers.size} existing members`)
+
   // --- Build email manifest lookup ---
   const emails = getAllEmails()
   const emailManifest = new Map(emails.map(({ name, email }) => [name, email]))
 
-  // --- Partition people ---
-  const callBoardPlan = partitionPeople(callBoardPeople, basecampPeople, emailManifest)
-  const productionStaffPlan = partitionPeople(productionStaffPeople, basecampPeople, emailManifest)
+  // --- Partition people (excluding existing members) ---
+  const basecampNotInCallBoard = basecampPeople.filter((p) => !callBoardMembers.has(p.id))
+  const basecampNotInProductionStaff = basecampPeople.filter((p) => !productionStaffMembers.has(p.id))
+
+  const callBoardPlan = partitionPeople(callBoardPeople, basecampNotInCallBoard, emailManifest)
+  const productionStaffPlan = partitionPeople(productionStaffPeople, basecampNotInProductionStaff, emailManifest)
 
   // --- Build checkbox TUI ---
   type ChoiceValue =
@@ -142,9 +161,9 @@ async function main() {
     message: "Select people to add (deselect anyone to exclude them):",
     pageSize: 30,
     choices: [
-      new Separator(`─── Virtual Call Board 2026 ${"─".repeat(30)}`),
+      new Separator(`─── ${callBoardProject.name} ${"─".repeat(30)}`),
       ...projectChoices(callBoardProject.id, callBoardPlan),
-      new Separator(`─── Production Staff 2026 ${"─".repeat(32)}`),
+      new Separator(`─── ${productionStaffProject.name} ${"─".repeat(32)}`),
       ...projectChoices(productionStaffProject.id, productionStaffPlan),
     ],
   })
@@ -172,10 +191,10 @@ async function main() {
   console.log("\nAdding people...")
 
   const cbResult = await addPeopleToProject(token, callBoardProject.id, cbGrant, cbCreate)
-  console.log(`  Virtual Call Board 2026: ${cbResult.granted?.length ?? 0} granted, ${cbResult.created?.length ?? 0} invited`)
+  console.log(`  ${callBoardProject.name}: ${cbResult.granted?.length ?? 0} granted, ${cbResult.created?.length ?? 0} invited`)
 
   const psResult = await addPeopleToProject(token, productionStaffProject.id, psGrant, psCreate)
-  console.log(`  Production Staff 2026:   ${psResult.granted?.length ?? 0} granted, ${psResult.created?.length ?? 0} invited`)
+  console.log(`  ${productionStaffProject.name}: ${psResult.granted?.length ?? 0} granted, ${psResult.created?.length ?? 0} invited`)
 
   const allSkipped = [...new Set([...callBoardPlan.skip, ...productionStaffPlan.skip])]
   if (allSkipped.length) {
