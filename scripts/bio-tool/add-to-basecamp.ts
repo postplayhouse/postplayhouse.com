@@ -224,10 +224,10 @@ async function main() {
   console.log("\nAdding people...")
 
   const cbResult = await addPeopleToProject(token, callBoardProject.id, cbGrant, cbCreate)
-  console.log(`  ${callBoardProject.name}: ${cbResult.granted?.length ?? 0} granted, ${cbResult.created?.length ?? 0} invited`)
+  console.log(`  ${callBoardProject.name}: ${(cbResult.granted?.length ?? 0) + (cbResult.created?.length ?? 0)} added`)
 
   const psResult = await addPeopleToProject(token, productionStaffProject.id, psGrant, psCreate)
-  console.log(`  ${productionStaffProject.name}: ${psResult.granted?.length ?? 0} granted, ${psResult.created?.length ?? 0} invited`)
+  console.log(`  ${productionStaffProject.name}: ${(psResult.granted?.length ?? 0) + (psResult.created?.length ?? 0)} added`)
 
   const allSkipped = [...new Set([...callBoardPlan.skip, ...productionStaffPlan.skip])]
   if (allSkipped.length) {
