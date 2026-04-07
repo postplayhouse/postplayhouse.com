@@ -3,7 +3,6 @@ import { execSync } from "child_process"
 import { listFiles, downloadFileById, parseSubmissionFilename } from "./lib/b2"
 import { saveEmail, getAllEmails, clearManifest } from "./lib/manifest"
 import { getCurrentSeason, seasonYamlPath } from "./lib/season"
-import { getPositionBlameTimestamp } from "./lib/git"
 
 function capitalize(s: string): string {
   return s
@@ -16,7 +15,11 @@ async function main() {
   const season = getCurrentSeason()
   const yamlPath = seasonYamlPath(season)
 
-  console.log(`Current season: ${season}\n`)
+  // Season window: Sept 1 of previous year through Aug 30 of season year
+  const seasonStart = new Date(`${season - 1}-09-01T00:00:00Z`)
+  const seasonEnd = new Date(`${season}-08-30T23:59:59Z`)
+
+  console.log(`Current season: ${season} (${seasonStart.toDateString()} – ${seasonEnd.toDateString()})\n`)
 
   clearManifest()
 
@@ -33,6 +36,9 @@ async function main() {
 
     const b2Date = new Date(file.uploadTimestamp)
 
+    // Only include submissions from this season's window
+    if (b2Date < seasonStart || b2Date > seasonEnd) continue
+
     const content = (await downloadFileById(file.fileId)).toString("utf-8")
     const parts = content.split(/\n{3,}/)
     const metadataSection = parts.slice(1).join("\n")
@@ -40,10 +46,6 @@ async function main() {
     const positionMatch = metadataSection.match(/bio position:\s*(\d+)/)
     if (!positionMatch) continue
     const position = parseInt(positionMatch[1])
-
-    // Skip old submissions (newest content edit in block is newer than B2 upload)
-    const blameDate = getPositionBlameTimestamp(yamlPath, position)
-    if (blameDate && blameDate > b2Date) continue
 
     const emailMatch = metadataSection.match(/[\w.+-]+@[\w.-]+\.\w+/)
     if (emailMatch) {
