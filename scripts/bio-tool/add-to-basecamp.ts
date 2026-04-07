@@ -114,12 +114,23 @@ async function main() {
   const emails = getAllEmails()
   const emailManifest = new Map(emails.map(({ name, email }) => [name, email]))
 
-  // --- Partition people (excluding existing members) ---
-  const basecampNotInCallBoard = basecampPeople.filter((p) => !callBoardMembers.has(p.id))
-  const basecampNotInProductionStaff = basecampPeople.filter((p) => !productionStaffMembers.has(p.id))
+  // --- Partition people ---
+  // Partition against full account to find everyone, then split grant into already-member vs. needs-adding
+  const callBoardFull = partitionPeople(callBoardPeople, basecampPeople, emailManifest)
+  const productionStaffFull = partitionPeople(productionStaffPeople, basecampPeople, emailManifest)
 
-  const callBoardPlan = partitionPeople(callBoardPeople, basecampNotInCallBoard, emailManifest)
-  const productionStaffPlan = partitionPeople(productionStaffPeople, basecampNotInProductionStaff, emailManifest)
+  const callBoardPlan = {
+    grant: callBoardFull.grant.filter((id) => !callBoardMembers.has(id)),
+    create: callBoardFull.create,
+    skip: callBoardFull.skip,
+    existing: callBoardFull.grant.filter((id) => callBoardMembers.has(id)),
+  }
+  const productionStaffPlan = {
+    grant: productionStaffFull.grant.filter((id) => !productionStaffMembers.has(id)),
+    create: productionStaffFull.create,
+    skip: productionStaffFull.skip,
+    existing: productionStaffFull.grant.filter((id) => productionStaffMembers.has(id)),
+  }
 
   // --- Build checkbox TUI ---
   type ChoiceValue =
@@ -132,12 +143,17 @@ async function main() {
 
   function projectChoices(
     projectId: number,
-    plan: ReturnType<typeof partitionPeople>,
+    plan: typeof callBoardPlan,
   ) {
     const choices: (
       | { value: ChoiceValue; name: string; checked: true }
       | { value: null; name: string; disabled: string }
     )[] = [
+      ...plan.existing.map((id) => ({
+        value: null,
+        name: `${basecampById.get(id) ?? `ID ${id}`}`,
+        disabled: "already a member",
+      })),
       ...plan.grant.map((id) => ({
         value: { projectId, type: "grant" as const, id, name: basecampById.get(id) ?? `ID ${id}` },
         name: `${basecampById.get(id) ?? `ID ${id}`} (existing account)`,
