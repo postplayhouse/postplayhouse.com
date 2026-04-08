@@ -92,6 +92,26 @@ export function getPositionBlameTimestamp(
 }
 
 /**
+ * Returns the timestamp of the most recent commit that touched a given file
+ * on the specified ref. Returns null if the file doesn't exist on that ref.
+ */
+export function getFileCommitTimestamp(
+  filePath: string,
+  ref: string,
+): Date | null {
+  try {
+    const relPath = filePath.startsWith(repoRoot)
+      ? filePath.slice(repoRoot.length + 1)
+      : filePath
+    const ts = git(`log -1 --format=%ct ${ref} -- "${relPath}"`)
+    if (!ts) return null
+    return new Date(parseInt(ts) * 1000)
+  } catch {
+    return null
+  }
+}
+
+/**
  * Check if a position's content on master is already at least as new as
  * the given branch ref's tip commit. Used to detect squash-merged branches
  * where commit history doesn't overlap.
@@ -250,6 +270,19 @@ export function commitAll(message: string, body?: string): boolean {
   }
 }
 
+/** Stage all changes and commit with a specific date */
+export function commitAllWithDate(message: string, date: Date): boolean {
+  git("add -A")
+  try {
+    git("diff --cached --quiet")
+    return false
+  } catch {
+    const isoDate = date.toISOString()
+    commitWithMessageFileAndDate(message, isoDate)
+    return true
+  }
+}
+
 /** Get current branch name */
 export function currentBranch(): string {
   return git("rev-parse --abbrev-ref HEAD")
@@ -274,6 +307,27 @@ export function commitWithMessageFile(message: string): void {
   try {
     writeFileSync(msgFile, message)
     git(`commit --file="${msgFile}"`)
+  } finally {
+    try {
+      unlinkSync(msgFile)
+    } catch {
+      // ignore cleanup errors
+    }
+  }
+}
+
+function commitWithMessageFileAndDate(message: string, isoDate: string): void {
+  const msgFile = join(tmpdir(), `bio-tool-commit-msg-${Date.now()}.txt`)
+  try {
+    writeFileSync(msgFile, message)
+    execSync(
+      `git commit --file="${msgFile}"`,
+      {
+        cwd: repoRoot,
+        encoding: "utf-8",
+        env: { ...process.env, GIT_AUTHOR_DATE: isoDate, GIT_COMMITTER_DATE: isoDate },
+      },
+    )
   } finally {
     try {
       unlinkSync(msgFile)
