@@ -20,6 +20,7 @@ import {
   branchHasCommit,
   currentBranch,
   isPositionAlreadyMerged,
+  getFileCommitTimestamp,
 } from "./lib/git"
 import { hashImage, imagesSimilar, findPreviousImage, fileHasImgExt } from "./lib/image"
 import {
@@ -274,10 +275,33 @@ async function optimizeImages(season: number) {
   }
 
   const imageFiles = changedFiles
-    .map((f) => f.split("/").pop()!)
-    .filter((f) => fileHasImgExt(f))
-    .filter((f) => existsSync(resolve(imgDir, f)))
+    .filter((f) => fileHasImgExt(f.split("/").pop()!))
+    .filter((f) => existsSync(resolve(imgDir, f.split("/").pop()!)))
   if (!imageFiles.length) return
+
+  // Separate images into those needing optimization vs those to reset from master
+  const toOptimize: string[] = []
+  const toReset: string[] = []
+
+  for (const relPath of imageFiles) {
+    const masterTs = getFileCommitTimestamp(relPath, "master")
+    const branchTs = getFileCommitTimestamp(relPath, "HEAD")
+    if (masterTs && branchTs && masterTs >= branchTs) {
+      toReset.push(relPath)
+    } else {
+      toOptimize.push(relPath)
+    }
+  }
+
+  if (toReset.length) {
+    for (const relPath of toReset) {
+      git(`checkout master -- "${relPath}"`)
+      console.log(`  Reset ${relPath.split("/").pop()} to master (already processed)`)
+    }
+    commitAll("Optimize images: reset to master")
+  }
+
+  if (!toOptimize.length) return
 
   const sharp = (await import("sharp")).default
   const MAX_DIMENSION = 1200
@@ -285,7 +309,8 @@ async function optimizeImages(season: number) {
 
   const yamlPath = seasonYamlPath(season)
 
-  for (const file of imageFiles) {
+  for (const relPath of toOptimize) {
+    const file = relPath.split("/").pop()!
     const filePath = resolve(imgDir, file)
     const ext = file.slice(file.lastIndexOf(".") + 1).toLowerCase()
     const baseName = file.slice(0, file.lastIndexOf("."))

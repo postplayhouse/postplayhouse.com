@@ -9,7 +9,7 @@ import {
   createBranch,
   checkoutBranch,
   checkoutMaster,
-  commitAll,
+  commitAllWithDate,
   listBioUpdateBranches,
   currentBranch,
 } from "./lib/git"
@@ -136,9 +136,10 @@ async function main() {
       console.log(`    Downloaded image: ${imageName}`)
     }
 
-    // Commit
+    // Commit with the B2 upload timestamp so date-based comparisons
+    // with master work the same way as PR branch commits
     const name = `${capitalize(parsed.firstName)} ${capitalize(parsed.lastName)}`
-    commitAll(`Bio submission from ${name}`)
+    commitAllWithDate(`Bio submission from ${name}`, b2Date)
     console.log(`    Created branch: ${branchName}`)
     processed++
   }

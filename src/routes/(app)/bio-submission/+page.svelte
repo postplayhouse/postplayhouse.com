@@ -45,6 +45,7 @@
 	let position = $state("")
 	let imageFile: null | File = $state(null)
 	let pullRequest = $state("")
+	let isReturningUser = $state(false)
 
 	function handleUseOldHeadshotChange(e: Event) {
 		const unchecked = !(e.target as HTMLInputElement).checked
@@ -185,7 +186,7 @@
 		{ name: "firstName", invalid: !fields.firstName },
 		{ name: "location", invalid: !fields.location },
 		{ name: "emptyBio", invalid: !fields.bio },
-		{ name: "email", invalid: !fields.email },
+		{ name: "email", invalid: !isReturningUser && !fields.email },
 		{ name: "image", invalid: !(imageFile || fields.useOldHeadshot) },
 		{
 			name: "oldImage",
@@ -235,6 +236,7 @@
 		requestingAuth: "requestingAuth",
 		incompleteForm: "incompleteForm",
 		completeForm: "completeForm",
+		loadingExistingBio: "loadingExistingBio",
 		sendingHeadshotBio: "sendingHeadshotBio",
 		success: "success",
 		error: "error",
@@ -251,6 +253,7 @@
 		postBio: "postBio",
 		sendHeadshotBioSuccess: "sendHeadshotBioSuccess",
 		sendHeadshotBioFailure: "sendHeadshotBioFailure",
+		existingBioLoaded: "existingBioLoaded",
 		foundNoFetch: "foundNoFetch",
 		serverError: "serverError",
 	}
@@ -281,7 +284,11 @@
 		].includes(pageState),
 	)
 	let submitting = $derived(
-		[states.requestingAuth, states.sendingHeadshotBio].includes(pageState),
+		[
+			states.requestingAuth,
+			states.loadingExistingBio,
+			states.sendingHeadshotBio,
+		].includes(pageState),
 	)
 	let finalSubmission = $derived(pageState === states.sendingHeadshotBio)
 	let showSuccess = $derived(pageState === states.success)
@@ -325,7 +332,8 @@
 			case states.requestingAuth: {
 				switch (event) {
 					case events.confirmedPassphrase: {
-						return (pageState = states.incompleteForm)
+						fetchAndPrefillExistingBio()
+						return (pageState = states.loadingExistingBio)
 					}
 					case events.badPassphrase: {
 						badPassphrase = true
@@ -333,6 +341,17 @@
 					}
 					case events.getCredsFailed: {
 						return (pageState = states.error)
+					}
+					default:
+						return
+				}
+			}
+			case states.loadingExistingBio: {
+				switch (event) {
+					case events.existingBioLoaded: {
+						return (pageState = invalidForm
+							? states.incompleteForm
+							: states.completeForm)
 					}
 					default:
 						return
@@ -417,6 +436,52 @@
 		} else {
 			dispatch(events.serverError)
 		}
+	}
+
+	async function fetchAndPrefillExistingBio() {
+		try {
+			const res = await window.fetch("/api/bio-submission/existing-bio", {
+				method: "GET",
+				headers: new Headers({
+					Authorization: sanitizedPassphrase(passphrase),
+				}),
+			})
+			if (res.ok) {
+				const { data, source } = await res.json()
+				if (data) {
+					isReturningUser = true
+					fields.firstName = data.firstName ?? ""
+					fields.lastName = data.lastName ?? ""
+					fields.location = data.location ?? ""
+					fields.bio = data.programBio || data.bio || ""
+					if (data.programBio && data.bio) {
+						fields.addLongerBio = true
+						fields.longerBio = data.bio
+					}
+					roles = data.roles ?? []
+					staffPositions = data.staffPositions ?? []
+					productionPositions = data.productionPositions ?? []
+					positions = data.positions ?? []
+
+					// Pre-select existing headshot
+					if (data.imageYear) {
+						const imageName =
+							data.imageFile ||
+							`${safeName(data.firstName)}-${safeName(data.lastName)}`
+						const matchingImage = imageFiles.find(
+							(f) => f.includes(`/${data.imageYear}/`) && f.includes(imageName),
+						)
+						if (matchingImage) {
+							fields.useOldHeadshot = true
+							fields.oldImageSrcPath = matchingImage
+						}
+					}
+				}
+			}
+		} catch {
+			// Non-fatal — proceed with empty form
+		}
+		dispatch(events.existingBioLoaded)
 	}
 
 	type Creds = { authorizationToken: string; uploadUrl: string }
@@ -803,6 +868,10 @@ ${fields.email}
 	</form>
 {/if}
 
+{#if pageState === states.loadingExistingBio}
+	<p class="my-8 text-xl">Loading your information...</p>
+{/if}
+
 {#if showMain}
 	{#if devFormFeedback}
 		<div
@@ -826,19 +895,21 @@ ${fields.email}
 			class="m-auto max-w-lg flex-none p-2 lg:w-1/2"
 			onsubmit={(e) => e.preventDefault()}
 		>
-			<label class="block text-2xl">
-				Email address<i>*</i>
-				<div class="text-sm">
-					(So our program designer can contact you if necessary. It is not
-					shared with the public.)
-				</div>
-				<input
-					class="block"
-					bind:value={fields.email}
-					name="email"
-					type="email"
-				/>
-			</label>
+			{#if !isReturningUser}
+				<label class="block text-2xl">
+					Email address<i>*</i>
+					<div class="text-sm">
+						(So our program designer can contact you if necessary. It is not
+						shared with the public.)
+					</div>
+					<input
+						class="block"
+						bind:value={fields.email}
+						name="email"
+						type="email"
+					/>
+				</label>
+			{/if}
 
 			<div class="my-32">
 				<div class="block text-2xl">Headshot<i>*</i></div>
@@ -849,7 +920,11 @@ ${fields.email}
 						onchange={handleUseOldHeadshotChange}
 						bind:checked={fields.useOldHeadshot}
 					/>
-					I've worked at Post before, and I'd like to use my old headshot.
+					{#if isReturningUser}
+						Keep my current headshot.
+					{:else}
+						I've worked at Post before, and I'd like to use my old headshot.
+					{/if}
 				</label>
 				{#if fields.useOldHeadshot}
 					<div class="my-4">
@@ -939,6 +1014,9 @@ ${fields.email}
 						<input
 							class="block"
 							type="text"
+							value={roles
+								.find((r) => r.productionName === production)
+								?.positions.join(", ") ?? ""}
 							oninput={(e) => {
 								mutateRoles(production, e.currentTarget.value)
 							}}
@@ -973,6 +1051,7 @@ ${fields.email}
 					<input
 						class="block"
 						type="text"
+						value={staffPositions.join(", ")}
 						oninput={(e) => mutateStaffPositions(e.currentTarget.value)}
 					/>
 				</label>
@@ -1001,6 +1080,9 @@ ${fields.email}
 						<input
 							class="block"
 							type="text"
+							value={productionPositions
+								.find((r) => r.productionName === production)
+								?.positions.join(", ") ?? ""}
 							oninput={(e) =>
 								mutateProductionPositions(production, e.currentTarget.value)}
 						/>
