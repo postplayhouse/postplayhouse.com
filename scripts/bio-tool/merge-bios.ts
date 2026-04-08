@@ -157,11 +157,15 @@ async function main() {
 			deleteTempBranch() // clean up any leftover from a previous failed run
 			git(`checkout -b ${tempBranch} master`)
 
-			// Cherry-pick each commit (in order); break on first conflict
+			// Cherry-pick each commit (in order), auto-resolving conflicts in
+			// favor of the bio branch. This handles cases where processed images
+			// on master conflict with raw images on the branch — subsequent
+			// commits (e.g. "Optimize images: reset to master") will restore
+			// master's version anyway.
 			let cherryPickFailed = false
 			for (const commit of commits) {
 				try {
-					git(`cherry-pick --allow-empty ${commit.hash}`)
+					git(`cherry-pick --allow-empty --strategy-option theirs ${commit.hash}`)
 				} catch {
 					console.error(
 						`  Cherry-pick failed for "${commit.message}", aborting this branch`,
