@@ -121,7 +121,7 @@ async function main() {
 
 	checkoutMaster()
 
-	const mergedPeople: { position: number; name: string }[] = []
+	const mergedPeople: { position: number; name: string; isUpdate: boolean }[] = []
 	const mergeErrors: { name: string; error: string }[] = []
 
 	for (const { branch, position } of selectedBranches as { branch: string; position: number }[]) {
@@ -199,7 +199,7 @@ async function main() {
 			for (const c of adjustmentCommits) {
 				console.log(`    + ${c.message}`)
 			}
-			mergedPeople.push({ position, name })
+			mergedPeople.push({ position, name, isUpdate: verb === "Update Bio" })
 		} catch (err) {
 			const msg = err instanceof Error ? err.message.split("\n")[0] : String(err)
 			console.error(`  Error merging ${name}: ${msg}`)
@@ -275,6 +275,8 @@ function tryExtractEmailFromPr(
 	}
 }
 
+const RESUBMIT_NOTE = `If you ever need to make changes to your bio, you can resubmit using the same process at https://postplayhouse.com/bio-submission — just enter your passphrase and your current information will be pre-filled.`
+
 const EMAIL_BODY = `Thanks for submitting your bio to Post Playhouse. It is live on the website (or will be very shortly). There are two places you will (eventually) see your bio on the site:
 
 1. https://postplayhouse.com/program-bios
@@ -286,6 +288,23 @@ This is where the public will see your bio. If you are an actor, your bio will n
 Please visit the first address above and check that your bio is correct. If you don't spot any mistakes in your bio, then you needn't do anything else.
 
 I can make alterations (if you discover a typo, etc) for a time, but If I do not hear from you soon, the bio will be printed as is for our program. If you request changes after that, I can always accommodate them on the website, though.
+
+${RESUBMIT_NOTE}
+
+If you have any questions, please feel free to reach out.
+`
+
+const UPDATE_EMAIL_BODY = `Thanks for updating your bio. Your changes are live on the website (or will be very shortly). There are two places you can see your bio on the site:
+
+1. https://postplayhouse.com/program-bios
+This is where you should go to proof your bio. We don't share this page with the public.
+
+2. https://postplayhouse.com/who/2026
+This is where the public will see your bio.
+
+Please visit the first address above and check that everything looks correct.
+
+${RESUBMIT_NOTE}
 
 If you have any questions, please feel free to reach out.
 `
@@ -355,19 +374,22 @@ end tell`
 }
 
 function composeEmails(
-	people: { position: number; name: string }[],
+	people: { position: number; name: string; isUpdate: boolean }[],
 ): { position: number; name: string }[] {
 	const missing: { position: number; name: string }[] = []
-	for (const { position, name } of people) {
+	for (const { position, name, isUpdate } of people) {
 		const entry = getEmail(position)
 		if (!entry) {
 			missing.push({ position, name })
 			continue
 		}
 
+		const subject = isUpdate ? "Your Updated Post Playhouse Bio" : "Your Post Playhouse Bio"
+		const body = isUpdate ? UPDATE_EMAIL_BODY : EMAIL_BODY
+
 		console.log(`  Opening compose for ${name} (${entry.email})...`)
 		try {
-			composeEmailWithSpark(entry.email, "Your Post Playhouse Bio", EMAIL_BODY)
+			composeEmailWithSpark(entry.email, subject, body)
 		} catch {
 			console.log(`    Failed to compose email for ${name}`)
 		}

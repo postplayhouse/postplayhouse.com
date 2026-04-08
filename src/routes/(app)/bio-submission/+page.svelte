@@ -1187,9 +1187,8 @@ ${fields.email}
 {#if showSuccess}
 	<h3 class="text-2xl">Success!</h3>
 	<p>
-		Thank you for submitting your bio. I will be in touch via email if anything
-		is out of place. So if you see an email from don@postplayhouse.com, it is
-		probably about your bio.
+		Thank you for submitting your bio. Submissions are reviewed and applied
+		individually, and we will email you when everything is live.
 	</p>
 {/if}
 
