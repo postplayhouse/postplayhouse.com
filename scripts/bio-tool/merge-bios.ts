@@ -141,7 +141,9 @@ async function main() {
 		const adjustmentCommits = commits.slice(1)
 
 		// Build the squashed commit message (normalize to canonical format)
-		const title = `Bio ${position}: ${name}`
+		const masterBlock = extractPositionBlock(readSeasonYaml(yamlPath), position)
+		const verb = masterBlock?.trim() ? "Update Bio" : "Bio"
+		const title = `${verb} ${position}: ${name}`
 		let body = ""
 		if (adjustmentCommits.length > 0) {
 			body =
