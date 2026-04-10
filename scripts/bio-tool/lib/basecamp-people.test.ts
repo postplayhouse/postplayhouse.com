@@ -61,8 +61,8 @@ describe("fullName", () => {
 
 describe("partitionPeople", () => {
   const basecampPeople = [
-    { id: 1, name: "Alice Smith" },
-    { id: 2, name: "Bob Jones" },
+    { id: 1, name: "Alice Smith", personable_type: "User" },
+    { id: 2, name: "Bob Jones", personable_type: "User" },
   ]
   const emailManifest = new Map([
     ["Carol White", "carol@example.com"],
@@ -75,6 +75,7 @@ describe("partitionPeople", () => {
     expect(result.grant).toEqual([1])
     expect(result.create).toHaveLength(0)
     expect(result.skip).toHaveLength(0)
+    expect(result.deactivated).toHaveLength(0)
   })
 
   it("creates invitations for people with an email but no Basecamp account", () => {
@@ -83,6 +84,7 @@ describe("partitionPeople", () => {
     expect(result.create).toEqual([{ name: "Carol White", email_address: "carol@example.com" }])
     expect(result.grant).toHaveLength(0)
     expect(result.skip).toHaveLength(0)
+    expect(result.deactivated).toHaveLength(0)
   })
 
   it("skips people with no Basecamp account and no email", () => {
@@ -91,5 +93,20 @@ describe("partitionPeople", () => {
     expect(result.skip).toEqual(["Unknown Person"])
     expect(result.grant).toHaveLength(0)
     expect(result.create).toHaveLength(0)
+    expect(result.deactivated).toHaveLength(0)
+  })
+
+  it("separates deactivated (Tombstone) accounts from active ones", () => {
+    const peopleWithTombstone = [
+      ...basecampPeople,
+      { id: 3, name: "Deleted User", personable_type: "Tombstone" },
+    ]
+    const people = [
+      { first_name: "Alice", last_name: "Smith" },
+      { first_name: "Deleted", last_name: "User" },
+    ]
+    const result = partitionPeople(people, peopleWithTombstone, emailManifest)
+    expect(result.grant).toEqual([1])
+    expect(result.deactivated).toEqual(["Deleted User"])
   })
 })

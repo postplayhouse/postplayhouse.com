@@ -10,6 +10,7 @@ export interface YamlPerson {
 export interface BasecampPerson {
   id: number
   name: string
+  personable_type: string
 }
 
 export interface CreateEntry {
@@ -21,6 +22,7 @@ export interface Partition {
   grant: number[]
   create: CreateEntry[]
   skip: string[]
+  deactivated: string[]
 }
 
 export function isOnlyBoardMember(person: Partial<YamlPerson>): boolean {
@@ -46,16 +48,21 @@ export function partitionPeople(
   basecampPeople: BasecampPerson[],
   emailManifest: Map<string, string>,
 ): Partition {
-  const basecampByName = new Map(basecampPeople.map((p) => [p.name, p.id]))
+  const basecampByName = new Map(basecampPeople.map((p) => [p.name, p]))
   const grant: number[] = []
   const create: CreateEntry[] = []
   const skip: string[] = []
+  const deactivated: string[] = []
 
   for (const person of people) {
     const name = fullName(person)
-    const basecampId = basecampByName.get(name)
-    if (basecampId !== undefined) {
-      grant.push(basecampId)
+    const bc = basecampByName.get(name)
+    if (bc !== undefined) {
+      if (bc.personable_type === "Tombstone") {
+        deactivated.push(name)
+      } else {
+        grant.push(bc.id)
+      }
     } else {
       const email = emailManifest.get(name)
       if (email) {
@@ -66,5 +73,5 @@ export function partitionPeople(
     }
   }
 
-  return { grant, create, skip }
+  return { grant, create, skip, deactivated }
 }

@@ -1,6 +1,8 @@
 import "./lib/env"
 import { load as yamlLoad } from "js-yaml"
-import { readFileSync } from "fs"
+import { readFileSync, writeFileSync, mkdirSync } from "fs"
+import { resolve, dirname } from "path"
+import { fileURLToPath } from "url"
 import { requireEnv } from "./lib/env"
 import { getAllEmails } from "./lib/manifest"
 import { getCurrentSeason, seasonYamlPath } from "./lib/season"
@@ -8,13 +10,34 @@ import {
   isOnlyBoardMember,
   hasStaffPositions,
   hasProductionPositions,
-  fullName,
   partitionPeople,
   type YamlPerson,
   type BasecampPerson,
+  type CreateEntry,
 } from "./lib/basecamp-people"
 
+const __dirname =
+  import.meta.dirname ?? dirname(fileURLToPath(import.meta.url))
+
+const CACHE_DIR = resolve(__dirname, "../../bio-cache.ignore")
 const ACCOUNT_ID = "5732828"
+
+function invitedCachePath(season: number): string {
+  return resolve(CACHE_DIR, `basecamp-invited-${season}.json`)
+}
+
+function loadInvitedCache(season: number): CreateEntry[] {
+  try {
+    return JSON.parse(readFileSync(invitedCachePath(season), "utf-8"))
+  } catch {
+    return []
+  }
+}
+
+function saveInvitedCache(season: number, entries: CreateEntry[]) {
+  mkdirSync(CACHE_DIR, { recursive: true })
+  writeFileSync(invitedCachePath(season), JSON.stringify(entries, null, 2) + "\n")
+}
 const API_BASE = `https://3.basecampapi.com/${ACCOUNT_ID}`
 
 function basecampFetch(token: string, path: string, options?: RequestInit) {
@@ -51,10 +74,18 @@ async function fetchProjects(token: string): Promise<{ id: number; name: string 
 }
 
 async function fetchProjectMembers(token: string, projectId: number): Promise<Set<number>> {
-  const res = await basecampFetch(token, `/projects/${projectId}/people.json`)
-  if (!res.ok) throw new Error(`GET /projects/${projectId}/people.json failed: ${res.status} ${await res.text()}`)
-  const members = (await res.json()) as { id: number }[]
-  return new Set(members.map((m) => m.id))
+  const ids: number[] = []
+  let path: string | null = `/projects/${projectId}/people.json`
+  while (path) {
+    const res = await basecampFetch(token, path)
+    if (!res.ok) throw new Error(`GET ${path} failed: ${res.status} ${await res.text()}`)
+    const members = (await res.json()) as { id: number }[]
+    ids.push(...members.map((m) => m.id))
+    const link = res.headers.get("Link")
+    const next = link?.match(/<https:\/\/3\.basecampapi\.com\/\d+([^>]+)>;\s*rel="next"/)
+    path = next ? next[1] : null
+  }
+  return new Set(ids)
 }
 
 async function addPeopleToProject(
@@ -115,6 +146,10 @@ async function main() {
   const emails = getAllEmails()
   const emailManifest = new Map(emails.map(({ name, email }) => [name, email]))
 
+  // --- Load invitation cache ---
+  const previouslyInvited = loadInvitedCache(season)
+  const previouslyInvitedEmails = new Set(previouslyInvited.map((e) => e.email_address))
+
   // --- Partition people ---
   // Partition against full account to find everyone, then split grant into already-member vs. needs-adding
   const callBoardFull = partitionPeople(callBoardPeople, basecampPeople, emailManifest)
@@ -122,15 +157,19 @@ async function main() {
 
   const callBoardPlan = {
     grant: callBoardFull.grant.filter((id) => !callBoardMembers.has(id)),
-    create: callBoardFull.create,
+    create: callBoardFull.create.filter((e) => !previouslyInvitedEmails.has(e.email_address)),
     skip: callBoardFull.skip,
     existing: callBoardFull.grant.filter((id) => callBoardMembers.has(id)),
+    alreadyInvited: callBoardFull.create.filter((e) => previouslyInvitedEmails.has(e.email_address)),
+    deactivated: callBoardFull.deactivated,
   }
   const productionStaffPlan = {
     grant: productionStaffFull.grant.filter((id) => !productionStaffMembers.has(id)),
-    create: productionStaffFull.create,
+    create: productionStaffFull.create.filter((e) => !previouslyInvitedEmails.has(e.email_address)),
     skip: productionStaffFull.skip,
     existing: productionStaffFull.grant.filter((id) => productionStaffMembers.has(id)),
+    alreadyInvited: productionStaffFull.create.filter((e) => previouslyInvitedEmails.has(e.email_address)),
+    deactivated: productionStaffFull.deactivated,
   }
 
   // --- Build checkbox TUI ---
@@ -151,15 +190,6 @@ async function main() {
       | { value: null; name: string; disabled: string }
 
     const sections: (Choice | InstanceType<typeof Separator>)[] = []
-
-    if (plan.existing.length) {
-      sections.push(new Separator("  · already members ·"))
-      sections.push(...plan.existing.map((id) => ({
-        value: null,
-        name: `${basecampById.get(id) ?? `ID ${id}`}`,
-        disabled: "already a member",
-      } satisfies Choice)))
-    }
 
     if (plan.grant.length) {
       sections.push(new Separator("  · existing Basecamp accounts ·"))
@@ -183,8 +213,35 @@ async function main() {
       sections.push(new Separator("  · no email found ·"))
       sections.push(...plan.skip.map((name) => ({
         value: null,
-        name,
+        name: `\x1b[31m${name}\x1b[0m`,
         disabled: "run bio:emails first",
+      } satisfies Choice)))
+    }
+
+    if (plan.deactivated.length) {
+      sections.push(new Separator("  · deactivated accounts ·"))
+      sections.push(...plan.deactivated.map((name) => ({
+        value: null,
+        name: `\x1b[31m${name}\x1b[0m`,
+        disabled: "deactivated",
+      } satisfies Choice)))
+    }
+
+    if (plan.alreadyInvited.length) {
+      sections.push(new Separator("  · already invited ·"))
+      sections.push(...plan.alreadyInvited.map((entry) => ({
+        value: null,
+        name: `${entry.name} <${entry.email_address}>`,
+        disabled: "already invited",
+      } satisfies Choice)))
+    }
+
+    if (plan.existing.length) {
+      sections.push(new Separator("  · already members ·"))
+      sections.push(...plan.existing.map((id) => ({
+        value: null,
+        name: `${basecampById.get(id) ?? `ID ${id}`}`,
+        disabled: "already a member",
       } satisfies Choice)))
     }
 
@@ -229,6 +286,15 @@ async function main() {
 
   const psResult = await addPeopleToProject(token, productionStaffProject.id, psGrant, psCreate)
   console.log(`  ${productionStaffProject.name}: ${(psResult.granted?.length ?? 0) + (psResult.created?.length ?? 0)} added`)
+
+  // --- Update invitation cache ---
+  const newlyInvited = [...cbCreate, ...psCreate]
+  if (newlyInvited.length) {
+    const deduped = new Map(
+      [...previouslyInvited, ...newlyInvited].map((e) => [e.email_address, e]),
+    )
+    saveInvitedCache(season, Array.from(deduped.values()))
+  }
 
   const allSkipped = [...new Set([...callBoardPlan.skip, ...productionStaffPlan.skip])]
   if (allSkipped.length) {
