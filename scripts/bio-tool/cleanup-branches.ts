@@ -2,52 +2,83 @@ import { checkbox } from "@inquirer/prompts"
 import {
   git,
   fetchRemoteBioUpdateBranches,
+  fetchRemoteBioReviewBranches,
   checkoutBranch,
   checkoutMaster,
   currentBranch,
 } from "./lib/git"
 
+type BranchKind = "update" | "review"
+
 interface BranchInfo {
   branch: string
+  kind: BranchKind
   merged: boolean
   hasRemote: boolean
 }
 
-function listAllBioUpdateBranches(): BranchInfo[] {
-  let localBranches: string[]
+function statusLabel(b: BranchInfo): string {
+  if (b.kind === "review") return "review branch"
+  return b.merged ? "merged" : "unmerged"
+}
+
+function listBranchesByPattern(pattern: string): string[] {
   try {
-    const output = git(
-      `branch --list "bio-update/position-*" --format="%(refname:short)"`,
-    )
-    localBranches = output ? output.split("\n").filter(Boolean) : []
+    const output = git(`branch --list "${pattern}" --format="%(refname:short)"`)
+    return output ? output.split("\n").filter(Boolean) : []
   } catch {
-    localBranches = []
+    return []
   }
+}
 
-  const positionNumber = (b: string) => parseInt(b.match(/position-(\d+)/)?.[1] ?? "0")
-  localBranches.sort((a, b) => positionNumber(a) - positionNumber(b))
+function sortKey(branch: string): [number, number] {
+  const updateMatch = branch.match(/^bio-update\/position-(\d+)$/)
+  if (updateMatch) return [0, parseInt(updateMatch[1])]
+  const reviewMatch = branch.match(/^bio-review\/(\d+)$/)
+  if (reviewMatch) return [1, parseInt(reviewMatch[1])]
+  return [2, 0]
+}
 
-  return localBranches.map((branch) => {
-    // Check if branch content is already on master (bio data matches)
-    let merged = false
+function buildBranchInfo(branch: string): BranchInfo {
+  const kind: BranchKind = branch.startsWith("bio-review/") ? "review" : "update"
+
+  // Only bio-update branches have a meaningful merged/unmerged signal —
+  // bio-review branches are workspace collections, not mergeable units.
+  let merged = false
+  if (kind === "update") {
     try {
       const diff = git(`diff master..${branch} -- src/data/people/`)
       merged = diff === ""
     } catch {
       // If diff fails, assume not merged
     }
+  }
 
-    // Check if remote exists
-    let hasRemote = false
-    try {
-      git(`rev-parse --verify origin/${branch}`)
-      hasRemote = true
-    } catch {
-      // no remote
-    }
+  let hasRemote = false
+  try {
+    git(`rev-parse --verify origin/${branch}`)
+    hasRemote = true
+  } catch {
+    // no remote
+  }
 
-    return { branch, merged, hasRemote }
+  return { branch, kind, merged, hasRemote }
+}
+
+function listAllBioBranches(): BranchInfo[] {
+  const branches = [
+    ...listBranchesByPattern("bio-update/position-*"),
+    ...listBranchesByPattern("bio-review/*"),
+  ]
+
+  branches.sort((a, b) => {
+    const [groupA, numA] = sortKey(a)
+    const [groupB, numB] = sortKey(b)
+    if (groupA !== groupB) return groupA - groupB
+    return numA - numB
   })
+
+  return branches.map(buildBranchInfo)
 }
 
 const deleteLocal = process.argv.includes("--local")
@@ -57,30 +88,31 @@ const dryRun = !deleteLocal && !deleteRemote
 async function main() {
   const startBranch = currentBranch()
 
-  console.log("Fetching remote bio-update branches...")
+  console.log("Fetching remote bio-update and bio-review branches...")
   fetchRemoteBioUpdateBranches()
+  fetchRemoteBioReviewBranches()
 
   checkoutMaster()
 
-  const branches = listAllBioUpdateBranches()
+  const branches = listAllBioBranches()
 
   if (!branches.length) {
-    console.log("No bio-update branches found.")
+    console.log("No bio-update or bio-review branches found.")
     return
   }
 
-  const merged = branches.filter((b) => b.merged)
-  const unmerged = branches.filter((b) => !b.merged)
+  const merged = branches.filter((b) => b.kind === "update" && b.merged)
+  const unmerged = branches.filter((b) => b.kind === "update" && !b.merged)
+  const review = branches.filter((b) => b.kind === "review")
 
   console.log(
-    `Found ${branches.length} branches: ${merged.length} merged, ${unmerged.length} unmerged\n`,
+    `Found ${branches.length} branches: ${merged.length} merged, ${unmerged.length} unmerged, ${review.length} review\n`,
   )
 
   if (dryRun) {
     for (const b of branches) {
-      const status = b.merged ? "merged" : "unmerged"
       const location = b.hasRemote ? "local + remote" : "local only"
-      console.log(`  ${b.branch} (${status}) [${location}]`)
+      console.log(`  ${b.branch} (${statusLabel(b)}) [${location}]`)
     }
     console.log("\nPass --local and/or --remote to delete branches.")
     checkoutBranch(startBranch)
@@ -100,12 +132,17 @@ async function main() {
 
   const choices = [
     ...merged.map((b) => ({
-      name: `${b.branch} (merged)${locationLabel(b)}`,
+      name: `${b.branch} (${statusLabel(b)})${locationLabel(b)}`,
       value: b,
       checked: true,
     })),
     ...unmerged.map((b) => ({
-      name: `${b.branch} (unmerged)${locationLabel(b)}`,
+      name: `${b.branch} (${statusLabel(b)})${locationLabel(b)}`,
+      value: b,
+      checked: false,
+    })),
+    ...review.map((b) => ({
+      name: `${b.branch} (${statusLabel(b)})${locationLabel(b)}`,
       value: b,
       checked: false,
     })),

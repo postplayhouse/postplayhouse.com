@@ -180,6 +180,45 @@ export function fetchRemoteBioUpdateBranches(yamlPath?: string): void {
   }
 }
 
+/**
+ * Fetch remote bio-review branches and create local tracking branches for
+ * any that don't already exist locally.
+ */
+export function fetchRemoteBioReviewBranches(): void {
+  try {
+    git("fetch origin 'refs/heads/bio-review/*:refs/remotes/origin/bio-review/*'")
+  } catch {
+    return
+  }
+
+  let remoteBranches: string
+  try {
+    remoteBranches = git(
+      `branch -r --list "origin/bio-review/*" --format="%(refname:short)"`,
+    )
+  } catch {
+    return
+  }
+  if (!remoteBranches) return
+
+  for (const remote of remoteBranches.split("\n").filter(Boolean)) {
+    const local = remote.replace(/^origin\//, "")
+    try {
+      git(`rev-parse --verify refs/heads/${local}`)
+      continue
+    } catch {
+      // Local branch doesn't exist — create it
+    }
+
+    try {
+      git(`branch ${local} ${remote}`)
+      console.log(`  Created local branch ${local} from remote`)
+    } catch {
+      // ignore if it fails
+    }
+  }
+}
+
 /** List all bio-update branches with their first commit date */
 export function listBioUpdateBranches(): {
   branch: string
