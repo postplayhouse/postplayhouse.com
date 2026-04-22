@@ -16,6 +16,8 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
 		"prepare": "husky",
+		"bio:meta:process": "pnpm bio:fetch && pnpm bio:process && pnpm bio:review",
+		"bio:meta:finish": "pnpm bio:emails && pnpm bio:merge && pnpm bio:cleanup --local",
 		"bio:fetch": "tsx scripts/bio-tool/fetch-b2-submissions.ts",
 		"bio:process": "tsx scripts/bio-tool/process-bios.ts",
 		"bio:merge": "tsx scripts/bio-tool/merge-bios.ts",
