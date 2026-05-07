@@ -27,9 +27,10 @@
 		return (current + 1) % slides.length
 	}
 
-	let currentTimeout = $derived(
-		browser ? window.setTimeout(nextOrDone, INT) : 0,
-	)
+	// svelte-ignore state_referenced_locally This INT value is meant to just be
+	// the initial duration. It gets properly updated in the nextOrDone function,
+	// where it is in a closure and won't cause issues.
+	let currentTimeout = browser ? window.setTimeout(nextOrDone, INT) : 0
 
 	function nextOrDone() {
 		if (!browser) return
