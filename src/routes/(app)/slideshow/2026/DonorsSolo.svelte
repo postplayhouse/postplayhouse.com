@@ -4,6 +4,8 @@
 	import { browser } from "$app/environment"
 
 	type Props = {
+		setTitle: string
+		description?: string
 		durationMultiplier: number
 		onEventDone: () => void
 		sections: {
@@ -12,7 +14,13 @@
 		}[]
 	}
 
-	let { durationMultiplier, onEventDone: eventDone, sections }: Props = $props()
+	let {
+		durationMultiplier,
+		onEventDone: eventDone,
+		sections,
+		setTitle,
+		description,
+	}: Props = $props()
 	const INT = $derived(durationMultiplier * 500)
 
 	const slides = $derived(
@@ -50,7 +58,15 @@
 	{#if i === current}
 		<article class="absolute inset-0 flex flex-col">
 			<header class="font-uber bg-green-700 text-center text-[5vw] text-white">
-				Annual Fund Donations
+				{setTitle}
+
+				{#if description}
+					<p
+						class="bg-green-300 p-4 text-left font-sans text-[3vw] text-black dark:bg-green-950 dark:text-white"
+					>
+						{description}
+					</p>
+				{/if}
 				<div class="bg-green-100 text-black dark:bg-green-900 dark:text-white">
 					{slide.title}
 				</div>

@@ -5,6 +5,7 @@
 	import { browser } from "$app/environment"
 
 	type Props = {
+		setTitle: string
 		durationMultiplier: number
 		onEventDone: () => void
 		sections: {
@@ -13,7 +14,12 @@
 		}[]
 	}
 
-	let { durationMultiplier, onEventDone: eventDone, sections }: Props = $props()
+	let {
+		durationMultiplier,
+		onEventDone: eventDone,
+		sections,
+		setTitle,
+	}: Props = $props()
 
 	const slides = $state(
 		(() => sections.map((x) => ({ ...x, position: "bottom" })))(),
@@ -68,7 +74,7 @@
 	{#if i === current}
 		<article class="absolute inset-0 flex flex-col">
 			<header class="font-uber bg-green-700 text-center text-[5vw] text-white">
-				Annual Fund Donations
+				{setTitle}
 				<div class="bg-green-100 text-black dark:bg-green-900 dark:text-white">
 					{slide.title}
 				</div>

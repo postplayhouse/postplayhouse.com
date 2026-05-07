@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { fade } from "svelte/transition"
-	import DonorsLarge from "./DonorsLarge.svelte"
-	import DonorsSmall from "./DonorsSmall.svelte"
-	import DonorsSpecial from "./DonorsSpecial.svelte"
+	import DonorsScroll from "./DonorsScroll.svelte"
+	import DonorsSolo from "./DonorsSolo.svelte"
 	import { onMount } from "svelte"
 	import {
 		initLocalAppVersion,
@@ -33,36 +32,41 @@
 		})
 	}
 
-	const showsAndTimers = $derived(
-		(
-			[
-				[
-					DonorsSpecial,
-					createPositiveIntStore(8, `${year} sd`),
-					"Special Donations",
-					slideData.special,
-				],
-				[
-					DonorsLarge,
-					createPositiveIntStore(8, `${year} ld`),
-					"Large Donations",
-					slideData.large,
-				],
-				[
-					DonorsSmall,
-					createPositiveIntStore(10, `${year} rd`),
-					"Regular Donations",
-					slideData.small,
-				],
-			] as const
-		).filter(([_, __, ___, sections]) => sections.length > 0),
-	)
-
-	const shows = $derived(showsAndTimers.map(([show]) => show))
-	const timers = $derived(showsAndTimers.map(([_, timer]) => timer))
-	const showNames = $derived(showsAndTimers.map(([_, __, name]) => name))
-	const donorSections = $derived(
-		showsAndTimers.map(([_, __, ___, sections]) => sections),
+	const slideSets = $derived<
+		Array<{
+			id: string
+			title: string
+			description?: string
+			sections: (typeof slideData)["large"]
+			durationMultiplier: ReturnType<typeof createPositiveIntStore>
+			Component: typeof DonorsSolo | typeof DonorsScroll
+		}>
+	>(
+		[
+			{
+				id: "Special Donors",
+				title: "Special Campaign Donations",
+				description:
+					"Special thanks to to the following donors for their special support this year to help us expand our reach through capital campaign support to enhance theatrical and company housing infrastructure.",
+				sections: slideData.special,
+				durationMultiplier: createPositiveIntStore(8, `${year} sd`),
+				Component: DonorsSolo,
+			},
+			{
+				id: "Large Donors",
+				title: "Annual Fund Donations",
+				sections: slideData.large,
+				durationMultiplier: createPositiveIntStore(8, `${year} ld`),
+				Component: DonorsSolo,
+			},
+			{
+				id: "Small Donors",
+				title: "Annual Fund Donations",
+				sections: slideData.small,
+				durationMultiplier: createPositiveIntStore(10, `${year} rd`),
+				Component: DonorsScroll,
+			},
+		].filter(({ sections }) => sections.length > 0),
 	)
 
 	let inc = $state(0)
@@ -70,7 +74,7 @@
 	function nextShow() {
 		inc += 1
 
-		const isSixthFullRun = inc % (shows.length * 6) === 0
+		const isSixthFullRun = inc % (slideSets.length * 6) === 0
 
 		if (isSixthFullRun) {
 			invalidateAll() // refetch the google sheet data
@@ -80,9 +84,7 @@
 
 	let resetCount = $state(0)
 
-	let currentDurationMultiplier = $derived(
-		timers[inc % timers.length] as (typeof timers)[number],
-	)
+	let currentSlideSet = $derived(slideSets[inc % slideSets.length])
 
 	let showInfo = $state(false)
 
@@ -97,13 +99,13 @@
 				break
 			case "ArrowDown":
 				event.preventDefault()
-				currentDurationMultiplier.increment()
+				currentSlideSet.durationMultiplier.increment()
 				resetCount = resetCount + 1
 				speedInfoVisible = true
 				break
 			case "ArrowUp":
 				event.preventDefault()
-				currentDurationMultiplier.decrement()
+				currentSlideSet.durationMultiplier.decrement()
 				resetCount = resetCount + 1
 				speedInfoVisible = true
 				break
@@ -146,8 +148,8 @@
 			<p>The slideshow is comprised of multiple slide sets:</p>
 			<strong>
 				<ul>
-					{#each showNames as name}
-						<li>{name}</li>
+					{#each slideSets as { id }}
+						<li>{id}</li>
 					{/each}
 				</ul>
 			</strong>
@@ -195,13 +197,13 @@
 
 		<hr class="border-8" />
 
-		{#each showsAndTimers as [_, __, section, subsection]}
+		{#each slideSets as { id: section, sections: subsections }}
 			<div class="mt-8 mb-4 border-b-2 border-black text-xl dark:border-white">
 				<strong>
 					{section.toUpperCase()}
 				</strong>
 			</div>
-			{#each subsection as { title, names }}
+			{#each subsections as { title, names }}
 				<div class="mb-6">
 					<div>
 						<button
@@ -226,23 +228,23 @@
 	{#key resetCount}
 		<div class="fixed inset-0 dark:bg-black dark:text-white">
 			{#if inc % 2 === 0}
-				{@const ShowComponent = shows[inc % shows.length]}
-				{@const sections = donorSections[inc % shows.length]}
 				<div transition:fade={{ duration: 1000 }} class="absolute inset-0">
-					<ShowComponent
-						durationMultiplier={currentDurationMultiplier.value}
+					<currentSlideSet.Component
+						setTitle={currentSlideSet.title}
+						description={currentSlideSet.description}
+						durationMultiplier={currentSlideSet.durationMultiplier.value}
 						onEventDone={() => nextShow()}
-						{sections}
+						sections={currentSlideSet.sections}
 					/>
 				</div>
 			{:else}
-				{@const ShowComponent = shows[inc % shows.length]}
-				{@const sections = donorSections[inc % shows.length]}
 				<div transition:fade={{ duration: 1000 }} class="absolute inset-0">
-					<ShowComponent
-						durationMultiplier={currentDurationMultiplier.value}
+					<currentSlideSet.Component
+						setTitle={currentSlideSet.title}
+						description={currentSlideSet.description}
+						durationMultiplier={currentSlideSet.durationMultiplier.value}
 						onEventDone={() => nextShow()}
-						{sections}
+						sections={currentSlideSet.sections}
 					/>
 				</div>
 			{/if}
@@ -257,8 +259,8 @@
 		<div
 			class="w-full rounded-lg bg-black/80 px-2 py-1 text-[6vw] font-bold text-white dark:bg-white/80 dark:text-black"
 		>
-			Set: {showNames[inc % showNames.length]} <br />Speed: {20 -
-				(currentDurationMultiplier.value - 1)}
+			Set: {currentSlideSet.id} <br />Speed: {20 -
+				(currentSlideSet.durationMultiplier.value - 1)}
 		</div>
 		{#if !showInfo}
 			<div
