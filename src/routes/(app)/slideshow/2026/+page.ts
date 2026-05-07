@@ -8,8 +8,8 @@ export const ssr = false
 
 export const load: PageLoad = async ({ fetch }) => {
 	const sheet =
-		"https://docs.google.com/spreadsheets/d/1Y8jUgPY8ChSAjaFvKmvmu7-lddSfmA5kZC1Xza4vmw8"
-	const csvUrl = `${sheet}/export?format=csv&id=1Y8jUgPY8ChSAjaFvKmvmu7-lddSfmA5kZC1Xza4vmw8&gid=0`
+		"https://docs.google.com/spreadsheets/d/1Mxb-qLBQNUQ_RchXLcdFBxpSJl_9qg7DxI5lcMgXH2w"
+	const csvUrl = `${sheet}/export?format=csv&gid=0`
 	const res = await fetch(csvUrl)
 	const text = await res.text()
 

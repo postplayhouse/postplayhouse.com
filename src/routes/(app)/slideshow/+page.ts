@@ -1,5 +1,5 @@
 import { redirect } from "@sveltejs/kit"
 
 export async function load() {
-	redirect(302, `/slideshow/2025`)
+	redirect(302, `/slideshow/2026`)
 }
