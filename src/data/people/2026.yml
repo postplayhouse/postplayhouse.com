@@ -787,6 +787,22 @@
 
 # end __55__
 # start __56__
+- last_name: Arnold
+  first_name: Jo
+  image_year: 2026
+  location: "Cleveland, OH"
+  production_positions:
+    Seussical:
+      - Bass
+    Always…Patsy Cline:
+      - Bass
+    Grease:
+      - Bass
+    Dirty Rotten Scoundrels:
+      - Bass
+  bio: |
+    Jo Arnold is excited to be joining Post Playhouse for this summer! Jo is studying at the University of Cincinnati-College Conservatory of Music and has recently earned a Master's degree in Double Bass Performance. She plans to continue her education by pursuing at Artists Diploma at the College Conservatory of Music in the fall. One of Jo's most recent and favorite musical theater credits is *Sweeney Todd: The Demon Barber of Fleet Street,* performed at CCM. Outside of musical theater, Jo is also a freelance classical, folk, and jazz double bassist as well as a teacher.
+
 # end __56__
 # start __57__
 # end __57__
