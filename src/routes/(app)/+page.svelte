@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Announcement from "$components/Announcement.svelte"
+	import FireUpdates from "$components/FireUpdates.svelte"
 	import HideOnDate from "$components/HideOnDate.svelte"
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
@@ -30,93 +31,7 @@
 	<meta property="og:description" content={site.description} />
 </svelte:head>
 
-<Announcement title="Post Playhouse Update">
-	<p class="text-sm text-gray-500 dark:text-gray-400">6/12/2026</p>
-	<p>
-		All Post Playhouse company members, staff, and volunteers remain safe and
-		accounted for.
-	</p>
-	<p>
-		As Fort Robinson State Park remains closed, and in accordance with guidance
-		from emergency officials, tonight's performance of <em>Oklahoma!</em> (June 12,
-		2026) has been canceled.
-	</p>
-	<p>
-		We are grateful to be able to continue rehearsals while monitoring the
-		situation and planning for a return to the stage when it is safe and
-		appropriate to do so. We remain hopeful as firefighters and emergency
-		personnel continue their extraordinary work to protect Fort Robinson,
-		Crawford, and surrounding communities.
-	</p>
-	<p>
-		We extend our sincere thanks to the firefighters, first responders,
-		emergency personnel, Fort Robinson staff, and all those working around the
-		clock during this challenging time. We are also deeply grateful for the
-		continued support, generosity, and encouragement from our community,
-		patrons, families, and friends.
-	</p>
-	<p>
-		Patrons with tickets will be contacted by our box office staff. You may call
-		the Box Office at <strong>888-665-1976</strong> for assistance, but we will very
-		likely be unable to pick up and will return your call later.
-	</p>
-	<p>
-		We will continue to share updates as more information becomes available.
-	</p>
-	<p>— Post Playhouse</p>
-</Announcement>
-
-<Announcement title="Post Playhouse Update on the South Fork Fire">
-	<p class="text-sm text-gray-500 dark:text-gray-400">6/11/2026</p>
-	<p>
-		The Post Playhouse is grateful for the tremendous outpouring of support from
-		our community, patrons, families, and friends as we respond to the South
-		Fork Fire.
-	</p>
-	<p>
-		Following emergency protocols and evacuation orders, we are thankful to
-		report that all Post Playhouse company members, staff, and volunteers are
-		safe and accounted for. We extend our deepest gratitude to the firefighters,
-		first responders, emergency personnel, and all frontline workers who are
-		working to protect our communities during this challenging time.
-	</p>
-	<p>
-		Our theatre's home, Fort Robinson State Park, is central to the Post
-		Playhouse experience and a vital cultural, historical, and natural resource
-		for our region. We are heartbroken by the devastating damage the park has
-		sustained and the impact this fire is having on a place that means so much
-		to so many. We are grateful for the support and concern being shown for both
-		Fort Robinson and Crawford residents, as well as the dedicated park staff
-		working around the clock in incredibly difficult conditions. As information
-		continues to evolve, we encourage those seeking updates on fire activity,
-		park conditions, and emergency response efforts to follow official
-		communications from local authorities and Fort Robinson State Park.
-	</p>
-	<p>
-		Following evacuation, we are now working in coordination with emergency
-		officials and Fort Robinson staff to safely return to the park today. Once
-		on site, we will assess conditions and determine next steps for company
-		operations.
-	</p>
-	<p>
-		At this time, many details remain uncertain, and we are taking things one
-		step at a time. Our highest priority is the safety and well-being of our
-		company members, audiences, and the people throughout our region affected by
-		this fire.
-	</p>
-	<p>
-		As a result, all Post Playhouse performances scheduled for today, June 11,
-		2026, have been canceled. Patrons with tickets who would like to reschedule
-		are encouraged to contact the Box Office at
-		<strong>888-665-1976</strong> for assistance.
-	</p>
-	<p>
-		We will continue to share updates as more information becomes available.
-		Thank you for your patience, understanding, and support as we navigate this
-		situation together.
-	</p>
-	<p>— Post Playhouse</p>
-</Announcement>
+<FireUpdates />
 
 <HideOnDate date="2026-03-15">
 	<div
