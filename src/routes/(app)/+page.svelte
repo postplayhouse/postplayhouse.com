@@ -30,17 +30,58 @@
 	<meta property="og:description" content={site.description} />
 </svelte:head>
 
-<Announcement
-	title="Announcing local actor auditions for 2026!"
-	readMoreLink="/jobs"
-	expirationDate="2026-03-17"
->
+<Announcement title="Post Playhouse Update on the South Fork Fire">
+	<p class="text-sm text-gray-500 dark:text-gray-400">6/11/2026</p>
 	<p>
-		Post Playhouse is hosting local auditions on <strong
-			>Monday, March 16th</strong
-		> at Chadron State College. This is your chance to work alongside professionals
-		from across the United States!
+		The Post Playhouse is grateful for the tremendous outpouring of support
+		from our community, patrons, families, and friends as we respond to the
+		South Fork Fire.
 	</p>
+	<p>
+		Following emergency protocols and evacuation orders, we are thankful to
+		report that all Post Playhouse company members, staff, and volunteers are
+		safe and accounted for. We extend our deepest gratitude to the
+		firefighters, first responders, emergency personnel, and all frontline
+		workers who are working to protect our communities during this challenging
+		time.
+	</p>
+	<p>
+		Our theatre's home, Fort Robinson State Park, is central to the Post
+		Playhouse experience and a vital cultural, historical, and natural resource
+		for our region. We are heartbroken by the devastating damage the park has
+		sustained and the impact this fire is having on a place that means so much
+		to so many. We are grateful for the support and concern being shown for
+		both Fort Robinson and Crawford residents, as well as the dedicated park
+		staff working around the clock in incredibly difficult conditions. As
+		information continues to evolve, we encourage those seeking updates on fire
+		activity, park conditions, and emergency response efforts to follow
+		official communications from local authorities and Fort Robinson State
+		Park.
+	</p>
+	<p>
+		Following evacuation, we are now working in coordination with emergency
+		officials and Fort Robinson staff to safely return to the park today. Once
+		on site, we will assess conditions and determine next steps for company
+		operations.
+	</p>
+	<p>
+		At this time, many details remain uncertain, and we are taking things one
+		step at a time. Our highest priority is the safety and well-being of our
+		company members, audiences, and the people throughout our region affected
+		by this fire.
+	</p>
+	<p>
+		As a result, all Post Playhouse performances scheduled for today, June 11,
+		2026, have been canceled. Patrons with tickets who would like to
+		reschedule are encouraged to contact the Box Office at
+		<strong>888-665-1976</strong> for assistance.
+	</p>
+	<p>
+		We will continue to share updates as more information becomes available.
+		Thank you for your patience, understanding, and support as we navigate
+		this situation together.
+	</p>
+	<p>— Post Playhouse</p>
 </Announcement>
 
 <HideOnDate date="2026-03-15">
