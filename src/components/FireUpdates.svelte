@@ -83,15 +83,12 @@
 
 <script lang="ts">
 	let updates = $state<Update[]>([])
-	let loaded = $state(false)
 
 	async function refresh() {
 		try {
 			updates = await fetchUpdates()
 		} catch (error) {
 			dev ? console.error(error) : captureException(error)
-		} finally {
-			loaded = true
 		}
 	}
 
@@ -102,29 +99,23 @@
 	})
 </script>
 
-{#if !loaded || updates.length > 0}
+{#if updates.length > 0}
 	<div
 		class="mx-auto mb-16 block max-w-2xl border border-amber-400 bg-amber-50 p-6 shadow-md dark:border-amber-500 dark:bg-amber-900/20"
 	>
 		<h1 class="h2 mb-2">South Fork Fire Updates</h1>
 
-		{#if !loaded}
-			<p class="text-sm text-gray-500 dark:text-gray-400">Loading updates…</p>
-		{:else}
-			<ul class="divide-y divide-amber-300 dark:divide-amber-700">
-				{#each updates as update (update.date + update.time + update.message)}
-					<li class="space-y-2 py-3 first:pt-0 last:pb-0">
-						<p class="text-sm text-gray-500 dark:text-gray-400">
-							{update.date}{#if update.time}&nbsp;·&nbsp;{formatTime(
-									update,
-								)}{/if}
-						</p>
-						{#each paragraphs(update.message) as html}
-							<p>{@html html}</p>
-						{/each}
-					</li>
-				{/each}
-			</ul>
-		{/if}
+		<ul class="divide-y divide-amber-300 dark:divide-amber-700">
+			{#each updates as update (update.date + update.time + update.message)}
+				<li class="space-y-2 py-3 first:pt-0 last:pb-0">
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						{update.date}{#if update.time}&nbsp;·&nbsp;{formatTime(update)}{/if}
+					</p>
+					{#each paragraphs(update.message) as html}
+						<p>{@html html}</p>
+					{/each}
+				</li>
+			{/each}
+		</ul>
 	</div>
 {/if}
