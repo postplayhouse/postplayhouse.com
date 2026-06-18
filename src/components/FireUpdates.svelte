@@ -105,17 +105,32 @@
 	>
 		<h1 class="h2 mb-2">South Fork Fire Updates</h1>
 
+		{#snippet bulletin(update: Update)}
+			<li class="space-y-2 py-3 first:pt-0 last:pb-0">
+				<p class="text-sm text-gray-500 dark:text-gray-400">
+					{update.date}{#if update.time}&nbsp;·&nbsp;{formatTime(update)}{/if}
+				</p>
+				{#each paragraphs(update.message) as html}
+					<p>{@html html}</p>
+				{/each}
+			</li>
+		{/snippet}
+
 		<ul class="divide-y divide-amber-300 dark:divide-amber-700">
-			{#each updates as update (update.date + update.time + update.message)}
-				<li class="space-y-2 py-3 first:pt-0 last:pb-0">
-					<p class="text-sm text-gray-500 dark:text-gray-400">
-						{update.date}{#if update.time}&nbsp;·&nbsp;{formatTime(update)}{/if}
-					</p>
-					{#each paragraphs(update.message) as html}
-						<p>{@html html}</p>
-					{/each}
-				</li>
-			{/each}
+			{@render bulletin(updates[0])}
 		</ul>
+
+		{#if updates.length > 1}
+			<details class="mt-2">
+				<summary class="cursor-pointer text-sm font-medium">
+					Show previous updates ({updates.length - 1})
+				</summary>
+				<ul class="mt-2 divide-y divide-amber-300 dark:divide-amber-700">
+					{#each updates.slice(1) as update (update.date + update.time + update.message)}
+						{@render bulletin(update)}
+					{/each}
+				</ul>
+			</details>
+		{/if}
 	</div>
 {/if}
