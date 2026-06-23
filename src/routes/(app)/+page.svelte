@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Announcement from "$components/Announcement.svelte"
-	import FireUpdates from "$components/FireUpdates.svelte"
 	import HideOnDate from "$components/HideOnDate.svelte"
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
+	import WildfireRecovery from "$components/WildfireRecovery/WildfireRecovery.svelte"
 	import * as site from "$data/site"
 	import Raffle2026 from "./news/2026-01-23-annual-raffle/+page.svelte"
 
@@ -31,7 +31,7 @@
 	<meta property="og:description" content={site.description} />
 </svelte:head>
 
-<FireUpdates />
+<WildfireRecovery />
 
 <HideOnDate date="2026-03-15">
 	<div
