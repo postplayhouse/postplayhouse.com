@@ -27,7 +27,7 @@
 		</p>
 		<p>
 			Thanks to the generosity of our incredible supporters near and far, nearly
-			$5,000 has already been raised toward our $45,000 Wildfire Recovery Fund
+			$13,000 has already been raised toward our $45,000 Wildfire Recovery Fund
 			goal. Every gift has had an impact on our artistry and work, our spirits,
 			and our communities here in Northwest Nebraska.
 		</p>
