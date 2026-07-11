@@ -22,14 +22,20 @@
 	<div class="space-y-3">
 		<p>
 			We recently shared how the South Fork Fire disrupted the start of our
-			season at Post Playhouse. Today, we’re grateful to share part of our
-			Comeback Story.
+			season at Post Playhouse. Today, we’re happy to share the next chapter in
+			our Comeback Story.
 		</p>
 		<p>
-			Thanks to the generosity of our incredible supporters near and far, nearly
-			$13,000 has already been raised toward our $45,000 Wildfire Recovery Fund
-			goal. Every gift has had an impact on our artistry and work, our spirits,
-			and our communities here in Northwest Nebraska.
+			<strong
+				>Together, we reached our $45,000 Wildfire Recovery Fund goal!</strong
+			>
+		</p>
+
+		<p>
+			This milestone was made possible by the generosity of supporters near and
+			far who believe in our mission and in the resilience of our theatre and
+			our region. Every gift has strengthened us, lifted our spirits, and
+			supported our communities as we heal together. We are so grateful.
 		</p>
 	</div>
 
@@ -37,24 +43,23 @@
 	<div>
 		<div class="space-y-3 pt-3">
 			<p>
-				Like so many businesses, attractions, and organizations across Northwest
-				Nebraska, Post Playhouse depends on a strong summer season. For nearly
-				60 years, we have brought people together and contributed to the summer
-				experience at Fort Robinson State Park– part of what makes this region
-				so special.
+				For nearly 60 years, Post Playhouse has brought people together as part
+				of the summer experience at Fort Robinson State Park, helping make this
+				region a destination for visitors and a source of joy in our community.
 			</p>
 			<p>
-				While the emergency phase of the South Fork Fire has passed, the impact
-				of 3 cancelled performances, emergency and evacuation expenses, and lost
-				attendance during this important moment in our season, is still deeply
-				felt at our nonprofit theatre.
+				While we’ve reached our important fundraising goal, <strong
+					>our recovery doesn’t end here.</strong
+				> The impact of canceled performances, emergency and evacuation expenses,
+				and lost attendance continues to affect our nonprofit theatre as we rebuild
+				for this season and prepare for the future.
 			</p>
 			<p>
-				Our recovery continues as we write Post Playhouse’s next chapter of
-				Northwest Nebraska’s story. If Post Playhouse has ever been part of your
-				story, or if you simply want to support the recovery of a region that
-				relies on summer tourism, we invite you to play a critical role in our
-				Comeback Story and make a gift today.
+				The next chapter of our Comeback Story is still being written. If Post
+				Playhouse has ever been part of your story—or if you simply want to
+				invest in the recovery of our region that depends on summer tourism—you
+				can still make a gift to help ensure Post Playhouse remains strong for
+				seasons to come.
 			</p>
 		</div>
 
