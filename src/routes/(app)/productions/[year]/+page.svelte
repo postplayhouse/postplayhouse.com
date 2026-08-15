@@ -43,7 +43,7 @@
 	/>
 {/if}
 
-{#if site.ticketsAvailable() && site.season === year}
+{#if site.ticketsAvailable() && !site.seasonEnded()}
 	<div class="my-4 text-center">
 		Tickets are on sale now!
 		<br />

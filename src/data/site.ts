@@ -9,6 +9,7 @@ const castingComplete_ = true as boolean
 const showsAnnounced_ = true as boolean
 
 export const ticketsAvailableDate = "2025-11-15T00:00:00"
+const dayAfterFinalPerf = "2026-08-10T00:00:00"
 export const url = "__PUBLIC_BUILD_URL__" // replaced by vite.config.ts
 export const castingComplete = prod ? castingComplete_ : true
 export const description =
@@ -21,4 +22,10 @@ export const ticketsLink = "https://postplayhouse.showare.com/"
 
 export function ticketsAvailable() {
 	return new Date() >= new Date(ticketsAvailableDate)
+}
+export function seasonEnded() {
+	return (
+		new Date() >= new Date(ticketsAvailableDate) &&
+		new Date() >= new Date(dayAfterFinalPerf)
+	)
 }

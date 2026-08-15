@@ -2,7 +2,11 @@
 	import * as site from "$data/site"
 </script>
 
-{#if site.ticketsAvailable()}
+{#if site.seasonEnded()}
+	<button type="button" class="btn-p" disabled
+		>{site.season + 1} Coming Soon...</button
+	>
+{:else if site.ticketsAvailable()}
 	<a href={site.ticketsLink} class="btn-p">Get Your Tickets Now!</a>
 {:else}
 	<button type="button" class="btn-p" disabled>Tickets Available Soon</button>
