@@ -2,7 +2,6 @@
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
-	import WildfireRecovery from "$components/WildfireRecovery/WildfireRecovery.svelte"
 	import * as site from "$data/site"
 
 	let { data } = $props()
@@ -27,8 +26,6 @@
 	<meta property="og:title" content="Post Playhouse" />
 	<meta property="og:description" content={site.description} />
 </svelte:head>
-
-<WildfireRecovery />
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<Openings
