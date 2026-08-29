@@ -1,7 +1,7 @@
-export const season = 2026 satisfies Date.Year
+export const season = 2027 satisfies Date.Year
 
 export const allYears = [
-	2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
+	2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027,
 ] as const
 
 if (!allYears.includes(season)) {
