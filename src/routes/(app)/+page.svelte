@@ -28,15 +28,7 @@
 </svelte:head>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
-	<Openings
-		{season}
-		productions={// This absurd filter is here to satisfy the following:
-		// > Producer may use the "Always... Patsy Cline" logo on its website(s)
-		// > ONLY to advertise upcoming licensed performances. At the conclusion of
-		// > the licensed performances, Producer may not advertise Patsy Cline in
-		// > any way, on its website or otherwise.
-		(productions as any[]).filter((_, i) => i !== 1)}
-	/>
+	<Openings {season} {productions} />
 </div>
 
 <div class="flex-row-reverse items-stretch md:flex">
