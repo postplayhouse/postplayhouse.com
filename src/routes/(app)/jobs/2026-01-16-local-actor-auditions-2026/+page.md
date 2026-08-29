@@ -1,8 +1,8 @@
 ---
 title: Local Actor Auditions for our 2026 Season
 updatedDate: 2026-01-16
-website: true
-feed: true
+website: false
+feed: false
 ---
 
 Post Playhouse is hosting local auditions on **Monday, March 16th** at Chadron State College. This is your chance to work alongside professionals from across the United States!
