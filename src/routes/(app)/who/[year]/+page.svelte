@@ -35,7 +35,11 @@
 	const groupNames = ["rest", "Additional", "Board"] as const
 </script>
 
-<h1 class="h1 mb-8">Summer {year} Biographies</h1>
+<h1 class="h1 mb-8">
+	{year === site.season.toString() && !site.castingComplete
+		? "Company Biographies"
+		: `Summer ${year} Biographies`}
+</h1>
 
 {#if shouldFilterActors}
 	<p class="mb-4 text-xl">
