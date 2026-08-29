@@ -2,6 +2,7 @@
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
+	import SponsorPlate from "$components/SponsorPlate.svelte"
 	import * as site from "$data/site"
 
 	let { data } = $props()
@@ -28,7 +29,13 @@
 </svelte:head>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
-	<Openings {season} {productions} />
+	<h3 class="h1 my-8">Our 2027 Season will be announced soon...</h3>
+
+	<p class="my-8 text-3xl">
+		Special thanks to our Season Sponsors returning for next summer!
+	</p>
+
+	<SponsorPlate />
 </div>
 
 <div class="flex-row-reverse items-stretch md:flex">
