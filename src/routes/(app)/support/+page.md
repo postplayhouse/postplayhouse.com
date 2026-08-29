@@ -5,7 +5,6 @@ title: "Support Post Playhouse"
 <script lang="ts">
   import DonateBtn from "$components/DonateBtn.svelte"
   import Mission from "$components/Mission.md"
-  import WildfireRecovery from "$components/WildfireRecovery/WildfireRecovery.svelte"
 
   import * as site from "$data/site"
 
@@ -14,8 +13,6 @@ title: "Support Post Playhouse"
   const sponsorAmount = site.season - 1967
 
 </script>
-
-<WildfireRecovery />
 
 <p class="text-center p-2 mb-4">As a 501(c)3 nonprofit, your contribution to Post Playhouse is fully tax-deductible.</p>
 
