@@ -6,6 +6,7 @@ const prod = !dev
 
 // Actual values. If dev, these may change below.
 const castingComplete_ = true as boolean
+const showsExistInYaml_ = true as boolean
 const showsAnnounced_ = true as boolean
 
 export const ticketsAvailableDate = "2025-11-15T00:00:00"
@@ -17,7 +18,7 @@ export const description =
 
 export const boxOfficePhone = "1-888-665-1976"
 export const boxOfficePhoneLink = `tel:+${boxOfficePhone.replace(/-/g, "")}`
-export const showsAnnounced = prod ? showsAnnounced_ : true
+export const showsAnnounced = prod ? showsAnnounced_ : showsExistInYaml_
 export const ticketsLink = "https://postplayhouse.showare.com/"
 
 export function ticketsAvailable() {
