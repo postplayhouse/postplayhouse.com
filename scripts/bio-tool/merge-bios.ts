@@ -276,13 +276,14 @@ function tryExtractEmailFromPr(
 }
 
 const RESUBMIT_NOTE = `If you ever need to make changes to your bio, you can resubmit using the same process at https://postplayhouse.com/bio-submission — just enter your passphrase and your current information will be pre-filled.`
+const CURRENT_SEASON = getCurrentSeason()
 
 const EMAIL_BODY = `Thanks for submitting your bio to Post Playhouse. It is live on the website (or will be very shortly). There are two places you will (eventually) see your bio on the site:
 
 1. https://postplayhouse.com/program-bios
 This is where you should go to proof your bio. We don't share this page with the public.
 
-2. https://postplayhouse.com/who/2026
+2. https://postplayhouse.com/who/${CURRENT_SEASON}
 This is where the public will see your bio. If you are an actor, your bio will not appear here until after casting is complete, or nearly complete.
 
 Please visit the first address above and check that your bio is correct. If you don't spot any mistakes in your bio, then you needn't do anything else.
@@ -299,7 +300,7 @@ const UPDATE_EMAIL_BODY = `Thanks for updating your bio. Your changes are live o
 1. https://postplayhouse.com/program-bios
 This is where you should go to proof your bio. We don't share this page with the public.
 
-2. https://postplayhouse.com/who/2026
+2. https://postplayhouse.com/who/${CURRENT_SEASON}
 This is where the public will see your bio.
 
 Please visit the first address above and check that everything looks correct.
