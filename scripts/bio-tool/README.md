@@ -6,13 +6,17 @@ Automates processing of bio submissions from Backblaze B2 and GitHub PRs for the
 
 - Node.js and pnpm
 - `claude` CLI installed locally (for italics/content flagging)
-- `.env` file at project root with B2 credentials:
-  ```
-  B2_APPLICATION_KEY_ID=...
-  B2_APPLICATION_KEY=...
-  B2_BUCKET_ID=...
-  ```
-- A `GITHUB_TOKEN` environment variable (for PR-based email collection)
+- B2 credentials supplied through the repository's documented Varlock/1Password
+  workflow (or an ignored `.env` fallback)
+- An authenticated `gh` CLI for PR-based email collection; `GITHUB_TOKEN` is an
+  optional non-interactive alternative
+
+See [Environment variables and 1Password](../../docs/environment-variables.md)
+for the exact Environment layout and hookup commands. For example:
+
+```sh
+pnpm with:1password pnpm bio:fetch
+```
 
 ## Workflow
 
@@ -61,6 +65,18 @@ pnpm bio:emails
 
 Collects submitter email addresses from B2 metadata and GitHub PR authors. Stores them in a local manifest file for use during merge notifications.
 
+### Add people to Basecamp
+
+```sh
+pnpm with:1password pnpm bio:basecamp
+```
+
+Uses the email manifest to grant or invite current-season people to the configured
+Basecamp projects after an interactive review. This command can modify Basecamp and
+requires the write-capable `BASECAMP_TOKEN`; do not run it in untrusted CI or
+general-purpose Orbs. The current all-variable Environment is broader than ideal; use a
+separate Basecamp-only Environment before making this a routine automation.
+
 ### 5. Merge to master
 
 ```sh
@@ -104,11 +120,13 @@ scripts/bio-tool/
   review-bios.ts            — consolidated review branch builder
   merge-bios.ts             — interactive squash-merge to master
   collect-emails.ts         — email collection from B2 + PRs
+  add-to-basecamp.ts         — reviewed Basecamp project grants/invitations
   check-links.ts            — URL verification
   cleanup-branches.ts       — branch deletion
   optimize-image.ts         — standalone image optimization
   lib/
     b2.ts                   — B2 API client
+    basecamp-people.ts      — Basecamp filtering and matching
     bio-transforms.ts       — Instagram/URL linking, URL verification
     claude.ts               — Claude CLI integration
     env.ts                  — dotenv loader

@@ -117,6 +117,9 @@ importers:
       '@types/papaparse':
         specifier: ^5.3.16
         version: 5.3.16
+      '@varlock/1password-plugin':
+        specifier: 2.0.4
+        version: 2.0.4(varlock@1.17.1)
       dotenv:
         specifier: ^17.3.1
         version: 17.3.1
@@ -198,6 +201,9 @@ importers:
       typescript-eslint:
         specifier: ^8.46.2
         version: 8.46.2(eslint@9.39.0(jiti@2.6.1))(typescript@5.9.3)
+      varlock:
+        specifier: 1.17.1
+        version: 1.17.1
       vite:
         specifier: ^7.1.12
         version: 7.1.12(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.1)
@@ -1872,6 +1878,30 @@ packages:
     resolution: {integrity: sha512-tUFMXI4gxzzMXt4xpGJEsBsTox0XbNQ1y94EwlD/CuZwFcQP79xfQqMhau9HsRc/J0cAPA/HZt1dZPtGn9V/7w==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@varlock/1password-plugin@2.0.4':
+    resolution: {integrity: sha512-/+oM5v4NnN6KBxeJAAVCZt9UvHgLq1LxvLEgTM/CnuCjPBXQtvFCaB1qoYU/FgabebsIsHonjLV9HAorKQYLgA==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      varlock: ^1.17.1
+
+  '@varlock/native-helper-darwin@1.17.1':
+    resolution: {integrity: sha512-b1Dzq5VZu9VsSHG05ulYmYBH0zP6Gd8D9tzvkvu1MmGtUBwt/E1teoXAjZvOlLetrwAyXI2Z86Gssu4JxPnt5Q==}
+    os: [darwin]
+
+  '@varlock/native-helper-linux-arm64@1.17.1':
+    resolution: {integrity: sha512-dnrpHCqxJlyvjYMm3u6uC0H4iCmal2qvs6VZBDQc+UdOUfuiHOwkpAoCYlYeB22DNuUqCNqyzQVoqt3BbR+3Yg==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@varlock/native-helper-linux-x64@1.17.1':
+    resolution: {integrity: sha512-fRSPD31umpSntaMxGSVInvknh0mCSKWXiYmM5hqnoUHg5NvlgqNifaYKu82PKydeyUu5vf6INXNHC291eBddqA==}
+    cpu: [x64]
+    os: [linux]
+
+  '@varlock/native-helper-win32-x64@1.17.1':
+    resolution: {integrity: sha512-6GzjTd3mVXdAkvDYdtGtnCzbReCD2DcGSDGPV1EE+vCfBdH/oqMokYeG/zfruhSpERYHdX4BLnQ7iGELq5igbA==}
+    os: [win32, linux]
+
   '@vitest/expect@4.0.6':
     resolution: {integrity: sha512-5j8UUlBVhOjhj4lR2Nt9sEV8b4WtbcYh8vnfhTNA2Kn5+smtevzjNq+xlBuVhnFGXiyPPNzGrOVvmyHWkS5QGg==}
 
@@ -2281,6 +2311,7 @@ packages:
   eslint@9.39.0:
     resolution: {integrity: sha512-iy2GE3MHrYTL5lrCtMZ0X1KLEKKUjmK0kzwcnefhR66txcEmXZD2YWgR5GNdcEwkNx3a0siYkSvl0vIC+Svjmg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -2461,6 +2492,7 @@ packages:
   glob@9.3.5:
     resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
     engines: {node: '>=16 || 14 >=14.17'}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   globals@14.0.0:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
@@ -3662,6 +3694,11 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
+  varlock@1.17.1:
+    resolution: {integrity: sha512-nRxUKuWvvHcCUfLTWu78GYsyR34toOWGG9nhV9ObpVxsZ07mofsAsZrg4zDnWv5sRcujpV8DiQ9I5euDqIQ1WQ==}
+    engines: {bun: '>=1.3.3', node: '>=22.3.0'}
+    hasBin: true
+
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
@@ -3783,6 +3820,7 @@ packages:
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
     engines: {node: '>=18'}
+    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-mimetype@4.0.0:
     resolution: {integrity: sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==}
@@ -5482,6 +5520,22 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.46.2
       eslint-visitor-keys: 4.2.1
+
+  '@varlock/1password-plugin@2.0.4(varlock@1.17.1)':
+    dependencies:
+      varlock: 1.17.1
+
+  '@varlock/native-helper-darwin@1.17.1':
+    optional: true
+
+  '@varlock/native-helper-linux-arm64@1.17.1':
+    optional: true
+
+  '@varlock/native-helper-linux-x64@1.17.1':
+    optional: true
+
+  '@varlock/native-helper-win32-x64@1.17.1':
+    optional: true
 
   '@vitest/expect@4.0.6':
     dependencies:
@@ -7258,6 +7312,13 @@ snapshots:
       punycode: 2.3.1
 
   util-deprecate@1.0.2: {}
+
+  varlock@1.17.1:
+    optionalDependencies:
+      '@varlock/native-helper-darwin': 1.17.1
+      '@varlock/native-helper-linux-arm64': 1.17.1
+      '@varlock/native-helper-linux-x64': 1.17.1
+      '@varlock/native-helper-win32-x64': 1.17.1
 
   vary@1.1.2: {}
 
