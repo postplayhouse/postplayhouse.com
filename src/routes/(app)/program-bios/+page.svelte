@@ -1,18 +1,8 @@
 <script lang="ts" module>
 	import { marked } from "marked"
 	import { type Person, toPerson } from "$models/Person"
-	import { makeFindImage } from "$helpers/enhancedImg"
 
 	marked.setOptions({ smartypants: true })
-
-	const findOriginalPersonImage = makeFindImage<string>(
-		import.meta.glob(
-			`/src/images/people/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
-			{
-				eager: true,
-			},
-		),
-	)
 </script>
 
 <script lang="ts">
@@ -75,7 +65,7 @@
 		const zip = new JsZip()
 
 		for (const person of sortedPeople) {
-			const originalImg = findOriginalPersonImage(person.image)
+			const originalImg = person.image
 			if (originalImg) {
 				const response = await fetch(originalImg)
 				const blob = await response.blob()
@@ -197,7 +187,7 @@
 	</div>
 
 	{#each sortedPeople.filter(notInBoard) as person}
-		{@const originalImg = findOriginalPersonImage(person.image)}
+		{@const originalImg = person.image}
 
 		<div class="my-8" id={personSlug(person)}>
 			{#if notInAdditional(person) && originalImg}
@@ -299,7 +289,7 @@
 	<h1 id="TheBoard" class="text-4xl">Board Headshots and Names</h1>
 
 	{#each sortedPeople.filter(inBoard) as person}
-		{@const originalImg = findOriginalPersonImage(person.image)}
+		{@const originalImg = person.image}
 
 		<div class="helvetica">
 			{#if originalImg}

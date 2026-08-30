@@ -25,3 +25,6 @@ vite.config.ts.timestamp-*
 
 # Claude Code - ignore local settings, keep shared settings
 .claude/settings.local.json
+
+# Amp portal metadata is executor-local.
+.amp/portals/*

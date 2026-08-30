@@ -88,29 +88,23 @@ export default {
 		async function run() {
 			const doc = await fetchPage(pageUrl)
 			const dom = new jsdom.JSDOM(doc)
-			const figures = Array.from(
+			const imageDetails = Array.from(
 				dom.window.document.querySelectorAll<HTMLElement>("bc-attachment"),
 			)
-			const imageDetails: MediaImage[] = await Promise.all(
-				figures
-					.map(getImgDetailsFromBasecampFigure)
-					.filter(exists)
-					.map(async (imgDetails) => {
-						const relativeFilePath = await downloadAndCacheImage(
-							imgDetails.src,
-							CACHE_DIR,
-						)
-
-						return {
-							...imgDetails,
-							relativeFilePath,
-						}
-					}),
-			)
+				.map(getImgDetailsFromBasecampFigure)
+				.filter(exists)
+			const downloadedImages: MediaImage[] = []
+			for (const imgDetails of imageDetails) {
+				const relativeFilePath = await downloadAndCacheImage(
+					imgDetails.src,
+					CACHE_DIR,
+				)
+				downloadedImages.push({ ...imgDetails, relativeFilePath })
+			}
 
 			fs.writeFileSync(
 				path.join(__dirname, CACHE_DIR, JSON_FILE_NAME),
-				JSON.stringify(imageDetails, null, 2),
+				JSON.stringify(downloadedImages, null, 2),
 			)
 		}
 

@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_root"
+
+measure_resources() {
+	local stage="$1"
+	echo "== Resources: $stage =="
+	if command -v free >/dev/null 2>&1; then
+		free -m
+	elif command -v vm_stat >/dev/null 2>&1; then
+		vm_stat
+	else
+		echo "Memory measurement unavailable on this host"
+	fi
+	df -h "$repo_root"
+	for path in node_modules .svelte-kit build; do
+		if [[ -e "$path" ]]; then
+			du -sh "$path"
+		fi
+	done
+}
+
+required_version() {
+	local tool="$1"
+	awk -v tool="$tool" '$1 == tool { print $2; found = 1; exit } END { if (!found) exit 1 }' .tool-versions
+}
+
+verify_version() {
+	local tool="$1"
+	local expected="$2"
+	local actual="$3"
+	actual="${actual#v}"
+	if [[ "$actual" != "$expected" ]]; then
+		echo "$tool $expected is required; found $actual" >&2
+		exit 1
+	fi
+}
+
+measure_resources start
+
+command -v node >/dev/null 2>&1 || {
+	echo "Node is not installed; install the version pinned in .tool-versions" >&2
+	exit 1
+}
+command -v pnpm >/dev/null 2>&1 || {
+	echo "pnpm is not installed; install the version pinned in .tool-versions" >&2
+	exit 1
+}
+
+expected_node="$(required_version nodejs)"
+expected_pnpm="$(required_version pnpm)"
+package_pnpm="$(node -p "require('./package.json').packageManager.split('@').at(-1)")"
+verify_version Node "$expected_node" "$(node --version)"
+verify_version pnpm "$expected_pnpm" "$(pnpm --version)"
+verify_version packageManager "$expected_pnpm" "$package_pnpm"
+
+echo "== Installing locked dependencies =="
+pnpm install --frozen-lockfile
+
+echo "== Verifying Playwright Chromium =="
+chromium_executable="$(node --input-type=module -e "import { chromium } from '@playwright/test'; process.stdout.write(chromium.executablePath())")"
+if [[ -x "$chromium_executable" ]]; then
+	echo "Chromium already installed: $chromium_executable"
+else
+	echo "Chromium is absent; installing the pinned Playwright browser"
+	pnpm exec playwright install chromium
+	[[ -x "$chromium_executable" ]] || {
+		echo "Playwright Chromium installation did not create $chromium_executable" >&2
+		exit 1
+	}
+fi
+
+measure_resources complete

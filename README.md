@@ -23,6 +23,25 @@ pnpm dev
 Development, checking, and ordinary builds do not require production secrets.
 Endpoints that call external services need only their corresponding credentials.
 
+## End-to-end tests
+
+Install the Playwright Chromium build once, then run the integration suite:
+
+```bash
+pnpm exec playwright install chromium
+pnpm test:integration
+```
+
+Playwright starts the local SvelteKit build and preview server on port 3000. The
+current end-to-end suite does not use Docker or any external service, so Docker
+is not a prerequisite. If a future test adds a container dependency, its Docker
+preflight belongs with that test rather than the general repository setup.
+
+The Playwright server uses `pnpm build:low-memory`. That build disables local
+source-map upload, limits Node to a 1.75 GiB heap, and serializes Sharp/libvips
+image work so it fits a small CI/orb environment. Use ordinary `pnpm build` for
+production builds with Sentry source-map upload.
+
 ## create-svelte reference
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).

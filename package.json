@@ -13,6 +13,7 @@
 		"netlify:validated": "pnpm run test:unit --run && pnpm run check && pnpm run build",
 		"dev": "varlock run -- vite dev --port 3000",
 		"build": "varlock run -- vite build",
+		"build:low-memory": "SENTRY_AUTH_TOKEN= NODE_OPTIONS=--max-old-space-size=1792 UV_THREADPOOL_SIZE=1 VIPS_CONCURRENCY=1 varlock run -- vite build",
 		"preview": "varlock run -- vite preview --port 3000",
 		"test": "pnpm run test:unit && pnpm run test:integration",
 		"check": "varlock run -- pnpm run check:validated",

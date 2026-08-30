@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+source_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+temporary="$(mktemp -d "${TMPDIR:-/tmp}/postplayhouse-setup-test.XXXXXX")"
+trap 'rm -rf "$temporary"' EXIT
+
+fail() {
+	echo "FAIL: $*" >&2
+	exit 1
+}
+
+assert_log_contains() {
+	local expected="$1"
+	grep -Fqx "$expected" "$COMMAND_LOG" || fail "missing command: $expected"
+}
+
+assert_log_excludes() {
+	local unexpected="$1"
+	if grep -Fq "$unexpected" "$COMMAND_LOG"; then
+		fail "unexpected command containing: $unexpected"
+	fi
+}
+
+make_fixture() {
+	local fixture="$1"
+	mkdir -p "$fixture/.agents" "$fixture/bin"
+	cp "$source_root/.agents/setup" "$fixture/.agents/setup"
+	cp "$source_root/.tool-versions" "$fixture/.tool-versions"
+	cp "$source_root/package.json" "$fixture/package.json"
+	: > "$fixture/pnpm-lock.yaml"
+
+	cat > "$fixture/bin/node" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${1:-}" == "--version" ]]; then
+	echo "v24.10.0"
+elif [[ "${1:-}" == "-p" ]]; then
+	echo "10.24.0"
+else
+	printf '%s\n' "$CHROMIUM_EXECUTABLE"
+fi
+EOF
+
+	cat > "$fixture/bin/pnpm" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${1:-}" == "--version" ]]; then
+	echo "10.24.0"
+	exit 0
+fi
+printf 'pnpm %s\n' "$*" >> "$COMMAND_LOG"
+if [[ "$*" == "exec playwright install chromium" ]]; then
+	: > "$CHROMIUM_EXECUTABLE"
+	chmod +x "$CHROMIUM_EXECUTABLE"
+fi
+EOF
+
+	for command in docker sudo; do
+		cat > "$fixture/bin/$command" <<EOF
+#!/usr/bin/env bash
+printf '$command %s\n' "\$*" >> "\$COMMAND_LOG"
+exit 99
+EOF
+	done
+
+	chmod +x "$fixture/.agents/setup" "$fixture/bin/"*
+}
+
+run_case() {
+	local name="$1"
+	local browser_present="$2"
+	local fixture="$temporary/$name"
+	make_fixture "$fixture"
+	export COMMAND_LOG="$fixture/commands.log"
+	export CHROMIUM_EXECUTABLE="$fixture/chromium"
+	: > "$COMMAND_LOG"
+	if [[ "$browser_present" == "yes" ]]; then
+		: > "$CHROMIUM_EXECUTABLE"
+		chmod +x "$CHROMIUM_EXECUTABLE"
+	fi
+
+	PATH="$fixture/bin:$PATH" "$fixture/.agents/setup"
+
+	assert_log_contains "pnpm install --frozen-lockfile"
+	assert_log_excludes "docker "
+	assert_log_excludes "sudo "
+	if [[ "$browser_present" == "yes" ]]; then
+		assert_log_excludes "playwright install"
+	else
+		assert_log_contains "pnpm exec playwright install chromium"
+		[[ -x "$CHROMIUM_EXECUTABLE" ]] || fail "Chromium was not installed"
+	fi
+}
+
+run_case browser-present yes
+run_case browser-absent no
+
+echo "setup regression harness: PASS"

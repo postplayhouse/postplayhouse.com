@@ -8,27 +8,29 @@ import { enhancedImages } from "@sveltejs/enhanced-img"
 import { svelteTesting } from "@testing-library/svelte/vite"
 import tailwindcss from "@tailwindcss/vite"
 import downloadMediaImages from "./src/routes/(app)/media/downloadMediaImagesVitePlugin"
+import copyProgramBioImages from "./src/routes/(app)/program-bios/copyProgramBioImagesVitePlugin"
 
 // Ensure the build URL is available
 import { buildUrl } from "./env.js"
 
+const uploadsSourceMaps = Boolean(process.env.SENTRY_AUTH_TOKEN)
+
 export default defineConfig(() => ({
 	plugins: [
 		downloadMediaImages,
+		copyProgramBioImages,
 		tailwindcss(),
 		enhancedImages(),
-		sentrySvelteKit({
-			sourceMapsUploadOptions: {
-				org: "post-playhouse",
-				project: "javascript-sveltekit",
-				// Future version of Don: This actually works on Netlify, just not
-				// locally. So it is fine when you see the "No auth token provided"
-				// error. I am guessing that the ENV variables from the .env file are
-				// not loaded for vite config, but are loaded for the app and the rest
-				// of the build. On Sentry, the ENV vars are always available, so it
-				// works there. Plus, we don't really want it to work here anyway.
-			},
-		}),
+		...(uploadsSourceMaps
+			? [
+					sentrySvelteKit({
+						sourceMapsUploadOptions: {
+							org: "post-playhouse",
+							project: "javascript-sveltekit",
+						},
+					}),
+				]
+			: []),
 
 		replacePlugin({
 			values: {
@@ -58,7 +60,10 @@ export default defineConfig(() => ({
 		svelteTesting(),
 	],
 	test: {
-		include: ["src/**/*.{test,spec}.{js,ts}", "scripts/**/*.{test,spec}.{js,ts}"],
+		include: [
+			"src/**/*.{test,spec}.{js,ts}",
+			"scripts/**/*.{test,spec}.{js,ts}",
+		],
 		environment: "jsdom",
 		setupFiles: ["./vitest-setup.js"],
 	},
