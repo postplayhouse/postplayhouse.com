@@ -155,6 +155,31 @@ describe("historical artifact publication", () => {
 			store.putImmutable("immutable/object", Buffer.from("second")),
 		).rejects.toThrow(/collision/)
 	})
+
+	it("does not publish a manifest pointer or lock after an object failure", async () => {
+		const { root, output } = await fixture()
+		const putPointer = vi.fn()
+		const store: ArtifactStore = {
+			get: async () => null,
+			putImmutable: async () => {
+				throw new Error("transport unavailable")
+			},
+			putPointer,
+		}
+
+		await expect(
+			publish(
+				root,
+				store,
+				join(output, "manifest.v1.json"),
+				join(output, "assets"),
+			),
+		).rejects.toThrow(/transport unavailable/)
+		expect(putPointer).not.toHaveBeenCalled()
+		await expect(readFile(join(root, LOCK_PATH))).rejects.toMatchObject({
+			code: "ENOENT",
+		})
+	})
 })
 
 describe("historical artifact restore", () => {

@@ -49,11 +49,21 @@ async function mapConcurrent<T>(
 	operation: (item: T) => Promise<void>,
 ): Promise<void> {
 	let next = 0
+	let failed = false
+	let firstError: unknown
 	await Promise.all(
 		Array.from({ length: Math.min(concurrency, items.length) }, async () => {
-			while (next < items.length) await operation(items[next++])
+			while (!failed && next < items.length) {
+				try {
+					await operation(items[next++])
+				} catch (error) {
+					failed = true
+					firstError = error
+				}
+			}
 		}),
 	)
+	if (failed) throw firstError
 }
 
 function manifestBody(manifest: HistoricalManifest): Buffer {

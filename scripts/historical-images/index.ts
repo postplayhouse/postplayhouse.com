@@ -13,22 +13,18 @@ function argument(name: string): string | undefined {
 	return index < 0 ? undefined : process.argv[index + 1]
 }
 
-function b2Store(mode: "read" | "write"): ArtifactStore | null {
+function b2Store(): ArtifactStore | null {
 	const mock = process.env.HISTORICAL_IMAGES_STORE_DIR
 	if (mock) return new FileArtifactStore(resolve(mock))
-	const prefix = `B2_HISTORICAL_IMAGES_${mode.toUpperCase()}`
-	const keyId = process.env[`${prefix}_APPLICATION_KEY_ID`]
-	const applicationKey = process.env[`${prefix}_APPLICATION_KEY`]
-	const bucketName = process.env.B2_HISTORICAL_IMAGES_BUCKET_NAME
-	const bucketId = process.env.B2_HISTORICAL_IMAGES_BUCKET_ID
-	if (
-		!keyId ||
-		!applicationKey ||
-		!bucketName ||
-		(mode === "write" && !bucketId)
-	)
-		return null
-	return new B2ArtifactStore({ keyId, applicationKey, bucketName, bucketId })
+	const keyId = process.env.B2_APPLICATION_KEY_ID
+	const applicationKey = process.env.B2_APPLICATION_KEY
+	const bucketId = process.env.B2_BUCKET_ID
+	if (!keyId && !applicationKey && !bucketId) return null
+	if (!keyId || !applicationKey || !bucketId)
+		throw new Error(
+			"B2 configuration is incomplete; B2_BUCKET_ID, B2_APPLICATION_KEY_ID, and B2_APPLICATION_KEY must be set together",
+		)
+	return new B2ArtifactStore({ keyId, applicationKey, bucketId })
 }
 
 async function main(): Promise<void> {
@@ -66,11 +62,12 @@ async function main(): Promise<void> {
 		return
 	}
 	if (command === "publish") {
-		const store = b2Store("write")
+		const store = b2Store()
 		if (!store)
 			throw new Error(
-				"Publishing requires the dedicated B2_HISTORICAL_IMAGES_WRITE_APPLICATION_KEY_ID, B2_HISTORICAL_IMAGES_WRITE_APPLICATION_KEY, B2_HISTORICAL_IMAGES_BUCKET_NAME, and B2_HISTORICAL_IMAGES_BUCKET_ID variables (or HISTORICAL_IMAGES_STORE_DIR for a local mock)",
+				"Publishing requires B2_BUCKET_ID, B2_APPLICATION_KEY_ID, and B2_APPLICATION_KEY (or HISTORICAL_IMAGES_STORE_DIR for a local mock)",
 			)
+		if (store instanceof B2ArtifactStore) await store.checkPermissions(true)
 		const output = resolve(
 			argument("--output") ?? ".historical-images-output.ignore",
 		)
@@ -87,7 +84,9 @@ async function main(): Promise<void> {
 		return
 	}
 	if (command === "restore" || command === "verify") {
-		const result = await restore(root, b2Store("read"))
+		const store = b2Store()
+		if (store instanceof B2ArtifactStore) await store.checkPermissions(false)
+		const result = await restore(root, store)
 		console.log(JSON.stringify(result))
 		return
 	}

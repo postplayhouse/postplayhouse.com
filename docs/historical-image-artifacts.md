@@ -11,26 +11,24 @@ people originals are still copied byte-for-byte to `/images/people/**`.
 
 ## Trust and credential boundaries
 
-Ordinary local, Orb, PR, and Netlify builds may receive only:
+The archive reuses the project's existing B2 bucket and configuration:
 
-- `B2_HISTORICAL_IMAGES_BUCKET_NAME`
-- `B2_HISTORICAL_IMAGES_READ_APPLICATION_KEY_ID`
-- `B2_HISTORICAL_IMAGES_READ_APPLICATION_KEY`
+- `B2_BUCKET_ID`
+- `B2_APPLICATION_KEY_ID`
+- `B2_APPLICATION_KEY`
 
-Use a dedicated private bucket and a key restricted to `readFiles` for that
-bucket. Do not reuse bio-submission credentials.
+Historical artifacts are logically isolated under `historical-images/v1/`.
+There is no dedicated historical bucket or credential isolation: the existing
+key is shared with bio-submission tooling and may have write capability.
+Ordinary local, Orb, PR, and Netlify commands are nevertheless operationally
+read-only: restore calls only B2 authorization, list, and download APIs, and
+never updates a pointer or object. Publication remains an explicit trusted
+command and is never a build hook.
 
-The explicit trusted publisher uses a different environment containing:
-
-- `B2_HISTORICAL_IMAGES_BUCKET_NAME`
-- `B2_HISTORICAL_IMAGES_BUCKET_ID`
-- `B2_HISTORICAL_IMAGES_WRITE_APPLICATION_KEY_ID`
-- `B2_HISTORICAL_IMAGES_WRITE_APPLICATION_KEY`
-
-Restrict this key to the dedicated bucket with `readFiles`, `writeFiles`, and no
-delete capability. Never configure these publisher variables in Netlify, a PR,
-an ordinary Orb, or the ordinary developer environment. Publishing is never a
-build hook.
+The transport verifies that the configured key can access `B2_BUCKET_ID`, that
+any key name-prefix restriction permits `historical-images/v1/`, and that it
+advertises `listFiles` and `readFiles`. Publication additionally requires
+`writeFiles`. It does not require or use `deleteFiles`.
 
 No real B2 access is needed for development. Set
 `HISTORICAL_IMAGES_STORE_DIR=/absolute/path` to exercise the same protocol
@@ -82,7 +80,12 @@ pnpm images:historical:generate \
 HISTORICAL_IMAGES_STORE_DIR=/tmp/postplayhouse-image-store \
   pnpm images:historical:publish --output .historical-images-output.ignore
 
-# Ordinary read-only restore and verification.
+# Trusted publication to the configured shared B2 bucket. The command writes
+# only below historical-images/v1/.
+pnpm with:1password pnpm images:historical:publish \
+  --output .historical-images-output.ignore
+
+# Ordinary operationally read-only restore and verification.
 HISTORICAL_IMAGES_STORE_DIR=/tmp/postplayhouse-image-store \
   pnpm images:historical:restore
 pnpm images:historical:verify
@@ -103,10 +106,11 @@ with the trusted generation command; there is no historical Vite-transform
 fallback.
 
 The verified cache lives at `.cache/historical-images`. Netlify's build plugin
-persists only this cache in `/opt/build/cache`; it does not access B2 and cannot
-publish. A fully warm cache works offline. A cold cache fails cleanly if B2 is
-unavailable. To recover, restore B2/read connectivity or repopulate the local
-cache from a verified store; never bypass verification or edit the lock.
+persists only this cache in `/opt/build/cache`; the plugin itself does not
+access B2 or publish. A fully warm cache works offline. A cold cache fails
+cleanly if B2 is unavailable. To recover, restore B2 connectivity or repopulate
+the local cache from a verified store; never bypass verification or edit the
+lock.
 
 ## Reproducible qualification
 
@@ -165,5 +169,24 @@ created zero objects and transferred zero bytes.
 Against the retained master output, all 5,492 asset paths/hashes and
 format/dimension inventory entries matched, all 880 prerendered `<picture>`
 structures matched, and all 479 original people downloads were byte-identical.
-Real B2 transport and Netlify-cache qualification remain blocked on explicit
-authorization and dedicated credentials; no real B2 write was performed.
+The real-B2 transport qualification used the same securely injected project
+bucket and credentials. Authorization advertised the required list, read, and
+write capabilities for the configured bucket and permitted the archive prefix.
+All transport methods reject names outside `historical-images/v1/`.
+
+The first complete publication created 4,032 objects totaling 198,574,206
+bytes. A transient B2 `503 no tomes available` interrupted the initial pass
+after 1,868 immutable objects; because the manifest and pointer are written
+last, no partial publication became current. The resumed pass verified and
+reused those objects, created the remaining 2,164 (104,602,042 bytes), then
+published the immutable manifest and pointer in 142.5s at 479 MiB process RSS.
+The deterministic repeat verified/reused all 4,032 objects, uploaded zero
+bytes, reproduced the manifest/publication IDs, and took 71.8s at 456 MiB.
+
+A real cold restore downloaded 198,574,206 bytes and restored all 5,268 public
+paths in 43.9s at 646 MiB process RSS. With neither credentials nor cache, the
+same restore failed closed before building. Restoring the retained verified
+cache while offline restored all paths with 4,032 cache hits and zero transfer
+in 7.8s at 553 MiB. The downloaded `latest.json` pointer matched every field in
+the repository lock and had the expected versioned publication ID. No unrelated
+bucket object was overwritten or deleted.
