@@ -1,20 +1,3 @@
-<script module lang="ts">
-	import { makeFindImage, type Picture } from "$helpers/enhancedImg"
-	const findEnhancedSeasonImage = makeFindImage(
-		import.meta.glob(
-			`/src/images/seasons/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
-			{
-				eager: true,
-				query: {
-					enhanced: true,
-					w: "500;1000;1500",
-					withoutEnlargement: true,
-				},
-			},
-		),
-	)
-</script>
-
 <script lang="ts">
 	import { formatDate } from "$helpers"
 
@@ -22,7 +5,7 @@
 	import Markdown from "./Markdown.svelte"
 	import MaybeImage from "./MaybeImage.svelte"
 	import MaybeLink from "./MaybeLink.svelte"
-	import ProductionImage from "./SeasonImage.svelte"
+	import ProductionImage, { findSeasonImage } from "./SeasonImage.svelte"
 
 	type Props = {
 		production: Production | SpecialEvent | Series
@@ -32,10 +15,7 @@
 	let { production, season }: Props = $props()
 
 	const enhancedImage = $derived(
-		production &&
-			(findEnhancedSeasonImage(production.image) as
-				| (string & Picture)
-				| undefined),
+		production && findSeasonImage(season, production.image),
 	)
 	const image = $derived(production && production.image)
 

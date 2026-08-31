@@ -1,5 +1,6 @@
 # Speed up by ignoring folders that will never need prettier
 static/images/
+historical-images/publication.v1.json
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml

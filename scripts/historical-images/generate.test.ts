@@ -1,0 +1,101 @@
+// @vitest-environment node
+import { describe, expect, it } from "vitest"
+import { planGeneration } from "./generate"
+import { sha256, stableJson } from "./hash"
+import type { HistoricalManifest } from "./schema"
+
+const compatibility: HistoricalManifest["compatibility"] = {
+	generatorRevision: 1,
+	lockfileSha256: "1".repeat(64),
+	packages: { sharp: "fixture" },
+	libvips: "fixture",
+	nodeMajor: 24,
+	platform: "linux",
+	arch: "x64",
+	profileConfigurationSha256: "2".repeat(64),
+}
+
+function key(sourceSha256: string, profile: string): string {
+	return sha256(stableJson({ sourceSha256, profile, compatibility }))
+}
+
+function previous(): HistoricalManifest {
+	const source = {
+		path: "src/images/people/2020/old.jpg",
+		bytes: 3,
+		sha256: "3".repeat(64),
+		profile: "people-400-800",
+	}
+	return {
+		schemaVersion: 1,
+		publicationId: "4".repeat(64),
+		currentSeason: 2027,
+		createdAt: "2026-08-31T00:00:00.000Z",
+		compatibility,
+		sources: [
+			{
+				...source,
+				transformKey: key(source.sha256, source.profile),
+				picture: {
+					sources: { jpeg: "/_app/immutable/assets/old.jpg 1w" },
+					img: { src: "/_app/immutable/assets/old.jpg", w: 1, h: 1 },
+				},
+			},
+		],
+		assets: [],
+	}
+}
+
+describe("incremental generation plan", () => {
+	it("does no work for an unchanged source", () => {
+		const prior = previous()
+		const source = prior.sources.map(({ path, bytes, sha256, profile }) => ({
+			path,
+			bytes,
+			sha256,
+			profile,
+		}))
+		expect(planGeneration(source, prior, compatibility)).toEqual({
+			changed: [],
+			deleted: [],
+		})
+	})
+
+	it("generates changed and new sources while reporting deletions", () => {
+		const prior = previous()
+		const changed = {
+			path: prior.sources[0].path,
+			bytes: 4,
+			sha256: "5".repeat(64),
+			profile: prior.sources[0].profile,
+		}
+		const added = {
+			path: "src/images/people/2020/new.jpg",
+			bytes: 2,
+			sha256: "6".repeat(64),
+			profile: prior.sources[0].profile,
+		}
+		expect(planGeneration([changed, added], prior, compatibility)).toEqual({
+			changed: [changed, added],
+			deleted: [],
+		})
+		expect(planGeneration([added], prior, compatibility)).toEqual({
+			changed: [added],
+			deleted: prior.sources,
+		})
+	})
+
+	it("regenerates sources when publisher compatibility changes", () => {
+		const prior = previous()
+		const source = prior.sources.map(({ path, bytes, sha256, profile }) => ({
+			path,
+			bytes,
+			sha256,
+			profile,
+		}))
+		expect(
+			planGeneration(source, prior, { ...compatibility, generatorRevision: 2 })
+				.changed,
+		).toEqual(source)
+	})
+})

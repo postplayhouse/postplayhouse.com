@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { historicalRafflePictures } from "../../../../generated/historical-images/pictures"
+
 	export const title = "Annual Raffle"
 	export const excerpt =
 		"Join us on March 16, 2024 for our annual raffle. You could win $5,000!"
@@ -84,7 +86,7 @@ YOUR INFO HERE
 <div class="flex max-w-160 p-4">
 	<div class="grow">
 		<enhanced:img
-			src="/src/images/people/2018/ken-phillips.jpg"
+			src={historicalRafflePictures["2018/ken-phillips.jpg"]}
 			alt="Raffle 2019"
 			class="aspect-3/4 -rotate-6 rounded-lg object-cover shadow-lg"
 		></enhanced:img>
@@ -92,7 +94,7 @@ YOUR INFO HERE
 
 	<div class="grow">
 		<enhanced:img
-			src="/src/images/people/2016/dewayne-barrett.jpg"
+			src={historicalRafflePictures["2016/dewayne-barrett.jpg"]}
 			alt="Raffle 2019"
 			class="aspect-3/4 rotate-6 rounded-lg object-cover object-[20%_top] shadow-lg"
 		></enhanced:img>
