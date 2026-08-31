@@ -2,6 +2,7 @@
 import { describe, expect, it } from "vitest"
 import { planGeneration } from "./generate"
 import { sha256, stableJson } from "./hash"
+import type { DiscoveredSource } from "./discover"
 import type { HistoricalManifest } from "./schema"
 
 const compatibility: HistoricalManifest["compatibility"] = {
@@ -21,15 +22,18 @@ function key(sourceSha256: string, profile: string): string {
 
 function previous(): HistoricalManifest {
 	const source = {
-		path: "src/images/people/2020/old.jpg",
+		path: "inputs/catalog/old.jpg",
+		logicalPath: "catalog/old.jpg",
+		sourceId: "catalog",
+		collection: "catalogPictures",
 		bytes: 3,
 		sha256: "3".repeat(64),
-		profile: "people-400-800",
+		profile: "thumbnail",
 	}
 	return {
 		schemaVersion: 1,
 		publicationId: "4".repeat(64),
-		currentSeason: 2027,
+		configurationId: "fixture-v1",
 		createdAt: "2026-08-31T00:00:00.000Z",
 		compatibility,
 		sources: [
@@ -49,12 +53,7 @@ function previous(): HistoricalManifest {
 describe("incremental generation plan", () => {
 	it("does no work for an unchanged source", () => {
 		const prior = previous()
-		const source = prior.sources.map(({ path, bytes, sha256, profile }) => ({
-			path,
-			bytes,
-			sha256,
-			profile,
-		}))
+		const source = prior.sources.map(asDiscovered)
 		expect(planGeneration(source, prior, compatibility)).toEqual({
 			changed: [],
 			deleted: [],
@@ -64,13 +63,14 @@ describe("incremental generation plan", () => {
 	it("generates changed and new sources while reporting deletions", () => {
 		const prior = previous()
 		const changed = {
-			path: prior.sources[0].path,
+			...asDiscovered(prior.sources[0]),
 			bytes: 4,
 			sha256: "5".repeat(64),
-			profile: prior.sources[0].profile,
 		}
 		const added = {
-			path: "src/images/people/2020/new.jpg",
+			...asDiscovered(prior.sources[0]),
+			path: "inputs/catalog/new.jpg",
+			logicalPath: "catalog/new.jpg",
 			bytes: 2,
 			sha256: "6".repeat(64),
 			profile: prior.sources[0].profile,
@@ -87,15 +87,24 @@ describe("incremental generation plan", () => {
 
 	it("regenerates sources when publisher compatibility changes", () => {
 		const prior = previous()
-		const source = prior.sources.map(({ path, bytes, sha256, profile }) => ({
-			path,
-			bytes,
-			sha256,
-			profile,
-		}))
+		const source = prior.sources.map(asDiscovered)
 		expect(
 			planGeneration(source, prior, { ...compatibility, generatorRevision: 2 })
 				.changed,
 		).toEqual(source)
 	})
 })
+
+function asDiscovered(
+	source: HistoricalManifest["sources"][number],
+): DiscoveredSource {
+	return {
+		path: source.path,
+		logicalPath: source.logicalPath!,
+		sourceId: source.sourceId!,
+		collection: source.collection!,
+		bytes: source.bytes,
+		sha256: source.sha256,
+		profile: source.profile,
+	}
+}

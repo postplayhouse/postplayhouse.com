@@ -6,6 +6,7 @@ const credentials = {
 	keyId: "key-id",
 	applicationKey: "application-key",
 	bucketId: "bucket-id",
+	storePrefix: "historical-images/v1",
 }
 
 function json(body: unknown, status = 200): Response {

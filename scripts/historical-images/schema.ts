@@ -23,6 +23,9 @@ export const pictureSchema = z.object({
 
 export const sourceSchema = z.object({
 	path: safeRelativePath,
+	logicalPath: safeRelativePath.optional(),
+	sourceId: z.string().min(1).optional(),
+	collection: z.string().min(1).optional(),
 	bytes: z.number().int().nonnegative(),
 	sha256,
 	profile: z.string().min(1),
@@ -31,7 +34,7 @@ export const sourceSchema = z.object({
 })
 
 export const assetSchema = z.object({
-	publicPath: z.string().regex(/^\/_app\/immutable\/assets\//),
+	publicPath: z.string().startsWith("/"),
 	bytes: z.number().int().positive(),
 	sha256,
 	format: z.enum(["avif", "webp", "jpeg", "jpg", "png"]),
@@ -51,15 +54,22 @@ export const compatibilitySchema = z.object({
 	profileConfigurationSha256: sha256,
 })
 
-export const manifestSchema = z.object({
-	schemaVersion: z.literal(1),
-	publicationId: sha256,
-	currentSeason: z.number().int(),
-	createdAt: z.string().datetime(),
-	compatibility: compatibilitySchema,
-	sources: z.array(sourceSchema),
-	assets: z.array(assetSchema),
-})
+export const manifestSchema = z
+	.object({
+		schemaVersion: z.literal(1),
+		publicationId: sha256,
+		configurationId: z.string().min(1).optional(),
+		// Compatibility with the already-qualified prototype publication.
+		currentSeason: z.number().int().optional(),
+		createdAt: z.string().datetime(),
+		compatibility: compatibilitySchema,
+		sources: z.array(sourceSchema),
+		assets: z.array(assetSchema),
+	})
+	.refine(
+		(manifest) => manifest.configurationId || manifest.currentSeason,
+		"manifest requires configurationId",
+	)
 
 export const lockSchema = z.object({
 	schemaVersion: z.literal(1),

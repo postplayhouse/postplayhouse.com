@@ -1,25 +1,7 @@
 <script module lang="ts">
 	import type { Picture } from "$helpers/enhancedImg"
-	import { season as currentSeason } from "$data/seasons"
 	import { historicalSeasonPictures } from "../generated/historical-images/pictures"
-
-	const currentModules = import.meta.glob(
-		`/src/images/seasons/2027/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}` satisfies `/src/images/seasons/${typeof currentSeason}/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
-		{
-			eager: true,
-			query: {
-				enhanced: true,
-				w: "500;1000;1500",
-				withoutEnlargement: true,
-			},
-		},
-	)
-	const currentSeasonPictures = Object.fromEntries(
-		Object.entries(currentModules).map(([path, module]) => [
-			path.replace("/src/images/seasons/", ""),
-			(module as { default: Picture }).default,
-		]),
-	) as Record<string, Picture>
+	import { currentSeasonPictures } from "../generated/historical-images/live"
 
 	export function findSeasonImage(
 		season: number | string | undefined,

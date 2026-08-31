@@ -2,18 +2,14 @@ import { mkdir, readFile, rename, rm, stat, writeFile } from "node:fs/promises"
 import { dirname, join } from "node:path"
 import sharp from "sharp"
 import {
-	CACHE_ROOT,
-	CURRENT_SEASON,
-	LOCK_PATH,
-	STATIC_ASSET_ROOT,
-	TRUSTED_PUBLISH_COMMAND,
 	cacheObjectPath,
 	latestName,
 	manifestName,
 	objectName,
+	type ArtifactConfig,
 } from "./config"
 import { deriveCompatibility } from "./compatibility"
-import { discoverHistoricalSources } from "./discover"
+import { discoverArtifactSources } from "./discover"
 import { hashFile, sha256, stableJson } from "./hash"
 import {
 	lockSchema,
@@ -23,17 +19,27 @@ import {
 } from "./schema"
 import type { ArtifactStore } from "./store"
 
-function restoredAssetPath(publicPath: string): string {
-	const decoded = decodeURIComponent(
-		publicPath.replace(/^\/_app\/immutable\/assets\//, ""),
-	)
+function artifactRelativePaths(
+	config: ArtifactConfig,
+	publicPath: string,
+): { encoded: string; decoded: string } {
+	if (!publicPath.startsWith(config.publicAssetPrefix))
+		throw new Error(
+			`artifact public path is outside configured prefix: ${publicPath}`,
+		)
+	const encoded = publicPath.slice(config.publicAssetPrefix.length)
+	const decoded = decodeURIComponent(encoded)
 	if (
 		decoded.startsWith("/") ||
 		decoded.includes("\\") ||
 		decoded.split("/").includes("..")
 	)
 		throw new Error(`unsafe historical image public path: ${publicPath}`)
-	return decoded
+	return { encoded, decoded }
+}
+
+function restoredAssetPath(config: ArtifactConfig, publicPath: string): string {
+	return artifactRelativePaths(config, publicPath).decoded
 }
 
 export interface PublishResult {
@@ -78,6 +84,7 @@ export function derivePublicationId(
 
 export async function publish(
 	root: string,
+	config: ArtifactConfig,
 	store: ArtifactStore,
 	inputManifestPath: string,
 	assetRoot: string,
@@ -86,8 +93,7 @@ export async function publish(
 		await readFile(inputManifestPath, "utf8"),
 	) as HistoricalManifest
 	const manifest = manifestSchema.parse(raw)
-	if (manifest.currentSeason !== CURRENT_SEASON)
-		throw new Error(`Manifest current season must be ${CURRENT_SEASON}`)
+	verifyManifestConfiguration(config, manifest)
 	const { publicationId: _publicationId, ...publicationContent } = manifest
 	const expectedPublicationId = derivePublicationId(publicationContent)
 	if (manifest.publicationId !== expectedPublicationId)
@@ -104,7 +110,7 @@ export async function publish(
 	await mapConcurrent(uniqueAssets, 8, async (asset) => {
 		const local = join(
 			assetRoot,
-			asset.publicPath.replace(/^\/_app\/immutable\/assets\//, ""),
+			artifactRelativePaths(config, asset.publicPath).encoded,
 		)
 		const details = await stat(local)
 		if (
@@ -116,7 +122,7 @@ export async function publish(
 			)
 		const body = await readFile(local)
 		const result = await store.putImmutable(
-			objectName(asset.sha256),
+			objectName(config, asset.sha256),
 			body,
 			`image/${asset.format}`,
 		)
@@ -129,13 +135,13 @@ export async function publish(
 	const serialized = manifestBody(manifest)
 	const manifestSha256 = sha256(serialized)
 	await store.putImmutable(
-		manifestName(manifestSha256),
+		manifestName(config, manifestSha256),
 		serialized,
 		"application/json",
 	)
 	const lock: HistoricalLock = {
 		schemaVersion: 1,
-		manifestObject: manifestName(manifestSha256),
+		manifestObject: manifestName(config, manifestSha256),
 		manifestSha256,
 		manifestBytes: serialized.length,
 		publicationId: manifest.publicationId,
@@ -150,22 +156,23 @@ export async function publish(
 		),
 	}
 	await store.putPointer(
-		latestName(),
+		latestName(config),
 		Buffer.from(
 			`${stableJson({ ...lock, publishedAt: new Date().toISOString() })}\n`,
 		),
 	)
-	await mkdir(dirname(join(root, LOCK_PATH)), { recursive: true })
-	await writeFile(join(root, LOCK_PATH), `${stableJson(lock)}\n`)
+	await mkdir(dirname(join(root, config.lockPath)), { recursive: true })
+	await writeFile(join(root, config.lockPath), `${stableJson(lock)}\n`)
 	return { lock, objectsCreated, objectsReused, bytesUploaded }
 }
 
 async function readVerifiedManifest(
 	root: string,
+	config: ArtifactConfig,
 	store: ArtifactStore | null,
 	lock: HistoricalLock,
 ): Promise<HistoricalManifest> {
-	const cached = join(root, CACHE_ROOT, "manifests", lock.manifestSha256)
+	const cached = join(root, config.cacheRoot, "manifests", lock.manifestSha256)
 	let body: Buffer | null = null
 	try {
 		body = await readFile(cached)
@@ -196,25 +203,55 @@ async function readVerifiedManifest(
 
 async function verifyCheckout(
 	root: string,
+	config: ArtifactConfig,
 	manifest: HistoricalManifest,
 ): Promise<void> {
-	const discovered = await discoverHistoricalSources(root)
-	const expected = manifest.sources.map(({ path, bytes, sha256, profile }) => ({
-		path,
-		bytes,
-		sha256,
-		profile,
-	}))
-	if (stableJson(discovered) !== stableJson(expected))
+	verifyManifestConfiguration(config, manifest)
+	const discovered = await discoverArtifactSources(root, config)
+	const expected = manifest.sources.map(
+		({ path, logicalPath, sourceId, collection, bytes, sha256, profile }) => ({
+			path,
+			logicalPath,
+			sourceId,
+			collection,
+			bytes,
+			sha256,
+			profile,
+		}),
+	)
+	const comparableDiscovered = discovered.map((source) => {
+		if (manifest.configurationId) return source
+		const {
+			logicalPath: _logicalPath,
+			sourceId: _sourceId,
+			collection: _collection,
+			...legacy
+		} = source
+		return legacy
+	})
+	if (stableJson(comparableDiscovered) !== stableJson(expected))
 		throw new Error(
-			`historical source inventory is stale; run ${TRUSTED_PUBLISH_COMMAND}`,
+			`artifact source inventory is stale; run ${config.trustedPublishCommand}`,
 		)
 	if (
-		stableJson(await deriveCompatibility(root)) !==
+		stableJson(await deriveCompatibility(root, config)) !==
 		stableJson(manifest.compatibility)
 	)
 		throw new Error(
-			`historical image pipeline changed; run ${TRUSTED_PUBLISH_COMMAND}`,
+			`artifact image pipeline changed; run ${config.trustedPublishCommand}`,
+		)
+}
+
+function verifyManifestConfiguration(
+	config: ArtifactConfig,
+	manifest: HistoricalManifest,
+): void {
+	const matches = manifest.configurationId
+		? manifest.configurationId === config.identity
+		: manifest.currentSeason === config.legacyCurrentSeason
+	if (!matches)
+		throw new Error(
+			`artifact manifest configuration does not match ${config.identity}; run ${config.trustedPublishCommand}`,
 		)
 }
 
@@ -239,28 +276,29 @@ async function verifyImage(
 
 export async function restore(
 	root: string,
+	config: ArtifactConfig,
 	store: ArtifactStore | null,
 ): Promise<{ restored: number; cached: number; bytesTransferred: number }> {
 	let lock: HistoricalLock
 	try {
 		lock = lockSchema.parse(
-			JSON.parse(await readFile(join(root, LOCK_PATH), "utf8")),
+			JSON.parse(await readFile(join(root, config.lockPath), "utf8")),
 		)
 	} catch (error) {
 		throw new Error(
-			`historical image publication lock is missing or invalid; run ${TRUSTED_PUBLISH_COMMAND}`,
+			`artifact publication lock is missing or invalid; run ${config.trustedPublishCommand}`,
 			{ cause: error },
 		)
 	}
-	const manifest = await readVerifiedManifest(root, store, lock)
-	await verifyCheckout(root, manifest)
+	const manifest = await readVerifiedManifest(root, config, store, lock)
+	await verifyCheckout(root, config, manifest)
 	let restored = 0
 	let cached = 0
 	let bytesTransferred = 0
 	const needed: HistoricalManifest["assets"] = []
 	for (const asset of manifest.assets) {
-		const relativeAsset = restoredAssetPath(asset.publicPath)
-		const target = join(root, STATIC_ASSET_ROOT, relativeAsset)
+		const relativeAsset = restoredAssetPath(config, asset.publicPath)
+		const target = join(root, config.staticAssetRoot, relativeAsset)
 		try {
 			if (
 				(await stat(target)).size === asset.bytes &&
@@ -278,7 +316,7 @@ export async function restore(
 		...new Map(needed.map((asset) => [asset.sha256, asset])).values(),
 	]
 	await mapConcurrent(neededObjects, 16, async (asset) => {
-		const cachePath = cacheObjectPath(root, asset.sha256)
+		const cachePath = cacheObjectPath(config, root, asset.sha256)
 		let body: Buffer | null = null
 		try {
 			body = await readFile(cachePath)
@@ -293,7 +331,7 @@ export async function restore(
 				throw new Error(
 					`artifact is not cached and read credentials are unavailable: ${asset.publicPath}`,
 				)
-			body = await store.get(objectName(asset.sha256))
+			body = await store.get(objectName(config, asset.sha256))
 			if (!body || body.length !== asset.bytes || sha256(body) !== asset.sha256)
 				throw new Error(
 					`artifact is missing or failed integrity verification: ${asset.publicPath}`,
@@ -306,9 +344,9 @@ export async function restore(
 		}
 	})
 	await mapConcurrent(needed, 16, async (asset) => {
-		const relativeAsset = restoredAssetPath(asset.publicPath)
-		const target = join(root, STATIC_ASSET_ROOT, relativeAsset)
-		const body = await readFile(cacheObjectPath(root, asset.sha256))
+		const relativeAsset = restoredAssetPath(config, asset.publicPath)
+		const target = join(root, config.staticAssetRoot, relativeAsset)
+		const body = await readFile(cacheObjectPath(config, root, asset.sha256))
 		await mkdir(dirname(target), { recursive: true })
 		const temporary = `${target}.${process.pid}.${sha256(asset.publicPath)}.tmp`
 		await writeFile(temporary, body)
@@ -319,6 +357,9 @@ export async function restore(
 	return { restored, cached, bytesTransferred }
 }
 
-export async function clearRestoredAssets(root: string): Promise<void> {
-	await rm(join(root, STATIC_ASSET_ROOT), { recursive: true, force: true })
+export async function clearRestoredAssets(
+	root: string,
+	config: ArtifactConfig,
+): Promise<void> {
+	await rm(join(root, config.staticAssetRoot), { recursive: true, force: true })
 }

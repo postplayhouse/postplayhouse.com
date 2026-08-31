@@ -1,8 +1,9 @@
 import { resolve } from "node:path"
-import { fileURLToPath } from "node:url"
+import { fileURLToPath, pathToFileURL } from "node:url"
 import { publish, restore } from "./archive"
 import { B2ArtifactStore } from "./b2"
-import { discoverHistoricalSources } from "./discover"
+import type { ArtifactConfig, ArtifactConfigProvider } from "./config"
+import { discoverArtifactSources } from "./discover"
 import { generate } from "./generate"
 import { FileArtifactStore, type ArtifactStore } from "./store"
 
@@ -13,7 +14,21 @@ function argument(name: string): string | undefined {
 	return index < 0 ? undefined : process.argv[index + 1]
 }
 
-function b2Store(): ArtifactStore | null {
+async function configProvider(): Promise<ArtifactConfigProvider> {
+	const path = resolve(
+		argument("--config") ?? "scripts/historical-images/postplayhouse.config.ts",
+	)
+	const loaded = (await import(pathToFileURL(path).href)) as {
+		default?: ArtifactConfigProvider
+	}
+	if (!loaded.default?.load)
+		throw new Error(
+			`Artifact config module must default-export a provider: ${path}`,
+		)
+	return loaded.default
+}
+
+function b2Store(config: ArtifactConfig): ArtifactStore | null {
 	const mock = process.env.HISTORICAL_IMAGES_STORE_DIR
 	if (mock) return new FileArtifactStore(resolve(mock))
 	const keyId = process.env.B2_APPLICATION_KEY_ID
@@ -24,13 +39,22 @@ function b2Store(): ArtifactStore | null {
 		throw new Error(
 			"B2 configuration is incomplete; B2_BUCKET_ID, B2_APPLICATION_KEY_ID, and B2_APPLICATION_KEY must be set together",
 		)
-	return new B2ArtifactStore({ keyId, applicationKey, bucketId })
+	return new B2ArtifactStore({
+		keyId,
+		applicationKey,
+		bucketId,
+		storePrefix: config.storePrefix,
+	})
 }
 
 async function main(): Promise<void> {
 	const command = process.argv[2]
+	const provider = await configProvider()
+	const allowGeneratedOutputsToBeStale =
+		command === "generate" || command === "discover"
+	const config = await provider.load(root, { allowGeneratedOutputsToBeStale })
 	if (command === "discover") {
-		const sources = await discoverHistoricalSources(root)
+		const sources = await discoverArtifactSources(root, config)
 		console.log(
 			JSON.stringify({
 				profiles: sources.length,
@@ -45,6 +69,7 @@ async function main(): Promise<void> {
 		)
 		const manifest = await generate({
 			root,
+			config,
 			output,
 			previousManifest: argument("--previous"),
 			allowDeleted: process.argv.includes("--allow-deleted"),
@@ -52,6 +77,7 @@ async function main(): Promise<void> {
 				? new Date(Number(process.env.SOURCE_DATE_EPOCH) * 1000).toISOString()
 				: undefined,
 		})
+		await provider.afterGenerate?.(root)
 		console.log(
 			JSON.stringify({
 				publicationId: manifest.publicationId,
@@ -62,7 +88,7 @@ async function main(): Promise<void> {
 		return
 	}
 	if (command === "publish") {
-		const store = b2Store()
+		const store = b2Store(config)
 		if (!store)
 			throw new Error(
 				"Publishing requires B2_BUCKET_ID, B2_APPLICATION_KEY_ID, and B2_APPLICATION_KEY (or HISTORICAL_IMAGES_STORE_DIR for a local mock)",
@@ -75,6 +101,7 @@ async function main(): Promise<void> {
 			JSON.stringify(
 				await publish(
 					root,
+					config,
 					store,
 					resolve(output, "manifest.v1.json"),
 					resolve(output, "assets"),
@@ -84,14 +111,14 @@ async function main(): Promise<void> {
 		return
 	}
 	if (command === "restore" || command === "verify") {
-		const store = b2Store()
+		const store = b2Store(config)
 		if (store instanceof B2ArtifactStore) await store.checkPermissions(false)
-		const result = await restore(root, store)
+		const result = await restore(root, config, store)
 		console.log(JSON.stringify(result))
 		return
 	}
 	throw new Error(
-		"Usage: historical-images <discover|generate|publish|restore|verify>",
+		"Usage: historical-images <discover|generate|publish|restore|verify> [--config path]",
 	)
 }
 

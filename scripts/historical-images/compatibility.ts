@@ -1,7 +1,7 @@
 import { readFile, readdir } from "node:fs/promises"
 import { join } from "node:path"
 import sharp from "sharp"
-import { GENERATOR_REVISION, profiles } from "./config"
+import type { ArtifactConfig } from "./config"
 import { hashFile, sha256, stableJson } from "./hash"
 import type { HistoricalManifest } from "./schema"
 
@@ -46,10 +46,11 @@ async function packageVersion(root: string, name: string): Promise<string> {
 }
 
 export async function deriveCompatibility(
-	root = process.cwd(),
+	root: string,
+	config: ArtifactConfig,
 ): Promise<HistoricalManifest["compatibility"]> {
 	return {
-		generatorRevision: GENERATOR_REVISION,
+		generatorRevision: config.generatorRevision,
 		lockfileSha256: await hashFile(join(root, "pnpm-lock.yaml")),
 		packages: Object.fromEntries(
 			await Promise.all(
@@ -63,6 +64,7 @@ export async function deriveCompatibility(
 		nodeMajor: Number(process.versions.node.split(".")[0]),
 		platform: process.platform,
 		arch: process.arch,
-		profileConfigurationSha256: sha256(stableJson(profiles)),
+		profileConfigurationSha256:
+			config.profileConfigurationSha256 ?? sha256(stableJson(config.profiles)),
 	}
 }

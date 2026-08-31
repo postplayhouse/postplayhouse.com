@@ -4,15 +4,11 @@ import { tmpdir } from "node:os"
 import { dirname, join } from "node:path"
 import sharp from "sharp"
 import { afterEach, describe, expect, it, vi } from "vitest"
-import {
-	CURRENT_SEASON,
-	LOCK_PATH,
-	STATIC_ASSET_ROOT,
-	objectName,
-} from "./config"
+import { objectName } from "./config"
 import { sha256, stableJson } from "./hash"
 import type { HistoricalManifest } from "./schema"
 import { FileArtifactStore, type ArtifactStore } from "./store"
+import { artifactTestConfig } from "./test-config"
 
 const temporary: string[] = []
 const compatibility: HistoricalManifest["compatibility"] = {
@@ -27,6 +23,9 @@ const compatibility: HistoricalManifest["compatibility"] = {
 }
 let discovered: Array<{
 	path: string
+	logicalPath: string
+	sourceId: string
+	collection: string
 	bytes: number
 	sha256: string
 	profile: string
@@ -36,7 +35,7 @@ vi.mock("./compatibility", () => ({
 	deriveCompatibility: async () => compatibility,
 }))
 vi.mock("./discover", () => ({
-	discoverHistoricalSources: async () => discovered,
+	discoverArtifactSources: async () => discovered,
 }))
 
 const { derivePublicationId, publish, restore } = await import("./archive")
@@ -58,6 +57,7 @@ async function fixture(): Promise<{
 	storeRoot: string
 	manifest: HistoricalManifest
 	body: Buffer
+	config: ReturnType<typeof artifactTestConfig>
 }> {
 	const root = await temp("historical-root-")
 	const output = await temp("historical-output-")
@@ -68,13 +68,17 @@ async function fixture(): Promise<{
 		.jpeg()
 		.toBuffer()
 	const source = {
-		path: "src/images/people/2018/person.jpg",
+		path: "inputs/catalog/person.jpg",
+		logicalPath: "catalog/person.jpg",
+		sourceId: "catalog",
+		collection: "catalogPictures",
 		bytes: 7,
 		sha256: "3".repeat(64),
-		profile: "people-400-800",
+		profile: "thumbnail",
 	}
 	discovered = [source]
-	const publicPath = "/_app/immutable/assets/person%20fixture.jpg"
+	const config = artifactTestConfig()
+	const publicPath = "/assets/person%20fixture.jpg"
 	const asset = {
 		publicPath,
 		bytes: body.length,
@@ -85,7 +89,7 @@ async function fixture(): Promise<{
 	}
 	const base = {
 		schemaVersion: 1 as const,
-		currentSeason: CURRENT_SEASON,
+		configurationId: config.identity,
 		createdAt: "2026-08-31T00:00:00.000Z",
 		compatibility,
 		sources: [
@@ -108,12 +112,12 @@ async function fixture(): Promise<{
 	await mkdir(dirname(assetPath), { recursive: true })
 	await writeFile(assetPath, body)
 	await writeFile(join(output, "manifest.v1.json"), `${stableJson(manifest)}\n`)
-	return { root, output, storeRoot, manifest, body }
+	return { root, output, storeRoot, manifest, body, config }
 }
 
 describe("historical artifact publication", () => {
 	it("publishes immutable objects before its atomic pointer and reuses identical objects", async () => {
-		const { root, output, storeRoot } = await fixture()
+		const { root, output, storeRoot, config } = await fixture()
 		const backing = new FileArtifactStore(storeRoot)
 		const events: string[] = []
 		const store: ArtifactStore = {
@@ -129,6 +133,7 @@ describe("historical artifact publication", () => {
 		}
 		const first = await publish(
 			root,
+			config,
 			store,
 			join(output, "manifest.v1.json"),
 			join(output, "assets"),
@@ -137,13 +142,14 @@ describe("historical artifact publication", () => {
 		expect(events.at(-1)).toMatch(/^pointer:/)
 		const second = await publish(
 			root,
+			config,
 			store,
 			join(output, "manifest.v1.json"),
 			join(output, "assets"),
 		)
 		expect(second.objectsCreated).toBe(0)
 		expect(second.objectsReused).toBe(1)
-		expect(await readFile(join(root, LOCK_PATH), "utf8")).toBe(
+		expect(await readFile(join(root, config.lockPath), "utf8")).toBe(
 			`${stableJson(first.lock)}\n`,
 		)
 	})
@@ -157,7 +163,7 @@ describe("historical artifact publication", () => {
 	})
 
 	it("does not publish a manifest pointer or lock after an object failure", async () => {
-		const { root, output } = await fixture()
+		const { root, output, config } = await fixture()
 		const putPointer = vi.fn()
 		const store: ArtifactStore = {
 			get: async () => null,
@@ -170,13 +176,14 @@ describe("historical artifact publication", () => {
 		await expect(
 			publish(
 				root,
+				config,
 				store,
 				join(output, "manifest.v1.json"),
 				join(output, "assets"),
 			),
 		).rejects.toThrow(/transport unavailable/)
 		expect(putPointer).not.toHaveBeenCalled()
-		await expect(readFile(join(root, LOCK_PATH))).rejects.toMatchObject({
+		await expect(readFile(join(root, config.lockPath))).rejects.toMatchObject({
 			code: "ENOENT",
 		})
 	})
@@ -184,58 +191,84 @@ describe("historical artifact publication", () => {
 
 describe("historical artifact restore", () => {
 	it("restores a cold object, then succeeds offline from its verified warm cache", async () => {
-		const { root, output, storeRoot, manifest, body } = await fixture()
+		const { root, output, storeRoot, manifest, body, config } = await fixture()
 		const store = new FileArtifactStore(storeRoot)
 		await publish(
 			root,
+			config,
 			store,
 			join(output, "manifest.v1.json"),
 			join(output, "assets"),
 		)
-		const cold = await restore(root, store)
+		const cold = await restore(root, config, store)
 		expect(cold).toEqual({
 			restored: 1,
 			cached: 0,
 			bytesTransferred: body.length,
 		})
-		await rm(join(root, STATIC_ASSET_ROOT), { recursive: true, force: true })
+		await rm(join(root, config.staticAssetRoot), {
+			recursive: true,
+			force: true,
+		})
 		await rm(storeRoot, { recursive: true, force: true })
-		const warm = await restore(root, null)
+		const warm = await restore(root, config, null)
 		expect(warm).toEqual({ restored: 1, cached: 1, bytesTransferred: 0 })
 		expect(
-			await readFile(join(root, STATIC_ASSET_ROOT, "person fixture.jpg")),
+			await readFile(join(root, config.staticAssetRoot, "person fixture.jpg")),
 		).toEqual(body)
 		discovered = [{ ...discovered[0], sha256: "9".repeat(64) }]
-		await expect(restore(root, null)).rejects.toThrow(
+		await expect(restore(root, config, null)).rejects.toThrow(
 			/source inventory is stale/,
 		)
-		discovered = manifest.sources.map(({ path, bytes, sha256, profile }) => ({
-			path,
-			bytes,
-			sha256,
-			profile,
-		}))
+		discovered = manifest.sources.map(
+			({
+				path,
+				logicalPath,
+				sourceId,
+				collection,
+				bytes,
+				sha256,
+				profile,
+			}) => ({
+				path,
+				logicalPath: logicalPath!,
+				sourceId: sourceId!,
+				collection: collection!,
+				bytes,
+				sha256,
+				profile,
+			}),
+		)
 	})
 
 	it("fails closed when a cold store is unavailable or an object is tampered", async () => {
-		const { root, output, storeRoot, manifest } = await fixture()
+		const { root, output, storeRoot, manifest, config } = await fixture()
 		const store = new FileArtifactStore(storeRoot)
 		await publish(
 			root,
+			config,
 			store,
 			join(output, "manifest.v1.json"),
 			join(output, "assets"),
 		)
-		await expect(restore(root, null)).rejects.toThrow(/manifest is not cached/)
-		await restore(root, store)
-		await rm(join(root, STATIC_ASSET_ROOT), { recursive: true, force: true })
+		await expect(restore(root, config, null)).rejects.toThrow(
+			/manifest is not cached/,
+		)
+		await restore(root, config, store)
+		await rm(join(root, config.staticAssetRoot), {
+			recursive: true,
+			force: true,
+		})
 		const asset = manifest.assets[0]
 		await writeFile(
-			join(root, ".cache/historical-images/objects", asset.sha256),
+			join(root, config.cacheRoot, "objects", asset.sha256),
 			"tampered",
 		)
-		await writeFile(join(storeRoot, objectName(asset.sha256)), "tampered")
-		await expect(restore(root, store)).rejects.toThrow(
+		await writeFile(
+			join(storeRoot, objectName(config, asset.sha256)),
+			"tampered",
+		)
+		await expect(restore(root, config, store)).rejects.toThrow(
 			/failed integrity verification/,
 		)
 	})

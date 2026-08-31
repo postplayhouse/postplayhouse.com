@@ -1,14 +1,10 @@
-export const season = 2027 satisfies Date.Year
+export const season = 2027
 
-export const allYears = [
-	2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027,
-] as const
-
-if (!allYears.includes(season)) {
-	throw new Error(
-		"Don't forget to add new seasons here so they appear after the next season rolls over",
-	)
-}
+const firstWebsiteSeason = 2015
+export const allYears = Array.from(
+	{ length: season - firstWebsiteSeason + 1 },
+	(_, index) => firstWebsiteSeason + index,
+) as [number, ...number[]]
 
 const yearsWithCalendars = allYears.filter((y) => y >= 2020)
 

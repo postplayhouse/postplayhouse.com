@@ -1,13 +1,7 @@
 import z from "zod"
 import { allYears } from "./site"
 
-type NumberArrayToStringArray<T extends readonly number[]> = {
-	[K in keyof T]: `${T[K]}`
-}
-
-const yearsStrings = allYears.map(
-	String,
-) as unknown as NumberArrayToStringArray<typeof allYears>
+const yearsStrings = allYears.map(String) as [string, ...string[]]
 
 export const yearsAsNumbers = z.literal(allYears)
 export const yearsAsString = z.enum([...yearsStrings])

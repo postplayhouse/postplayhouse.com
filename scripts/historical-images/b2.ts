@@ -1,4 +1,3 @@
-import { STORE_PREFIX } from "./config"
 import type { ArtifactStore } from "./store"
 
 interface B2Auth {
@@ -16,6 +15,7 @@ interface Credentials {
 	keyId: string
 	applicationKey: string
 	bucketId: string
+	storePrefix: string
 }
 
 const requestTimeout = 30_000
@@ -24,11 +24,6 @@ const retryDelays = [250, 500, 1_000, 2_000, 4_000]
 
 function encodeName(name: string): string {
 	return name.split("/").map(encodeURIComponent).join("/")
-}
-
-function assertArtifactName(name: string): void {
-	if (!name.startsWith(`${STORE_PREFIX}/`))
-		throw new Error(`B2 artifact name is outside ${STORE_PREFIX}/: ${name}`)
 }
 
 async function failure(response: Response): Promise<string> {
@@ -60,6 +55,13 @@ export class B2ArtifactStore implements ArtifactStore {
 	private authPromise?: Promise<B2Auth>
 
 	constructor(private readonly credentials: Credentials) {}
+
+	private assertArtifactName(name: string): void {
+		if (!name.startsWith(`${this.credentials.storePrefix}/`))
+			throw new Error(
+				`B2 artifact name is outside ${this.credentials.storePrefix}/: ${name}`,
+			)
+	}
 
 	private authorize(): Promise<B2Auth> {
 		return (this.authPromise ??= (async () => {
@@ -97,9 +99,10 @@ export class B2ArtifactStore implements ArtifactStore {
 				`B2 key lacks required capabilities: ${missing.join(", ")}`,
 			)
 		const prefix = auth.allowed.namePrefix
-		if (prefix && !"historical-images/v1/".startsWith(prefix))
+		const storePrefix = `${this.credentials.storePrefix}/`
+		if (prefix && !storePrefix.startsWith(prefix))
 			throw new Error(
-				`B2 key name prefix does not permit historical-images/v1/: ${prefix}`,
+				`B2 key name prefix does not permit ${storePrefix}: ${prefix}`,
 			)
 		return auth
 	}
@@ -113,7 +116,7 @@ export class B2ArtifactStore implements ArtifactStore {
 	}
 
 	async get(name: string): Promise<Buffer | null> {
-		assertArtifactName(name)
+		this.assertArtifactName(name)
 		const auth = await this.requireCapabilities("listFiles", "readFiles")
 		const list = await request(`${auth.apiUrl}/b2api/v2/b2_list_file_names`, {
 			method: "POST",
@@ -152,7 +155,7 @@ export class B2ArtifactStore implements ArtifactStore {
 		body: Buffer,
 		contentType: string,
 	): Promise<void> {
-		assertArtifactName(name)
+		this.assertArtifactName(name)
 		const auth = await this.requireCapabilities("writeFiles")
 		const urlResponse = await request(
 			`${auth.apiUrl}/b2api/v2/b2_get_upload_url`,
