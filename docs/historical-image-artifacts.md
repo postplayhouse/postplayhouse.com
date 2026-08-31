@@ -1,13 +1,41 @@
 # Historical responsive-image artifact prototype
 
-This prototype moves non-current `enhanced:img` work out of ordinary Vite
-builds. Backblaze B2 is a private build-time artifact store only. A build
-restores verified files into `static/_app/immutable/assets`; SvelteKit copies
-those files into the deploy, and Netlify remains the only production asset
-origin.
+Historical images are compiled once with the normal Svelte/Vite enhanced-image
+pipeline, stored in B2 as final immutable image assets plus a manifest, and
+restored into later builds at the paths SvelteKit expects. Components reference
+precomputed `Picture` metadata instead of asking Vite to regenerate those
+images. This does not monkey-patch Vite: historical imports are removed from
+the ordinary transform graph, while current and dynamic images continue through
+`enhanced:img` normally.
 
-Current-season (`2027`) images remain normal `enhanced:img` inputs. Historical
-people originals are still copied byte-for-byte to `/images/people/**`.
+B2 is private build-time storage, not a browser origin. SvelteKit copies the
+restored assets into the deploy, and Netlify continues to serve every production
+asset at its existing public URL.
+
+## How it works
+
+1. **Trusted generation:** an explicit command finds new or changed historical
+   source/profile pairs and runs them through the repository's normal
+   `enhanced:img` Vite plugins. It emits final AVIF/WebP/JPEG or PNG assets and
+   the corresponding `Picture` metadata.
+2. **Immutable publication:** the publisher verifies the output, uploads
+   content-addressed assets and a versioned manifest under
+   `historical-images/v1/`, then updates the publication pointer last.
+3. **Ordinary restore:** local, Orb, PR, and Netlify builds only restore missing
+   manifest-pinned assets into `static/_app/immutable/assets`. A verified local
+   or Netlify build cache avoids repeat downloads and supports warm offline
+   builds.
+4. **Runtime maps:** generated TypeScript maps provide the exact source sets,
+   dimensions, formats, and hashed URLs that the historical components would
+   otherwise receive from `enhanced:img` imports.
+5. **Normal live processing:** current-season (`2027`) and dynamic images stay
+   in the ordinary Vite transform graph. Historical people originals continue
+   to be copied byte-for-byte to `/images/people/**`.
+
+This is **final build-asset caching**, not Vite's internal imagetools cache. It
+stores deployable image bytes and public `Picture` metadata; it does not restore
+Vite transform internals, intercept image requests, or depend on the separate
+`feat/b2-enhanced-image-cache` experiment.
 
 ## Trust and credential boundaries
 
@@ -20,10 +48,9 @@ The archive reuses the project's existing B2 bucket and configuration:
 Historical artifacts are logically isolated under `historical-images/v1/`.
 There is no dedicated historical bucket or credential isolation: the existing
 key is shared with bio-submission tooling and may have write capability.
-Ordinary local, Orb, PR, and Netlify commands are nevertheless operationally
-read-only: restore calls only B2 authorization, list, and download APIs, and
-never updates a pointer or object. Publication remains an explicit trusted
-command and is never a build hook.
+The ordinary restore command is nevertheless operationally read-only: it calls
+only B2 authorization, list, and download APIs. Publication remains an explicit
+trusted command and is never a build hook.
 
 The transport verifies that the configured key can access `B2_BUCKET_ID`, that
 any key name-prefix restriction permits `historical-images/v1/`, and that it
