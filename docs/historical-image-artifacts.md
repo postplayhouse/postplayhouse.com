@@ -25,9 +25,10 @@ asset at its existing public URL.
    manifest-pinned assets into `static/_app/immutable/assets`. A verified local
    or Netlify build cache avoids repeat downloads and supports warm offline
    builds.
-4. **Runtime maps:** generated TypeScript maps provide the exact source sets,
-   dimensions, formats, and hashed URLs that the historical components would
-   otherwise receive from `enhanced:img` imports.
+4. **Server-side metadata:** a generated server-only map contains the exact
+   source sets, dimensions, formats, and hashed URLs. Server loaders select only
+   the records needed by each route; the complete map never enters browser
+   bundles.
 5. **Normal live processing:** current-season (`2027`) and dynamic images stay
    in the ordinary Vite transform graph. Historical people originals continue
    to be copied byte-for-byte to `/images/people/**`.
@@ -66,8 +67,16 @@ Annual rollover is one deliberate source edit:
 
 Developers do not edit source globs, runtime maps, manifests, or year lists by
 hand. The remaining application-specific seams are this adapter, the generated
-live-import module, the three image components that combine live and historical
-maps, and the Netlify cache-persistence plugin.
+live-import and news-reference modules, thin server loaders and image
+components, and the Netlify cache-persistence plugin.
+
+The complete historical map is generated beneath `$lib/server`. Prerendered
+pages receive only their referenced `Picture` records. News references are
+derived from page source during trusted generation. Bio submission lists stable
+approved person/year IDs; its read-only server endpoint accepts one exact ID and
+returns only that record's `Picture`, never an arbitrary path or the full map.
+Current-season and dynamic images keep their existing client-visible
+`enhanced:img` processing.
 
 ## Trust and credential boundaries
 

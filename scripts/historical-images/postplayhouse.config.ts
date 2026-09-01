@@ -1,5 +1,9 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises"
 import { dirname, join } from "node:path"
+import yaml from "js-yaml"
+import { format } from "prettier"
+import estreePlugin from "prettier/plugins/estree"
+import typescriptPlugin from "prettier/plugins/typescript"
 import { season } from "../../src/data/seasons"
 import {
 	validateArtifactConfig,
@@ -80,6 +84,83 @@ export async function archivedYearDirectories(
 
 export const generatedLiveImagesPath =
 	"src/generated/historical-images/live.ts" as const
+export const generatedNewsImageReferencesPath =
+	"src/lib/server/generated/news-image-references.ts" as const
+
+type NewsImageReferences = Record<
+	string,
+	{ people: string[]; seasons: string[] }
+>
+
+function attribute(tag: string, name: string): string | undefined {
+	return tag.match(new RegExp(`${name}=["']([^"']+)["']`))?.[1]
+}
+
+async function productionImage(
+	root: string,
+	content: string,
+): Promise<string | undefined> {
+	const match = content.match(/yaml\.productions\[["'](\d{4})["']\]\[(\d+)\]/)
+	if (!match) return
+	const productions = yaml.load(
+		await readFile(join(root, `src/data/productions/${match[1]}.yml`), "utf8"),
+	) as Array<{ image?: string }>
+	return productions[Number(match[2])]?.image
+}
+
+export async function generatedNewsImageReferences(
+	root = process.cwd(),
+): Promise<string> {
+	const newsRoot = join(root, "src/routes/(app)/news")
+	const references: NewsImageReferences = {}
+	for (const relative of await readdir(newsRoot, { recursive: true })) {
+		if (!/\+page\.(?:md|svelte)$/.test(relative)) continue
+		const content = await readFile(join(newsRoot, relative), "utf8")
+		const people: string[] = []
+		const seasons: string[] = []
+		for (const match of content.matchAll(/<PersonImage\b[^>]*\/>/gs)) {
+			const key = attribute(match[0], "partialPath")
+			if (!key)
+				throw new Error(`Cannot resolve PersonImage in news/${relative}`)
+			people.push(key)
+		}
+		for (const match of content.matchAll(/<SeasonImage\b[^>]*\/>/gs)) {
+			const imageSeason = attribute(match[0], "season")
+			let imageFile = attribute(match[0], "imageFile")
+			if (imageFile?.includes("{image}")) {
+				const prefix = imageFile.replace("{image}", "")
+				const values = content.match(/const images = \[([\s\S]*?)\]/)?.[1]
+				if (!values)
+					throw new Error(`Cannot resolve image list in news/${relative}`)
+				for (const value of values.matchAll(/["']([^"']+)["']/g))
+					seasons.push(`${imageSeason}/${prefix}${value[1]}`)
+				continue
+			}
+			if (!imageFile && match[0].includes("imageFile={production.image}"))
+				imageFile = await productionImage(root, content)
+			if (!imageSeason || !imageFile)
+				throw new Error(`Cannot resolve SeasonImage in news/${relative}`)
+			seasons.push(`${imageSeason}/${imageFile}`)
+		}
+		if (people.length || seasons.length) {
+			const slug = dirname(relative).replaceAll("\\", "/")
+			references[`/(app)/news/${slug}`] = {
+				people: [...new Set(people)].sort(),
+				seasons: [...new Set(seasons)].sort(),
+			}
+		}
+	}
+	return format(
+		`// Generated from news pages by pnpm images:historical:generate. Do not edit.\nexport const newsImageReferences = ${JSON.stringify(references)} as const\n`,
+		{
+			parser: "typescript",
+			plugins: [estreePlugin, typescriptPlugin],
+			semi: false,
+			trailingComma: "all",
+			useTabs: true,
+		},
+	)
+}
 
 export function generatedLiveImages(currentSeason = season): string {
 	const extensions = imageExtensions.join(",")
@@ -153,7 +234,7 @@ export async function postPlayhouseArtifactConfig(
 			"ae6440b9cc00fd7f39c2ac1c3dc3c169563f94ec5d00d82c36caf99ce550044e",
 		storePrefix: "historical-images/v1",
 		lockPath: "historical-images/publication.v1.json",
-		generatedMetadataPath: "src/generated/historical-images/pictures.ts",
+		generatedMetadataPath: "src/lib/server/generated/historical-images.ts",
 		staticAssetRoot: "static/_app/immutable/assets",
 		cacheRoot: ".cache/historical-images",
 		publicAssetPrefix: "/_app/immutable/assets/",
@@ -197,9 +278,17 @@ export async function postPlayhouseArtifactConfig(
 const provider: ArtifactConfigProvider = {
 	load: postPlayhouseArtifactConfig,
 	async afterGenerate(root) {
-		const path = join(root, generatedLiveImagesPath)
-		await mkdir(dirname(path), { recursive: true })
-		await writeFile(path, generatedLiveImages())
+		for (const [relativePath, contents] of [
+			[generatedLiveImagesPath, generatedLiveImages()],
+			[
+				generatedNewsImageReferencesPath,
+				await generatedNewsImageReferences(root),
+			],
+		] as const) {
+			const path = join(root, relativePath)
+			await mkdir(dirname(path), { recursive: true })
+			await writeFile(path, contents)
+		}
 	},
 }
 

@@ -1,28 +1,29 @@
 <script module lang="ts">
 	import type { Picture } from "$helpers/enhancedImg"
-	import { historicalPeoplePictures } from "../generated/historical-images/pictures"
 	import { currentPeoplePictures } from "../generated/historical-images/live"
-
-	function findPersonImage(path: string | undefined): Picture | undefined {
-		const key = path?.replace(/^\/?(?:src\/)?images\/people\//, "")
-		if (!key) return
-		return (
-			currentPeoplePictures[key] ??
-			(historicalPeoplePictures as Record<string, Picture>)[key]
-		)
-	}
+	import { personImageKey } from "$lib/historical-images"
 </script>
 
 <script lang="ts">
+	import { page } from "$app/state"
 	import type { HTMLImgAttributes } from "svelte/elements"
+	import type { HistoricalImagePageData } from "$lib/historical-images"
 
 	type Props = Omit<HTMLImgAttributes, "src"> & {
 		partialPath: string | undefined
+		picture?: Picture
 	}
 
-	let { partialPath, ...rest }: Props = $props()
+	let { partialPath, picture, ...rest }: Props = $props()
 
-	const enhancedImage = $derived(findPersonImage(partialPath))
+	const key = $derived(personImageKey(partialPath))
+	const pagePictures = $derived(
+		(page.data.historicalImages as HistoricalImagePageData | undefined)?.people,
+	)
+	const enhancedImage = $derived(
+		picture ??
+			(key ? (currentPeoplePictures[key] ?? pagePictures?.[key]) : undefined),
+	)
 </script>
 
 {#if enhancedImage}

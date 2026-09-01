@@ -10,6 +10,7 @@
 	import PreviousHeadshotPicker from "./PreviousHeadshotPicker.svelte"
 	import type { FormEventHandler } from "svelte/elements"
 	import { dev } from "$app/environment"
+	import type { Picture } from "$helpers/enhancedImg"
 
 	let { data } = $props()
 
@@ -46,6 +47,16 @@
 	let imageFile: null | File = $state(null)
 	let pullRequest = $state("")
 	let isReturningUser = $state(false)
+	let selectedHistoricalPicture: Picture | undefined = $state()
+
+	async function selectHistoricalHeadshot(id: string) {
+		fields.oldImageSrcPath = `src/images/people/${id}`
+		selectedHistoricalPicture = undefined
+		const response = await fetch(
+			`/bio-submission/historical-headshot?id=${encodeURIComponent(id)}`,
+		)
+		if (response.ok) selectedHistoricalPicture = (await response.json()).picture
+	}
 
 	function handleUseOldHeadshotChange(e: Event) {
 		const unchecked = !(e.target as HTMLInputElement).checked
@@ -469,11 +480,12 @@
 							data.imageFile ||
 							`${safeName(data.firstName)}-${safeName(data.lastName)}`
 						const matchingImage = imageFiles.find(
-							(f) => f.includes(`/${data.imageYear}/`) && f.includes(imageName),
+							(f) =>
+								f.startsWith(`${data.imageYear}/`) && f.includes(imageName),
 						)
 						if (matchingImage) {
 							fields.useOldHeadshot = true
-							fields.oldImageSrcPath = matchingImage
+							fields.oldImageSrcPath = `src/images/people/${matchingImage}`
 						}
 					}
 				}
@@ -927,11 +939,19 @@ ${fields.email}
 					{/if}
 				</label>
 				{#if fields.useOldHeadshot}
-					<div class="my-4">
+					<div
+						class="my-4"
+						data-historical-picture-resolved={Boolean(
+							selectedHistoricalPicture,
+						) || undefined}
+					>
 						<PreviousHeadshotPicker
 							options={imageFiles}
-							selectedOption={fields.oldImageSrcPath}
-							onOptionSelected={(x) => (fields.oldImageSrcPath = x)}
+							selectedOption={fields.oldImageSrcPath.replace(
+								"src/images/people/",
+								"",
+							)}
+							onOptionSelected={selectHistoricalHeadshot}
 						/>
 					</div>
 				{:else}

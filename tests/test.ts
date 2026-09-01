@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test"
 import { createHash } from "node:crypto"
+import { readFile, readdir } from "node:fs/promises"
+import { join } from "node:path"
 
 test("index page identifies Post Playhouse", async ({ page }) => {
 	await page.goto("/")
@@ -81,4 +83,62 @@ test("people originals remain byte-identical downloads", async ({
 			.update(await response.body())
 			.digest("hex"),
 	).toBe("6b4504048ac62846ef932f9904fb3f3153a6592e42e59eac7feaa57c7f415aa0")
+})
+
+test("bio headshot lookup returns one approved historical picture", async ({
+	request,
+}) => {
+	const response = await request.get(
+		"/bio-submission/historical-headshot?id=2026%2Fjo-arnold.jpg",
+	)
+	expect(response.ok()).toBe(true)
+	const record = await response.json()
+	expect(Object.keys(record)).toEqual(["id", "picture"])
+	expect(record).toEqual({
+		id: "2026/jo-arnold.jpg",
+		picture: {
+			sources: {
+				avif: "/_app/immutable/assets/jo-arnold.B64bAtGj.avif 400w, /_app/immutable/assets/jo-arnold.RU8Vb0L4.avif 800w",
+				webp: "/_app/immutable/assets/jo-arnold.qd8vFYq1.webp 400w, /_app/immutable/assets/jo-arnold.DUN67QxW.webp 800w",
+				jpeg: "/_app/immutable/assets/jo-arnold.Cdd2U4sI.jpg 400w, /_app/immutable/assets/jo-arnold.0V-O-8LM.jpg 800w",
+			},
+			img: {
+				src: "/_app/immutable/assets/jo-arnold.0V-O-8LM.jpg",
+				w: 800,
+				h: 533,
+			},
+		},
+	})
+
+	const asset = await request.get(
+		"/_app/immutable/assets/jo-arnold.RU8Vb0L4.avif",
+	)
+	expect(asset.ok()).toBe(true)
+	expect(asset.headers()["content-type"]).toBe("image/avif")
+
+	expect(
+		(
+			await request.get(
+				"/bio-submission/historical-headshot?id=..%2F2026%2Fjo-arnold.jpg",
+			)
+		).status(),
+	).toBe(404)
+})
+
+test("complete historical metadata stays out of client bundles", async () => {
+	const root = ".svelte-kit/output/client/_app/immutable"
+	const javascript: string[] = []
+	async function visit(directory: string) {
+		for (const entry of await readdir(directory, { withFileTypes: true })) {
+			const path = join(directory, entry.name)
+			if (entry.isDirectory()) await visit(path)
+			else if (entry.name.endsWith(".js")) javascript.push(path)
+		}
+	}
+	await visit(root)
+	const clientSource = (
+		await Promise.all(javascript.map((path) => readFile(path, "utf8")))
+	).join("\n")
+	expect(clientSource).not.toContain("jo-arnold.B64bAtGj.avif")
+	expect(clientSource).not.toContain("historicalPeoplePictures")
 })

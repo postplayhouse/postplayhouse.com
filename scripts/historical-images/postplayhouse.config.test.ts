@@ -56,6 +56,7 @@ it("tolerates missing years and rejects directories newer than the configured se
 it("keeps the checked-in live import module synchronized with the season", async () => {
 	const root = await mkdtemp(join(tmpdir(), "postplayhouse-generated-live-"))
 	temporary.push(root)
+	await mkdir(join(root, "src/routes/(app)/news"), { recursive: true })
 	await provider.afterGenerate!(root)
 	const generated = await readFile(join(root, generatedLiveImagesPath), "utf8")
 	const checkedIn = await readFile(generatedLiveImagesPath, "utf8")
