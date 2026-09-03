@@ -1,31 +1,28 @@
 <script module lang="ts">
-	import { makeFindImage, type Picture } from "$helpers/enhancedImg"
-	const findEnhancedPersonImage = makeFindImage(
-		import.meta.glob(
-			`/src/images/people/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
-			{
-				eager: true,
-				query: {
-					enhanced: true,
-					w: "400;800",
-					withoutEnlargement: true,
-				},
-			},
-		),
-	)
+	import type { Picture } from "$helpers/enhancedImg"
+	import { currentPeoplePictures } from "../generated/historical-images/live"
+	import { personImageKey } from "$lib/historical-images"
 </script>
 
 <script lang="ts">
+	import { page } from "$app/state"
 	import type { HTMLImgAttributes } from "svelte/elements"
+	import type { HistoricalImagePageData } from "$lib/historical-images"
 
 	type Props = Omit<HTMLImgAttributes, "src"> & {
 		partialPath: string | undefined
+		picture?: Picture
 	}
 
-	let { partialPath, ...rest }: Props = $props()
+	let { partialPath, picture, ...rest }: Props = $props()
 
+	const key = $derived(personImageKey(partialPath))
+	const pagePictures = $derived(
+		(page.data.historicalImages as HistoricalImagePageData | undefined)?.people,
+	)
 	const enhancedImage = $derived(
-		findEnhancedPersonImage(partialPath) as (string & Picture) | undefined,
+		picture ??
+			(key ? (currentPeoplePictures[key] ?? pagePictures?.[key]) : undefined),
 	)
 </script>
 

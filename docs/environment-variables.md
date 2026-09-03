@@ -37,11 +37,12 @@ the beta-only `op run --environment` CLI feature.
 
 Keep these variable names exact in the Environment:
 
-| Group                     | Variables                                                                                                                                                                         |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Production runtime/deploy | `B2_BUCKET_ID`, `B2_APPLICATION_KEY_ID`, `B2_APPLICATION_KEY`, `GITHUB_ACCESS_TOKEN`, `BASECAMP_BIO_BOT_INTEGRATION_KEY`, `NETLIFY_WEBHOOK_SECRET`, `INDIVIDUAL_PASSPHRASES_LIST` |
-| Optional build/tooling    | `SENTRY_AUTH_TOKEN`, `GITHUB_TOKEN`, `BASECAMP_TOKEN`                                                                                                                             |
-| Optional public overrides | `BASECAMP_CALL_BOARD_PROJECT`, `BASECAMP_PRODUCTION_PROJECT`                                                                                                                      |
+| Group                     | Variables                                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Shared B2/build/runtime   | `B2_BUCKET_ID`, `B2_APPLICATION_KEY_ID`, `B2_APPLICATION_KEY`                                                      |
+| Other production runtime  | `GITHUB_ACCESS_TOKEN`, `BASECAMP_BIO_BOT_INTEGRATION_KEY`, `NETLIFY_WEBHOOK_SECRET`, `INDIVIDUAL_PASSPHRASES_LIST` |
+| Optional build/tooling    | `SENTRY_AUTH_TOKEN`, `GITHUB_TOKEN`, `BASECAMP_TOKEN`                                                              |
+| Optional public overrides | `BASECAMP_CALL_BOARD_PROJECT`, `BASECAMP_PRODUCTION_PROJECT`                                                       |
 
 The schema supplies the Basecamp project-name defaults, so storing those two public values
 is optional. Store `INDIVIDUAL_PASSPHRASES_LIST` as one ordered comma-separated value;
@@ -50,12 +51,12 @@ the Environment: it is the secret zero used to access the Environment.
 
 This single Environment includes unrelated credentials, including the write-capable
 `BASECAMP_TOKEN`. It is convenient for explicit full validation but broader than ideal for
-routine commands. The recommended eventual layout is three Environments with separate
-read-only service accounts:
+routine commands. Any future 1Password Environment split must keep the three `B2_*`
+values as one shared B2 credential contract; the accepted project design does not create
+read-, publisher-, or bio-specific B2 credentials. Other secrets may still be separated:
 
-1. **postplayhouse-runtime** — production runtime/deploy variables only.
-2. **postplayhouse-bio-read** — B2 variables and optional `GITHUB_TOKEN`.
-3. **postplayhouse-basecamp-write** — `BASECAMP_TOKEN` and project names only.
+1. **postplayhouse-runtime-build** — shared B2 and production runtime variables.
+2. **postplayhouse-basecamp-write** — `BASECAMP_TOKEN` and project names only.
 
 If split, add committed reference files containing only each Environment ID and use the
 matching file/service account for each command. Until then, do not use the all-variable

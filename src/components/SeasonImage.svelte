@@ -1,34 +1,30 @@
 <script module lang="ts">
-	import { makeFindImage, type Picture } from "$helpers/enhancedImg"
-	const findEnhancedSeasonImage = makeFindImage(
-		import.meta.glob(
-			`/src/images/seasons/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
-			{
-				eager: true,
-				query: {
-					enhanced: true,
-					w: "500;1000;1500",
-					withoutEnlargement: true,
-				},
-			},
-		),
-	)
+	import type { Picture } from "$helpers/enhancedImg"
+	import { currentSeasonPictures } from "../generated/historical-images/live"
+	import { seasonImageKey } from "$lib/historical-images"
 </script>
 
 <script lang="ts">
+	import { page } from "$app/state"
 	import type { HTMLImgAttributes } from "svelte/elements"
+	import type { HistoricalImagePageData } from "$lib/historical-images"
 
 	type Props = Omit<HTMLImgAttributes, "src"> & {
 		season: number | string | undefined
 		imageFile: string | undefined
+		picture?: Picture
 	}
 
-	let { season, imageFile, ...rest }: Props = $props()
+	let { season, imageFile, picture, ...rest }: Props = $props()
 
+	const key = $derived(seasonImageKey(season, imageFile))
+	const pagePictures = $derived(
+		(page.data.historicalImages as HistoricalImagePageData | undefined)
+			?.seasons,
+	)
 	const enhancedImage = $derived(
-		findEnhancedSeasonImage(`${season}/${imageFile}`) as
-			| (string & Picture)
-			| undefined,
+		picture ??
+			(key ? (currentSeasonPictures[key] ?? pagePictures?.[key]) : undefined),
 	)
 </script>
 

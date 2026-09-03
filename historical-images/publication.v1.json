@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "manifestObject": "historical-images/v1/manifests/f0521bb6a4a203fa4db9f1717007a98ffa730f2daab62d70595b5dcb32ee2d85.json",
+  "manifestSha256": "f0521bb6a4a203fa4db9f1717007a98ffa730f2daab62d70595b5dcb32ee2d85",
+  "manifestBytes": 1605941,
+  "publicationId": "e7141527c5fd86b94681406f44327b48973685a415a833b59de53b9de69505a5",
+  "sourceSetSha256": "4a8ee29672bd21e4bba4983600c26ea5658b8ad304e40b6edc490e2ba5307a2e",
+  "pipelineSha256": "8988fcb2d80ff31fb36f6c5d1016f63f32e48d05e337299843bf1b97524b4fea",
+  "generatedOutputs": {
+    "src/generated/historical-images/live.ts": {
+      "bytes": 1315,
+      "sha256": "da616683b318eccab77b6f7664200bf8c62805f47d77b678eec3a95cdd908b9d"
+    },
+    "src/lib/server/generated/historical-images.ts": {
+      "bytes": 325676,
+      "sha256": "f283084c5440983142b9e756e0a82df6a852b4bb0d4d977138536e4ac04f4ea1"
+    },
+    "src/lib/server/generated/news-image-references.ts": {
+      "bytes": 5082,
+      "sha256": "5a55915bc43472a681d0c2d263e57beb89b4cf5cca265bc4329dd9568e0761bf"
+    }
+  },
+  "summary": {
+    "sourceProfiles": 652,
+    "uniqueSources": 650,
+    "publicPaths": 5268,
+    "uniqueObjects": 4032,
+    "uniqueBytes": 198574206,
+    "addedPublicPaths": [],
+    "removedPublicPaths": [],
+    "addedSourceProfiles": [],
+    "removedSourceProfiles": [],
+    "changedSourceProfiles": []
+  }
+}
