@@ -1,5 +1,6 @@
 import { error } from "@sveltejs/kit"
 import * as site from "$data/site"
+import { historicalImages } from "$lib/server/historical-images"
 
 export async function load(obj) {
 	const season = site.showsAnnounced
@@ -12,6 +13,11 @@ export async function load(obj) {
 		return {
 			productions: data.productions,
 			season: season,
+			historicalImages: historicalImages({
+				seasons: (data.productions as Production[]).flatMap((production) =>
+					production.image ? [`${season}/${production.image}`] : [],
+				),
+			}),
 		}
 	} else {
 		error(500, `could not fetch /data/productions/${season}.json`)

@@ -1,26 +1,8 @@
-<script module lang="ts">
-	import { makeFindImage, type Picture } from "$helpers/enhancedImg"
-	const findEnhancedSeasonImage = makeFindImage(
-		import.meta.glob(
-			`/src/images/seasons/**/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}`,
-			{
-				eager: true,
-				query: {
-					enhanced: true,
-					w: "500;1000;1500",
-					withoutEnlargement: true,
-				},
-			},
-		),
-	)
-</script>
-
 <script lang="ts">
 	import { formatDate } from "$helpers"
 
 	import Self from "./Production.svelte"
 	import Markdown from "./Markdown.svelte"
-	import MaybeImage from "./MaybeImage.svelte"
 	import MaybeLink from "./MaybeLink.svelte"
 	import ProductionImage from "./SeasonImage.svelte"
 
@@ -31,12 +13,6 @@
 
 	let { production, season }: Props = $props()
 
-	const enhancedImage = $derived(
-		production &&
-			(findEnhancedSeasonImage(production.image) as
-				| (string & Picture)
-				| undefined),
-	)
 	const image = $derived(production && production.image)
 
 	function isSeries(
@@ -48,19 +24,13 @@
 
 <article class="mt-16 flow-root">
 	<header>
-		{#if enhancedImage}
+		{#if image}
 			<ProductionImage
 				class="block max-w-full bg-white/70 md:float-left md:mr-4 md:w-3/5 md:max-w-4xl"
 				imageFile={production.image}
 				{season}
 				alt="Show Logo for {production.title}"
 			></ProductionImage>
-		{:else if image}
-			<MaybeImage
-				class="block max-w-full bg-white/70 md:float-left md:mr-4 md:w-3/5 md:max-w-4xl"
-				src={[image]}
-				alt="Show Logo for {production.title}"
-			/>
 		{/if}
 		<h2 class="mb-2 text-4xl leading-none">
 			{#if production.pre_title}
