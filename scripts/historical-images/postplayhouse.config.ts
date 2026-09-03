@@ -11,6 +11,7 @@ import {
 	type ArtifactConfigProvider,
 	type ArtifactSourceDirectory,
 } from "./config"
+import { historicalImageProfiles } from "./profiles"
 
 const imageExtensions = [
 	"avif",
@@ -202,6 +203,10 @@ export async function generatedNewsImageReferences(
 
 export function generatedLiveImages(currentSeason = season): string {
 	const extensions = imageExtensions.join(",")
+	const query = (profile: keyof typeof historicalImageProfiles): string =>
+		Object.entries(historicalImageProfiles[profile].query)
+			.map(([name, value]) => `\t\t\t${name}: ${JSON.stringify(value)},`)
+			.join("\n")
 	return `// Generated from src/data/seasons.ts by pnpm images:historical:generate. Do not edit.
 import type { Picture } from "$helpers/enhancedImg"
 import { season } from "$data/seasons"
@@ -217,9 +222,7 @@ const peopleModules = import.meta.glob(
 	{
 		eager: true,
 		query: {
-			enhanced: true,
-			w: "400;800",
-			withoutEnlargement: true,
+${query("people-400-800")}
 		},
 	},
 )
@@ -235,9 +238,7 @@ export const currentSeasonModules = import.meta.glob(
 	{
 		eager: true,
 		query: {
-			enhanced: true,
-			w: "500;1000;1500",
-			withoutEnlargement: true,
+${query("season-500-1000-1500")}
 		},
 	},
 ) as Record<string, { default: Picture }>
@@ -292,32 +293,13 @@ export async function postPlayhouseArtifactConfig(
 		],
 		pipelineSourcePaths: [
 			"scripts/historical-images/generate.ts",
-			"scripts/historical-images/metadata.ts",
 			"scripts/historical-images/compatibility.ts",
-			"scripts/historical-images/postplayhouse.config.ts",
 		],
 		staticAssetRoot: "static/_app/immutable/assets",
 		cacheRoot: ".cache/historical-images",
 		publicAssetPrefix: "/_app/immutable/assets/",
-		trustedPublishCommand: "pnpm images:historical:publish",
-		profiles: {
-			"people-400-800": {
-				query: { enhanced: true, w: "400;800", withoutEnlargement: true },
-				srcsetDescriptors: "width",
-			},
-			"season-500-1000-1500": {
-				query: {
-					enhanced: true,
-					w: "500;1000;1500",
-					withoutEnlargement: true,
-				},
-				srcsetDescriptors: "width",
-			},
-			"raffle-default-1x-2x": {
-				query: { enhanced: true },
-				srcsetDescriptors: "density",
-			},
-		},
+		trustedPublishCommand: "pnpm images:historical:stage",
+		profiles: historicalImageProfiles,
 		sources: await archivedYearDirectories(root),
 		profileExceptions: [
 			{

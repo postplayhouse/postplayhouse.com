@@ -70,6 +70,9 @@ The byte-affecting package versions, exact Node/Sharp/libvips identities, and
 platform are recorded in the manifest. An unrelated `pnpm-lock.yaml` edit does
 not invalidate an archive. `generatorRevision` remains an explicit protocol
 boundary, not a substitute for hashing implementation and profile inputs.
+Only byte-transform sources belong in `pipelineSourcePaths`. Presentation-only
+metadata formatting remains authenticated as a generated output in the
+repository lock, but does not invalidate image transforms.
 
 A provider may implement `afterGenerate` for a thin application adapter, such
 as regenerating a framework-specific live-import module. This hook is not part
@@ -82,23 +85,27 @@ Playhouse adapter.
 
 ```sh
 tsx scripts/historical-images/index.ts discover --config path/to/config.ts
-tsx scripts/historical-images/index.ts prepare --config path/to/config.ts \
+tsx scripts/historical-images/index.ts doctor --config path/to/config.ts
+tsx scripts/historical-images/index.ts hydrate-generation --config path/to/config.ts \
   --output .artifact-output
-tsx scripts/historical-images/index.ts generate --config path/to/config.ts \
-  --output .artifact-output
+tsx scripts/historical-images/index.ts plan --config path/to/config.ts \
+  --previous .artifact-output/manifest.v1.json
+tsx scripts/historical-images/index.ts stage --config path/to/config.ts
 tsx scripts/historical-images/index.ts publish --config path/to/config.ts \
   --output .artifact-output
 tsx scripts/historical-images/index.ts restore --config path/to/config.ts
-tsx scripts/historical-images/index.ts verify --config path/to/config.ts
 ```
 
-`discover` hashes and inventories configured files. `prepare` hydrates the
-lock-pinned previous manifest and assets from a verified cache/read store, so a
-fresh publisher does not need a retained ignored output directory. `generate`
-transforms only new or changed source/profile identities and emits final assets,
-a versioned manifest, and generated metadata. Pass `--previous
-manifest.v1.json` for an incremental run. Deletions fail unless explicitly
-acknowledged with `--allow-deleted`.
+`discover` hashes and inventories configured files. `doctor` is offline and
+non-mutating. `hydrate-generation` hydrates the lock-pinned previous manifest
+and assets from a verified cache/read store, so a fresh publisher does not need
+a retained ignored output directory. `plan` compares an already hydrated
+manifest without encoding or mutation. `stage` hydrates, prints that plan, and
+transforms only new or changed source/profile identities using deterministic
+defaults. Deletions stop staging unless explicitly acknowledged with
+`--allow-deleted`. The old `prepare` and `verify` entry points remain
+compatibility aliases, and low-level `generate` remains available for existing
+automation. Restore is the canonical static installation workflow.
 
 `publish` verifies local assets, writes content-addressed objects, writes the
 immutable manifest, and updates the mutable pointer last. Existing immutable

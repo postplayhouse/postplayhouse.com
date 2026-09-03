@@ -72,8 +72,8 @@ configured and continue through Vite normally.
 Annual rollover is one deliberate source edit:
 
 1. Change only `export const season = YYYY` in `src/data/seasons.ts`.
-2. Run trusted generation with the previous manifest, review the changed set,
-   then publish it. Generation automatically discovers the newly historical
+2. Run `pnpm images:historical:stage`, review its plan and generated output,
+   then publish it. Staging automatically discovers the newly historical
    directories, regenerates historical metadata maps and literal current-year
    Vite globs, and derives the full site year list.
 3. Commit the season value, generated modules, and new publication lock together
@@ -146,7 +146,7 @@ sources, and byte-affecting package identities are also hashed automatically;
 changing any of them invalidates transform keys.
 
 The v2 lock is also a reviewed migration attestation for its exact v1 manifest:
-when `prepare` supplies that byte-identical manifest and the lock's source and
+when `hydrate-generation` supplies that byte-identical manifest and the lock's source and
 pipeline digests still match, generation may carry forward unchanged Pictures
 while rewriting their transform keys to the current protocol. Any manifest,
 source, profile, package, or generator mismatch disables that bridge and forces
@@ -182,31 +182,33 @@ restore trust boundary: every downloaded byte is checked by SHA-256 and length.
 # Verify the exact 650-source / 652-profile discovery graph.
 pnpm images:historical:discover
 
-# Fresh-machine hydration from the reviewed lock and verified read store/cache.
-pnpm images:historical:prepare --output .historical-images-output.ignore
+# Offline, non-mutating readiness diagnostics. Counts are explicitly unverified.
+pnpm images:historical:doctor
 
-# Incremental trusted generation. Output is intentionally ignored by Git.
-SOURCE_DATE_EPOCH="$(git show -s --format=%ct HEAD)" \
-  pnpm images:historical:generate \
-  --previous .historical-images-output.ignore/manifest.v1.json \
-  --output .historical-images-output.ignore
+# Read-only plan for an already hydrated publisher workspace. It never hydrates,
+# encodes, publishes, edits the lock, or accepts deletion.
+pnpm images:historical:plan
+
+# Trusted staging: hydrate the reviewed manifest, print the plan, then generate
+# with the default output/previous paths and deterministic Git timestamp.
+pnpm images:historical:stage
 
 # Local/mock publication; safe and deterministic.
 HISTORICAL_IMAGES_STORE_DIR=/tmp/postplayhouse-image-store \
-  pnpm images:historical:publish --output .historical-images-output.ignore
+  pnpm images:historical:publish
 
 # Trusted publication using only dedicated publisher variables. Never run this
 # in an ordinary build or with bio/read credentials.
-pnpm with:1password pnpm images:historical:publish \
-  --output .historical-images-output.ignore
+pnpm with:1password pnpm images:historical:publish
 
 # Ordinary operationally read-only restore and verification.
-HISTORICAL_IMAGES_STORE_DIR=/tmp/postplayhouse-image-store \
-  pnpm images:historical:restore
-pnpm images:historical:verify
+HISTORICAL_IMAGES_STORE_DIR=/tmp/postplayhouse-image-store pnpm images:historical:restore
 ```
 
-Source deletion is rejected unless generation receives `--allow-deleted`.
+`restore` is the single canonical verified installation workflow. `prepare` and
+`verify` remain compatibility aliases for `hydrate-generation` and `restore`.
+Source deletion is rejected unless the reviewed stage receives
+`--allow-deleted`; plan prints the exact acknowledgement guidance.
 Pipeline identity changes regenerate every transform. Source edits and new
 sources generate only their changed profiles. `.jpg` is canonical while a
 byte-identical `.jpeg` alias is retained for warm-cache legacy URLs.
@@ -221,7 +223,7 @@ static/Vite outputs remain untouched. Missing, stale, unavailable, or tampered d
 with the trusted generation command; there is no historical Vite-transform
 fallback.
 
-The verified cache lives at `.cache/historical-images`. `prepare` reconstructs
+The verified cache lives at `.cache/historical-images`. `hydrate-generation` reconstructs
 a complete previous output before incremental generation, covering additions,
 changes, acknowledged deletion, rename (delete+add), annual rollover, resume,
 and rollback without retaining a developer's ignored output. Netlify's build plugin
@@ -234,12 +236,12 @@ lock.
 B2 names are versioned conventions, not object-lock. Hash mismatch fails closed.
 Retain old manifests/versions and a second verified cache copy; enable provider
 retention/object lock where available. For B2 loss, seed a filesystem store from
-that copy, run `prepare`, collision-verify and republish under explicit
+that copy, run `hydrate-generation`, collision-verify and republish under explicit
 authorization, then review the new lock. Roll back by reverting sources,
 generated modules, and lock together.
 
 Generation is supported only on pinned Linux/x64. macOS may run `restore` and
-`prepare` because final-byte copying does not invoke libvips; it must not publish
+`hydrate-generation` because final-byte copying does not invoke libvips; it must not publish
 or claim byte-reproducible generation. Linux CI requalifies toolchain changes.
 
 ## Reproducible qualification
@@ -290,7 +292,7 @@ Record restore-only and total-build wall/RSS separately.
    with only `listFiles,readFiles`. Create a separate trusted-publisher key for
    the same bucket/prefix with `listFiles,readFiles,writeFiles` and no delete
    capability. Record key IDs and values securely, then use
-   `pnpm images:historical:verify` and a disposable-prefix publish only under
+   `pnpm images:historical:restore` and a disposable-prefix publish only under
    explicit authorization. Verify wrong bucket, prefix, and capabilities fail.
 2. In **Netlify → Site configuration → Environment variables**, create the
    three `HISTORICAL_IMAGES_READ_B2_*` values with **Builds** scope only for

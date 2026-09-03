@@ -13,6 +13,7 @@ import provider, {
 	imageComponentTags,
 	postPlayhouseArtifactConfig,
 } from "./postplayhouse.config"
+import { historicalImageProfiles } from "./profiles"
 
 const temporary: string[] = []
 
@@ -81,6 +82,13 @@ it("derives the exact Post Playhouse archive and live globs from one season valu
 	).toHaveLength(2)
 	expect(generatedLiveImages()).toContain(`/src/images/people/${season}/*`)
 	expect(generatedLiveImages()).toContain(`/src/images/seasons/${season}/*`)
+	for (const profile of ["people-400-800", "season-500-1000-1500"] as const)
+		for (const [name, value] of Object.entries(
+			historicalImageProfiles[profile].query,
+		))
+			expect(generatedLiveImages()).toContain(
+				`${name}: ${JSON.stringify(value)}`,
+			)
 }, 10_000)
 
 it("tolerates missing years and rejects directories newer than the configured season", async () => {

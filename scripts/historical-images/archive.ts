@@ -152,6 +152,26 @@ async function verifiedAssetBody(
 	assetRoot: string,
 	asset: HistoricalManifest["assets"][number],
 ): Promise<Buffer> {
+	const localBody = await verifiedLocalAssetBody(root, config, assetRoot, asset)
+	if (localBody) return localBody
+	if (!store)
+		throw new Error(
+			`Artifact is not cached and no read store is available: ${asset.publicPath}`,
+		)
+	const body = await store.get(objectName(config, asset.sha256))
+	if (!body || body.length !== asset.bytes || sha256(body) !== asset.sha256)
+		throw new Error(
+			`Generated asset is unavailable or invalid: ${asset.publicPath}`,
+		)
+	return body
+}
+
+async function verifiedLocalAssetBody(
+	root: string,
+	config: ArtifactConfig,
+	assetRoot: string,
+	asset: HistoricalManifest["assets"][number],
+): Promise<Buffer | null> {
 	const local = join(
 		assetRoot,
 		artifactRelativePaths(config, asset.publicPath).encoded,
@@ -165,16 +185,63 @@ async function verifiedAssetBody(
 			if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error
 		}
 	}
-	if (!store)
-		throw new Error(
-			`Artifact is not cached and no read store is available: ${asset.publicPath}`,
-		)
-	const body = await store.get(objectName(config, asset.sha256))
-	if (!body || body.length !== asset.bytes || sha256(body) !== asset.sha256)
-		throw new Error(
-			`Generated asset is unavailable or invalid: ${asset.publicPath}`,
-		)
-	return body
+	return null
+}
+
+type PublicationSummary = NonNullable<HistoricalLock["summary"]>
+
+function publicationSummary(
+	manifest: HistoricalManifest,
+	previous: HistoricalManifest | null,
+): PublicationSummary {
+	const previousPublicPaths = new Set(
+		previous?.assets.map(({ publicPath }) => publicPath) ?? [],
+	)
+	const publicPaths = new Set(
+		manifest.assets.map(({ publicPath }) => publicPath),
+	)
+	const previousSourcesByKey = new Map(
+		previous?.sources.map((source) => [sourceProfileKey(source), source]) ?? [],
+	)
+	const sourcesByKey = new Map(
+		manifest.sources.map((source) => [sourceProfileKey(source), source]),
+	)
+	const uniqueAssets = new Map(
+		manifest.assets.map((asset) => [asset.sha256, asset]),
+	)
+	return {
+		sourceProfiles: manifest.sources.length,
+		uniqueSources: new Set(manifest.sources.map(({ path }) => path)).size,
+		publicPaths: manifest.assets.length,
+		uniqueObjects: uniqueAssets.size,
+		uniqueBytes: [...uniqueAssets.values()].reduce(
+			(total, asset) => total + asset.bytes,
+			0,
+		),
+		addedPublicPaths: [...publicPaths]
+			.filter((path) => !previousPublicPaths.has(path))
+			.sort(),
+		removedPublicPaths: [...previousPublicPaths]
+			.filter((path) => !publicPaths.has(path))
+			.sort(),
+		addedSourceProfiles: [...sourcesByKey.keys()]
+			.filter((key) => !previousSourcesByKey.has(key))
+			.sort(),
+		removedSourceProfiles: [...previousSourcesByKey.keys()]
+			.filter((key) => !sourcesByKey.has(key))
+			.sort(),
+		changedSourceProfiles: [...sourcesByKey]
+			.filter(([key, source]) => {
+				const prior = previousSourcesByKey.get(key)
+				return (
+					prior &&
+					(prior.sha256 !== source.sha256 ||
+						prior.transformKey !== source.transformKey)
+				)
+			})
+			.map(([key]) => key)
+			.sort(),
+	}
 }
 
 export function derivePublicationId(
@@ -189,6 +256,7 @@ export async function publish(
 	store: ArtifactStore,
 	inputManifestPath: string,
 	assetRoot: string,
+	onPlan?: (summary: PublicationSummary) => void,
 ): Promise<PublishResult> {
 	await assertOwnedRoot(root, config.cacheRoot)
 	const raw = JSON.parse(
@@ -211,6 +279,22 @@ export async function publish(
 		throw new Error(
 			"Manifest publicationId does not match its canonical content",
 		)
+	let previous: HistoricalManifest | null = null
+	let existingSummary: HistoricalLock["summary"]
+	let previousLockBody: string | undefined
+	try {
+		previousLockBody = await readFile(join(root, config.lockPath), "utf8")
+	} catch (error) {
+		if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error
+	}
+	if (previousLockBody) {
+		const previousLock = lockSchema.parse(JSON.parse(previousLockBody))
+		previous = await readVerifiedManifest(root, config, store, previousLock)
+		if (previousLock.publicationId === manifest.publicationId)
+			existingSummary = previousLock.summary
+	}
+	const summary = existingSummary ?? publicationSummary(manifest, previous)
+	onPlan?.(summary)
 
 	let objectsCreated = 0
 	let objectsReused = 0
@@ -241,39 +325,6 @@ export async function publish(
 		serialized,
 		"application/json",
 	)
-	let previousPublicPaths = new Set<string>()
-	let previousSources: HistoricalManifest["sources"] = []
-	let existingSummary: HistoricalLock["summary"]
-	let previousLockBody: string | undefined
-	try {
-		previousLockBody = await readFile(join(root, config.lockPath), "utf8")
-	} catch (error) {
-		if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error
-	}
-	if (previousLockBody) {
-		const previousLock = lockSchema.parse(JSON.parse(previousLockBody))
-		const previous = await readVerifiedManifest(
-			root,
-			config,
-			store,
-			previousLock,
-		)
-		previousPublicPaths = new Set(
-			previous.assets.map(({ publicPath }) => publicPath),
-		)
-		previousSources = previous.sources
-		if (previousLock.publicationId === manifest.publicationId)
-			existingSummary = previousLock.summary
-	}
-	const publicPaths = new Set(
-		manifest.assets.map(({ publicPath }) => publicPath),
-	)
-	const previousSourcesByKey = new Map(
-		previousSources.map((source) => [sourceProfileKey(source), source]),
-	)
-	const sourcesByKey = new Map(
-		manifest.sources.map((source) => [sourceProfileKey(source), source]),
-	)
 	const lock: HistoricalLock = {
 		schemaVersion: 2,
 		manifestObject: manifestName(config, manifestSha256),
@@ -283,39 +334,7 @@ export async function publish(
 		sourceSetSha256: sourceSetSha256(manifest),
 		pipelineSha256: await derivePipelineSha256(root, config),
 		generatedOutputs: await generatedOutputs(root, config),
-		summary: existingSummary ?? {
-			sourceProfiles: manifest.sources.length,
-			uniqueSources: new Set(manifest.sources.map(({ path }) => path)).size,
-			publicPaths: manifest.assets.length,
-			uniqueObjects: uniqueAssets.length,
-			uniqueBytes: uniqueAssets.reduce(
-				(total, asset) => total + asset.bytes,
-				0,
-			),
-			addedPublicPaths: [...publicPaths]
-				.filter((path) => !previousPublicPaths.has(path))
-				.sort(),
-			removedPublicPaths: [...previousPublicPaths]
-				.filter((path) => !publicPaths.has(path))
-				.sort(),
-			addedSourceProfiles: [...sourcesByKey.keys()]
-				.filter((key) => !previousSourcesByKey.has(key))
-				.sort(),
-			removedSourceProfiles: [...previousSourcesByKey.keys()]
-				.filter((key) => !sourcesByKey.has(key))
-				.sort(),
-			changedSourceProfiles: [...sourcesByKey]
-				.filter(([key, source]) => {
-					const previous = previousSourcesByKey.get(key)
-					return (
-						previous &&
-						(previous.sha256 !== source.sha256 ||
-							previous.transformKey !== source.transformKey)
-					)
-				})
-				.map(([key]) => key)
-				.sort(),
-		},
+		summary,
 	}
 	await store.putPointer(
 		latestName(config),
@@ -538,36 +557,41 @@ export async function restore(
 	const neededObjects = [
 		...new Map(needed.map((asset) => [asset.sha256, asset])).values(),
 	]
-	await store?.prime?.(
-		neededObjects.map((asset) => objectName(config, asset.sha256)),
-	)
+	const cachedObjects = new Set<string>()
 	await mapConcurrent(neededObjects, 8, async (asset) => {
 		const cachePath = cacheObjectPath(config, root, asset.sha256)
-		let body: Buffer | null = null
 		try {
-			body = await readFile(cachePath)
-			if (body.length !== asset.bytes || sha256(body) !== asset.sha256)
-				body = null
-			else cached += 1
+			const body = await readFile(cachePath)
+			if (body.length === asset.bytes && sha256(body) === asset.sha256) {
+				cachedObjects.add(asset.sha256)
+				cached += 1
+			}
 		} catch (error) {
 			if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error
 		}
-		if (!body) {
-			if (!store)
-				throw new Error(
-					`artifact is not cached and read credentials are unavailable: ${asset.publicPath}`,
-				)
-			body = await store.get(objectName(config, asset.sha256))
-			if (!body || body.length !== asset.bytes || sha256(body) !== asset.sha256)
-				throw new Error(
-					`artifact is missing or failed integrity verification: ${asset.publicPath}`,
-				)
-			bytesTransferred += body.length
-			await mkdir(dirname(cachePath), { recursive: true })
-			const temporary = `${cachePath}.${process.pid}.tmp`
-			await writeFile(temporary, body)
-			await rename(temporary, cachePath)
-		}
+	})
+	const missingObjects = neededObjects.filter(
+		(asset) => !cachedObjects.has(asset.sha256),
+	)
+	await store?.prime?.(
+		missingObjects.map((asset) => objectName(config, asset.sha256)),
+	)
+	await mapConcurrent(missingObjects, 8, async (asset) => {
+		const cachePath = cacheObjectPath(config, root, asset.sha256)
+		if (!store)
+			throw new Error(
+				`artifact is not cached and read credentials are unavailable: ${asset.publicPath}`,
+			)
+		const body = await store.get(objectName(config, asset.sha256))
+		if (!body || body.length !== asset.bytes || sha256(body) !== asset.sha256)
+			throw new Error(
+				`artifact is missing or failed integrity verification: ${asset.publicPath}`,
+			)
+		bytesTransferred += body.length
+		await mkdir(dirname(cachePath), { recursive: true })
+		const temporary = `${cachePath}.${process.pid}.tmp`
+		await writeFile(temporary, body)
+		await rename(temporary, cachePath)
 	})
 	await mapConcurrent(needed, 8, async (asset) => {
 		const relativeAsset = restoredAssetPath(config, asset.publicPath)
@@ -606,15 +630,40 @@ export async function prepareGeneration(
 	const uniqueAssets = [
 		...new Map(manifest.assets.map((asset) => [asset.sha256, asset])).values(),
 	]
-	await store?.prime?.(
-		uniqueAssets.map((asset) => objectName(config, asset.sha256)),
-	)
+	const missing: typeof uniqueAssets = []
+	await mapConcurrent(uniqueAssets, 8, async (asset) => {
+		if (
+			!(await verifiedLocalAssetBody(
+				root,
+				config,
+				join(output, "assets"),
+				asset,
+			))
+		)
+			missing.push(asset)
+	})
+	missing.sort((left, right) => left.sha256.localeCompare(right.sha256))
+	await store?.prime?.(missing.map((asset) => objectName(config, asset.sha256)))
+	await mapConcurrent(missing, 8, async (asset) => {
+		if (!store)
+			throw new Error(
+				`Artifact is not cached and no read store is available: ${asset.publicPath}`,
+			)
+		const body = await store.get(objectName(config, asset.sha256))
+		if (!body || body.length !== asset.bytes || sha256(body) !== asset.sha256)
+			throw new Error(
+				`Generated asset is unavailable or invalid: ${asset.publicPath}`,
+			)
+		const cachePath = cacheObjectPath(config, root, asset.sha256)
+		await mkdir(dirname(cachePath), { recursive: true })
+		await replaceFileAtomically(cachePath, body)
+	})
 	let bytes = 0
 	await mapConcurrent(manifest.assets, 8, async (asset) => {
 		const body = await verifiedAssetBody(
 			root,
 			config,
-			store,
+			null,
 			join(output, "assets"),
 			asset,
 		)

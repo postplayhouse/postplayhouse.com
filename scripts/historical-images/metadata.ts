@@ -15,7 +15,13 @@ export function generatedMap(manifest: HistoricalManifest): string {
 		.sort(([left], [right]) => left.localeCompare(right))
 		.map(
 			([name, pictures]) =>
-				`// prettier-ignore\nexport const ${name} = ${JSON.stringify(pictures)} as const satisfies Record<string, Picture>`,
+				`export const ${name} = {\n${Object.entries(pictures)
+					.sort(([left], [right]) => left.localeCompare(right))
+					.map(
+						([path, picture]) =>
+							`\t${JSON.stringify(path)}: ${JSON.stringify(picture)},`,
+					)
+					.join("\n")}\n} as const satisfies Record<string, Picture>`,
 		)
 		.join("\n")}\n`
 }

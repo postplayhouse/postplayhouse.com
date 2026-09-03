@@ -1,161 +1,117 @@
-import { resolve } from "node:path"
-import { fileURLToPath, pathToFileURL } from "node:url"
-import { prepareGeneration, publish, restore } from "./archive"
-import { B2ArtifactStore } from "./b2"
-import type { ArtifactConfig, ArtifactConfigProvider } from "./config"
-import { discoverArtifactSources } from "./discover"
-import { generate } from "./generate"
-import { FileArtifactStore, type ArtifactStore } from "./store"
+import { parseArgs } from "node:util"
 
-const root = process.cwd()
+type Command =
+	| "discover"
+	| "doctor"
+	| "generate"
+	| "hydrate-generation"
+	| "plan"
+	| "prepare"
+	| "publish"
+	| "restore"
+	| "stage"
+	| "verify"
 
-function argument(name: string): string | undefined {
-	const index = process.argv.indexOf(name)
-	return index < 0 ? undefined : process.argv[index + 1]
+export interface CliArguments {
+	command: Command
+	config?: string
+	output?: string
+	previous?: string
+	allowDeleted: boolean
+	json: boolean
 }
 
-async function configProvider(): Promise<ArtifactConfigProvider> {
-	const path = resolve(
-		argument("--config") ?? "scripts/historical-images/postplayhouse.config.ts",
-	)
-	const loaded = (await import(pathToFileURL(path).href)) as {
-		default?: ArtifactConfigProvider
+const usage = `Usage: historical-images <command> [options]
+
+Commands:
+  discover                 Report the configured source inventory
+  restore                  Verify and install reviewed assets into static
+  hydrate-generation       Hydrate the trusted publisher workspace
+  plan                     Report generation work without mutating files
+  stage                    Hydrate, plan, and generate trusted output
+  publish                  Publish staged output (trusted publisher only)
+  doctor                   Run offline, non-mutating diagnostics
+
+Compatibility aliases: prepare (hydrate-generation), verify (restore)
+Low-level generate remains available for existing automation.
+Global option: --config <path>
+Run historical-images <command> --help for command options.`
+
+const commandOptions: Record<
+	Command,
+	Record<string, { type: "boolean" | "string" }>
+> = {
+	discover: {},
+	doctor: { json: { type: "boolean" } },
+	generate: {
+		output: { type: "string" },
+		previous: { type: "string" },
+		"allow-deleted": { type: "boolean" },
+	},
+	"hydrate-generation": { output: { type: "string" } },
+	plan: { previous: { type: "string" } },
+	prepare: { output: { type: "string" } },
+	publish: { output: { type: "string" } },
+	restore: {},
+	stage: {
+		output: { type: "string" },
+		"allow-deleted": { type: "boolean" },
+	},
+	verify: {},
+}
+
+function commandHelp(command: Command): string {
+	const options = Object.entries(commandOptions[command])
+		.map(
+			([name, option]) =>
+				`  --${name}${option.type === "string" ? " <value>" : ""}`,
+		)
+		.join("\n")
+	return `Usage: historical-images ${command}${options ? " [options]" : ""}\n${options}`.trimEnd()
+}
+
+export function parseCli(argv: string[]): CliArguments | { help: string } {
+	if (argv.length === 0 || argv[0] === "--help" || argv[0] === "-h")
+		return { help: usage }
+	const command = argv[0] as Command
+	if (!(command in commandOptions))
+		throw new Error(`Unknown command: ${argv[0]}\n\n${usage}`)
+	if (argv.includes("--help") || argv.includes("-h")) {
+		if (argv.length !== 2)
+			throw new Error("--help cannot be combined with other options")
+		return { help: commandHelp(command) }
 	}
-	if (!loaded.default?.load)
-		throw new Error(
-			`Artifact config module must default-export a provider: ${path}`,
-		)
-	return loaded.default
-}
-
-export function artifactStoreFromEnvironment(
-	config: ArtifactConfig,
-	purpose: "restore" | "publish",
-): ArtifactStore | null {
-	const mock = process.env.HISTORICAL_IMAGES_STORE_DIR
-	if (mock) return new FileArtifactStore(resolve(mock))
-	const prefix =
-		purpose === "publish"
-			? "HISTORICAL_IMAGES_PUBLISH_B2"
-			: "HISTORICAL_IMAGES_READ_B2"
-	const keyId = process.env[`${prefix}_APPLICATION_KEY_ID`]
-	const applicationKey = process.env[`${prefix}_APPLICATION_KEY`]
-	const bucketId = process.env[`${prefix}_BUCKET_ID`]
-	if (!keyId && !applicationKey && !bucketId) return null
-	if (!keyId || !applicationKey || !bucketId)
-		throw new Error(
-			`${prefix} configuration is incomplete; its BUCKET_ID, APPLICATION_KEY_ID, and APPLICATION_KEY must be set together`,
-		)
-	return new B2ArtifactStore({
-		keyId,
-		applicationKey,
-		bucketId,
-		storePrefix: config.storePrefix,
+	const { values } = parseArgs({
+		args: argv.slice(1),
+		allowPositionals: false,
+		strict: true,
+		options: {
+			config: { type: "string" },
+			...commandOptions[command],
+		},
 	})
+	const options = values as Record<string, string | boolean | undefined>
+	return {
+		command,
+		config: options.config as string | undefined,
+		output: options.output as string | undefined,
+		previous: options.previous as string | undefined,
+		allowDeleted: (options["allow-deleted"] as boolean | undefined) ?? false,
+		json: (options.json as boolean | undefined) ?? false,
+	}
 }
 
-export function assertTrustedGenerationPlatform(
-	platform = process.platform,
-	arch = process.arch,
-): void {
-	if (platform !== "linux" || arch !== "x64")
-		throw new Error(
-			`Historical image generation and publication require the qualified linux/x64 toolchain (current: ${platform}/${arch}); use prepare or restore to hydrate final bytes`,
-		)
+export async function main(argv = process.argv.slice(2)): Promise<void> {
+	const parsed = parseCli(argv)
+	if ("help" in parsed) {
+		console.log(parsed.help)
+		return
+	}
+	const { run } = await import("./commands")
+	await run(parsed)
 }
 
-async function main(): Promise<void> {
-	const command = process.argv[2]
-	const provider = await configProvider()
-	const allowGeneratedOutputsToBeStale =
-		command === "generate" || command === "discover"
-	const config = await provider.load(root, { allowGeneratedOutputsToBeStale })
-	if (command === "discover") {
-		const sources = await discoverArtifactSources(root, config)
-		console.log(
-			JSON.stringify({
-				profiles: sources.length,
-				sources: new Set(sources.map(({ path }) => path)).size,
-			}),
-		)
-		return
-	}
-	if (command === "generate") {
-		assertTrustedGenerationPlatform()
-		const output = resolve(
-			argument("--output") ?? ".historical-images-output.ignore",
-		)
-		const manifest = await generate({
-			root,
-			config,
-			output,
-			previousManifest: argument("--previous"),
-			allowDeleted: process.argv.includes("--allow-deleted"),
-			createdAt: process.env.SOURCE_DATE_EPOCH
-				? new Date(Number(process.env.SOURCE_DATE_EPOCH) * 1000).toISOString()
-				: undefined,
-		})
-		await provider.afterGenerate?.(root)
-		console.log(
-			JSON.stringify({
-				publicationId: manifest.publicationId,
-				sources: manifest.sources.length,
-				assets: manifest.assets.length,
-			}),
-		)
-		return
-	}
-	if (command === "publish") {
-		assertTrustedGenerationPlatform()
-		const store = artifactStoreFromEnvironment(config, "publish")
-		if (!store)
-			throw new Error(
-				"Publishing requires the HISTORICAL_IMAGES_PUBLISH_B2_* credentials (or HISTORICAL_IMAGES_STORE_DIR for a local mock)",
-			)
-		if (store instanceof B2ArtifactStore) await store.checkPermissions(true)
-		const output = resolve(
-			argument("--output") ?? ".historical-images-output.ignore",
-		)
-		console.log(
-			JSON.stringify(
-				await publish(
-					root,
-					config,
-					store,
-					resolve(output, "manifest.v1.json"),
-					resolve(output, "assets"),
-				),
-			),
-		)
-		return
-	}
-	if (command === "prepare") {
-		const store = artifactStoreFromEnvironment(config, "restore")
-		if (store instanceof B2ArtifactStore) await store.checkPermissions(false)
-		const output = resolve(
-			argument("--output") ?? ".historical-images-output.ignore",
-		)
-		console.log(
-			JSON.stringify(await prepareGeneration(root, config, store, output)),
-		)
-		return
-	}
-	if (command === "restore" || command === "verify") {
-		const store = artifactStoreFromEnvironment(config, "restore")
-		if (store instanceof B2ArtifactStore) await store.checkPermissions(false)
-		const result = await restore(root, config, store)
-		console.log(JSON.stringify(result))
-		return
-	}
-	throw new Error(
-		"Usage: historical-images <discover|prepare|generate|publish|restore|verify> [--config path]",
-	)
-}
-
-if (
-	process.argv[1] &&
-	fileURLToPath(import.meta.url) === resolve(process.argv[1])
-) {
+if (import.meta.url === new URL(process.argv[1] ?? "", "file:").href) {
 	main().catch((error) => {
 		console.error(error instanceof Error ? error.message : error)
 		process.exitCode = 1

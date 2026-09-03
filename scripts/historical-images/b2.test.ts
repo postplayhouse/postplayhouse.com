@@ -42,6 +42,28 @@ afterEach(() => {
 })
 
 describe("B2 historical artifact transport", () => {
+	it("does not authorize an empty warm-cache inventory", async () => {
+		const fetch = vi.fn()
+		vi.stubGlobal("fetch", fetch)
+		await new B2ArtifactStore(credentials).prime([])
+		expect(fetch).not.toHaveBeenCalled()
+	})
+
+	it("fails a cold remote read before listing when read permissions are wrong", async () => {
+		const fetch = vi
+			.fn()
+			.mockResolvedValue(
+				authorization({ capabilities: ["listFiles"], namePrefix: "other/" }),
+			)
+		vi.stubGlobal("fetch", fetch)
+		await expect(
+			new B2ArtifactStore(credentials).get(
+				"historical-images/v1/objects/digest",
+			),
+		).rejects.toThrow(/lacks required capabilities: readFiles/)
+		expect(fetch).toHaveBeenCalledTimes(1)
+	})
+
 	it("rejects missing capabilities, the wrong bucket, and an incompatible key prefix", async () => {
 		for (const [response, expected] of [
 			[

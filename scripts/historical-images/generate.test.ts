@@ -4,6 +4,7 @@ import { planGeneration } from "./generate"
 import { sha256, stableJson } from "./hash"
 import type { DiscoveredSource } from "./discover"
 import type { HistoricalManifest } from "./schema"
+import { generatedMap } from "./metadata"
 
 const compatibility: HistoricalManifest["compatibility"] = {
 	generatorRevision: 1,
@@ -51,6 +52,18 @@ function previous(): HistoricalManifest {
 }
 
 describe("incremental generation plan", () => {
+	it("emits deterministic one-entry-per-line metadata without changing values", () => {
+		const manifest = previous()
+		const output = generatedMap(manifest)
+		expect(output).toContain(
+			`\t"catalog/old.jpg": ${JSON.stringify(manifest.sources[0].picture)},`,
+		)
+		expect(
+			output.split("\n").filter((line) => line.startsWith('\t"')).length,
+		).toBe(manifest.sources.length)
+		expect(generatedMap(manifest)).toBe(output)
+	})
+
 	it("does no work for an unchanged source", () => {
 		const prior = previous()
 		const source = prior.sources.map(asDiscovered)

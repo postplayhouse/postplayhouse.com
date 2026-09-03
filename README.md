@@ -20,8 +20,14 @@ pnpm env:check
 pnpm dev
 ```
 
-Development, checking, and ordinary builds do not require production secrets.
-Endpoints that call external services need only their corresponding credentials.
+Historical build assets are intentionally not stored in Git. A fresh clone needs
+either a preseeded, verified `.cache/historical-images` or the dedicated
+read-only `HISTORICAL_IMAGES_READ_B2_*` credential before `dev` or `build` can
+restore them. Never use publisher or bio credentials for ordinary development.
+Setup does not silently download these assets. Run
+`pnpm images:historical:doctor` to inspect local readiness without network
+access, then `pnpm images:historical:restore` explicitly if needed. Endpoints
+that call other external services need only their corresponding credentials.
 
 ## End-to-end tests
 

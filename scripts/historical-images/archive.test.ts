@@ -155,8 +155,10 @@ describe("historical artifact publication", () => {
 			store,
 			join(output, "manifest.v1.json"),
 			join(output, "assets"),
+			(summary) => events.push(`plan:${JSON.stringify(summary)}`),
 		)
 		expect(first.objectsCreated).toBe(1)
+		expect(events[0]).toMatch(/^plan:/)
 		expect(events.at(-1)).toMatch(/^pointer:/)
 		expect(first.lock.summary).toMatchObject({
 			addedPublicPaths: ["/assets/person%20fixture.jpg"],
@@ -305,6 +307,40 @@ describe("historical artifact restore", () => {
 				profile,
 			}),
 		)
+	})
+
+	it("does not touch a configured store when verified local state is warm", async () => {
+		const { root, output, storeRoot, config } = await fixture()
+		const backing = new FileArtifactStore(storeRoot)
+		await publish(
+			root,
+			config,
+			backing,
+			join(output, "manifest.v1.json"),
+			join(output, "assets"),
+		)
+		await restore(root, config, backing)
+		await rm(join(root, config.staticAssetRoot), {
+			recursive: true,
+			force: true,
+		})
+		const configured: ArtifactStore = {
+			prime: vi.fn(async () => undefined),
+			get: vi.fn(async () => {
+				throw new Error("unexpected remote fetch")
+			}),
+			putImmutable: vi.fn(),
+			putPointer: vi.fn(),
+		}
+		await expect(restore(root, config, configured)).resolves.toMatchObject({
+			bytesTransferred: 0,
+		})
+		expect(configured.prime).toHaveBeenCalledWith([])
+		expect(configured.get).not.toHaveBeenCalled()
+		await expect(
+			prepareGeneration(root, config, configured, output),
+		).resolves.toMatchObject({ assets: 1 })
+		expect(configured.get).not.toHaveBeenCalled()
 	})
 
 	it("fails closed when a cold store is unavailable or an object is tampered", async () => {
