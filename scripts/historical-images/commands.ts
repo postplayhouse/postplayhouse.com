@@ -42,21 +42,16 @@ export async function loadConfig(
 
 export function artifactStoreFromEnvironment(
 	config: ArtifactConfig,
-	purpose: "restore" | "publish",
 ): ArtifactStore | null {
 	const mock = process.env.HISTORICAL_IMAGES_STORE_DIR
 	if (mock) return new FileArtifactStore(resolve(mock))
-	const prefix =
-		purpose === "publish"
-			? "HISTORICAL_IMAGES_PUBLISH_B2"
-			: "HISTORICAL_IMAGES_READ_B2"
-	const keyId = process.env[`${prefix}_APPLICATION_KEY_ID`]
-	const applicationKey = process.env[`${prefix}_APPLICATION_KEY`]
-	const bucketId = process.env[`${prefix}_BUCKET_ID`]
+	const keyId = process.env.B2_APPLICATION_KEY_ID
+	const applicationKey = process.env.B2_APPLICATION_KEY
+	const bucketId = process.env.B2_BUCKET_ID
 	if (!keyId && !applicationKey && !bucketId) return null
 	if (!keyId || !applicationKey || !bucketId)
 		throw new Error(
-			`${prefix} configuration is incomplete; its BUCKET_ID, APPLICATION_KEY_ID, and APPLICATION_KEY must be set together`,
+			"B2 configuration is incomplete; B2_BUCKET_ID, B2_APPLICATION_KEY_ID, and B2_APPLICATION_KEY must be set together",
 		)
 	return new B2ArtifactStore({
 		keyId,
@@ -227,11 +222,7 @@ export async function run(args: CliArguments): Promise<void> {
 		const { restore } = await import("./archive")
 		console.log(
 			JSON.stringify(
-				await restore(
-					root,
-					config,
-					artifactStoreFromEnvironment(config, "restore"),
-				),
+				await restore(root, config, artifactStoreFromEnvironment(config)),
 			),
 		)
 		return
@@ -243,7 +234,7 @@ export async function run(args: CliArguments): Promise<void> {
 				await prepareGeneration(
 					root,
 					config,
-					artifactStoreFromEnvironment(config, "restore"),
+					artifactStoreFromEnvironment(config),
 					outputPath(args.output),
 				),
 			),
@@ -266,7 +257,7 @@ export async function run(args: CliArguments): Promise<void> {
 		await prepareGeneration(
 			root,
 			config,
-			artifactStoreFromEnvironment(config, "restore"),
+			artifactStoreFromEnvironment(config),
 			output,
 		)
 		const previous = resolve(output, "manifest.v1.json")
@@ -307,10 +298,10 @@ export async function run(args: CliArguments): Promise<void> {
 		return
 	}
 	assertTrustedGenerationPlatform()
-	const store = artifactStoreFromEnvironment(config, "publish")
+	const store = artifactStoreFromEnvironment(config)
 	if (!store)
 		throw new Error(
-			"Publishing requires the HISTORICAL_IMAGES_PUBLISH_B2_* credentials (or HISTORICAL_IMAGES_STORE_DIR for a local mock)",
+			"Publishing requires B2_BUCKET_ID, B2_APPLICATION_KEY_ID, and B2_APPLICATION_KEY (or HISTORICAL_IMAGES_STORE_DIR for a local mock)",
 		)
 	if (store instanceof B2ArtifactStore) await store.checkPermissions(true)
 	const { publish } = await import("./archive")

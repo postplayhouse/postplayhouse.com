@@ -10,12 +10,7 @@ import { parseCli } from "./index"
 import { artifactTestConfig } from "./test-config"
 
 const names = [
-	"HISTORICAL_IMAGES_READ_B2_BUCKET_ID",
-	"HISTORICAL_IMAGES_READ_B2_APPLICATION_KEY_ID",
-	"HISTORICAL_IMAGES_READ_B2_APPLICATION_KEY",
-	"HISTORICAL_IMAGES_PUBLISH_B2_BUCKET_ID",
-	"HISTORICAL_IMAGES_PUBLISH_B2_APPLICATION_KEY_ID",
-	"HISTORICAL_IMAGES_PUBLISH_B2_APPLICATION_KEY",
+	"HISTORICAL_IMAGES_STORE_DIR",
 	"B2_BUCKET_ID",
 	"B2_APPLICATION_KEY_ID",
 	"B2_APPLICATION_KEY",
@@ -25,28 +20,24 @@ afterEach(() => {
 	for (const name of names) delete process.env[name]
 })
 
-it("never selects bio or publisher credentials for ordinary restore", () => {
-	process.env.B2_BUCKET_ID = "bio-bucket"
-	process.env.B2_APPLICATION_KEY_ID = "bio-key-id"
-	process.env.B2_APPLICATION_KEY = "bio-key"
-	process.env.HISTORICAL_IMAGES_PUBLISH_B2_BUCKET_ID = "publish-bucket"
-	process.env.HISTORICAL_IMAGES_PUBLISH_B2_APPLICATION_KEY_ID = "publish-key-id"
-	process.env.HISTORICAL_IMAGES_PUBLISH_B2_APPLICATION_KEY = "publish-key"
-	expect(
-		artifactStoreFromEnvironment(artifactTestConfig(), "restore"),
-	).toBeNull()
+it("uses the existing shared B2 configuration for every historical operation", () => {
+	process.env.B2_BUCKET_ID = "shared-bucket"
+	process.env.B2_APPLICATION_KEY_ID = "shared-key-id"
+	process.env.B2_APPLICATION_KEY = "shared-key"
+	expect(artifactStoreFromEnvironment(artifactTestConfig())).not.toBeNull()
 })
 
-it("fails incomplete read configuration and accepts a complete dedicated contract", () => {
-	process.env.HISTORICAL_IMAGES_READ_B2_BUCKET_ID = "read-bucket"
-	expect(() =>
-		artifactStoreFromEnvironment(artifactTestConfig(), "restore"),
-	).toThrow(/HISTORICAL_IMAGES_READ_B2 configuration is incomplete/)
-	process.env.HISTORICAL_IMAGES_READ_B2_APPLICATION_KEY_ID = "read-key-id"
-	process.env.HISTORICAL_IMAGES_READ_B2_APPLICATION_KEY = "read-key"
-	expect(
-		artifactStoreFromEnvironment(artifactTestConfig(), "restore"),
-	).not.toBeNull()
+it("fails incomplete shared B2 configuration", () => {
+	process.env.B2_BUCKET_ID = "shared-bucket"
+	expect(() => artifactStoreFromEnvironment(artifactTestConfig())).toThrow(
+		/B2 configuration is incomplete.*B2_BUCKET_ID.*B2_APPLICATION_KEY_ID.*B2_APPLICATION_KEY/,
+	)
+})
+
+it("keeps the filesystem fixture independent of shared credential availability", () => {
+	process.env.B2_BUCKET_ID = "incomplete-shared-config"
+	process.env.HISTORICAL_IMAGES_STORE_DIR = "/tmp/historical-store-fixture"
+	expect(artifactStoreFromEnvironment(artifactTestConfig())).not.toBeNull()
 })
 
 it("limits trusted generation to the qualified platform without limiting hydration", () => {
@@ -91,4 +82,12 @@ it("runs the Netlify restore once and before validation and Vite", async () => {
 	)
 	expect(command).toContain("build:vite")
 	expect(pkg.scripts["build:vite"]).not.toContain("images:historical:restore")
+})
+
+it("declares only the existing shared B2 credential names", async () => {
+	const schema = await readFile(".env.schema", "utf8")
+	expect(schema).toContain("B2_BUCKET_ID=")
+	expect(schema).toContain("B2_APPLICATION_KEY_ID=")
+	expect(schema).toContain("B2_APPLICATION_KEY=")
+	expect(schema).not.toMatch(/HISTORICAL_IMAGES_(?:READ|PUBLISH)_B2/)
 })

@@ -10,9 +10,9 @@ const temporary: string[] = []
 
 afterEach(async () => {
 	vi.unstubAllGlobals()
-	delete process.env.HISTORICAL_IMAGES_READ_B2_APPLICATION_KEY
-	delete process.env.HISTORICAL_IMAGES_READ_B2_APPLICATION_KEY_ID
-	delete process.env.HISTORICAL_IMAGES_READ_B2_BUCKET_ID
+	delete process.env.B2_APPLICATION_KEY
+	delete process.env.B2_APPLICATION_KEY_ID
+	delete process.env.B2_BUCKET_ID
 	for (const path of temporary.splice(0))
 		await rm(path, { recursive: true, force: true })
 })
@@ -27,9 +27,9 @@ it("is offline and non-mutating and never reports credential values", async () =
 	await writeFile(join(root, config.cacheRoot, "entry"), "cache")
 	const before = await readFile(join(root, config.cacheRoot, "entry"), "utf8")
 	const secret = "DO-NOT-PRINT-THIS-SECRET"
-	process.env.HISTORICAL_IMAGES_READ_B2_BUCKET_ID = "bucket"
-	process.env.HISTORICAL_IMAGES_READ_B2_APPLICATION_KEY_ID = "key-id"
-	process.env.HISTORICAL_IMAGES_READ_B2_APPLICATION_KEY = secret
+	process.env.B2_BUCKET_ID = "bucket"
+	process.env.B2_APPLICATION_KEY_ID = "key-id"
+	process.env.B2_APPLICATION_KEY = secret
 	const fetch = vi.fn()
 	vi.stubGlobal("fetch", fetch)
 
@@ -40,7 +40,13 @@ it("is offline and non-mutating and never reports credential values", async () =
 	expect(result).toMatchObject({
 		lock: { status: "invalid" },
 		cache: { files: 1, bytes: 5, verification: "unverified" },
-		credentials: { read: { configured: true, presenceOnly: true } },
+		credentials: {
+			b2: {
+				configured: true,
+				presenceOnly: true,
+				isolation: "shared-across-historical-images-and-bio",
+			},
+		},
 		network: "not-contacted",
 	})
 	expect(await readFile(join(root, config.cacheRoot, "entry"), "utf8")).toBe(

@@ -366,7 +366,7 @@ async function readVerifiedManifest(
 	if (!body) {
 		if (!store)
 			throw new Error(
-				"verified manifest is not cached and read credentials are unavailable",
+				"verified manifest is not cached and no remote artifact store is configured",
 			)
 		body = await store.get(lock.manifestObject)
 		if (!body)
@@ -580,7 +580,7 @@ export async function restore(
 		const cachePath = cacheObjectPath(config, root, asset.sha256)
 		if (!store)
 			throw new Error(
-				`artifact is not cached and read credentials are unavailable: ${asset.publicPath}`,
+				`artifact is not cached and no remote artifact store is configured: ${asset.publicPath}`,
 			)
 		const body = await store.get(objectName(config, asset.sha256))
 		if (!body || body.length !== asset.bytes || sha256(body) !== asset.sha256)

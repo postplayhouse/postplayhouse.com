@@ -44,12 +44,14 @@ Checking final assets into Git would remove the cold-build credential and B2
 availability dependency and would make rollback mechanically simpler. The
 measured tradeoff is about 205 MB of unique binary growth and roughly a
 0.9–1.0 GB Git pack, paid by clones and repository maintenance. The corrected
-B2 design keeps those bytes content-addressed outside Git, gives ordinary builds
-only a prefix-restricted read key, and supports verified offline cache/DR copies;
-publisher credentials are never available to builds. B2 is therefore retained
-as the default, conditional on the external key-scope, cache, rollback, and DR
-qualification below. If those controls cannot be established, repository-backed
-final assets are the safer fallback despite their size. A transparent/hybrid
+B2 design keeps those bytes content-addressed outside Git and supports verified
+offline cache/DR copies. By explicit user decision, ordinary builds, historical
+publication, and bio tooling reuse the project's existing shared B2
+credentials. There is no credential isolation or least-privilege claim between
+those uses; isolation is limited to code paths and object naming. B2 is retained
+as the default, conditional on external capability, cache, rollback, and DR
+qualification. If those controls cannot be established, repository-backed final
+assets are the safer fallback despite their size. A transparent/hybrid
 Vite adapter remains rejected: it did not intercept enhanced-img literal loads
 without a package patch and restored the large eager browser map.
 
@@ -92,36 +94,29 @@ returns only that record's `Picture`, never an arbitrary path or the full map.
 Current-season and dynamic images keep their existing client-visible
 `enhanced:img` processing.
 
-## Trust and credential boundaries
+## Trust and credential boundary
 
-The repository defines three non-interchangeable credential contracts:
+Historical images reuse the project's existing shared configuration:
+`B2_BUCKET_ID`, `B2_APPLICATION_KEY_ID`, and `B2_APPLICATION_KEY`. The same
+values also serve bio runtime/tooling. This deliberately provides no credential
+isolation between ordinary restore, trusted publication, and bio operations and
+must not be described as least privilege. This is an explicit, accepted user
+decision.
 
-- ordinary restore: `HISTORICAL_IMAGES_READ_B2_*`;
-- trusted publisher only: `HISTORICAL_IMAGES_PUBLISH_B2_*`;
-- bio Functions/tooling only: existing `B2_*`.
+Logical and integrity boundaries remain enforced in code. Historical names are
+restricted to `historical-images/v1/`; immutable names reject collisions;
+manifests, locks, sources, generated outputs, lengths, and SHA-256 digests are
+verified; publication writes immutable objects before its pointer; and no
+historical operation deletes B2 objects. Restore invokes only list/read paths.
+Publication is explicit, Linux/x64-only, and invokes list/read/write paths with
+eager capability validation. The shared key may authorize more operations than
+a given code path uses.
 
-| Contract             | Minimum B2 capabilities          | Name prefix                                                    | Netlify scope and context                                     |
-| -------------------- | -------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------- |
-| Historical read      | `listFiles,readFiles`            | `historical-images/v1/`                                        | Builds; production and explicitly trusted branch deploys only |
-| Historical publisher | `listFiles,readFiles,writeFiles` | `historical-images/v1/` (or a disposable qualification prefix) | Never Netlify; explicitly invoked trusted tooling only        |
-| Bio runtime          | `writeFiles`                     | Existing bio-upload namespace (currently bucket-root names)    | Functions; production runtime only                            |
-
-Trusted offline bio audit tooling additionally needs `listFiles,readFiles`, but
-those credentials are injected only into that tool process and are not a Build
-variable. Deploy previews and fork/PR contexts receive none of the three
-contracts unless the repository is trusted and the context has been explicitly
-approved.
-
-The read key must be bucket-restricted and name-prefix-restricted to
-`historical-images/v1/`, with only `listFiles` and `readFiles`. The publisher
-adds `writeFiles` but not `deleteFiles`, and must never be present in Netlify
-Builds. Bio variables are Functions-scoped. Ordinary code never falls back to
-either write credential. A warm no-secret build works; a cold one fails closed.
-
-The transport verifies that each dedicated key can access its configured bucket,
-that its name-prefix restriction permits `historical-images/v1/`, and that it
-advertises the purpose-specific capabilities. Publication does not require or
-use `deleteFiles`.
+The transport verifies that the shared key can access its configured bucket,
+that any key name-prefix restriction permits `historical-images/v1/`, and that
+it advertises capabilities required by the requested operation. A fully warm
+build still performs no authorization or network fetch. A cold build without
+the shared configuration fails closed.
 
 No real B2 access is needed for development. Set
 `HISTORICAL_IMAGES_STORE_DIR=/absolute/path` to exercise the same protocol
@@ -197,8 +192,8 @@ pnpm images:historical:stage
 HISTORICAL_IMAGES_STORE_DIR=/tmp/postplayhouse-image-store \
   pnpm images:historical:publish
 
-# Trusted publication using only dedicated publisher variables. Never run this
-# in an ordinary build or with bio/read credentials.
+# Trusted publication using the shared B2 configuration. This is an explicit
+# write operation; ordinary restore never enters this path.
 pnpm with:1password pnpm images:historical:publish
 
 # Ordinary operationally read-only restore and verification.
@@ -287,27 +282,23 @@ Record restore-only and total-build wall/RSS separately.
 
 ## External qualification (not performed by repository tests)
 
-1. In **Backblaze Console → App Keys → Add a New Application Key**, create a key
-   restricted to the production bucket and name prefix `historical-images/v1/`
-   with only `listFiles,readFiles`. Create a separate trusted-publisher key for
-   the same bucket/prefix with `listFiles,readFiles,writeFiles` and no delete
-   capability. Record key IDs and values securely, then use
-   `pnpm images:historical:restore` and a disposable-prefix publish only under
-   explicit authorization. Verify wrong bucket, prefix, and capabilities fail.
-2. In **Netlify → Site configuration → Environment variables**, create the
-   three `HISTORICAL_IMAGES_READ_B2_*` values with **Builds** scope only for
-   trusted production and trusted branch contexts. Create the three existing
-   `B2_*` values with **Functions** scope only. Never add
-   `HISTORICAL_IMAGES_PUBLISH_B2_*` to Netlify. The equivalent reviewed CLI
-   shape is `netlify env:set NAME --scope builds --context production` for each
-   read variable and `netlify env:set NAME --scope functions --context
-production` for each bio variable; enter values interactively or through the
-   team's secret manager, never command history. Untrusted forks/PRs receive no
-   secrets and must use a preseeded verified cache or fail closed before Vite.
+1. Verify the existing shared B2 key's configured bucket, optional name-prefix
+   restriction, and capabilities. Restore requires `listFiles,readFiles`;
+   historical publication additionally requires `writeFiles`. Historical code
+   never requests deletion. Test wrong bucket, prefix, and capabilities against
+   mocks or a separately authorized disposable prefix.
+2. In **Netlify → Site configuration → Environment variables**, make the three
+   existing shared `B2_*` values available to Builds where cold historical
+   restore is required and to Functions where bio runtime requires them. This
+   exposes the same credential contract to both scopes and provides no
+   credential isolation, as explicitly accepted. Enter values interactively or
+   through the team's secret manager, never command history. Untrusted forks/PRs
+   receive no secrets and must use a preseeded verified cache or fail closed
+   before Vite.
 3. Exercise cold/warm production cache, cache clear, new branch, trusted PR,
    untrusted no-secret PR, plugin hook order, and failure before postbuild.
-   Confirm cache isolation and function-only bio variables.
-4. With separate explicit authorization, optionally publish a disposable
+   Confirm cache behavior and the intended shared-variable availability.
+4. Under separate explicit action approval, optionally publish a disposable
    prefix and test interruption/resume, collision/tamper failure, rollback,
    prior-version recovery, and second-copy reconstruction. Repository
    qualification performs no real B2 writes or deletes.

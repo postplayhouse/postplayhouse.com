@@ -84,7 +84,7 @@ export async function diagnose(
 		(status) => status === "verified",
 	)
 	const cache = await inventory(join(root, config.cacheRoot))
-	const readCredentials = credentials("HISTORICAL_IMAGES_READ_B2")
+	const b2Credentials = credentials("B2")
 	return {
 		lock: lockStatus,
 		generationPlatform: {
@@ -96,16 +96,17 @@ export async function diagnose(
 		cache,
 		staticAssets: await inventory(join(root, config.staticAssetRoot)),
 		credentials: {
-			read: readCredentials,
-			publisher: credentials("HISTORICAL_IMAGES_PUBLISH_B2"),
-			bio: credentials("B2"),
+			b2: {
+				...b2Credentials,
+				isolation: "shared-across-historical-images-and-bio",
+			},
 		},
 		network: "not-contacted",
 		nextCommand:
 			lockStatus.status === "invalid" || !generatedHealthy
 				? config.trustedPublishCommand
-				: cache.files === 0 && !readCredentials.configured
-					? "Seed a verified cache or configure the dedicated read-only credential, then run pnpm images:historical:restore"
+				: cache.files === 0 && !b2Credentials.configured
+					? "Seed a verified cache or configure the shared B2_* credentials, then run pnpm images:historical:restore"
 					: "pnpm images:historical:restore",
 	}
 }
