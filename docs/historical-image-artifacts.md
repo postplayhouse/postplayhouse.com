@@ -1,4 +1,4 @@
-# Historical responsive-image artifact prototype
+# Historical responsive-image artifact architecture
 
 Historical images are compiled once with the normal Svelte/Vite enhanced-image
 pipeline, stored in B2 as final immutable image assets plus a manifest, and
@@ -38,9 +38,23 @@ stores deployable image bytes and public `Picture` metadata; it does not restore
 Vite transform internals, intercept image requests, or depend on the separate
 `feat/b2-enhanced-image-cache` experiment.
 
-The reusable engine's config schema, lifecycle, and CLI are documented in
-[Immutable image artifact engine](./image-artifact-engine.md). The rest of this
-document covers the small Post Playhouse adapter and its qualification.
+### Storage decision
+
+Checking final assets into Git would remove the cold-build credential and B2
+availability dependency and would make rollback mechanically simpler. The
+measured tradeoff is about 205 MB of unique binary growth and roughly a
+0.9–1.0 GB Git pack, paid by clones and repository maintenance. The corrected
+B2 design keeps those bytes content-addressed outside Git, gives ordinary builds
+only a prefix-restricted read key, and supports verified offline cache/DR copies;
+publisher credentials are never available to builds. B2 is therefore retained
+as the default, conditional on the external key-scope, cache, rollback, and DR
+qualification below. If those controls cannot be established, repository-backed
+final assets are the safer fallback despite their size. A transparent/hybrid
+Vite adapter remains rejected: it did not intercept enhanced-img literal loads
+without a package patch and restored the large eager browser map.
+
+The Svelte-specific infrastructure's config schema, lifecycle, and CLI are
+documented in [Post Playhouse Svelte image artifact infrastructure](./image-artifact-engine.md).
 
 ## Post Playhouse configuration and annual rollover
 
@@ -50,7 +64,7 @@ four-digit directories below `src/images/people` and `src/images/seasons`, and
 archives every directory older than that value. The current directory remains
 in literal generated Vite globs. Missing historical years are allowed; a future
 year directory fails with an instruction to update the configured season first.
-Exact lowercase extensions preserve the current exclusion of uppercase `.JPG`
+Exact lowercase extensions preserve the current exclusion of upper-case `.JPG`
 files. Root-level historical files and the two raffle profile exceptions are
 fixed adapter configuration, not annual work. Dynamic `/media` inputs are not
 configured and continue through Vite normally.
@@ -80,23 +94,34 @@ Current-season and dynamic images keep their existing client-visible
 
 ## Trust and credential boundaries
 
-The archive reuses the project's existing B2 bucket and configuration:
+The repository defines three non-interchangeable credential contracts:
 
-- `B2_BUCKET_ID`
-- `B2_APPLICATION_KEY_ID`
-- `B2_APPLICATION_KEY`
+- ordinary restore: `HISTORICAL_IMAGES_READ_B2_*`;
+- trusted publisher only: `HISTORICAL_IMAGES_PUBLISH_B2_*`;
+- bio Functions/tooling only: existing `B2_*`.
 
-Historical artifacts are logically isolated under `historical-images/v1/`.
-There is no dedicated historical bucket or credential isolation: the existing
-key is shared with bio-submission tooling and may have write capability.
-The ordinary restore command is nevertheless operationally read-only: it calls
-only B2 authorization, list, and download APIs. Publication remains an explicit
-trusted command and is never a build hook.
+| Contract             | Minimum B2 capabilities          | Name prefix                                                    | Netlify scope and context                                     |
+| -------------------- | -------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------- |
+| Historical read      | `listFiles,readFiles`            | `historical-images/v1/`                                        | Builds; production and explicitly trusted branch deploys only |
+| Historical publisher | `listFiles,readFiles,writeFiles` | `historical-images/v1/` (or a disposable qualification prefix) | Never Netlify; explicitly invoked trusted tooling only        |
+| Bio runtime          | `writeFiles`                     | Existing bio-upload namespace (currently bucket-root names)    | Functions; production runtime only                            |
 
-The transport verifies that the configured key can access `B2_BUCKET_ID`, that
-any key name-prefix restriction permits `historical-images/v1/`, and that it
-advertises `listFiles` and `readFiles`. Publication additionally requires
-`writeFiles`. It does not require or use `deleteFiles`.
+Trusted offline bio audit tooling additionally needs `listFiles,readFiles`, but
+those credentials are injected only into that tool process and are not a Build
+variable. Deploy previews and fork/PR contexts receive none of the three
+contracts unless the repository is trusted and the context has been explicitly
+approved.
+
+The read key must be bucket-restricted and name-prefix-restricted to
+`historical-images/v1/`, with only `listFiles` and `readFiles`. The publisher
+adds `writeFiles` but not `deleteFiles`, and must never be present in Netlify
+Builds. Bio variables are Functions-scoped. Ordinary code never falls back to
+either write credential. A warm no-secret build works; a cold one fails closed.
+
+The transport verifies that each dedicated key can access its configured bucket,
+that its name-prefix restriction permits `historical-images/v1/`, and that it
+advertises the purpose-specific capabilities. Publication does not require or
+use `deleteFiles`.
 
 No real B2 access is needed for development. Set
 `HISTORICAL_IMAGES_STORE_DIR=/absolute/path` to exercise the same protocol
@@ -104,22 +129,37 @@ against a local filesystem fixture.
 
 ## Data model and atomic publication
 
-`historical-images/publication.v1.json` is a small repository lock. It pins one
-immutable manifest object by SHA-256 and byte length. The manifest records:
+`historical-images/publication.v1.json` is a readable repository lock. It pins
+the immutable manifest, every app-consumed generated module, narrow pipeline
+and source identities, counts, unique bytes, source/profile
+additions/removals/changes, and public-path additions/removals.
+The manifest records:
 
 - exact source path, source digest, transform profile, and transform identity;
 - exact serialized `Picture` data used by Svelte;
 - every public asset URL, digest, byte length, format, and dimensions;
-- package, lockfile, Sharp/libvips, platform, and profile configuration identity.
+- byte-affecting package, exact Node/Sharp/libvips, platform, profile, and
+  generator-source identity. Unrelated lockfile edits do not invalidate it.
 
-`generatorRevision` is the publisher-code compatibility boundary described in
-the generic engine document. Changing it intentionally invalidates all
-transform keys.
+`generatorRevision` is an explicit protocol boundary. Profiles, generator
+sources, and byte-affecting package identities are also hashed automatically;
+changing any of them invalidates transform keys.
+
+The v2 lock is also a reviewed migration attestation for its exact v1 manifest:
+when `prepare` supplies that byte-identical manifest and the lock's source and
+pipeline digests still match, generation may carry forward unchanged Pictures
+while rewriting their transform keys to the current protocol. Any manifest,
+source, profile, package, or generator mismatch disables that bridge and forces
+regeneration. This avoids a one-time 650-source rebuild without turning
+`generatorRevision` or a marker string into an invalidation override.
 
 Artifacts use `historical-images/v1/objects/<sha256>`. Manifests use
 `historical-images/v1/manifests/<sha256>.json`. The publisher uploads and
 verifies immutable objects first, then the immutable manifest, and updates
-`historical-images/v1/latest.json` last. Ordinary builds ignore `latest.json`
+`historical-images/v1/latest.json`. It then atomically replaces the local lock
+with temp-file-plus-rename. B2 and the filesystem cannot form one transaction:
+`latest` can advance if the rename fails, but ordinary builds ignore it and the
+old lock remains usable. No stronger atomicity claim is made. Ordinary builds ignore `latest.json`
 and restore only the manifest pinned by the reviewed repository lock, avoiding
 an unreviewed mutable deployment input.
 
@@ -128,19 +168,26 @@ objects are never deleted or rewritten. A failed publication leaves the old
 repository lock and publication usable. Commit source changes, generated
 runtime maps, and the new lock together only after publication succeeds.
 
+For B2, one paginated `b2_list_file_names` inventory returns B2's
+server-computed content SHA-1 and length. The publisher has already verified the
+local candidate by SHA-256 and length; matching server SHA-1/length therefore
+avoids downloading every unchanged object on a repeat publication. Missing
+metadata or any mismatch falls back to a full download and byte comparison,
+then fails on collision. The SHA-256-named object and manifest remain the
+restore trust boundary: every downloaded byte is checked by SHA-256 and length.
+
 ## Commands
 
 ```sh
 # Verify the exact 650-source / 652-profile discovery graph.
 pnpm images:historical:discover
 
-# Trusted generation. Output is intentionally ignored by Git.
-SOURCE_DATE_EPOCH="$(git show -s --format=%ct HEAD)" \
-  pnpm images:historical:generate --output .historical-images-output.ignore
+# Fresh-machine hydration from the reviewed lock and verified read store/cache.
+pnpm images:historical:prepare --output .historical-images-output.ignore
 
-# Incremental generation reuses unchanged Picture records and transforms only
-# new or changed source/profile identities.
-pnpm images:historical:generate \
+# Incremental trusted generation. Output is intentionally ignored by Git.
+SOURCE_DATE_EPOCH="$(git show -s --format=%ct HEAD)" \
+  pnpm images:historical:generate \
   --previous .historical-images-output.ignore/manifest.v1.json \
   --output .historical-images-output.ignore
 
@@ -148,8 +195,8 @@ pnpm images:historical:generate \
 HISTORICAL_IMAGES_STORE_DIR=/tmp/postplayhouse-image-store \
   pnpm images:historical:publish --output .historical-images-output.ignore
 
-# Trusted publication to the configured shared B2 bucket. The command writes
-# only below historical-images/v1/.
+# Trusted publication using only dedicated publisher variables. Never run this
+# in an ordinary build or with bio/read credentials.
 pnpm with:1password pnpm images:historical:publish \
   --output .historical-images-output.ignore
 
@@ -166,19 +213,34 @@ byte-identical `.jpeg` alias is retained for warm-cache legacy URLs.
 
 ## Failure behavior and recovery
 
-Restore verifies the repository lock, manifest digest and schema, complete
-source inventory, pipeline identity, object digest/length, and image
-format/dimensions. It installs each missing object through a temporary file and
-atomic rename. Missing, stale, unavailable, or tampered data fails the build
+Restore verifies the lock, manifest digest/schema, recomputed source and
+pipeline identity, generated-module digest/length, and every object
+digest/length. It installs through temp-file/rename and prunes only paths in its
+artifact-owned restore ledger. Symlinked owned roots are rejected; unrelated
+static/Vite outputs remain untouched. Missing, stale, unavailable, or tampered data fails the build
 with the trusted generation command; there is no historical Vite-transform
 fallback.
 
-The verified cache lives at `.cache/historical-images`. Netlify's build plugin
+The verified cache lives at `.cache/historical-images`. `prepare` reconstructs
+a complete previous output before incremental generation, covering additions,
+changes, acknowledged deletion, rename (delete+add), annual rollover, resume,
+and rollback without retaining a developer's ignored output. Netlify's build plugin
 persists only this cache in `/opt/build/cache`; the plugin itself does not
 access B2 or publish. A fully warm cache works offline. A cold cache fails
 cleanly if B2 is unavailable. To recover, restore B2 connectivity or repopulate
 the local cache from a verified store; never bypass verification or edit the
 lock.
+
+B2 names are versioned conventions, not object-lock. Hash mismatch fails closed.
+Retain old manifests/versions and a second verified cache copy; enable provider
+retention/object lock where available. For B2 loss, seed a filesystem store from
+that copy, run `prepare`, collision-verify and republish under explicit
+authorization, then review the new lock. Roll back by reverting sources,
+generated modules, and lock together.
+
+Generation is supported only on pinned Linux/x64. macOS may run `restore` and
+`prepare` because final-byte copying does not invoke libvips; it must not publish
+or claim byte-reproducible generation. Linux CI requalifies toolchain changes.
 
 ## Reproducible qualification
 
@@ -187,6 +249,8 @@ caches:
 
 ```sh
 rm -rf .cache/historical-images static/_app/immutable/assets build .svelte-kit
+# Keep node_modules/.cache/imagetools identical in both runs, or clear it before
+# both, so current/dynamic transforms are not silently warmer in one sample.
 node scripts/profile-build.mjs --output cold.json --csv cold.csv -- \
   pnpm run build:low-memory
 
@@ -211,10 +275,74 @@ Run `pnpm test:unit --run`, `pnpm check`, `pnpm lint`, and
 people, season, production, raffle, and original-download URLs and verify
 `currentSrc`, natural dimensions, source order, alt text, and classes.
 
-## Prototype qualification results
+Acceptance budget: at most `ceil(objects/1000)` object inventory-list requests
+(plus the pinned manifest lookup); one download per cold unique object
+(currently 4,032 / 198,574,206 bytes); zero warm transfer; at most eight
+concurrent object operations; restore cold/warm delta ≤30 seconds and ≤10%;
+total-build peak RSS below 1.8 GiB. A repeat publication should inventory the
+4,032 objects in about five list pages and download no matching object bodies.
+Record restore-only and total-build wall/RSS separately.
 
-Measured on the review Orb from master `6a610de5`, with the low-memory command
-and 250 ms process-tree sampling:
+## External qualification (not performed by repository tests)
+
+1. In **Backblaze Console → App Keys → Add a New Application Key**, create a key
+   restricted to the production bucket and name prefix `historical-images/v1/`
+   with only `listFiles,readFiles`. Create a separate trusted-publisher key for
+   the same bucket/prefix with `listFiles,readFiles,writeFiles` and no delete
+   capability. Record key IDs and values securely, then use
+   `pnpm images:historical:verify` and a disposable-prefix publish only under
+   explicit authorization. Verify wrong bucket, prefix, and capabilities fail.
+2. In **Netlify → Site configuration → Environment variables**, create the
+   three `HISTORICAL_IMAGES_READ_B2_*` values with **Builds** scope only for
+   trusted production and trusted branch contexts. Create the three existing
+   `B2_*` values with **Functions** scope only. Never add
+   `HISTORICAL_IMAGES_PUBLISH_B2_*` to Netlify. The equivalent reviewed CLI
+   shape is `netlify env:set NAME --scope builds --context production` for each
+   read variable and `netlify env:set NAME --scope functions --context
+production` for each bio variable; enter values interactively or through the
+   team's secret manager, never command history. Untrusted forks/PRs receive no
+   secrets and must use a preseeded verified cache or fail closed before Vite.
+3. Exercise cold/warm production cache, cache clear, new branch, trusted PR,
+   untrusted no-secret PR, plugin hook order, and failure before postbuild.
+   Confirm cache isolation and function-only bio variables.
+4. With separate explicit authorization, optionally publish a disposable
+   prefix and test interruption/resume, collision/tamper failure, rollback,
+   prior-version recovery, and second-copy reconstruction. Repository
+   qualification performs no real B2 writes or deletes.
+
+## Current repository qualification results
+
+The production credentials and Netlify settings were deliberately not used.
+Against a filesystem read store made from the independently SHA-256-verified
+warm cache, a fresh cache/static restore copied 5,268 paths from 4,032 objects
+(198,574,206 unique bytes) in 9.63s at 425,108 KiB RSS. Repeating offline after
+removing only static artifacts used 4,032 cache hits, transferred zero bytes,
+and took 8.04s at 537,784 KiB RSS. The 1.59s absolute delta passes the 30s
+budget; the 19.8% relative delta does not pass the 10% budget. A no-op verified
+restore took 6.17s at 508,936 KiB RSS.
+
+A controlled local build cleared `node_modules/.cache/imagetools` for both exact
+master `6a610de5` and this candidate. Master took 2,322.517s (38m 42.5s) at
+2,852,995,072 bytes (2.657 GiB) peak process-tree RSS. Two candidate runs took
+105.700s at 1,854,717,952 bytes (1.727 GiB) and 102.000s at 1,936,924,672 bytes
+(1.804 GiB). Wall time improved by about 95.5%; peak RSS improved by 32.1–35.0%.
+The second run exceeded the 1.8 GiB RSS budget by about 4 MiB, so the budget is
+not consistently met. The bidirectional evaluator found 5,492 assets, 479
+people originals, and 880 Pictures on each side, with no missing, extra, or
+changed entries. A prior 135.432s candidate run was rejected because its
+current/dynamic imagetools cache was warm while master's was cold.
+
+Fresh `prepare` reconstructed all 5,268 paths from the reviewed cache in 7.99s
+at 477,100 KiB RSS, without retained ignored output or network access. The v1 to
+v2 migration bridge then reused all 652 source/profile results only after the
+tracked v2 lock attested the exact old manifest, source set, and new pipeline.
+It produced 5,268 assets backed by the same 4,032 objects without encoding.
+
+## Inherited prototype evidence (not re-run against B2 or Netlify)
+
+The source prototype reported the following measurements from master
+`6a610de5`, using the low-memory command and 250 ms process-tree sampling. They
+are historical context, not current real-B2 or Netlify qualification:
 
 | Path                   | Wall time |  Peak RSS | At least 90% peak |    Store transfer |
 | ---------------------- | --------: | --------: | ----------------: | ----------------: |
@@ -237,10 +365,11 @@ created zero objects and transferred zero bytes.
 Against the retained master output, all 5,492 asset paths/hashes and
 format/dimension inventory entries matched, all 880 prerendered `<picture>`
 structures matched, and all 479 original people downloads were byte-identical.
-The real-B2 transport qualification used the same securely injected project
-bucket and credentials. Authorization advertised the required list, read, and
-write capabilities for the configured bucket and permitted the archive prefix.
-All transport methods reject names outside `historical-images/v1/`.
+The source work also reported a real-B2 transport qualification using securely
+injected project credentials. That external claim was not repeated for the
+current repository changes. Repository tests do verify capability, bucket,
+prefix, retry, timeout, authorization-expiry, batching, and collision behavior
+with realistic mocked responses.
 
 The first complete publication created 4,032 objects totaling 198,574,206
 bytes. A transient B2 `503 no tomes available` interrupted the initial pass

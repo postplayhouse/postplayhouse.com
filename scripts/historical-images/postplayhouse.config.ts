@@ -96,6 +96,43 @@ function attribute(tag: string, name: string): string | undefined {
 	return tag.match(new RegExp(`${name}=["']([^"']+)["']`))?.[1]
 }
 
+function location(content: string, index: number): string {
+	const before = content.slice(0, index)
+	const line = before.split("\n").length
+	const column = index - before.lastIndexOf("\n")
+	return `${line}:${column}`
+}
+
+export function imageComponentTags(
+	content: string,
+	file: string,
+): Array<{ name: "PersonImage" | "SeasonImage"; tag: string; at: string }> {
+	const tags: Array<{
+		name: "PersonImage" | "SeasonImage"
+		tag: string
+		at: string
+	}> = []
+	const starts = /<(PersonImage|SeasonImage)\b/g
+	for (const match of content.matchAll(starts)) {
+		const end = content.indexOf(">", match.index)
+		if (end < 0)
+			throw new Error(
+				`Unterminated ${match[1]} in ${file}:${location(content, match.index)}`,
+			)
+		const tag = content.slice(match.index, end + 1)
+		if (tag.slice(1).includes("<"))
+			throw new Error(
+				`Cannot parse ${match[1]} in ${file}:${location(content, match.index)}`,
+			)
+		tags.push({
+			name: match[1] as "PersonImage" | "SeasonImage",
+			tag,
+			at: `${file}:${location(content, match.index)}`,
+		})
+	}
+	return tags
+}
+
 async function productionImage(
 	root: string,
 	content: string,
@@ -118,15 +155,16 @@ export async function generatedNewsImageReferences(
 		const content = await readFile(join(newsRoot, relative), "utf8")
 		const people: string[] = []
 		const seasons: string[] = []
-		for (const match of content.matchAll(/<PersonImage\b[^>]*\/>/gs)) {
-			const key = attribute(match[0], "partialPath")
-			if (!key)
-				throw new Error(`Cannot resolve PersonImage in news/${relative}`)
+		for (const component of imageComponentTags(content, `news/${relative}`)) {
+			if (component.name !== "PersonImage") continue
+			const key = attribute(component.tag, "partialPath")
+			if (!key) throw new Error(`Cannot resolve PersonImage at ${component.at}`)
 			people.push(key)
 		}
-		for (const match of content.matchAll(/<SeasonImage\b[^>]*\/>/gs)) {
-			const imageSeason = attribute(match[0], "season")
-			let imageFile = attribute(match[0], "imageFile")
+		for (const component of imageComponentTags(content, `news/${relative}`)) {
+			if (component.name !== "SeasonImage") continue
+			const imageSeason = attribute(component.tag, "season")
+			let imageFile = attribute(component.tag, "imageFile")
 			if (imageFile?.includes("{image}")) {
 				const prefix = imageFile.replace("{image}", "")
 				const values = content.match(/const images = \[([\s\S]*?)\]/)?.[1]
@@ -136,10 +174,10 @@ export async function generatedNewsImageReferences(
 					seasons.push(`${imageSeason}/${prefix}${value[1]}`)
 				continue
 			}
-			if (!imageFile && match[0].includes("imageFile={production.image}"))
+			if (!imageFile && component.tag.includes("imageFile={production.image}"))
 				imageFile = await productionImage(root, content)
 			if (!imageSeason || !imageFile)
-				throw new Error(`Cannot resolve SeasonImage in news/${relative}`)
+				throw new Error(`Cannot resolve SeasonImage at ${component.at}`)
 			seasons.push(`${imageSeason}/${imageFile}`)
 		}
 		if (people.length || seasons.length) {
@@ -217,24 +255,47 @@ export async function postPlayhouseArtifactConfig(
 	options: { allowGeneratedOutputsToBeStale?: boolean } = {},
 ): Promise<ArtifactConfig> {
 	if (!options.allowGeneratedOutputsToBeStale) {
-		const live = await readFile(join(root, generatedLiveImagesPath), "utf8")
-		if (!live.includes(`generatedCurrentSeason: number = ${season}`))
-			throw new Error(
-				`Current image imports do not match configured season ${season}; run pnpm images:historical:generate`,
-			)
+		const verifyGeneratedOutput = async (
+			relativePath: string,
+			expected: string,
+		) => {
+			let actual: string
+			try {
+				actual = await readFile(join(root, relativePath), "utf8")
+			} catch (error) {
+				if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error
+				actual = ""
+			}
+			if (actual !== expected)
+				throw new Error(
+					`Generated image module is stale: ${relativePath}; run pnpm images:historical:generate`,
+				)
+		}
+		await verifyGeneratedOutput(generatedLiveImagesPath, generatedLiveImages())
+		await verifyGeneratedOutput(
+			generatedNewsImageReferencesPath,
+			await generatedNewsImageReferences(root),
+		)
 	}
 	return validateArtifactConfig({
 		identity: `postplayhouse-season-${season}`,
 		legacyCurrentSeason: season,
 		schemaVersion: 1,
 		generatorRevision: 1,
-		// The declarative profiles below are behaviorally identical to the
-		// qualified prototype profiles, so retain their transform identity.
-		profileConfigurationSha256:
-			"ae6440b9cc00fd7f39c2ac1c3dc3c169563f94ec5d00d82c36caf99ce550044e",
 		storePrefix: "historical-images/v1",
 		lockPath: "historical-images/publication.v1.json",
 		generatedMetadataPath: "src/lib/server/generated/historical-images.ts",
+		generatedOutputPaths: [
+			"src/lib/server/generated/historical-images.ts",
+			generatedNewsImageReferencesPath,
+			generatedLiveImagesPath,
+		],
+		pipelineSourcePaths: [
+			"scripts/historical-images/generate.ts",
+			"scripts/historical-images/metadata.ts",
+			"scripts/historical-images/compatibility.ts",
+			"scripts/historical-images/postplayhouse.config.ts",
+		],
 		staticAssetRoot: "static/_app/immutable/assets",
 		cacheRoot: ".cache/historical-images",
 		publicAssetPrefix: "/_app/immutable/assets/",

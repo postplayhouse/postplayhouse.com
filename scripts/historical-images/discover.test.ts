@@ -20,8 +20,9 @@ async function fixture(): Promise<string> {
 	await mkdir(join(root, "inputs/catalog-a/nested"), { recursive: true })
 	await mkdir(join(root, "inputs/catalog-b"), { recursive: true })
 	await writeFile(join(root, "inputs/catalog-a/cover.jpg"), "cover-v1")
+	await writeFile(join(root, "inputs/catalog-a/cover.JPG"), "case-collision")
 	await writeFile(join(root, "inputs/catalog-a/nested/detail.png"), "detail")
-	await writeFile(join(root, "inputs/catalog-a/ignored.JPG"), "uppercase")
+	await writeFile(join(root, "inputs/catalog-a/ignored.JPG"), "ignored")
 	await writeFile(join(root, "inputs/catalog-b/banner.webp"), "banner")
 	return root
 }

@@ -162,6 +162,7 @@ describe("B2 historical artifact transport", () => {
 
 	it("retries an explicit transient B2 upload response", async () => {
 		vi.useFakeTimers()
+		vi.spyOn(Math, "random").mockReturnValue(0.5)
 		const fetch = vi
 			.fn()
 			.mockResolvedValueOnce(authorization())
@@ -190,5 +191,135 @@ describe("B2 historical artifact transport", () => {
 			"X-Bz-File-Name": "historical-images/v1/latest.json",
 			"Content-Type": "application/json",
 		})
+	})
+
+	it("retries thrown network failures and honors Retry-After", async () => {
+		vi.useFakeTimers()
+		vi.spyOn(Math, "random").mockReturnValue(0.5)
+		const fetch = vi
+			.fn()
+			.mockRejectedValueOnce(new TypeError("network reset"))
+			.mockResolvedValueOnce(
+				new Response("busy", { status: 429, headers: { "Retry-After": "2" } }),
+			)
+			.mockResolvedValueOnce(authorization())
+		vi.stubGlobal("fetch", fetch)
+
+		const permissions = new B2ArtifactStore(credentials).checkPermissions(false)
+		await vi.advanceTimersByTimeAsync(250)
+		await vi.advanceTimersByTimeAsync(2_250)
+		await permissions
+		expect(fetch).toHaveBeenCalledTimes(3)
+	})
+
+	it("bounds retries for timeout failures", async () => {
+		vi.useFakeTimers()
+		vi.spyOn(Math, "random").mockReturnValue(0.5)
+		const timeout = new Error("timed out")
+		timeout.name = "TimeoutError"
+		const fetch = vi
+			.fn()
+			.mockRejectedValueOnce(timeout)
+			.mockResolvedValueOnce(authorization())
+		vi.stubGlobal("fetch", fetch)
+		const permissions = new B2ArtifactStore(credentials).checkPermissions(false)
+		await vi.advanceTimersByTimeAsync(250)
+		await permissions
+		expect(fetch).toHaveBeenCalledTimes(2)
+	})
+
+	it("lists an object range once before parallel downloads", async () => {
+		const files = ["a", "b"].map((suffix) => ({
+			fileId: `id-${suffix}`,
+			fileName: `historical-images/v1/objects/${suffix}`,
+		}))
+		const fetch = vi
+			.fn()
+			.mockResolvedValueOnce(authorization())
+			.mockResolvedValueOnce(json({ files, nextFileName: null }))
+			.mockResolvedValueOnce(new Response("a"))
+			.mockResolvedValueOnce(new Response("b"))
+		vi.stubGlobal("fetch", fetch)
+		const store = new B2ArtifactStore(credentials)
+		await store.prime(files.map(({ fileName }) => fileName))
+		expect(await store.get(files[0].fileName)).toEqual(Buffer.from("a"))
+		expect(await store.get(files[1].fileName)).toEqual(Buffer.from("b"))
+		expect(
+			fetch.mock.calls.filter(([url]) =>
+				String(url).includes("b2_list_file_names"),
+			),
+		).toHaveLength(1)
+	})
+
+	it("reuses listed objects by server length and SHA-1 without downloading them", async () => {
+		const body = Buffer.from("verified local artifact")
+		const name = "historical-images/v1/objects/digest"
+		const contentSha1 = await import("node:crypto").then(({ createHash }) =>
+			createHash("sha1").update(body).digest("hex"),
+		)
+		const fetch = vi
+			.fn()
+			.mockResolvedValueOnce(authorization())
+			.mockResolvedValueOnce(
+				json({
+					files: [
+						{
+							fileId: "existing-id",
+							fileName: name,
+							contentLength: body.length,
+							contentSha1,
+						},
+					],
+				}),
+			)
+		vi.stubGlobal("fetch", fetch)
+		const store = new B2ArtifactStore(credentials)
+		await store.prime([name])
+		expect(await store.putImmutable(name, body, "image/jpeg")).toBe("exists")
+		expect(fetch).toHaveBeenCalledTimes(2)
+	})
+
+	it("still performs an exact lookup for a name not covered by priming", async () => {
+		const primed = "historical-images/v1/objects/a"
+		const unprimed = "historical-images/v1/objects/z"
+		const fetch = vi
+			.fn()
+			.mockResolvedValueOnce(authorization())
+			.mockResolvedValueOnce(json({ files: [], nextFileName: null }))
+			.mockResolvedValueOnce(
+				json({ files: [{ fileId: "z-id", fileName: unprimed }] }),
+			)
+			.mockResolvedValueOnce(new Response("z"))
+		vi.stubGlobal("fetch", fetch)
+		const store = new B2ArtifactStore(credentials)
+		await store.prime([primed])
+		expect(await store.get(unprimed)).toEqual(Buffer.from("z"))
+		expect(
+			fetch.mock.calls.filter(([url]) =>
+				String(url).includes("b2_list_file_names"),
+			),
+		).toHaveLength(2)
+	})
+
+	it("reauthorizes once when an account token expires", async () => {
+		const name = "historical-images/v1/objects/digest"
+		const fetch = vi
+			.fn()
+			.mockResolvedValueOnce(authorization())
+			.mockResolvedValueOnce(new Response("expired", { status: 401 }))
+			.mockResolvedValueOnce(authorization())
+			.mockResolvedValueOnce(
+				json({ files: [{ fileId: "fresh-id", fileName: name }] }),
+			)
+			.mockResolvedValueOnce(new Response("artifact"))
+		vi.stubGlobal("fetch", fetch)
+		expect(await new B2ArtifactStore(credentials).get(name)).toEqual(
+			Buffer.from("artifact"),
+		)
+		expect(
+			fetch.mock.calls.filter(([url]) =>
+				String(url).includes("authorize_account"),
+			),
+		).toHaveLength(2)
 	})
 })

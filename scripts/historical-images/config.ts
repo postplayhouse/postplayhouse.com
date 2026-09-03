@@ -29,10 +29,11 @@ export interface ArtifactConfig {
 	legacyCurrentSeason?: number
 	schemaVersion: 1
 	generatorRevision: number
-	profileConfigurationSha256?: string
 	storePrefix: string
 	lockPath: string
 	generatedMetadataPath: string
+	generatedOutputPaths: readonly string[]
+	pipelineSourcePaths: readonly string[]
 	staticAssetRoot: string
 	cacheRoot: string
 	publicAssetPrefix: string
@@ -75,16 +76,16 @@ export function validateArtifactConfig(config: ArtifactConfig): ArtifactConfig {
 		throw new Error(
 			"Artifact config publicAssetPrefix must start and end with /",
 		)
-	if (
-		config.profileConfigurationSha256 &&
-		(config.profileConfigurationSha256.length !== 64 ||
-			[...config.profileConfigurationSha256].some(
-				(character) => !"0123456789abcdef".includes(character),
-			))
-	)
-		throw new Error(
-			"Artifact config profileConfigurationSha256 must be a SHA-256",
-		)
+	for (const path of [
+		...config.generatedOutputPaths,
+		...config.pipelineSourcePaths,
+	])
+		if (!safeRelativePath(path))
+			throw new Error(
+				`Artifact config path must be repository-relative: ${path}`,
+			)
+	if (!config.generatedOutputPaths.includes(config.generatedMetadataPath))
+		throw new Error("generatedOutputPaths must include generatedMetadataPath")
 
 	const sourceIds = new Set<string>()
 	const collections = new Set<string>()

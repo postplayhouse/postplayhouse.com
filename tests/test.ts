@@ -123,6 +123,18 @@ test("bio headshot lookup returns one approved historical picture", async ({
 			)
 		).status(),
 	).toBe(404)
+	for (const query of [
+		"",
+		"?id=2026%2FJO-ARNOLD.JPG",
+		"?id=2027%2Fcurrent.jpg",
+		"?id=2026%2Fmissing.jpg",
+		"?id=%252e%252e%252F2026%252Fjo-arnold.jpg",
+	])
+		expect(
+			(
+				await request.get(`/bio-submission/historical-headshot${query}`)
+			).status(),
+		).toBe(404)
 })
 
 test("complete historical metadata stays out of client bundles", async () => {
@@ -139,6 +151,28 @@ test("complete historical metadata stays out of client bundles", async () => {
 	const clientSource = (
 		await Promise.all(javascript.map((path) => readFile(path, "utf8")))
 	).join("\n")
-	expect(clientSource).not.toContain("jo-arnold.B64bAtGj.avif")
+	const generatedMap = await readFile(
+		"src/lib/server/generated/historical-images.ts",
+		"utf8",
+	)
+	const archivedUrls = new Set(
+		generatedMap.match(/\/_app\/immutable\/assets\/[A-Za-z0-9_.%+-]+/g) ?? [],
+	)
+	const leakedUrls = [...archivedUrls].filter((url) =>
+		clientSource.includes(url),
+	)
+	expect(archivedUrls.size).toBeGreaterThan(4_000)
+	expect(leakedUrls).toEqual([])
 	expect(clientSource).not.toContain("historicalPeoplePictures")
+})
+
+test("prerender data contains only the route-selected historical pictures", async () => {
+	const data = await readFile("build/who/2026/__data.json", "utf8")
+	const selectedUrls = new Set(
+		data.match(/\/_app\/immutable\/assets\/[A-Za-z0-9_.%+-]+/g) ?? [],
+	)
+	expect(selectedUrls.size).toBeGreaterThan(300)
+	expect(selectedUrls.size).toBeLessThan(400)
+	expect(data).toContain("jo-arnold.B64bAtGj.avif")
+	expect(data).not.toContain("ken-phillips.CDNuwayB.avif")
 })

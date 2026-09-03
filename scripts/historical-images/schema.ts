@@ -52,6 +52,9 @@ export const compatibilitySchema = z.object({
 	platform: z.string(),
 	arch: z.string(),
 	profileConfigurationSha256: sha256,
+	generatorSourceSha256: sha256.optional(),
+	nodeVersion: z.string().optional(),
+	sharpVersionsSha256: sha256.optional(),
 })
 
 export const manifestSchema = z
@@ -71,13 +74,36 @@ export const manifestSchema = z
 		"manifest requires configurationId",
 	)
 
+const generatedOutputSchema = z.object({
+	bytes: z.number().int().positive(),
+	sha256,
+})
+
 export const lockSchema = z.object({
-	schemaVersion: z.literal(1),
+	schemaVersion: z.union([z.literal(1), z.literal(2)]),
 	manifestObject: z.string().min(1),
 	manifestSha256: sha256,
 	manifestBytes: z.number().int().positive(),
 	publicationId: sha256,
 	sourceSetSha256: sha256,
+	pipelineSha256: sha256.optional(),
+	generatedOutputs: z
+		.record(safeRelativePath, generatedOutputSchema)
+		.optional(),
+	summary: z
+		.object({
+			sourceProfiles: z.number().int().nonnegative(),
+			uniqueSources: z.number().int().nonnegative(),
+			publicPaths: z.number().int().nonnegative(),
+			uniqueObjects: z.number().int().nonnegative(),
+			uniqueBytes: z.number().int().nonnegative(),
+			addedPublicPaths: z.array(z.string()),
+			removedPublicPaths: z.array(z.string()),
+			addedSourceProfiles: z.array(z.string()),
+			removedSourceProfiles: z.array(z.string()),
+			changedSourceProfiles: z.array(z.string()),
+		})
+		.optional(),
 })
 
 export const latestSchema = lockSchema.extend({

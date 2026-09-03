@@ -16,7 +16,10 @@ interface FileInventory {
 
 async function walk(directory: string): Promise<string[]> {
 	const result: string[] = []
-	for (const entry of await readdir(directory, { withFileTypes: true })) {
+	const entries = await readdir(directory, { withFileTypes: true })
+	for (const entry of entries.sort((left, right) =>
+		left.name.localeCompare(right.name),
+	)) {
 		const path = join(directory, entry.name)
 		if (entry.isDirectory()) result.push(...(await walk(path)))
 		else if (entry.isFile()) result.push(path)
@@ -102,12 +105,14 @@ export async function evaluate(buildRoot: string): Promise<unknown> {
 	}
 }
 
-function compare(
+export function compare(
 	baseline: Awaited<ReturnType<typeof evaluate>>,
 	candidate: Awaited<ReturnType<typeof evaluate>>,
 ): {
 	missingOrChangedAssets: string[]
+	extraAssets: string[]
 	changedPeopleOriginals: string[]
+	extraPeopleOriginals: string[]
 	picturesEqual: boolean
 } {
 	const left = baseline as {
@@ -122,12 +127,20 @@ function compare(
 	}
 	const candidateAssets = new Map(right.assets.map((item) => [item.path, item]))
 	const candidatePeople = new Map(right.people.map((item) => [item.path, item]))
+	const baselineAssets = new Set(left.assets.map(({ path }) => path))
+	const baselinePeople = new Set(left.people.map(({ path }) => path))
 	return {
 		missingOrChangedAssets: left.assets
 			.filter((item) => candidateAssets.get(item.path)?.sha256 !== item.sha256)
 			.map(({ path }) => path),
+		extraAssets: right.assets
+			.filter(({ path }) => !baselineAssets.has(path))
+			.map(({ path }) => path),
 		changedPeopleOriginals: left.people
 			.filter((item) => candidatePeople.get(item.path)?.sha256 !== item.sha256)
+			.map(({ path }) => path),
+		extraPeopleOriginals: right.people
+			.filter(({ path }) => !baselinePeople.has(path))
 			.map(({ path }) => path),
 		picturesEqual:
 			JSON.stringify(left.pictures) === JSON.stringify(right.pictures),

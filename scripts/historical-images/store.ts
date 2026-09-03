@@ -2,6 +2,7 @@ import { mkdir, readFile, stat, writeFile } from "node:fs/promises"
 import { dirname, join } from "node:path"
 
 export interface ArtifactStore {
+	prime?(names: string[]): Promise<void>
 	get(name: string): Promise<Buffer | null>
 	putImmutable(
 		name: string,

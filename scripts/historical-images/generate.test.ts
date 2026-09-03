@@ -88,10 +88,13 @@ describe("incremental generation plan", () => {
 	it("regenerates sources when publisher compatibility changes", () => {
 		const prior = previous()
 		const source = prior.sources.map(asDiscovered)
+		const changedCompatibility = { ...compatibility, generatorRevision: 2 }
+		expect(planGeneration(source, prior, changedCompatibility).changed).toEqual(
+			source,
+		)
 		expect(
-			planGeneration(source, prior, { ...compatibility, generatorRevision: 2 })
-				.changed,
-		).toEqual(source)
+			planGeneration(source, prior, changedCompatibility, true).changed,
+		).toEqual([])
 	})
 })
 

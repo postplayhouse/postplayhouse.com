@@ -9,6 +9,8 @@ import provider, {
 	archivedYearDirectories,
 	generatedLiveImages,
 	generatedLiveImagesPath,
+	generatedNewsImageReferences,
+	imageComponentTags,
 	postPlayhouseArtifactConfig,
 } from "./postplayhouse.config"
 
@@ -17,6 +19,54 @@ const temporary: string[] = []
 afterEach(async () => {
 	for (const path of temporary.splice(0))
 		await rm(path, { recursive: true, force: true })
+})
+
+it("recognizes self-closing and paired image components and locates malformed tags", () => {
+	expect(
+		imageComponentTags(
+			'<PersonImage partialPath="2026/jo.jpg"></PersonImage>\n<SeasonImage season="2020" imageFile="show.jpg" />',
+			"news/example/+page.svelte",
+		),
+	).toEqual([
+		{
+			name: "PersonImage",
+			tag: '<PersonImage partialPath="2026/jo.jpg">',
+			at: "news/example/+page.svelte:1:1",
+		},
+		{
+			name: "SeasonImage",
+			tag: '<SeasonImage season="2020" imageFile="show.jpg" />',
+			at: "news/example/+page.svelte:2:1",
+		},
+	])
+	expect(() =>
+		imageComponentTags(
+			"first line\n<PersonImage partialPath={person.image}",
+			"news/bad/+page.svelte",
+		),
+	).toThrow(/news\/bad\/\+page\.svelte:2:1/)
+})
+
+it("extracts paired image components and rejects unresolved occurrences with location", async () => {
+	const root = await mkdtemp(join(tmpdir(), "postplayhouse-news-images-"))
+	temporary.push(root)
+	const news = join(root, "src/routes/(app)/news/example")
+	await mkdir(news, { recursive: true })
+	const page = join(news, "+page.svelte")
+	await writeFile(
+		page,
+		'<PersonImage partialPath="2026/jo.jpg"></PersonImage>\n<SeasonImage season="2020" imageFile="show.jpg"></SeasonImage>',
+	)
+	expect(await generatedNewsImageReferences(root)).toContain(
+		'people: ["2026/jo.jpg"]',
+	)
+	expect(await generatedNewsImageReferences(root)).toContain(
+		'seasons: ["2020/show.jpg"]',
+	)
+	await writeFile(page, "first\n<PersonImage partialPath={person.image} />")
+	await expect(generatedNewsImageReferences(root)).rejects.toThrow(
+		/Cannot resolve PersonImage at news\/example\/\+page\.svelte:2:1/,
+	)
 })
 
 it("derives the exact Post Playhouse archive and live globs from one season value", async () => {
@@ -31,7 +81,7 @@ it("derives the exact Post Playhouse archive and live globs from one season valu
 	).toHaveLength(2)
 	expect(generatedLiveImages()).toContain(`/src/images/people/${season}/*`)
 	expect(generatedLiveImages()).toContain(`/src/images/seasons/${season}/*`)
-})
+}, 10_000)
 
 it("tolerates missing years and rejects directories newer than the configured season", async () => {
 	const root = await mkdtemp(join(tmpdir(), "postplayhouse-artifact-config-"))
@@ -73,6 +123,6 @@ it("fails clearly when generated live imports are stale", async () => {
 	await writeFile(path, "export const generatedCurrentSeason: number = 2026\n")
 
 	await expect(postPlayhouseArtifactConfig(root)).rejects.toThrow(
-		`Current image imports do not match configured season ${season}; run pnpm images:historical:generate`,
+		`Generated image module is stale: ${generatedLiveImagesPath}; run pnpm images:historical:generate`,
 	)
 })

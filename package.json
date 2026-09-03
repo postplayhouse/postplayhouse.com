@@ -16,6 +16,7 @@
 		"build:low-memory": "pnpm images:historical:restore && SENTRY_AUTH_TOKEN= NODE_OPTIONS=--max-old-space-size=1792 UV_THREADPOOL_SIZE=1 VIPS_CONCURRENCY=1 varlock run -- vite build",
 		"preview": "varlock run -- vite preview --port 3000",
 		"images:historical:discover": "tsx scripts/historical-images/index.ts discover",
+		"images:historical:prepare": "tsx scripts/historical-images/index.ts prepare",
 		"images:historical:generate": "NODE_OPTIONS=--max-old-space-size=1792 UV_THREADPOOL_SIZE=1 VIPS_CONCURRENCY=1 tsx scripts/historical-images/index.ts generate",
 		"images:historical:publish": "tsx scripts/historical-images/index.ts publish",
 		"images:historical:restore": "tsx scripts/historical-images/index.ts restore",

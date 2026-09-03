@@ -49,22 +49,48 @@ export async function deriveCompatibility(
 	root: string,
 	config: ArtifactConfig,
 ): Promise<HistoricalManifest["compatibility"]> {
+	const packages = Object.fromEntries(
+		await Promise.all(
+			packageNames.map(async (name) => [
+				name,
+				await packageVersion(root, name),
+			]),
+		),
+	)
+	const generatorSources = await Promise.all(
+		config.pipelineSourcePaths.map(async (path) => ({
+			path,
+			sha256: await hashFile(join(root, path)),
+		})),
+	)
 	return {
 		generatorRevision: config.generatorRevision,
-		lockfileSha256: await hashFile(join(root, "pnpm-lock.yaml")),
-		packages: Object.fromEntries(
-			await Promise.all(
-				packageNames.map(async (name) => [
-					name,
-					await packageVersion(root, name),
-				]),
-			),
-		),
+		// Kept under the v1 field name for schema compatibility. This is now a
+		// narrow digest of byte-affecting package identities, not the whole lock.
+		lockfileSha256: sha256(stableJson(packages)),
+		packages,
 		libvips: sharp.versions.vips,
 		nodeMajor: Number(process.versions.node.split(".")[0]),
+		nodeVersion: process.versions.node,
 		platform: process.platform,
 		arch: process.arch,
-		profileConfigurationSha256:
-			config.profileConfigurationSha256 ?? sha256(stableJson(config.profiles)),
+		profileConfigurationSha256: sha256(stableJson(config.profiles)),
+		generatorSourceSha256: sha256(stableJson(generatorSources)),
+		sharpVersionsSha256: sha256(stableJson(sharp.versions)),
 	}
+}
+
+export async function derivePipelineSha256(
+	root: string,
+	config: ArtifactConfig,
+): Promise<string> {
+	const compatibility = await deriveCompatibility(root, config)
+	return sha256(
+		stableJson({
+			generatorRevision: compatibility.generatorRevision,
+			packages: compatibility.packages,
+			profileConfigurationSha256: compatibility.profileConfigurationSha256,
+			generatorSourceSha256: compatibility.generatorSourceSha256,
+		}),
+	)
 }

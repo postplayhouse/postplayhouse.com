@@ -1,6 +1,6 @@
 import { resolve } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
-import { publish, restore } from "./archive"
+import { prepareGeneration, publish, restore } from "./archive"
 import { B2ArtifactStore } from "./b2"
 import type { ArtifactConfig, ArtifactConfigProvider } from "./config"
 import { discoverArtifactSources } from "./discover"
@@ -28,16 +28,23 @@ async function configProvider(): Promise<ArtifactConfigProvider> {
 	return loaded.default
 }
 
-function b2Store(config: ArtifactConfig): ArtifactStore | null {
+export function artifactStoreFromEnvironment(
+	config: ArtifactConfig,
+	purpose: "restore" | "publish",
+): ArtifactStore | null {
 	const mock = process.env.HISTORICAL_IMAGES_STORE_DIR
 	if (mock) return new FileArtifactStore(resolve(mock))
-	const keyId = process.env.B2_APPLICATION_KEY_ID
-	const applicationKey = process.env.B2_APPLICATION_KEY
-	const bucketId = process.env.B2_BUCKET_ID
+	const prefix =
+		purpose === "publish"
+			? "HISTORICAL_IMAGES_PUBLISH_B2"
+			: "HISTORICAL_IMAGES_READ_B2"
+	const keyId = process.env[`${prefix}_APPLICATION_KEY_ID`]
+	const applicationKey = process.env[`${prefix}_APPLICATION_KEY`]
+	const bucketId = process.env[`${prefix}_BUCKET_ID`]
 	if (!keyId && !applicationKey && !bucketId) return null
 	if (!keyId || !applicationKey || !bucketId)
 		throw new Error(
-			"B2 configuration is incomplete; B2_BUCKET_ID, B2_APPLICATION_KEY_ID, and B2_APPLICATION_KEY must be set together",
+			`${prefix} configuration is incomplete; its BUCKET_ID, APPLICATION_KEY_ID, and APPLICATION_KEY must be set together`,
 		)
 	return new B2ArtifactStore({
 		keyId,
@@ -45,6 +52,16 @@ function b2Store(config: ArtifactConfig): ArtifactStore | null {
 		bucketId,
 		storePrefix: config.storePrefix,
 	})
+}
+
+export function assertTrustedGenerationPlatform(
+	platform = process.platform,
+	arch = process.arch,
+): void {
+	if (platform !== "linux" || arch !== "x64")
+		throw new Error(
+			`Historical image generation and publication require the qualified linux/x64 toolchain (current: ${platform}/${arch}); use prepare or restore to hydrate final bytes`,
+		)
 }
 
 async function main(): Promise<void> {
@@ -64,6 +81,7 @@ async function main(): Promise<void> {
 		return
 	}
 	if (command === "generate") {
+		assertTrustedGenerationPlatform()
 		const output = resolve(
 			argument("--output") ?? ".historical-images-output.ignore",
 		)
@@ -88,10 +106,11 @@ async function main(): Promise<void> {
 		return
 	}
 	if (command === "publish") {
-		const store = b2Store(config)
+		assertTrustedGenerationPlatform()
+		const store = artifactStoreFromEnvironment(config, "publish")
 		if (!store)
 			throw new Error(
-				"Publishing requires B2_BUCKET_ID, B2_APPLICATION_KEY_ID, and B2_APPLICATION_KEY (or HISTORICAL_IMAGES_STORE_DIR for a local mock)",
+				"Publishing requires the HISTORICAL_IMAGES_PUBLISH_B2_* credentials (or HISTORICAL_IMAGES_STORE_DIR for a local mock)",
 			)
 		if (store instanceof B2ArtifactStore) await store.checkPermissions(true)
 		const output = resolve(
@@ -110,15 +129,26 @@ async function main(): Promise<void> {
 		)
 		return
 	}
+	if (command === "prepare") {
+		const store = artifactStoreFromEnvironment(config, "restore")
+		if (store instanceof B2ArtifactStore) await store.checkPermissions(false)
+		const output = resolve(
+			argument("--output") ?? ".historical-images-output.ignore",
+		)
+		console.log(
+			JSON.stringify(await prepareGeneration(root, config, store, output)),
+		)
+		return
+	}
 	if (command === "restore" || command === "verify") {
-		const store = b2Store(config)
+		const store = artifactStoreFromEnvironment(config, "restore")
 		if (store instanceof B2ArtifactStore) await store.checkPermissions(false)
 		const result = await restore(root, config, store)
 		console.log(JSON.stringify(result))
 		return
 	}
 	throw new Error(
-		"Usage: historical-images <discover|generate|publish|restore|verify> [--config path]",
+		"Usage: historical-images <discover|prepare|generate|publish|restore|verify> [--config path]",
 	)
 }
 

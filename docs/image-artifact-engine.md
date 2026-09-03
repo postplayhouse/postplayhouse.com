@@ -1,9 +1,11 @@
-# Immutable image artifact engine
+# Post Playhouse Svelte image artifact infrastructure
 
 The prototype engine compiles configured source directories once with Vite,
 stores the final deployable assets and metadata in an artifact store, and
-restores verified files into later builds. It is application-agnostic: the core
-does not know about Post Playhouse seasons, people, productions, or raffles.
+restores verified files into later builds. The archive/store protocol is
+configuration-driven, but generation intentionally depends on Svelte, Vite,
+`@sveltejs/enhanced-img`, and the project's `Picture` type. It is not presented
+as an application-agnostic engine.
 
 This is final build-asset caching, not Vite's internal imagetools cache. Archived
 imports leave the ordinary Vite graph entirely. The engine neither patches Vite
@@ -25,6 +27,8 @@ export default {
 			storePrefix: "image-artifacts/example/v1",
 			lockPath: "artifacts/publication.v1.json",
 			generatedMetadataPath: "src/generated/artifact-pictures.ts",
+			generatedOutputPaths: ["src/generated/artifact-pictures.ts"],
+			pipelineSourcePaths: ["scripts/generator.ts"],
 			staticAssetRoot: "static/_app/immutable/assets",
 			cacheRoot: ".cache/image-artifacts",
 			publicAssetPrefix: "/_app/immutable/assets/",
@@ -61,10 +65,11 @@ it does not encode application semantics in the engine.
 Validation rejects unsafe paths, duplicate source IDs, unknown profiles,
 missing directories, missing exception targets, and generated metadata-key
 collisions. `identity` distinguishes one complete declarative source mapping.
-`generatorRevision` must change when engine behavior could alter bytes or
-metadata. The optional profile-configuration digest override exists only to
-migrate an already-qualified compatible publication; new configurations should
-let the engine derive it.
+Profiles and the configured generator source files are hashed automatically.
+The byte-affecting package versions, exact Node/Sharp/libvips identities, and
+platform are recorded in the manifest. An unrelated `pnpm-lock.yaml` edit does
+not invalidate an archive. `generatorRevision` remains an explicit protocol
+boundary, not a substitute for hashing implementation and profile inputs.
 
 A provider may implement `afterGenerate` for a thin application adapter, such
 as regenerating a framework-specific live-import module. This hook is not part
@@ -77,6 +82,8 @@ Playhouse adapter.
 
 ```sh
 tsx scripts/historical-images/index.ts discover --config path/to/config.ts
+tsx scripts/historical-images/index.ts prepare --config path/to/config.ts \
+  --output .artifact-output
 tsx scripts/historical-images/index.ts generate --config path/to/config.ts \
   --output .artifact-output
 tsx scripts/historical-images/index.ts publish --config path/to/config.ts \
@@ -85,18 +92,22 @@ tsx scripts/historical-images/index.ts restore --config path/to/config.ts
 tsx scripts/historical-images/index.ts verify --config path/to/config.ts
 ```
 
-`discover` hashes and inventories configured files. `generate` transforms only
-new or changed source/profile identities and emits final assets, a versioned
-manifest, and generated metadata. Pass `--previous manifest.v1.json` for an
-incremental run. Deletions fail unless explicitly acknowledged with
-`--allow-deleted`.
+`discover` hashes and inventories configured files. `prepare` hydrates the
+lock-pinned previous manifest and assets from a verified cache/read store, so a
+fresh publisher does not need a retained ignored output directory. `generate`
+transforms only new or changed source/profile identities and emits final assets,
+a versioned manifest, and generated metadata. Pass `--previous
+manifest.v1.json` for an incremental run. Deletions fail unless explicitly
+acknowledged with `--allow-deleted`.
 
 `publish` verifies local assets, writes content-addressed objects, writes the
 immutable manifest, and updates the mutable pointer last. Existing immutable
 names must contain identical bytes. `restore` ignores that pointer and uses the
 repository lock to fetch only missing objects. Every manifest and object is
-checked by digest, length, schema, source inventory, transform identity, and
-image metadata before installation. A verified local cache supports offline
+checked by digest, length, schema, source inventory, and authenticated generated
+module identity before installation. Image metadata is authenticated from the
+trusted Linux generation manifest; portable restore only copies digest-verified
+bytes and does not invoke libvips. A verified local cache supports offline
 warm restores; unavailable cold storage fails closed.
 
 The generic store contract is implemented by the filesystem mock and B2
