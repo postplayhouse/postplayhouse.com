@@ -25,6 +25,9 @@ package = "./scripts/netlify-plugin-cache"
 
   environment = { NODE_VERSION = "24.10.0" }
 
+[functions]
+  included_files = ["src/data/**/*.yml"]
+
 # Production context: all deploys from the Production branch set in your site’s
 # deploy contexts will inherit these settings.
 [context.production]
