@@ -86,7 +86,7 @@ function existingPerson(
 	return parsed[0] as Record<string, unknown>
 }
 
-function archiveImage(bio: ApprovedBio): ExportImage {
+function archiveImage(bio: ApprovedBio, exportYear: string): ExportImage {
 	if (!bio.optimizedImageUrl) {
 		throw new BiosExportError(
 			`Approved bio at position ${bio.position} has no optimized image`,
@@ -98,6 +98,12 @@ function archiveImage(bio: ApprovedBio): ExportImage {
 	if (!match) {
 		throw new BiosExportError(
 			`Approved bio at position ${bio.position} has an invalid optimized image path`,
+			422,
+		)
+	}
+	if (match[1] !== exportYear) {
+		throw new BiosExportError(
+			`Approved bio at position ${bio.position} has an optimized image from another season`,
 			422,
 		)
 	}
@@ -156,6 +162,7 @@ function exportedPerson(
 export function serializeApprovedBios(
 	source: string,
 	approvedBios: ApprovedBio[],
+	exportYear: string,
 ): { yaml: string; images: ExportImage[] } {
 	const positions = new Set<number>()
 	const archivePaths = new Set<string>()
@@ -193,7 +200,7 @@ export function serializeApprovedBios(
 			)
 		}
 
-		const image = archiveImage(bio)
+		const image = archiveImage(bio, exportYear)
 		const normalizedArchivePath = image.archivePath.toLowerCase()
 		if (archivePaths.has(normalizedArchivePath)) {
 			throw new BiosExportError(

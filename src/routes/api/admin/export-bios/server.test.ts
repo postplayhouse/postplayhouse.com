@@ -132,6 +132,11 @@ describe("GET /api/admin/export-bios", () => {
 		)
 		expect(response.headers.get("cache-control")).toBe("private, no-store")
 		expect(mocks.listApprovedBios).toHaveBeenCalledWith(2027)
+		expect(mocks.serializeApprovedBios).toHaveBeenCalledWith(
+			"checked-in yaml",
+			[{ position: 1 }],
+			"2027",
+		)
 		expect(mocks.downloadFromB2).toHaveBeenCalledWith(
 			"optimized/2027/person.jpg",
 		)

@@ -49,7 +49,7 @@ export const GET: RequestHandler = async ({ request, url }) => {
 
 	let prepared
 	try {
-		prepared = serializeApprovedBios(source, approvedBios)
+		prepared = serializeApprovedBios(source, approvedBios, year)
 	} catch (cause) {
 		if (cause instanceof BiosExportError) {
 			return error(cause.status, { message: cause.message })

@@ -79,14 +79,18 @@ describe("serializeApprovedBios", () => {
 	})
 
 	it("replaces only approved marker bodies and emits reviewed YAML safely", () => {
-		const result = serializeApprovedBios(source, [
-			approved({
-				staffPositions: ["Director: Interim"],
-				productionPositions: { "Show: One": ["Designer"] },
-				roles: { "Show: One": ["Lead"] },
-				programBio: "Program line one.\nProgram line two.",
-			}),
-		])
+		const result = serializeApprovedBios(
+			source,
+			[
+				approved({
+					staffPositions: ["Director: Interim"],
+					productionPositions: { "Show: One": ["Designer"] },
+					roles: { "Show: One": ["Lead"] },
+					programBio: "Program line one.\nProgram line two.",
+				}),
+			],
+			"2027",
+		)
 
 		expect(result.images).toEqual([
 			{
@@ -130,7 +134,7 @@ describe("serializeApprovedBios", () => {
 
 	it("clears absent submitted optionals", () => {
 		const exported = people(
-			serializeApprovedBios(source, [approved()]).yaml,
+			serializeApprovedBios(source, [approved()], "2027").yaml,
 		)[1]!
 		for (const field of [
 			"program_bio",
@@ -151,22 +155,28 @@ describe("serializeApprovedBios", () => {
 		],
 	] as const)("applies groups patch semantics for %j", (groups, expected) => {
 		const exported = people(
-			serializeApprovedBios(source, [
-				approved({ groups: groups ? [...groups] : groups }),
-			]).yaml,
+			serializeApprovedBios(
+				source,
+				[approved({ groups: groups ? [...groups] : groups })],
+				"2027",
+			).yaml,
 		)[1]!
 		expect(exported["groups"]).toEqual(expected)
 	})
 
 	it("sorts approved records by position without changing marker order", () => {
-		const result = serializeApprovedBios(source, [
-			approved({
-				position: 3,
-				firstName: "Third",
-				optimizedImageUrl: "optimized/2027/third.jpg",
-			}),
-			approved(),
-		])
+		const result = serializeApprovedBios(
+			source,
+			[
+				approved({
+					position: 3,
+					firstName: "Third",
+					optimizedImageUrl: "optimized/2027/third.jpg",
+				}),
+				approved(),
+			],
+			"2027",
+		)
 		expect(result.yaml.indexOf("# start __2__")).toBeLessThan(
 			result.yaml.indexOf("# start __1__"),
 		)
@@ -187,6 +197,11 @@ describe("serializeApprovedBios", () => {
 			[approved({ optimizedImageUrl: "optimized/2027/../secret.jpg" })],
 			422,
 		],
+		[
+			"optimized image from another season",
+			[approved({ optimizedImageUrl: "optimized/2026/ada.jpg" })],
+			422,
+		],
 		["missing marker", [approved({ position: 99 })], 409],
 		["duplicate position", [approved(), approved()], 409],
 		[
@@ -201,18 +216,25 @@ describe("serializeApprovedBios", () => {
 			409,
 		],
 	] as const)("rejects %s", (_name, bios, status) => {
-		expect(() => serializeApprovedBios(source, [...bios])).toThrowError(
+		expect(() => serializeApprovedBios(source, [...bios], "2027")).toThrowError(
 			expect.objectContaining<Partial<BiosExportError>>({ status }),
 		)
 	})
 
-	it("uses imageYear for archival when the optimized B2 key uses another year", () => {
-		const result = serializeApprovedBios(source, [
-			approved({ optimizedImageUrl: "optimized/2026/ada.jpg" }),
-		])
+	it("uses imageYear for archival while requiring the B2 key's export season", () => {
+		const result = serializeApprovedBios(
+			source,
+			[
+				approved({
+					imageYear: 2026,
+					optimizedImageUrl: "optimized/2027/ada.jpg",
+				}),
+			],
+			"2027",
+		)
 		expect(result.images[0]).toEqual({
-			b2Path: "optimized/2026/ada.jpg",
-			archivePath: "src/images/people/2027/ada.jpg",
+			b2Path: "optimized/2027/ada.jpg",
+			archivePath: "src/images/people/2026/ada.jpg",
 		})
 		expect(people(result.yaml)[1]!["image_file"]).toBe("ada.jpg")
 	})
