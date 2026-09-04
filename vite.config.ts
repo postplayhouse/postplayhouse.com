@@ -67,6 +67,9 @@ export default defineConfig(() => ({
 		environment: "jsdom",
 		setupFiles: ["./vitest-setup.js"],
 	},
+	server: {
+		allowedHosts: [".onamp.dev"],
+	},
 	build: {
 		sourcemap: true,
 	},
