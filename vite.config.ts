@@ -61,7 +61,7 @@ export default defineConfig(() => ({
 		svelteTesting(),
 		netlify({
 			middleware: process.env.PLAYWRIGHT_TEST !== "true",
-			edgeFunctions: process.env.PLAYWRIGHT_TEST !== "true",
+			edgeFunctions: { enabled: process.env.PLAYWRIGHT_TEST !== "true" },
 		}),
 	],
 	test: {

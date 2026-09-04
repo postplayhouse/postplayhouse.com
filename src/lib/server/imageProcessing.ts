@@ -5,7 +5,9 @@ import sharp from "sharp"
  * - Resize to max 800x800 (fit inside, no enlargement)
  * - Convert to progressive JPEG with quality 80
  */
-export async function processHeadshotImage(imageBuffer: Buffer): Promise<Buffer> {
+export async function processHeadshotImage(
+	imageBuffer: Buffer,
+): Promise<Buffer> {
 	return sharp(imageBuffer)
 		.resize(800, 800, {
 			fit: "inside",

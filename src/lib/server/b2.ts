@@ -27,13 +27,15 @@ function getB2Config() {
 		keyId: env["B2_APPLICATION_KEY_ID"] ?? "",
 		key: env["B2_APPLICATION_KEY"] ?? "",
 		bucketId: useTestBucket
-			? env["B2_TEST_BUCKET_ID"] ?? ""
-			: env["B2_BUCKET_ID"] ?? "",
+			? (env["B2_TEST_BUCKET_ID"] ?? "")
+			: (env["B2_BUCKET_ID"] ?? ""),
 		bucketName: useTestBucket
-			? env["B2_TEST_BUCKET_NAME"] ?? ""
-			: env["B2_BUCKET_NAME"] ?? "",
+			? (env["B2_TEST_BUCKET_NAME"] ?? "")
+			: (env["B2_BUCKET_NAME"] ?? ""),
 	}
-	console.log(`[B2] Using ${useTestBucket ? "test" : "production"} bucket: ${config.bucketName} (${config.bucketId})`)
+	console.log(
+		`[B2] Using ${useTestBucket ? "test" : "production"} bucket: ${config.bucketName} (${config.bucketId})`,
+	)
 	return config
 }
 

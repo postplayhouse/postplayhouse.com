@@ -25,7 +25,8 @@ export function sendMessageToChatRoom(
 ) {
 	// Skip sending in non-production environments
 	if (!isProduction()) {
-		const preview = content.length > 100 ? content.substring(0, 100) + "..." : content
+		const preview =
+			content.length > 100 ? content.substring(0, 100) + "..." : content
 		console.log(`[BASECAMP ${room}] Would send: ${preview}`)
 		return
 	}

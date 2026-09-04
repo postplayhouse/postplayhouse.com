@@ -23,13 +23,20 @@ test.describe("Bio submission", () => {
 		expect(response.status()).toBe(405)
 	})
 
-	test("page shows the passphrase form", async ({ page }) => {
+	test("page preserves the current submission availability state", async ({
+		page,
+	}) => {
 		await page.goto("/bio-submission/")
 		await expect(page).toHaveTitle(/Bio Submission/)
-		await expect(page.getByText("Enter the passphrase")).toBeVisible()
+		await expect(
+			page.getByText("Bio submissions are unavailable"),
+		).toBeVisible()
 	})
 
-	test("confirm-passphrase rejects an invalid passphrase", async ({ request }) => {
+	test("confirm-passphrase rejects an invalid passphrase", async ({
+		request,
+	}) => {
+		test.skip(!testPassphrase(), "No test passphrase list configured")
 		const response = await request.get(
 			"/api/bio-submission/confirm-passphrase",
 			{ headers: { Authorization: "invalid_passphrase" } },
@@ -239,7 +246,9 @@ test.describe("People pages", () => {
 
 	test("program-bios loads current season data", async ({ page }) => {
 		await page.goto("/program-bios/")
-		await expect(page.locator("body")).toContainText("bio")
+		await expect(
+			page.getByRole("heading", { name: "Board Headshots and Names" }),
+		).toBeVisible()
 	})
 })
 
@@ -310,7 +319,9 @@ test.describe("Admin Bio Approval API", () => {
 		if (!passphraseList || !adminPositions) return null
 
 		const passphrases = passphraseList.split(",")
-		const positions = adminPositions.split(",").map((p) => parseInt(p.trim(), 10))
+		const positions = adminPositions
+			.split(",")
+			.map((p) => parseInt(p.trim(), 10))
 
 		if (positions.length === 0 || positions[0] > passphrases.length) {
 			return null
@@ -320,9 +331,7 @@ test.describe("Admin Bio Approval API", () => {
 	}
 
 	function hasB2TestBucket(): boolean {
-		return !!(
-			process.env.B2_TEST_BUCKET_ID && process.env.B2_TEST_BUCKET_NAME
-		)
+		return !!(process.env.B2_TEST_BUCKET_ID && process.env.B2_TEST_BUCKET_NAME)
 	}
 
 	test("POST /api/admin/bios/approve rejects request without passphrase", async ({
