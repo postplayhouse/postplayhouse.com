@@ -8,13 +8,15 @@ import {
 
 let initial = {
 	startingMonth: 5,
-	startingYear: 2023,
+	startingYear: 2027,
 	scheduleString:
-		"[006e2b/Show 1/1]z3A3B2D3^f3n3r2B3^f3h3l3p2t3v2z2C3^c3i3l3" +
-		"[1c75bc/Show 2/2]^b3c3d2g3m3p3u3A3^e3h2l2n3o1u3z3C2^a3e3f2k2" +
-		"[e0aa36/Show 3/3]^i3j3k2o3q3t3^d3g3h1o2r3v1w2B2D2^d2h3l2" +
-		"[92278f/Show 4/4]^w3x3y2^a2e2i2m3s2v3B3C1^b3d3e1i2k3" +
-		"[c6292e/Show 5/5]^D3^a3b2g2k3n2o3s3u2y3A3^b2e2j3m1",
+		"[c6292e/Annie]B3C3D2^a3b3h3p3t2C3^g2j1m3q2u3x1y2E3^d2g1j3m2o2" +
+		"[006e2b/Honky Tonk Angels/Honky Tonk]^d3e3f2i3o3r3w3^g3j2n2q1t3x3B2E2^d3f3k2m3" +
+		"[e0aa36/The Addams Family/Addams]^k3l3m2q3s3v3^i2k2n3p2u2D2^a2e3g3k3n2" +
+		"[1c75bc/The Drowsy Chaperone/Drowsy]^y3z3A2D3^f3j3q3w2x2B3E1^g2l3" +
+		"[92278f/Footloose]^^b3c3h3i3p3v3w3A3C3D3^c3f2h2n3" +
+		"[777777/Melodrama]^^o3" +
+		"[777777/NEW MUSICAL]^^r2",
 }
 
 const schedule = showingsStringToData(initial.scheduleString, {
