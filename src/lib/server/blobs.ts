@@ -1,29 +1,49 @@
 import { getDeployStore, getStore } from "@netlify/blobs"
 import { isProduction, isTest } from "$lib/server/env"
 import z from "zod"
+import {
+	bioGroupSchema,
+	editableBioSchema,
+	type BioGroup,
+	type EditableBio,
+} from "$lib/bios"
 
 const PENDING_BIOS_STORE = "pending-bios"
 
-export const pendingBioSchema = z.object({
+export const pendingBioSchema = z.strictObject({
 	position: z.number(),
-	firstName: z.string(),
-	lastName: z.string(),
-	location: z.string(),
-	email: z.string(),
-	bio: z.string(),
-	programBio: z.string().optional(),
-	staffPositions: z.array(z.string()).optional(),
-	productionPositions: z.record(z.string(), z.array(z.string())).optional(),
-	roles: z.record(z.string(), z.array(z.string())).optional(),
+	...editableBioSchema.shape,
 	originalImageUrl: z.string(),
-	optimizedImageUrl: z.string().optional(),
 	imageYear: z.number(),
 	submittedAt: z.string(),
+})
+
+export const approvedBioSchema = z.strictObject({
+	...pendingBioSchema.shape,
+	optimizedImageUrl: z.string().optional(),
 	approvedAt: z.string().optional(),
 	approvedBy: z.string().optional(),
+	groups: z.array(bioGroupSchema).optional(),
 })
 
 export type PendingBio = z.infer<typeof pendingBioSchema>
+export type ApprovedBio = z.infer<typeof approvedBioSchema>
+
+const pendingBioReadSchema = z
+	.object({
+		...pendingBioSchema.shape,
+		optimizedImageUrl: z.string().optional(),
+		approvedAt: z.string().optional(),
+		approvedBy: z.string().optional(),
+	})
+	.transform(
+		({
+			optimizedImageUrl: _optimizedImageUrl,
+			approvedAt: _approvedAt,
+			approvedBy: _approvedBy,
+			...pendingBio
+		}) => pendingBio,
+	)
 
 function getBiosStore() {
 	return isProduction() && !isTest()
@@ -44,8 +64,9 @@ export async function savePendingBio(
 	bio: PendingBio,
 ): Promise<void> {
 	const store = getBiosStore()
-	const key = pendingKey(season, bio.position)
-	await store.setJSON(key, bio)
+	const validatedBio = pendingBioSchema.parse(bio)
+	const key = pendingKey(season, validatedBio.position)
+	await store.setJSON(key, validatedBio)
 }
 
 export async function getPendingBio(
@@ -56,7 +77,7 @@ export async function getPendingBio(
 	const key = pendingKey(season, position)
 	const data = await store.get(key, { type: "json" })
 	if (!data) return null
-	return pendingBioSchema.parse(data)
+	return pendingBioReadSchema.parse(data)
 }
 
 export async function deletePendingBio(
@@ -77,7 +98,7 @@ export async function listPendingBios(season: number): Promise<PendingBio[]> {
 	for (const blob of blobs) {
 		const data = await store.get(blob.key, { type: "json" })
 		if (data) {
-			bios.push(pendingBioSchema.parse(data))
+			bios.push(pendingBioReadSchema.parse(data))
 		}
 	}
 	return bios
@@ -88,20 +109,24 @@ export async function approveBio(
 	position: number,
 	approvedBy: string,
 	optimizedImageUrl: string,
-): Promise<PendingBio | null> {
+	reviewed: EditableBio,
+	groups: BioGroup[],
+): Promise<ApprovedBio | null> {
 	const store = getBiosStore()
 	const pendingBio = await getPendingBio(season, position)
 	if (!pendingBio) return null
 
-	const approvedBio: PendingBio = {
+	const approvedBio: ApprovedBio = {
 		...pendingBio,
+		...editableBioSchema.parse(reviewed),
 		approvedAt: new Date().toISOString(),
 		approvedBy,
 		optimizedImageUrl,
+		groups,
 	}
 
 	const newKey = approvedKey(season, position)
-	await store.setJSON(newKey, approvedBio)
+	await store.setJSON(newKey, approvedBioSchema.parse(approvedBio))
 	await deletePendingBio(season, position)
 
 	return approvedBio
@@ -110,24 +135,24 @@ export async function approveBio(
 export async function getApprovedBio(
 	season: number,
 	position: number,
-): Promise<PendingBio | null> {
+): Promise<ApprovedBio | null> {
 	const store = getBiosStore()
 	const key = approvedKey(season, position)
 	const data = await store.get(key, { type: "json" })
 	if (!data) return null
-	return pendingBioSchema.parse(data)
+	return approvedBioSchema.parse(data)
 }
 
-export async function listApprovedBios(season: number): Promise<PendingBio[]> {
+export async function listApprovedBios(season: number): Promise<ApprovedBio[]> {
 	const store = getBiosStore()
 	const prefix = `${season}/approved/`
 	const { blobs } = await store.list({ prefix })
 
-	const bios: PendingBio[] = []
+	const bios: ApprovedBio[] = []
 	for (const blob of blobs) {
 		const data = await store.get(blob.key, { type: "json" })
 		if (data) {
-			bios.push(pendingBioSchema.parse(data))
+			bios.push(approvedBioSchema.parse(data))
 		}
 	}
 	return bios

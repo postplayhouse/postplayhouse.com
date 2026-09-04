@@ -17,6 +17,7 @@ const pendingBios = [
 		originalImageUrl: "originals/2027/ada-lovelace.jpg",
 		imageYear: 2027,
 		submittedAt: "2026-09-04T12:00:00.000Z",
+		baselineGroups: ["staff"],
 	},
 	{
 		position: 7,
@@ -28,6 +29,7 @@ const pendingBios = [
 		originalImageUrl: "src/images/people/2026/jo-arnold.jpg",
 		imageYear: 2026,
 		submittedAt: "2026-09-03T12:00:00.000Z",
+		baselineGroups: [],
 	},
 ]
 
@@ -162,15 +164,17 @@ test.describe("Admin bio approval UI", () => {
 			has: page.getByRole("heading", { name: "Ada Lovelace" }),
 		})
 		await expect(ada.getByText("Position:").locator("..")).toContainText("12")
-		await expect(
-			ada.getByRole("link", { name: "ada@example.com" }),
-		).toHaveAttribute("href", "mailto:ada@example.com")
+		await expect(ada.getByLabel("Email")).toHaveValue("ada@example.com")
 		await expect(ada.getByText("Image year:").locator("..")).toContainText(
 			"2027",
 		)
-		await expect(ada.getByText("Ada's program bio.")).toBeVisible()
-		await expect(ada.getByText("Hamlet: Programmer")).toBeVisible()
-		await expect(ada.getByText("Hamlet: Ada")).toBeVisible()
+		await expect(ada.getByLabel("Program bio (optional)")).toHaveValue(
+			"Ada's program bio.",
+		)
+		await expect(ada.getByLabel("Production positions")).toHaveValue(
+			/"Programmer"/,
+		)
+		await expect(ada.getByLabel("Roles")).toHaveValue(/"Ada"/)
 		await expect(ada.getByText("full website bio", { exact: true })).toHaveRole(
 			"strong",
 		)
@@ -184,7 +188,7 @@ test.describe("Admin bio approval UI", () => {
 		expect(imageRequests[0].searchParams.get("auth")).toBe(sanitized(admin))
 	})
 
-	test("approves with the position contract, exposes pending state, and removes the card", async ({
+	test("approves with reviewed content and an explicit group patch", async ({
 		page,
 	}) => {
 		const { admin } = configuredPassphrases()
@@ -200,10 +204,27 @@ test.describe("Admin bio approval UI", () => {
 		await loadPendingBios(page, admin)
 
 		const ada = page.getByRole("article").filter({ hasText: "Ada Lovelace" })
+		await ada.getByLabel("First name").fill("Augusta")
+		await ada.getByRole("checkbox", { name: "staff" }).uncheck()
+		await ada.getByRole("checkbox", { name: "cast" }).check()
 		const approvalRequest = page.waitForRequest("**/api/admin/bios/approve")
 		await ada.getByRole("button", { name: "Approve" }).click()
 		const request = await approvalRequest
-		expect(request.postDataJSON()).toEqual({ position: 12 })
+		expect(request.postDataJSON()).toEqual({
+			position: 12,
+			reviewed: {
+				firstName: "Augusta",
+				lastName: "Lovelace",
+				location: "London",
+				email: "ada@example.com",
+				bio: "Ada's **full website bio**.",
+				programBio: "Ada's program bio.",
+				staffPositions: ["Engineer"],
+				productionPositions: { Hamlet: ["Programmer"] },
+				roles: { Hamlet: ["Ada"] },
+			},
+			metadata: { groups: ["cast"] },
+		})
 		expect(request.headers().authorization).toBe(sanitized(admin))
 		await expect(ada.getByRole("button", { name: "Approving…" })).toBeDisabled()
 		finishApproval()

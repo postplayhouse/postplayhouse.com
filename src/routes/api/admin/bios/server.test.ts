@@ -2,13 +2,17 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 import { season } from "$data/seasons"
 import type { PendingBio } from "$lib/server/blobs"
 
-const { individualPassphraseDetails, isAdmin, listPendingBios } = vi.hoisted(
-	() => ({
-		individualPassphraseDetails: vi.fn(),
-		isAdmin: vi.fn(),
-		listPendingBios: vi.fn(),
-	}),
-)
+const {
+	individualPassphraseDetails,
+	isAdmin,
+	listPendingBios,
+	checkedInGroups,
+} = vi.hoisted(() => ({
+	individualPassphraseDetails: vi.fn(),
+	isAdmin: vi.fn(),
+	listPendingBios: vi.fn(),
+	checkedInGroups: vi.fn(),
+}))
 
 vi.mock("../../bio-submission/passphraseHelpers.js", () => ({
 	individualPassphraseDetails,
@@ -18,6 +22,8 @@ vi.mock("../../bio-submission/passphraseHelpers.js", () => ({
 vi.mock("$lib/server/blobs", () => ({
 	listPendingBios,
 }))
+
+vi.mock("$lib/server/bioMetadata", () => ({ checkedInGroups }))
 
 import { GET } from "./+server"
 
@@ -49,12 +55,16 @@ describe("GET /api/admin/bios", () => {
 		individualPassphraseDetails.mockReturnValue({ correct: true, position: 2 })
 		isAdmin.mockReturnValue(true)
 		listPendingBios.mockResolvedValue(bios)
+		checkedInGroups.mockReturnValue(["staff"])
 
 		const response = await GET({ request: request("admin phrase") } as never)
 
 		expect(response.status).toBe(200)
 		expect(response.headers.get("content-type")).toContain("application/json")
-		expect(await response.json()).toEqual({ bios })
+		expect(await response.json()).toEqual({
+			bios: [{ ...bios[0], baselineGroups: ["staff"] }],
+		})
+		expect(checkedInGroups).toHaveBeenCalledWith(season, 12)
 		expect(isAdmin).toHaveBeenCalledWith(2)
 		expect(listPendingBios).toHaveBeenCalledWith(season)
 	})

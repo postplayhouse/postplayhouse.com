@@ -25,6 +25,9 @@ export const POST = async ({ request }) => {
 	}
 
 	const fd = await request.formData()
+	if (fd.has("groups")) {
+		return error(400, { message: "Groups are admin-managed metadata" })
+	}
 
 	const firstName = fd.get("firstName") as string
 	const lastName = fd.get("lastName") as string

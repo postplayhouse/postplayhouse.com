@@ -40,6 +40,8 @@ import {
 	listApprovedBios,
 	listPendingBios,
 	savePendingBio,
+	approvedBioSchema,
+	pendingBioSchema,
 	type PendingBio,
 } from "./blobs"
 
@@ -53,6 +55,14 @@ const bio: PendingBio = {
 	originalImageUrl: "https://example.com/ada.jpg",
 	imageYear: 2027,
 	submittedAt: "2026-09-04T00:00:00.000Z",
+}
+
+const reviewed = {
+	firstName: bio.firstName,
+	lastName: bio.lastName,
+	location: bio.location,
+	email: bio.email,
+	bio: bio.bio,
 }
 
 async function exerciseEveryOperation(
@@ -69,7 +79,14 @@ async function exerciseEveryOperation(
 	await getPendingBio(2027, 7)
 	await deletePendingBio(2027, 7)
 	await listPendingBios(2027)
-	await approveBio(2027, 7, "admin", "https://example.com/optimized.jpg")
+	await approveBio(
+		2027,
+		7,
+		"admin",
+		"https://example.com/optimized.jpg",
+		reviewed,
+		["staff"],
+	)
 	await getApprovedBio(2027, 7)
 	await listApprovedBios(2027)
 
@@ -80,6 +97,7 @@ async function exerciseEveryOperation(
 			...bio,
 			approvedBy: "admin",
 			optimizedImageUrl: "https://example.com/optimized.jpg",
+			groups: ["staff"],
 		}),
 	)
 	expect(store.get).toHaveBeenCalledWith("2027/pending/7", { type: "json" })
@@ -131,4 +149,62 @@ describe("pending bios Blob store isolation", () => {
 			expectStoreUnused(netlifyBlobs.persistentStore)
 		},
 	)
+})
+
+describe("pending and approved bio compatibility", () => {
+	it("rejects admin metadata from pending records", () => {
+		expect(
+			pendingBioSchema.safeParse({ ...bio, groups: ["cast"] }).success,
+		).toBe(false)
+	})
+
+	it("reads both legacy and group-aware approved records", () => {
+		expect(approvedBioSchema.parse(bio).groups).toBeUndefined()
+		expect(approvedBioSchema.parse({ ...bio, groups: [] }).groups).toEqual([])
+	})
+
+	it("reads legacy pending records without exposing approval metadata", async () => {
+		privateEnv.CONTEXT = "deploy-preview"
+		netlifyBlobs.deployStore.get.mockResolvedValue({
+			...bio,
+			optimizedImageUrl: "legacy-optimized.jpg",
+			approvedAt: "2026-09-05T00:00:00.000Z",
+			approvedBy: "legacy-admin",
+		})
+
+		await expect(getPendingBio(2027, 7)).resolves.toEqual(bio)
+	})
+
+	it("persists reviewed content while retaining pending record identity", async () => {
+		vi.clearAllMocks()
+		privateEnv.CONTEXT = "deploy-preview"
+		netlifyBlobs.deployStore.get.mockResolvedValue(bio)
+		const revised = {
+			...reviewed,
+			firstName: "Augusta",
+			bio: "Reviewed biography",
+		}
+
+		await approveBio(
+			2027,
+			7,
+			"admin-position-3",
+			"optimized/2027/ada.jpg",
+			revised,
+			[],
+		)
+
+		expect(netlifyBlobs.deployStore.setJSON).toHaveBeenCalledWith(
+			"2027/approved/7",
+			expect.objectContaining({
+				...revised,
+				position: bio.position,
+				originalImageUrl: bio.originalImageUrl,
+				imageYear: bio.imageYear,
+				submittedAt: bio.submittedAt,
+				approvedBy: "admin-position-3",
+				groups: [],
+			}),
+		)
+	})
 })

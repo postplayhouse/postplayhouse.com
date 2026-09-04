@@ -1,7 +1,7 @@
 import { error, json } from "@sveltejs/kit"
 import * as site from "$data/site"
 import data from "$data/_yaml"
-import { listApprovedBios, type PendingBio } from "$lib/server/blobs"
+import { listApprovedBios, type ApprovedBio } from "$lib/server/blobs"
 import type { RequestHandler } from "@sveltejs/kit"
 
 export const GET: RequestHandler = async (req) => {
@@ -53,12 +53,12 @@ export const GET: RequestHandler = async (req) => {
  * Merge approved bios from Netlify Blobs with YAML data.
  * Approved bios override YAML data for matching positions.
  */
-function mergeBiosWithYaml(
+export function mergeBiosWithYaml(
 	yamlPeople: YamlPerson[],
-	approvedBios: PendingBio[],
+	approvedBios: ApprovedBio[],
 ): YamlPerson[] {
 	// Create a map of approved bios by position for quick lookup
-	const approvedByPosition = new Map<number, PendingBio>()
+	const approvedByPosition = new Map<number, ApprovedBio>()
 	for (const bio of approvedBios) {
 		approvedByPosition.set(bio.position, bio)
 	}
@@ -75,6 +75,9 @@ function mergeBiosWithYaml(
 		// Merge the approved bio data into the YAML person
 		return {
 			...person,
+			...(approvedBio.groups !== undefined
+				? { groups: approvedBio.groups }
+				: {}),
 			first_name: approvedBio.firstName,
 			last_name: approvedBio.lastName,
 			location: approvedBio.location,

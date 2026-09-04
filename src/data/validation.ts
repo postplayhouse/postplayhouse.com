@@ -1,5 +1,6 @@
 import z from "zod"
 import { allYears } from "./site"
+import { bioGroupSchema } from "$lib/bios"
 
 const yearsStrings = allYears.map(String) as [string, ...string[]]
 
@@ -13,19 +14,7 @@ export const personSchema = z.strictObject({
 	last_name: z.string().nullish(),
 	first_name: z.string(),
 	location: z.string().nullish(),
-	groups: z
-		.array(
-			z.enum([
-				"board",
-				"staff",
-				"creative",
-				"cast",
-				"crew",
-				"musicians",
-				"additional",
-			]),
-		)
-		.optional(),
+	groups: z.array(bioGroupSchema).optional(),
 	positions: z.array(z.string()).nullish(),
 	staff_positions: z.array(z.string()).optional(),
 	production_positions: z.record(z.string(), z.array(z.string())).optional(),

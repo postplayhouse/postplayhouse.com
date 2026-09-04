@@ -3,6 +3,7 @@
 	import Bio from "$components/Bio.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import { sanitizedPassphrase } from "$helpers"
+	import { bioGroups, type BioGroup, type EditableBio } from "$lib/bios"
 
 	type PendingBio = {
 		position: number
@@ -18,6 +19,13 @@
 		originalImageUrl: string
 		imageYear: number
 		submittedAt: string
+		baselineGroups: BioGroup[]
+	}
+
+	type StructuredEdits = {
+		staffPositions: string
+		productionPositions: string
+		roles: string
 	}
 
 	type PurgeResult = {
@@ -42,6 +50,9 @@
 	let authorization = $state("")
 	let pageState: PageState = $state("unauthenticated")
 	let bios: PendingBio[] = $state([])
+	let structuredEdits: Record<number, StructuredEdits> = $state({})
+	let selectedGroups: Record<number, BioGroup[]> = $state({})
+	let groupsChanged: Record<number, boolean> = $state({})
 	let pageMessage = $state("")
 	let actionByPosition: Record<number, CardAction | undefined> = $state({})
 	let actionMessages: Record<number, string | undefined> = $state({})
@@ -98,6 +109,26 @@
 			bios = (body as { bios: PendingBio[] }).bios.toSorted(
 				(a, b) => Date.parse(a.submittedAt) - Date.parse(b.submittedAt),
 			)
+			structuredEdits = Object.fromEntries(
+				bios.map((bio) => [
+					bio.position,
+					{
+						staffPositions: bio.staffPositions?.join("\n") ?? "",
+						productionPositions: JSON.stringify(
+							bio.productionPositions ?? {},
+							null,
+							2,
+						),
+						roles: JSON.stringify(bio.roles ?? {}, null, 2),
+					},
+				]),
+			)
+			selectedGroups = Object.fromEntries(
+				bios.map((bio) => [bio.position, [...bio.baselineGroups]]),
+			)
+			groupsChanged = Object.fromEntries(
+				bios.map((bio) => [bio.position, false]),
+			)
 			pageState = "authenticated"
 			pageMessage = `${bios.length} pending ${bios.length === 1 ? "bio" : "bios"} loaded.`
 		} catch {
@@ -138,14 +169,80 @@
 		bios = bios.filter((bio) => bio.position !== position)
 	}
 
+	function parseMap(value: string, label: string) {
+		const parsed: unknown = value.trim() ? JSON.parse(value) : {}
+		if (
+			typeof parsed !== "object" ||
+			parsed === null ||
+			Array.isArray(parsed) ||
+			!Object.values(parsed).every(
+				(values) =>
+					Array.isArray(values) &&
+					values.every((value) => typeof value === "string"),
+			)
+		) {
+			throw new Error(
+				`${label} must be a JSON object whose values are text arrays.`,
+			)
+		}
+		return parsed as Record<string, string[]>
+	}
+
+	function reviewedBio(bio: PendingBio): EditableBio {
+		const edits = structuredEdits[bio.position]
+		const staffPositions = edits.staffPositions
+			.split("\n")
+			.map((value) => value.trim())
+			.filter(Boolean)
+		const productionPositions = parseMap(
+			edits.productionPositions,
+			"Production positions",
+		)
+		const roles = parseMap(edits.roles, "Roles")
+		return {
+			firstName: bio.firstName,
+			lastName: bio.lastName,
+			location: bio.location,
+			email: bio.email,
+			bio: bio.bio,
+			...(bio.programBio ? { programBio: bio.programBio } : {}),
+			...(staffPositions.length ? { staffPositions } : {}),
+			...(Object.keys(productionPositions).length
+				? { productionPositions }
+				: {}),
+			...(Object.keys(roles).length ? { roles } : {}),
+		}
+	}
+
+	function toggleGroup(position: number, group: BioGroup, checked: boolean) {
+		selectedGroups[position] = checked
+			? [...selectedGroups[position], group]
+			: selectedGroups[position].filter((value) => value !== group)
+		groupsChanged[position] = true
+	}
+
 	async function approve(bio: PendingBio) {
+		let reviewed: EditableBio
+		try {
+			reviewed = reviewedBio(bio)
+		} catch (error) {
+			actionMessages[bio.position] =
+				error instanceof Error ? error.message : "Review fields are invalid."
+			return
+		}
 		actionByPosition[bio.position] = "approve"
 		actionMessages[bio.position] = undefined
 		try {
 			const response = await fetch("/api/admin/bios/approve", {
 				method: "POST",
 				headers: authHeaders(true),
-				body: JSON.stringify({ position: bio.position }),
+				body: JSON.stringify({
+					position: bio.position,
+					reviewed,
+					metadata: groupsChanged[bio.position]
+						? { groups: selectedGroups[bio.position] }
+						: {},
+				}),
 			})
 			const body = await responseBody(response)
 			if (!response.ok) {
@@ -388,14 +485,6 @@
 									</dd>
 								</div>
 								<div>
-									<dt class="inline font-bold">Email:</dt>
-									<dd class="inline">
-										<a class="link-green" href={`mailto:${bio.email}`}
-											>{bio.email}</a
-										>
-									</dd>
-								</div>
-								<div>
 									<dt class="inline font-bold">Image year:</dt>
 									<dd class="inline">{bio.imageYear}</dd>
 								</div>
@@ -408,48 +497,146 @@
 							</dl>
 						</header>
 
+						<section class="mb-6" aria-labelledby={`review-${bio.position}`}>
+							<h3 class="h3 mb-3" id={`review-${bio.position}`}>
+								Review submitted content
+							</h3>
+							<div class="grid gap-4 sm:grid-cols-2">
+								<label class="block font-bold">
+									First name
+									<input
+										class="mt-1 block w-full border border-gray-500 bg-white px-3 py-2 text-black"
+										bind:value={bio.firstName}
+									/>
+								</label>
+								<label class="block font-bold">
+									Last name
+									<input
+										class="mt-1 block w-full border border-gray-500 bg-white px-3 py-2 text-black"
+										bind:value={bio.lastName}
+									/>
+								</label>
+								<label class="block font-bold">
+									Location
+									<input
+										class="mt-1 block w-full border border-gray-500 bg-white px-3 py-2 text-black"
+										bind:value={bio.location}
+									/>
+								</label>
+								<label class="block font-bold">
+									Email
+									<input
+										class="mt-1 block w-full border border-gray-500 bg-white px-3 py-2 text-black"
+										type="email"
+										bind:value={bio.email}
+									/>
+								</label>
+								<label class="block font-bold sm:col-span-2">
+									Website bio
+									<textarea
+										class="mt-1 block min-h-36 w-full border border-gray-500 bg-white px-3 py-2 font-normal text-black"
+										bind:value={bio.bio}
+									></textarea>
+								</label>
+								<label class="block font-bold sm:col-span-2">
+									Program bio (optional)
+									<textarea
+										class="mt-1 block min-h-28 w-full border border-gray-500 bg-white px-3 py-2 font-normal text-black"
+										bind:value={bio.programBio}
+									></textarea>
+								</label>
+								<div class="sm:col-span-2">
+									<label class="block font-bold" for={`staff-${bio.position}`}
+										>Staff positions</label
+									>
+									<span
+										class="block text-sm font-normal"
+										id={`staff-help-${bio.position}`}
+										>One position per line.</span
+									>
+									<textarea
+										id={`staff-${bio.position}`}
+										aria-describedby={`staff-help-${bio.position}`}
+										class="mt-1 block min-h-24 w-full border border-gray-500 bg-white px-3 py-2 font-mono font-normal text-black"
+										bind:value={structuredEdits[bio.position].staffPositions}
+									></textarea>
+								</div>
+								<div class="sm:col-span-2">
+									<label
+										class="block font-bold"
+										for={`production-${bio.position}`}
+										>Production positions</label
+									>
+									<span
+										class="block text-sm font-normal"
+										id={`production-help-${bio.position}`}
+										>JSON object with production names mapped to arrays of
+										positions.</span
+									>
+									<textarea
+										id={`production-${bio.position}`}
+										aria-describedby={`production-help-${bio.position}`}
+										class="mt-1 block min-h-32 w-full border border-gray-500 bg-white px-3 py-2 font-mono font-normal text-black"
+										bind:value={
+											structuredEdits[bio.position].productionPositions
+										}
+									></textarea>
+								</div>
+								<div class="sm:col-span-2">
+									<label class="block font-bold" for={`roles-${bio.position}`}
+										>Roles</label
+									>
+									<span
+										class="block text-sm font-normal"
+										id={`roles-help-${bio.position}`}
+										>JSON object with production names mapped to arrays of
+										roles.</span
+									>
+									<textarea
+										id={`roles-${bio.position}`}
+										aria-describedby={`roles-help-${bio.position}`}
+										class="mt-1 block min-h-32 w-full border border-gray-500 bg-white px-3 py-2 font-mono font-normal text-black"
+										bind:value={structuredEdits[bio.position].roles}
+									></textarea>
+								</div>
+							</div>
+
+							<fieldset class="mt-5">
+								<legend class="font-bold">Groups</legend>
+								<p class="text-sm" id={`groups-help-${bio.position}`}>
+									Checked values begin with the current checked-in YAML
+									baseline. Changing them replaces that baseline; clearing every
+									value explicitly clears groups.
+								</p>
+								<div
+									class="mt-2 flex flex-wrap gap-x-5 gap-y-2"
+									aria-describedby={`groups-help-${bio.position}`}
+								>
+									{#each bioGroups as group}
+										<label class="flex items-center gap-2 capitalize">
+											<input
+												type="checkbox"
+												checked={selectedGroups[bio.position].includes(group)}
+												onchange={(event) =>
+													toggleGroup(
+														bio.position,
+														group,
+														event.currentTarget.checked,
+													)}
+											/>
+											{group}
+										</label>
+									{/each}
+								</div>
+							</fieldset>
+						</section>
+
 						<section
 							aria-label={`Website bio preview for ${bio.firstName} ${bio.lastName}`}
 						>
 							<h3 class="h3 mb-4">Website bio preview</h3>
 							<Bio person={previewPerson(bio)} />
 						</section>
-
-						{#if bio.programBio}
-							<section class="mb-5 rounded-sm bg-gray-100 p-4 dark:bg-gray-900">
-								<h3 class="h3 mb-2">Program bio</h3>
-								<p class="whitespace-pre-wrap">{bio.programBio}</p>
-							</section>
-						{/if}
-
-						<div class="mb-5 grid gap-3 sm:grid-cols-3">
-							<div>
-								<h3 class="font-bold">Staff positions</h3>
-								<p>{bio.staffPositions?.join(", ") || "None"}</p>
-							</div>
-							<div>
-								<h3 class="font-bold">Production positions</h3>
-								<p>
-									{Object.entries(bio.productionPositions ?? {})
-										.map(
-											([production, positions]) =>
-												`${production}: ${positions.join(", ")}`,
-										)
-										.join("; ") || "None"}
-								</p>
-							</div>
-							<div>
-								<h3 class="font-bold">Roles</h3>
-								<p>
-									{Object.entries(bio.roles ?? {})
-										.map(
-											([production, roles]) =>
-												`${production}: ${roles.join(", ")}`,
-										)
-										.join("; ") || "None"}
-								</p>
-							</div>
-						</div>
 
 						<div class="flex flex-wrap gap-3">
 							<button

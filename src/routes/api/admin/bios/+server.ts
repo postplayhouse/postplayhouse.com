@@ -4,6 +4,7 @@ import {
 	isAdmin,
 } from "../../bio-submission/passphraseHelpers.js"
 import { listPendingBios } from "$lib/server/blobs"
+import { checkedInGroups } from "$lib/server/bioMetadata"
 import { season } from "$data/seasons"
 
 export const GET = async ({ request }) => {
@@ -23,5 +24,10 @@ export const GET = async ({ request }) => {
 	}
 
 	const bios = await listPendingBios(season)
-	return json({ bios })
+	return json({
+		bios: bios.map((bio) => ({
+			...bio,
+			baselineGroups: checkedInGroups(season, bio.position),
+		})),
+	})
 }

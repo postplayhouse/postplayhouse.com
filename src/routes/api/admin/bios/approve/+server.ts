@@ -4,6 +4,8 @@ import {
 	isAdmin,
 } from "../../../bio-submission/passphraseHelpers.js"
 import { getPendingBio, approveBio } from "$lib/server/blobs"
+import { approveBioRequestSchema } from "$lib/bios"
+import { checkedInGroups } from "$lib/server/bioMetadata"
 import { downloadFromB2, uploadBufferToB2 } from "$lib/server/b2"
 import {
 	processHeadshotImage,
@@ -30,13 +32,13 @@ export const POST = async ({ request }) => {
 		return error(403, { message: "Admin access required" })
 	}
 
-	// Parse request body
-	const body = await request.json()
-	const bioPosition = body.position as number
-
-	if (typeof bioPosition !== "number") {
-		return error(400, { message: "Position is required" })
+	let body
+	try {
+		body = approveBioRequestSchema.parse(await request.json())
+	} catch {
+		return error(400, { message: "Invalid approval request" })
 	}
+	const bioPosition = body.position
 
 	// Fetch the pending bio
 	const pendingBio = await getPendingBio(season, bioPosition)
@@ -76,6 +78,8 @@ export const POST = async ({ request }) => {
 			bioPosition,
 			approvedBy,
 			optimizedPath,
+			body.reviewed,
+			body.metadata.groups ?? checkedInGroups(season, bioPosition),
 		)
 
 		return json({
