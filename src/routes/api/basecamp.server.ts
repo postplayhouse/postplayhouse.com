@@ -31,7 +31,7 @@ export function sendMessageToChatRoom(
 		return
 	}
 
-	fetch(urlForChatRoom(room), {
+	return fetch(urlForChatRoom(room), {
 		method: "POST",
 		headers: new Headers({ "Content-type": "application/json" }),
 		body: JSON.stringify({ content }),
