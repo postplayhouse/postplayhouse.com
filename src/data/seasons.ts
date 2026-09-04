@@ -14,6 +14,6 @@ export const entries: Exclude<
 >["entries"] = [
 	"*",
 	...allYears.map((y) => `/productions/${y}` as const),
-	...allYears.map((y) => `/who/${y}` as const),
+	...allYears.filter((y) => y !== season).map((y) => `/who/${y}` as const),
 	...yearsWithCalendars.map((y) => `/calendar/${y}` as const),
 ]

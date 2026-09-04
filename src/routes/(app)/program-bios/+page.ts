@@ -2,6 +2,8 @@ import { error } from "@sveltejs/kit"
 import * as site from "$data/site"
 import { marked } from "marked"
 
+export const prerender = false
+
 marked.setOptions({ smartypants: true })
 
 export async function load(obj) {
