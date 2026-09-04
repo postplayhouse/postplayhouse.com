@@ -115,21 +115,26 @@ export const seriesEventSchema = z.strictObject({
 
 export type ActualSeriesEvent = z.infer<typeof seriesEventSchema>
 
-export const specialEventSchema = z.discriminatedUnion("is_series", [
+export const standaloneSpecialEventSchema = z.strictObject({
+	...baseEventSchema.shape,
+	special_event: z.literal(true),
+	is_series: z.undefined(),
+	belongs_to_series: z.undefined(),
+	color: z.literal("x"),
+	roles_sorting: z.undefined().nullish(),
+})
+
+export const specialEventSchema = z.union([
 	seriesSchema,
 	seriesEventSchema,
+	standaloneSpecialEventSchema,
 ])
 
 export type ActualSpecialEvent = z.infer<typeof specialEventSchema>
 
 export const productionsSchema = z.record(
 	yearsAsString,
-	z.array(
-		z.discriminatedUnion("special_event", [
-			productionSchema,
-			specialEventSchema,
-		]),
-	),
+	z.array(z.union([productionSchema, specialEventSchema])),
 )
 
 export type ActualProductionsByYear = z.infer<typeof productionsSchema>

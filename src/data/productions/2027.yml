@@ -1,1 +1,87 @@
-[]
+- title: Annie
+  short_title: Annie
+  color: red
+  image: annie.jpg
+  opening: 2027-05-28
+  writers:
+  description: ""
+  dates:
+    fort_rob: |
+      May 28e, 29e, 30a
+      June 1e, 2e, 8e, 16e, 20a, 29e
+      July 7a, 10m, 13e, 17a, 21e, 24m, 25a, 31e
+      August 4a, 7m, 10e, 13a, 15a
+  roles_sorting:
+
+- title: Honky Tonk Angels
+  short_title: Honky Tonk
+  color: green
+  image: honky-tonk-angels.jpg
+  opening: 2027-06-04
+  writers:
+  description: ""
+  dates:
+    fort_rob: |
+      June 4e, 5e, 6a, 9e, 15e, 18e, 23e
+      July 7e, 10a, 14a, 17m, 20e, 24e, 28a, 31a
+      August 4e, 6e, 11a, 13e
+  roles_sorting:
+
+- title: The Addams Family
+  short_title: Addams
+  color: yellow
+  image: addams-family.jpg
+  opening: 2027-06-11
+  writers:
+  description: ""
+  dates:
+    fort_rob: |
+      June 11e, 12e, 13a, 17e, 19e, 22e
+      July 9a, 11a, 14e, 16a, 21a, 30a
+      August 1a, 5e, 7e, 11e, 14a
+  roles_sorting:
+
+- title: The Drowsy Chaperone
+  short_title: Drowsy
+  color: blue
+  image: drowsy-chaperone.jpg
+  opening: 2027-06-25
+  writers:
+  description: ""
+  dates:
+    fort_rob: |
+      June 25e, 26e, 27a, 30e
+      July 6e, 10e, 17e, 23a, 24a, 28e, 31m
+      August 7a, 12e
+  roles_sorting:
+
+- title: Footloose
+  short_title: Footloose
+  color: purple
+  image: footloose.jpg
+  opening: 2027-07-02
+  writers:
+  description: ""
+  dates:
+    fort_rob: |
+      July 2e, 3e, 8e, 9e, 16e, 22e, 23e, 27e, 29e, 30e
+      August 3e, 6a, 8a, 14e
+  roles_sorting:
+
+- title: Melodrama
+  short_title: Melodrama
+  special_event: true
+  color: x
+  description: ""
+  dates:
+    fort_rob: |
+      July 15e
+
+- title: NEW MUSICAL
+  short_title: NEW MUSICAL
+  special_event: true
+  color: x
+  description: ""
+  dates:
+    fort_rob: |
+      July 18a
