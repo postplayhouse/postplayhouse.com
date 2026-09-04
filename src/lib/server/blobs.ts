@@ -1,5 +1,4 @@
 import { getDeployStore, getStore } from "@netlify/blobs"
-import { getRequestEvent } from "$app/server"
 import { isProduction, isTest } from "$lib/server/env"
 import z from "zod"
 import {
@@ -47,11 +46,8 @@ const pendingBioReadSchema = z
 	)
 
 function getBiosStore() {
-	if (isProduction() && !isTest()) return getStore(PENDING_BIOS_STORE)
-
-	const deployID = getRequestEvent().request.headers.get("x-nf-deploy-id")
-	return deployID
-		? getDeployStore(PENDING_BIOS_STORE, { deployID })
+	return isProduction() && !isTest()
+		? getStore(PENDING_BIOS_STORE)
 		: getDeployStore(PENDING_BIOS_STORE)
 }
 

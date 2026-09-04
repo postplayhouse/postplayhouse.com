@@ -5,8 +5,6 @@ const privateEnv = vi.hoisted(() => ({
 	PLAYWRIGHT_TEST: "false",
 }))
 
-const requestHeaders = vi.hoisted(() => new Headers())
-
 const netlifyBlobs = vi.hoisted(() => {
 	function createStore() {
 		return {
@@ -29,9 +27,6 @@ const netlifyBlobs = vi.hoisted(() => {
 })
 
 vi.mock("$env/dynamic/private", () => ({ env: privateEnv }))
-vi.mock("$app/server", () => ({
-	getRequestEvent: () => ({ request: { headers: requestHeaders } }),
-}))
 vi.mock("@netlify/blobs", () => ({
 	getStore: netlifyBlobs.getStore,
 	getDeployStore: netlifyBlobs.getDeployStore,
@@ -123,7 +118,6 @@ describe("pending bios Blob store isolation", () => {
 	beforeEach(() => {
 		vi.clearAllMocks()
 		privateEnv.PLAYWRIGHT_TEST = "false"
-		requestHeaders.delete("x-nf-deploy-id")
 	})
 
 	it("uses the persistent store for every operation in production", async () => {
@@ -155,19 +149,6 @@ describe("pending bios Blob store isolation", () => {
 			expectStoreUnused(netlifyBlobs.persistentStore)
 		},
 	)
-
-	it("binds hosted non-production data to the request deploy", async () => {
-		privateEnv.CONTEXT = "deploy-preview"
-		requestHeaders.set("x-nf-deploy-id", "preview-deploy-id")
-
-		await exerciseEveryOperation(netlifyBlobs.deployStore)
-
-		expect(netlifyBlobs.getDeployStore).toHaveBeenCalledWith("pending-bios", {
-			deployID: "preview-deploy-id",
-		})
-		expect(netlifyBlobs.getStore).not.toHaveBeenCalled()
-		expectStoreUnused(netlifyBlobs.persistentStore)
-	})
 })
 
 describe("pending and approved bio compatibility", () => {
