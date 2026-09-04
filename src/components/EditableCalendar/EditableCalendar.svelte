@@ -1,6 +1,10 @@
 <script lang="ts">
 	import Dropdown from "./Dropdown.svelte"
-	import type { PerformanceDetails, ProductionDetails } from "./showingsData"
+	import {
+		scheduleWarnings,
+		type PerformanceDetails,
+		type ProductionDetails,
+	} from "./showingsData"
 	import { dateOfPerformance, getDateDetails, makeDateIterator } from "./dates"
 	import {
 		addPerformance,
@@ -16,6 +20,8 @@
 	$effect(replaceAfterMount)
 
 	let dates = $derived(Array.from(makeDateIterator($schedule)))
+	let warningsExpanded = $state(false)
+	let warnings = $derived(scheduleWarnings($schedule))
 
 	const perfsByProd = $derived(
 		$schedule.productions
@@ -133,6 +139,42 @@
 		}
 	}
 </script>
+
+{#if warnings.length > 0}
+	<aside
+		class="fixed right-4 bottom-14 z-[9998] max-w-[min(28rem,calc(100vw-2rem))] rounded-lg border border-amber-500 bg-amber-50 text-amber-950 shadow-xl dark:bg-amber-950 dark:text-amber-50"
+		aria-live="polite"
+	>
+		<button
+			type="button"
+			class="flex w-full items-center justify-between gap-4 p-3 text-left font-bold"
+			aria-expanded={warningsExpanded}
+			aria-controls="schedule-warnings"
+			onclick={() => (warningsExpanded = !warningsExpanded)}
+		>
+			<span
+				>⚠ {warnings.length} schedule {warnings.length === 1
+					? "warning"
+					: "warnings"}</span
+			>
+			<span aria-hidden="true">{warningsExpanded ? "−" : "+"}</span>
+		</button>
+
+		{#if warningsExpanded}
+			<div
+				id="schedule-warnings"
+				class="max-h-[min(60vh,30rem)] overflow-y-auto border-t border-amber-500 p-3"
+			>
+				<p class="mb-2 font-bold">These dates look unusual:</p>
+				<ul class="list-disc space-y-2 pl-5">
+					{#each warnings as warning (warning.id)}
+						<li>{warning.message}</li>
+					{/each}
+				</ul>
+			</div>
+		{/if}
+	</aside>
+{/if}
 
 <div class="prose dark:prose-invert mb-8 space-y-8">
 	<p class="bold text-xl">

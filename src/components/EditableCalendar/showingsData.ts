@@ -19,6 +19,11 @@ export type ShowingsData = {
 	performances: PerformanceDetails[]
 }
 
+export type ScheduleWarning = {
+	id: string
+	message: string
+}
+
 type StartingMonth = { startingMonth: number; startingYear: number }
 
 const alpha31 = "abcdefghijklmnopqrstuvwxyzABCDE".split("")
@@ -255,6 +260,196 @@ export function sortPerformances(
 	if (a.day !== b.day) return a.day - b.day
 	if (a.slot !== b.slot) return a.slot - b.slot
 	return 0
+}
+
+function performanceDate(performance: PerformanceDetails) {
+	return new Date(performance.year, performance.month - 1, performance.day)
+}
+
+function performanceDateKey(performance: PerformanceDetails) {
+	return `${performance.year}-${performance.month}-${performance.day}`
+}
+
+function dateKey(date: Date) {
+	return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+}
+
+type ScheduleCaveatContext = {
+	openingsAfterDate: ReadonlyMap<string, string[]>
+}
+
+const scheduleCaveats = [
+	{
+		id: "independence-day",
+		appliesTo: (date: Date, _context: ScheduleCaveatContext) =>
+			date.getMonth() === 6 && date.getDate() === 4,
+		message: (_date: Date, _context: ScheduleCaveatContext) =>
+			"No performances should be scheduled on July 4.",
+	},
+	{
+		id: "monday",
+		appliesTo: (date: Date, _context: ScheduleCaveatContext) =>
+			date.getDay() === 1,
+		message: (date: Date, _context: ScheduleCaveatContext) =>
+			`No performances should be scheduled on ${date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}.`,
+	},
+	{
+		id: "day-before-opening",
+		appliesTo: (date: Date, context: ScheduleCaveatContext) =>
+			context.openingsAfterDate.has(dateKey(date)),
+		message: (date: Date, context: ScheduleCaveatContext) =>
+			`${date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })} is the day before ${context.openingsAfterDate.get(dateKey(date))!.join(" and ")} opens and should have no performances.`,
+	},
+]
+
+function scheduleCaveatFor(date: Date, context: ScheduleCaveatContext) {
+	return scheduleCaveats.find(({ appliesTo }) => appliesTo(date, context))
+}
+
+function friendlyPerformanceDate(performance: PerformanceDetails) {
+	return performanceDate(performance).toLocaleDateString("en-US", {
+		weekday: "long",
+		month: "long",
+		day: "numeric",
+		year: "numeric",
+	})
+}
+
+export function scheduleWarnings(schedule: ShowingsData): ScheduleWarning[] {
+	const warnings: ScheduleWarning[] = []
+	const performancesBySlot = new Map<string, PerformanceDetails[]>()
+	const performancesByDate = new Map<string, PerformanceDetails[]>()
+	const performancesByProduction = new Map<string, PerformanceDetails[]>()
+
+	for (const performance of schedule.performances) {
+		const date = performanceDate(performance)
+		const dayKey = performanceDateKey(performance)
+		const slotKey = `${dayKey}-${performance.slot}`
+
+		for (const [map, key] of [
+			[performancesBySlot, slotKey],
+			[performancesByDate, dayKey],
+			[performancesByProduction, performance.id],
+		] as const) {
+			const performances = map.get(key) ?? []
+			performances.push(performance)
+			map.set(key, performances)
+		}
+
+		if (date.getDay() === 0 && performance.slot === 3) {
+			warnings.push({
+				id: `sunday-evening-${dayKey}-${performance.id}`,
+				message: `${performance.id} has an 8pm performance on ${friendlyPerformanceDate(performance)}.`,
+			})
+		}
+	}
+
+	for (const [slotKey, performances] of performancesBySlot) {
+		if (performances.length < 2) continue
+		warnings.push({
+			id: `duplicate-${slotKey}`,
+			message: `${performances.map(({ id }) => id).join(" and ")} share the same performance slot on ${friendlyPerformanceDate(performances[0]!)}.`,
+		})
+	}
+
+	const recurringProductions = [...performancesByProduction]
+		.filter(([, performances]) => performances.length > 1)
+		.map(([id, performances]) => [id, performances[0]!] as const)
+
+	const openingsAfterDate = new Map<string, string[]>()
+	for (const [id, opening] of recurringProductions) {
+		const dayBeforeOpening = performanceDate(opening)
+		dayBeforeOpening.setDate(dayBeforeOpening.getDate() - 1)
+		const openingIds = openingsAfterDate.get(dateKey(dayBeforeOpening)) ?? []
+		openingIds.push(id)
+		openingsAfterDate.set(dateKey(dayBeforeOpening), openingIds)
+	}
+	const caveatContext = { openingsAfterDate }
+
+	for (const [dayKey, performances] of performancesByDate) {
+		const date = performanceDate(performances[0]!)
+		const caveat = scheduleCaveatFor(date, caveatContext)
+		if (!caveat) continue
+		warnings.push({
+			id: `caveat-${caveat.id}-${dayKey}`,
+			message: caveat.message(date, caveatContext),
+		})
+	}
+
+	if (recurringProductions.length === 0) return warnings
+
+	const allShowsOpenDate = new Date(
+		Math.max(
+			...recurringProductions.map(([, opening]) =>
+				performanceDate(opening).getTime(),
+			),
+		),
+	)
+
+	for (const [dayKey, performances] of performancesByDate) {
+		const date = performanceDate(performances[0]!)
+		const weekday = date.getDay()
+		const productionCount = new Set(performances.map(({ id }) => id)).size
+
+		if (date < allShowsOpenDate && performances.length > 1) {
+			warnings.push({
+				id: `multiple-before-open-${dayKey}`,
+				message: `${friendlyPerformanceDate(performances[0]!)} has ${performances.length} performances before every show has opened.`,
+			})
+		}
+
+		if ([0, 2, 4].includes(weekday) && productionCount > 1) {
+			warnings.push({
+				id: `multiple-shows-${dayKey}`,
+				message: `${friendlyPerformanceDate(performances[0]!)} has multiple shows; Tuesdays, Thursdays, and Sundays should have only one.`,
+			})
+		}
+	}
+
+	const finalPerformanceDate = new Date(
+		Math.max(
+			...schedule.performances.map((performance) =>
+				performanceDate(performance).getTime(),
+			),
+		),
+	)
+	const firstPerformanceDate = new Date(
+		Math.min(
+			...schedule.performances.map((performance) =>
+				performanceDate(performance).getTime(),
+			),
+		),
+	)
+	for (
+		const date = new Date(firstPerformanceDate);
+		date <= finalPerformanceDate;
+		date.setDate(date.getDate() + 1)
+	) {
+		if (scheduleCaveatFor(date, caveatContext)) continue
+		if (performancesByDate.has(dateKey(date))) continue
+		warnings.push({
+			id: `missing-performance-${dateKey(date)}`,
+			message: `No performance is scheduled on ${date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}.`,
+		})
+	}
+
+	for (
+		const date = new Date(allShowsOpenDate);
+		date <= finalPerformanceDate;
+		date.setDate(date.getDate() + 1)
+	) {
+		const weekday = date.getDay()
+		if (weekday < 2 || weekday > 6 || scheduleCaveatFor(date, caveatContext))
+			continue
+		const performances = performancesByDate.get(dateKey(date)) ?? []
+		if (performances.some(({ slot }) => slot === 3)) continue
+		warnings.push({
+			id: `missing-evening-${dateKey(date)}`,
+			message: `No 8pm performance is scheduled on ${date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}.`,
+		})
+	}
+
+	return warnings
 }
 
 export function showingsDataToString(data: ShowingsData): {

@@ -4,6 +4,7 @@ import {
 	showingsStringToData,
 	showingsDataToString,
 	escapeTitle,
+	scheduleWarnings,
 	unescapeTitle,
 } from "./showingsData"
 import type { ShowingsData } from "./showingsData"
@@ -180,4 +181,152 @@ it("handles title escaping", () => {
 
 	expect(escapeTitle(curly)).toEqual(curlyEsc)
 	expect(unescapeTitle(curlyEsc)).toEqual(curly)
+})
+
+describe(scheduleWarnings.name, () => {
+	it("allows the expected weekend and weekday time slots", () => {
+		expect(
+			scheduleWarnings({
+				productions: [],
+				performances: [
+					{ id: "Show", year: 2027, month: 6, day: 5, slot: 3 },
+					{ id: "Show", year: 2027, month: 6, day: 6, slot: 2 },
+					{ id: "Show", year: 2027, month: 6, day: 8, slot: 3 },
+				],
+			}),
+		).toEqual([])
+	})
+
+	it("flags Mondays, Sunday evenings, and duplicate time slots", () => {
+		const warnings = scheduleWarnings({
+			productions: [],
+			performances: [
+				{ id: "Monday Show", year: 2027, month: 6, day: 7, slot: 2 },
+				{ id: "Sunday Show", year: 2027, month: 6, day: 6, slot: 3 },
+				{ id: "First Show", year: 2027, month: 6, day: 8, slot: 3 },
+				{ id: "Second Show", year: 2027, month: 6, day: 8, slot: 3 },
+			],
+		})
+
+		expect(warnings.map(({ id }) => id).sort()).toEqual([
+			"caveat-monday-2027-6-7",
+			"duplicate-2027-6-8-3",
+			"sunday-evening-2027-6-6-Sunday Show",
+		])
+	})
+
+	it("flags multiple performances before every recurring show has opened", () => {
+		const warnings = scheduleWarnings({
+			productions: [],
+			performances: [
+				{ id: "First", year: 2027, month: 6, day: 4, slot: 3 },
+				{ id: "First", year: 2027, month: 6, day: 5, slot: 1 },
+				{ id: "First", year: 2027, month: 6, day: 5, slot: 2 },
+				{ id: "Second", year: 2027, month: 6, day: 11, slot: 3 },
+				{ id: "Second", year: 2027, month: 6, day: 12, slot: 3 },
+			],
+		})
+
+		expect(warnings.map(({ id }) => id)).toContain(
+			"multiple-before-open-2027-6-5",
+		)
+	})
+
+	it.each([
+		[6, "Sunday"],
+		[8, "Tuesday"],
+		[10, "Thursday"],
+	])("flags multiple shows on %s (%s)", (day) => {
+		const warnings = scheduleWarnings({
+			productions: [],
+			performances: [
+				{ id: "Main", year: 2027, month: 6, day: 4, slot: 3 },
+				{ id: "Main", year: 2027, month: 6, day: 5, slot: 3 },
+				{ id: "Main", year: 2027, month: 6, day, slot: 3 },
+				{ id: "Other", year: 2027, month: 6, day, slot: 2 },
+			],
+		})
+
+		expect(warnings.map(({ id }) => id)).toContain(
+			`multiple-shows-2027-6-${day}`,
+		)
+	})
+
+	it("flags missing Tuesday through Saturday evening performances after every show has opened", () => {
+		const warnings = scheduleWarnings({
+			productions: [],
+			performances: [
+				{ id: "Show", year: 2027, month: 6, day: 4, slot: 3 },
+				{ id: "Show", year: 2027, month: 6, day: 5, slot: 3 },
+				{ id: "Show", year: 2027, month: 6, day: 8, slot: 2 },
+			],
+		})
+
+		expect(warnings.map(({ id }) => id)).toContain("missing-evening-2027-6-8")
+	})
+
+	it("flags any day without a performance during the season", () => {
+		const warnings = scheduleWarnings({
+			productions: [],
+			performances: [
+				{ id: "Show", year: 2027, month: 6, day: 8, slot: 3 },
+				{ id: "Show", year: 2027, month: 6, day: 10, slot: 3 },
+			],
+		})
+
+		expect(warnings.map(({ id }) => id)).toContain(
+			"missing-performance-2027-6-9",
+		)
+	})
+
+	it("allows no performance on July 4 and flags one scheduled then", () => {
+		const schedule = {
+			productions: [],
+			performances: [
+				{ id: "Show", year: 2027, month: 7, day: 2, slot: 3 },
+				{ id: "Show", year: 2027, month: 7, day: 3, slot: 3 },
+				{ id: "Show", year: 2027, month: 7, day: 6, slot: 3 },
+			],
+		}
+
+		expect(scheduleWarnings(schedule)).toEqual([])
+		expect(
+			scheduleWarnings({
+				...schedule,
+				performances: [
+					...schedule.performances,
+					{ id: "Show", year: 2027, month: 7, day: 4, slot: 2 },
+				],
+			}).map(({ id }) => id),
+		).toContain("caveat-independence-day-2027-7-4")
+	})
+
+	it("allows no performance on the day before a recurring show opens", () => {
+		expect(
+			scheduleWarnings({
+				productions: [],
+				performances: [
+					{ id: "First", year: 2027, month: 6, day: 1, slot: 3 },
+					{ id: "First", year: 2027, month: 6, day: 2, slot: 3 },
+					{ id: "Opening Show", year: 2027, month: 6, day: 4, slot: 3 },
+					{ id: "Opening Show", year: 2027, month: 6, day: 5, slot: 3 },
+				],
+			}),
+		).toEqual([])
+	})
+
+	it("flags a performance on the day before a show opens", () => {
+		const warnings = scheduleWarnings({
+			productions: [],
+			performances: [
+				{ id: "Other", year: 2027, month: 6, day: 3, slot: 3 },
+				{ id: "Opening Show", year: 2027, month: 6, day: 4, slot: 3 },
+				{ id: "Opening Show", year: 2027, month: 6, day: 5, slot: 3 },
+			],
+		})
+
+		expect(warnings.map(({ id }) => id)).toContain(
+			"caveat-day-before-opening-2027-6-3",
+		)
+	})
 })
