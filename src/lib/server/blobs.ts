@@ -1,4 +1,5 @@
-import { getStore } from "@netlify/blobs"
+import { getDeployStore, getStore } from "@netlify/blobs"
+import { isProduction, isTest } from "$lib/server/env"
 import z from "zod"
 
 const PENDING_BIOS_STORE = "pending-bios"
@@ -25,7 +26,9 @@ export const pendingBioSchema = z.object({
 export type PendingBio = z.infer<typeof pendingBioSchema>
 
 function getBiosStore() {
-	return getStore(PENDING_BIOS_STORE)
+	return isProduction() && !isTest()
+		? getStore(PENDING_BIOS_STORE)
+		: getDeployStore(PENDING_BIOS_STORE)
 }
 
 function pendingKey(season: number, position: number): string {
