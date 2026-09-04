@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import type { ApprovedBio } from "$lib/server/blobs"
-import { mergeBiosWithYaml } from "./+server"
+import { _mergeBiosWithYaml } from "./+server"
 
 const approved: ApprovedBio = {
 	position: 1,
@@ -28,7 +28,7 @@ describe("approved bio overlay", () => {
 			last_name: "Person",
 			groups: ["staff" as const],
 		}
-		const result = mergeBiosWithYaml(
+		const result = _mergeBiosWithYaml(
 			[yamlPerson],
 			[
 				{

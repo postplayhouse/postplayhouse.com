@@ -30,7 +30,7 @@ export const GET: RequestHandler = async (req) => {
 	let mergedPeople = [...people]
 	try {
 		const approvedBios = await listApprovedBios(yearNum)
-		mergedPeople = mergeBiosWithYaml(people, approvedBios)
+		mergedPeople = _mergeBiosWithYaml(people, approvedBios)
 	} catch (e) {
 		// If Blobs fails, fall back to YAML data only
 		console.error("Failed to fetch approved bios:", e)
@@ -53,7 +53,7 @@ export const GET: RequestHandler = async (req) => {
  * Merge approved bios from Netlify Blobs with YAML data.
  * Approved bios override YAML data for matching positions.
  */
-export function mergeBiosWithYaml(
+export function _mergeBiosWithYaml(
 	yamlPeople: YamlPerson[],
 	approvedBios: ApprovedBio[],
 ): YamlPerson[] {
