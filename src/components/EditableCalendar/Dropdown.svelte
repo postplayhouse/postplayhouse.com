@@ -12,6 +12,7 @@
 		style?: string
 		choices?: ProductionDetails[]
 		class?: string
+		disabled?: boolean
 		onChoice?: (choice: ProductionDetails | null) => void
 		children: Snippet
 	}
@@ -21,6 +22,7 @@
 		style = "",
 		class: className = "",
 		choices = [],
+		disabled = false,
 		onChoice = () => {},
 		children,
 	}: Props = $props()
@@ -73,6 +75,7 @@
 	class={className}
 	type="button"
 	{style}
+	{disabled}
 	bind:this={btnRef}
 	onclick={toggleDropdown}
 >
