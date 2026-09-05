@@ -83,6 +83,7 @@ run_case() {
 	PATH="$fixture/bin:$PATH" "$fixture/.agents/setup"
 
 	assert_log_contains "pnpm install --frozen-lockfile"
+	assert_log_contains "pnpm with:1password pnpm images:historical:restore"
 	assert_log_excludes "docker "
 	assert_log_excludes "sudo "
 	if [[ "$browser_present" == "yes" ]]; then

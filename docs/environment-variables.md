@@ -134,12 +134,15 @@ artifact, cache, or log.
 
 An Orb is an ephemeral development machine, not automatically a trusted secret boundary.
 Do not add a personal 1Password session, desktop integration, account password, or broad
-service account to arbitrary Orbs. Keep project pre-setup secret-free: install the pinned
-Node/pnpm dependencies and run only secret-free setup.
+service account to arbitrary Orbs. This project's setup uses the Amp project secret
+`OP_SERVICE_ACCOUNT_TOKEN` with Varlock's 1Password integration to resolve the shared
+`B2_*` credentials and restore historical images. Only run this setup in project Orbs that
+are intentionally trusted with that Environment.
 
 Commands such as `pnpm env:check`, `pnpm env:audit`, `pnpm check`, unit tests, lint, and
-format need no 1Password access. A development server and ordinary build can start without
-application secrets, although credentialed endpoints cannot call providers.
+format need no 1Password access. A development server and ordinary build need either a
+warm historical-image cache or the shared `B2_*` credentials; credentialed endpoints need
+their corresponding provider credentials.
 
 For an explicitly trusted Amp project, store a narrowly scoped read-only service-account
 token as the Amp project secret `OP_SERVICE_ACCOUNT_TOKEN`, refresh/restart the Orb so the
@@ -157,5 +160,6 @@ intentional project policy. Prefer direct, narrow Amp project secrets or split E
 for future targeted integration tests. Never run `pnpm bio:basecamp` in an Orb without
 specific human approval; it can add or invite users.
 
-The current shared Amp pre-setup also calls nonexistent `pnpm cache:images:restore`.
-Confirm that stale line separately before changing shared project configuration.
+The repository's `.agents/setup` runs the read-only restore through
+`pnpm with:1password` after dependency installation. It may read from B2 on a cold cache
+but does not publish or delete objects.

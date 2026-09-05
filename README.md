@@ -26,7 +26,8 @@ either a preseeded, verified `.cache/historical-images` or the shared
 configuration before `dev` or `build` can restore them. By explicit project
 decision, historical images and bio tooling share these credentials; there is
 no credential-level isolation or least-privilege claim between those uses.
-Setup does not silently download these assets. Run
+Amp orb setup resolves these credentials through Varlock's 1Password integration
+and restores the assets automatically. Outside an orb, run
 `pnpm images:historical:doctor` to inspect local readiness without network
 access, then `pnpm images:historical:restore` explicitly if needed. Endpoints
 that call other external services need only their corresponding credentials.

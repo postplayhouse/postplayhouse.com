@@ -59,6 +59,9 @@ verify_version packageManager "$expected_pnpm" "$package_pnpm"
 echo "== Installing locked dependencies =="
 pnpm install --frozen-lockfile
 
+echo "== Restoring verified historical images =="
+pnpm with:1password pnpm images:historical:restore
+
 echo "== Verifying Playwright Chromium =="
 chromium_executable="$(node --input-type=module -e "import { chromium } from '@playwright/test'; process.stdout.write(chromium.executablePath())")"
 if [[ -x "$chromium_executable" ]]; then
