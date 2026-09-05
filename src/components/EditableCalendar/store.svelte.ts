@@ -1,10 +1,12 @@
 import { browser } from "$app/environment"
 import { goto } from "$app/navigation"
-import { writable } from "svelte/store"
+import { derived, writable } from "svelte/store"
 import {
 	showingsDataToQueryParamsObj,
 	showingsStringToData,
 } from "./showingsData"
+
+const INITIAL_SCHEDULE_KEY = "editable-calendar-initial-schedule-v1"
 
 let initial = {
 	startingMonth: 5,
@@ -25,6 +27,25 @@ const schedule = showingsStringToData(initial.scheduleString, {
 })
 
 const scheduleStore = writable(schedule)
+const initialScheduleState = writable<string | null>(null)
+
+function scheduleState(value: typeof schedule) {
+	return JSON.stringify(
+		showingsDataToQueryParamsObj({
+			productions: value.productions.map((production) => ({ ...production })),
+			performances: value.performances.map((performance) => ({
+				...performance,
+			})),
+		}),
+	)
+}
+
+export const hasEdits = derived(
+	[scheduleStore, initialScheduleState],
+	([$schedule, $initialScheduleState]) =>
+		$initialScheduleState !== null &&
+		scheduleState($schedule) !== $initialScheduleState,
+)
 
 function updateUrl(newSchedule: typeof schedule) {
 	const url = new URL(window.location.toString())
@@ -47,7 +68,9 @@ function updateUrl(newSchedule: typeof schedule) {
 }
 
 scheduleStore.subscribe((newSchedule) => {
-	browser && updateUrl(newSchedule)
+	if (browser) {
+		updateUrl(newSchedule)
+	}
 })
 
 export function replaceAfterMount() {
@@ -66,8 +89,16 @@ export function replaceAfterMount() {
 		}
 
 		const { scheduleString, ...rest } = initial
+		const loadedSchedule = showingsStringToData(scheduleString, rest)
+		let storedInitialSchedule = sessionStorage.getItem(INITIAL_SCHEDULE_KEY)
 
-		scheduleStore.set(showingsStringToData(scheduleString, rest))
+		if (storedInitialSchedule === null) {
+			storedInitialSchedule = scheduleState(loadedSchedule)
+			sessionStorage.setItem(INITIAL_SCHEDULE_KEY, storedInitialSchedule)
+		}
+
+		initialScheduleState.set(storedInitialSchedule)
+		scheduleStore.set(loadedSchedule)
 	}
 }
 

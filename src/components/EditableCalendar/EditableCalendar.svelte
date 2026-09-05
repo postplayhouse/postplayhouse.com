@@ -11,18 +11,18 @@
 		editProduction,
 		removePerformanceBySlot,
 	} from "./changeset"
-	import schedule, { replaceAfterMount } from "./store.svelte"
-	import { page } from "$app/stores"
+	import schedule, { hasEdits, replaceAfterMount } from "./store.svelte"
 	import { add } from "date-fns"
-	import { browser } from "$app/environment"
 	import { ExMap } from "$helpers/map"
 
 	$effect(replaceAfterMount)
 
 	let dates = $derived(Array.from(makeDateIterator($schedule)))
 	let editing = $state(false)
+	let shareCopied = $state(false)
 	let warningsExpanded = $state(false)
 	let warnings = $derived(scheduleWarnings($schedule))
+	let shareDialog: HTMLDialogElement
 
 	const perfsByProd = $derived(
 		$schedule.productions
@@ -78,11 +78,116 @@
 		schedule.set(tempSchedule)
 	}
 
-	function handleCopyUrl() {
+	function shareUrl() {
 		const url = new URL(window.location.toString())
-		window.navigator.clipboard.writeText(
-			url.origin + url.pathname + decodeURIComponent(url.search),
+		return url.origin + url.pathname + decodeURIComponent(url.search)
+	}
+
+	function handleCopyUrl() {
+		return window.navigator.clipboard.writeText(shareUrl())
+	}
+
+	async function handleShareCopy() {
+		await handleCopyUrl()
+		shareCopied = true
+	}
+
+	function performanceTime(slot: number) {
+		return slot === 1 ? "10:00 AM" : slot === 2 ? "2:00 PM" : "8:00 PM"
+	}
+
+	function calendarText() {
+		const lines = [
+			`Post Playhouse Calendar — Summer ${dates[0]?.year ?? ""}`,
+			"================================================",
+			"",
+			"SAVE THIS CALENDAR",
+			"------------------",
+			"Keep this URL to return to this calendar:",
+			"",
+			shareUrl(),
+			"",
+			"PERFORMANCE COUNTS",
+			"------------------",
+		]
+
+		for (const production of perfsByProd) {
+			lines.push(
+				"",
+				production.longTitle,
+				`  10:00 AM: ${production.performances.filter((performance) => performance.slot === 1).length}`,
+				`   2:00 PM: ${production.performances.filter((performance) => performance.slot === 2).length}`,
+				`   8:00 PM: ${production.performances.filter((performance) => performance.slot === 3).length}`,
+				`     Total: ${production.performances.length}`,
+			)
+		}
+
+		lines.push("", "SHOW DATES AND TIMES", "--------------------")
+
+		for (const [production, performancesByMonth] of perfsByMonthByProd) {
+			lines.push("", production.longTitle)
+			if (performancesByMonth.length === 0) {
+				lines.push("  No performances")
+				continue
+			}
+
+			for (const [month, performances] of performancesByMonth) {
+				lines.push(`  ${month}`)
+				for (const performance of performances) {
+					const weekday = dateOfPerformance(performance).toLocaleDateString(
+						"en-US",
+						{ weekday: "long" },
+					)
+					const time =
+						performance.slot === 3
+							? ""
+							: ` — ${performanceTime(performance.slot)}`
+					lines.push(
+						`    ${String(performance.day).padStart(2, " ")} ${weekday}${time}`,
+					)
+				}
+			}
+		}
+
+		lines.push(
+			"",
+			"PUSH CARD DATES",
+			"---------------",
+			"‡ = 10:00 AM    * = 2:00 PM    No symbol = 8:00 PM",
 		)
+
+		for (const [production, performancesByMonth] of perfsByMonthByProd) {
+			lines.push("", production.longTitle)
+			if (performancesByMonth.length === 0) {
+				lines.push("  No performances")
+				continue
+			}
+
+			for (const [month, performances] of performancesByMonth) {
+				lines.push(
+					`  ${month}: ${performances
+						.map(
+							(performance) =>
+								`${performance.day}${slotToPushCardSymbol(performance.slot)}`,
+						)
+						.join(", ")}`,
+				)
+			}
+		}
+
+		return lines.join("\n") + "\n"
+	}
+
+	function handleSaveFile() {
+		const href = URL.createObjectURL(
+			new Blob([calendarText()], { type: "text/plain;charset=utf-8" }),
+		)
+		const link = document.createElement("a")
+		link.href = href
+		link.download = `post-playhouse-calendar-${dates[0]?.year ?? "schedule"}.txt`
+		link.click()
+		link.remove()
+		setTimeout(() => URL.revokeObjectURL(href))
 	}
 
 	function moveShows(slot: keyof Parameters<typeof add>[1], distance: number) {
@@ -177,40 +282,70 @@
 	</aside>
 {/if}
 
-<div class="prose dark:prose-invert mb-8 space-y-8">
-	<p class="bold text-xl">
-		You can edit the calendar below by changing inputs and clicking on the show
-		slots on the calendar itself.
-	</p>
-
-	<div class="mt-8 space-y-6 rounded-sm bg-gray-200 p-4 dark:bg-gray-200/20">
-		<p>
-			<strong>When you are done</strong>, you can share your new calendar by
-			copying and sharing the URL below.
-		</p>
-
-		<div class="not-prose bg-white/50 p-2 dark:bg-black/50">
-			<code class="font-bold break-words!">
-				{#if browser}
-					{$page.url.origin}{$page.url.pathname}{decodeURIComponent(
-						$page.url.search,
-					)}
-				{/if}
-			</code>
+<dialog
+	bind:this={shareDialog}
+	onclick={(event) => {
+		if (event.target === event.currentTarget) shareDialog.close()
+	}}
+	onclose={() => (shareCopied = false)}
+	class="m-auto max-w-lg rounded-lg border border-gray-400 bg-white p-6 text-gray-900 shadow-xl backdrop:bg-black/70 dark:border-neutral-600 dark:bg-neutral-900 dark:text-white"
+>
+	<form method="dialog">
+		<div class="flex items-start justify-between gap-4">
+			<h2 class="text-2xl font-bold">Keep your calendar changes</h2>
+			<button
+				type="submit"
+				aria-label="Close"
+				class="flex size-8 shrink-0 items-center justify-center rounded-full text-2xl leading-none text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-neutral-800 dark:hover:text-white"
+				>×</button
+			>
 		</div>
-		<button class="btn-p" onclick={handleCopyUrl}>Copy URL to clipboard</button>
-		<p>
-			(<strong> You HAVE to copy the URL to share. </strong> This thing does not
-			save your work.)
+		<p class="my-4">
+			This calendar does not save your work. The only way to return to these
+			changes is to keep the calendar URL somewhere you won’t lose it.
 		</p>
-	</div>
-</div>
+		<p>
+			Copy the URL directly, or save a text file containing the URL, performance
+			counts, show dates, and show times.
+		</p>
+
+		{#if shareCopied}
+			<p class="mt-4 font-bold text-green-700" aria-live="polite">
+				URL copied to clipboard.
+			</p>
+		{/if}
+
+		<div class="mt-6 flex flex-wrap justify-end gap-2">
+			<button
+				type="submit"
+				class="rounded-xs border border-gray-400 bg-transparent px-4 py-2 font-bold text-gray-700 hover:bg-gray-100 dark:border-neutral-500 dark:text-gray-200 dark:hover:bg-neutral-800"
+				>Cancel</button
+			>
+			<button type="button" class="btn-p" onclick={handleShareCopy}
+				>Copy address</button
+			>
+			<button type="button" class="btn-p" onclick={handleSaveFile}
+				>Save file</button
+			>
+		</div>
+	</form>
+</dialog>
 
 <section class="relative">
 	<div
 		class="pointer-events-none sticky top-[calc(100vh-5rem)] z-40 h-0 w-fit"
 		style="transform: translateX(calc(-1 * (max(0px, (100vw - 64rem) / 2) + 1rem)))"
 	>
+		{#if $hasEdits}
+			<button
+				type="button"
+				onclick={() => shareDialog.showModal()}
+				class="btn-p pointer-events-auto absolute bottom-2 left-0 w-32 text-left text-sm leading-tight shadow"
+			>
+				Edited: share changes
+			</button>
+		{/if}
+
 		<button
 			type="button"
 			role="switch"
