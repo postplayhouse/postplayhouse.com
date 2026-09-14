@@ -1,5 +1,7 @@
 <script lang="ts">
+	import Announcement from "$components/Announcement.svelte"
 	import Mailer from "$components/Mailer.svelte"
+	import Markdown from "$components/Markdown.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
 	import Openings from "$components/Openings/Openings.svelte"
 	import SponsorPlate from "$components/SponsorPlate.svelte"
@@ -27,6 +29,20 @@
 	<meta property="og:title" content="Post Playhouse" />
 	<meta property="og:description" content={site.description} />
 </svelte:head>
+
+<Announcement readMoreLink="/news/2026-09-09-south-fork-fire-support">
+	{#snippet title()}
+		Post Playhouse receives strong support following South Fork Fire; looks
+		ahead to 60th anniversary season
+	{/snippet}
+	<Markdown
+		source={`
+When the South Fork Fire swept through Fort Robinson State Park in June, the entire company of Post Playhouse was evacuated, three performances were cancelled, and emergency expenses and lost attendance created an unexpected financial challenge for the nonprofit theatre.
+
+Through its Wildfire Recovery Fund, Post Playhouse exceeded its $45,000 goal thanks to generous support from more than 100 individuals across the country and several significant gifts. Together, this support has put Post Playhouse in a strong position as the organization looks toward its 60th anniversary season in summer 2027.
+	`}
+	/>
+</Announcement>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<h3 class="h1 my-8">Our 2027 Season will be announced soon...</h3>
