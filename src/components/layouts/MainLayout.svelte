@@ -4,11 +4,13 @@
 	import Header from "$components/Header.svelte"
 	import Footer from "$components/Footer.svelte"
 	import ThemeToggle from "$components/ThemeToggle.svelte"
+	import { url } from "$data/site"
 	import type { Snippet } from "svelte"
 
 	// Bare reference to page just to keep eslint happy
 	// https://github.com/sveltejs/eslint-plugin-svelte/issues/652
 	page
+	const socialImage = `${url}/images/playhouse-pic-large.jpg`
 
 	type Props = {
 		unconstrainedWidth?: boolean
@@ -16,6 +18,16 @@
 	}
 	let { unconstrainedWidth = false, children }: Props = $props()
 </script>
+
+<svelte:head>
+	<meta property="og:image" content={socialImage} />
+	<meta property="og:image:width" content="700" />
+	<meta property="og:image:height" content="442" />
+	<meta property="og:image:alt" content="The exterior of Post Playhouse" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:image" content={socialImage} />
+	<meta name="twitter:image:alt" content="The exterior of Post Playhouse" />
+</svelte:head>
 
 <div class="dark:bg-[#0f110f] dark:text-white/90">
 	<ThemeToggle />
