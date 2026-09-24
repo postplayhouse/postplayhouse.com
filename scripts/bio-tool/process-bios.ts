@@ -30,6 +30,10 @@ import {
   extractUrls,
 } from "./lib/bio-transforms"
 import { processBioWithClaude } from "./lib/claude"
+import {
+  markSourceJpegOptimized,
+  SOURCE_JPEG_QUALITY,
+} from "../optimize-new-jpegs"
 
 interface PersonData {
   first_name: string
@@ -335,13 +339,14 @@ async function optimizeImages(season: number) {
         withoutEnlargement: true,
       })
     }
-    pipeline = pipeline.jpeg({ quality: 82, mozjpeg: true })
+    pipeline = pipeline.jpeg({ quality: SOURCE_JPEG_QUALITY, mozjpeg: true })
 
     const outputBuffer = await pipeline.toBuffer()
     const originalSize = readFileSync(filePath).length
     const newSize = outputBuffer.length
 
     writeFileSync(targetPath, outputBuffer)
+    markSourceJpegOptimized(targetPath)
 
     if (renaming) {
       // Remove old file from disk and git index, then stage new .jpg

@@ -310,14 +310,18 @@ export function commitAll(message: string, body?: string): boolean {
 }
 
 /** Stage all changes and commit with a specific date */
-export function commitAllWithDate(message: string, date: Date): boolean {
+export function commitAllWithDate(
+  message: string,
+  date: Date,
+  env: NodeJS.ProcessEnv = {},
+): boolean {
   git("add -A")
   try {
     git("diff --cached --quiet")
     return false
   } catch {
     const isoDate = date.toISOString()
-    commitWithMessageFileAndDate(message, isoDate)
+    commitWithMessageFileAndDate(message, isoDate, env)
     return true
   }
 }
@@ -355,7 +359,11 @@ export function commitWithMessageFile(message: string): void {
   }
 }
 
-function commitWithMessageFileAndDate(message: string, isoDate: string): void {
+function commitWithMessageFileAndDate(
+  message: string,
+  isoDate: string,
+  extraEnv: NodeJS.ProcessEnv,
+): void {
   const msgFile = join(tmpdir(), `bio-tool-commit-msg-${Date.now()}.txt`)
   try {
     writeFileSync(msgFile, message)
@@ -364,7 +372,12 @@ function commitWithMessageFileAndDate(message: string, isoDate: string): void {
       {
         cwd: repoRoot,
         encoding: "utf-8",
-        env: { ...process.env, GIT_AUTHOR_DATE: isoDate, GIT_COMMITTER_DATE: isoDate },
+        env: {
+          ...process.env,
+          ...extraEnv,
+          GIT_AUTHOR_DATE: isoDate,
+          GIT_COMMITTER_DATE: isoDate,
+        },
       },
     )
   } finally {

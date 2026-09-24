@@ -20,6 +20,13 @@ pnpm env:check
 pnpm dev
 ```
 
+The pre-commit hook uses Sharp/MozJPEG to compress and re-stage only JPEGs that
+Git reports as newly added; existing tracked images are never passed to the
+tool. It keeps the original encoding unless MozJPEG saves at least 10%, reducing
+unnecessary generation loss on JPEGs that arrived at lower quality. It records a
+JPEG comment after processing so repeated commit attempts skip the image
+byte-for-byte. Run `pnpm images:optimize-new` to invoke the same check manually.
+
 Historical build assets are intentionally not stored in Git. A fresh clone needs
 either a preseeded, verified `.cache/historical-images` or the shared
 `B2_BUCKET_ID`, `B2_APPLICATION_KEY_ID`, and `B2_APPLICATION_KEY`

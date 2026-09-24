@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"gen:phrases": "node ./scripts/generate_passphrases",
+		"images:optimize-new": "tsx scripts/optimize-new-jpegs.ts",
 		"env:audit": "varlock audit",
 		"env:check": "varlock load --agent",
 		"env:check:production": "VARLOCK_ENV=production varlock load --agent",

@@ -1,8 +1,11 @@
 import { readFileSync, writeFileSync, unlinkSync } from "fs"
 import { resolve, extname, basename, dirname, join } from "path"
+import {
+  markSourceJpegOptimized,
+  SOURCE_JPEG_QUALITY,
+} from "../optimize-new-jpegs"
 
 const MAX_DIMENSION = 1200
-const JPEG_QUALITY = 82
 
 async function main() {
   const input = process.argv[2]
@@ -33,10 +36,11 @@ async function main() {
       withoutEnlargement: true,
     })
   }
-  pipeline = pipeline.jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
+  pipeline = pipeline.jpeg({ quality: SOURCE_JPEG_QUALITY, mozjpeg: true })
 
   const outputBuffer = await pipeline.toBuffer()
   writeFileSync(targetPath, outputBuffer)
+  markSourceJpegOptimized(targetPath)
 
   if (renaming) {
     unlinkSync(filePath)

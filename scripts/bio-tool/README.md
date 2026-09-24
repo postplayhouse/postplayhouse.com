@@ -49,6 +49,12 @@ Iterates all `bio-update/position-*` branches (current season only) and runs the
 
 Use `--no-suggest-edits` to skip the content flagging commit.
 
+The raw submission commit made by `bio:fetch` bypasses the general new-JPEG
+pre-commit optimizer. This is intentional: step 2 above performs the resize,
+orientation, and only lossy encode for submitted bio images, then marks the
+result as processed so newly converted `.jpg` files are not compressed again by
+the commit hook. The bio workflow and command order do not otherwise change.
+
 ### 3. Review
 
 ```sh

@@ -8,6 +8,8 @@
 # the actual hook logic. This pattern ensures hook behavior is always
 # in sync with the installed bd version - no manual updates needed.
 
+pnpm run images:optimize-new
+
 # Check if bd is available
 if ! command -v bd >/dev/null 2>&1; then
     echo "Warning: bd command not found in PATH, skipping pre-commit hook" >&2

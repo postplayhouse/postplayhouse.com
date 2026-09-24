@@ -139,7 +139,11 @@ async function main() {
     // Commit with the B2 upload timestamp so date-based comparisons
     // with master work the same way as PR branch commits
     const name = `${capitalize(parsed.firstName)} ${capitalize(parsed.lastName)}`
-    commitAllWithDate(`Bio submission from ${name}`, b2Date)
+    // Keep the raw submission in this first commit. bio:process performs the
+    // resize, orientation, and single lossy encode in its next image commit.
+    commitAllWithDate(`Bio submission from ${name}`, b2Date, {
+      SKIP_NEW_JPEG_OPTIMIZATION: "1",
+    })
     console.log(`    Created branch: ${branchName}`)
     processed++
   }
