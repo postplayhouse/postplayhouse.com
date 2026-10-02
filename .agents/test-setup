@@ -56,6 +56,16 @@ if [[ "$*" == "exec playwright install chromium" ]]; then
 fi
 EOF
 
+	cat > "$fixture/bin/basecamp" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${1:-}" == "--version" ]]; then
+	echo "basecamp version 0.11.0"
+	exit 0
+fi
+exit 1
+EOF
+
 	for command in docker sudo; do
 		cat > "$fixture/bin/$command" <<EOF
 #!/usr/bin/env bash
@@ -74,6 +84,9 @@ run_case() {
 	make_fixture "$fixture"
 	export COMMAND_LOG="$fixture/commands.log"
 	export CHROMIUM_EXECUTABLE="$fixture/chromium"
+	export HOME="$fixture/home"
+	export BASECAMP_CREDENTIALS_JSON='{"credential":"test-only"}'
+	mkdir -p "$HOME"
 	: > "$COMMAND_LOG"
 	if [[ "$browser_present" == "yes" ]]; then
 		: > "$CHROMIUM_EXECUTABLE"
@@ -86,6 +99,11 @@ run_case() {
 	assert_log_contains "pnpm with:1password pnpm images:historical:restore"
 	assert_log_excludes "docker "
 	assert_log_excludes "sudo "
+	[[ "$(cat "$HOME/.config/basecamp/credentials.json")" == "$BASECAMP_CREDENTIALS_JSON" ]] || fail "Basecamp credentials were not restored"
+	[[ "$(stat -c '%a' "$HOME/.config/basecamp/credentials.json")" == "600" ]] || fail "Basecamp credentials have unsafe permissions"
+	printf '%s\n' '{"credential":"locally-rotated"}' > "$HOME/.config/basecamp/credentials.json"
+	PATH="$fixture/bin:$PATH" "$fixture/.agents/setup" >/dev/null
+	[[ "$(cat "$HOME/.config/basecamp/credentials.json")" == '{"credential":"locally-rotated"}' ]] || fail "Existing Basecamp credentials were overwritten"
 	if [[ "$browser_present" == "yes" ]]; then
 		assert_log_excludes "playwright install"
 	else

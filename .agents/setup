@@ -48,13 +48,32 @@ command -v pnpm >/dev/null 2>&1 || {
 	echo "pnpm is not installed; install the version pinned in .tool-versions" >&2
 	exit 1
 }
+command -v basecamp >/dev/null 2>&1 || {
+	echo "Basecamp CLI is not installed; install the version pinned in .tool-versions" >&2
+	exit 1
+}
 
 expected_node="$(required_version nodejs)"
 expected_pnpm="$(required_version pnpm)"
+expected_basecamp="$(required_version basecamp)"
 package_pnpm="$(node -p "require('./package.json').packageManager.split('@').at(-1)")"
 verify_version Node "$expected_node" "$(node --version)"
 verify_version pnpm "$expected_pnpm" "$(pnpm --version)"
+verify_version "Basecamp CLI" "$expected_basecamp" "$(basecamp --version | awk '{print $NF}')"
 verify_version packageManager "$expected_pnpm" "$package_pnpm"
+
+if [[ -n "${BASECAMP_CREDENTIALS_JSON:-}" ]]; then
+	basecamp_config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/basecamp"
+	basecamp_credentials_file="$basecamp_config_dir/credentials.json"
+	if [[ ! -e "$basecamp_credentials_file" ]]; then
+		mkdir -p "$basecamp_config_dir"
+		chmod 700 "$basecamp_config_dir"
+		(umask 077 && printf '%s\n' "$BASECAMP_CREDENTIALS_JSON" > "$basecamp_credentials_file")
+		echo "== Restored Basecamp CLI credentials =="
+	else
+		echo "== Preserved existing Basecamp CLI credentials =="
+	fi
+fi
 
 echo "== Installing locked dependencies =="
 pnpm install --frozen-lockfile

@@ -16,6 +16,9 @@ values, and marks values public or sensitive. It contains no application secret 
   their existing runtime checks require only the credentials they use.
 - `pnpm bio:basecamp` requires the write-capable `BASECAMP_TOKEN`. Its two public project
   names default to the current 2026 names in the schema.
+- `BASECAMP_CREDENTIALS_JSON` is a complete read-only Basecamp CLI OAuth credential used
+  to bootstrap one trusted, stateful Amp Orb. It is not interchangeable with
+  `BASECAMP_TOKEN` and is not safe to fan out to concurrent fresh Orbs.
 - `pnpm env:check:production` requires production runtime values already in the process.
 - `pnpm env:check:1password` fetches Environment `fd2j6ly53dbub7h4rcovbjmtc4` and validates
   it as production. `pnpm with:1password <command>` fetches it and runs a command.
@@ -163,3 +166,59 @@ specific human approval; it can add or invite users.
 The repository's `.agents/setup` runs the read-only restore through
 `pnpm with:1password` after dependency installation. It may read from B2 on a cold cache
 but does not publish or delete objects.
+
+### Basecamp CLI access
+
+The official Basecamp CLI version is pinned as `basecamp` in [`.tool-versions`](../.tool-versions).
+Install all pinned tools with `mise install`. Trusted project Orbs receive the Amp project
+secret `BASECAMP_CREDENTIALS_JSON`; `.agents/setup` writes it to
+`${XDG_CONFIG_HOME:-$HOME/.config}/basecamp/credentials.json` with directory mode `700` and
+file mode `600` only when that file does not already exist. The CLI mutates this file when
+it refreshes, so setup must never replace a newer local credential with the secret's older
+copy. The secret must contain the entire JSON document produced by the CLI, including its
+refresh token. Do not store only `basecamp auth token`: that access token is short-lived and
+cannot renew itself.
+
+For a new credential, authenticate with read-only scope and verify it before replacing the
+Amp project secret:
+
+```bash
+basecamp auth login --device-code --scope read
+basecamp auth status --json
+```
+
+After replacing the project secret, start a new Orb to run setup automatically. To restore
+it in an already-running trusted Orb after its environment has been refreshed, use:
+
+```bash
+basecamp_config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/basecamp"
+basecamp_credentials_file="$basecamp_config_dir/credentials.json"
+if [[ ! -e "$basecamp_credentials_file" ]]; then
+  mkdir -p "$basecamp_config_dir"
+  chmod 700 "$basecamp_config_dir"
+  (umask 077 && printf '%s\n' "$BASECAMP_CREDENTIALS_JSON" > "$basecamp_credentials_file")
+fi
+basecamp auth status --json
+```
+
+The CLI refreshes expiring access tokens in that file. Typical read-only use is:
+
+```bash
+basecamp projects --json
+basecamp todos show <id-or-url> --all-comments --md
+basecamp comments list <recording-id> --all --json
+```
+
+Basecamp rotates the refresh token each time the CLI refreshes. Consequently, the static
+Amp project secret is only a bootstrap for one stateful Orb: after that Orb refreshes, its
+local credential is newer and the project secret is stale. Do not initialize concurrent
+fresh Orbs from the same OAuth credential. Before replacing the Orb, update the project
+secret from its latest credential file without printing the value. For unattended or
+concurrent Orbs, use a dedicated read-only Basecamp personal access token instead; the CLI
+recommends personal access tokens for bots and CI because they do not use rotating refresh
+tokens.
+
+Keep `BASECAMP_CREDENTIALS_JSON` limited to trusted project Orbs. Never print it, commit the
+credential file, publish it as an artifact, or pass it on a command line. Re-run the
+read-only device login and replace the project secret if the credential is revoked or its
+refresh fails.
