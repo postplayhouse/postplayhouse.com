@@ -6,6 +6,19 @@ import { join } from "node:path"
 test("index page identifies Post Playhouse", async ({ page }) => {
 	await page.goto("/")
 	await expect(page).toHaveTitle("Post Playhouse")
+	await expect(
+		page.getByRole("heading", { name: "Announcing our 2027 Season!" }),
+	).toBeVisible()
+	const announcement = page.getByAltText(
+		"Show logos for Annie, The Drowsy Chaperone, Footloose, The Addams Family, and Honky Tonk Angels in the 2027 Post Playhouse season",
+	)
+	await expect(announcement).toBeVisible()
+	await expect(announcement).toHaveJSProperty("complete", true)
+	expect(
+		await announcement.evaluate(
+			(element) => (element as HTMLImageElement).naturalWidth,
+		),
+	).toBeGreaterThan(0)
 })
 
 test("historical people and production pictures preserve responsive metadata", async ({

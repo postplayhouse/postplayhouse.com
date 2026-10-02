@@ -6,6 +6,7 @@
 	import Openings from "$components/Openings/Openings.svelte"
 	import SponsorPlate from "$components/SponsorPlate.svelte"
 	import * as site from "$data/site"
+	import seasonAnnouncement from "./2027-season-announcement.jpg?enhanced"
 
 	let { data } = $props()
 
@@ -45,7 +46,22 @@ Through its Wildfire Recovery Fund, Post Playhouse exceeded its $45,000 goal tha
 </Announcement>
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
-	<h3 class="h1 my-8">Our 2027 Season will be announced soon...</h3>
+	<h2 class="h1 my-8">Announcing our 2027 Season!</h2>
+
+	<p class="my-8 text-3xl">
+		Our 60th anniversary season features <em>Annie</em>,
+		<em>The Drowsy Chaperone</em>, <em>Footloose</em>,
+		<em>The Addams Family</em>, and
+		<em>Honky Tonk Angels</em>.
+	</p>
+
+	<enhanced:img
+		src={seasonAnnouncement}
+		class="h-auto w-full shadow-lg"
+		alt="Show logos for Annie, The Drowsy Chaperone, Footloose, The Addams Family, and Honky Tonk Angels in the 2027 Post Playhouse season"
+	></enhanced:img>
+
+	<p class="my-8 text-2xl">Performance dates and tickets are coming soon.</p>
 
 	<p class="my-8 text-3xl">
 		Special thanks to our Season Sponsors returning for next summer!
