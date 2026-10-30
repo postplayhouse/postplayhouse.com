@@ -56,6 +56,9 @@
 		cellspacing="0"
 		cellpadding="0"
 	>
+		<caption class="caption-bottom pt-2 text-left">
+			An additional $2.75 transaction fee applies.
+		</caption>
 		<thead class="[&_th]:px-4 [&_th]:py-2">
 			<tr class="border-b border-gray-400">
 				<th class=""></th>
