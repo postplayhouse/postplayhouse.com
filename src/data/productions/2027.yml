@@ -4,7 +4,8 @@
   image: annie.jpg
   opening: 2027-05-28
   writers:
-  description: ""
+  description: |
+    One of the world’s most beloved musicals, **Annie** follows an optimistic young orphan determined to find the parents who left her at a New York City orphanage years ago. Life under the cruel Miss Hannigan hasn’t dampened Annie’s spirit, and an unexpected opportunity soon carries her from the orphanage into a world she could never have imagined. Set against the backdrop of 1930s New York and filled with unforgettable songs including “Tomorrow,” “It’s the Hard-Knock Life,” and “N.Y.C.,” **Annie** is a heartwarming celebration of hope, family, and finding a place to belong.
   dates:
     fort_rob: |
       May 28e, 29e, 30a
