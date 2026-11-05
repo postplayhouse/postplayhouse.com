@@ -6,6 +6,26 @@ import { join } from "node:path"
 test("index page identifies Post Playhouse", async ({ page }) => {
 	await page.goto("/")
 	await expect(page).toHaveTitle("Post Playhouse")
+	const preview = page.locator("#sponsor-logo-preview")
+	const logos = preview.getByAltText("Show Logo for Annie")
+	await expect(logos).toHaveCount(2)
+	for (const logo of await logos.all()) {
+		await expect(logo).toBeVisible()
+		await expect(logo).toHaveJSProperty("complete", true)
+		expect(
+			await logo.evaluate(
+				(element) => (element as HTMLImageElement).naturalWidth,
+			),
+		).toBeGreaterThan(0)
+	}
+	expect(await logos.first().getAttribute("src")).not.toBe(
+		await logos.last().getAttribute("src"),
+	)
+	await expect(
+		preview.getByText("One of the world’s most beloved musicals", {
+			exact: false,
+		}),
+	).toHaveCount(2)
 	await expect(
 		page.getByRole("heading", { name: "Announcing our 2027 Season!" }),
 	).toBeVisible()

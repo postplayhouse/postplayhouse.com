@@ -3,9 +3,7 @@ import * as site from "$data/site"
 import { historicalImages } from "$lib/server/historical-images"
 
 export async function load(obj) {
-	const season = site.showsAnnounced
-		? site.season
-		: ((site.season - 1) as Date.Year)
+	const season = site.season
 	const res = await obj.fetch(`/data/productions/${season}.json`)
 	const data = await res.json()
 
