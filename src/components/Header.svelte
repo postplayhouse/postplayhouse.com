@@ -1,32 +1,33 @@
 <script lang="ts">
-	import { asset, resolve } from "$app/paths"
+	import { resolve } from "$app/paths"
 	import * as site from "$data/site"
+	import AnniversaryLogo from "./AnniversaryLogo.svelte"
 	import TicketsButton from "./TicketsButton.svelte"
 </script>
 
 <header
-	class="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-2 gap-y-8 p-2 sm:flex-nowrap"
+	class="mx-auto grid max-w-5xl justify-items-center gap-3 px-4 pt-6 pb-4 md:grid-cols-[minmax(0,28rem)_minmax(0,26rem)] md:items-center md:justify-center md:gap-x-12 md:gap-y-12 md:px-6 md:py-6"
 >
-	<div class="max-w-xl">
-		<a href={resolve("/")} title="Post Playhouse" rel="home">
-			<img
-				src={asset("/images/post-nameplate-colors.svg")}
-				alt="Post Playhouse Title Logo"
-				class="dark:hidden"
-			/><img
-				src={asset("/images/post-nameplate-colors_dark.svg")}
-				alt="Post Playhouse Title Logo"
-				class="hidden dark:block"
-			/>
-			<h1 class="hidden">Post Playhouse</h1>
-		</a>
-		<h2 class="text-center text-xl font-thin tracking-wide">
-			Professional talent from across the country...
-			<span style="white-space:nowrap">So close to home</span>
-		</h2>
-	</div>
+	<a
+		href={resolve("/")}
+		title="Post Playhouse home"
+		rel="home"
+		class="block w-full max-w-md rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green-700 md:row-span-2 md:max-w-100"
+	>
+		<AnniversaryLogo />
+		<h1 class="sr-only">Post Playhouse</h1>
+	</a>
 
-	<div class="flex flex-wrap items-center justify-center gap-2 text-center">
+	<h2
+		class="max-w-md min-w-0 text-center text-xl leading-snug font-thin tracking-wide md:self-end md:text-2xl"
+	>
+		Professional talent from across the country...
+		<span style="white-space:nowrap">So close to home</span>
+	</h2>
+
+	<div
+		class="flex w-full max-w-md flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center md:self-start"
+	>
 		<div class="w-full">
 			<TicketsButton />
 		</div>

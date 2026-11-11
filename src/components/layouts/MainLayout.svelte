@@ -29,7 +29,9 @@
 	<meta name="twitter:image:alt" content="The exterior of Post Playhouse" />
 </svelte:head>
 
-<div class="dark:bg-[#0f110f] dark:text-white/90">
+<div
+	class="relative isolate overflow-x-clip dark:bg-[#0f110f] dark:text-white/90"
+>
 	<ThemeToggle />
 	<Header />
 	<Nav activePath={$page.url.pathname} />

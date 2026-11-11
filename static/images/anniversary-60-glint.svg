@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" viewBox="63.076 89.497 13.649 16.321">
+    <defs>
+        <clipPath id="clip_33">
+            <path d="M63.076 105.818h13.65V89.497h-13.65Z"/>
+        </clipPath>
+        <mask id="mask_30" mask-type="luminance">
+            <use ns1:href="#mask_30_contents"/>
+        </mask>
+        <g id="mask_30_contents">
+            <rect width="100%" height="100%" fill="#fff"/>
+            <clipPath id="clip_31">
+                <path d="M60.361 109.226h19.822V86.398H60.361Z"/>
+            </clipPath>
+            <g clip-path="url(#clip_31)">
+                <g transform="rotate(-4 1285.573 -820.42)scale(.36)">
+                    <image ns1:href="data:image/jpeg;base64, /9j/7gAOQWRvYmUAZAAAAAAA/9sAQwACAgICAgICAgICAwICAgMEAwMDAwQFBAQE BAQFBQUFBQUFBQUFBwgICAcFCQoKCgoJDAwMDAwMDA8MDAwMDAwM/90ABAAH/8AA CwgAPAAzAQARAP/EANIAAQAABAcAAAAAAAAAAAAAAAoAAQIDBAUGBwgJCxAAAAAB AABOUwAAAAAAAAAAAAECAwQFBgcICQoREhMUFRYXGBkaISIjJCUmJygpKjEyMzQ1 Njc4OTpBQkNERUZHSElKUVJTVFVWV1hZWmFiY2RlZmdoaWpxcnN0dXZ3eHl6gYKD hIWGh4iJipGSk5SVlpeYmZqhoqOkpaanqKmqsbKztLW2t7i5usHCw8TFxsfIycrR 0tPU1dbX2Nna4eLj5OXm5+jp6vDx8vP09fb3+Pn6/9oACAEAAAA/AD/hAQEBAQEB /9A/4QGLFIUBMJ0wQCoVBbCYSpogGDERAkESQJBAf//RP+F8UBSERUE4lEBB1Dcw YEasK4vRASiIlEgiIksQGajMDTRcC1EgmEwiKYiIEgg6BtWL4WYmFuKonEoiIEhI IhlYiEB//9I/4Z+MOKQlFQVxTJwiwiAcyBzYYkWIqikKIiKgiJUwQTQ1cN8GJGOF IWoqCIkERKSk0OEY2gSCmJBdisICQRECQnCIaHEyaIhIP//TP+GaCwFyICiKgkEz oIiAb8jVBupUBKKYgICoTSSJDNhtA34TC8FITiQpSUlECRNDjuMsL4RFyLgVBMSk pKIhkgQH/9Q/4VCAmERAREAzUWwvROKZISCZMC6LkZATioIJ4RDJROIiImEwiIiI UhAf/9U/4QExARERAIERMIiISCAgP//WP+EBAQEBAQH/2Q==" id="image_32" width="51" height="60"/>
+                </g>
+            </g>
+        </g>
+    </defs>
+    <g clip-path="url(#clip_33)" mask="url(#mask_30)">
+        <path fill="#fff" fill-opacity=".75" d="m0 0 12.569.879 1.08-15.442-12.569-.879Z" style="mix-blend-mode:screen" transform="matrix(1 0 0 -1 63.076 90.376)"/>
+    </g>
+    <path fill="#fff" d="m66.24 97.854 2.958.056a1 1 0 0 0 .124.228l-2.369 1.997 2.48-1.874c.106.1.236.173.378.211l.573 4.505-.058-4.528a.9.9 0 0 0 .31-.192l1.552 1.28-1.405-1.463a.9.9 0 0 0 .116-.297l2.77-.442h-.046.005-.023l-2.739-.056a1 1 0 0 0-.11-.216l2.4-2.024-2.495 1.905a.9.9 0 0 0-.458-.255l-.572-4.492.06 4.542a1 1 0 0 0-.192.11l-1.613-1.354 1.442 1.527a.9.9 0 0 0-.167.362l-2.857.462-.024.002h.006Z"/>
+</svg>

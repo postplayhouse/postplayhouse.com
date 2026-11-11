@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test"
 import { createHash } from "node:crypto"
 import { readFile, readdir } from "node:fs/promises"
 import { join } from "node:path"
+import sharp from "sharp"
 
 test("index page identifies Post Playhouse", async ({ page }) => {
 	await page.goto("/")
@@ -19,6 +20,164 @@ test("index page identifies Post Playhouse", async ({ page }) => {
 			(element) => (element as HTMLImageElement).naturalWidth,
 		),
 	).toBeGreaterThan(0)
+})
+
+test("anniversary artwork animates before hydration without reloading", async ({
+	page,
+}) => {
+	await page.emulateMedia({
+		colorScheme: "dark",
+		reducedMotion: "no-preference",
+	})
+	const artwork = /\/images\/anniversary-60-(standard|reversed)\.svg$/
+	const requests: string[] = []
+	page.on("request", (request) => {
+		if (artwork.test(request.url())) requests.push(request.url())
+	})
+	let release = () => {}
+	const hydration = new Promise<void>((resolve) => (release = resolve))
+	await page.route("**/*", async (route) => {
+		if (route.request().resourceType() === "script") await hydration
+		await route.continue()
+	})
+	try {
+		// Hold JavaScript until the server-rendered artwork has finished loading.
+		// Use a nested route too: relative SVG references vary with page depth.
+		await page.goto("/about/", { waitUntil: "commit" })
+		await expect
+			.poll(() =>
+				page.evaluate(
+					(pattern) =>
+						performance
+							.getEntriesByType("resource")
+							.filter((entry) =>
+								new RegExp(pattern).test(new URL(entry.name).pathname),
+							).length,
+					artwork.source,
+				),
+			)
+			.toBe(2)
+		const initialRequests = [...requests]
+		await expect
+			.poll(() =>
+				page
+					.locator(".ray-layer")
+					.evaluate((element) =>
+						element
+							.getAnimations()
+							.some(
+								(animation) =>
+									animation.playState === "running" &&
+									Number(animation.currentTime) > 0,
+							),
+					),
+			)
+			.toBe(true)
+		release()
+		await page.waitForLoadState("networkidle")
+		// Verify the power-saving controller still takes over after hydration.
+		await page.emulateMedia({ reducedMotion: "reduce" })
+		await expect(page.locator("[data-anniversary-burst]")).toHaveAttribute(
+			"data-motion",
+			"still",
+		)
+		await page.emulateMedia({ reducedMotion: "no-preference" })
+		await expect(page.locator("[data-anniversary-burst]")).toHaveAttribute(
+			"data-motion",
+			"running",
+		)
+		expect(requests).toEqual(initialRequests)
+	} finally {
+		release()
+	}
+})
+
+test("anniversary logo preserves the original composition and transparent highlights", async ({
+	page,
+}) => {
+	await page.emulateMedia({ colorScheme: "dark", reducedMotion: "reduce" })
+	await page.goto("/")
+	const logo = page.getByRole("img", {
+		name: "Post Playhouse — established 1967, celebrating 60 years",
+	})
+	const { data, info: pixels } = await sharp(await logo.screenshot())
+		.ensureAlpha()
+		.raw()
+		.toBuffer({ resolveWithObject: true })
+	expect(pixels.width / pixels.height).toBeCloseTo(108 / 88, 2)
+	// This gap between the digits is inside the PDF highlight's rectangular
+	// bounds, but outside the actual highlight. Broken WebKit masking fills it.
+	// Original PDF coordinates, with only the blank canvas margins trimmed.
+	const x = Math.round(((70.5 - 18) / 108) * pixels.width)
+	const y = Math.round(((91 - 36) / 88) * pixels.height)
+	const offset = (y * pixels.width + x) * 4
+	expect(Math.max(...data.subarray(offset, offset + 3))).toBeLessThan(40)
+	// A missing numeral would also leave a dark gap: require its green body too.
+	const body =
+		(Math.round(((101 - 36) / 88) * pixels.height) * pixels.width +
+			Math.round(((58 - 18) / 108) * pixels.width)) *
+		4
+	const [r, g, b] = data.subarray(body, body + 3)
+	expect(g - r).toBeGreaterThan(30)
+	expect(g - b).toBeGreaterThan(10)
+	// In the original PDF, the green tops of 6 and 0 cover PLAYHOUSE's H and O.
+	for (const pdfX of [65, 78.2]) {
+		const overlap =
+			(Math.round(((87 - 36) / 88) * pixels.height) * pixels.width +
+				Math.round(((pdfX - 18) / 108) * pixels.width)) *
+			4
+		const [red, green, blue] = data.subarray(overlap, overlap + 3)
+		expect(green - red).toBeGreaterThan(30)
+		expect(green - blue).toBeGreaterThan(10)
+	}
+	// The separated glint must still be present at rest, not just a dark numeral.
+	const glint =
+		(Math.round(((97.75 - 36) / 88) * pixels.height) * pixels.width +
+			Math.round(((70 - 18) / 108) * pixels.width)) *
+		4
+	expect(Math.min(...data.subarray(glint, glint + 3))).toBeGreaterThan(215)
+	const stem =
+		(Math.round(((58.26 - 36) / 88) * pixels.height) * pixels.width +
+			Math.round(((34.35 - 18) / 108) * pixels.width)) *
+		4
+	expect(Math.min(...data.subarray(stem, stem + 3))).toBeGreaterThan(230)
+})
+
+test("anniversary highlights resume after theme and motion-preference changes", async ({
+	page,
+}) => {
+	await page.emulateMedia({
+		colorScheme: "light",
+		reducedMotion: "no-preference",
+	})
+	await page.goto("/")
+	const highlights = page.locator("[data-sparkle], [data-number-sparkle]")
+	await expect(page.locator("[data-number-sparkle]").first()).toBeAttached()
+	const count = await highlights.count()
+	for (const [colorScheme, reducedMotion] of [
+		["light", "no-preference"],
+		["light", "reduce"],
+		["dark", "reduce"],
+		["dark", "no-preference"],
+		["light", "no-preference"],
+	] as const) {
+		await page.emulateMedia({ colorScheme, reducedMotion })
+		await expect
+			.poll(() =>
+				highlights.evaluateAll((elements) =>
+					elements
+						.filter(
+							(el) => getComputedStyle(el.parentElement!).display !== "none",
+						)
+						.map((el) =>
+							el
+								.getAnimations()
+								.some((animation) => animation.playState === "running"),
+						),
+				),
+			)
+			.toEqual(Array(count).fill(reducedMotion !== "reduce"))
+	}
 })
 
 test("historical people and production pictures preserve responsive metadata", async ({
