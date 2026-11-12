@@ -22,6 +22,48 @@ test("index page identifies Post Playhouse", async ({ page }) => {
 	).toBeGreaterThan(0)
 })
 
+test("site header layout stays stable across color themes", async ({
+	page,
+}) => {
+	await page.emulateMedia({ reducedMotion: "reduce" })
+	const positions = () =>
+		page.locator("header, nav, main").evaluateAll((elements) =>
+			elements.map((element) => {
+				const { x, y, width, height } = element.getBoundingClientRect()
+				return {
+					x,
+					y,
+					width,
+					...(element.tagName === "MAIN" ? {} : { height }),
+				}
+			}),
+		)
+	const navigationColor = () =>
+		page.locator("nav").evaluate((element) => getComputedStyle(element).color)
+	for (const width of [390, 1280]) {
+		await page.setViewportSize({ width, height: 900 })
+		for (const path of ["/", "/media"]) {
+			await page.emulateMedia({ colorScheme: "light" })
+			const response = await page.goto(path)
+			expect(response?.status(), path).toBeLessThan(400)
+			await expect(
+				page.getByRole("img", {
+					name: "Post Playhouse — established 1967, celebrating 60 years",
+				}),
+			).toBeVisible()
+			await page.evaluate(() => document.fonts.ready)
+			const lightPositions = await positions()
+			const lightColor = await navigationColor()
+			await page.emulateMedia({ colorScheme: "dark" })
+			await expect.poll(navigationColor).not.toBe(lightColor)
+			expect(await positions()).toEqual(lightPositions)
+			await page.emulateMedia({ colorScheme: "light" })
+			await expect.poll(navigationColor).toBe(lightColor)
+			expect(await positions()).toEqual(lightPositions)
+		}
+	}
+})
+
 test("anniversary artwork animates before hydration without reloading", async ({
 	page,
 }) => {

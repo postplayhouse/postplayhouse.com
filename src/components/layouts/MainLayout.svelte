@@ -30,13 +30,17 @@
 </svelte:head>
 
 <div
-	class="relative isolate overflow-x-clip dark:bg-[#0f110f] dark:text-white/90"
+	class="relative isolate overflow-x-clip dark:bg-[#040e09] dark:text-white/90"
 >
 	<ThemeToggle />
-	<Header />
+	<div class="site-masthead">
+		<div class="site-masthead-content dark">
+			<Header />
+		</div>
+	</div>
 	<Nav activePath={$page.url.pathname} />
 
-	<main class="relative m-auto px-2 py-8 sm:px-8">
+	<main class="relative m-auto px-2 pt-4 pb-8 sm:px-8">
 		{#if unconstrainedWidth}
 			{@render children()}
 		{:else}
@@ -48,3 +52,41 @@
 
 	<Footer />
 </div>
+
+<style>
+	.site-masthead {
+		--edge-depth: clamp(2rem, 5vw, 4rem);
+		--edge-shape: polygon(
+			0 0,
+			100% 0,
+			100% calc(100% - var(--edge-depth)),
+			0 100%
+		);
+		position: relative;
+		isolation: isolate;
+	}
+
+	.site-masthead-content {
+		isolation: isolate;
+		overflow: clip;
+		padding-bottom: var(--edge-depth);
+		background: #000;
+		color: rgb(255 255 255 / 90%);
+		clip-path: var(--edge-shape);
+	}
+
+	:global(html.dark) .site-masthead::after {
+		content: "";
+		position: absolute;
+		inset: auto 0 -3rem;
+		z-index: -1;
+		height: calc(var(--edge-depth) + 6rem);
+		background: linear-gradient(
+			calc(180deg - atan2(var(--edge-depth), 100vw)),
+			transparent calc(50% - 8px),
+			rgb(57 104 74 / 40%) calc(50% + 4px),
+			rgb(57 104 74 / 12%) calc(50% + 16px),
+			transparent calc(50% + 40px)
+		);
+	}
+</style>
