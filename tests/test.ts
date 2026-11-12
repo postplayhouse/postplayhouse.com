@@ -22,6 +22,20 @@ test("index page identifies Post Playhouse", async ({ page }) => {
 	).toBeGreaterThan(0)
 })
 
+test("disabled buttons use opaque light and dark colors", async ({ page }) => {
+	for (const colorScheme of ["light", "dark"] as const) {
+		await page.emulateMedia({ colorScheme })
+		await page.goto("/calendar/plan/")
+		const button = page.getByRole("button", { name: "Back 1 Day", exact: true })
+		await expect(button).toBeDisabled()
+		await expect(button).toHaveCSS("opacity", "1")
+		await expect(button).toHaveCSS(
+			"background-color",
+			colorScheme === "light" ? "rgb(172, 206, 189)" : "rgb(28, 63, 45)",
+		)
+	}
+})
+
 test("site header layout stays stable across color themes", async ({
 	page,
 }) => {

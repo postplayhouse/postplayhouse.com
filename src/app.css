@@ -47,15 +47,11 @@
 		@apply border-green-700 bg-green-500;
 	}
 
-	&:disabled {
-		@apply border-green-900 bg-green-700;
-		opacity: 0.4;
-		cursor: not-allowed;
-	}
-
+	&:disabled,
 	&:disabled:hover {
-		@apply border-green-900 bg-green-700;
-		opacity: 0.4;
+		/* Former 40% opacity, precomposited over white or the dark #0f110f. */
+		@apply border-[#a7bbb1] bg-[#accebd] text-white dark:border-[#172c21] dark:bg-[#1c3f2d] dark:text-[#6f706f];
+		opacity: 1;
 		cursor: not-allowed;
 	}
 }
