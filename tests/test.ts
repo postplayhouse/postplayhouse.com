@@ -22,6 +22,51 @@ test("index page identifies Post Playhouse", async ({ page }) => {
 	).toBeGreaterThan(0)
 })
 
+test("homepage stays error-free when unrendered route styles cannot load", async ({
+	page,
+	request,
+}) => {
+	const response = await request.get("/")
+	const html = await response.text()
+	const initialStyles = new Set(
+		[...html.matchAll(/<link\b[^>]*>/g)]
+			.filter(([tag]) => tag.includes('rel="stylesheet"'))
+			.map(
+				([tag]) =>
+					new URL(tag.match(/href="([^"]+)"/)![1], response.url()).href,
+			),
+	)
+	const errors: string[] = []
+	page.on("pageerror", (error) => errors.push(error.message))
+	await page.route("**/*", async (route) => {
+		const request = route.request()
+		if (new URL(request.url()).hostname.endsWith(".sentry.io")) {
+			// Fault injection must not report synthetic errors to production Sentry.
+			await route.fulfill({ status: 200, body: "{}" })
+		} else if (
+			request.resourceType() === "stylesheet" &&
+			!initialStyles.has(request.url())
+		) {
+			await route.abort()
+		} else {
+			await route.continue()
+		}
+	})
+	await page.goto("/", { waitUntil: "networkidle" })
+	await expect(
+		page.getByRole("heading", { name: "Announcing our 2027 Season!" }),
+	).toBeVisible()
+	await page
+		.getByRole("navigation")
+		.getByRole("link", { name: "About", exact: true })
+		.click()
+	await expect(page).toHaveURL(/\/about\/$/)
+	await expect(
+		page.getByRole("heading", { name: "Contact", exact: true }),
+	).toBeVisible()
+	expect(errors).toEqual([])
+})
+
 test("disabled buttons use opaque light and dark colors", async ({ page }) => {
 	for (const colorScheme of ["light", "dark"] as const) {
 		await page.emulateMedia({ colorScheme })
