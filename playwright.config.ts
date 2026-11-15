@@ -1,6 +1,9 @@
 import type { PlaywrightTestConfig } from "@playwright/test"
 
 const config: PlaywrightTestConfig = {
+	use: {
+		baseURL: "http://localhost:3000",
+	},
 	webServer: {
 		command:
 			"pnpm build:low-memory && exec node node_modules/vite/bin/vite.js preview --port 3000",

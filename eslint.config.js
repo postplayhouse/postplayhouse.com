@@ -33,7 +33,7 @@ export default [
 		},
 	},
 	{
-		ignores: ["build/", ".svelte-kit/", "package/"],
+		ignores: ["build/", ".svelte-kit/", ".netlify/", "package/"],
 	},
 	{
 		rules: {
@@ -45,7 +45,7 @@ export default [
 					argsIgnorePattern: "^_",
 				},
 			],
-			"@typescript-eslint/no-unused-expression": [
+			"@typescript-eslint/no-unused-expressions": [
 				"error",
 				{
 					allowShortCircuit: true,

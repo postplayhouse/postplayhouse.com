@@ -74,7 +74,7 @@
 		"zod": "^4.1.13"
 	},
 	"devDependencies": {
-		"@varlock/1password-plugin": "2.0.4",
+		"@eslint/js": "^9.39.0",
 		"@inquirer/prompts": "^8.3.2",
 		"@octokit/rest": "^22.0.1",
 		"@playwright/test": "^1.56.1",
@@ -96,6 +96,7 @@
 		"@types/marked": "^4.3.2",
 		"@types/node": "^25.5.2",
 		"@types/papaparse": "^5.3.16",
+		"@varlock/1password-plugin": "2.0.4",
 		"dotenv": "^17.3.1",
 		"eslint": "^9.39.0",
 		"eslint-config-prettier": "^9.1.2",
