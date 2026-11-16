@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
-	import Openings from "$components/Openings/Openings.svelte"
+	import ProductionEntry from "$components/Production.svelte"
 	import SponsorPlate from "$components/SponsorPlate.svelte"
 	import * as site from "$data/site"
 	import seasonAnnouncement from "./2027-season-announcement.jpg?enhanced"
@@ -9,6 +9,21 @@
 	let { data } = $props()
 
 	const { productions, season } = $derived(data)
+	const annie = $derived(
+		(productions as Production[]).find(
+			(production) => production.title === "Annie",
+		),
+	)
+	const logoOptions = [
+		{
+			label: "Option A: Two-line sponsor credits",
+			image: "annie-sponsors.png",
+		},
+		{
+			label: "Option B: Simplified sponsor credits",
+			image: "annie-simplified-sponsors.png",
+		},
+	]
 
 	let showMailingList = $state(false)
 
@@ -28,6 +43,27 @@
 	<meta property="og:title" content="Post Playhouse" />
 	<meta property="og:description" content={site.description} />
 </svelte:head>
+
+{#if annie}
+	<section id="sponsor-logo-preview" class="mb-16">
+		<h1 class="h1 mb-4">2027 sponsor logo preview</h1>
+		<p>
+			Compare Liz’s two Annie sponsor treatments below in our regular production
+			layout. The repeated show is intentional for this preview. Please check
+			both versions on a narrow screen as well as a desktop to compare sponsor
+			readability.
+		</p>
+		{#each logoOptions as option}
+			<section aria-label={option.label} class="mt-12">
+				<h2 class="h3">{option.label}</h2>
+				<ProductionEntry
+					production={{ ...annie, image: option.image }}
+					{season}
+				/>
+			</section>
+		{/each}
+	</section>
+{/if}
 
 <div class="mx-auto mb-16 max-w-3xl p-2">
 	<h2 class="h1 my-8">Announcing our 2027 Season!</h2>
