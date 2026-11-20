@@ -4,6 +4,16 @@ set -euo pipefail
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 
+mise_bin="$(command -v mise 2>/dev/null || true)"
+if [[ -z "$mise_bin" && -x "$HOME/.local/bin/mise" ]]; then
+	mise_bin="$HOME/.local/bin/mise"
+fi
+if [[ -n "$mise_bin" ]]; then
+	# Assign first so set -e stops setup if mise fails; eval of empty output would not.
+	mise_env="$("$mise_bin" env -s bash)"
+	eval "$mise_env"
+fi
+
 measure_resources() {
 	local stage="$1"
 	echo "== Resources: $stage =="

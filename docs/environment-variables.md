@@ -170,7 +170,9 @@ but does not publish or delete objects.
 ### Basecamp CLI access
 
 The official Basecamp CLI version is pinned as `basecamp` in [`.tool-versions`](../.tool-versions).
-Install all pinned tools with `mise install`. Trusted project Orbs receive the Amp project
+Install all pinned tools with `mise install`. When mise is available, `.agents/setup` loads
+its environment first, which prepends the installed pinned versions to `PATH` even when
+setup runs in a shell where mise was never activated. Trusted project Orbs receive the Amp project
 secret `BASECAMP_CREDENTIALS_JSON`; `.agents/setup` writes it to
 `${XDG_CONFIG_HOME:-$HOME/.config}/basecamp/credentials.json` with directory mode `700` and
 file mode `600` only when that file does not already exist. The CLI mutates this file when

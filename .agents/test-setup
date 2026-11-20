@@ -66,6 +66,14 @@ fi
 exit 1
 EOF
 
+	# Stand in for mise so a real installation cannot put real tools ahead of these stubs.
+	cat > "$fixture/bin/mise" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+printf 'mise %s\n' "$*" >> "$COMMAND_LOG"
+printf 'export PATH=%q\n' "$(dirname "$0"):$PATH"
+EOF
+
 	for command in docker sudo; do
 		cat > "$fixture/bin/$command" <<EOF
 #!/usr/bin/env bash
@@ -95,6 +103,7 @@ run_case() {
 
 	PATH="$fixture/bin:$PATH" "$fixture/.agents/setup"
 
+	assert_log_contains "mise env -s bash"
 	assert_log_contains "pnpm install --frozen-lockfile"
 	assert_log_contains "pnpm with:1password pnpm images:historical:restore"
 	assert_log_excludes "docker "
