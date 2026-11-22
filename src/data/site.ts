@@ -9,7 +9,8 @@ const castingComplete_ = false as boolean
 const showsExistInYaml_ = false as boolean
 const showsAnnounced_ = false as boolean
 
-export const ticketsAvailableDate = "2026-11-15T00:00:00"
+// Leave unset until the ticket-sale announcement is approved.
+export const ticketsAvailableDate: string | null = null
 const dayAfterFinalPerf = "2027-08-10T00:00:00"
 export const url = "__PUBLIC_BUILD_URL__" // replaced by vite.config.ts
 export const castingComplete = prod ? castingComplete_ : true
@@ -22,11 +23,11 @@ export const showsAnnounced = prod ? showsAnnounced_ : showsExistInYaml_
 export const ticketsLink = "https://postplayhouse.showare.com/"
 
 export function ticketsAvailable() {
-	return new Date() >= new Date(ticketsAvailableDate)
+	return (
+		ticketsAvailableDate !== null &&
+		new Date() >= new Date(ticketsAvailableDate)
+	)
 }
 export function seasonEnded() {
-	return (
-		new Date() >= new Date(ticketsAvailableDate) &&
-		new Date() >= new Date(dayAfterFinalPerf)
-	)
+	return new Date() >= new Date(dayAfterFinalPerf)
 }
