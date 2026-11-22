@@ -77,6 +77,7 @@
 
 	:global(html.dark) .site-masthead::after {
 		content: "";
+		pointer-events: none;
 		position: absolute;
 		inset: auto 0 -3rem;
 		z-index: -1;

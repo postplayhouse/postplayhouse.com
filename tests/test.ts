@@ -116,6 +116,9 @@ test("site header layout stays stable across color themes", async ({
 			await page.emulateMedia({ colorScheme: "dark" })
 			await expect.poll(navigationColor).not.toBe(lightColor)
 			expect(await positions()).toEqual(lightPositions)
+			for (const link of await page.locator("nav a").all()) {
+				await link.click({ trial: true })
+			}
 			await page.emulateMedia({ colorScheme: "light" })
 			await expect.poll(navigationColor).toBe(lightColor)
 			expect(await positions()).toEqual(lightPositions)
