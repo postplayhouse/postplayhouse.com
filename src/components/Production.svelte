@@ -26,11 +26,28 @@
 	<header>
 		{#if image}
 			<ProductionImage
-				class="block max-w-full bg-white/70 md:float-left md:mr-4 md:w-3/5 md:max-w-4xl"
-				imageFile={production.image}
+				class={[
+					"block max-w-full md:float-left md:mr-4 md:w-3/5 md:max-w-4xl",
+					production.image_background !== false && "bg-white/70",
+					production.dark_mode_image && "dark:hidden",
+				]}
+				imageFile={image}
+				loading="lazy"
 				{season}
 				alt="Show Logo for {production.title}"
 			></ProductionImage>
+			{#if production.dark_mode_image}
+				<ProductionImage
+					class={[
+						"hidden max-w-full md:float-left md:mr-4 md:w-3/5 md:max-w-4xl dark:block",
+						production.image_background !== false && "bg-white/70",
+					]}
+					imageFile={production.dark_mode_image}
+					loading="lazy"
+					{season}
+					alt="Show Logo for {production.title}"
+				></ProductionImage>
+			{/if}
 		{/if}
 		<h2 class="mb-2 text-4xl leading-none">
 			{#if production.pre_title}

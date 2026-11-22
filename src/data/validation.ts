@@ -57,6 +57,9 @@ export const baseEventSchema = z.strictObject({
 	description: z.string(),
 	dates: z.partialRecord(z.enum(["fort_rob", "lead"]), z.string()).optional(),
 	image: z.string().optional(),
+	// Omit for the default 70% white backing; false preserves transparency.
+	image_background: z.boolean().optional(),
+	dark_mode_image: z.string().optional(),
 	sponsor: z
 		.strictObject({
 			text: z.string().optional(),

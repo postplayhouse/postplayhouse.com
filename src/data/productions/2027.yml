@@ -1,10 +1,14 @@
 - title: Annie
+  rating: G
   short_title: Annie
   color: red
-  image: annie.jpg
+  image: annie.png
+  image_background: false
+  dark_mode_image: annie-dark.png
   opening: 2027-05-28
   writers:
-  description: ""
+  description: |
+    One of the world’s most beloved musicals, **Annie** follows an optimistic young orphan determined to find the parents who left her at a New York City orphanage years ago. Life under the cruel Miss Hannigan hasn’t dampened Annie’s spirit, and an unexpected opportunity soon carries her from the orphanage into a world she could never have imagined. Set against the backdrop of 1930s New York and filled with unforgettable songs including “Tomorrow,” “It’s the Hard-Knock Life,” and “N.Y.C.,” **Annie** is a heartwarming celebration of hope, family, and finding a place to belong.
   dates:
     fort_rob: |
       May 28e, 29e, 30a
@@ -14,12 +18,16 @@
   roles_sorting:
 
 - title: Honky Tonk Angels
-  short_title: Honky Tonk
+  rating: H
+  rating_explanation: "Grown-up country humor and songs about drinking, cheating, and heartbreak. A concert-style show that may not hold young children's attention."
+  short_title: Angels
   color: green
-  image: honky-tonk-angels.jpg
+  image: honky-tonk-angels.png
+  image_background: false
   opening: 2027-06-04
   writers:
-  description: ""
+  description: |
+    Three women from different walks of life share one big dream: making it to Nashville. Angela, Darlene, and Sue Ellen set out in pursuit of country music stardom and discover friendship, laughter, and plenty of music along the way. **Honky Tonk Angels**, from *Always…Patsy Cline* creator Ted Swindley, is a rollicking country jukebox musical filled with beloved songs including “Stand by Your Man,” “Coal Miner’s Daughter,” “9 to 5,” “These Boots Are Made for Walkin’,” “Harper Valley PTA,” and more. It’s a joyful, foot-stomping celebration of friendship, following your dreams, and classic country music.
   dates:
     fort_rob: |
       June 4e, 5e, 6a, 9e, 15e, 18e, 23e
@@ -28,12 +36,17 @@
   roles_sorting:
 
 - title: The Addams Family
+  rating: H
+  rating_explanation: "Macabre humor about death and torture, comic ghosts, mild innuendo. Some younger children may find parts spooky."
   short_title: Addams
   color: yellow
-  image: addams-family.jpg
+  image: addams-family.png
+  image_background: false
+  dark_mode_image: addams-family-dark.png
   opening: 2027-06-11
   writers:
-  description: ""
+  description: |
+    Wednesday Addams has grown up—and fallen in love. Her boyfriend is sweet, smart, and from a perfectly respectable family, which presents Gomez and Morticia Addams with a situation far more frightening than anything lurking in their family crypt. When Wednesday asks Gomez to keep a secret from Morticia and the two families come together for dinner, one very unusual evening puts love, honesty, and family loyalty to the test. Based on Charles Addams’ iconic characters, **The Addams Family** is a delightfully macabre musical comedy about growing up, falling in love, and discovering that every family is a little strange.
   dates:
     fort_rob: |
       June 11e, 12e, 13a, 17e, 19e, 22e
@@ -42,12 +55,17 @@
   roles_sorting:
 
 - title: The Drowsy Chaperone
+  rating: H
+  rating_explanation: "A comic portrait of 1920s excess: a drunken chaperone, innuendo, and cartoonish gangsters threatening violence."
   short_title: Drowsy
   color: blue
-  image: drowsy-chaperone.jpg
+  image: drowsy-chaperone.png
+  image_background: false
+  dark_mode_image: drowsy-chaperone-dark.png
   opening: 2027-06-25
   writers:
-  description: ""
+  description: |
+    When a devoted musical-theatre fan puts on the cast recording of his favorite fictional 1928 musical, the show suddenly springs to life around him. What follows is a gleeful parade of Broadway characters: a bride and groom on the eve of their wedding, a bumbling best man, a frantic producer, gangsters disguised as pastry chefs, an enthusiastic would-be Latin lover, and, of course, one very drowsy chaperone. Winner of five Tony Awards, **The Drowsy Chaperone** is a hilarious and affectionate send-up of classic musical theatre, packed with comedy, romance, spectacular song-and-dance numbers, and surprises.
   dates:
     fort_rob: |
       June 25e, 26e, 27a, 30e
@@ -56,32 +74,64 @@
   roles_sorting:
 
 - title: Footloose
+  rating: H
+  rating_explanation: "Contains teen drinking, some violence, mild language."
   short_title: Footloose
   color: purple
-  image: footloose.jpg
+  image: footloose.png
+  image_background: false
+  dark_mode_image: footloose-dark.png
   opening: 2027-07-02
   writers:
-  description: ""
+  description: |
+    When teenager Ren McCormack and his mother move from Chicago to a small farming town, he expects life to be different. He doesn’t expect to discover a community where dancing has been banned. As Ren challenges the rules and tries to find his place among his new classmates, he finds himself at odds with the town’s powerful local preacher—and drawn to the preacher’s rebellious daughter. Featuring the electrifying hits “Footloose,” “Let’s Hear It for the Boy,” “Holding Out for a Hero,” and more, **Footloose** is an energetic story of young people finding their voices and generations learning to listen to one another.
   dates:
     fort_rob: |
       July 2e, 3e, 8e, 9e, 16e, 22e, 23e, 27e, 29e, 30e
       August 3e, 6a, 8a, 14e
   roles_sorting:
 
-- title: Melodrama
-  short_title: Melodrama
+- title: 60th Anniversary Special Events
   special_event: true
+  is_series: true
   color: x
   description: ""
+
+- title: Melodrama
+  short_title: Melo
+  special_event: true
+  belongs_to_series: 60th Anniversary Special Events
+  color: x
+  description: |
+    **Thursday, July 15, 2027, at 8 p.m.**
+
+    Details coming soon.
   dates:
     fort_rob: |
       July 15e
 
-- title: NEW MUSICAL
-  short_title: NEW MUSICAL
+- title: Celebrating 60 Gala Dinner
+  short_title: Gala
   special_event: true
+  belongs_to_series: 60th Anniversary Special Events
   color: x
-  description: ""
+  description: |
+    **Friday, July 16, 2027 — time to be announced.**
+
+    Enjoy cocktail hour on the veranda of the Buffalo Soldier's Barracks, followed by a plated dinner with other patrons, donors, supporters, and alumni of the Post Playhouse.
+  dates:
+    fort_rob: |
+      July 16c
+
+- title: NEW MUSICAL
+  short_title: NEW ♫
+  special_event: true
+  belongs_to_series: 60th Anniversary Special Events
+  color: x
+  description: |
+    **Sunday, July 18, 2027, at 2 p.m.**
+
+    Details coming soon.
   dates:
     fort_rob: |
       July 18a

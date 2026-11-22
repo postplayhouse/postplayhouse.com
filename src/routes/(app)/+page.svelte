@@ -1,10 +1,9 @@
 <script lang="ts">
 	import Mailer from "$components/Mailer.svelte"
 	import Modal from "$components/Modal/Modal.svelte"
-	import Openings from "$components/Openings/Openings.svelte"
+	import SeasonImage from "$components/SeasonImage.svelte"
 	import SponsorPlate from "$components/SponsorPlate.svelte"
 	import * as site from "$data/site"
-	import seasonAnnouncement from "./2027-season-announcement.jpg?enhanced"
 
 	import DonateBtn from "$components/DonateBtn.svelte"
 	import { isToday } from "date-fns"
@@ -31,7 +30,7 @@
 
 	let { data } = $props()
 
-	const { productions, season } = $derived(data)
+	const { season } = $derived(data)
 
 	let showMailingList = $state(false)
 
@@ -178,13 +177,20 @@
 		<em>Honky Tonk Angels</em>.
 	</p>
 
-	<enhanced:img
-		src={seasonAnnouncement}
-		class="h-auto w-full shadow-lg"
+	<SeasonImage
+		{season}
+		imageFile="full-season.jpg"
+		class="h-auto w-full bg-white shadow-lg"
 		alt="Show logos for Annie, The Drowsy Chaperone, Footloose, The Addams Family, and Honky Tonk Angels in the 2027 Post Playhouse season"
-	></enhanced:img>
+	/>
 
-	<p class="my-8 text-2xl">Performance dates and tickets are coming soon.</p>
+	<p class="my-8 text-2xl">Join us May 28–August 15, 2027, at Fort Robinson!</p>
+
+	<div class="my-8 flex flex-wrap justify-center gap-4">
+		<a class="btn px-4 py-2" href="/productions/{season}">Explore the shows</a>
+		<a class="btn px-4 py-2" href="/calendar/{season}">View the full calendar</a
+		>
+	</div>
 
 	<p class="my-8 text-3xl">
 		Special thanks to our Season Sponsors returning for next summer!

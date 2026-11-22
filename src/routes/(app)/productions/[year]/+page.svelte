@@ -7,7 +7,7 @@
 
 	let { data } = $props()
 
-	let { productions, year, series } = $derived(data)
+	let { productions, year, series, specialEvents } = $derived(data)
 </script>
 
 <h1 class="h1 mb-2">Summer {year} Productions</h1>
@@ -40,6 +40,7 @@
 		season={year}
 		imageFile="full-season.jpg"
 		alt="All {year} productions"
+		class="bg-white"
 	/>
 {/if}
 
@@ -59,6 +60,10 @@
 		{/each}
 
 		{#each series as event}
+			<Production production={event} season={year} />
+		{/each}
+
+		{#each specialEvents as event}
 			<Production production={event} season={year} />
 		{/each}
 	{:else if year > new Date().getFullYear()}

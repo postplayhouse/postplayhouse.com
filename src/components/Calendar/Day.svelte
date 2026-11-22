@@ -66,7 +66,11 @@
 			{/if}
 			{#each daySchedule as showing}
 				<li class="showing evening show-{showing.color}">
-					<span class="show-time">{getShortTime(showing)}</span>
+					<span class="show-time">
+						{date.year === 2027 && showing.title === "Gala"
+							? "TBA"
+							: getShortTime(showing)}
+					</span>
 					<span class="show-title">{showing.title}</span>
 				</li>
 			{/each}

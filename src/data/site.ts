@@ -6,12 +6,12 @@ const prod = !dev
 
 // Actual values. If dev, these may change below.
 const castingComplete_ = false as boolean
-const showsExistInYaml_ = false as boolean
-const showsAnnounced_ = false as boolean
+const showsExistInYaml_ = true as boolean
+const showsAnnounced_ = true as boolean
 
 // Leave unset until the ticket-sale announcement is approved.
 export const ticketsAvailableDate: string | null = null
-const dayAfterFinalPerf = "2027-08-10T00:00:00"
+const dayAfterFinalPerf = "2027-08-16T00:00:00"
 export const url = "__PUBLIC_BUILD_URL__" // replaced by vite.config.ts
 export const castingComplete = prod ? castingComplete_ : true
 export const description =

@@ -39,6 +39,18 @@ and restores the assets automatically. Outside an orb, run
 access, then `pnpm images:historical:restore` explicitly if needed. Endpoints
 that call other external services need only their corresponding credentials.
 
+## Show artwork
+
+Show entries in `src/data/productions/<year>.yml` use `image` for the usual logo.
+Artwork lives in `src/images/seasons/<year>/`. Two optional fields control its
+presentation:
+
+- Omit `image_background` (or set it to `true`) for the default 70% white backing.
+- Set `image_background: false` to leave the image background transparent.
+- Add `dark_mode_image: show-dark.png` to use alternate artwork in dark mode.
+  Combine this with `image_background: false` for transparent light/dark logos.
+  Without `dark_mode_image`, the same image is used in both themes.
+
 ## End-to-end tests
 
 Install the Playwright Chromium build once, then run the integration suite:

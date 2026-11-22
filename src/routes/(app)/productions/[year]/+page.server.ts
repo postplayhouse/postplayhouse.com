@@ -9,6 +9,7 @@ function imageKeys(
 ): string[] {
 	return items.flatMap((item) => [
 		...(item.image ? [`${year}/${item.image}`] : []),
+		...(item.dark_mode_image ? [`${year}/${item.dark_mode_image}`] : []),
 		...("events" in item ? imageKeys(year, item.events) : []),
 	])
 }
