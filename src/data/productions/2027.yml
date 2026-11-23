@@ -37,7 +37,7 @@
 
 - title: The Addams Family
   rating: H
-  rating_explanation: "Macabre humor about death and torture, comic ghosts, mild innuendo. Some younger children may find parts spooky."
+  rating_explanation: "Playfully spooky humor, comic ghosts, and mild innuendo. Some younger children may find parts a little scary."
   short_title: Addams
   color: yellow
   image: addams-family.png
@@ -56,7 +56,7 @@
 
 - title: The Drowsy Chaperone
   rating: H
-  rating_explanation: "A comic portrait of 1920s excess: a drunken chaperone, innuendo, and cartoonish gangsters threatening violence."
+  rating_explanation: "A comic portrait of 1920s excess: a tipsy chaperone, innuendo, and cartoonish gangsters."
   short_title: Drowsy
   color: blue
   image: drowsy-chaperone.png
@@ -75,7 +75,7 @@
 
 - title: Footloose
   rating: H
-  rating_explanation: "Contains teen drinking, some violence, mild language."
+  rating_explanation: "Contains some teen drinking, a mild physical fight, and mild language."
   short_title: Footloose
   color: purple
   image: footloose.png
