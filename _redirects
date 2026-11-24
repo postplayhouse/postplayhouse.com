@@ -1,0 +1,5 @@
+# Custom Netlify redirects. @sveltejs/adapter-netlify copies this file into the
+# build output ahead of its own rules (it rejects redirects in netlify.toml).
+
+# Temporary short link printed on the 60th Anniversary gala invitation cards.
+/rsvp  https://boxoffice.postplayhouse.com/rsvp  302!
