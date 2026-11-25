@@ -72,7 +72,7 @@ export const baseEventSchema = z.strictObject({
 	pre_title: z.string().optional(),
 	opening: z.iso.date().optional(),
 	writers: z.string().nullish(),
-	rating: z.enum(["G", "H", "PG"]).optional(),
+	rating: z.enum(["G", "H", "PG", "PG-13"]).optional(),
 	rating_explanation: z.string().optional(),
 })
 

@@ -18,8 +18,7 @@
   roles_sorting:
 
 - title: Honky Tonk Angels
-  rating: H
-  rating_explanation: "Grown-up country humor and songs about drinking, cheating, and heartbreak. A concert-style show that may not hold young children's attention."
+  rating: PG-13
   short_title: Angels
   color: green
   image: honky-tonk-angels.png
@@ -36,8 +35,7 @@
   roles_sorting:
 
 - title: The Addams Family
-  rating: H
-  rating_explanation: "Playfully spooky humor, comic ghosts, and mild innuendo. Some younger children may find parts a little scary."
+  rating: PG
   short_title: Addams
   color: yellow
   image: addams-family.png
@@ -55,8 +53,7 @@
   roles_sorting:
 
 - title: The Drowsy Chaperone
-  rating: H
-  rating_explanation: "A comic portrait of 1920s excess: a tipsy chaperone, innuendo, and cartoonish gangsters."
+  rating: PG-13
   short_title: Drowsy
   color: blue
   image: drowsy-chaperone.png
@@ -74,8 +71,7 @@
   roles_sorting:
 
 - title: Footloose
-  rating: H
-  rating_explanation: "Contains some teen drinking, a mild physical fight, and mild language."
+  rating: PG
   short_title: Footloose
   color: purple
   image: footloose.png
