@@ -1,6 +1,49 @@
 <script lang="ts">
 	import * as site from "$data/site"
 	import ParkingNotice from "$components/ParkingNotice.svelte"
+	import nebraskaMap from "../../../images/location-maps/1-nebraska.png?enhanced"
+	import regionMap from "../../../images/location-maps/2-region.png?enhanced"
+	import fortMap from "../../../images/location-maps/3-fort-robinson.png?enhanced"
+
+	const maps = [
+		{
+			src: nebraskaMap,
+			alt: "Map of Nebraska with Post Playhouse marked in the northwest corner of the state",
+			title: "Northwest Nebraska",
+			caption:
+				"In the state's northwest corner, near the South Dakota and Wyoming borders.",
+		},
+		{
+			src: regionMap,
+			alt: "Map showing Post Playhouse in Fort Robinson State Park, west of Crawford and Chadron on US 20",
+			title: "Fort Robinson State Park",
+			caption:
+				"3 miles west of Crawford and about 28 miles west of Chadron on US 20.",
+		},
+		{
+			src: fortMap,
+			alt: "Map of Fort Robinson with the Post Playhouse building marked beside US 20, with open highway leading in from both directions",
+			title: "Inside the fort",
+			caption: "On the east side of US 20, near all the buildings in the fort.",
+		},
+	]
+
+	const destination = "Post Playhouse, 3200 Highway 20, Crawford, NE 69339"
+	const directions = [
+		{
+			name: "Google Maps",
+			href: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}&destination_place_id=ChIJU9UYIeg1e4cRKbMoq-LycEI`,
+		},
+		{
+			name: "Apple Maps",
+			href: `https://maps.apple.com/directions?destination=${encodeURIComponent(destination)}`,
+		},
+		{
+			// OSM has no named entry for the theatre, so route to its building.
+			name: "OpenStreetMap",
+			href: "https://www.openstreetmap.org/directions?to=42.66756%2C-103.46410",
+		},
+	]
 </script>
 
 <svelte:head>
@@ -50,41 +93,38 @@
 </p>
 
 <ul>
-	<li>
-		<a
-			class="link-green"
-			href="https://duckduckgo.com/?va=e&t=hq&q=Post+Playhouse&ia=web&iaxm=directions&end=what%3APost%2520Playhouse%2Cwhere%3A3200%2520Highway%252020%252C%2520Crawford%252C%2520NE%252069339%252C%2520United%2520States&transport=drive"
-			target="_blank"
-		>
-			Apple Maps (via DuckDuckGo)
-		</a>
-		— to the theatre
-	</li>
-	<li>
-		<a
-			class="link-green"
-			href="https://www.google.com/maps/dir//42.6675597,-103.4641791/@42.6675302,-103.5465798,12z?entry=ttu"
-			target="_blank"
-		>
-			Google Maps
-		</a>
-		— to the theatre
-	</li>
+	{#each directions as { name, href } (name)}
+		<li>
+			<a class="link-green" {href} target="_blank">{name}</a>
+			— to the theatre
+		</li>
+	{/each}
 </ul>
 
-<div class="my-4 w-full max-w-2xl">
-	<div class="aspect-video">
-		<iframe
-			width="604"
-			height="350"
-			title="Map showing Post Playhouse's location"
-			frameborder="0"
-			scrolling="no"
-			marginheight="0"
-			marginwidth="0"
-			src="https://maps.google.com/maps/ms?f=q&amp;hl=en&amp;geocode=&amp;ie=UTF8&amp;msa=0&amp;msid=215815128770604665825.00045338a29dc15cb2d92&amp;ll=42.668963,-103.464013&amp;spn=0.003826,0.009656&amp;t=m&amp;output=embed"
-		></iframe>
-	</div>
-</div>
+<ol class="my-6 grid list-none gap-6 pl-0 md:grid-cols-3 md:gap-4">
+	{#each maps as { src, alt, title, caption } (title)}
+		<li>
+			<figure>
+				<enhanced:img
+					{src}
+					{alt}
+					sizes="(min-width: 768px) 33vw, 100vw"
+					class="h-auto w-full rounded-sm border border-gray-300 dark:border-gray-700"
+				></enhanced:img>
+				<figcaption class="mt-2 text-sm">
+					<strong class="block">{title}</strong>
+					{caption}
+				</figcaption>
+			</figure>
+		</li>
+	{/each}
+</ol>
+
+<p class="mb-6 text-xs">
+	Map data ©
+	<a class="link-green" href="https://www.openstreetmap.org/copyright"
+		>OpenStreetMap contributors</a
+	>
+</p>
 
 <ParkingNotice />
