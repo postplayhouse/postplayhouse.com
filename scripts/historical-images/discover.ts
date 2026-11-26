@@ -1,7 +1,7 @@
 import { readdir, stat } from "node:fs/promises"
 import { extname, join, relative, sep } from "node:path"
 import type { ArtifactConfig, ArtifactSourceDirectory } from "./config"
-import { hashFile } from "./hash"
+import { hashFile, type FileHasher } from "./hash"
 
 export interface DiscoveredSource {
 	path: string
@@ -34,6 +34,7 @@ async function walk(
 async function describe(
 	root: string,
 	source: ArtifactSourceDirectory,
+	hash: FileHasher,
 ): Promise<DiscoveredSource[]> {
 	const directory = join(root, source.directory)
 	const sources: DiscoveredSource[] = []
@@ -57,7 +58,7 @@ async function describe(
 			sourceId: source.id,
 			collection: source.collection,
 			bytes: details.size,
-			sha256: await hashFile(path),
+			sha256: await hash(path),
 			profile: source.profile,
 		})
 	}
@@ -67,9 +68,12 @@ async function describe(
 export async function discoverArtifactSources(
 	root: string,
 	config: ArtifactConfig,
+	hash: FileHasher = hashFile,
 ): Promise<DiscoveredSource[]> {
 	const result = (
-		await Promise.all(config.sources.map((source) => describe(root, source)))
+		await Promise.all(
+			config.sources.map((source) => describe(root, source, hash)),
+		)
 	).flat()
 	for (const exception of config.profileExceptions) {
 		const match = result.find(

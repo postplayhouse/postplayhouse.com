@@ -18,7 +18,7 @@ import {
 } from "./config"
 import { deriveCompatibility, derivePipelineSha256 } from "./compatibility"
 import { discoverArtifactSources } from "./discover"
-import { hashFile, sha256, stableJson } from "./hash"
+import { hashFile, sha256, stableJson, type FileHasher } from "./hash"
 import { generatedMap } from "./metadata"
 import {
 	lockSchema,
@@ -390,9 +390,10 @@ async function verifyCheckout(
 	config: ArtifactConfig,
 	manifest: HistoricalManifest,
 	lock: HistoricalLock,
+	hash: FileHasher,
 ): Promise<void> {
 	verifyManifestConfiguration(config, manifest)
-	const discovered = await discoverArtifactSources(root, config)
+	const discovered = await discoverArtifactSources(root, config, hash)
 	const expected = manifest.sources.map(
 		({ path, logicalPath, sourceId, collection, bytes, sha256, profile }) => ({
 			path,
@@ -518,6 +519,7 @@ export async function restore(
 	root: string,
 	config: ArtifactConfig,
 	store: ArtifactStore | null,
+	hash: FileHasher = hashFile,
 ): Promise<{ restored: number; cached: number; bytesTransferred: number }> {
 	let lock: HistoricalLock
 	try {
@@ -535,7 +537,7 @@ export async function restore(
 	await assertOwnedRoot(root, join(config.cacheRoot, "objects"))
 	await assertOwnedRoot(root, config.staticAssetRoot)
 	const manifest = await readVerifiedManifest(root, config, store, lock)
-	await verifyCheckout(root, config, manifest, lock)
+	await verifyCheckout(root, config, manifest, lock, hash)
 	let restored = 0
 	let cached = 0
 	let bytesTransferred = 0
@@ -546,7 +548,7 @@ export async function restore(
 		try {
 			if (
 				(await stat(target)).size === asset.bytes &&
-				(await hashFile(target)) === asset.sha256
+				(await hash(target)) === asset.sha256
 			)
 				return
 		} catch (error) {

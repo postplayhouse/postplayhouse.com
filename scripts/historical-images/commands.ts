@@ -10,7 +10,7 @@ import {
 	type ArtifactConfigProvider,
 } from "./config"
 import { B2ArtifactStore } from "./b2"
-import { hashFile, sha256, stableJson } from "./hash"
+import { hashFile, sha256, stableJson, statHashCache } from "./hash"
 import { FileArtifactStore, type ArtifactStore } from "./store"
 import { lockSchema, manifestSchema, type HistoricalManifest } from "./schema"
 
@@ -220,11 +220,23 @@ export async function run(args: CliArguments): Promise<void> {
 	}
 	if (args.command === "restore" || args.command === "verify") {
 		const { restore } = await import("./archive")
-		console.log(
-			JSON.stringify(
-				await restore(root, config, artifactStoreFromEnvironment(config)),
-			),
+		// Netlify and CI hash every byte; local and orb restores reuse digests of
+		// files whose stat metadata has not changed since the last restore.
+		const trusted =
+			args.command === "verify" ||
+			process.env.NETLIFY === "true" ||
+			Boolean(process.env.CI)
+		const cache = trusted
+			? null
+			: await statHashCache(join(root, config.cacheRoot, "hash-cache.json"))
+		const result = await restore(
+			root,
+			config,
+			artifactStoreFromEnvironment(config),
+			cache?.hash,
 		)
+		await cache?.save()
+		console.log(JSON.stringify(result))
 		return
 	}
 	if (args.command === "hydrate-generation" || args.command === "prepare") {

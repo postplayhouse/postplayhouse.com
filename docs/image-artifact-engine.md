@@ -115,7 +115,9 @@ checked by digest, length, schema, source inventory, and authenticated generated
 module identity before installation. Image metadata is authenticated from the
 trusted Linux generation manifest; portable restore only copies digest-verified
 bytes and does not invoke libvips. A verified local cache supports offline
-warm restores; unavailable cold storage fails closed.
+warm restores; unavailable cold storage fails closed. Local restores outside
+Netlify and CI reuse digests of files whose stat metadata is unchanged; see
+[historical-image-artifacts.md](historical-image-artifacts.md#failure-behavior-and-recovery).
 
 The generic store contract is implemented by the filesystem mock and B2
 transport. B2 names are constrained to the configured prefix. B2 remains a

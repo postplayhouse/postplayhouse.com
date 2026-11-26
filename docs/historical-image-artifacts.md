@@ -218,6 +218,12 @@ static/Vite outputs remain untouched. Missing, stale, unavailable, or tampered d
 with the trusted generation command; there is no historical Vite-transform
 fallback.
 
+Outside Netlify and CI, `restore` reuses digests of source and restored files
+from `.cache/historical-images/hash-cache.json` while a file's size, inode,
+mtime, and ctime are unchanged, and rehashes any file whose metadata differs.
+This keeps repeated local and Orb restores fast. Netlify (`NETLIFY=true`), CI
+(`CI` set), and the `verify` command never read the cache and hash every byte.
+
 The verified cache lives at `.cache/historical-images`. `hydrate-generation` reconstructs
 a complete previous output before incremental generation, covering additions,
 changes, acknowledged deletion, rename (delete+add), annual rollover, resume,
