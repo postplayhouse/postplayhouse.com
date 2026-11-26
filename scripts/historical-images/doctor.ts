@@ -47,7 +47,7 @@ export async function diagnose(
 	config: ArtifactConfig,
 ): Promise<Record<string, unknown>> {
 	let lockStatus: Record<string, unknown>
-	let generatedOutputs: Record<string, string> = {}
+	const generatedOutputs: Record<string, string> = {}
 	try {
 		const lock = lockSchema.parse(
 			JSON.parse(await readFile(join(root, config.lockPath), "utf8")),
