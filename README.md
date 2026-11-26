@@ -34,7 +34,8 @@ configuration before `dev` or `build` can restore them. By explicit project
 decision, historical images and bio tooling share these credentials; there is
 no credential-level isolation or least-privilege claim between those uses.
 Amp orb setup resolves these credentials through Varlock's 1Password integration
-and restores the assets automatically. Outside an orb, run
+and restores the assets automatically, then briefly starts the dev server to
+warm Vite's dependency and image caches for the project snapshot. Outside an orb, run
 `pnpm images:historical:doctor` to inspect local readiness without network
 access, then `pnpm images:historical:restore` explicitly if needed. Endpoints
 that call other external services need only their corresponding credentials.

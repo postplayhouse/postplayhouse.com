@@ -104,4 +104,48 @@ else
 	}
 fi
 
+kill_tree() {
+	local child
+	for child in $(pgrep -P "$1" || true); do
+		kill_tree "$child"
+	done
+	kill "$1" 2>/dev/null || true
+}
+
+# The first `pnpm dev` in a fresh orb spends most of a minute pre-bundling
+# dependencies and processing images. Do that once here so the project snapshot
+# carries node_modules/.vite and node_modules/.cache/imagetools.
+echo "== Warming Vite dev caches =="
+warm_port=3917
+warm_log="$(mktemp)"
+pnpm exec varlock run -- vite dev --port "$warm_port" --strictPort >"$warm_log" 2>&1 &
+warm_pid=$!
+trap 'kill_tree "$warm_pid"' EXIT
+warm_status=failed
+warm_deadline=$((SECONDS + 600))
+# curl treats --max-time 0 as unlimited, so never pass less than one second.
+warm_time_left() {
+	local left=$((warm_deadline - SECONDS))
+	echo $((left > 0 ? left : 1))
+}
+while kill -0 "$warm_pid" 2>/dev/null && ((SECONDS < warm_deadline)); do
+	if curl -sf -o /dev/null --max-time "$(warm_time_left)" "http://localhost:$warm_port/"; then
+		# /media runs every Basecamp press photo through enhanced-img on first view.
+		curl -sfL -o /dev/null --max-time "$(warm_time_left)" "http://localhost:$warm_port/media" &&
+			warm_status=ok
+		break
+	fi
+	sleep 0.5
+done
+kill_tree "$warm_pid"
+wait "$warm_pid" 2>/dev/null || true
+trap - EXIT
+if [[ "$warm_status" == ok ]]; then
+	echo "Vite caches warmed"
+else
+	echo "Vite cache warm-up did not finish; the first pnpm dev will be slower" >&2
+	tail -20 "$warm_log" >&2
+fi
+rm -f "$warm_log"
+
 measure_resources complete

@@ -106,6 +106,7 @@ run_case() {
 	assert_log_contains "mise env -s bash"
 	assert_log_contains "pnpm install --frozen-lockfile"
 	assert_log_contains "pnpm with:1password pnpm images:historical:restore"
+	assert_log_contains "pnpm exec varlock run -- vite dev --port 3917 --strictPort"
 	assert_log_excludes "docker "
 	assert_log_excludes "sudo "
 	[[ "$(cat "$HOME/.config/basecamp/credentials.json")" == "$BASECAMP_CREDENTIALS_JSON" ]] || fail "Basecamp credentials were not restored"
