@@ -4,9 +4,6 @@
 	import { goto } from "$app/navigation"
 	import MainLayout from "$components/layouts/MainLayout.svelte"
 
-	// Bare reference to page just to keep eslint happy
-	// https://github.com/sveltejs/eslint-plugin-svelte/issues/652
-	page
 
 	function redirectIfPathMatchesOldNewsRoute() {
 		if ($page.status !== 404) return

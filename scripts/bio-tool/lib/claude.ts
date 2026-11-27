@@ -97,7 +97,7 @@ Respond with ONLY the JSON object, no markdown code fences.`
         reasoning: parsed.contentFlag?.reasoning,
       },
     }
-  } catch (err) {
+  } catch {
     console.error("Failed to parse Claude response:", result.slice(0, 500))
     throw new Error("Claude returned invalid JSON")
   }

@@ -29,11 +29,26 @@ export default [
 		languageOptions: {
 			parserOptions: {
 				parser: ts.parser,
+				svelteConfig: {
+					// eslint-plugin-svelte v2 always compiles components as custom
+					// elements for svelte/valid-compile. This app has none, so drop
+					// the custom-element-only warning.
+					onwarn(warning, handler) {
+						if (warning.code === "custom_element_props_identifier") return
+						handler(warning)
+					},
+				},
 			},
 		},
 	},
 	{
-		ignores: ["build/", ".svelte-kit/", ".netlify/", "package/"],
+		files: ["**/*.cjs"],
+		rules: {
+			"@typescript-eslint/no-require-imports": "off",
+		},
+	},
+	{
+		ignores: ["build/", ".svelte-kit/", ".netlify/", "package/", ".amp/"],
 	},
 	{
 		rules: {
@@ -43,6 +58,7 @@ export default [
 					ignoreRestSiblings: true,
 					varsIgnorePattern: "^_",
 					argsIgnorePattern: "^_",
+					caughtErrorsIgnorePattern: "^_",
 				},
 			],
 			"@typescript-eslint/no-unused-expressions": [

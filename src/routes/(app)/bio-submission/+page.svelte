@@ -458,7 +458,7 @@
 				}),
 			})
 			if (res.ok) {
-				const { data, source } = await res.json()
+				const { data } = await res.json()
 				if (data) {
 					isReturningUser = true
 					fields.firstName = data.firstName ?? ""

@@ -2,7 +2,7 @@ import "./lib/env"
 import { execSync } from "child_process"
 import { listFiles, downloadFileById, parseSubmissionFilename } from "./lib/b2"
 import { saveEmail, getAllEmails, clearManifest } from "./lib/manifest"
-import { getCurrentSeason, seasonYamlPath } from "./lib/season"
+import { getCurrentSeason } from "./lib/season"
 
 function capitalize(s: string): string {
   return s
@@ -13,7 +13,6 @@ function capitalize(s: string): string {
 
 async function main() {
   const season = getCurrentSeason()
-  const yamlPath = seasonYamlPath(season)
 
   // Season window: Sept 1 of previous year through Aug 30 of season year
   const seasonStart = new Date(`${season - 1}-09-01T00:00:00Z`)

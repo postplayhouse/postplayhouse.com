@@ -176,7 +176,7 @@ async function processBranch(
   // Step 1: Raw submission already present as first commit
 
   // Step 1.5: Normalize CRLF line endings (GitHub API commits with \r\n)
-  normalizeCrlf(yamlPath, position)
+  normalizeCrlf(yamlPath)
 
   // Step 1.75: Optimize images (resize + compress)
   await optimizeImages(season)
@@ -243,7 +243,7 @@ function extractShowTitles(yamlContent: string): string[] {
   return Array.from(titles)
 }
 
-function normalizeCrlf(yamlPath: string, position: number) {
+function normalizeCrlf(yamlPath: string) {
   if (branchHasCommit("Normalize line endings")) {
     console.log("  CRLF: already done, skipping")
     return
@@ -578,7 +578,7 @@ function abbreviateState(position: number, yamlPath: string) {
   if (!block) return
 
   // Match the location field: `  location: "City, State"`
-  const locationMatch = block.match(/  location: "(.+)"/)
+  const locationMatch = block.match(/ {2}location: "(.+)"/)
   if (!locationMatch) return
 
   const location = locationMatch[1]

@@ -7,3 +7,6 @@ src/lib/server/generated/historical-images.ts
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+
+# Orb scratch files, not part of the repo
+.amp/

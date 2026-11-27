@@ -43,7 +43,7 @@ export function linkBareUrls(text: string): string | null {
   // Match bare www. URLs not already inside a markdown link
   // Negative lookbehinds: not after "(", "://", ":", or "["
   result = result.replace(
-    /(?<!\()(?<!\/)(?<!\:)(?<!\[)(www\.\S+?)(?=[)\]\s,;!?]*(?:\s|$))/g,
+    /(?<!\()(?<!\/)(?<!:)(?<!\[)(www\.\S+?)(?=[)\]\s,;!?]*(?:\s|$))/g,
     (match) => `[${match}](https://${match})`,
   )
 

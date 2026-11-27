@@ -15,7 +15,6 @@ async function main() {
   }
 
   const filePath = resolve(input)
-  const ext = extname(filePath).toLowerCase()
   const base = basename(filePath, extname(filePath))
   const dir = dirname(filePath)
   const targetPath = join(dir, `${base}.jpg`)

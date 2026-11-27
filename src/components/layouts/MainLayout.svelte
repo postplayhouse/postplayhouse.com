@@ -7,9 +7,6 @@
 	import { url } from "$data/site"
 	import type { Snippet } from "svelte"
 
-	// Bare reference to page just to keep eslint happy
-	// https://github.com/sveltejs/eslint-plugin-svelte/issues/652
-	page
 	const socialImage = `${url}/images/playhouse-pic-large.jpg`
 
 	type Props = {

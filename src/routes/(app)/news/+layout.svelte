@@ -4,9 +4,6 @@
 	import type { Snippet } from "svelte"
 	import type { LayoutData } from "./$types"
 
-	// Bare reference to page just to keep eslint happy
-	// https://github.com/sveltejs/eslint-plugin-svelte/issues/652
-	page
 
 	type Props = { children: Snippet; data: LayoutData }
 

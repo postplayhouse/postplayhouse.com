@@ -225,7 +225,7 @@ async function main() {
     console.log(`\nWriting adjustments...`)
     writeFileSync(yamlPath, adjYaml, "utf-8")
     // Also update images to their adjusted state
-    for (const { position, commits } of branchInfos) {
+    for (const { commits } of branchInfos) {
       const nonProposed = commits.filter(
         (c) => !c.message.includes("PROPOSED EDIT"),
       )

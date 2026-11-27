@@ -68,9 +68,10 @@
 		return (current + 1) % slides.length
 	}
 
-	// svelte-ignore state_referenced_locally This INT value is meant to just be
-	// the initial duration. It gets properly updated in the nextOrDone function,
-	// where it is in a closure and won't cause issues.
+	// This INT value is meant to just be the initial duration. It gets properly
+	// updated in the nextOrDone function, where it is in a closure and won't
+	// cause issues.
+	// svelte-ignore state_referenced_locally
 	let currentTimeout = browser ? window.setTimeout(nextOrDone, INT) : 0
 
 	function nextOrDone() {
