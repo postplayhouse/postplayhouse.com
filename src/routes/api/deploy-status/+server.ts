@@ -9,10 +9,17 @@ import { assert } from "$helpers"
 const secret = env["NETLIFY_WEBHOOK_SECRET"]
 
 type Payload = {
-	state: "building" | "error" | "ready" // there are more...
-	links: {
-		permalink: string
-	}
+	id: string
+	state: "building" | "error" | "ready" | (string & {}) // there are more...
+	title?: string | null
+	context?: string
+}
+
+function escapeHtml(value: string) {
+	return value
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
 }
 
 const state = {
@@ -57,12 +64,27 @@ export const POST = async ({ request: req, fetch }) => {
 	const data = JSON.parse(body) as Payload
 
 	const buildStatus = getStatus(data.state)
-	let content = `Website deployment ${buildStatus}. https://app.netlify.com/projects/postplayhouse-main-site/deploys`
+	const deployUrl = `https://app.netlify.com/projects/postplayhouse-main-site/deploys/${data.id}`
+	const change = data.title?.split("\n")[0]?.trim()
+	const changeLine = change ? `<br>Change: “${escapeHtml(change)}”` : ""
+	const details = `<br><br>Details: ${deployUrl}`
 
-	if (buildStatus === "status unknown" || buildStatus === "failed") {
-		content += `\n\n${JSON.stringify(data, null, 2)}`
-
-		sendMessageToChatRoom(fetch, "websiteUpdates", content)
+	if (buildStatus === "failed") {
+		const summary =
+			data.context && data.context !== "production"
+				? "Heads up: a marketing site preview didn’t build. The live site isn’t affected."
+				: "Heads up: the latest marketing site update didn’t go live. The site is still showing the previous version."
+		sendMessageToChatRoom(
+			fetch,
+			"websiteUpdates",
+			summary + changeLine + details,
+		)
+	} else if (buildStatus === "status unknown") {
+		sendMessageToChatRoom(
+			fetch,
+			"websiteUpdates",
+			`The marketing site sent an update we didn’t recognize (“${escapeHtml(data.state)}”).${changeLine}${details}`,
+		)
 	}
 
 	return text("", { status: 200 })
