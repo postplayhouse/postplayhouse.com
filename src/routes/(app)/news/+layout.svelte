@@ -4,7 +4,6 @@
 	import type { Snippet } from "svelte"
 	import type { LayoutData } from "./$types"
 
-
 	type Props = { children: Snippet; data: LayoutData }
 
 	let { children, data }: Props = $props()

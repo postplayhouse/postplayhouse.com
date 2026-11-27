@@ -308,7 +308,8 @@ export async function fetchBioWithSourceOfTruth({
 	// Filter blame ranges to those overlapping with position content
 	const blameRanges = masterBlame?.blame?.ranges ?? []
 	const overlapping = blameRanges.filter(
-		(range) => range.startingLine <= contentEnd && range.endingLine >= contentStart,
+		(range) =>
+			range.startingLine <= contentEnd && range.endingLine >= contentStart,
 	)
 
 	if (overlapping.length === 0) {
@@ -320,7 +321,9 @@ export async function fetchBioWithSourceOfTruth({
 	}
 
 	const newestMasterDate = new Date(
-		Math.max(...overlapping.map((r) => new Date(r.commit.committedDate).getTime())),
+		Math.max(
+			...overlapping.map((r) => new Date(r.commit.committedDate).getTime()),
+		),
 	)
 
 	if (prBranch?.target?.committedDate) {
@@ -353,7 +356,12 @@ export async function fetchFileFromBranch({
 		return { found: false }
 	}
 
-	const result = await getPreviousFileContent({ owner, repo, filePath, branchName })
+	const result = await getPreviousFileContent({
+		owner,
+		repo,
+		filePath,
+		branchName,
+	})
 	if (result.success) {
 		return { found: true, content: result.previousContent }
 	}

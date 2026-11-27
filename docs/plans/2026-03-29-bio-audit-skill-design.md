@@ -18,7 +18,11 @@ For every position block in the current season's YAML, output the position numbe
 
 ```json
 [
-  { "position": 1, "name": "Em Laudeman", "newestBlame": "2026-03-15T04:22:00.000Z" }
+	{
+		"position": 1,
+		"name": "Em Laudeman",
+		"newestBlame": "2026-03-15T04:22:00.000Z"
+	}
 ]
 ```
 
@@ -41,23 +45,23 @@ List all B2 submissions and images for the current season. Downloads `.txt` file
 
 ```json
 {
-  "submissions": [
-    {
-      "position": 42,
-      "name": "Scott Lee Clayton",
-      "b2Timestamp": "2026-02-20T18:30:00.000Z",
-      "fileName": "1740077400000-scott-lee-clayton.txt",
-      "imageFile": "1740077400000-scott-lee-clayton.jpg",
-      "imageTimestamp": "2026-02-20T18:30:05.000Z"
-    }
-  ],
-  "unmatchedImages": [
-    {
-      "fileName": "1740099000000-jane-doe.png",
-      "uploadTimestamp": "2026-02-21T10:00:00.000Z",
-      "parsedName": "Jane Doe"
-    }
-  ]
+	"submissions": [
+		{
+			"position": 42,
+			"name": "Scott Lee Clayton",
+			"b2Timestamp": "2026-02-20T18:30:00.000Z",
+			"fileName": "1740077400000-scott-lee-clayton.txt",
+			"imageFile": "1740077400000-scott-lee-clayton.jpg",
+			"imageTimestamp": "2026-02-20T18:30:05.000Z"
+		}
+	],
+	"unmatchedImages": [
+		{
+			"fileName": "1740099000000-jane-doe.png",
+			"uploadTimestamp": "2026-02-21T10:00:00.000Z",
+			"parsedName": "Jane Doe"
+		}
+	]
 }
 ```
 

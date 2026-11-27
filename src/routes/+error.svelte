@@ -4,7 +4,6 @@
 	import { goto } from "$app/navigation"
 	import MainLayout from "$components/layouts/MainLayout.svelte"
 
-
 	function redirectIfPathMatchesOldNewsRoute() {
 		if ($page.status !== 404) return
 

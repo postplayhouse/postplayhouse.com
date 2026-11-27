@@ -39,7 +39,9 @@
 	}
 </script>
 
-<nav class="main-nav mx-auto max-w-4xl border-b border-green-500/10 px-4 dark:border-green-500/30">
+<nav
+	class="main-nav mx-auto max-w-4xl border-b border-green-500/10 px-4 dark:border-green-500/30"
+>
 	<ul class="w-fit">
 		<li>
 			<a use:active={activePath} href="/productions/{site.season}">

@@ -68,12 +68,16 @@ async function main() {
 	fetchRemoteBioUpdateBranches(yamlPath)
 	const cutoffYear = season - 1
 	const cutoff = new Date(cutoffYear, 8, 1) // September 1st of prior year
-	const allBranches = listBioUpdateBranches().filter((b: { date: Date }) => b.date >= cutoff)
+	const allBranches = listBioUpdateBranches().filter(
+		(b: { date: Date }) => b.date >= cutoff,
+	)
 
 	// Filter out branches whose position is already newer on master
-	const branches = allBranches.filter(({ branch, position }: { branch: string; position: number }) => {
-		return !isPositionAlreadyMerged(yamlPath, position, branch)
-	})
+	const branches = allBranches.filter(
+		({ branch, position }: { branch: string; position: number }) => {
+			return !isPositionAlreadyMerged(yamlPath, position, branch)
+		},
+	)
 
 	if (!branches.length) {
 		console.log("No current-season bio-update branches found.")
@@ -121,10 +125,14 @@ async function main() {
 
 	checkoutMaster()
 
-	const mergedPeople: { position: number; name: string; isUpdate: boolean }[] = []
+	const mergedPeople: { position: number; name: string; isUpdate: boolean }[] =
+		[]
 	const mergeErrors: { name: string; error: string }[] = []
 
-	for (const { branch, position } of selectedBranches as { branch: string; position: number }[]) {
+	for (const { branch, position } of selectedBranches as {
+		branch: string
+		position: number
+	}[]) {
 		const name = getPersonName(branch, position)
 
 		// Try to extract email from PR description and save to manifest
@@ -147,12 +155,17 @@ async function main() {
 		let body = ""
 		if (adjustmentCommits.length > 0) {
 			body =
-				"Includes:\n" + adjustmentCommits.map((c) => `- ${c.message}`).join("\n")
+				"Includes:\n" +
+				adjustmentCommits.map((c) => `- ${c.message}`).join("\n")
 		}
 
 		const tempBranch = `_bio-merge-temp-${position}`
 		const deleteTempBranch = () => {
-			try { git(`branch -D ${tempBranch}`) } catch { /* ignore */ }
+			try {
+				git(`branch -D ${tempBranch}`)
+			} catch {
+				/* ignore */
+			}
 		}
 
 		try {
@@ -167,19 +180,28 @@ async function main() {
 			let cherryPickFailed = false
 			for (const commit of commits) {
 				try {
-					git(`cherry-pick --allow-empty --strategy-option theirs ${commit.hash}`)
+					git(
+						`cherry-pick --allow-empty --strategy-option theirs ${commit.hash}`,
+					)
 				} catch {
 					console.error(
 						`  Cherry-pick failed for "${commit.message}", aborting this branch`,
 					)
 					cherryPickFailed = true
-					try { git("cherry-pick --abort") } catch { /* ignore */ }
+					try {
+						git("cherry-pick --abort")
+					} catch {
+						/* ignore */
+					}
 					break
 				}
 			}
 
 			if (cherryPickFailed) {
-				mergeErrors.push({ name, error: "Cherry-pick conflict — merge manually" })
+				mergeErrors.push({
+					name,
+					error: "Cherry-pick conflict — merge manually",
+				})
 				git("checkout master")
 				deleteTempBranch()
 				continue
@@ -201,11 +223,20 @@ async function main() {
 			}
 			mergedPeople.push({ position, name, isUpdate: verb === "Update Bio" })
 		} catch (err) {
-			const msg = err instanceof Error ? err.message.split("\n")[0] : String(err)
+			const msg =
+				err instanceof Error ? err.message.split("\n")[0] : String(err)
 			console.error(`  Error merging ${name}: ${msg}`)
 			mergeErrors.push({ name, error: msg })
-			try { git("cherry-pick --abort") } catch { /* ignore */ }
-			try { git("checkout master") } catch { /* ignore */ }
+			try {
+				git("cherry-pick --abort")
+			} catch {
+				/* ignore */
+			}
+			try {
+				git("checkout master")
+			} catch {
+				/* ignore */
+			}
 		} finally {
 			deleteTempBranch()
 		}
@@ -216,7 +247,9 @@ async function main() {
 		console.log("\n--- Checking links ---")
 		const linksOk = await checkAllLinks()
 		if (!linksOk) {
-			console.log("\nBroken links detected above. Please fix them when you can.")
+			console.log(
+				"\nBroken links detected above. Please fix them when you can.",
+			)
 		}
 	}
 
@@ -310,7 +343,11 @@ ${RESUBMIT_NOTE}
 If you have any questions, please feel free to reach out.
 `
 
-function composeEmailWithSpark(email: string, subject: string, body: string): void {
+function composeEmailWithSpark(
+	email: string,
+	subject: string,
+	body: string,
+): void {
 	const escapedEmail = email.replace(/"/g, '\\"')
 	const escapedSubject = subject.replace(/"/g, '\\"')
 
@@ -369,7 +406,11 @@ end tell`
 		execSync(`osascript "${tmpScript}"`)
 	} finally {
 		for (const f of [tmpBody, tmpScript]) {
-			try { unlinkSync(f) } catch { /* ignore */ }
+			try {
+				unlinkSync(f)
+			} catch {
+				/* ignore */
+			}
 		}
 	}
 }
@@ -385,7 +426,9 @@ function composeEmails(
 			continue
 		}
 
-		const subject = isUpdate ? "Your Updated Post Playhouse Bio" : "Your Post Playhouse Bio"
+		const subject = isUpdate
+			? "Your Updated Post Playhouse Bio"
+			: "Your Post Playhouse Bio"
 		const body = isUpdate ? UPDATE_EMAIL_BODY : EMAIL_BODY
 
 		console.log(`  Opening compose for ${name} (${entry.email})...`)

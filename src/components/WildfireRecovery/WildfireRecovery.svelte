@@ -62,8 +62,9 @@
 				seasons to come.
 			</p>
 			<p>
-				Thank you for your generosity. And thank you for helping us turn a season
-				of challenge into a Comeback Story—of resilience, hope, and community.
+				Thank you for your generosity. And thank you for helping us turn a
+				season of challenge into a Comeback Story—of resilience, hope, and
+				community.
 			</p>
 		</div>
 

@@ -50,9 +50,11 @@ Finds all `bio-update/position-*` branches, filters to current year only (by ini
 Each step produces a commit only if changes are needed.
 
 #### Step 1: Raw submission (already present)
+
 The initial commit on the branch.
 
 #### Step 2: Photo dedup (no Claude)
+
 - Check if person (by name) exists in prior season YAMLs
 - If so, compute perceptual hash of submitted image and previous image
 - Use a loose similarity threshold (biased toward matching — easy to revert a bad match)
@@ -60,17 +62,20 @@ The initial commit on the branch.
 - Commit: `"Reuse existing photo from {year}"`
 
 #### Step 3: Instagram links (no Claude)
+
 - Regex scan `bio:` and `program_bio:` for `@handle`, `Instagram: handle`, `IG: @handle`, etc.
 - Convert to `[@handle](https://www.instagram.com/handle)`
 - Commit: `"Link Instagram handle"`
 
 #### Step 4: URL links + verification (no Claude)
+
 - Regex scan for bare URLs not already in markdown link syntax
 - Convert to `[domain](https://url)`
 - `curl` each URL and report status to stdout (does not fail on broken links)
 - Commit: `"Link website URLs"`
 
 #### Step 5: Claude pass — italics (Claude CLI)
+
 - Extract `bio:` and `program_bio:` text
 - Single `claude` CLI invocation with prompt covering:
   - **Italics:** Identify show titles (current season shows + general theatre knowledge + contextual clues) missing `*Title*` markdown italics
@@ -79,6 +84,7 @@ The initial commit on the branch.
   - Commit: `"Fix show title italics"`
 
 #### Step 6: Claude pass — content flag
+
 - From the same Claude response as step 5
 - If content flagged:
   - Commit: `"PROPOSED EDIT"` with reasoning in the commit body explaining what was flagged and why

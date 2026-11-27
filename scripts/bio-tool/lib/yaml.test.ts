@@ -15,26 +15,26 @@ const sampleYaml = `# start __3__
 # end __2__`
 
 describe("extractPositionBlock", () => {
-  it("extracts content between position markers", () => {
-    const result = extractPositionBlock(sampleYaml, 3)
-    expect(result).toContain("last_name: Denton")
-    expect(result).not.toContain("last_name: Smith")
-  })
+	it("extracts content between position markers", () => {
+		const result = extractPositionBlock(sampleYaml, 3)
+		expect(result).toContain("last_name: Denton")
+		expect(result).not.toContain("last_name: Smith")
+	})
 
-  it("returns null for missing position", () => {
-    expect(extractPositionBlock(sampleYaml, 99)).toBeNull()
-  })
+	it("returns null for missing position", () => {
+		expect(extractPositionBlock(sampleYaml, 99)).toBeNull()
+	})
 })
 
 describe("replacePositionBlock", () => {
-  it("replaces content between markers", () => {
-    const newBio = `- last_name: Updated
+	it("replaces content between markers", () => {
+		const newBio = `- last_name: Updated
   first_name: Don
   bio: |
     New bio`
-    const result = replacePositionBlock(sampleYaml, 3, newBio)
-    expect(result).toContain("last_name: Updated")
-    expect(result).toContain("last_name: Smith")
-    expect(result).not.toContain("last_name: Denton")
-  })
+		const result = replacePositionBlock(sampleYaml, 3, newBio)
+		expect(result).toContain("last_name: Updated")
+		expect(result).toContain("last_name: Smith")
+		expect(result).not.toContain("last_name: Denton")
+	})
 })

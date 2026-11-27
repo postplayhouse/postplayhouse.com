@@ -9,7 +9,10 @@ export const GET = async ({ request }) => {
 
 	if (!result.correct) {
 		return json(
-			{ error: "Invalid Passphrase", message: "The passphrase you gave was incorrect." },
+			{
+				error: "Invalid Passphrase",
+				message: "The passphrase you gave was incorrect.",
+			},
 			{ status: 403 },
 		)
 	}

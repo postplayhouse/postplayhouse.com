@@ -1,31 +1,31 @@
 import { execSync } from "child_process"
 
 export interface ClaudeBioResult {
-  /** Bio with italics fixes, or null if no changes needed */
-  italicsBio: string | null
-  /** Program bio with italics fixes, or null if no changes or not provided */
-  italicsProgramBio: string | null
-  /** Bio with capitalization fixes applied on top of italics, or null if no changes needed */
-  capsBio: string | null
-  /** Program bio with capitalization fixes, or null if no changes or not provided */
-  capsProgramBio: string | null
-  /** Content flag results */
-  contentFlag: {
-    flagged: boolean
-    cleanedBio?: string
-    cleanedProgramBio?: string
-    reasoning?: string
-  }
+	/** Bio with italics fixes, or null if no changes needed */
+	italicsBio: string | null
+	/** Program bio with italics fixes, or null if no changes or not provided */
+	italicsProgramBio: string | null
+	/** Bio with capitalization fixes applied on top of italics, or null if no changes needed */
+	capsBio: string | null
+	/** Program bio with capitalization fixes, or null if no changes or not provided */
+	capsProgramBio: string | null
+	/** Content flag results */
+	contentFlag: {
+		flagged: boolean
+		cleanedBio?: string
+		cleanedProgramBio?: string
+		reasoning?: string
+	}
 }
 
 export function processBioWithClaude(
-  bioText: string,
-  programBioText: string | null,
-  currentSeasonShows: string[],
+	bioText: string,
+	programBioText: string | null,
+	currentSeasonShows: string[],
 ): ClaudeBioResult {
-  const showsList = currentSeasonShows.join(", ")
+	const showsList = currentSeasonShows.join(", ")
 
-  const prompt = `You are processing a theatre performer's bio for Post Playhouse, a summer musical theatre company in Nebraska. They produce children's theatre and serve a conservative audience.
+	const prompt = `You are processing a theatre performer's bio for Post Playhouse, a summer musical theatre company in Nebraska. They produce children's theatre and serve a conservative audience.
 
 CURRENT SEASON SHOWS: ${showsList}
 
@@ -62,43 +62,40 @@ TASK 3 — CONTENT FLAG: Flag anything potentially inappropriate for a conservat
 
 Respond with ONLY the JSON object, no markdown code fences.`
 
-  // Strip CLAUDECODE env var to allow nested invocation
-  const env = { ...process.env }
-  delete env.CLAUDECODE
+	// Strip CLAUDECODE env var to allow nested invocation
+	const env = { ...process.env }
+	delete env.CLAUDECODE
 
-  const result = execSync(
-    `echo ${JSON.stringify(prompt)} | claude --print`,
-    {
-      encoding: "utf-8",
-      maxBuffer: 1024 * 1024,
-      timeout: 120000,
-      env,
-    },
-  )
+	const result = execSync(`echo ${JSON.stringify(prompt)} | claude --print`, {
+		encoding: "utf-8",
+		maxBuffer: 1024 * 1024,
+		timeout: 120000,
+		env,
+	})
 
-  // Try to extract JSON from the response (Claude might wrap it in code fences despite instructions)
-  let jsonStr = result.trim()
-  const fenceMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/)
-  if (fenceMatch) {
-    jsonStr = fenceMatch[1].trim()
-  }
+	// Try to extract JSON from the response (Claude might wrap it in code fences despite instructions)
+	let jsonStr = result.trim()
+	const fenceMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/)
+	if (fenceMatch) {
+		jsonStr = fenceMatch[1].trim()
+	}
 
-  try {
-    const parsed = JSON.parse(jsonStr)
-    return {
-      italicsBio: parsed.italics?.bio ?? null,
-      italicsProgramBio: parsed.italics?.programBio ?? null,
-      capsBio: parsed.capitalization?.bio ?? null,
-      capsProgramBio: parsed.capitalization?.programBio ?? null,
-      contentFlag: {
-        flagged: parsed.contentFlag?.flagged ?? false,
-        cleanedBio: parsed.contentFlag?.cleanedBio,
-        cleanedProgramBio: parsed.contentFlag?.cleanedProgramBio,
-        reasoning: parsed.contentFlag?.reasoning,
-      },
-    }
-  } catch {
-    console.error("Failed to parse Claude response:", result.slice(0, 500))
-    throw new Error("Claude returned invalid JSON")
-  }
+	try {
+		const parsed = JSON.parse(jsonStr)
+		return {
+			italicsBio: parsed.italics?.bio ?? null,
+			italicsProgramBio: parsed.italics?.programBio ?? null,
+			capsBio: parsed.capitalization?.bio ?? null,
+			capsProgramBio: parsed.capitalization?.programBio ?? null,
+			contentFlag: {
+				flagged: parsed.contentFlag?.flagged ?? false,
+				cleanedBio: parsed.contentFlag?.cleanedBio,
+				cleanedProgramBio: parsed.contentFlag?.cleanedProgramBio,
+				reasoning: parsed.contentFlag?.reasoning,
+			},
+		}
+	} catch {
+		console.error("Failed to parse Claude response:", result.slice(0, 500))
+		throw new Error("Claude returned invalid JSON")
+	}
 }
