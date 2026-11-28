@@ -7,10 +7,12 @@
 
 	interface Props {
 		onClose?: () => void
+		closeBar?: boolean
+		closeOnBackdrop?: boolean
 		children?: import("svelte").Snippet
 	}
 
-	let { children, onClose }: Props = $props()
+	let { children, onClose, closeBar, closeOnBackdrop }: Props = $props()
 
 	let ref: LifecycleRef<HTMLDivElement> = $state({ current: null })
 
@@ -23,7 +25,7 @@
 elsewhere in the DOM via `onMount` -->
 <div class="hidden">
 	<div bind:this={ref.current} transition:fade={{ duration: 200 }}>
-		<ModalBase {onClose}>
+		<ModalBase {onClose} {closeBar} {closeOnBackdrop}>
 			{@render children?.()}
 		</ModalBase>
 	</div>
